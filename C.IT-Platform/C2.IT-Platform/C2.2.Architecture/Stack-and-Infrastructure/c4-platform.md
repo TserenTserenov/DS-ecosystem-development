@@ -55,7 +55,7 @@ flowchart TB
 
     platform -- "Webhook + Bot API" --> telegram
     platform -- "Профили, подписки" --> lms
-    platform -- "LLM-запросы" --> llm_providers
+    platform -- "LLM-запросы через\nLLM Proxy ⏳ WP-200" --> llm_providers
     platform -- "Pack-репо, GitHub App" --> github
     platform -- "Подписки, платежи" --> payments
     platform -- "OAuth2" --> oauth_vendors
@@ -198,6 +198,10 @@ flowchart TB
         directus["Directus\nCRM Flows"]
     end
 
+    subgraph llm_group ["Слой 2Б: LLM ⏳"]
+        llm_proxy["LLM Proxy ⏳ WP-200\nроутинг по моделям\nучет токенов per user_id\nлимиты по тарифу"]
+    end
+
     llm_providers["LLM-провайдеры\nAnthropic, OpenAI"]
 
     bot -- "делегирует" --> guide
@@ -209,6 +213,8 @@ flowchart TB
     gateway -- "L2 Platform" --> knowledge
     gateway -- "Digital Twin" --> dt
     gateway -- "L4 Personal" --> personal
+    gateway -. "⏳ серверные агенты WP-201" .-> guide
+    gateway -. "⏳ серверные агенты WP-201" .-> strategist
 
     guide -- "поиск контекста" --> knowledge
     guide -- "данные пользователя" --> dt
@@ -217,16 +223,26 @@ flowchart TB
     ke -- "шаблоны" --> guides
     checker -- "критерии" --> knowledge
 
-    bot -- "LLM-запросы" --> llm_providers
+    bot -- "LLM-запросы (сейчас напрямую)" --> llm_providers
+    bot -. "⏳ через LLM Proxy" .-> llm_proxy
+    gateway -. "⏳ LLM для пользователей\nбез своего API-ключа" .-> llm_proxy
+    llm_proxy -. "⏳ роутинг" .-> llm_providers
 
     directus -- "webhook: статус изменён" --> bot
     billing -- "событие оплаты" --> bot
 ```
 
-- **S-1 (coupling):** агенты пока внутри бота. Путь к разделению -- серверные агенты через Gateway (WP-201)
-- **LLM Proxy (⏳ WP-200):** планируется единая точка LLM-вызовов (роутинг, лимиты). Сейчас агенты вызывают Anthropic напрямую
-- **Gateway:** Backend Registry (ADR-IWE-003 §6) позволяет динамически подключать BYOB MCP. Knowledge Gate (§5, KG-01..KG-07) валидирует новый backend
-- **Directus Flows:** webhook-триггеры при смене статуса контакта -> бот добавляет/удаляет из чата (WP-183)
+**Текущее состояние (сплошные линии):**
+- Бот вызывает LLM-провайдеров напрямую (каждый агент со своим API-ключом)
+- Gateway fan-out по MCP-сервисам (knowledge, DT, personal)
+
+**Планируемое (⏳ пунктир):**
+- **LLM Proxy (WP-200):** единая точка LLM-вызовов. Пользователю не нужен свой API-ключ -- платформа оплачивает и включает в подписку. Роутинг по моделям, учёт токенов per user_id, лимиты по тарифу (trial / БР / превышение)
+- **Серверные агенты (WP-201):** Gateway запускает агентов (Стратег, Экстрактор) от имени пользователя -- паритет T4 без CLI
+- **FSM MCP:** вынос state machine из бота в отдельный сервис
+
+**Архитектура Gateway:** Backend Registry (ADR-IWE-003 §6) -- динамическое подключение BYOB MCP. Knowledge Gate (§5, KG-01..KG-07) -- валидация нового backend.
+**Directus Flows:** webhook-триггеры при смене статуса контакта -> бот добавляет/удаляет из чата (WP-183)
 
 </details>
 
@@ -246,6 +262,7 @@ flowchart TB
         billing["Billing Module"]
         directus["Directus"]
         metabase["Metabase"]
+        llm_proxy["LLM Proxy ⏳"]
     end
 
     subgraph data ["Слой 1: Данные"]
@@ -270,6 +287,7 @@ flowchart TB
     personal -- "write через GitHub App\nInstallation Token 1h TTL" --> github_api
     github_api --> repos
 
+    llm_proxy -. "⏳ учёт токенов per user_id" .-> neon
     billing -- "подписки, webhook" --> payments
 ```
 
