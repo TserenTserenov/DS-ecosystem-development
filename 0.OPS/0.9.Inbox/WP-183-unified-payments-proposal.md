@@ -1,7 +1,14 @@
 # Единый учёт оплат и автоматизация допуска
 
-> **Proposal для обсуждения с командой.** Связь: WP-183 (CRM+Billing), WP-181 (воронка чатов), WP-115 (сценарий семинара).
+> **Proposal для обсуждения с командой.**
 > **Участники ревью:** Дима (Aisystant), Гиляна (бухгалтерия), Алёна (маркетинг), Юля (декан), Андрей (архитектура), Ильшат (менеджмент), Церен (платформа).
+>
+> **Связанные документы в этой папке:**
+> - [WP-183 CRM+Billing Architecture](WP-183-crm-billing-architecture-proposal.md) — архитектура CRM, Directus, Billing Service
+> - [WP-115 Сценарий семинара](WP-115-seminar-payment-access-scenario.md) — E2E: оплата → допуск → видео → маршрутка
+> - [WP-73 Архитектура платформы](WP-73-aisystant-platform-architecture.md) — §2.9 Биллинг, каналы оплаты
+> - [WP-74 Концепция использования](WP-74-platform-concept-of-use.md) — SC-12 Подписка и оплата
+> - [WP-109 Activity Hub](WP-109-activity-hub-lms-integration-proposal.md) — Billing adapter, события оплат
 
 ---
 
