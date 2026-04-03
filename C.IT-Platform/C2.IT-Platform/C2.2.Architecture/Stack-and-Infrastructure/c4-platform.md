@@ -47,7 +47,7 @@ flowchart TB
 
     learner -- "Telegram / Web / Gateway" --> platform
     creator -- "Claude Code + MCP" --> platform
-    admin -- "Web / API" --> platform
+    admin -- "Web / Directus" --> platform
 
     claude_code -- "MCP connector" --> platform
     chatgpt -- "MCP connector" --> platform
@@ -55,7 +55,7 @@ flowchart TB
 
     platform -- "Webhook + Bot API" --> telegram
     platform -- "Профили, подписки" --> lms
-    platform -- "LLM-запросы через Proxy" --> llm_providers
+    platform -- "LLM-запросы" --> llm_providers
     platform -- "Pack-репо, GitHub App" --> github
     platform -- "Подписки, платежи" --> payments
     platform -- "OAuth2" --> oauth_vendors
@@ -76,6 +76,8 @@ flowchart TB
         bot["Aist Bot\nPython, Railway"]
         gateway["Knowledge Gateway\nCF Worker, Ory-авт."]
         webapp["Web App\nVue SPA"]
+        directus["Directus\nCRM UI, Railway"]
+        metabase["Metabase\nBI-дашборды, Railway"]
     end
 
     subgraph layer2a ["Слой 2А: ИИ-агенты — stateless, LLM"]
@@ -89,10 +91,11 @@ flowchart TB
         knowledge_mcp["Knowledge MCP\nCF Worker, pgvector"]
         guides_mcp["Guides MCP\nCF Worker"]
         dt_mcp["Digital Twin MCP\nCF Worker"]
+        fsm_mcp["FSM MCP\nCF Worker\n⏳ задеплоен, не используется"]
         personal_mcp["Personal Knowledge MCP\nCF Worker"]
-        llm_proxy["LLM Proxy\nроутинг, учет токенов"]
+        llm_proxy["LLM Proxy\nроутинг, учет токенов\n⏳ planned WP-200"]
         ory["Ory Stack\nKratos + Hydra, self-hosted"]
-        crm["CRM + Billing\nDirectus, Stripe/YooKassa"]
+        billing["Billing Module\nадаптеры Stripe/YooKassa"]
     end
 
     subgraph layer1 ["Слой 1: Данные"]
@@ -104,9 +107,9 @@ flowchart TB
 
 | Слой | Зона | Контейнеры | Характер |
 |------|------|-----------|---------|
-| 3. Интерфейсы | -- | Aist Bot, Knowledge Gateway, Web App | Тонкие клиенты, без бизнес-логики |
+| 3. Интерфейсы | -- | Aist Bot, Knowledge Gateway, Web App, Directus (CRM), Metabase (BI) | Тонкие клиенты, UI |
 | 2. Обработка | А: ИИ-системы | Проводник, Стратег, KE, ДЗ-Чекер | Stateless, LLM |
-| 2. Обработка | Б: Детерминированные | Knowledge MCP, Guides MCP, DT MCP, Personal Knowledge MCP, LLM Proxy, Ory Stack, CRM + Billing | Stateful |
+| 2. Обработка | Б: Детерминированные | Knowledge MCP, Guides MCP, DT MCP, FSM MCP (⏳), Personal Knowledge MCP, LLM Proxy (⏳), Ory Stack, Billing Module | Stateful |
 | 1. Данные | -- | Neon PostgreSQL, Cloudflare KV, GitHub Repos | Персистентность |
 
 </details>
@@ -122,12 +125,15 @@ flowchart TB
 flowchart LR
     learner["Участник\nT1-T5"]
     creator["Созидатель\nT3-T5"]
+    admin["Администратор\nГиляна, Алёна, Юля"]
     ai_client["AI-клиент\nClaude Code\nChatGPT\nCursor"]
 
     subgraph interfaces ["Слой 3: Интерфейсы"]
         bot["Aist Bot\nTelegram-интерфейс"]
-        gateway["Knowledge Gateway\nЕдиный MCP endpoint\nОры-авторизация"]
+        gateway["Knowledge Gateway\nЕдиный MCP endpoint\nОры-авт., fan-out,\nBackend Registry,\nKnowledge Gate"]
         webapp["Web App\nVue SPA\nМой ЦД, подписки"]
+        directus["Directus\nCRM: контакты, группы,\nоплаты, RBAC"]
+        metabase["Metabase\nMRR, LTV, воронка,\nнаполняемость"]
     end
 
     ory["Ory Stack\nKratos + Hydra"]
@@ -138,6 +144,8 @@ flowchart LR
     learner -- "AI через подписку" --> gateway
     learner -- "Веб" --> webapp
     creator -- "MCP-инструменты" --> gateway
+    admin -- "CRM" --> directus
+    admin -- "Аналитика" --> metabase
     ai_client -- "MCP connector URL" --> gateway
 
     telegram -- "Webhook" --> bot
@@ -145,10 +153,13 @@ flowchart LR
     bot -- "Проверка подписки" --> ory
     gateway -- "OAuth2 токен" --> ory
     webapp -- "SSO" --> ory
+    directus -- "SSO" --> ory
 ```
 
-**Gateway** -- единая точка входа для всех AI-клиентов (один URL, Ory-авторизация, fan-out по backend MCP).
-**Web App** -- SPA для управления ЦД, подписками, настройками (не AI-интерфейс).
+**Gateway** -- единая точка входа для AI-клиентов. Backend Registry + Knowledge Gate (ADR-IWE-003) обеспечивают динамическое подключение и валидацию BYOB MCP.
+**Web App** -- SPA для управления ЦД, подписками, настройками.
+**Directus** -- CRM для команды: контакты, группы, оплаты, RBAC (WP-183).
+**Metabase** -- BI-дашборды: MRR, LTV, churn, воронка T0-T4, наполняемость (WP-183).
 **Бот** -- Telegram-интерфейс, тонкий клиент.
 
 </details>
@@ -164,7 +175,7 @@ flowchart LR
 flowchart TB
     subgraph entry ["Точки входа"]
         bot["Aist Bot"]
-        gateway["Knowledge Gateway"]
+        gateway["Knowledge Gateway\nBackend Registry\nKnowledge Gate"]
     end
 
     subgraph agents ["Слой 2А: ИИ-агенты"]
@@ -178,16 +189,22 @@ flowchart TB
         knowledge["Knowledge MCP\nL2 Platform"]
         guides["Guides MCP"]
         dt["Digital Twin MCP"]
+        fsm["FSM MCP ⏳\nзадеплоен, не используется"]
         personal["Personal Knowledge MCP\nL4 Personal"]
     end
 
-    llm_proxy["LLM Proxy\nроутинг, учет токенов"]
+    subgraph billing_group ["Слой 2Б: Billing"]
+        billing["Billing Module\nадаптеры Stripe/YooKassa"]
+        directus["Directus\nCRM Flows"]
+    end
+
     llm_providers["LLM-провайдеры\nAnthropic, OpenAI"]
 
     bot -- "делегирует" --> guide
     bot -- "делегирует" --> strategist
     bot -- "делегирует" --> ke
     bot -- "делегирует" --> checker
+    bot -. "⏳ планируется вынос FSM" .-> fsm
 
     gateway -- "L2 Platform" --> knowledge
     gateway -- "Digital Twin" --> dt
@@ -200,13 +217,16 @@ flowchart TB
     ke -- "шаблоны" --> guides
     checker -- "критерии" --> knowledge
 
-    bot -- "LLM-запросы" --> llm_proxy
-    llm_proxy -- "проксирование" --> llm_providers
+    bot -- "LLM-запросы" --> llm_providers
+
+    directus -- "webhook: статус изменён" --> bot
+    billing -- "событие оплаты" --> bot
 ```
 
 - **S-1 (coupling):** агенты пока внутри бота. Путь к разделению -- серверные агенты через Gateway (WP-201)
-- **LLM Proxy:** все LLM-вызовы через единую точку (роутинг, лимиты по тарифу)
-- **Gateway fan-out:** ADR-IWE-003 формализует контракт backend MCP
+- **LLM Proxy (⏳ WP-200):** планируется единая точка LLM-вызовов (роутинг, лимиты). Сейчас агенты вызывают Anthropic напрямую
+- **Gateway:** Backend Registry (ADR-IWE-003 §6) позволяет динамически подключать BYOB MCP. Knowledge Gate (§5, KG-01..KG-07) валидирует новый backend
+- **Directus Flows:** webhook-триггеры при смене статуса контакта -> бот добавляет/удаляет из чата (WP-183)
 
 </details>
 
@@ -223,13 +243,16 @@ flowchart TB
         knowledge["Knowledge MCP"]
         dt["Digital Twin MCP"]
         personal["Personal Knowledge MCP"]
-        crm["CRM + Billing"]
+        billing["Billing Module"]
+        directus["Directus"]
+        metabase["Metabase"]
     end
 
     subgraph data ["Слой 1: Данные"]
         neon["Neon PostgreSQL\npgvector + RLS per user_id"]
         kv["Cloudflare KV\nкэш Digital Twin"]
         repos["GitHub Repos\nPack платформенные + BYOB"]
+        metabase_db["Metabase App DB\nRailway Postgres"]
     end
 
     github_api["GitHub API"]
@@ -239,17 +262,21 @@ flowchart TB
     dt -- "профиль, события" --> neon
     dt -- "кэш двойника" --> kv
     personal -- "эмбеддинги L4\nnamespace per user_id" --> neon
-    crm -- "подписки, транзакции" --> neon
+    billing -- "подписки, транзакции" --> neon
+    directus -- "CRM: контакты, группы" --> neon
+    metabase -- "read-only: аналитика" --> neon
+    metabase -- "app data" --> metabase_db
 
     personal -- "write через GitHub App\nInstallation Token 1h TTL" --> github_api
     github_api --> repos
 
-    crm -- "подписки, webhook" --> payments
+    billing -- "подписки, webhook" --> payments
 ```
 
 - **ADR-IWE-001:** multi-tenant изоляция эмбеддингов -- namespace per user_id в pgvector (до 30k, затем Qdrant)
 - **ADR-IWE-004:** запись в Pack пользователя через GitHub App Installation Token (минимальный scope contents:write)
 - **BYOB:** данные пользователя в его GitHub-репо, эмбеддинги на платформе (Neon с RLS)
+- **Metabase:** отдельная App DB на Railway Postgres, read-only доступ к Neon для дашбордов (WP-183)
 
 </details>
 
@@ -267,6 +294,7 @@ flowchart TB
 | ~~**S-3**~~ | ~~AI-клиент -> MCP~~ | ~~Нет единой точки авторизации~~ | ~~Нет Gateway~~ | Resolved: WP-187 |
 | **S-4** | Langfuse | Observability только localhost, нет трейсинга в prod | Наблюдаемость | Открыт |
 | **S-5** | LLM-вызовы | Каждый агент держит свой API-ключ. Нет учета токенов, роутинга | Нет LLM Proxy | Открыт. Путь: WP-200 |
+| **S-6** | FSM внутри бота | FSM (core/machine.py) внутри бота, не вынесен в FSM MCP. Усиливает S-1 coupling | FSM coupling | Открыт. FSM MCP задеплоен, но не подключен |
 
 </details>
 
@@ -278,6 +306,6 @@ flowchart TB
 | Дата | Фаза | Изменение |
 |------|------|---------|
 | 2026-04-01 | Ф0-Ф3 | C4 L1 + L2 в Mermaid, ревью, сигналы S-1..S-4 |
-| 2026-04-03 | Ф4 | Актуализация по ADR-IWE-001/003/004. View-диаграммы (overview + Interface/Processing/Data). Flowchart вместо C4-нотации для читаемости |
+| 2026-04-03 | Ф4 | View-диаграммы (overview + Interface/Processing/Data). Flowchart для читаемости. Верификация по inbox |
 
 </details>
