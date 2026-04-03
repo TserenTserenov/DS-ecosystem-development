@@ -6,6 +6,7 @@
 >
 > Физическое размещение контейнеров C4 L2 по deployment nodes.
 > Цвет = слой DP.ARCH.001: синий = Интерфейсы, оранжевый = ИИ, жёлтый = Детерминированные, зелёный = Данные, фиолетовый = Инфра.
+> Пунктир = планируемые компоненты (ближайшие РП).
 
 ---
 
@@ -18,6 +19,8 @@ graph TB
         BOT["aist_me_bot — prod"]
         PILOT["aist_pilot_bot — pilot"]
         PG_DEV["Postgres — dev"]
+        DIRECTUS["Directus — CRM UI"]
+        METABASE["Metabase — BI"]
     end
 
     subgraph CF["Cloudflare Workers"]
@@ -27,6 +30,8 @@ graph TB
         DT["digital-twin-mcp"]
         GU["guides-mcp"]
         FSM["fsm-mcp"]
+        LLM_PROXY["LLM Proxy"]
+        ACTIVITY["Activity Hub"]
     end
 
     subgraph NEON["Neon — AWS EU-Central-1"]
@@ -57,6 +62,7 @@ graph TB
         GCAL["Google Calendar"]
         WAKA["WakaTime"]
         LIN["Linear"]
+        KINESCOPE["Kinescope"]
     end
 
     subgraph LANGFUSE["Langfuse — localhost"]
@@ -79,26 +85,34 @@ graph TB
     style APP fill:#ede9fe,stroke:#8b5cf6
     style ACTIONS fill:#ede9fe,stroke:#8b5cf6
     style LF fill:#ede9fe,stroke:#8b5cf6
+    style DIRECTUS fill:#dbeafe,stroke:#3b82f6,stroke-dasharray: 5 5
+    style METABASE fill:#dbeafe,stroke:#3b82f6,stroke-dasharray: 5 5
+    style LLM_PROXY fill:#fef3c7,stroke:#f59e0b,stroke-dasharray: 5 5
+    style ACTIVITY fill:#fef3c7,stroke:#f59e0b,stroke-dasharray: 5 5
 ```
 
-| Узел | URL / endpoint | C4 контейнер | Слой |
-|------|---------------|-------------|------|
-| aist_me_bot | `aistmebot-production.up.railway.app` | Aist Bot | Интерфейсы + ИИ (coupled, S-1) |
-| aist_pilot_bot | Railway internal | Aist Bot (pilot) | Интерфейсы |
-| Gateway MCP | `mcp.aisystant.com` | Knowledge Gateway | Детерминированные |
-| knowledge-mcp | `knowledge-mcp.aisystant.workers.dev/mcp` | Knowledge MCP (L2) | Детерминированные |
-| personal-knowledge-mcp | `personal-knowledge-mcp.aisystant.workers.dev` | Personal Knowledge MCP (L4) | Детерминированные |
-| digital-twin-mcp | `digital-twin-mcp.aisystant.workers.dev/mcp` | Digital Twin MCP | Детерминированные |
-| guides-mcp | `guides-mcp.aisystant.workers.dev/mcp` | Guides MCP | Детерминированные |
-| fsm-mcp | `fsm-mcp.aisystant.workers.dev/mcp` | FSM MCP | Детерминированные |
-| Neon PostgreSQL | `ep-dark-hall-ag8bo8lf-pooler...neon.tech` | Neon PostgreSQL | Данные |
-| Cloudflare KV | KV id: `640bc613...` | Cloudflare KV | Данные |
-| GitHub Repos | github.com | GitHub Repos | Данные |
-| GitHub App | App ID: 3261992 | — | Инфра |
-| Ory Hydra + Kratos | `auth.system-school.ru` (ory.sh cloud) | Ory OAuth2 Svc | Инфра |
-| Anthropic API | `api.anthropic.com` | — | Внешний LLM |
-| ЮКасса | Магазин 1317530 | — | Внешний |
-| Langfuse | localhost:3000 | — | Инфра (только локально) |
+| Узел | URL / endpoint | Слой | Статус |
+|------|---------------|------|--------|
+| aist_me_bot | `aistmebot-production.up.railway.app` | Интерфейсы + ИИ (S-1) | live |
+| aist_pilot_bot | Railway internal | Интерфейсы | live |
+| Gateway MCP | `mcp.aisystant.com` | Детерминированные | live |
+| knowledge-mcp | `knowledge-mcp.aisystant.workers.dev/mcp` | Детерминированные | live |
+| personal-knowledge-mcp | `personal-knowledge-mcp.aisystant.workers.dev` | Детерминированные | live |
+| digital-twin-mcp | `digital-twin-mcp.aisystant.workers.dev/mcp` | Детерминированные | live |
+| guides-mcp | `guides-mcp.aisystant.workers.dev/mcp` | Детерминированные | live |
+| fsm-mcp | `fsm-mcp.aisystant.workers.dev/mcp` | Детерминированные | live |
+| Neon PostgreSQL | `ep-dark-hall-ag8bo8lf-pooler...neon.tech` | Данные | live |
+| Cloudflare KV | KV id: `640bc613...` | Данные | live |
+| GitHub App | App ID: 3261992 | Инфра | live |
+| Ory Hydra + Kratos | `auth.system-school.ru` (ory.sh cloud) | Инфра | live |
+| Anthropic API | `api.anthropic.com` | Внешний LLM | live |
+| ЮКасса | Магазин 1317530 | Внешний | live |
+| Kinescope | kinescope.io | Внешний | live (видео семинаров) |
+| Langfuse | localhost:3000 | Инфра | live (только dev) |
+| **Directus** | Railway (план) | **Интерфейсы** | **WP-183** |
+| **Metabase** | Railway (план) | **Интерфейсы** | **WP-183** |
+| **LLM Proxy** | CF Workers (план) | **Детерминированные** | **WP-200** |
+| **Activity Hub** | CF Workers (план) | **Детерминированные** | **WP-109** |
 
 </details>
 
@@ -112,6 +126,7 @@ graph LR
     TG(("Telegram"))
     IWE(("Созидатель IWE"))
     BR(("Браузер"))
+    MGR(("Менеджер"))
 
     BOT["aist_me_bot"]
     GW["Gateway"]
@@ -125,6 +140,10 @@ graph LR
     YK["ЮКасса"]
     GH[("GitHub")]
     GHAPP["GitHub App"]
+    LLMP["LLM Proxy"]
+    ACT["Activity Hub"]
+    DIR["Directus"]
+    MB["Metabase"]
 
     TG -- webhook --> BOT
     BOT -- LLM --> ANTH
@@ -153,6 +172,19 @@ graph LR
 
     BR -- OAuth --> BOT
 
+    BOT -. события .-> ACT
+    LMS -. события .-> ACT
+    ACT -. запись .-> DB
+
+    LLMP -. роутинг .-> ANTH
+    BOT -. LLM через .-> LLMP
+    GW -. LLM через .-> LLMP
+
+    MGR -. CRM .-> DIR
+    MGR -. дашборды .-> MB
+    DIR -. read/write .-> DB
+    MB -. read .-> DB
+
     style BOT fill:#dbeafe,stroke:#3b82f6
     style GW fill:#fef3c7,stroke:#f59e0b
     style KN fill:#fef3c7,stroke:#f59e0b
@@ -162,19 +194,27 @@ graph LR
     style GH fill:#d1fae5,stroke:#10b981
     style ORY fill:#ede9fe,stroke:#8b5cf6
     style GHAPP fill:#ede9fe,stroke:#8b5cf6
+    style LLMP fill:#fef3c7,stroke:#f59e0b,stroke-dasharray: 5 5
+    style ACT fill:#fef3c7,stroke:#f59e0b,stroke-dasharray: 5 5
+    style DIR fill:#dbeafe,stroke:#3b82f6,stroke-dasharray: 5 5
+    style MB fill:#dbeafe,stroke:#3b82f6,stroke-dasharray: 5 5
 ```
 
-| Поток | Путь | Протокол |
-|-------|------|----------|
-| Telegram --> бот | TG User --> TG API --> `POST /telegram` --> aist_me_bot | HTTPS webhook |
-| IWE --> Gateway | Созидатель --> `mcp.aisystant.com` (OAuth 2.1) --> fan-out L2+L4+DT | MCP / HTTPS |
-| Write | Gateway --> personal-mcp --> GitHub App (Installation Token) --> GitHub API | HTTPS |
-| Reindex | GitHub push --> Gateway `/github/webhook` (HMAC) --> personal-mcp `/reindex` --> Neon | HTTPS webhook |
-| Бот --> LLM | aist_me_bot --> `api.anthropic.com` | REST API |
-| Бот --> LMS | aist_me_bot --> `aisystant.system-school.ru` | REST API |
-| Бот --> ЮКасса | aist_me_bot --> ЮКасса API | REST API |
-| S-5 Бот --> MCP | aist_me_bot --> knowledge-mcp, digital-twin-mcp напрямую (минуя Gateway) | Открытый сигнал |
-| S-2 Бот --> Neon | aist_me_bot --> Neon DATABASE_URL напрямую | Открытый сигнал |
+| Поток | Путь | Протокол | Статус |
+|-------|------|----------|--------|
+| Telegram --> бот | TG User --> TG API --> `POST /telegram` --> aist_me_bot | HTTPS webhook | live |
+| IWE --> Gateway | Созидатель --> `mcp.aisystant.com` (OAuth 2.1) --> fan-out L2+L4+DT | MCP / HTTPS | live |
+| Write | Gateway --> personal-mcp --> GitHub App (Installation Token) --> GitHub API | HTTPS | live |
+| Reindex | GitHub push --> Gateway `/github/webhook` (HMAC) --> personal-mcp `/reindex` --> Neon | HTTPS webhook | live |
+| Бот --> LLM | aist_me_bot --> `api.anthropic.com` | REST API | live |
+| Бот --> LMS | aist_me_bot --> `aisystant.system-school.ru` | REST API | live |
+| Бот --> ЮКасса | aist_me_bot --> ЮКасса API | REST API | live |
+| S-5 Бот --> MCP | aist_me_bot --> knowledge-mcp, digital-twin-mcp напрямую | S-5 | live (сигнал) |
+| S-2 Бот --> Neon | aist_me_bot --> Neon DATABASE_URL напрямую | S-2 | live (сигнал) |
+| Бот/LMS --> Activity Hub | события --> Activity Hub --> Neon | REST API | **WP-109** |
+| Бот/Gateway --> LLM Proxy | запросы --> роутинг по моделям --> Anthropic (и др.) | REST API | **WP-200** |
+| Менеджер --> Directus | CRM UI --> Neon (crm.*, finance.*) | HTTPS | **WP-183** |
+| Менеджер --> Metabase | BI дашборды --> Neon (read-only) | HTTPS | **WP-183** |
 
 </details>
 
@@ -198,12 +238,14 @@ graph TB
     KN["knowledge-mcp — L2"]
     PKN["personal-mcp — L4"]
     DT["digital-twin-mcp"]
-    BYOB["BYOB MCP — будущее"]
+    BYOB["BYOB MCP — T4 user"]
+    AGENTS["Серверные агенты"]
 
     ORY["Ory Hydra"]
     DB[("Neon")]
     GH[("GitHub")]
     GHAPP["GitHub App"]
+    LLMP["LLM Proxy"]
 
     CLIENT -- 1 authorize --> AUTH
     AUTH -- 2 redirect --> ORY
@@ -230,11 +272,16 @@ graph TB
     BYOB -. подключение .-> VALIDATE
     VALIDATE -- register --> REG
 
+    AGENTS -. через Gateway .-> FANOUT
+    AGENTS -. LLM .-> LLMP
+
     style GW fill:#fef3c7,stroke:#f59e0b
     style KN fill:#fef3c7,stroke:#f59e0b
     style PKN fill:#fef3c7,stroke:#f59e0b
     style DT fill:#fef3c7,stroke:#f59e0b
     style BYOB fill:#fef3c7,stroke:#f59e0b,stroke-dasharray: 5 5
+    style AGENTS fill:#fef3c7,stroke:#f59e0b,stroke-dasharray: 5 5
+    style LLMP fill:#fef3c7,stroke:#f59e0b,stroke-dasharray: 5 5
     style DB fill:#d1fae5,stroke:#10b981
     style GH fill:#d1fae5,stroke:#10b981
     style ORY fill:#ede9fe,stroke:#8b5cf6
@@ -265,40 +312,46 @@ graph TB
 
 ### Интерфейсы (Слой 3)
 
-| C4 контейнер | Deployment | URL |
-|-------------|-----------|-----|
-| Aist Bot (prod) | Railway `peaceful-vision` | `aistmebot-production.up.railway.app` |
-| Aist Bot (pilot) | Railway `peaceful-vision` | internal |
-| LMS Web | Hetzner / внешний | `aisystant.system-school.ru` |
+| C4 контейнер | Deployment | URL | Статус |
+|-------------|-----------|-----|--------|
+| Aist Bot (prod) | Railway `peaceful-vision` | `aistmebot-production.up.railway.app` | live |
+| Aist Bot (pilot) | Railway `peaceful-vision` | internal | live |
+| LMS Web | Hetzner / внешний | `aisystant.system-school.ru` | live |
+| Directus (CRM) | Railway | — | WP-183 |
+| Metabase (BI) | Railway | — | WP-183 |
 
 ### ИИ-системы (Слой 2А, stateless)
 
-| C4 контейнер | Deployment | Замечание |
-|-------------|-----------|-----------|
-| Проводник | Railway (внутри бота) | S-1: coupled со Слоем 3 |
-| Стратег | Railway (внутри бота) | S-1: coupled |
-| Знание-Экстрактор | Railway (внутри бота) | S-1: coupled |
-| ДЗ-Чекер | Railway (внутри бота) | S-1: coupled |
+| C4 контейнер | Deployment | Статус |
+|-------------|-----------|--------|
+| Проводник | Railway (внутри бота) | live, S-1: coupled |
+| Стратег | Railway (внутри бота) | live, S-1: coupled |
+| Знание-Экстрактор | Railway (внутри бота) | live, S-1: coupled |
+| ДЗ-Чекер | Railway (внутри бота) | live, S-1: coupled |
+| Серверные агенты | Gateway / CF Workers | WP-201 |
 
 ### Детерминированные (Слой 2Б, stateful MCP)
 
-| C4 контейнер | Deployment | URL | Namespace |
-|-------------|-----------|-----|-----------|
-| Knowledge Gateway | Cloudflare Workers | `mcp.aisystant.com` | агрегатор |
-| Knowledge MCP (L2) | Cloudflare Workers | `knowledge-mcp.aisystant.workers.dev/mcp` | `iwe/knowledge` |
-| Personal Knowledge MCP (L4) | Cloudflare Workers | `personal-knowledge-mcp.aisystant.workers.dev` | `user/knowledge` |
-| Guides MCP | Cloudflare Workers | `guides-mcp.aisystant.workers.dev/mcp` | `iwe/guides` |
-| Digital Twin MCP | Cloudflare Workers | `digital-twin-mcp.aisystant.workers.dev/mcp` | `iwe/digital-twin` |
-| FSM MCP | Cloudflare Workers | `fsm-mcp.aisystant.workers.dev/mcp` | `iwe/fsm` |
-| Ory OAuth2 | ory.sh cloud | `auth.system-school.ru` | — |
+| C4 контейнер | Deployment | URL | Namespace | Статус |
+|-------------|-----------|-----|-----------|--------|
+| Knowledge Gateway | Cloudflare Workers | `mcp.aisystant.com` | агрегатор | live |
+| Knowledge MCP (L2) | Cloudflare Workers | `knowledge-mcp.aisystant.workers.dev/mcp` | `iwe/knowledge` | live |
+| Personal Knowledge MCP (L4) | Cloudflare Workers | `personal-knowledge-mcp.aisystant.workers.dev` | `user/knowledge` | live |
+| Guides MCP | Cloudflare Workers | `guides-mcp.aisystant.workers.dev/mcp` | `iwe/guides` | live |
+| Digital Twin MCP | Cloudflare Workers | `digital-twin-mcp.aisystant.workers.dev/mcp` | `iwe/digital-twin` | live |
+| FSM MCP | Cloudflare Workers | `fsm-mcp.aisystant.workers.dev/mcp` | `iwe/fsm` | live |
+| Ory OAuth2 | ory.sh cloud | `auth.system-school.ru` | — | live |
+| LLM Proxy | CF Workers / Railway | — | — | WP-200 |
+| Activity Hub | CF Workers | — | — | WP-109 |
 
 ### Данные (Слой 1)
 
-| C4 контейнер | Deployment | Endpoint |
-|-------------|-----------|----------|
-| Neon PostgreSQL | Neon / AWS EU-Central-1 | `ep-dark-hall-...neon.tech:5432` (pooler) |
-| Cloudflare KV | Cloudflare | KV id: `640bc613...` |
-| GitHub Repos | GitHub | Pack-репо (платформенные + BYOB) |
+| C4 контейнер | Deployment | Endpoint | Статус |
+|-------------|-----------|----------|--------|
+| Neon PostgreSQL | Neon / AWS EU-Central-1 | `ep-dark-hall-...neon.tech:5432` (pooler) | live |
+| Cloudflare KV | Cloudflare | KV id: `640bc613...` | live |
+| GitHub Repos | GitHub | Pack-репо (платформенные + BYOB) | live |
+| Qdrant | — | — | WP-187 (при >30к doc) |
 
 </details>
 
@@ -333,35 +386,17 @@ graph TB
 ---
 
 <details>
-<summary><b>Не отражено на диаграмме</b></summary>
-
-| Компонент | Статус | Детали |
-|-----------|--------|--------|
-| Qdrant | В планах | Замена pgvector при >30к doc. Пока pgvector в Neon |
-| LLM-прокси (WP-200) | Pending, 30-40h | Роутинг по моделям, учёт токенов per user_id |
-| Directus + Metabase (WP-183) | Proposal | CRM UI + дашборды поверх Neon. Архитектура утверждена, не развёрнуто |
-| Серверные агенты (WP-201) | Pending, 30-40h | Стратег, Экстрактор на серверной стороне через Gateway |
-| BYOB MCP (user/*) | Код готов, пользователей нет | ADR-IWE-003 принят, Knowledge Gate реализован (10 тестов), Backend Registry в Neon, шаблон knowledge-mcp-template ready. T4-пользователей пока нет |
-| Activity Hub (WP-109) | Proposal | Сервис агрегации событий (бот, LMS, billing). Neon, адаптеры. Не развёрнут |
-| Points Engine (WP-121) | Pending | Система баллов и лояльности. Потребляет Activity Hub |
-| Kinescope | Внешний | Видеохостинг с JWT API, используется в сценарии семинара (WP-115) |
-| blog.aisystant.com | В планах | Домен не развёрнут |
-
-</details>
-
----
-
-<details>
 <summary><b>Критерии готовности (WP-159)</b></summary>
 
 - [x] Все deployment nodes: Railway, Neon, GitHub, Cloudflare Workers, Ory, Langfuse
-- [x] Маппинг сервисов --> deployment nodes
+- [x] Маппинг сервисов --> deployment nodes (live + planned)
 - [x] Маппинг C4 L2 (WP-158) --> deployment nodes
 - [x] Разметка слоёв DP.ARCH.001 (цветовое кодирование)
 - [x] Домены, webhook-маршруты, OAuth endpoints
 - [x] Путь Pack: GitHub --> L4 MCP --> Gateway --> AI-клиент
 - [x] MCP namespace: iwe/*, user/*, ext/*
 - [x] Coupling-аннотации: S-1..S-5
+- [x] Планируемые компоненты пунктиром: LLM Proxy, Activity Hub, Directus, Metabase, серверные агенты
 - [x] Mermaid, рендерится в GitHub
 - [x] Согласовано с WP-73
 
