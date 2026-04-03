@@ -45,22 +45,22 @@
 
 | # | Канал | Юрисдикция | Получатель | Обработка | Хранение | Бот знает? |
 |---|-------|-----------|------------|-----------|----------|------------|
-| 1 | **YooKassa** (подписки, потоки) | РФ | ООО | Aisystant LMS | Aisystant PG | Через API (pull, cache 5мин) |
-| 2 | **Paybox** | РФ | ООО | Aisystant LMS | Aisystant PG | Нет |
+| 1 | **YooKassa** (подписки, потоки) | РФ | ИП | Aisystant LMS | Aisystant PG | Через API (pull, cache 5мин) |
+| 2 | **Paybox** | РФ | ИП | Aisystant LMS | Aisystant PG | Нет |
 | 3 | **Stripe** | Мир | Aisystant Corp (USA) | Aisystant LMS | Aisystant PG | Нет |
-| 4 | **Монета/PayAnyWay** | РФ+СНГ+Мир | ООО | Aisystant LMS | Aisystant PG | Нет |
-| 5 | **Tilda + Ecwid** (витрина сайта) | РФ | ООО | Aisystant LMS | Aisystant PG | Нет |
-| 6 | **YooKassa** (семинары бота) | РФ | ООО | Python бот | Neon | Да |
-| 7 | **TG Stars** (семинары бота) | Глобально | Telegram | Python бот | Neon | Да |
-| 8 | **Manual** (B2B, юрлица) | Любая | Любое | Вручную | Нигде | Нет |
+| 4 | **Монета/PayAnyWay** | РФ+СНГ+Мир | ИП | Aisystant LMS | Aisystant PG | Нет |
+| 5 | **Tilda + Ecwid** (витрина сайта) | РФ | ИП | Aisystant LMS | Aisystant PG | Нет |
+| 6 | **YooKassa** (семинары бота) | РФ | ИП | Python бот | Neon | Да |
+| 7 | **TG Stars** (семинары бота) | Глобально | Телеграм (физ.лицо) | Python бот | Neon | Да |
+| 8 | **Manual** (B2B, юрлица) | Любая | ИП или Aisystant Corp | Вручную | Нигде | Нет |
 
 ### 3 получателя платежей
 
 | Получатель | Юрисдикция | Каналы | Валюта |
 |------------|-----------|--------|--------|
-| ООО (РФ) | Россия | YooKassa, Paybox, Монета, Tilda | RUB |
+| ИП (РФ) | Россия | YooKassa, Paybox, Монета, Tilda | RUB |
 | Aisystant Corp | США | Stripe | USD/EUR |
-| Telegram | Глобально | TG Stars | XTR (выплата через TON) |
+| Телеграм (физ.лицо) | Глобально | TG Stars | XTR |
 
 ### Что покупают
 
