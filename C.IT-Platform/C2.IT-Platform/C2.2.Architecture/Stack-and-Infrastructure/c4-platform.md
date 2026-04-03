@@ -125,7 +125,7 @@ flowchart TB
 flowchart LR
     learner["Участник\nT1-T5"]
     creator["Созидатель\nT3-T5"]
-    admin["Администратор\nГиляна, Алёна, Юля"]
+    admin["Администратор"]
     ai_client["AI-клиент\nClaude Code\nChatGPT\nCursor"]
 
     subgraph interfaces ["Слой 3: Интерфейсы"]
