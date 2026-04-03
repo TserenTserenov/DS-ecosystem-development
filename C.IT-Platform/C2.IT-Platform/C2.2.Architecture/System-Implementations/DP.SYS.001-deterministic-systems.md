@@ -229,7 +229,38 @@ VS Code (heartbeats) → WakaTime Extension → wakatime.com API
 
 **Tier:** T4+ (Созидание / IWE). Рекомендуется при установке экзокортекса.
 
-## 9. Связанные документы
+## 9. CRM (SYS.003)
+
+**Назначение:** Единое окно для просмотра всех оплат, участников и доступов. Подключается к двум БД (Aisystant PG read-only + Neon read-write).
+
+**Реализация:** Directus (Railway, Docker). Introspects обе БД. RBAC: Бухгалтер (все данные), Маркетолог (воронка, когорты), Декан (наполняемость), Преподаватели (свои потоки).
+
+**Потребители:** Гиляна (бухгалтерия), Алёна (маркетинг), Юля (декан), преподаватели.
+
+**Аналитика:** Metabase (Railway) — MRR, LTV, CAC, churn, воронка T0→T4, наполняемость потоков.
+
+**Связи:** SC.114, WP-183.
+
+**Статус:** proposal создан, Phase 0 не начата.
+
+## 10. Биллинг (SYS.010)
+
+**Назначение:** Приём оплат через 8 каналов (YooKassa, Paybox, Stripe, Монета, Tilda, YooKassa бот, TG Stars, Manual). Три получателя: ИП (РФ), Aisystant Corp (USA), Телеграм (физ.лицо).
+
+**Реализация:** Billing Module внутри бота (Strategy pattern). Адаптеры: YooKassa, Stripe, TG Stars, Баллы, Manual. Webhook от Aisystant для оплат через Tilda/Монету.
+
+**Хранение:** Два source-of-truth: Aisystant PG (каналы 1-5) + Neon (каналы 6-7). Не дублируются.
+
+**Автоматизация:**
+```
+Оплата → запись в БД → invite в чат / выдача доступа → Activity Hub событие
+```
+
+**Связи:** SC.112, WP-183, SYS.003 (CRM), SYS.009 (Ory — единый identity и access control в перспективе).
+
+**Статус:** Витрина семинаров реализована (бот). Единый учёт — proposal.
+
+## 11. Связанные документы
 
 - [DP.ARCH.001 Архитектура](DP.ARCH.001-platform-architecture.md)
 - [DP.ROLE.001 ИИ-агенты](DP.ROLE.001-platform-roles.md)
