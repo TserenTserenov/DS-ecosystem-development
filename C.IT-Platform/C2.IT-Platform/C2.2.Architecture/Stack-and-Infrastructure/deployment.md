@@ -97,12 +97,12 @@ graph TB
 | digital-twin-mcp | `digital-twin-mcp.aisystant.workers.dev/mcp` | Детерминированные | live |
 | guides-mcp | `guides-mcp.aisystant.workers.dev/mcp` | Детерминированные | live |
 | fsm-mcp | `fsm-mcp.aisystant.workers.dev/mcp` | Детерминированные | live |
-| Neon PostgreSQL | `ep-dark-hall-ag8bo8lf-pooler...neon.tech` | Данные | live |
-| Cloudflare KV | KV id: `640bc613...` | Данные | live |
-| GitHub App | App ID: 3261992 | Инфра | live |
+| Neon PostgreSQL | Neon pooler (AWS EU-Central-1) | Данные | live |
+| Cloudflare KV | KV namespace (secret) | Данные | live |
+| GitHub App | Aisystant Knowledge | Инфра | live |
 | Ory Hydra + Kratos | `auth.system-school.ru` (ory.sh cloud) | Инфра | live |
 | Anthropic API | `api.anthropic.com` | Внешний LLM | live |
-| ЮКасса | Магазин 1317530 | Внешний | live |
+| ЮКасса | ЮКасса API | Внешний | live |
 | Langfuse | localhost:3000 | Инфра | live (только dev) |
 | **Directus** | Railway (план) | **Интерфейсы** | **WP-183** |
 | **Metabase** | Railway (план) | **Интерфейсы** | **WP-183** |
@@ -309,7 +309,7 @@ graph TB
 
 | C4 контейнер | Deployment | URL | Статус |
 |-------------|-----------|-----|--------|
-| Aist Bot (prod) | Railway `peaceful-vision` | `aistmebot-production.up.railway.app` | live |
+| Aist Bot (prod) | Railway | `aistmebot-production.up.railway.app` | live |
 | LMS Web | Hetzner / внешний | `aisystant.system-school.ru` | live |
 | Directus (CRM) | Railway | — | WP-183 |
 | Metabase (BI) | Railway | — | WP-183 |
@@ -342,8 +342,8 @@ graph TB
 
 | C4 контейнер | Deployment | Endpoint | Статус |
 |-------------|-----------|----------|--------|
-| Neon PostgreSQL | Neon / AWS EU-Central-1 | `ep-dark-hall-...neon.tech:5432` (pooler) | live |
-| Cloudflare KV | Cloudflare | KV id: `640bc613...` | live |
+| Neon PostgreSQL | Neon / AWS EU-Central-1 | pooler endpoint (secret) | live |
+| Cloudflare KV | Cloudflare | KV namespace (secret) | live |
 | GitHub Repos | GitHub | Pack-репо (платформенные + BYOB) | live |
 | Qdrant | — | — | WP-187 (при >30к doc) |
 
