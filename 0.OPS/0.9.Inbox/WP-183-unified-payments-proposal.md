@@ -1,7 +1,7 @@
 # Единый учёт оплат и автоматизация допуска
 
 > **Proposal для обсуждения с командой.**
-> **Участники ревью:** Дима (Aisystant), Гиляна (бухгалтерия), Алёна (маркетинг), Юля (декан), Андрей (архитектура), Ильшат (менеджмент), Церен (IWE).
+> **Участники ревью:** Дима (Aisystant), Гиляна (бухгалтерия), Алёна (маркетинг), Юля (декан), Ильшат (менеджмент), Церен и Андрей (архитектура).
 >
 > **Связанные документы в этой папке:**
 > - [WP-183 CRM+Billing Architecture](WP-183-crm-billing-architecture-proposal.md) — архитектура CRM, Directus, Billing Service
@@ -75,49 +75,93 @@
 </details>
 
 <details open>
-<summary><b>3. Целевая схема (to-be)</b></summary>
+<summary><b>3. Целевая схема (to-be, с Ory)</b></summary>
 
-**Принцип: не дублировать данные.** Каждый source-of-truth остаётся на месте. Directus и Metabase подключаются к обоим.
+**Принципы:**
+- **Не дублировать данные** — каждый source-of-truth остаётся на месте
+- **Ory = единый identity** — один `ory_id` связывает telegram_id, email, aisystant_id
+- **Ory Keto = единый access control** — проверка доступа к чатам, функциям, контенту
+
+### Единый identity (Ory Kratos)
 
 ```
-Aisystant PG (source-of-truth)          Neon (source-of-truth)
-каналы 1-5: подписки, потоки,           каналы 6-7: семинары бота
-Tilda, Монета, Stripe                   seminar_payments
-         │                                      │
-         │         Directus (Railway)            │
-         └────────► два datasource ◄────────────┘
-                        │
-                        ├─► Гиляна: все оплаты, сверка, выгрузки
-                        ├─► Алёна: воронка, конверсия, когорты
-                        ├─► Юля: наполняемость потоков и семинаров
-                        ├─► Преподаватели: списки участников своих потоков
-                        └─► Менеджер: ручные оплаты B2B
-                        │
-                   Metabase (Railway)
-                        │
-                        └─► MRR, LTV, CAC, churn (SQL по обеим БД)
-                        │
-                   Activity Hub (WP-109)
-                        │
-                        └─► Billing adapter: каждый платёж = событие
-                            → engagement, → ЦД, → аналитика
+Ory Kratos Identity (ory_id: UUID)
+  ├─ email (trait)              ← регистрация на сайте
+  ├─ telegram_id (trait)        ← /start в боте
+  ├─ aisystant_id (trait)       ← миграция из LMS
+  └─ tier: T0/T1/T2/T3/T4      ← Ory metadata
+```
+
+Ory заменяет ручную склейку `/link`. При регистрации на сайте или в боте — один identity. Все каналы оплаты видят одного человека.
+
+### Архитектура
+
+```
+                         Ory Kratos (identity)
+                         Ory Keto (access control)
+                                │
+                    ┌───────────┼───────────┐
+                    ▼           ▼           ▼
+            Aisystant PG     Neon        Directus
+            (каналы 1-5)   (каналы 6-7)  (CRM UI)
+                    │           │           │
+                    └─────┬─────┘           │
+                          ▼                 │
+                    Metabase (аналитика) ◄───┘
+                          │
+                          ├─► Гиляна: все оплаты, сверка
+                          ├─► Алёна: воронка T0→T4, конверсия, когорты
+                          ├─► Юля: наполняемость потоков и семинаров
+                          └─► Преподаватели: списки участников
+
+              Activity Hub (WP-109)
+                          │
+                          └─► Billing adapter: платёж = событие
+                              → engagement → ЦД → аналитика
 
 Бот (допуск в чаты):
-  ├─ Neon seminar_payments — свои оплаты (каналы 6-7)
-  ├─ Aisystant API (pull) — подписки, потоки (каналы 1-5)
-  └─ Webhook от Aisystant (push) — оплата через Tilda/Монету/сайт
-       └── dep: Дима добавляет HTTP POST в AccessService.java
+  ├─ Ory Keto: check(ory_id, "access", "chat:seminar_iwe")
+  ├─ Fallback: Neon seminar_payments (если Keto ещё не развёрнут)
+  └─ Webhook от Aisystant (push) → запись оплаты + Keto grant
 ```
 
-### Допуск в чаты (автоматизация)
+### Воронка входа (для маркетинга)
 
-| Событие | Как бот узнаёт | Действие |
-|---------|----------------|----------|
-| Оплата семинара через бот (Stars/ЮКасса) | Сразу (сам обработал) | Invite + видео мгновенно |
-| Оплата семинара через Tilda/Монету | Webhook от Aisystant | Invite + видео мгновенно |
-| Оплата подписки БР | API `has_active_subscription` (pull, cache 5мин) | Approve join request в Сообщество IWE |
-| Оплата вручную (B2B) | Менеджер вносит в Directus → бот проверяет | Approve или admin добавляет |
-| **Маршрутка (кик)** | Cron 1 раз/сутки: проверяет обе БД | Предупреждение → 3 дня → кик |
+```
+T0 (анонимный)
+  │ /start в боте или заход на сайт
+  │ → Ory Kratos создаёт identity
+  ▼
+T1 (зарегистрирован, без подписки)
+  │ Trial 30 дней — полный доступ T2–T4
+  │ → бесплатные семинары, марафон
+  ▼
+T2 (подписка БР)
+  │ Оплата: YooKassa / Stripe / Монета / Stars
+  │ → Keto grant: tier=T2
+  │ → доступ: лента, консультации, заметки, планы
+  ▼
+T3 (ЦД подключён)
+  │ Бесплатно — заполнить цифровой двойник
+  │ → Keto grant: tier=T3
+  ▼
+T4 (экзокортекс)
+  │ Бесплатно — setup.sh / Gateway URL
+  │ → Keto grant: tier=T4
+```
+
+**Metabase считает по Ory:** сколько на каждом тире, конверсия T0→T1→T2, retention, churn.
+
+### Допуск в чаты (автоматизация через Keto)
+
+| Событие | Механизм | Действие |
+|---------|----------|----------|
+| Оплата семинара через бот | Бот записывает + Keto grant `access:chat:{chat_id}` | Invite + видео мгновенно |
+| Оплата семинара через Tilda/Монету | Webhook → бот записывает + Keto grant | Invite + видео мгновенно |
+| Оплата подписки БР | Keto grant `tier:T2` | Approve join request в Сообщество IWE |
+| B2B (manual) | Менеджер в Directus → Keto grant | Approve |
+| **Маршрутка (кик)** | Cron: Keto check → нет grant → кик | Предупреждение → 3 дня → кик |
+| Отмена подписки / истечение | Keto revoke `tier:T2` | Предупреждение → grace 7 дней → кик из Сообщества |
 
 ### Webhook-контракт (Aisystant → бот)
 
@@ -127,41 +171,58 @@ Header: X-Webhook-Secret: {WORKSHOP_WEBHOOK_SECRET}
 Content-Type: application/json
 
 {
-  "telegram_id": 123456789,       // обязательно (из связки tg↔aisystant)
-  "purpose": "SEMINAR",           // WORKSHOP | SEMINAR | INTERNSHIP
-  "seminar_code": "SE-2026.2-T",  // код семинара (для SEMINAR)
+  "ory_id": "uuid",              // единый identity (предпочтительно)
+  "telegram_id": 123456789,      // fallback если Ory ещё не мигрирован
+  "purpose": "SEMINAR",          // WORKSHOP | SEMINAR | INTERNSHIP
+  "seminar_code": "SE-2026.2-T", // код семинара (для SEMINAR)
   "amount": 5000,
   "currency": "RUB",
-  "payment_id": "yookassa_xxx",   // idempotency key
-  "source": "tilda"               // tilda | moneta | yookassa | stripe | paybox
+  "payment_id": "yookassa_xxx",  // idempotency key
+  "source": "tilda"              // tilda | moneta | yookassa | stripe | paybox
 }
 ```
 
-**Если telegram_id неизвестен** (человек не привязан к боту): Aisystant отправляет `aisystant_id` вместо `telegram_id`. Бот сохраняет отложенную оплату. При `/link` (привязка аккаунта) — бот выдаёт invite.
+**Переходный период (до полного Ory):** бот принимает и `ory_id`, и `telegram_id`. Когда Ory полностью развёрнут — `telegram_id` извлекается из Ory traits по `ory_id`.
 
 </details>
 
 <details open>
 <summary><b>4. Этапы реализации</b></summary>
 
+### Фаза A: Единый учёт (можно без Ory)
+
 | # | Что | Кто | Dep | Бюджет | Результат |
 |---|-----|-----|-----|--------|-----------|
 | 0 | **Этот proposal** — согласование с командой | Все | — | 1h | Единое понимание |
 | 1 | **Directus на Railway** + Neon datasource | Tseren | — | 2h | Гиляна/Алёна/Юля видят оплаты бота |
 | 2 | **Directus + Aisystant PG** (read-only) | Tseren + Дима | Дима: доступ к PG | 2h | Единое окно всех оплат |
-| 3 | **Metabase на Railway** + дашборды | Tseren | Этап 1 | 3h | MRR, LTV, воронка, наполняемость |
+| 3 | **Metabase на Railway** + дашборды воронки | Tseren | Этап 1 | 3h | MRR, LTV, воронка T0→T4, наполняемость |
 | 4 | **Webhook Aisystant → бот** | Дима | Контракт (§3) | 2h | Авто-invite при оплате через Tilda/Монету |
 | 5 | **Маршрутка** (cron-кик неоплативших) | Tseren | Этап 4 | 2h | Чат = только оплатившие |
 | 6 | **Manual-оплаты** через Directus | Tseren | Этап 1 | 1h | B2B через CRM |
 
-**Общий бюджет:** ~13h (без учёта согласований). Это scope «единый учёт + допуск».
+**Бюджет Фазы A:** ~13h. Критический путь: Этапы 2 и 4 (dep: Дима). Без Димы: этапы 1, 3, 6 параллельно.
 
-**Следующий scope (из WP-183):**
-- Баллы (Points Engine, WP-121): начисление за активность → списание за семинары/курсы → `finance.point_transactions`
-- Revenue Sharing: Platform 30% / Author 50% / Instructor 15% / Curator 5% → дашборд в Metabase
-- Юнит-экономика: CAC, LTV, churn по каналам и продуктам
+### Фаза B: Ory integration (после WP-187)
 
-**Критический путь:** Этап 2 (dep: Дима) и Этап 4 (dep: Дима). Без Димы: этапы 1, 3, 6 можно делать параллельно.
+| # | Что | Кто | Dep | Бюджет | Результат |
+|---|-----|-----|-----|--------|-----------|
+| 7 | **Ory Keto** — ACL для доступа к чатам и функциям | Tseren + Дима | WP-187 (Ory Kratos deployed) | 4h | Единый access control |
+| 8 | **Миграция identity** — связка telegram_id ↔ ory_id для всех пользователей | Tseren + Дима | Этап 7 | 2h | Одна identity на человека |
+| 9 | **Бот → Keto** — замена проверок подписки/оплаты на Keto check | Tseren | Этап 7 | 3h | Допуск через Keto, не через API/таблицы |
+| 10 | **Directus SSO через Ory** | Tseren | Этап 7 | 1h | Единый логин для Гиляны/Алёны/Юли |
+
+**Бюджет Фазы B:** ~10h. Dep: WP-187 (Ory Kratos deployed + Keto ready).
+
+### Фаза C: Экономика (после Фаз A+B)
+
+| # | Что | Кто | Dep | Бюджет | Результат |
+|---|-----|-----|-----|--------|-----------|
+| 11 | **Баллы** (Points Engine, WP-121) | Tseren | Фаза B | 6h | Начисление за активность, списание за семинары/курсы |
+| 12 | **Revenue Sharing** | Tseren | Фаза A | 3h | Platform 30% / Author 50% / Instructor 15% / Curator 5% |
+| 13 | **Юнит-экономика в Metabase** | Tseren | Фаза A | 2h | CAC, LTV, churn по каналам и продуктам |
+
+**Бюджет Фазы C:** ~11h.
 
 </details>
 
@@ -196,16 +257,14 @@ Content-Type: application/json
 
 13. Какие **операционные метрики** нужны? Количество оплат за день/неделю, задержки в выдаче доступа?
 14. Как сейчас устроен **процесс ручного допуска** при B2B-оплатах?
+15. Нужен ли **helpdesk** (тикет-система для обращений по оплатам, доступам, рефандам)? Если да — отдельный инструмент или канал в Directus/Telegram?
 
-### Для Андрея (архитектура)
+### Для Церена и Андрея (архитектура)
 
-15. **Баллы (Points Engine, WP-121):** как связать с единым учётом? Баллы = альтернативная оплата (1 балл = 1₽). Начисление за активность, списание за семинары/курсы. Нужна таблица `finance.point_transactions` в Neon?
-16. **Юнит-экономика:** Revenue Sharing (Platform 30% / Author 50% / Instructor 15% / Curator 5%) — считать в Metabase или в Billing Module?
-17. **Activity Hub (WP-109):** Billing adapter — каждый платёж = событие `payment_completed`. Реализовать в Фазе 0 AH или отдельно?
-
-**Решённые вопросы:**
-- **Paybox** — остаётся как резервный провайдер РФ
-- **PayPal** — пока не нужен
+16. **Баллы (Points Engine, WP-121):** как связать с единым учётом? Баллы = альтернативная оплата (1 балл = 1₽). Начисление за активность, списание за семинары/курсы. Нужна таблица `finance.point_transactions` в Neon?
+17. **Юнит-экономика:** Revenue Sharing (Platform 30% / Author 50% / Instructor 15% / Curator 5%) — считать в Metabase или в Billing Module?
+18. **Activity Hub (WP-109):** Billing adapter — каждый платёж = событие `payment_completed`. Реализовать в Фазе 0 AH или отдельно?
+19. **Ory Keto ACL-модель:** какие relation tuples? `user:ory_id#access@chat:seminar_iwe`, `user:ory_id#tier@platform:T2`? Или плоская модель?
 
 </details>
 
@@ -223,6 +282,7 @@ Content-Type: application/json
 | **WP-188** | Маркетинг — Metabase дашборды, CAC tracking |
 | **WP-194** | Подписка БР — ценообразование |
 | **WP-121** | Points Engine — баллы как альтернативная оплата, начисление за активность |
+| **WP-187** | Ory (Kratos + Keto) — единый identity + access control. Фаза B зависит от WP-187 |
 | **WP-198** | Бот-вышибала — маршрутка: cron-кик |
 
 </details>
