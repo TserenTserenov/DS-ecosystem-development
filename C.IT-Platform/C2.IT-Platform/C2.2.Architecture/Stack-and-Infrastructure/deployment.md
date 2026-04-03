@@ -17,7 +17,6 @@
 graph TB
     subgraph RAILWAY["Railway"]
         BOT["aist_me_bot — prod"]
-        PILOT["aist_pilot_bot — pilot"]
         PG_DEV["Postgres — dev"]
         DIRECTUS["Directus — CRM UI"]
         METABASE["Metabase — BI"]
@@ -62,7 +61,6 @@ graph TB
         GCAL["Google Calendar"]
         WAKA["WakaTime"]
         LIN["Linear"]
-        KINESCOPE["Kinescope"]
     end
 
     subgraph LANGFUSE["Langfuse — localhost"]
@@ -70,7 +68,6 @@ graph TB
     end
 
     style BOT fill:#dbeafe,stroke:#3b82f6
-    style PILOT fill:#dbeafe,stroke:#3b82f6
     style GW fill:#fef3c7,stroke:#f59e0b
     style KN fill:#fef3c7,stroke:#f59e0b
     style PKN fill:#fef3c7,stroke:#f59e0b
@@ -94,7 +91,6 @@ graph TB
 | Узел | URL / endpoint | Слой | Статус |
 |------|---------------|------|--------|
 | aist_me_bot | `aistmebot-production.up.railway.app` | Интерфейсы + ИИ (S-1) | live |
-| aist_pilot_bot | Railway internal | Интерфейсы | live |
 | Gateway MCP | `mcp.aisystant.com` | Детерминированные | live |
 | knowledge-mcp | `knowledge-mcp.aisystant.workers.dev/mcp` | Детерминированные | live |
 | personal-knowledge-mcp | `personal-knowledge-mcp.aisystant.workers.dev` | Детерминированные | live |
@@ -107,7 +103,6 @@ graph TB
 | Ory Hydra + Kratos | `auth.system-school.ru` (ory.sh cloud) | Инфра | live |
 | Anthropic API | `api.anthropic.com` | Внешний LLM | live |
 | ЮКасса | Магазин 1317530 | Внешний | live |
-| Kinescope | kinescope.io | Внешний | live (видео семинаров) |
 | Langfuse | localhost:3000 | Инфра | live (только dev) |
 | **Directus** | Railway (план) | **Интерфейсы** | **WP-183** |
 | **Metabase** | Railway (план) | **Интерфейсы** | **WP-183** |
@@ -315,7 +310,6 @@ graph TB
 | C4 контейнер | Deployment | URL | Статус |
 |-------------|-----------|-----|--------|
 | Aist Bot (prod) | Railway `peaceful-vision` | `aistmebot-production.up.railway.app` | live |
-| Aist Bot (pilot) | Railway `peaceful-vision` | internal | live |
 | LMS Web | Hetzner / внешний | `aisystant.system-school.ru` | live |
 | Directus (CRM) | Railway | — | WP-183 |
 | Metabase (BI) | Railway | — | WP-183 |
