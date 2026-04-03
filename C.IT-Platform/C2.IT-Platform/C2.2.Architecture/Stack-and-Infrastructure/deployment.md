@@ -341,7 +341,10 @@ graph TB
 | LLM-прокси (WP-200) | Pending, 30-40h | Роутинг по моделям, учёт токенов per user_id |
 | Directus + Metabase (WP-183) | Proposal | CRM UI + дашборды поверх Neon. Архитектура утверждена, не развёрнуто |
 | Серверные агенты (WP-201) | Pending, 30-40h | Стратег, Экстрактор на серверной стороне через Gateway |
-| BYOB MCP (user/*) | Спецификация готова | ADR-IWE-003, шаблон, Knowledge Gate. T4-пользователей пока нет |
+| BYOB MCP (user/*) | Код готов, пользователей нет | ADR-IWE-003 принят, Knowledge Gate реализован (10 тестов), Backend Registry в Neon, шаблон knowledge-mcp-template ready. T4-пользователей пока нет |
+| Activity Hub (WP-109) | Proposal | Сервис агрегации событий (бот, LMS, billing). Neon, адаптеры. Не развёрнут |
+| Points Engine (WP-121) | Pending | Система баллов и лояльности. Потребляет Activity Hub |
+| Kinescope | Внешний | Видеохостинг с JWT API, используется в сценарии семинара (WP-115) |
 | blog.aisystant.com | В планах | Домен не развёрнут |
 
 </details>
