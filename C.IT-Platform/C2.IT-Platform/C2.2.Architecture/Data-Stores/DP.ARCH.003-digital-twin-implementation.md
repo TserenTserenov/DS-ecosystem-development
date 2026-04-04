@@ -6,7 +6,7 @@ status: approved
 source: DP.ARCH.003
 summary: "Извлечено из DP.ARCH.003. Текущие ИТ-системы (Railway, Neon, CF Workers), 5 schemas Neon, RLS + 5 ролей PostgreSQL, масштабирование и retention."
 created: 2026-03-13
-updated: 2026-03-13
+updated: 2026-04-04
 ---
 
 # Реализация ЦД: системы, схемы, безопасность, масштабирование
@@ -14,6 +14,8 @@ updated: 2026-03-13
 > **Доменный источник:** [DP.ARCH.003 — Архитектура цифрового двойника](../../../../../PACK-digital-platform/pack/digital-platform/02-domain-entities/DP.ARCH.003-digital-twin-architecture.md)
 >
 > Этот файл содержит **реализационные детали** (HD #29: замени вендор/фреймворк — утверждение станет ложным? Да → implementation).
+>
+> **Маппинг ARCH.003 ↔ DT MCP метамодель:** см. DP.ARCH.003 §18 (WP-151 Ф6, 2026-04-04).
 
 ---
 
