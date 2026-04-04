@@ -34,8 +34,8 @@ related:
 | SYS.007 | **Централизованное хранилище** | Данные и файлы |
 | SYS.008 | **Операционная система** | Оркестрация и мониторинг |
 | SYS.009 | **ORY** | Идентификация и доступ |
-| SYS.010 | **Биллинг** | Оплата и подписки |
-| SYS.011 | **Приём оплаты** | Платёжные шлюзы |
+| SYS.010 | **Billing Service** | Бизнес-логика оплат: тарифы, подписки, баллы, revenue sharing, юнит-экономика |
+| SYS.011 | **Payment Registry** | Журнал всех транзакций из всех каналов (единый источник правды об оплатах) |
 | SYS.012 | **Токен-распределитель** | Начисление токенов |
 | SYS.013 | **Эпистемический граф** | Граф знаний |
 | SYS.014 | **Apps SDK** | Расширения и маркетплейс |
@@ -243,22 +243,32 @@ VS Code (heartbeats) → WakaTime Extension → wakatime.com API
 
 **Статус:** proposal создан, Phase 0 не начата.
 
-## 10. Биллинг (SYS.010)
+## 10. Payment Registry (SYS.011)
 
-**Назначение:** Приём оплат через 8 каналов (YooKassa, Paybox, Stripe, Монета, Tilda, YooKassa бот, TG Stars, Manual). Три получателя: ИП (РФ), Aisystant Corp (USA), Телеграм (физ.лицо).
+**Назначение:** Журнал всех транзакций из всех каналов. Единый источник правды: кто, когда, сколько, через какой канал заплатил. 8 каналов (YooKassa, Paybox, Stripe, Монета, Tilda, YooKassa бот, TG Stars, Manual). Три получателя: ИП (РФ), Aisystant Corp (USA), Телеграм (физ.лицо).
 
-**Реализация:** Billing Module внутри бота (Strategy pattern). Адаптеры: YooKassa, Stripe, TG Stars, Баллы, Manual. Webhook от Aisystant для оплат через Tilda/Монету.
+**As-is:** де-факто существует внутри монолита Aisystant (таблицы оплат в Aisystant PG, каналы 1-5) + Neon (каналы 6-7, семинары бота). Не выделена как отдельная подсистема.
 
-**Хранение:** Два source-of-truth: Aisystant PG (каналы 1-5) + Neon (каналы 6-7). Не дублируются.
+**To-be:** Directus (Фаза A) даёт единое окно в оба источника. На Фазе B Payment Registry мигрирует в Billing Service как модуль.
 
-**Автоматизация:**
+**Связи:** SYS.010 (Billing Service), SYS.003 (CRM), SC.112, WP-183.
+
+## 11. Billing Service (SYS.010)
+
+**Назначение:** Бизнес-логика работы с деньгами: тарифы, подписки, баллы (WP-121), revenue sharing (Platform 30% / Author 50% / Instructor 15% / Curator 5%), юнит-экономика, управление доступами.
+
+**As-is:** не существует как отдельная система. Логика размазана: бот (витрина, Strategy pattern, адаптеры YooKassa/Stripe/TG Stars/Баллы/Manual), Aisystant LMS (подписки, потоки).
+
+**To-be:** новая система поверх Payment Registry (SYS.011) и Ory (SYS.009). Строится поэтапно: Фаза A (единый учёт), Фаза B (Ory + единый аккаунт), Фаза C (баллы, revenue sharing, юнит-экономика).
+
+**Автоматизация (целевая):**
 ```
-Оплата → запись в БД → invite в чат / выдача доступа → Activity Hub событие
+Оплата → Payment Registry → Billing Service → invite в чат / выдача доступа → Activity Hub событие
 ```
 
-**Связи:** SC.112, WP-183, SYS.003 (CRM), SYS.009 (Ory — единый identity и access control в перспективе).
+**Связи:** SYS.011 (Payment Registry), SYS.003 (CRM), SYS.009 (Ory), SC.112, WP-183, WP-121 (баллы).
 
-**Статус:** Витрина семинаров реализована (бот). Единый учёт — proposal.
+**Статус:** Витрина семинаров реализована (бот). Единый учёт — [proposal](../../../../0.OPS/0.9.Inbox/WP-183-unified-payments-proposal.md).
 
 ## 11. Связанные документы
 
