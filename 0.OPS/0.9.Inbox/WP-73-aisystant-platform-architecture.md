@@ -1397,7 +1397,7 @@ llm_client/              ← shared library (Python-пакет)
 | Q1 | Изоляция данных в Neon | ✅ **RLS** (29 мар). Админам — все строки определённых таблиц, студенты — ограничение на уровне сервисов |
 | Q2 | ORY за границей | ✅ **Self-hosted в РФ + репликация** (не федерация) (29 мар) |
 | Q3 | Web App hosting | ✅ **Vue + раздельные хостинги РФ + мир** (29 мар) |
-| Q4 | Event Bus | ✅ **Activity Hub = платформенный журнал** (29 мар). Отдельного Event Bus нет — Activity Hub расширен на все события. pg_notify — транспорт. TODO: типология событий по системам, retention |
+| Q4 | Event Bus | ✅ **Activity Hub = платформенный журнал** (29 мар). Отдельного Event Bus нет — Activity Hub расширен на все события. pg_notify — транспорт. ✅ Типология: §3.10 (50 типов, 11 систем, retention policy, 5 апр) |
 | Q5 | Discourse SSO | DiscourseConnect + ORY (не обсуждался 29 мар) |
 | Q6 | Каналы для команд (SC-8) | 🔶 открыт (29 мар) |
 | Q7 | LMS замена vs обёртка | ✅ **Не трогаем LMS**, новая архитектура рядом для новых пользователей (29 мар) |
@@ -1487,7 +1487,7 @@ llm_client/              ← shared library (Python-пакет)
 | ~~0.4~~ | ~~**Docs publish → Neon** миграция~~ | ~~0.3~~ | ~~5-8h~~ | ~~Единая БД~~ | ~~✅ done~~ |
 | 0.1 | **Web App scaffold** (Vue/Nuxt, ORY auth, i18n, раздельный деплой RU+EU) | — | 20-30h | Каркас с авторизацией | ⏳ |
 | 0.2 | **ORY SSO интеграция** для Web App | 0.1 | 10-15h | Единый вход | ⏳ |
-| 0.5 | **Activity Hub расширение** — платформенный журнал событий (pg_notify + Neon). Все системы пишут в `development.user_events`. Типология событий + retention policy | — | 8-12h | Единый event store для всей платформы | ⏳ |
+| 0.5 | **Activity Hub расширение** — платформенный журнал событий (pg_notify + Neon). Все системы пишут в `development.user_events`. **Типология: §3.10 (50 типов, 11 систем, retention policy).** Осталось: реализация адаптеров (Billing, Ory, Club, MCP) | — | 8-12h | Единый event store для всей платформы | ⏳ |
 | 0.6 | **ЦД Event Store** (WP-24 Phase 1) | 0.5 | 10-15h | user_events, первая проекция | ⏳ |
 | 0.7 | **CRM + Billing MVP** (WP-183) — Directus + Billing Module в боте + TG Stars + Neon schemas crm/finance | ORY | 48h | Оплата звёздами → чат, Directus для sales | ⏳ |
 | 0.8 | **Knowledge Gateway MVP** (WP-187) — L2 Platform endpoint (CF Worker) + BYOB спецификация + MVP sync | ORY | 15h | ≥1 T4-пользователь через remote MCP | ⏳ |
@@ -1856,5 +1856,199 @@ Sync-agent (R8 Синхронизатор) при Close или по cron:
 | Открытие | День | VR.R.002 (аудит плана) |
 | Закрытие | День | VR.R.002 + VR.R.004 |
 | Стратегирование | Неделя | VR.R.002 (полный аудит) |
+
+</details>
+<details>
+<summary><b>§3.10. Типология событий Activity Hub (ADR-009)</b></summary>
+
+> Добавлено: 2026-04-05 (WP-73 Phase 2). Разблокирует Roadmap 0.5 и WP-109 Ф3.
+> Принцип: DP.ARCH.003 §4.4 (Channel-Agnostic Events). Событие описывает ЧТО ПРОИЗОШЛО, не ГДЕ.
+
+### Назначение
+
+Activity Hub (ADR-009) -- единый event store платформы. Все системы пишут в `development.user_events`. Типология нужна для:
+1. **Проекции ЦД** -- какие события питают какие проекции (BKT, HLR, engagement, qualifications)
+2. **Retention** -- сколько хранить, что архивировать
+3. **Подключение новых систем** -- контракт: event_type + payload schema
+4. **Nudge Engine** -- на какие события реагировать уведомлениями
+
+### Схема события (текущая)
+
+```sql
+-- development.user_events
+user_id      BIGINT        -- telegram chat_id (до Ory)
+user_uuid    UUID          -- Ory UUID (после Ory)
+event_type   TEXT          -- категория:действие
+source       TEXT          -- система-источник
+payload      JSONB         -- структурированные данные
+confidence   FLOAT         -- 0.0-1.0
+skill_ids    TEXT[]         -- связь с навыками
+external_id  TEXT          -- dedup ключ (source-scoped)
+created_at   TIMESTAMPTZ
+ingested_at  TIMESTAMPTZ
+```
+
+### Каталог событий по системам
+
+#### A. Бот (source: `bot`) -- 12 типов, реализовано
+
+| event_type | Что | Проекция ЦД | Retention |
+|---|---|---|---|
+| `ai_chat` | Вопрос ИИ-консультанту | engagement, misconceptions | 1 год |
+| `marathon_step` | Ответ на вопрос урока | BKT (knowledge tracing) | бессрочно |
+| `marathon_task` | Выполнение практического задания | BKT, HLR | бессрочно |
+| `marathon_completed` | Завершение марафона (14 дней) | qualifications | бессрочно |
+| `assessment_completed` | Завершение теста | BKT, qualifications | бессрочно |
+| `learning_completed` | Завершение обучающей сессии (Tailor) | engagement, BKT | бессрочно |
+| `feed_completed` | Завершение дайджеста | engagement | 90 дней |
+| `settings_changed` | Изменение профиля | -- (метаданные) | 90 дней |
+| `mode_changed` | Смена режима (Марафон/Лента/Тест) | -- (метаданные) | 90 дней |
+| `error_shown` | Показана ошибка | -- (observability) | 30 дней |
+| `reminder_delivered` | Отправлено напоминание | engagement (nudge response) | 90 дней |
+
+#### B. LMS (source: `lms`) -- 8 типов, реализовано через адаптер
+
+| event_type | Что | Проекция ЦД | Retention |
+|---|---|---|---|
+| `text_submitted` | Отправка текста (эссе) | BKT, HLR | бессрочно |
+| `table_submitted` | Отправка таблицы | BKT | бессрочно |
+| `test_passed` | Тест пройден | BKT, qualifications | бессрочно |
+| `task_submitted` | Отправка задания | BKT, HLR | бессрочно |
+| `ai_interaction` | Взаимодействие с ИИ в LMS | engagement | 1 год |
+| `topic_created` | Создание темы | engagement, community | 1 год |
+| `comment_created` | Создание комментария | engagement, community | 1 год |
+| `pomodoro_completed` | Помидоро завершено | engagement (time) | 90 дней |
+
+#### C. IWE / Экзокортекс (source: `iwe`) -- 7 типов, частично реализовано
+
+| event_type | Что | Проекция ЦД | Retention | Статус |
+|---|---|---|---|---|
+| `commit_created` | Git коммит | engagement (coding) | 1 год | реализовано |
+| `coding_time` | WakaTime запись | engagement (time) | 1 год | реализовано |
+| `dt_collect_snapshot` | Ежедневный снимок ЦД | -- (служебный) | 90 дней | реализовано |
+| `wp_completed` | Рабочий продукт завершён | qualifications, engagement | бессрочно | в моделях |
+| `knowledge_extracted` | Знание извлечено в Pack | qualifications (KE) | бессрочно | в моделях |
+| `day_open` / `day_close` | Открытие/закрытие дня | engagement (rhythm) | 90 дней | в моделях |
+| `week_plan_created` | План недели создан | engagement (planning) | 90 дней | в моделях |
+
+#### D. Personal Knowledge MCP (source: `personal-mcp`) -- 3 типа, ADR-IWE-005
+
+| event_type | Что | Проекция ЦД | Retention | Статус |
+|---|---|---|---|---|
+| `knowledge_write` | Запись в репо через MCP | engagement (KE), qualifications | бессрочно | ADR-IWE-005 |
+| `knowledge_capture` | Capture (propose_capture accepted) | engagement (KE) | бессрочно | ADR-IWE-005 |
+| `knowledge_delete` | Удаление файла через MCP | -- (audit) | 1 год | ADR-IWE-005 |
+
+#### E. Billing / Payment Registry (source: `billing`) -- 5 типов, WP-183
+
+| event_type | Что | Проекция ЦД | Retention | Статус |
+|---|---|---|---|---|
+| `payment_completed` | Оплата прошла (любой канал) | -- (финансы) | бессрочно (ФЗ) | WP-183 |
+| `payment_refunded` | Возврат / chargeback | -- (финансы) | бессрочно (ФЗ) | WP-183 |
+| `subscription_started` | Подписка оформлена (T1→T2+) | qualifications (tier) | бессрочно | WP-183 |
+| `subscription_cancelled` | Подписка отменена | qualifications (tier) | бессрочно | WP-183 |
+| `access_granted` | Доступ к ресурсу выдан (семинар, чат) | -- (access log) | 1 год | WP-183 |
+
+#### F. Клуб / Сообщество (source: `club`) -- 2 типа
+
+| event_type | Что | Проекция ЦД | Retention | Статус |
+|---|---|---|---|---|
+| `post_created` | Пост создан в клубе | engagement, community | 1 год | в моделях |
+| `like_given` | Лайк/реакция | engagement, community | 90 дней | в моделях |
+
+#### G. CRM (source: `crm`) -- 3 типа, WP-183
+
+| event_type | Что | Проекция ЦД | Retention | Статус |
+|---|---|---|---|---|
+| `identity_linked` | Связка telegram_id + ory_id + email | -- (identity) | бессрочно | WP-183 |
+| `lead_status_changed` | Изменение статуса лида | -- (sales) | 1 год | WP-183 |
+| `cohort_assigned` | Назначение в поток/группу | qualifications (context) | бессрочно | WP-183 |
+
+#### H. Ory / Auth (source: `ory`) -- 3 типа, Roadmap 0.2
+
+| event_type | Что | Проекция ЦД | Retention | Статус |
+|---|---|---|---|---|
+| `user_registered` | Регистрация нового пользователя | -- (onboarding) | бессрочно | Roadmap 0.2 |
+| `user_logged_in` | Вход в систему | engagement (session) | 30 дней | Roadmap 0.2 |
+| `permission_changed` | Изменение Keto permissions/ролей | qualifications (tier) | 1 год | Roadmap 0.2 |
+
+#### I. Web App (source: `webapp`) -- 4 типа, Roadmap 1.1+
+
+| event_type | Что | Проекция ЦД | Retention | Статус |
+|---|---|---|---|---|
+| `page_viewed` | Просмотр страницы (дашборд, ЦД) | engagement | 30 дней | Roadmap 1.1 |
+| `dt_view_requested` | Запрос выписки ЦД (S64) | -- (audit trail) | 1 год | Roadmap 1.1 |
+| `guide_progress` | Прогресс по руководству | BKT, HLR | бессрочно | Roadmap 1.2 |
+| `homework_submitted` | Отправка ДЗ (SC.117) | BKT, HLR | бессрочно | Roadmap 1.2 |
+
+#### J. Nudge Engine (source: `nudge`) -- 2 типа, Roadmap 1.7
+
+| event_type | Что | Проекция ЦД | Retention | Статус |
+|---|---|---|---|---|
+| `nudge_sent` | Уведомление отправлено | engagement (nudge) | 90 дней | Roadmap 1.7 |
+| `nudge_acted` | Пользователь среагировал на nudge | engagement (nudge response) | 90 дней | Roadmap 1.7 |
+
+#### K. AI Training Pipeline (source: `ai-training`) -- 2 типа, Roadmap 2.13
+
+| event_type | Что | Проекция ЦД | Retention | Статус |
+|---|---|---|---|---|
+| `artifact_collected` | Артефакт собран для обучения | -- (pipeline) | 1 год | Roadmap 2.13 |
+| `model_evaluation` | Результат A/B-теста модели | -- (pipeline) | бессрочно | Roadmap 2.13 |
+
+### Сводка
+
+| Система | Типов | Реализовано | Проекции ЦД |
+|---|---|---|---|
+| Бот | 11 | 11 | engagement, BKT, HLR, qualifications, misconceptions |
+| LMS | 8 | 8 | BKT, HLR, qualifications, engagement, community |
+| IWE | 7 | 3 | engagement, qualifications |
+| Personal MCP | 3 | 0 (ADR-IWE-005) | engagement, qualifications |
+| Billing | 5 | 0 (WP-183) | qualifications (tier) |
+| Клуб | 2 | 0 | engagement, community |
+| CRM | 3 | 0 (WP-183) | qualifications |
+| Ory | 3 | 0 (Roadmap 0.2) | engagement, qualifications |
+| Web App | 4 | 0 (Roadmap 1.1+) | BKT, HLR, engagement |
+| Nudge | 2 | 0 (Roadmap 1.7) | engagement |
+| AI Training | 2 | 0 (Roadmap 2.13) | -- |
+| **Итого** | **50** | **22** | |
+
+### Retention Policy
+
+| Категория | Retention | Обоснование |
+|---|---|---|
+| **Learning events** (marathon_*, test_*, text/task_submitted, homework_*, guide_progress) | Бессрочно | Питают BKT/HLR. Нужны для replay проекций. Невосстановимы |
+| **Qualification events** (completed, subscription_*, wp_completed, knowledge_extracted) | Бессрочно | Формируют квалификационный профиль |
+| **Financial events** (payment_*, subscription_*) | Бессрочно | Требование ФЗ (бухучёт), невосстановимы |
+| **Engagement events** (ai_chat, commit_created, coding_time, post_created) | 1 год | Нужны для проекций, но не критичны для replay |
+| **Metadata events** (settings_changed, mode_changed, page_viewed) | 30-90 дней | Метаданные, не влияют на проекции |
+| **Observability events** (error_shown, dt_collect_snapshot) | 30-90 дней | Служебные, для диагностики |
+
+**Механизм:** `pg_cron` job еженедельно: `DELETE FROM development.user_events WHERE created_at < NOW() - retention_interval AND event_category = ?`. Перед удалением: агрегация в `development.user_events_monthly` (счётчики по event_type per user per month).
+
+### Маппинг Event → Проекция ЦД
+
+| Проекция | Питающие event_type | Система-источник |
+|---|---|---|
+| **BKT** (Bayesian Knowledge Tracing) | marathon_step, test_passed, text/table/task_submitted, homework_submitted, guide_progress | Бот, LMS, Web App |
+| **HLR** (Half-Life Regression) | marathon_task, text/task_submitted, homework_submitted | Бот, LMS, Web App |
+| **Engagement** | ai_chat, feed_completed, commit_created, coding_time, post_created, like_given, pomodoro_completed, day_open/close, nudge_acted | Бот, IWE, Клуб, LMS, Nudge |
+| **Qualifications** | marathon_completed, assessment_completed, wp_completed, knowledge_extracted, subscription_started/cancelled, cohort_assigned, permission_changed | Бот, IWE, Billing, CRM, Ory |
+| **Misconceptions** | ai_chat (payload.corrections), marathon_step (payload.wrong_answer) | Бот |
+| **Community** | post_created, like_given, topic_created, comment_created | Клуб, LMS |
+
+### Подключение новой системы (контракт)
+
+Чтобы новая система писала в Activity Hub:
+
+1. Определить event_type по формату `{категория}_{действие}` (snake_case)
+2. Определить source (уникальный идентификатор системы)
+3. Реализовать INSERT с обязательными полями: user_id/user_uuid, event_type, source, payload, external_id (для dedup)
+4. external_id формат: `{source}-{user_id}-{event_type}-{unique}` (наносекунды или UUID)
+5. Добавить в эту типологию (секция §3.10)
+
+**Варианты записи:**
+- **Прямой INSERT** (рекомендуется для систем с Neon-доступом) -- ADR-IWE-005
+- **HTTP webhook** (для внешних систем) -- WP-109 Ф3
+- **Адаптер** (для систем с API: LMS, клуб) -- dt-collect cron
 
 </details>
