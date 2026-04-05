@@ -10,7 +10,7 @@
 
 | ID | Что | Где живёт | Добавлено | Критерий готовности | Статус |
 |----|-----|-----------|-----------|---------------------|--------|
-| S-01 | `/archgate` скилл — оценка архитектурных решений по ЭМОГССБ | `.claude/skills/archgate/` | 2026-03-15 | 5+ сессий без сбоев; формат таблицы устоялся | testing |
+| S-01 | `/archgate` скилл — оценка архитектурных решений по ЭМОГССБ | `.claude/skills/archgate/` | 2026-03-15 | 5+ сессий без сбоев; формат таблицы устоялся | promoted |
 | S-02 | `params.yaml` — персистентные параметры протоколов (9 ключей) | `params.yaml` | 2026-03-27 | 2 недели без сбоев при update.sh | testing |
 | S-03 | `extensions/` — drop-in расширения протоколов | `extensions/*.md` | 2026-03-27 | 2 недели; все 9 extension points отработали | testing |
 | S-04 | `extensions/protocol-close.checks.md` — CHANGELOG FMT при Quick Close | `extensions/protocol-close.checks.md` | 2026-03-27 | 1 неделя; ни разу не пропустил напоминание | testing |
@@ -35,6 +35,7 @@
 | — | UC Gate | 2026-03-20 | — |
 | — | Чеклист-верификация Haiku R23 | 2026-03-20 | — |
 | — | Межсистемные процессы | 2026-03-20 | — |
+| S-01 | `/archgate` скилл v3 (ЭМОГССБ, conjunctive screening) | 2026-04-05 | `feat: promote S-01 from staging (archgate v3)` |
 
 ---
 
