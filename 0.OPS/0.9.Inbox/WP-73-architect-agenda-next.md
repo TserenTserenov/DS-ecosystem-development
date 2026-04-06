@@ -162,16 +162,23 @@ source: встречи 1 (29 мар) + 2 (31 мар) + 3 (5 апр) — закр
 | Р6 | Бот МИМ тоже принимает оплаты, оба регистрируют в Payment Registry |
 | А1-А4 | RLS, Keto, Chargeback не нужен пока, Directus+Metabase подтверждён |
 
-### Открыто для Андрея
+### Открыто для Андрея (архитектор)
 
 | # | Вопрос | Суть | Контекст |
 |---|--------|------|----------|
-| Р4 | Привязка identity через Ory (Фаза B) | `tg_id ↔ email ↔ aisystant_id` -- звезда через Ory. Нужна архитектура: как Ory становится hub'ом identity? Где хранится маппинг до Ory (Фаза A)? | Блокирует Фазу B. Связано с DE-34 |
-| Q-billing | Activity Hub billing adapter | ✅ **Закрыт (6 апр).** Формат: §3.10 секция E (5 типов). Паттерн: ADR-IWE-005 (прямой INSERT). Включить в Фазу A — Payment Registry и так делается в W15 | unified-payments §0.1 |
-| Q-keto | Keto: перечень permissions | Модель решена (5 апр): атомарные permissions → роли. **Карта permissions проработана (6 апр) — см. §Q-keto ниже.** Ревью с командой, затем Паша реализует | Разблокирует реализацию Keto |
-| Q-points | Баллы (WP-121) и юнит-экономика | Баллы = Фаза C. Но архитектура `finance.point_*` таблиц нужна сейчас, чтобы не переделывать Payment Registry. Нужна ли таблица `point_ledger` в Фазе A как placeholder? | unified-payments §0.1, Фаза C (~11h) |
-| Q-consolidation | Консолидация Реестра оплат | Два хранилища: Aisystant PG (каналы 1-5) и Neon (каналы 6-7). Вариант A: всё в Neon. Вариант B: два + Directus как единое окно | unified-payments §0.1 |
-| Q-monolith | Декомпозиция монолита | Начинаем с Payment Registry (CRM + оплаты) -- обкатываем новую архитектуру. На следующей неделе плотно займутся с Ильшатом и Димой. При успехе -- присоединяем CRM, маркетологов, остальное | Решение 5 апр |
+| Р4 | Привязка identity через Ory (Фаза B) | `tg_id ↔ email ↔ aisystant_id` -- звезда через Ory. Как Ory становится hub'ом identity? Где маппинг до Ory (Фаза A)? | Блокирует Фазу B. Связано с DE-34 |
+| Б5 | Каналы для команд (SC-8) | TG-группы vs Discord vs Zulip для учебных команд. Не блокер (Team Service в Фазе 2), но нужно мнение архитектора | WP-73 §5.1 Q6, WP-74 SC-8 |
+| ADR-IWE-007 | Content Integrity при индексации | Ревью proposed ADR: exclusion list (CLAUDE.md), manifest hash, content validation, staleness detection | WP-73 Phase 2, WP-187 |
+| ~~Q-billing~~ | ~~Activity Hub billing adapter~~ | ~~✅ **Закрыт (6 апр).** Формат: §3.10 секция E (5 типов). Паттерн: ADR-IWE-005~~ | |
+| ~~Q-keto~~ | ~~Keto: перечень permissions~~ | ~~🔶 **Проработан (6 апр) — см. §Q-keto ниже.** Ревью с командой → Паша (DevOps) реализует~~ | |
+
+### Перенесено в WP-183 (Ильшат+Дима)
+
+| # | Вопрос | Суть |
+|---|--------|------|
+| Q-points | Баллы — placeholder `point_ledger` в Фазе A? | unified-payments §0.1, Фаза C |
+| Q-consolidation | Два хранилища оплат: всё в Neon или два + Directus? | unified-payments §0.1 |
+| Q-monolith | Декомпозиция монолита: Payment Registry первый, потом CRM | Решение 5 апр |
 
 ---
 
