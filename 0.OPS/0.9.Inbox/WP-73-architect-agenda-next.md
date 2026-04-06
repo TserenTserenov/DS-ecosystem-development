@@ -167,11 +167,170 @@ source: встречи 1 (29 мар) + 2 (31 мар) + 3 (5 апр) — закр
 | # | Вопрос | Суть | Контекст |
 |---|--------|------|----------|
 | Р4 | Привязка identity через Ory (Фаза B) | `tg_id ↔ email ↔ aisystant_id` -- звезда через Ory. Нужна архитектура: как Ory становится hub'ом identity? Где хранится маппинг до Ory (Фаза A)? | Блокирует Фазу B. Связано с DE-34 |
-| Q-billing | Activity Hub billing adapter | Payment Registry должен отправлять события в Activity Hub (WP-109). Включать в Фазу A или отложить? Если да -- формат события, какие поля | unified-payments §0.1 |
-| Q-keto | Keto: перечень permissions | Модель решена (5 апр): атомарные permissions → роли. Нужна конкретная карта: функция бота/платформы → permission. Напр. `enter_group_chat`, `post_comments`, `access_navigator`, `access_knowledge_gateway` | Блокирует реализацию Keto |
+| Q-billing | Activity Hub billing adapter | ✅ **Закрыт (6 апр).** Формат: §3.10 секция E (5 типов). Паттерн: ADR-IWE-005 (прямой INSERT). Включить в Фазу A — Payment Registry и так делается в W15 | unified-payments §0.1 |
+| Q-keto | Keto: перечень permissions | Модель решена (5 апр): атомарные permissions → роли. **Карта permissions проработана (6 апр) — см. §Q-keto ниже.** Ревью с командой, затем Паша реализует | Разблокирует реализацию Keto |
 | Q-points | Баллы (WP-121) и юнит-экономика | Баллы = Фаза C. Но архитектура `finance.point_*` таблиц нужна сейчас, чтобы не переделывать Payment Registry. Нужна ли таблица `point_ledger` в Фазе A как placeholder? | unified-payments §0.1, Фаза C (~11h) |
 | Q-consolidation | Консолидация Реестра оплат | Два хранилища: Aisystant PG (каналы 1-5) и Neon (каналы 6-7). Вариант A: всё в Neon. Вариант B: два + Directus как единое окно | unified-payments §0.1 |
 | Q-monolith | Декомпозиция монолита | Начинаем с Payment Registry (CRM + оплаты) -- обкатываем новую архитектуру. На следующей неделе плотно займутся с Ильшатом и Димой. При успехе -- присоединяем CRM, маркетологов, остальное | Решение 5 апр |
+
+---
+
+## Q-keto: Карта атомарных permissions (проработка 6 апр)
+
+> **Модель (ADR-014):** `Permission = Entitlement ∩ Role ∩ Scope`. Три оси:
+> - **Entitlement** (тир): что ДОСТУПНО по подписке (T1-T4, TM1-TM3, TA1-TA4, TD1)
+> - **Role**: что можно ДЕЛАТЬ (learner, mentor, admin, developer)
+> - **Scope**: над ЧЕМ (cohort:X, program:Y, user:Z, global)
+>
+> **Реализация:** Ory Keto (Zanzibar ReBAC). Атомарные permissions объединяются в role-groups.
+> **Стратегия внедрения (5 апр):** начать с новых сервисов (семинары), потом переводить остальное.
+
+### Пространства имён (namespaces)
+
+| Namespace | Описание | Примеры объектов |
+|-----------|----------|-----------------|
+| `platform` | Платформенные функции | `knowledge`, `guides`, `digital_twin`, `gateway` |
+| `ai` | ИИ-системы (роли R1-R28) | `consultant`, `navigator`, `strategist`, `dz_checker` |
+| `community` | Сообщество и контент | `club`, `comments`, `group_chat`, `publications` |
+| `education` | Обучение и наставничество | `homework`, `cohort`, `workbook`, `certificate` |
+| `commerce` | Биллинг и экономика | `billing`, `points`, `revenue_sharing` |
+| `admin` | Операционное управление | `users`, `cohorts`, `analytics`, `deployment` |
+
+### Атомарные permissions
+
+#### Ось Knowledge Access (платформа)
+
+| Permission | Описание | Тиры |
+|------------|----------|------|
+| `platform:knowledge:read` | Доступ к knowledge-mcp (публичные руководства) | T1+ |
+| `platform:guides:read` | Доступ к guides-mcp (программы обучения) | T2+ |
+| `platform:guides:standard:read` | Стандартные руководства (IWE-шаблон) | T3+ |
+| `platform:guides:personal:read` | Персональные руководства (Pack) | T4+ |
+| `platform:digital_twin:read` | Просмотр своего ЦД | T1+ (ограниченный), T2+ (полный) |
+| `platform:digital_twin:write` | Запись в ЦД (самооценка, цели) | T3+ |
+| `platform:digital_twin:export` | Экспорт данных (GDPR) | T1+ |
+| `platform:gateway:access` | Доступ к Knowledge Gateway (remote MCP) | T2+ |
+| `platform:gateway:personal_kb:read` | Личная база знаний через Gateway | T4+ |
+| `platform:gateway:personal_kb:write` | Запись в личную базу через Gateway | T4+ |
+
+#### Ось AI (ИИ-системы)
+
+| Permission | Описание | Тиры |
+|------------|----------|------|
+| `ai:consultant:use` | Q&A по руководствам (R3) | T1+ (базовый), T2+ (полный) |
+| `ai:navigator:use` | Навигатор траектории (R27) | T2+ |
+| `ai:diagnostician:use` | Диагност ступени (R28) | T2+ |
+| `ai:dz_checker:use` | Проверка ДЗ (R12) | T2+ |
+| `ai:strategist:use` | Стратег — план дня/недели (R1) | T3+ |
+| `ai:extractor:use` | Экстрактор знаний (R2) | T4+ |
+| `ai:tailor:use` | Персональные рекомендации (R27 Tailor) | T3+ |
+| `ai:orchestrator:use` | Оркестратор программы (R22) | T3+ |
+
+#### Ось Community (сообщество)
+
+| Permission | Описание | Тиры |
+|------------|----------|------|
+| `community:club:read` | Чтение клуба (Discourse) | T1+ |
+| `community:club:post` | Создание постов в клубе | T2+ |
+| `community:club:comment` | Комментирование в клубе | T1+ |
+| `community:group_chat:enter` | Вход в групповой чат (семинар/поток) | T2+ (по оплате семинара) |
+| `community:publications:read` | Чтение публикаций | T1+ |
+| `community:publications:create` | Создание публикаций | T3+ |
+
+#### Ось Education (обучение)
+
+| Permission | Описание | Тиры |
+|------------|----------|------|
+| `education:homework:submit` | Сдача ДЗ | T2+ |
+| `education:homework:review` | Проверка ДЗ (наставник) | TM1+ |
+| `education:homework:grade` | Оценка ДЗ (наставник) | TM2+ |
+| `education:workbook:read` | Просмотр рабочей тетради | T2+ |
+| `education:workbook:write` | Заполнение рабочей тетради | T2+ |
+| `education:cohort:view` | Просмотр своего потока | T2+ |
+| `education:cohort:manage` | Управление потоком (куратор) | TM3+ / TA2+ |
+| `education:certificate:view` | Просмотр сертификатов | T2+ |
+| `education:certificate:issue` | Выдача сертификатов | TA3+ |
+| `education:seminar:access` | Доступ к семинару (JWT-ссылка, ADR-016) | T2+ (по оплате) |
+
+#### Ось Commerce (биллинг и экономика)
+
+| Permission | Описание | Тиры |
+|------------|----------|------|
+| `commerce:billing:view_own` | Просмотр своих оплат | T1+ |
+| `commerce:billing:pay` | Совершение оплаты | T1+ |
+| `commerce:billing:manage` | Управление подписками (CRM) | TA2+ |
+| `commerce:billing:refund` | Возвраты | TA3+ |
+| `commerce:points:view` | Просмотр баллов | T2+ |
+| `commerce:points:earn` | Начисление баллов | T2+ |
+| `commerce:points:spend` | Трата баллов | T2+ |
+| `commerce:revenue:view` | Просмотр выплат автору | T3+ (автор) |
+
+#### Ось Admin (операции)
+
+| Permission | Описание | Тиры |
+|------------|----------|------|
+| `admin:users:view` | Просмотр списка пользователей | TA1+ |
+| `admin:users:manage` | Управление пользователями (блок, смена тира) | TA2+ |
+| `admin:cohorts:create` | Создание потоков | TA2+ |
+| `admin:cohorts:assign_mentor` | Назначение наставников | TA3+ |
+| `admin:analytics:view` | Просмотр аналитики | TA1+ |
+| `admin:analytics:export` | Экспорт аналитики | TA3+ |
+| `admin:deployment:manage` | Деплой и мониторинг | TD1 |
+| `admin:config:manage` | Настройки платформы | TD1 |
+
+### Role-groups (бандлы permissions → Keto relations)
+
+| Role-group | Permissions (бандл) | Кто получает |
+|------------|-------------------|-------------|
+| `subscriber:t1` | `platform:knowledge:read`, `platform:digital_twin:read` (limited), `ai:consultant:use` (basic), `community:club:read`, `community:club:comment`, `commerce:billing:view_own`, `commerce:billing:pay` | T1 пользователи |
+| `subscriber:t2` | subscriber:t1 + `platform:guides:read`, `platform:gateway:access`, `ai:navigator:use`, `ai:diagnostician:use`, `ai:dz_checker:use`, `community:club:post`, `education:homework:submit`, `education:workbook:*`, `education:cohort:view`, `commerce:points:*` | T2 пользователи |
+| `subscriber:t3` | subscriber:t2 + `platform:guides:standard:read`, `platform:digital_twin:write`, `ai:strategist:use`, `ai:tailor:use`, `ai:orchestrator:use`, `community:publications:create`, `commerce:revenue:view` | T3 пользователи |
+| `subscriber:t4` | subscriber:t3 + `platform:guides:personal:read`, `platform:gateway:personal_kb:*`, `ai:extractor:use` | T4 пользователи |
+| `mentor:tm1` | `education:homework:review` (read-only, scope: one cohort) | TM1 |
+| `mentor:tm2` | mentor:tm1 + `education:homework:grade` (scope: own cohorts) | TM2 |
+| `mentor:tm3` | mentor:tm2 + `education:cohort:manage` (scope: program) | TM3 |
+| `admin:ta1` | `admin:users:view`, `admin:analytics:view` | TA1 |
+| `admin:ta2` | admin:ta1 + `admin:users:manage`, `admin:cohorts:create`, `commerce:billing:manage` | TA2 |
+| `admin:ta3` | admin:ta2 + `admin:cohorts:assign_mentor`, `admin:analytics:export`, `commerce:billing:refund`, `education:certificate:issue` | TA3 |
+| `developer:td1` | all admin + `admin:deployment:manage`, `admin:config:manage` | TD1 |
+
+### Позиции (presets) — ADR-014
+
+| Позиция | = Role-group + Scope |
+|---------|---------------------|
+| **Ученик T2** | subscriber:t2, scope: enrolled programs |
+| **Наставник потока** | subscriber:t2 + mentor:tm2, scope: `cohort:X` |
+| **Старший наставник** | subscriber:t3 + mentor:tm3, scope: `program:Y` |
+| **Куратор** | subscriber:t2 + admin:ta2, scope: `program:Y` |
+| **Владелец** | subscriber:t4 + admin:ta3 + developer:td1, scope: `global` |
+
+### Фаза внедрения
+
+| Фаза | Что | Когда |
+|------|-----|-------|
+| **A (MVP)** | `education:seminar:access` + `community:group_chat:enter` — семинары как пилот | W15-16 |
+| **B** | `platform:gateway:access` + `ai:*:use` — Knowledge Gateway + ИИ-системы | После Ory SSO |
+| **C** | `education:homework:*` + `mentor:*` — наставники и потоки | С Web App |
+| **D** | `commerce:*` + `admin:*` — полный биллинг и админка | С CRM |
+
+### Keto relation tuples (примеры Фазы A)
+
+```
+// Пользователь user:123 — подписчик T2
+platform:subscribers#member@user:123
+
+// Группа subscribers включает permission на семинары
+education:seminar:*#access@platform:subscribers#member
+
+// Конкретный семинар — доступ по оплате
+education:seminar:sem-2026-04-15#access@user:123
+
+// Группа subscribers включает вход в чат
+community:group_chat:*#enter@platform:subscribers#member
+
+// Конкретный чат семинара
+community:group_chat:chat-sem-2026-04-15#enter@user:123
+```
 
 ---
 
@@ -185,10 +344,10 @@ source: встречи 1 (29 мар) + 2 (31 мар) + 3 (5 апр) — закр
 | 4 | Knowledge base разделение | ✅ Личная, проектная, публичная -- разные репо, один способ работы. Gateway = окно. Командная -- на платформе | 5 апр |
 | 5 | GDPR / Репликация RU↔EU | ⏸️ Отложено. Олег предупредил о рисках. Нужна юридическая консультация | 5 апр |
 | 6 | Новый сервер | ⏳ Андрей после Ory | 5 апр |
-| Q-keto | Перечень permissions | Модель решена, нужна конкретная карта | |
+| Q-keto | Перечень permissions | 🔶 Карта проработана (6 апр): 6 namespaces, ~45 атомарных permissions, 11 role-groups, 5 presets, 4 фазы внедрения. Ревью с командой → Паша реализует | 6 апр |
 | Q-monolith | Декомпозиция монолита | Начинаем с Payment Registry. Обкатка новой архитектуры | 5 апр |
 | Р4 | Identity hub через Ory (Фаза B) | | |
-| Q-billing | Activity Hub billing adapter | | |
+| Q-billing | Activity Hub billing adapter | ✅ Формат в §3.10 (5 типов), паттерн ADR-IWE-005. Включить в Фазу A | 6 апр |
 | Q-points | Баллы -- placeholder в Фазе A? | | |
 | Q-consolidation | Консолидация Реестра оплат | | |
 
