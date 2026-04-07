@@ -499,6 +499,156 @@ VALUES (123456789, -100123456789, 'SE-2026.2-T', 'bot', NOW());
 
 Используется для связки `tg_id` с аккаунтом (после Ory -- через Ory).
 
+### Предложение схемы `finance.*` в Neon (действие 1)
+
+> На основе анализа Java-сущностей Aisystant (`Payment`, `ChargeOff`, `PaymentPurpose`, `DomainObject`, `AmountOption`, `PaymentUtil`, `AccessService`).
+> Маппинг значений `status` по платёжным системам определён из кода.
+
+**Принципы:**
+- Совместимость с Aisystant (М3): все поля Aisystant отражены, биллинг-логика может работать
+- `double → decimal` (округление до 1 руб.)
+- `purpose` как string enum (не ordinal int)
+- Добавлены поля `channel`, `source_system`, `notified_bot` (для уведомления)
+- Мягкое удаление (Д3): `archived_at` вместо физического DELETE
+
+```sql
+CREATE SCHEMA IF NOT EXISTS finance;
+
+-- Все платежи (включая неуспешные). Источник: Aisystant payment (каналы 1-5) + бот Aist (6-7) + Directus (8)
+CREATE TABLE finance.payments (
+    id              BIGSERIAL PRIMARY KEY,
+    ext_id          TEXT,                    -- внешний ID от платёжной системы (yookassa_xxx, stripe_xxx)
+    source_id       BIGINT,                  -- оригинальный id из Aisystant (для сверки). NULL для каналов 6-8
+
+    -- Кто
+    suser_id        BIGINT,                  -- Aisystant user ID (переходный период). NULL для каналов 6-8
+    telegram_id     BIGINT,                  -- Telegram user ID. NULL для каналов 1-5 (до Ory)
+    email           TEXT,                    -- email покупателя (если известен)
+    ory_id          UUID,                    -- Ory identity ID (Фаза B). NULL до Ory
+
+    -- Что
+    purpose         TEXT NOT NULL CHECK (purpose IN ('BALANCE', 'SUBSCRIPTION', 'DONATION', 'INTERNSHIP', 'WORKSHOP')),
+    code            TEXT,                    -- код тарифа/курса/потока/семинара
+    amount          NUMERIC(12,2) NOT NULL,  -- сумма (decimal, не double!)
+    currency        TEXT NOT NULL DEFAULT 'RUB',
+
+    -- Откуда
+    payment_system  TEXT,                    -- 'yoo', 'paybox', 'stripe', 'tg_stars'
+    channel         SMALLINT NOT NULL,       -- 1-8 (см. карту каналов §2)
+    source_system   TEXT NOT NULL DEFAULT 'aisystant', -- 'aisystant', 'bot_aist', 'bot_mim', 'directus'
+
+    -- Статус
+    status          TEXT,                    -- 'succeeded', 'canceled', 'pending', 'ok', 'paid', etc.
+    success         BOOLEAN NOT NULL DEFAULT false,
+    processed       BOOLEAN NOT NULL DEFAULT false,
+
+    -- Подписка
+    payment_index   INTEGER,                 -- номер платежа в серии (для подписок)
+    autopay         BOOLEAN NOT NULL DEFAULT false,
+    autopay_data    TEXT,
+    auto_extend     BOOLEAN,
+    locale          TEXT,
+    error_data      TEXT,
+
+    -- Уведомление бота
+    notified_bot    BOOLEAN NOT NULL DEFAULT false, -- бот Aist обработал эту запись
+
+    -- Метаданные
+    timestamp       TIMESTAMPTZ NOT NULL DEFAULT NOW(), -- время платежа (из платёжной системы)
+    created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(), -- время записи в Neon
+    archived_at     TIMESTAMPTZ                         -- мягкое удаление (Д3)
+);
+
+CREATE INDEX idx_payments_suser ON finance.payments (suser_id) WHERE suser_id IS NOT NULL;
+CREATE INDEX idx_payments_telegram ON finance.payments (telegram_id) WHERE telegram_id IS NOT NULL;
+CREATE INDEX idx_payments_ext_id ON finance.payments (ext_id) WHERE ext_id IS NOT NULL;
+CREATE INDEX idx_payments_ory ON finance.payments (ory_id) WHERE ory_id IS NOT NULL;
+CREATE INDEX idx_payments_not_notified ON finance.payments (created_at) WHERE notified_bot = false AND success = true;
+CREATE INDEX idx_payments_channel_ts ON finance.payments (channel, timestamp);
+
+-- Успешные списания. charge_off = основа для биллинг-решений (М4)
+CREATE TABLE finance.charge_offs (
+    id              BIGSERIAL PRIMARY KEY,
+    source_id       BIGINT,                  -- оригинальный id из Aisystant (для сверки)
+
+    -- Кто
+    suser_id        BIGINT,
+    telegram_id     BIGINT,
+    email           TEXT,
+    ory_id          UUID,
+
+    -- Что
+    purpose         TEXT NOT NULL CHECK (purpose IN ('BALANCE', 'SUBSCRIPTION', 'DONATION', 'INTERNSHIP', 'WORKSHOP')),
+    code            TEXT,
+    amount          NUMERIC(12,2) NOT NULL,
+    currency        TEXT NOT NULL DEFAULT 'RUB',
+
+    -- Откуда
+    channel         SMALLINT NOT NULL,
+    source_system   TEXT NOT NULL DEFAULT 'aisystant',
+
+    -- Контекст
+    payment_index   INTEGER,
+    details         TEXT,                    -- детали списания
+    potok_id        BIGINT,                  -- ID потока (когорты)
+
+    -- Метаданные
+    timestamp       TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    archived_at     TIMESTAMPTZ
+);
+
+CREATE INDEX idx_chargeoffs_suser ON finance.charge_offs (suser_id) WHERE suser_id IS NOT NULL;
+CREATE INDEX idx_chargeoffs_telegram ON finance.charge_offs (telegram_id) WHERE telegram_id IS NOT NULL;
+CREATE INDEX idx_chargeoffs_purpose_code ON finance.charge_offs (purpose, code);
+CREATE INDEX idx_chargeoffs_ory ON finance.charge_offs (ory_id) WHERE ory_id IS NOT NULL;
+
+-- Факты вступления в чат (для связки identity и аналитики)
+CREATE TABLE finance.chat_joins (
+    id              BIGSERIAL PRIMARY KEY,
+    telegram_id     BIGINT NOT NULL,
+    chat_id         BIGINT NOT NULL,
+    seminar_code    TEXT,
+    invite_source   TEXT NOT NULL DEFAULT 'bot', -- 'bot', 'admin_invite'
+    joined_at       TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX idx_chatjoins_tg ON finance.chat_joins (telegram_id);
+CREATE INDEX idx_chatjoins_chat ON finance.chat_joins (chat_id);
+```
+
+**Маппинг `purpose` ordinal → string (из Java enum):**
+
+| Ordinal (Aisystant PG) | String (Neon) |
+|------------------------|---------------|
+| 0 | BALANCE |
+| 1 | SUBSCRIPTION |
+| 2 | DONATION |
+| 3 | INTERNSHIP |
+| 4 | WORKSHOP |
+
+**Маппинг `channel`:**
+
+| # | Канал | `source_system` |
+|---|-------|-----------------|
+| 1 | YooKassa (подписки, потоки) | aisystant |
+| 2 | Paybox | aisystant |
+| 3 | Stripe | aisystant |
+| 4 | Монета/PayAnyWay | aisystant |
+| 5 | Tilda + Ecwid | aisystant |
+| 6 | YooKassa (семинары бота) | bot_aist |
+| 7 | TG Stars | bot_aist |
+| 8 | Manual (B2B) | directus |
+
+**Маппинг `status` → `success` (из кода AccessService.java):**
+
+| `payment_system` | `success = true` | `success = false` (ошибка) | Промежуточный |
+|---|---|---|---|
+| yoo | `succeeded` | `canceled` | `pending` |
+| paybox | `ok` | `failed`, `incomplete`, `revoked`, `refunded`, `pb_result_error` | `pb_created` |
+| stripe | `paid` | `expired` | (session status) |
+
 ### Воронка входа (для маркетинга)
 
 ```
