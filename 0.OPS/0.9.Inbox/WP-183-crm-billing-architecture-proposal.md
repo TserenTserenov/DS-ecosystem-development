@@ -210,7 +210,7 @@ Revenue sharing: platform 30%, author 50%, instructor 15%, curator 5%.
 
 | Связка | Как работает | Данные |
 |--------|-------------|--------|
-| **CRM → Ory** | Регистрация → Ory identity → `crm.identity_links` | ory_id ↔ telegram_id |
+| **CRM → Ory** | Регистрация → Ory identity (ory_id = единственный ID, ADR-IWE-008) → `crm.identity_links` | ory_id ↔ telegram_id. НЕ lms_user_id |
 | **CRM → LMS** | Подписка/курс → LMS API (как сейчас) | subscription status |
 | **CRM → Бот** | Directus Flow → webhook → бот добавляет/удаляет из чата | chat_access |
 | **CRM → ЦД** | `crm.identity_links` → Digital Twin MCP по ory_id | активность, прогресс |
@@ -302,7 +302,7 @@ B2B: 2 вуза × 50 чел × $15 × 12 мес = $18 000/год → окупа
 | PII encryption не описано | ✅ | Neon AES-256 at rest + Directus RBAC для PII-полей |
 | Audit log не описан | ✅ | Directus activity + revisions (OOTB) + retention policy |
 | Webhook через Directus = SPOF | ✅ | **Коррекция:** webhook → бот (Billing Module) → Neon напрямую. Directus не в цепочке платежей |
-| Identity linking не описан | ✅ | Ory webhook `identity.created` → бот → `crm.identity_links`. Cron для неслинкованных |
+| Identity linking не описан | ✅ | Ory webhook `identity.created` → бот → `crm.identity_links` (ory_id ↔ telegram_id). ADR-IWE-008: ory_id = единственный ID. Cron для неслинкованных |
 | Chargeback не описан | ✅ | Webhook → UPDATE status='refunded' → откат chat_access + revenue_ledger |
 | Нет Event Bus | ❌ | Webhook'и обрабатываются ботом синхронно. Kafka для 5 менеджеров = overengineering |
 | Нет SAGA для платежей | ❌ | Одна транзакция: payment + chat_access + revenue_ledger. Не distributed |
