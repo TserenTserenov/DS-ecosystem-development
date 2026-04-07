@@ -5,7 +5,7 @@ status: draft
 author: Церен
 reviewer: Инга
 created: 2026-04-07
-drive_url: ""
+drive_url: "https://drive.google.com/file/d/1Z2CpTVqi44kIwmA8v-De7p9TRbbdYOIz/view?usp=drivesdk"
 ---
 
 # WP-199: Замечания и вопросы по UX бота — согласование с Ингой
