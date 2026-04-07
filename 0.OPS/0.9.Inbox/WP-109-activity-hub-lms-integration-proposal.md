@@ -124,6 +124,8 @@ await ingest_event(
 
 Identity Resolver маппит `telegram_id ↔ ory_id` через таблицу `crm.identity_links` (WP-183). Это единый source-of-truth для склейки идентификаторов. Activity Hub **не дублирует** эту таблицу — читает её.
 
+> **Решение встречи 4 (7 апр):** `ory_id` = единственный универсальный идентификатор. `lms_user_id` — внутренний ID LMS, не использовать в других подсистемах. Если сервису нужен lms_user_id — запрашивать через LMS API по Ory-токену. Не добавлять lms_id в Ory traits.
+
 ### Бот: чистовая интеграция
 
 Бот импортирует Hub как библиотеку (не по HTTP → нет потери скорости):
@@ -345,6 +347,10 @@ CREATE TABLE development.sync_log (
 **Шаг 3:** Создать репо `activity-hub/`, реализовать Hub Core + Bot Adapter + Billing Adapter (→ WP-183). Бот переключается на `ingest_event()`. ⏳ dep: DE-35.
 
 **Шаг 4:** Реализовать LMS Adapter v1, тестировать на `188.73.162.175:8064`. ⏳
+> **Референс:** код Алексея (SionKhvili) — готовые клиенты к LMS API и клубу:
+> - [bonuses](https://github.com/aisystant/bonuses) — `aisistant_client.py` (LMS API клиент + схемы), `club_client.py` (Discourse клиент)
+> - [posthog-api](https://github.com/aisystant/posthog-api) — паттерн сборки данных (рейтинг, профиль, passing_actions). PostHog не нужен, но структура адаптеров полезна
+> Решение встречи 4 (7 апр): данные из LMS подтягиваются при первом входе пользователя в ЦД (не массовая миграция)
 
 **Шаг 5:** Запуск в production. Мониторинг sync_log. Reconciliation. ⏳
 
