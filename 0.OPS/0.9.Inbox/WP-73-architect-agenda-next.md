@@ -1,33 +1,34 @@
 ---
 type: architect-agenda
-title: "Следующая встреча с архитектором — открытые вопросы"
+title: "Встреча 4 с архитектором (7 апр) — открытые вопросы"
 status: pending
 created: 2026-04-01
-updated: 2026-04-05
+updated: 2026-04-07
 depends_on: WP-73, WP-187, WP-109, WP-183
-source: встречи 1 (29 мар) + 2 (31 мар) + 3 (5 апр) — закрытые решения ниже и в архиве
+source: встречи 1 (29 мар) + 2 (31 мар) + 3 (5 апр) + 4 (7 апр) — закрытые решения ниже и в архиве
 ---
 
-# Повестка: открытые архитектурные вопросы
+# Повестка: встреча 4 (7 апреля 14:00–15:00)
 
-> Встречи 1 (29 мар) и 2 (31 мар) закрыли Блок А, Б и большую часть В.
-> Встреча 3 (5 апр) закрыла: Keto-модель (#2), Gateway = прозрачный прокси (#3), knowledge base разделение (#4).
-> ADR-IWE-003 (Gateway Backend Interface) и ADR-IWE-004 (GitHub App Token) приняты 3 апреля.
-> Здесь -- только то, что осталось открытым.
+> **Встречи 1-3** закрыли: Блок А+Б+В, Keto-модель, Gateway = прозрачный прокси, knowledge base разделение.
+> **ADR:** ADR-IWE-003 (Gateway Backend Interface), ADR-IWE-004 (GitHub App Token), ADR-IWE-005 (ingest_event), ADR-IWE-007 (Content Integrity) — приняты.
+> **W14 итог:** R2 Архитектура Phase 2 DONE, R9 Knowledge Gateway DONE (reopened SSE/L2/L4), R1 Ory верифицирована. Мультипликатор 2.68x.
+> Здесь -- только то, что осталось открытым для обсуждения.
 
 ---
 
-## 1. Ory Gateway -- ⏳ в работе у Паши
+## 1. Ory Gateway -- ⏳ в работе у Паши (~5 мин)
 
-**Статус (5 апр):** Паша делает. Осталось получить последние ссылки и протестировать. Redirect URIs для aist-bot отправлены (3 апр), удаление старого URI запрошено (4 апр).
+**Статус (7 апр):** R1 Ory OAuth верифицирована (5 апр). `gateway-mcp` и `aist-bot` клиенты активны, Hydra под `/hydra/` prefix.
 
-`auth.aisystant.com` возвращает 404 на всех endpoint'ах. В коде бота этот адрес зашит.
+`auth.aisystant.com` — нужно подтвердить: 404 устранён или endpoint переехал?
 
-**Нужно:** актуальный URL Ory Hydra (публичный endpoint). Задеплоен ли Keto -- и если да, тоже URL.
+**Нужно:**
+- Актуальный URL Keto (задеплоен ли Keto? если да — URL для `POST /check`)
+- Статус Натальи — разблокирована?
+- Сроки переключения на сервер (→ #6)
 
-**Зачем:** без рабочего адреса WP-187 Ф0 (Gate T2+ в боте) не может начаться.
-
-**Контекст:** Ory Network уже в проде (`thirsty-goldstine-5xjpbvdi2b.projects.oryapis.com`), PKCE flow интегрирован в digital-twin-mcp. Паша сейчас разблокирует Наталью по Ory, потом переключится на сервер.
+**Контекст:** Ory Network в проде (`thirsty-goldstine-5xjpbvdi2b.projects.oryapis.com`), PKCE flow работает в digital-twin-mcp и gateway-mcp.
 
 ---
 
@@ -47,9 +48,9 @@ source: встречи 1 (29 мар) + 2 (31 мар) + 3 (5 апр) — закр
 
 ### Остаётся открытым
 
-- **Перечень permissions:** какие атомарные permissions нужны на старте? (Нужна карта: функция бота → permission)
-- **DE-34** (привязка `ory_id ↔ lms_user_id`) -- в Linear Backlog, блокирует Keto для существующих пользователей
-- **Billing Service API (вариант В) отклонён** -- Андрей подтвердил, что Keto достаточно
+- **Ревью Q-keto карты permissions (6 апр):** 6 namespaces, ~45 атомарных permissions, 11 role-groups — Андрей валидирует? (см. §Q-keto ниже)
+- **DE-34** (привязка `ory_id ↔ lms_user_id`) -- в Linear Backlog, блокирует Keto для существующих пользователей. Статус?
+- **Фаза A (семинары):** готовность Паши к реализации Keto relation tuples?
 
 ---
 
@@ -73,6 +74,7 @@ source: встречи 1 (29 мар) + 2 (31 мар) + 3 (5 апр) — закр
 ### Остаётся открытым
 
 - **Cloudflare AI Gateway vs свой:** проверить, подходит ли CF AI Gateway для нашего use case (MCP проброс + Ory авторизация). Если нет -- свой, минимальный
+- **Gateway v2.0 deployed (6 апр):** OAuth proxy + Streamable HTTP работают. Нужно ли что-то менять в контракте ADR-IWE-003?
 
 ---
 
@@ -144,6 +146,37 @@ source: встречи 1 (29 мар) + 2 (31 мар) + 3 (5 апр) — закр
 1. **Что первым?** Предположение: Ory self-hosted
 2. **Сетевая связность:** сервер ↔ Railway ↔ Neon EU
 3. **Что НЕ переезжает?** Бот на Railway? Knowledge-mcp на CF?
+
+---
+
+## 7. WP-187 — Knowledge Gateway: GitHub App + E2E -- ⏳ (~10 мин)
+
+**Статус (7 апр):** Ф4.0 DONE (6 апр) — multi-user onboarding deployed. Gateway v2.0 с OAuth proxy + Streamable HTTP.
+
+**Открытые вопросы для Андрея:**
+
+| # | Вопрос | Контекст |
+|---|--------|----------|
+| 7a | **GitHub App Setup URL** | Сейчас ручной. Автоматизация через OAuth callback? Или достаточно документации? |
+| 7b | **ADR-IWE-004 валидация** | GitHub App Installation Token (1h TTL) — Андрей подтверждает подход? Security concerns? |
+| 7c | **E2E тест-план** | Какие сценарии покрыть? Минимум: onboarding → ingestion → search → результат |
+| 7d | **Ф4.1-4.4 приоритезация** | delete-инструмент, управление ролями, Ф3.5 именование — что первым? |
+
+---
+
+## 8. WP-109 — Event Bus / Activity Hub -- ⏳ (~10 мин)
+
+**Статус (7 апр):** ADR-IWE-005 accepted (5 апр). Разблокирован для реализации.
+
+**Решение (ADR-IWE-005):** `personal-knowledge-mcp` при мутациях (write/propose_capture) делает direct INSERT `ingest_event` в Activity Hub. Gateway остаётся прозрачным прокси — не участвует в событиях.
+
+**Открытые вопросы для Андрея:**
+
+| # | Вопрос | Контекст |
+|---|--------|----------|
+| 8a | **Direct INSERT vs HTTP** | ADR-IWE-005 говорит direct DB. Андрей подтверждает? Или лучше HTTP endpoint в Activity Hub? |
+| 8b | **Контракт события** | 5 типов (§3.10 секция E). Достаточно? Нужны ли дополнительные? |
+| 8c | **WP-45 Ф4 зависимость** | WP-45 Ф4 blocked на WP-109. Приоритет Event Bus в W15? |
 
 ---
 
@@ -341,23 +374,36 @@ community:group_chat:chat-sem-2026-04-15#enter@user:123
 
 ---
 
-## Итоги встречи (заполняется по факту)
+## Итоги встреч (заполняется по факту)
+
+### Встречи 1-3 (29 мар — 5 апр)
 
 | # | Вопрос | Решение | Дата |
 |---|--------|---------|------|
-| 1 | URL Ory / Keto | ⏳ Паша делает, осталось ссылки + тест | 5 апр |
+| 1 | URL Ory / Keto | ⏳ R1 Ory верифицирована (5 апр). Keto URL — ждём Пашу | 5 апр |
 | 2 | Gate T2+: Keto | ✅ Keto: атомарные permissions → роли (subscribers). Начать с семинаров, потом остальное | 5 апр |
 | 3 | Gateway: merge/score/фильтрация | ✅ Gateway = прозрачный прокси. Не фильтрует, не нормализует. Порог -- на стороне LLM/клиента | 5 апр |
 | 4 | Knowledge base разделение | ✅ Личная, проектная, публичная -- разные репо, один способ работы. Gateway = окно. Командная -- на платформе | 5 апр |
 | 5 | GDPR / Репликация RU↔EU | ⏸️ Отложено. Олег предупредил о рисках. Нужна юридическая консультация | 5 апр |
 | 6 | Новый сервер | ⏳ Андрей после Ory | 5 апр |
-| Q-keto | Перечень permissions | 🔶 Карта проработана (6 апр): 6 namespaces, ~45 атомарных permissions, 11 role-groups, 5 presets, 4 фазы внедрения. Ревью с командой → Паша реализует | 6 апр |
+| Q-keto | Перечень permissions | 🔶 Карта проработана (6 апр): 6 namespaces, ~45 permissions, 11 role-groups. Ревью на встрече 4 | 6 апр |
 | Q-monolith | Декомпозиция монолита | Начинаем с Payment Registry. Обкатка новой архитектуры | 5 апр |
-| Р4 | Identity hub через Ory (Фаза B) | | |
-| Q-billing | Activity Hub billing adapter | ✅ Формат в §3.10 (5 типов), паттерн ADR-IWE-005. Включить в Фазу A | 6 апр |
-| Q-points | Баллы -- placeholder в Фазе A? | | |
-| Q-consolidation | Консолидация Реестра оплат | | |
+| Q-billing | Activity Hub billing adapter | ✅ Формат в §3.10 (5 типов), паттерн ADR-IWE-005 | 6 апр |
+
+### Встреча 4 (7 апр) — заполнить по факту
+
+| # | Вопрос | Решение | Дата |
+|---|--------|---------|------|
+| 1 | Ory: auth.aisystant.com статус, Keto URL | | 7 апр |
+| 2 | Q-keto: ревью карты permissions (6 ns, 45 perm, 11 roles) | | 7 апр |
+| 7a | GitHub App Setup URL — автоматизация? | | 7 апр |
+| 7b | ADR-IWE-004 валидация (GitHub App Token 1h TTL) | | 7 апр |
+| 8a | Event Bus: direct INSERT vs HTTP | | 7 апр |
+| 8b | Контракт ingest_event — 5 типов достаточно? | | 7 апр |
+| Р4 | Identity hub через Ory (Фаза B) | | 7 апр |
+| Б5 | Каналы для команд (SC-8) | | 7 апр |
+| 6 | Новый сервер — сроки, что первым | | 7 апр |
 
 ---
 
-*Создано: 2026-04-01. Обновлено: 2026-04-05. История решений: [встреча 1+2 → архив](../0.99.Archive/WP-73-architect-agenda-2-knowledge-gateway.md)*
+*Создано: 2026-04-01. Обновлено: 2026-04-07. История решений: [встреча 1+2 → архив](../0.99.Archive/WP-73-architect-agenda-2-knowledge-gateway.md)*
