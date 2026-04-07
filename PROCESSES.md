@@ -18,6 +18,7 @@ updated: 2026-02-11
 | [SC.010](../PACK-digital-platform/pack/digital-platform/08-service-clauses/DP.SC.010-work-rhythm.md) | Рабочий ритм (ОРЗ) | Рабочая сессия Claude Code (§1.1), Day-Close (§1.2) |
 | [SC.013](../PACK-digital-platform/pack/digital-platform/08-service-clauses/DP.SC.013-work-session.md) | Рабочая сессия с Claude Code | Рабочая сессия Claude Code (§1.1) |
 | [SC.015](../PACK-digital-platform/pack/digital-platform/08-service-clauses/DP.SC.015-system-development.md) | Развитие системы (DS) | Межсистемные сценарии разработки |
+| [SC.016](../PACK-digital-platform/pack/digital-platform/08-service-clauses/DP.SC.016-collective-work-products.md) | Коллективное управление РП | Согласование командного документа (§1.4) |
 
 ---
 
@@ -161,6 +162,65 @@ updated: 2026-02-11
 | WeekPlan (с секцией итогов) | Стратег → DS-strategy | Markdown |
 | Быстрые запросы | Пользователь ↔ @aist_me_bot | Telegram |
 | Обновления экзокортекса | Платформа → upstream → пользователь | Git |
+
+---
+
+### 1.4. Согласование командного документа
+
+> Тип: пользовательский сценарий
+> Владелец: Автор документа (пользователь IWE)
+> Участники: Автор, Сотрудник (рецензент), Claude Code, Google Drive, Linear
+> Обещание: [SC.016](../PACK-digital-platform/pack/digital-platform/08-service-clauses/DP.SC.016-collective-work-products.md) — Коллективное управление РП
+
+**Вход:** Задача, требующая согласования с членом команды (замечания, спецификации, предложения)
+
+**Действие:**
+
+1. **Создание:** Автор создаёт документ в git → `DS-ecosystem-development/0.OPS/0.9.Inbox/<WP-N>-<slug>-review.md`
+2. **Экспорт в Drive:** `gdrive-sync.py` или MCP `create_file` → Google Drive (папка Docs/)
+3. **Шаринг:** MCP `share_file` → ссылка сотруднику (email / Telegram)
+4. **Рецензия:** Сотрудник правит/комментирует в Google Drive
+5. **Импорт:** Автор забирает правки → MCP `get_file_content` → обновляет файл в git
+6. **Фиксация решений:** Автор фиксирует принятые решения в документе (секция «Решения»)
+7. **Capture:** Доменные решения → Pack (через KE). Реализационные → DS docs/
+8. **Архивирование:** Документ → `0.OPS/0.99.Archive/`. РП в Linear обновляется
+
+**Выход:** Принятые решения в Pack/DS, документ в архиве, след в git history
+
+**Статусы документа:**
+
+| Статус | Где живёт | Кто действует |
+|--------|-----------|---------------|
+| `draft` | git (0.OPS/0.9.Inbox/) | Автор |
+| `review` | Google Drive (ссылка) | Сотрудник |
+| `revision` | git (0.OPS/0.9.Inbox/) | Автор — обработка правок |
+| `approved` | git (0.OPS/0.9.Inbox/) | Автор — Capture решений → Pack/DS |
+| `archived` | git (0.OPS/0.99.Archive/) | Решения в ядре, документ в архиве |
+
+**Данные:**
+
+| Данные | Направление | Формат |
+|--------|-------------|--------|
+| Документ (markdown) | git → Google Drive (экспорт) | Markdown → Google Doc |
+| Правки сотрудника | Google Drive → git (импорт) | Google Doc → Markdown |
+| Принятые решения | git → Pack / DS docs/ (Capture) | Markdown |
+| Статус РП | git → Linear (синхронизация) | Статус |
+
+**Именование файла:** `<WP-N>-<slug>-review.md` (например: `WP-199-inga-ux-review.md`)
+
+**Frontmatter:**
+
+```yaml
+---
+type: review
+wp: <N>
+status: draft | review | revision | approved | archived
+author: <имя>
+reviewer: <имя>
+created: YYYY-MM-DD
+drive_url: <ссылка после экспорта>
+---
+```
 
 ---
 
@@ -442,4 +502,4 @@ updated: 2026-02-11
 
 ---
 
-*Последнее обновление: 2026-04-01*
+*Последнее обновление: 2026-04-07*
