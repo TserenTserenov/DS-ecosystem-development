@@ -27,6 +27,7 @@ depends_on: [DP.D.031, DP.D.025, DP.ARCH.002]
 |----------|-------------|--------|
 | [Концепция устройства IWE](iwe-data-architecture-concept.md) | Общая архитектурная картина: данные, домены, агенты, роли. 13 принципов. Триада | draft |
 | [Исследование Data Governance](data-governance-research.md) | Госинфраструктура (X-Road, India Stack, СМЭВ) + SOTA ИИ-систем (MCP, Cedar, Mem0). Маппинг на IWE | done |
+| [Neon Authorize + Gateway + CI](neon-authorize-rls-concept.md) | Defense-in-Depth: Neon Authorize (управляемый RLS) + Gateway enforcement + CI lint. АрхГейт ПРОХОДИТ (7✅). Связи: WP-212, WP-73, WP-214, WP-215, WP-187, WP-121 | draft (для согласования) |
 | *(planned)* Протокол межагентного доступа | Cedar-файл с permissions: типы агентов x домены x операции | — |
 | *(planned)* Реестр доменов | Какие домены, MCP-серверы, агенты допущены | — |
 | *(planned)* Стандарт межсервисной аутентификации | mTLS + Keto | — |
@@ -75,6 +76,7 @@ depends_on: [DP.D.031, DP.D.025, DP.ARCH.002]
 | Межсервисная аутентификация | Как сервисы подтверждают друг другу, что «свои» | исследование | P2 |
 | MCP Access Model | Публичный vs приватный MCP | active (DP.D.031) | P2, P12 |
 | RLS (Row-Level Security) | Фильтрация данных по user_id | active | P3 |
+| Neon Authorize (managed RLS) | JWT→Neon Proxy→auth.user_id()→RLS автоматически | draft (АрхГейт ✅) | P3, P10 |
 | Consent layer | Механизм consent (что, кому, зачем, срок) | не реализовано | P3 |
 | Audit trail | Логирование кто-кого-когда вызвал | не реализовано | P9 |
 | Реестр доменов | Какие домены, MCP-серверы, допущенные агенты | начальный (MAP.002) | P1, P13 |
