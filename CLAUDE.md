@@ -144,6 +144,21 @@ X3 = Система создания
 
 **Самоочистка:** KE on Close = механизм самоочистки. Операционный контент не накапливается — знание уходит в Pack, артефакт в архив.
 
+### 4.5.1. Правило 0.9.Inbox (БЛОКИРУЮЩЕЕ)
+
+> Source-of-truth: DP.KR.001 §5.3.
+
+**`0.OPS/0.9.Inbox/` — только материалы к обсуждению с командой:** повестки встреч, архитектурные предложения, вопросы, схемы вариантов.
+
+**НЕ хранить здесь:** WP-context файлы (контекст + план + фазы РП). WP-context файлы живут в `DS-my-strategy/inbox/`.
+
+| Тут (0.9.Inbox) | НЕ тут (→ DS-my-strategy/inbox/) |
+|---|---|
+| `WP-73-architect-agenda-next.md` (повестка) | `WP-73-platform-architecture.md` (context file) |
+| `WP-183-crm-billing-architecture-proposal.md` (предложение) | `WP-183-crm-billing.md` (context file) |
+
+**Lifecycle:** Обсудили → решения фиксируются в ADR/Pack → файл в `0.99.Archive/`.
+
 ### 4.6. Формат Architecture-папок (X2.2)
 
 Architecture-папки (A2.2, B2.2, C2.2) содержат полную структуру s2r:
