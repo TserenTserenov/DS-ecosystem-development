@@ -10,7 +10,9 @@
 |-------|----------|
 | [Stack-and-Infrastructure](Stack-and-Infrastructure/) | Топология деплоя, стек, circuit breaker |
 | [Data-Stores](Data-Stores/) | Neon, PostgreSQL, pgvector — схемы и конфигурации |
+| [Data-Governance](Data-Governance/) | Учёт, доступ, аудит данных. Триада, межсервисная аутентификация, протокол межагентного доступа |
 | [Identity-and-Access](Identity-and-Access/) | Модели доступа, Ory, RLS |
+| [Regional-Split](Regional-Split/) | Разделение контуров Россия/мир: экономика, инфраструктура, сообщество (WP-215) |
 | [System-Implementations](System-Implementations/) | ADR, реестр детерминированных систем |
 
 ## HD #29 — Pack vs DS
