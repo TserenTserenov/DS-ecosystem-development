@@ -90,11 +90,21 @@ Ory Hydra (JWT)
 - PII-столбцы (email, phone, ФИО) **запрещены** в Neon EU (PII только в Ory)
 - `FORCE ROW LEVEL SECURITY` на всех таблицах с user_id
 
-## Blocking dependency
+## Blocking dependency — РАЗРЕШЕНО 10 апр 2026
 
-**Ory Hydra: JWT access tokens.** Сейчас Ory может выдавать opaque tokens. Neon Authorize требует JWT. Нужно проверить/настроить `access_token_strategy: jwt` в конфигурации Hydra.
+**Ory Hydra: JWT access tokens.** ✅ Паша переключил `strategies.access_token: jwt` глобально (кластер + git).
 
-Без этого решение **нереализуемо**. Проверка — первый шаг.
+**Проверено через ory_tokens table:**
+- RS256 JWT (3 части через точку)
+- `iss`: `https://auth.system-school.ru/hydra/`
+- `sub`: ory_id (UUID) — **top-level, готов для `auth.user_id()`**
+- `client_id`: `aist-bot` / `gateway-mcp`
+- `scp`: `["openid", "offline_access"]`
+- `ext`: identity traits из Kratos (email, name, preferred_username)
+
+**Мелкий баг:** `header.kid = ""` — JWKS endpoint отдаёт 2 ключа с kid-ами, но токен их не указывает. Neon Proxy будет перебирать ключи (работает, но неоптимально). TODO: попросить Пашу настроить `signing_key_id` в hydra config.
+
+**Следующий шаг:** B4.22 — настроить Neon Authorize (JWKS URL + issuer в Neon console).
 
 ## АрхГейт (ЭМОГССБ)
 
