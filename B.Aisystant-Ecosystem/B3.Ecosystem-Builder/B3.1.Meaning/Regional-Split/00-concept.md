@@ -1,11 +1,22 @@
 ---
-family: F5
-kernel: C
-system: C2
-role: Architecture
+family: F3
+kernel: B
+system: B3
+role: Meaning
 status: draft
 created: 2026-04-09
+updated: 2026-04-10
+target_audience:
+  - "Инвесторы"
+  - "Регуляторы"
+  - "Партнёры"
+  - "Фаундеры"
 depends_on: [WP-215, WP-121, WP-183, WP-187, WP-186]
+related:
+  - "../Привлечение инвестиций в экосистему 3.1.md"
+  - "../Экономика экосистемы 3.1.md"
+blockers:
+  - "РФ + инвесторы — нерешённое противоречие (обсуждение 13 апр 2026 с Андреем)"
 source: "ИТ-встреча 5 (9 апр 2026), исследование паттернов"
 ---
 

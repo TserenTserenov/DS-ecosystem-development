@@ -1,11 +1,19 @@
 ---
-family: F5
-kernel: C
-system: C2
-role: Architecture
+family: F3
+kernel: B
+system: B3
+role: Meaning
 status: draft
 created: 2026-04-09
+updated: 2026-04-10
+target_audience:
+  - "Инвесторы"
+  - "Фаундеры"
+  - "Экономисты"
 depends_on: [WP-215, WP-183, WP-186]
+related:
+  - "../Экономика экосистемы 3.1.md"
+  - "../Токеномика и распределение 3.1.md"
 source: "ИТ-встреча 5 (9 апр 2026), исследование паттернов"
 ---
 

@@ -1,10 +1,15 @@
 ---
-family: F5
-kernel: C
-system: C2
-role: Architecture
+family: F3
+kernel: B
+system: B3
+role: Meaning
 status: draft
 created: 2026-04-09
+updated: 2026-04-10
+target_audience:
+  - "Фаундеры"
+  - "Стратеги"
+  - "Инвесторы"
 depends_on: [WP-215]
 source: "Исследование 9 апр 2026, публичные источники"
 ---

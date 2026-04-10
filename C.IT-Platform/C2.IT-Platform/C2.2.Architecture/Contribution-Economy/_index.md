@@ -35,7 +35,7 @@ depends_on: [WP-121, WP-215, WP-109, WP-183]
 | Activity Hub (WP-109) | Источник событий (user_events) | [ADR-005](../System-Implementations/ADR-IWE-005-ingest-event-activity-hub.md) |
 | CRM + Billing (WP-183) | Списание баллов (type=spent) | WP-183 context |
 | Ory Identity (WP-187) | ory_id = идентификатор участника | [ADR-008](../System-Implementations/ADR-IWE-008-identity-ory-id-universal.md) |
-| Разделение РФ/мир (WP-215) | Общие баллы при разделённой инфраструктуре | [02-cross-region](02-cross-region-architecture.md), [Regional-Split/](../Regional-Split/) |
+| Разделение РФ/мир (WP-215) | Общие баллы при разделённой инфраструктуре | [02-cross-region](02-cross-region-architecture.md), [Regional-Split/ (B3.1.Meaning)](../../../../B.Aisystant-Ecosystem/B3.Ecosystem-Builder/B3.1.Meaning/Regional-Split/) |
 | ЦД (DP.ARCH.003) | Квалификация из ЦД → множитель баллов | Pack |
 | Бот | /points — отображение баланса | WP-121 Ф3 |
 

@@ -1,11 +1,24 @@
 ---
-family: F5
-kernel: C
-system: C2
-role: Architecture
+family: F3
+kernel: B
+system: B3
+role: Meaning
 status: draft
 created: 2026-04-09
+updated: 2026-04-10
+target_audience:
+  - "Регуляторы"
+  - "Юристы"
+  - "Инвесторы"
+  - "Партнёры"
 depends_on: [WP-215, WP-214, WP-212]
+related:
+  - "../../B1.Society/B1.3.Operations/"
+tags:
+  - compliance
+  - "152-ФЗ"
+  - GDPR
+  - regulatory-foresight
 ---
 
 # Выполнение законов о персональных данных

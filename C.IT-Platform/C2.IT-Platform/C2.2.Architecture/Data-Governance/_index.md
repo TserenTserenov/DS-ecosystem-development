@@ -42,7 +42,7 @@ depends_on: [DP.D.031, DP.D.025, DP.ARCH.002]
 
 - [MCP Access Model (DP.D.031)](../Identity-and-Access/DP.D.031-mcp-access-model.md) — публичный vs приватный MCP
 - [ADR-IWE-008: Identity — Ory ID universal](../System-Implementations/ADR-IWE-008-identity-ory-id-universal.md) — единый ID через Ory
-- [Regional-Split/](../Regional-Split/) — разделение контуров РФ/мир: псевдонимизация, триада при двух контурах (WP-215)
+- [Regional-Split/ (B3.1.Meaning)](../../../../B.Aisystant-Ecosystem/B3.Ecosystem-Builder/B3.1.Meaning/Regional-Split/) — разделение контуров РФ/мир: псевдонимизация, триада при двух контурах (WP-215)
 
 ### Внешние источники
 

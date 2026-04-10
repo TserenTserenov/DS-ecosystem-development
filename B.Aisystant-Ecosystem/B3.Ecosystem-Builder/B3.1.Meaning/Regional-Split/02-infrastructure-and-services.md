@@ -1,12 +1,18 @@
 ---
-family: F5
-kernel: C
-system: C2
-role: Architecture
+family: F3
+kernel: B
+system: B3
+role: Meaning
 status: draft
 created: 2026-04-09
+updated: 2026-04-10
+target_audience:
+  - "Инвесторы"
+  - "Фаундеры"
+  - "Архитекторы (как стейкхолдеры решения)"
 depends_on: [WP-215, WP-187, WP-109, WP-73, WP-212]
 source: "ИТ-встреча 5 (9 апр 2026), исследование паттернов"
+note: "Стратегический взгляд на разделение инфраструктуры. Технические детали реализации → C2.2.Architecture."
 ---
 
 # Инфраструктура и сервисы: архитектура двух контуров
