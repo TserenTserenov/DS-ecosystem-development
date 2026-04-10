@@ -1,7 +1,10 @@
 -- WP-183 Migration 001: Create finance.payments table
--- Applied: 2026-04-08 to Neon (database: directus, NOT aist_bot)
+-- Created: 2026-04-08 (коммит 3fdce62, файл закоммичен)
+-- Applied: 2026-04-10 to Neon, project aisystant, branch production, database directus, schema finance
 -- Schema: finance (Payment Registry, SYS.011)
 -- Decision: Дима согласовал 8 апр. 1 строка на платёж (UPSERT).
+-- Verification (2026-04-10): SELECT COUNT(*) FROM finance.payments → 0, 31 колонка (включая id), 10 индексов (9 CREATE INDEX + 1 pkey).
+-- Note: расхождение между датой коммита (8 апр) и датой фактического применения (10 апр) — инцидент «DONE без верификации». См. WP-183 context секция «Инцидент 10 апр».
 
 CREATE SCHEMA IF NOT EXISTS finance;
 
