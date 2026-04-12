@@ -25,6 +25,8 @@
 | S-13 | Именование РП = существительное-артефакт (не глагол-действие). «Дизайн X» / «Архитектура Y» — не «Разработать X» | `CLAUDE.md §9` | 2026-04-01 | 2 недели: новые РП создаются с правильными названиями без напоминания | testing |
 | S-14 | Синхронизация REGISTRY→производные: переименование РП = обновить REGISTRY + MEMORY + WeekPlan + DayPlan + WP-context одновременно | `CLAUDE.md §9` | 2026-04-01 | 2 недели без рассинхрона между производными | testing |
 | S-17 | `/day-close` и `/week-close` — скиллы-алиасы для симметрии с `/day-open` | `.claude/skills/day-close/`, `.claude/skills/week-close/` | 2026-04-05 | 2 недели без сбоев; пользователи используют вместо `/run-protocol` | testing |
+| S-22 | capture-bus landing zone: raw_events partitioned table + LMS dual-write (Ф8.3) | `DS-ai-systems/activity-hub/core/landing.py` | 2026-04-10 | 1 неделя без потерь событий; dual-write LMS stable | testing |
+| S-23 | Детектор P5 (permission_request) — автосчёт запросов разрешения за сессию | `.claude/detectors/detector_permission_request.sh` | 2026-04-12 | 2 недели обкатки, инциденты фиксируются в incident-log; major при ≥3/сессия | testing |
 
 ---
 
