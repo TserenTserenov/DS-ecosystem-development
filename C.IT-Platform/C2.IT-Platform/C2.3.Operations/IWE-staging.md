@@ -11,19 +11,19 @@
 | ID | Что | Где живёт | Добавлено | Критерий готовности | Статус |
 |----|-----|-----------|-----------|---------------------|--------|
 | S-01 | `/archgate` скилл — оценка архитектурных решений по ЭМОГССБ | `.claude/skills/archgate/` | 2026-03-15 | 5+ сессий без сбоев; формат таблицы устоялся | promoted |
-| S-02 | `params.yaml` — персистентные параметры протоколов (9 ключей) | `params.yaml` | 2026-03-27 | 2 недели без сбоев при update.sh | testing |
-| S-03 | `extensions/` — drop-in расширения протоколов | `extensions/*.md` | 2026-03-27 | 2 недели; все 9 extension points отработали | testing |
-| S-04 | `extensions/protocol-close.checks.md` — CHANGELOG FMT при Quick Close | `extensions/protocol-close.checks.md` | 2026-03-27 | 1 неделя; ни разу не пропустил напоминание | testing |
+| S-02 | `params.yaml` — персистентные параметры протоколов (9 ключей) | `params.yaml` | 2026-03-27 | 2 недели без сбоев при update.sh | validated |
+| S-03 | `extensions/` — drop-in расширения протоколов | `extensions/*.md` | 2026-03-27 | 2 недели; все 9 extension points отработали | validated |
+| S-04 | `extensions/protocol-close.checks.md` — CHANGELOG FMT при Quick Close | `extensions/protocol-close.checks.md` | 2026-03-27 | 1 неделя; ни разу не пропустил напоминание | validated |
 | S-05 | `extensions/day-close.checks.md` — синхронизация веток бота + smoke-тесты | `extensions/day-close.checks.md` | 2026-03-27 | Специфично для бота → **не промотировать**, перенести в §9 навсегда | rejected |
 | S-06 | `/iwe-update` скилл — агент-обновитель | `.claude/skills/iwe-update/` | 2026-03-28 | 3+ реальных обновления прошли без ручных правок | testing |
 | S-07 | `day-open.after.md` — Бот QA, Scout, WP-170 gate | `extensions/day-open.after.md` | 2026-03-20 | Специфично для бота/Scout → **не промотировать**, перенести в §9 навсегда | rejected |
 | S-08 | `setup.sh --level=T1/T2/T3/T4` — градиентный вход по уровням | `setup.sh` (v0.5.0) | 2026-03-29 | 3+ новых установки прошли через уровни без ошибок | testing |
 | S-09 | `/extend` скилл — каталог расширяемости IWE (extension points, params, sharing) | `.claude/skills/extend/` | 2026-03-29 | 2 недели без сбоев; пользователи находят нужные точки расширения | testing |
-| S-10 | Различение «Первое решение ≠ лучшее» — системное решение первым, костыль только как исключение | `.claude/rules/distinctions.md` | 2026-03-31 | 2 недели без сбоев; костыли не предлагаются первыми | testing |
+| S-10 | Различение «Первое решение ≠ лучшее» — системное решение первым, костыль только как исключение | `.claude/rules/distinctions.md` | 2026-03-31 | 2 недели без сбоев; костыли не предлагаются первыми | validated |
 | S-11 | Новый РП за сессию → обязательно в 3 места: WP-REGISTRY + WeekPlan + DayPlan (Quick Close шаг 2) | `extensions/protocol-close.checks.md` | 2026-03-31 | 2 недели без пропусков новых РП при Quick Close | testing |
-| S-12 | Day Close шаг 1: идти от коммитов к РП (не от DayPlan). Коммит-аудит + выявление ad-hoc без РП | `extensions/day-close.checks.md` | 2026-03-31 | 2 Day Close без пропущенных РП/сессий | testing |
-| S-13 | Именование РП = существительное-артефакт (не глагол-действие). «Дизайн X» / «Архитектура Y» — не «Разработать X» | `CLAUDE.md §9` | 2026-04-01 | 2 недели: новые РП создаются с правильными названиями без напоминания | testing |
-| S-14 | Синхронизация REGISTRY→производные: переименование РП = обновить REGISTRY + MEMORY + WeekPlan + DayPlan + WP-context одновременно | `CLAUDE.md §9` | 2026-04-01 | 2 недели без рассинхрона между производными | testing |
+| S-12 | Day Close шаг 1: идти от коммитов к РП (не от DayPlan). Коммит-аудит + выявление ad-hoc без РП | `extensions/day-close.checks.md` | 2026-03-31 | 2 Day Close без пропущенных РП/сессий | validated |
+| S-13 | Именование РП = существительное-артефакт (не глагол-действие). «Дизайн X» / «Архитектура Y» — не «Разработать X» | `CLAUDE.md §9` | 2026-04-01 | 2 недели: новые РП создаются с правильными названиями без напоминания | validated |
+| S-14 | Синхронизация REGISTRY→производные: переименование РП = обновить REGISTRY + MEMORY + WeekPlan + DayPlan + WP-context одновременно | `CLAUDE.md §9` | 2026-04-01 | 2 недели без рассинхрона между производными | validated |
 | S-17 | `/day-close` и `/week-close` — скиллы-алиасы для симметрии с `/day-open` | `.claude/skills/day-close/`, `.claude/skills/week-close/` | 2026-04-05 | 2 недели без сбоев; пользователи используют вместо `/run-protocol` | testing |
 | S-22 | capture-bus landing zone: raw_events partitioned table + LMS dual-write (Ф8.3) | `DS-ai-systems/activity-hub/core/landing.py` | 2026-04-10 | 1 неделя без потерь событий; dual-write LMS stable | testing |
 | S-23 | Детектор P5 (permission_request) — автосчёт запросов разрешения за сессию | `.claude/detectors/detector_permission_request.sh` | 2026-04-12 | 2 недели обкатки, инциденты фиксируются в incident-log; major при ≥3/сессия | testing |
