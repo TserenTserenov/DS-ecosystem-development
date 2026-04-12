@@ -80,6 +80,11 @@ DS-ecosystem-development/
 
 ### 4.1. Ops-First Rule
 
+> **ОБЯЗАТЕЛЬНО ЗАГРУЖАЙ** при первом содержательном действии в этом репо (Repo-Touch Gate):
+> 1. `0.OPS/0.1.Knowledge-Logic/01-kernels-model.md` — структура ядер
+> 2. `0.OPS/0.1.Knowledge-Logic/02-document-families.md` — семейства F1-F9
+> 3. `0.OPS/0.1.Knowledge-Logic/07-naming.md` — правила именования
+
 **При изменениях в репозитории ВСЕГДА загружай документы из 0.OPS/ ПЕРВЫМИ.**
 
 Priority Queue:
