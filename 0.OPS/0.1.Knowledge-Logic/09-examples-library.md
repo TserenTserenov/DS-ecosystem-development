@@ -79,7 +79,7 @@ target_audience:
   - "Ученики"
   - "Созидатели"
 developer_role: "Визионер"
-status: stable
+status: active
 created: 2025-01-10
 modified: 2025-01-16
 
@@ -197,7 +197,7 @@ target_audience:
   - "Разработчики"
   - "Техлиды"
 developer_role: "Архитектор"
-status: stable
+status: active
 created: 2024-12-15
 modified: 2025-01-14
 
@@ -324,7 +324,7 @@ target_audience:
   - "ИИ-агенты"
   - "Администраторы хранилища"
 developer_role: "Администратор хранилища"
-status: stable
+status: active
 ---
 ```
 
@@ -344,7 +344,7 @@ target_audience:
   - "Потенциальные участники"
   - "Широкая аудитория"
 developer_role: "Маркетолог"
-status: stable
+status: active
 ---
 ```
 
@@ -364,7 +364,7 @@ target_audience:
   - "Ученики"
   - "Созидатели"
 developer_role: "Визионер"
-status: stable
+status: active
 ---
 ```
 
@@ -384,7 +384,7 @@ target_audience:
   - "Методологи"
   - "Наставники"
 developer_role: "Методолог"
-status: stable
+status: active
 ---
 ```
 
@@ -404,7 +404,7 @@ target_audience:
   - "Инвесторы"
   - "Стратеги"
 developer_role: "Бизнесмен"
-status: stable
+status: active
 ---
 ```
 
@@ -424,7 +424,7 @@ target_audience:
   - "Разработчики"
   - "Техлиды"
 developer_role: "Архитектор"
-status: stable
+status: active
 ---
 ```
 
@@ -565,7 +565,7 @@ trust:
   F: 5          # Рабочий документ
   G: "domain"   # Доменная специфика
   R: 0.8        # Высокая уверенность
-status: stable
+status: active
 ```
 
 **Высокая формальность (F=8)** — критическая архитектура:
@@ -574,7 +574,7 @@ trust:
   F: 8          # Формальная спецификация
   G: "universal" # Универсальные принципы
   R: 0.95       # Очень высокая уверенность
-status: stable
+status: active
 ```
 
 ### Epistemic Stage
@@ -596,14 +596,14 @@ status: review
 **Evidence** — сбор доказательств:
 ```yaml
 epistemic_stage: evidence
-status: stable
+status: active
 # Валидируем гипотезы, собираем данные
 ```
 
 **Operate** — эксплуатация:
 ```yaml
 epistemic_stage: operate
-status: stable
+status: active
 # Используем в повседневной работе
 ```
 

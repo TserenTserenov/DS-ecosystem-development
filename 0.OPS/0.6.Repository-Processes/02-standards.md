@@ -39,7 +39,7 @@ system: A2
 role: Architecture
 target_audience:
   - "Методологи"
-status: stable
+status: active
 created: 2025-01-10
 modified: 2025-01-16
 ---

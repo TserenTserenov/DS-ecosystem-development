@@ -266,7 +266,7 @@ system: A2
 role: Architecture
 target_audience:
   - "Методологи"
-status: stable
+status: active
 ---
 # Модель созидателя
 
@@ -338,7 +338,7 @@ Frontmatter:
 ---
 family: F5
 kernel: A
-status: stable
+status: active
 # ← target_audience отсутствует!
 ---
 ```
@@ -351,7 +351,7 @@ kernel: A
 target_audience:          # ОБЯЗАТЕЛЬНО!
   - "Методологи"
   - "Наставники"
-status: stable
+status: active
 ---
 ```
 

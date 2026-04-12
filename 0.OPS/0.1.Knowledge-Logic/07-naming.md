@@ -243,7 +243,7 @@ family: F5
 kernel: B
 system: B2
 role: Architecture
-status: stable
+status: active
 
 # Опциональные
 depends_on:  # Документы, от которых зависит этот

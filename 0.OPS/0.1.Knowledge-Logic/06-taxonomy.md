@@ -212,7 +212,7 @@ system: C2
 role: Architecture
 target_audience:
   - "Методологи"
-status: stable
+status: active
 ---
 ```
 
