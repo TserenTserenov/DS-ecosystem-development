@@ -430,16 +430,16 @@ Aisystant = потребитель (read-only)
 
 ### 8 каналов, 3 получателя
 
-| # | Канал | Получатель | Обработка | Реестр (as-is) |
-|---|-------|-----------|-----------|----------------|
-| 1 | YooKassa (подписки, потоки) | ИП | Aisystant | PG Aisystant |
-| 2 | Paybox | ИП | Aisystant | PG Aisystant |
-| 3 | Stripe | Aisystant Corp | Aisystant | PG Aisystant |
-| 4 | Монета/PayAnyWay | ИП | Aisystant | PG Aisystant |
-| 5 | Tilda + Ecwid | ИП | Aisystant | PG Aisystant |
-| 6 | YooKassa (семинары) | ИП | Бот Aist | Neon |
-| 7 | TG Stars | Телеграм | Бот Aist | Neon |
-| 8 | Manual (B2B) | ИП/Corp | Вручную | Нигде |
+| # | Канал | Получатель | Регион | Обработка | Реестр (as-is) |
+|---|-------|-----------|--------|-----------|----------------|
+| 1 | YooKassa (подписки, потоки) | ИП | Россия | Aisystant | PG Aisystant |
+| 2 | Paybox | ИП | Россия | Aisystant | PG Aisystant |
+| 3 | Stripe | Aisystant Corp | **Мир** | Aisystant | PG Aisystant |
+| 4 | Монета/PayAnyWay | ИП | Россия | Aisystant | PG Aisystant |
+| 5 | Tilda + Ecwid | ИП | Россия (только РФ) | Aisystant | PG Aisystant |
+| 6 | YooKassa (семинары) | ИП | Россия | Бот Aist | Neon |
+| 7 | TG Stars | ИП (через Telegram) | Россия | Бот Aist | Neon |
+| 8 | Manual (B2B) | ИП или Corp | Россия или Мир | Вручную | Нигде |
 
 > **To-be (М1):** dual-write. Каналы 1-5 → Aisystant PG + Neon. Каналы 6-8 → Neon. Neon = единый Реестр оплат.
 
