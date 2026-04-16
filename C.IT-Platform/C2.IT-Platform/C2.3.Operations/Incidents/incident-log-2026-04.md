@@ -14754,3 +14754,1687 @@ notes: |
   }
 }
 ```
+
+## 2026-04-16T11:30:58+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Это даст связность всем остальным материалам. Хочешь начнём с этого? ",
+      "2. Требует архитектурного решения: где нарратив живёт (вводный блок? красная нить в каждом уроке? финальный модуль?) "
+    ],
+    "session_id": "a15db723-1543-4643-a59d-028dfa6d6d2f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T11:34:28+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "1. **Нужно ли писать в `finance_payments` из Ф-H?** Это отдельная задача — sync с CRM Димы. Или это вне scope WP-231? "
+    ],
+    "session_id": "1ef003c7-2dc1-46ac-a8f9-8dd2801dc5ec"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T11:42:24+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Добавить в `~/.zprofile`? Это даст постоянный эффект. "
+    ],
+    "session_id": "a3ac1b1c-f609-4224-9e85-cc3889076e25"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T11:45:41+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 4 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 4,
+    "examples": [
+      "Это даст связность всем остальным материалам. Хочешь начнём с этого? ",
+      "2. Требует архитектурного решения: где нарратив живёт (вводный блок? красная нить в каждом уроке? финальный модуль?) ",
+      "Если Просветитель уже передаёт знания другим — он по сути запускает других в программу. Это замыкает круг. Стоит ли явно"
+    ],
+    "session_id": "a15db723-1543-4643-a59d-028dfa6d6d2f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T11:51:19+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Добавить в `~/.zprofile`? Это даст постоянный эффект. "
+    ],
+    "session_id": "a3ac1b1c-f609-4224-9e85-cc3889076e25"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T12:08:46+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 4 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 4,
+    "examples": [
+      "Это даст связность всем остальным материалам. Хочешь начнём с этого? ",
+      "2. Требует архитектурного решения: где нарратив живёт (вводный блок? красная нить в каждом уроке? финальный модуль?) ",
+      "Если Просветитель уже передаёт знания другим — он по сути запускает других в программу. Это замыкает круг. Стоит ли явно"
+    ],
+    "session_id": "a15db723-1543-4643-a59d-028dfa6d6d2f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T12:11:40+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "1. **Нужно ли писать в `finance_payments` из Ф-H?** Это отдельная задача — sync с CRM Димы. Или это вне scope WP-231? "
+    ],
+    "session_id": "1ef003c7-2dc1-46ac-a8f9-8dd2801dc5ec"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T12:21:15+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Мне нужно разобраться в проблеме пользователя Александра с IWE Gateway на Gemini CLI и подготовить ответ. Давайте сначал",
+      "**Что касается двух URL** (`https://mcp.aisystant.com` для авторизации, потом `https://mcp.aisystant.com/mcp` для запрос"
+    ],
+    "session_id": "e2d78c65-3065-462f-ab56-903e9dfd22ca"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T12:24:06+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Мне нужно разобраться в проблеме пользователя Александра с IWE Gateway на Gemini CLI и подготовить ответ. Давайте сначал",
+      "**Что касается двух URL** (`https://mcp.aisystant.com` для авторизации, потом `https://mcp.aisystant.com/mcp` для запрос"
+    ],
+    "session_id": "e2d78c65-3065-462f-ab56-903e9dfd22ca"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T12:29:41+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Мне нужно разобраться в проблеме пользователя Александра с IWE Gateway на Gemini CLI и подготовить ответ. Давайте сначал",
+      "**Что касается двух URL** (`https://mcp.aisystant.com` для авторизации, потом `https://mcp.aisystant.com/mcp` для запрос"
+    ],
+    "session_id": "e2d78c65-3065-462f-ab56-903e9dfd22ca"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T12:31:50+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Мне нужно разобраться в проблеме пользователя Александра с IWE Gateway на Gemini CLI и подготовить ответ. Давайте сначал",
+      "**Что касается двух URL** (`https://mcp.aisystant.com` для авторизации, потом `https://mcp.aisystant.com/mcp` для запрос"
+    ],
+    "session_id": "e2d78c65-3065-462f-ab56-903e9dfd22ca"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T12:34:41+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Мне нужно разобраться в проблеме пользователя Александра с IWE Gateway на Gemini CLI и подготовить ответ. Давайте сначал",
+      "**Что касается двух URL** (`https://mcp.aisystant.com` для авторизации, потом `https://mcp.aisystant.com/mcp` для запрос"
+    ],
+    "session_id": "e2d78c65-3065-462f-ab56-903e9dfd22ca"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T12:35:34+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Мне нужно разобраться в проблеме пользователя Александра с IWE Gateway на Gemini CLI и подготовить ответ. Давайте сначал",
+      "**Что касается двух URL** (`https://mcp.aisystant.com` для авторизации, потом `https://mcp.aisystant.com/mcp` для запрос"
+    ],
+    "session_id": "e2d78c65-3065-462f-ab56-903e9dfd22ca"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T12:41:42+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 5 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 5,
+    "examples": [
+      "Это даст связность всем остальным материалам. Хочешь начнём с этого? ",
+      "2. Требует архитектурного решения: где нарратив живёт (вводный блок? красная нить в каждом уроке? финальный модуль?) ",
+      "Если Просветитель уже передаёт знания другим — он по сути запускает других в программу. Это замыкает круг. Стоит ли явно"
+    ],
+    "session_id": "a15db723-1543-4643-a59d-028dfa6d6d2f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T12:56:58+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Значит для каталога фич бота Gateway правильно ставить на **T2_LEARNING** (подписка БР), `external=True`, `_check_extern"
+    ],
+    "session_id": "1426074f-61ec-463a-98e6-753f86f92362"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T12:58:30+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 5 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 5,
+    "examples": [
+      "Это даст связность всем остальным материалам. Хочешь начнём с этого? ",
+      "2. Требует архитектурного решения: где нарратив живёт (вводный блок? красная нить в каждом уроке? финальный модуль?) ",
+      "Если Просветитель уже передаёт знания другим — он по сути запускает других в программу. Это замыкает круг. Стоит ли явно"
+    ],
+    "session_id": "a15db723-1543-4643-a59d-028dfa6d6d2f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T12:58:54+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "1. **Нужно ли писать в `finance_payments` из Ф-H?** Это отдельная задача — sync с CRM Димы. Или это вне scope WP-231? "
+    ],
+    "session_id": "1ef003c7-2dc1-46ac-a8f9-8dd2801dc5ec"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T12:59:30+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "1. **Нужно ли писать в `finance_payments` из Ф-H?** Это отдельная задача — sync с CRM Димы. Или это вне scope WP-231? "
+    ],
+    "session_id": "1ef003c7-2dc1-46ac-a8f9-8dd2801dc5ec"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:02:42+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "1. **Нужно ли писать в `finance_payments` из Ф-H?** Это отдельная задача — sync с CRM Димы. Или это вне scope WP-231? "
+    ],
+    "session_id": "1ef003c7-2dc1-46ac-a8f9-8dd2801dc5ec"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:03:21+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 5 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 5,
+    "examples": [
+      "Это даст связность всем остальным материалам. Хочешь начнём с этого? ",
+      "2. Требует архитектурного решения: где нарратив живёт (вводный блок? красная нить в каждом уроке? финальный модуль?) ",
+      "Если Просветитель уже передаёт знания другим — он по сути запускает других в программу. Это замыкает круг. Стоит ли явно"
+    ],
+    "session_id": "a15db723-1543-4643-a59d-028dfa6d6d2f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:05:00+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Проблема на вашей стороне** — DNS вашего провайдера или VPN не может разрешить `*.up.railway.app`. Это бывает: "
+    ],
+    "session_id": "5be54cf7-efeb-4bf5-99c4-4270322ff9ce"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:06:31+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Значит для каталога фич бота Gateway правильно ставить на **T2_LEARNING** (подписка БР), `external=True`, `_check_extern",
+      "Одна строка кода + одна строка в SC. Делаем? "
+    ],
+    "session_id": "1426074f-61ec-463a-98e6-753f86f92362"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:15:46+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "**Проблема на вашей стороне** — DNS вашего провайдера или VPN не может разрешить `*.up.railway.app`. Это бывает: ",
+      "Делать? ",
+      "Делать? "
+    ],
+    "session_id": "5be54cf7-efeb-4bf5-99c4-4270322ff9ce"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:16:28+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Добавить в `~/.zprofile`? Это даст постоянный эффект. "
+    ],
+    "session_id": "a3ac1b1c-f609-4224-9e85-cc3889076e25"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:17:33+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Значит для каталога фич бота Gateway правильно ставить на **T2_LEARNING** (подписка БР), `external=True`, `_check_extern",
+      "Одна строка кода + одна строка в SC. Делаем? "
+    ],
+    "session_id": "1426074f-61ec-463a-98e6-753f86f92362"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:21:59+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Значит для каталога фич бота Gateway правильно ставить на **T2_LEARNING** (подписка БР), `external=True`, `_check_extern",
+      "Одна строка кода + одна строка в SC. Делаем? "
+    ],
+    "session_id": "1426074f-61ec-463a-98e6-753f86f92362"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:24:52+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 6 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 6,
+    "examples": [
+      "Это даст связность всем остальным материалам. Хочешь начнём с этого? ",
+      "2. Требует архитектурного решения: где нарратив живёт (вводный блок? красная нить в каждом уроке? финальный модуль?) ",
+      "Если Просветитель уже передаёт знания другим — он по сути запускает других в программу. Это замыкает круг. Стоит ли явно"
+    ],
+    "session_id": "a15db723-1543-4643-a59d-028dfa6d6d2f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:25:53+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "1. **Нужно ли писать в `finance_payments` из Ф-H?** Это отдельная задача — sync с CRM Димы. Или это вне scope WP-231? ",
+      "Записать обе фазы? "
+    ],
+    "session_id": "1ef003c7-2dc1-46ac-a8f9-8dd2801dc5ec"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:32:15+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Значит для каталога фич бота Gateway правильно ставить на **T2_LEARNING** (подписка БР), `external=True`, `_check_extern",
+      "Одна строка кода + одна строка в SC. Делаем? "
+    ],
+    "session_id": "1426074f-61ec-463a-98e6-753f86f92362"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:40:20+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что хотите сделать с WP-245? Варианты: "
+    ],
+    "session_id": "cba862b0-f16a-499c-983b-427dae5a0b87"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:41:17+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что хотите сделать с WP-245? Варианты: "
+    ],
+    "session_id": "cba862b0-f16a-499c-983b-427dae5a0b87"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:43:22+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "1. **Нужно ли писать в `finance_payments` из Ф-H?** Это отдельная задача — sync с CRM Димы. Или это вне scope WP-231? ",
+      "Записать обе фазы? "
+    ],
+    "session_id": "1ef003c7-2dc1-46ac-a8f9-8dd2801dc5ec"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:43:23+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Добавить в `~/.zprofile`? Это даст постоянный эффект. "
+    ],
+    "session_id": "a3ac1b1c-f609-4224-9e85-cc3889076e25"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:45:11+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Я вижу, что вы хотите проверить, работает ли настройка `--thinking` флага, которую вам предложили в другой сессии. Давай"
+    ],
+    "session_id": "3d5ff001-4ca5-41f6-a918-e29add23aba8"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:45:19+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Я вижу, что вы хотите работать с WP-246. Начну с протокола Открытия. "
+    ],
+    "session_id": "a8412c1c-eccb-42c0-99e2-660eaeb1a0ce"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:46:05+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "1. **Нужно ли писать в `finance_payments` из Ф-H?** Это отдельная задача — sync с CRM Димы. Или это вне scope WP-231? ",
+      "Записать обе фазы? "
+    ],
+    "session_id": "1ef003c7-2dc1-46ac-a8f9-8dd2801dc5ec"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:49:44+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Я вижу, что вы хотите проверить, работает ли настройка `--thinking` флага, которую вам предложили в другой сессии. Давай"
+    ],
+    "session_id": "3d5ff001-4ca5-41f6-a918-e29add23aba8"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:49:57+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Добавить в `~/.zprofile`? Это даст постоянный эффект. "
+    ],
+    "session_id": "a3ac1b1c-f609-4224-9e85-cc3889076e25"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:50:00+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что хотите сделать с WP-245? Варианты: "
+    ],
+    "session_id": "cba862b0-f16a-499c-983b-427dae5a0b87"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:50:22+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Добавить в `~/.zprofile`? Это даст постоянный эффект. "
+    ],
+    "session_id": "a3ac1b1c-f609-4224-9e85-cc3889076e25"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:51:33+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Добавить в `~/.zprofile`? Это даст постоянный эффект. "
+    ],
+    "session_id": "a3ac1b1c-f609-4224-9e85-cc3889076e25"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:51:54+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Я вижу, что вы хотите проверить, работает ли настройка `--thinking` флага, которую вам предложили в другой сессии. Давай"
+    ],
+    "session_id": "3d5ff001-4ca5-41f6-a918-e29add23aba8"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:56:51+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Я вижу, что вы хотите работать с WP-246. Начну с протокола Открытия. "
+    ],
+    "session_id": "a8412c1c-eccb-42c0-99e2-660eaeb1a0ce"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:57:57+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что хотите сделать с WP-245? Варианты: "
+    ],
+    "session_id": "cba862b0-f16a-499c-983b-427dae5a0b87"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T13:58:39+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Значит для каталога фич бота Gateway правильно ставить на **T2_LEARNING** (подписка БР), `external=True`, `_check_extern",
+      "Одна строка кода + одна строка в SC. Делаем? "
+    ],
+    "session_id": "1426074f-61ec-463a-98e6-753f86f92362"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T14:08:26+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что хотите сделать с WP-245? Варианты: "
+    ],
+    "session_id": "cba862b0-f16a-499c-983b-427dae5a0b87"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T14:09:26+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Я вижу, что вы хотите работать с WP-246. Начну с протокола Открытия. "
+    ],
+    "session_id": "a8412c1c-eccb-42c0-99e2-660eaeb1a0ce"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T14:18:18+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что хотите сделать с WP-245? Варианты: "
+    ],
+    "session_id": "cba862b0-f16a-499c-983b-427dae5a0b87"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T14:28:44+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что именно вы хотите сделать с WP-7? Варианты: "
+    ],
+    "session_id": "d017281f-04d8-4fef-a763-6f89d065af42"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T14:29:33+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Что хотите сделать с WP-245? Варианты: ",
+      "Все 4 артефакта консистентны. Проверю §6 FORM.087 — нужно ли добавить мировоззренческое различение для ступени 0. "
+    ],
+    "session_id": "cba862b0-f16a-499c-983b-427dae5a0b87"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T14:32:04+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Я вижу, что вы хотите работать с WP-246. Начну с протокола Открытия. "
+    ],
+    "session_id": "a8412c1c-eccb-42c0-99e2-660eaeb1a0ce"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T14:32:09+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что именно вы хотите сделать с WP-7? Варианты: "
+    ],
+    "session_id": "d017281f-04d8-4fef-a763-6f89d065af42"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T14:34:50+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Что хотите сделать с WP-245? Варианты: ",
+      "Все 4 артефакта консистентны. Проверю §6 FORM.087 — нужно ли добавить мировоззренческое различение для ступени 0. "
+    ],
+    "session_id": "cba862b0-f16a-499c-983b-427dae5a0b87"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T14:35:52+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Я вижу, что вы хотите работать с WP-246. Начну с протокола Открытия. "
+    ],
+    "session_id": "a8412c1c-eccb-42c0-99e2-660eaeb1a0ce"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T14:36:10+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Что именно вы хотите сделать с WP-7? Варианты: ",
+      "Хотите записать это как задачу? Если да — куда: сюда в WP-7 (техдолг), или это заслуживает отдельного РП? "
+    ],
+    "session_id": "d017281f-04d8-4fef-a763-6f89d065af42"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T14:39:16+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "Что именно вы хотите сделать с WP-7? Варианты: ",
+      "Хотите записать это как задачу? Если да — куда: сюда в WP-7 (техдолг), или это заслуживает отдельного РП? ",
+      "**Pilot-First workflow + merge conflicts.** Код шёл на pilot → мержился в new-architecture. При merge 16 апр были конфли"
+    ],
+    "session_id": "d017281f-04d8-4fef-a763-6f89d065af42"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T14:42:51+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Я вижу, что вы хотите работать с WP-246. Начну с протокола Открытия. "
+    ],
+    "session_id": "a8412c1c-eccb-42c0-99e2-660eaeb1a0ce"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T14:44:45+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "Что именно вы хотите сделать с WP-7? Варианты: ",
+      "Хотите записать это как задачу? Если да — куда: сюда в WP-7 (техдолг), или это заслуживает отдельного РП? ",
+      "**Pilot-First workflow + merge conflicts.** Код шёл на pilot → мержился в new-architecture. При merge 16 апр были конфли"
+    ],
+    "session_id": "d017281f-04d8-4fef-a763-6f89d065af42"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T14:47:05+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 4 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 4,
+    "examples": [
+      "Что именно вы хотите сделать с WP-7? Варианты: ",
+      "Хотите записать это как задачу? Если да — куда: сюда в WP-7 (техдолг), или это заслуживает отдельного РП? ",
+      "**Pilot-First workflow + merge conflicts.** Код шёл на pilot → мержился в new-architecture. При merge 16 апр были конфли"
+    ],
+    "session_id": "d017281f-04d8-4fef-a763-6f89d065af42"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T14:50:10+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Я вижу, что вы хотите работать с WP-246. Начну с протокола Открытия. "
+    ],
+    "session_id": "a8412c1c-eccb-42c0-99e2-660eaeb1a0ce"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T14:54:25+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Что хотите сделать с WP-245? Варианты: ",
+      "Все 4 артефакта консистентны. Проверю §6 FORM.087 — нужно ли добавить мировоззренческое различение для ступени 0. "
+    ],
+    "session_id": "cba862b0-f16a-499c-983b-427dae5a0b87"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T14:56:33+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 4 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 4,
+    "examples": [
+      "Что именно вы хотите сделать с WP-7? Варианты: ",
+      "Хотите записать это как задачу? Если да — куда: сюда в WP-7 (техдолг), или это заслуживает отдельного РП? ",
+      "**Pilot-First workflow + merge conflicts.** Код шёл на pilot → мержился в new-architecture. При merge 16 апр были конфли"
+    ],
+    "session_id": "d017281f-04d8-4fef-a763-6f89d065af42"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T14:56:41+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Что хотите сделать с WP-245? Варианты: ",
+      "Все 4 артефакта консистентны. Проверю §6 FORM.087 — нужно ли добавить мировоззренческое различение для ступени 0. "
+    ],
+    "session_id": "cba862b0-f16a-499c-983b-427dae5a0b87"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T15:34:18+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Масштаб изменений значительный. Вся витрина завязана на таблицы `seminars` (с integer id) и `seminar_payments`. Мне нужн"
+    ],
+    "session_id": "25bb2598-283c-4eb0-9b25-1eec5b4c2118"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T15:45:05+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что хотите сделать с WP-210 сейчас? Варианты: "
+    ],
+    "session_id": "cf029135-a27b-454e-b7e1-4d65da407ca8"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T15:49:28+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Для полного E2E нужно либо временно отключить IP-проверку, либо тестировать через `wrangler dev` локально. "
+    ],
+    "session_id": "373bd823-89b9-4718-a900-2fd73d8f6e38"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T15:50:31+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что хотите сделать с WP-210 сейчас? Варианты: "
+    ],
+    "session_id": "cf029135-a27b-454e-b7e1-4d65da407ca8"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T15:56:30+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Для полного E2E нужно либо временно отключить IP-проверку, либо тестировать через `wrangler dev` локально. "
+    ],
+    "session_id": "373bd823-89b9-4718-a900-2fd73d8f6e38"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T15:56:40+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Масштаб изменений значительный. Вся витрина завязана на таблицы `seminars` (с integer id) и `seminar_payments`. Мне нужн",
+      "1. **ML и NP семинары** — вставлены с `price_rub=0`, `is_free=FALSE` (default), без `price_stars`, без `description`, бе"
+    ],
+    "session_id": "25bb2598-283c-4eb0-9b25-1eec5b4c2118"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T16:10:26+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что делаем? Продолжаем с Ф2-Ф3? "
+    ],
+    "session_id": "7ce74f1c-a2bd-4a2e-9b4a-d9c8373de307"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T16:13:31+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 4 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 4,
+    "examples": [
+      "Масштаб изменений значительный. Вся витрина завязана на таблицы `seminars` (с integer id) и `seminar_payments`. Мне нужн",
+      "1. **ML и NP семинары** — вставлены с `price_rub=0`, `is_free=FALSE` (default), без `price_stars`, без `description`, бе",
+      "## 3. Подписка за Stars — можно ли? "
+    ],
+    "session_id": "25bb2598-283c-4eb0-9b25-1eec5b4c2118"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T16:17:31+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "| Regex группа C | 14 одиночных глаголов (`записать?`, `создать?`, `добавить?`, `делать?`...) | 6 явных обращений (`прод"
+    ],
+    "session_id": "e5d9f540-120b-4fef-b8b7-8917d34dc5a2"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T16:17:33+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что делаем? Продолжаем с Ф2-Ф3? "
+    ],
+    "session_id": "7ce74f1c-a2bd-4a2e-9b4a-d9c8373de307"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T16:22:56+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Блокер: WP-206 Ф7** — конфликт форматов не разрешён. Decision-log существует (`DS-my-strategy/exocortex/decisions/`), "
+    ],
+    "session_id": "9a0e726a-951e-4408-9e02-94d7eeffbf74"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T16:24:31+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "| Regex группа C | 14 одиночных глаголов (`записать?`, `создать?`, `добавить?`, `делать?`...) | 6 явных обращений (`прод"
+    ],
+    "session_id": "e5d9f540-120b-4fef-b8b7-8917d34dc5a2"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T18:34:27+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "## 1. Нужно ли и где собирать возражения ",
+      "Нужно ли это оформить как РП или записать в Pack? Если да — могу: "
+    ],
+    "session_id": "cbaf3b6c-1ed4-41c4-87b9-1874ddf77072"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T18:52:02+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "| «Не готов воспринять, сначала подготовлюсь» | **M-007** «Мне нужно сначала всё изучить, потом действовать» + **M-046**"
+    ],
+    "session_id": "cbaf3b6c-1ed4-41c4-87b9-1874ddf77072"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T19:54:45+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- **Локальные файлы вне git** (если есть) — это риск. Их нужно либо включить в репо, либо бэкапить отдельно. "
+    ],
+    "session_id": "61e7012f-d45f-47c6-8f1e-57bde4774395"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```

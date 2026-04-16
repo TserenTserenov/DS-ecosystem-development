@@ -55,6 +55,9 @@
 | 29 | [knowledge-mcp](https://github.com/aisystant/knowledge-mcp) | DS/instrument | ИТ-платформа | code | team | no | Active |
 | 31 | [guides-mcp](https://github.com/aisystant/guides-mcp) | DS/instrument | ИТ-платформа | code | team | no | Active |
 | 32 | [fsm-mcp](https://github.com/aisystant/fsm-mcp) | DS/instrument | ИТ-платформа | code | team | no | Active |
+| 33 | [gateway-mcp](https://github.com/aisystant/gateway-mcp) | DS/instrument | ИТ-платформа | code | team | no | Active |
+| 34 | [payment-registry](https://github.com/aisystant/payment-registry) | DS/instrument | ИТ-платформа | code | team | no | Active |
+| 35 | [payment-receiver](https://github.com/aisystant/payment-receiver) | DS/instrument | ИТ-платформа | code | team | no | Active |
 | — | ~~DS-aist-bot~~ | — | — | — | — | — | Archived → aist_bot_newarchitecture |
 | — | ~~DS-synchronizer~~ | — | — | — | — | — | Archived → DS-ai-systems |
 | — | ~~DS-fixer-agent~~ | — | — | — | — | — | Archived → DS-ai-systems |
