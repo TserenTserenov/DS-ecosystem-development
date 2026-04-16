@@ -14690,3 +14690,67 @@ notes: |
   }
 }
 ```
+
+## 2026-04-16T11:13:58+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Это даст связность всем остальным материалам. Хочешь начнём с этого? ",
+      "2. Требует архитектурного решения: где нарратив живёт (вводный блок? красная нить в каждом уроке? финальный модуль?) "
+    ],
+    "session_id": "a15db723-1543-4643-a59d-028dfa6d6d2f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T11:21:22+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "1. **Нужно ли писать в `finance_payments` из Ф-H?** Это отдельная задача — sync с CRM Димы. Или это вне scope WP-231? "
+    ],
+    "session_id": "1ef003c7-2dc1-46ac-a8f9-8dd2801dc5ec"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-16T11:27:33+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Добавить в `~/.zprofile`? Это даст постоянный эффект. "
+    ],
+    "session_id": "a3ac1b1c-f609-4224-9e85-cc3889076e25"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
