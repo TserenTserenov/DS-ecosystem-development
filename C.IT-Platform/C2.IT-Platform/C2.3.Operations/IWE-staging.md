@@ -27,6 +27,7 @@
 | S-17 | `/day-close` и `/week-close` — скиллы-алиасы для симметрии с `/day-open` | `.claude/skills/day-close/`, `.claude/skills/week-close/` | 2026-04-05 | 2 недели без сбоев; пользователи используют вместо `/run-protocol` | testing |
 | S-22 | capture-bus landing zone: raw_events partitioned table + LMS dual-write (Ф8.3) | `DS-ai-systems/activity-hub/core/landing.py` | 2026-04-10 | 1 неделя без потерь событий; dual-write LMS stable | testing |
 | S-23 | Детектор P5 (permission_request) — автосчёт запросов разрешения за сессию | `.claude/detectors/detector_permission_request.sh` | 2026-04-12 | 2 недели обкатки, инциденты фиксируются в incident-log; major при ≥3/сессия | testing |
+| S-19 | Накопительный черновик недельного поста — 4 уровня влияния (мир/сообщество/человек/личное) + метрики дней + интегральный показатель «прогресс месяца». Заполняется на Day Close, используется для финального поста на Week Close | `DS-Knowledge-Index-Tseren/docs/{YYYY}/{NN}-{месяц}/week-draft-w{NN}.md` + `extensions/day-close.checks.md` + `extensions/week-close.after.md` | 2026-04-17 | 2 недели обкатки (W16-W17); черновик заполняется ежедневно без пропусков; пост W17 пишется из черновика, не с нуля | testing |
 
 ---
 
