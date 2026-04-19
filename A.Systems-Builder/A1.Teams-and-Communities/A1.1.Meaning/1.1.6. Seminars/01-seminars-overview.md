@@ -231,5 +231,5 @@ tags:
 ## См. также
 
 - [[A.Systems-Builder/A2.Systems-Builder/A2.2.Architecture/2.2.1. Development-Programs/О программах развития 2.2.md|О программах развития]]
-- [[A.Systems-Builder/A1.Teams-and-Communities/A1.1.Meaning/1.1.5. Outbound-Practice/Рабочие продукты/Процедура запуска Марафона 2.0.md|Процедура запуска Марафона]]
+- [[B.Aisystant-Ecosystem/B1.Society/B1.1.Meaning/1.1.2. Marketing/Outbound/Рабочие продукты/Процедура запуска Марафона 2.0.md|Процедура запуска Марафона]]
 - [[A.Systems-Builder/A1.Teams-and-Communities/A1.1.Meaning/1.1.3. Sales/Воронка продаж 1.1.md|Воронка продаж]]
