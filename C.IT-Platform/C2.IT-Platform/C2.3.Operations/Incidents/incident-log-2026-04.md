@@ -17893,3 +17893,46 @@ notes: |
   }
 }
 ```
+
+## 2026-04-20T17:51:02+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**7. Нужно ли выделять работу отдельным проектом?** "
+    ],
+    "session_id": "ecdcc4b9-59b6-4e70-b4db-55bd47f24754"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-20T17:53:46+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "**7. Нужно ли выделять работу отдельным проектом?** ",
+      "| Тест принадлежности | «Можно ли взять в руки / хранить / передать?» — да | «Можно ли взять в руки?» — нет, только её з"
+    ],
+    "session_id": "ecdcc4b9-59b6-4e70-b4db-55bd47f24754"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
