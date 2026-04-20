@@ -22,8 +22,8 @@
 | S-10 | Различение «Первое решение ≠ лучшее» — системное решение первым, костыль только как исключение | `.claude/rules/distinctions.md` | 2026-03-31 | 2 недели без сбоев; костыли не предлагаются первыми | validated |
 | S-11 | Новый РП за сессию → обязательно в 3 места: WP-REGISTRY + WeekPlan + DayPlan (Quick Close шаг 2) | `extensions/protocol-close.checks.md` | 2026-03-31 | 2 недели без пропусков новых РП при Quick Close | testing |
 | S-12 | Day Close шаг 1: идти от коммитов к РП (не от DayPlan). Коммит-аудит + выявление ad-hoc без РП | `extensions/day-close.checks.md` | 2026-03-31 | 2 Day Close без пропущенных РП/сессий | validated |
-| S-13 | Именование РП = существительное-артефакт (не глагол-действие). «Дизайн X» / «Архитектура Y» — не «Разработать X» | `CLAUDE.md §9` | 2026-04-01 | 2 недели: новые РП создаются с правильными названиями без напоминания | validated |
-| S-14 | Синхронизация REGISTRY→производные: переименование РП = обновить REGISTRY + MEMORY + WeekPlan + DayPlan + WP-context одновременно | `CLAUDE.md §9` | 2026-04-01 | 2 недели без рассинхрона между производными | validated |
+| S-13 | Именование РП = существительное-артефакт (не глагол-действие). «Дизайн X» / «Архитектура Y» — не «Разработать X» | `CLAUDE.md §9` | 2026-04-01 | 2 недели: новые РП создаются с правильными названиями без напоминания | promoted |
+| S-14 | Синхронизация REGISTRY→производные: переименование РП = обновить REGISTRY + MEMORY + WeekPlan + DayPlan + WP-context одновременно | `CLAUDE.md §9` | 2026-04-01 | 2 недели без рассинхрона между производными | promoted |
 | S-17 | `/day-close` и `/week-close` — скиллы-алиасы для симметрии с `/day-open` | `.claude/skills/day-close/`, `.claude/skills/week-close/` | 2026-04-05 | 2 недели без сбоев; пользователи используют вместо `/run-protocol` | testing |
 | S-22 | capture-bus landing zone: raw_events partitioned table + LMS dual-write (Ф8.3) | `DS-ai-systems/activity-hub/core/landing.py` | 2026-04-10 | 1 неделя без потерь событий; dual-write LMS stable | testing |
 | S-23 | Детектор P5 (permission_request) — автосчёт запросов разрешения за сессию | `.claude/detectors/detector_permission_request.sh` | 2026-04-12 | 2 недели обкатки, инциденты фиксируются в incident-log; major при ≥3/сессия | testing |
@@ -41,6 +41,8 @@
 | — | Чеклист-верификация Haiku R23 | 2026-03-20 | — |
 | — | Межсистемные процессы | 2026-03-20 | — |
 | S-01 | `/archgate` скилл v3 (ЭМОГССБ, conjunctive screening) | 2026-04-05 | `feat: promote S-01 from staging (archgate v3)` |
+| S-13 | Именование РП = существительное-артефакт | 2026-04-20 | CLAUDE.md §8 |
+| S-14 | Синхронизация REGISTRY→производные | 2026-04-20 | CLAUDE.md §8 |
 
 ---
 
