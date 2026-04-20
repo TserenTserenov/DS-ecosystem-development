@@ -17809,3 +17809,87 @@ notes: |
   }
 }
 ```
+
+## 2026-04-20T11:58:28+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Какой вариант выбираем? И ещё — стоит ли в ВДВ-таблицу явно ввести стадию «Декомпозиция проекта → РП» (которая сейчас пр"
+    ],
+    "session_id": "ae6f0122-1618-49c4-a209-0040178b6810"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-20T12:54:24+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Какой вариант выбираем? И ещё — стоит ли в ВДВ-таблицу явно ввести стадию «Декомпозиция проекта → РП» (которая сейчас пр"
+    ],
+    "session_id": "ae6f0122-1618-49c4-a209-0040178b6810"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-20T15:22:55+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "В [WP-196 Ф11](DS-my-strategy/inbox/WP-196-notes-processing-system.md#L161) (pending) — 7 подзадач расшивки пробелов. **"
+    ],
+    "session_id": "ae6f0122-1618-49c4-a209-0040178b6810"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-20T15:35:04+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "В [WP-196 Ф11](DS-my-strategy/inbox/WP-196-notes-processing-system.md#L161) (pending) — 7 подзадач расшивки пробелов. **"
+    ],
+    "session_id": "ae6f0122-1618-49c4-a209-0040178b6810"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
