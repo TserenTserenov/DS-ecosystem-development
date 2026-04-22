@@ -18241,3 +18241,109 @@ notes: |
   }
 }
 ```
+
+## 2026-04-21T17:43:36+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Или сразу давай подбирать совместно — начнём с #1? ",
+      "Откуда начинаем? Могу предложить порядок: сначала закрепляем границы слоёв (A/B/C), потом идём по BC внутри каждого слоя"
+    ],
+    "session_id": "32f28265-e366-42d7-bc52-955090cfc941"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-21T17:47:54+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Откуда начинаем? Могу предложить порядок: сначала закрепляем границы слоёв (A/B/C), потом идём по BC внутри каждого слоя"
+    ],
+    "session_id": "32f28265-e366-42d7-bc52-955090cfc941"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-21T18:13:42+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Откуда начинаем? Могу предложить порядок: сначала закрепляем границы слоёв (A/B/C), потом идём по BC внутри каждого слоя"
+    ],
+    "session_id": "32f28265-e366-42d7-bc52-955090cfc941"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-22T11:06:01+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Нужно ли снова скорректировать context-файл Ф28 v2 → v2.1?** Изменения: (а) декомпозиция сегментов на ступень × домен,"
+    ],
+    "session_id": "86937d47-a518-4371-b4e7-13e35edcdec1"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-22T11:23:44+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Нужно ли снова скорректировать context-файл Ф28 v2 → v2.1?** Изменения: (а) декомпозиция сегментов на ступень × домен,"
+    ],
+    "session_id": "86937d47-a518-4371-b4e7-13e35edcdec1"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
