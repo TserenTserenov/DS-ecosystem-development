@@ -18685,3 +18685,66 @@ notes: |
   }
 }
 ```
+
+## 2026-04-22T21:39:01+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Capture в memory?** У нас появилось новое различение: *«IWE-программа (наш продукт, новая архитектура) ≠ LMS Aisystant"
+    ],
+    "session_id": "3e8d8d0a-e259-4b23-ba10-63bdf1cf3ffd"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-22T21:47:36+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Предлагаю зафиксировать в project-memory различение **новая архитектура (платформа+IWE, 12 Neon БД, BC-aligned, микросер"
+    ],
+    "session_id": "3e8d8d0a-e259-4b23-ba10-63bdf1cf3ffd"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-22T21:50:13+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Предлагаю сохранить в project-memory различение **новая арх (платформа+IWE, 12 Neon БД, BC-aligned) vs старая арх (LMS м"
+    ],
+    "session_id": "3e8d8d0a-e259-4b23-ba10-63bdf1cf3ffd"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
