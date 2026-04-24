@@ -1,19 +1,24 @@
 ---
 type: doc
-status: active
+status: review
 created: 2025-12-24
-updated: 2025-12-24
-layer: methodology
+updated: 2026-04-24
+layer: governance
 scope: local-edge
-family: F4
+family: F9
 target_audience:
   - "Руководители продвижения"
   - "Операторы привлечения"
   - "Маркетологи"
 developer: "Методологи"
+blockers:
+  - "WP-5 #13 (decision 2026-04-24): перенести в B3.3.Operations/ после Pack-миграции методологии"
 depends_on:
-  - "Методология Outbound 1.1"
+  - "Методология Outbound 1.1 (PACK-ecosystem после миграции)"
 ---
+
+> ⚠️ **Status: review** (WP-5 #13, 2026-04-24). Документ — governance (план внедрения методологии), остаётся в DS. Family поправлена F4→F9 (операторы привлечения — аудитория Operations×Создание). Физическое перемещение в `B3.3.Operations/` отложено до Pack-миграции методологии (обе правки — одним коммитом во избежание ссылочного drift). Layer: methodology → governance (это план, не метод).
+
 
 
 # План работ по Outbound 1.1

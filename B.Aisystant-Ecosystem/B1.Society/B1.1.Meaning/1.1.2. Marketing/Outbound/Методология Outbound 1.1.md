@@ -1,16 +1,19 @@
 ---
 type: doc
-status: active
+status: review
 created: 2025-12-24
-updated: 2025-12-24
+updated: 2026-04-24
 layer: methodology
 scope: local-edge
-family: F4
+family: F5
 target_audience:
   - "Руководители продвижения"
   - "Операторы привлечения"
   - "Маркетологи"
 developer: "Методологи"
+blockers:
+  - "WP-5 #13 (decision 2026-04-24): мигрировать в PACK-ecosystem как метод"
+  - "Размещение B1.1.Meaning не соответствует family=F5 — зависит от Pack-миграции"
 depends_on:
   - "Стратегия маркетинга 1.1"
   - "Целевые аудитории 1.1"
@@ -23,6 +26,9 @@ related:
   - "1.1.3"
   - "1.3.2"
 ---
+
+> ⚠️ **Status: review** (WP-5 #13, 2026-04-24). Документ — методология (`layer: methodology`), по §4.4 Fallback Chain должна быть в **PACK-ecosystem** (source-of-truth для методов экосистемы), здесь — только навигационная ссылка. Family поправлена F4→F5 (тест целевого читателя §5.4: «Методологи, наставники»). Физическое перемещение в `B2.2.Architecture/` отложено до Pack-миграции (всё равно файл уйдёт). См. WP-5 → отдельный WP на миграцию.
+
 
 
 # Методология Outbound 1.1
