@@ -18832,3 +18832,24 @@ notes: |
   }
 }
 ```
+
+## 2026-04-24T09:49:30+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "R23 (Haiku) видимо обрезала чтение DayPlan до строки ~250 из 314 — секции находятся в нижней трети файла. Это **второй к"
+    ],
+    "session_id": "b04d919f-2e84-4adb-89c0-1147af9892ee"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
