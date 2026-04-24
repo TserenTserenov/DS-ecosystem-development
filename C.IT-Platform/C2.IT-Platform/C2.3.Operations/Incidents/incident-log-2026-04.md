@@ -18748,3 +18748,87 @@ notes: |
   }
 }
 ```
+
+## 2026-04-22T22:18:21+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- **Обещания/сообщения кому-то:** (?) — есть что добавить? "
+    ],
+    "session_id": "635cc539-b421-4158-8726-76eea3b355fd"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-23T12:40:56+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- **Нужна ли эмиссия как «транш» (О)?** — только если вы хотите **управлять лимитом** (не выпускать сверх лимита) или **"
+    ],
+    "session_id": "82b5505b-360d-4cfb-9510-180ed09cfc79"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-23T12:57:28+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**5. Открытость (опора 7)** — принимаю, усиливаю. Сейчас «нам не страшно, что скопируют». Твоя рамка жёстче: **наша цель"
+    ],
+    "session_id": "28c9379e-3ebf-4999-a169-2327ccb73455"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-23T13:07:21+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**5. Открытость (опора 7)** — принимаю, усиливаю. Сейчас «нам не страшно, что скопируют». Твоя рамка жёстче: **наша цель"
+    ],
+    "session_id": "28c9379e-3ebf-4999-a169-2327ccb73455"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
