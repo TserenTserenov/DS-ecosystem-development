@@ -129,7 +129,7 @@ CREATE TABLE github_installations (
 ```yaml
 # Параметры регистрации GitHub App
 name: "Aisystant Knowledge"
-description: "Подключение ваших знаний к IWE Knowledge Gateway"
+description: "Подключение ваших знаний к Aisystant MCP"
 url: "https://system-school.ru/knowledge"
 callback_url: "https://mcp.aisystant.com/github/callback"
 setup_url: "https://mcp.aisystant.com/github/setup"
