@@ -108,6 +108,10 @@
 | [guides-mcp](https://github.com/aisystant/guides-mcp) | MCP-сервер руководств и гайдов | PACK-digital-platform | aisystant |
 | [fsm-mcp](https://github.com/aisystant/fsm-mcp) | MCP-сервер конечных автоматов | PACK-digital-platform | aisystant |
 | [DS-autonomous-agents](https://github.com/TserenTserenov/DS-autonomous-agents) | Код автономных агентов (промпты, dispatcher, trajectory cache) | PACK-autonomous-agents, PACK-digital-platform | TserenTserenov |
+| [neon-migrations](https://github.com/TserenTserenov/neon-migrations) | DDL + seeds для 9 БД MVP-greenfield (WP-253 Ф9.1, создан 24 апр 2026) | PACK-digital-platform | TserenTserenov |
+| event-gateway *(pending push)* | CF Worker: приём событий Observed → Neon (WP-253 Ф9.2 skeleton, 24 апр 2026) | PACK-digital-platform | TserenTserenov |
+| rewards-projection-worker *(pending push)* | Python asyncpg LISTEN/NOTIFY: rewards Derived projection (WP-253 Ф9.3 skeleton, 24 апр 2026) | PACK-digital-platform | TserenTserenov |
+| [personal-guide](https://github.com/TserenTserenov/personal-guide) | Персональное руководство ЛР (плоское имя, один на пилота; WP-245 Ф28.5, 24 апр 2026) | PACK-personal | TserenTserenov |
 
 ### DS/governance
 
@@ -208,4 +212,4 @@ FMT-exocortex-template (Base/Форматы, setup.sh встроен)
 
 ---
 
-*Последнее обновление: 2026-03-18*
+*Последнее обновление: 2026-04-24* (добавлены: neon-migrations, personal-guide; event-gateway + rewards-projection-worker — pending push)

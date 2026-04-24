@@ -18853,3 +18853,562 @@ notes: |
   }
 }
 ```
+
+## 2026-04-24T10:09:56+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Прочитал все три контекста. Вот что реально нового из встречи (и стоит ли писать — решай). "
+    ],
+    "session_id": "e188aeab-286f-4092-ac54-b1ae22835e19"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T10:14:27+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "## Ответ на «нужно ли учитывать?» ",
+      "- [ ] scope сегодня = 4 проектных артефакта (Scope fix + SC + dt-collect решение + Security Gate), ~3h — ок? "
+    ],
+    "session_id": "a8ae9056-9952-40dc-b1e1-e1815b3f4456"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T10:18:47+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "## Ответ на «нужно ли учитывать?» ",
+      "- [ ] scope сегодня = 4 проектных артефакта (Scope fix + SC + dt-collect решение + Security Gate), ~3h — ок? ",
+      "**«Не стоит ли сначала реализовать WP-228 и WP-253, а эти работы туда перенести как фазу?»** "
+    ],
+    "session_id": "a8ae9056-9952-40dc-b1e1-e1815b3f4456"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T10:32:42+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Такой уточнённый Ф2 подходит? Если да — запускать сейчас (контекст горячий) или откладывать на W18 и возвращаться к Red "
+    ],
+    "session_id": "f262bcfe-e621-4678-9bf1-e0602f681998"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T10:35:25+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Такой уточнённый Ф2 подходит? Если да — запускать сейчас (контекст горячий) или откладывать на W18 и возвращаться к Red "
+    ],
+    "session_id": "f262bcfe-e621-4678-9bf1-e0602f681998"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T11:27:54+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "## С чего начинаем? "
+    ],
+    "session_id": "bb22251d-a996-4fdb-9cf7-4b29b7a6c665"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T11:36:27+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "## Что мне нужно от тебя сейчас (решения + доступ) ",
+      "   - SQL на продакшн Neon (Ф5 Kratos backfill) — ок? ",
+      "   - Деплой gateway-mcp (Ф-L.1) на Railway — ок? "
+    ],
+    "session_id": "bb22251d-a996-4fdb-9cf7-4b29b7a6c665"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T11:41:02+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "## Что мне нужно от тебя сейчас (решения + доступ) ",
+      "   - SQL на продакшн Neon (Ф5 Kratos backfill) — ок? ",
+      "   - Деплой gateway-mcp (Ф-L.1) на Railway — ок? "
+    ],
+    "session_id": "bb22251d-a996-4fdb-9cf7-4b29b7a6c665"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T11:49:31+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "## Что мне нужно от тебя сейчас (решения + доступ) ",
+      "   - SQL на продакшн Neon (Ф5 Kratos backfill) — ок? ",
+      "   - Деплой gateway-mcp (Ф-L.1) на Railway — ок? "
+    ],
+    "session_id": "bb22251d-a996-4fdb-9cf7-4b29b7a6c665"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T11:52:26+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Если профили генерирую я (без диалога с пилотом) — есть риск, что скажут «не про меня». Это не баг скилла, это баг моего"
+    ],
+    "session_id": "61e162a1-770b-4db1-8f82-69d68763d2c7"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T12:00:06+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Если профили генерирую я (без диалога с пилотом) — есть риск, что скажут «не про меня». Это не баг скилла, это баг моего"
+    ],
+    "session_id": "61e162a1-770b-4db1-8f82-69d68763d2c7"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T12:18:15+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "- **Видимость.** Создастся как приватный (Gateway notes-template по умолчанию). Подходит? ",
+      "- **Что если ЦД на ст. 5.** Скилл уйдёт в Шаг 2b fallback и предложит «программа ЛР тебе не нужна, иди в Рабочее развити"
+    ],
+    "session_id": "61e162a1-770b-4db1-8f82-69d68763d2c7"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T12:25:01+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "- **Видимость.** Создастся как приватный (Gateway notes-template по умолчанию). Подходит? ",
+      "- **Что если ЦД на ст. 5.** Скилл уйдёт в Шаг 2b fallback и предложит «программа ЛР тебе не нужна, иди в Рабочее развити"
+    ],
+    "session_id": "61e162a1-770b-4db1-8f82-69d68763d2c7"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T13:00:56+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Если найдёшь, что у OAuth App сейчас стоит другой URL (например `localhost:*` для dev) — можно добавить наш URL дополнит"
+    ],
+    "session_id": "61e162a1-770b-4db1-8f82-69d68763d2c7"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T13:04:53+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Если найдёшь, что у OAuth App сейчас стоит другой URL (например `localhost:*` для dev) — можно добавить наш URL дополнит"
+    ],
+    "session_id": "61e162a1-770b-4db1-8f82-69d68763d2c7"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T14:20:56+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "### Нужно ли "
+    ],
+    "session_id": "93aadd18-ff36-43f8-9daa-4c62f422b08d"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T14:28:56+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "### Нужно ли ",
+      "4. **Ф8.3 — ArchGate (1h)** — ЭМОГССБ по плану. Ключевые вопросы: обратимость (можно ли откатить добавленные tool'ы), св"
+    ],
+    "session_id": "93aadd18-ff36-43f8-9daa-4c62f422b08d"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T14:32:07+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Где «руками на GitHub»:** только Шаг 4 — установка GitHub App. Это **обязательно**, потому что только сам владелец Git"
+    ],
+    "session_id": "61e162a1-770b-4db1-8f82-69d68763d2c7"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T14:37:03+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "### Нужно ли ",
+      "4. **Ф8.3 — ArchGate (1h)** — ЭМОГССБ по плану. Ключевые вопросы: обратимость (можно ли откатить добавленные tool'ы), св"
+    ],
+    "session_id": "93aadd18-ff36-43f8-9daa-4c62f422b08d"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T14:43:06+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Задача:** у каждого `(source, event_type)` есть схема — какие поля разрешены. Где она живёт? "
+    ],
+    "session_id": "18bc4595-2ba1-4f61-a6d7-135bd3015538"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T14:55:34+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Что дальше?** РП в бэклоге «по запросу» — активного триггера нет. Варианты: (a) оставить pending, (b) реопен для Ф1 IW"
+    ],
+    "session_id": "9d3c2558-90aa-44ae-96c0-e5bcc751681e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T15:04:22+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Что делать дальше (три параллельных трека):** "
+    ],
+    "session_id": "bb22251d-a996-4fdb-9cf7-4b29b7a6c665"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T15:09:48+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "| Можно ли посмотреть, что агент сделал? | ✅ Langfuse трейсы + OTel attrs | "
+    ],
+    "session_id": "93aadd18-ff36-43f8-9daa-4c62f422b08d"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T15:42:23+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Справедливое замечание — мне нужно проверить, как бот реально работает, а не гадать. "
+    ],
+    "session_id": "93aadd18-ff36-43f8-9daa-4c62f422b08d"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T19:08:59+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Критерий ок? Применяю ко всем 261 строке и пушу. "
+    ],
+    "session_id": "95471708-6ee7-4a01-9b81-cb089e4f218c"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-24T19:39:47+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Проверю наличие ключей и состояние артефактов, чтобы понять, можно ли запустить Neon dry-run сейчас. "
+    ],
+    "session_id": "1b7f45a6-8712-4db1-92ac-1f263a0a1407"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
