@@ -19984,3 +19984,108 @@ notes: |
   }
 }
 ```
+
+## 2026-04-25T12:16:02+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "### Если ответы не сейчас — что делать дальше прямо сейчас: "
+    ],
+    "session_id": "13721e9b-5a03-4ba0-b653-67ca8debdab8"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-25T18:19:02+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Стоит ли переименовать machine identity сейчас, пока продакшен видели только мы (2 smoke event'а, ничего не зависит)? Це"
+    ],
+    "session_id": "13721e9b-5a03-4ba0-b653-67ca8debdab8"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-25T18:51:00+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Если ты пробовал открыть `https://status.aisystant.com` — **404** ожидаемо. CNAME-запись ещё не создана, DNS не разрешае"
+    ],
+    "session_id": "1bb7732a-8270-46c6-ae57-dbc5978fd1bf"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-25T18:52:14+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Если ты пробовал открыть `https://status.aisystant.com` — **404** ожидаемо. CNAME-запись ещё не создана, DNS не разрешае"
+    ],
+    "session_id": "1bb7732a-8270-46c6-ae57-dbc5978fd1bf"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-25T18:54:02+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Если ты пробовал открыть `https://status.aisystant.com` — **404** ожидаемо. CNAME-запись ещё не создана, DNS не разрешае"
+    ],
+    "session_id": "1bb7732a-8270-46c6-ae57-dbc5978fd1bf"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
