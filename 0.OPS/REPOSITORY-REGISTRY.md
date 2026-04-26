@@ -92,6 +92,7 @@
 | [PACK-MIM](https://github.com/TserenTserenov/PACK-MIM) | Мастерская: форматы, программы, организация развития | SPF, FPF | TserenTserenov |
 | ~~[PACK-education](https://github.com/TserenTserenov/PACK-education)~~ | ~~Archived → PACK-MIM (WP-154). Методика обучения расформирована в MIM.~~ | ~~—~~ | ~~—~~ |
 | [PACK-verification](https://github.com/TserenTserenov/PACK-verification) | Верификация и приёмка: методы проверки, эталоны, критерии приёмки (трансдоменный) | SPF, FPF | TserenTserenov |
+| [PACK-agent-rules](https://github.com/TserenTserenov/PACK-agent-rules) | Правила работы агента Claude в IWE: реестр AR.NNN с frontmatter, conflicts, revision-flow (трансдоменный, runtime-managed) | SPF, FPF | TserenTserenov |
 
 ### DS/instrument
 
