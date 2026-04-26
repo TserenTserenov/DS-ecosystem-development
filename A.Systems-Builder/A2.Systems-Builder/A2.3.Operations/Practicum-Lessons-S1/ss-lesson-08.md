@@ -11,7 +11,7 @@ created: 2026-04-03
 updated: 2026-04-26
 guide_section: "08-personality-and-agent-human-and-ai"
 related_forms:
-  - PD.FORM.018  # Модель агента (модульная 2×2: биологическое тело + экзотело × hardware + software)
+  - PD.FORM.018  # Модель агента: функциональная 2×2 (био vs экзо × аппаратные vs психические функции) + модульная декомпозиция (carrier/description) + мост
   - PD.FORM.080  # Дуга мировоззрения
   - PD.FORM.081  # 6 направлений саморазвития
   - PD.FORM.087  # Ролевая траектория созидателя
