@@ -20259,3 +20259,396 @@ notes: |
   }
 }
 ```
+
+## 2026-04-26T14:46:00+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "### Вопрос на встречу 11 — добавить? "
+    ],
+    "session_id": "156b7f30-f900-4b8f-af61-f7930eafb321"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T14:46:40+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "### Вопрос на встречу 11 — добавить? "
+    ],
+    "session_id": "156b7f30-f900-4b8f-af61-f7930eafb321"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T14:57:58+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "### Вопрос на встречу 11 — добавить? "
+    ],
+    "session_id": "156b7f30-f900-4b8f-af61-f7930eafb321"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T15:08:16+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "**Принцип 1: Q2-режим разрешает усиление MVP, запрещает развитие фич.** ",
+      "Сервер усиливает MVP (resilience, dev velocity, cut-over safety) — это разрешено. Сервер для новых пользовательских фич ",
+      "1. **Q2-режим разрешает усиление MVP, запрещает развитие фич** — сервер усиливает, не развивает "
+    ],
+    "session_id": "156b7f30-f900-4b8f-af61-f7930eafb321"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26 — detector-fp class: deontic-norm (новый подкласс P5)
+
+**Класс:** P5 stop-reminder FP — деонтическая лексика в нормативной формулировке.
+
+**Срабатывания сегодня (3 раза за одну сессию):**
+- «Q2-режим **разрешает** усиление MVP, **запрещает** развитие фич»
+- «Сервер усиливает MVP — это **разрешено**. Сервер для новых пользовательских фич — **запрещено**...»
+- «Q2-режим **разрешает** усиление MVP, **запрещает** развитие фич — сервер усиливает, не развивает»
+
+**Природа FP:** деонтическая лексика «разрешает/запрещает/разрешено/запрещено» в констатации **ранее принятого принципа** (контекст: ADR-IWE-014 + Q2-freeze решение 19 апр) воспринимается детектором как permission-language. На самом деле это нормативная формулировка правила, а не обращение к пользователю с просьбой о разрешении.
+
+**Отличие от ранее зафиксированного FP-класса (5c4b572 — nominalisation):** там FP на номинализациях (отглагольные существительные). Здесь FP на деонтических глаголах в безличной форме.
+
+**Митигация (для p5-stop-reminder.sh):** добавить регекс-исключение для паттернов:
+- «X **разрешает/запрещает** Y» (деонтическая норма, X = система/принцип, не Claude)
+- «X **разрешено/запрещено**» (passive deontic)
+- «**разрешено/запрещено** делать Y»
+
+vs реальный permission-request: «**можно/могу ли я** + Y?», «**добавить?**», «**продолжить?**», «**записать?**».
+
+**Action item:** обновить детектор → исключить deontic-norm pattern. Иначе любой нормативный документ (CLAUDE.md, ADR, политики) будет триггерить FP при чтении/цитировании.
+
+## 2026-04-26T15:09:02+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 5 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 5,
+    "examples": [
+      "**Принцип 1: Q2-режим разрешает усиление MVP, запрещает развитие фич.** ",
+      "Сервер усиливает MVP (resilience, dev velocity, cut-over safety) — это разрешено. Сервер для новых пользовательских фич ",
+      "1. **Q2-режим разрешает усиление MVP, запрещает развитие фич** — сервер усиливает, не развивает "
+    ],
+    "session_id": "156b7f30-f900-4b8f-af61-f7930eafb321"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T15:18:15+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "1. **Q2-режим разрешает усиление MVP, запрещает развитие фич** — сервер усиливает, не развивает ",
+      "Принято. Это false positive детектора — фраза «Q2-режим разрешает усиление MVP, запрещает развитие фич» не запрос разреш",
+      "Похожий FP-класс уже фиксируется сегодня: `5c4b572 incident-log: detector-fp class — p5-stop-reminder FP на nominalisati"
+    ],
+    "session_id": "156b7f30-f900-4b8f-af61-f7930eafb321"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T15:49:46+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "## Можно ли сделать сейчас "
+    ],
+    "session_id": "ca5d0815-ee02-44b1-8f14-3a04695b480f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T15:51:01+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "## Можно ли сделать сейчас "
+    ],
+    "session_id": "ca5d0815-ee02-44b1-8f14-3a04695b480f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T15:55:58+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Андрей разрешил:** делать руками сейчас. Альтернатива — купить второй сервер и потом перенести. "
+    ],
+    "session_id": "156b7f30-f900-4b8f-af61-f7930eafb321"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T15:58:25+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Sec «Актуализация 25 апр» консистентна с DP.ARCH.004 v2.3. Все хеши, на которые опирается секция «Связь с WP-253» (`e112",
+      "Сделать любую из этих правок? Если «обновляй WP-253 секцией Ф10» — могу прямо сейчас встроить в context-файл со ссылками"
+    ],
+    "session_id": "1212ec13-620a-4206-8829-c95c7ae950b9"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T15:59:07+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Андрей разрешил:** делать руками сейчас. Альтернатива — купить второй сервер и потом перенести. "
+    ],
+    "session_id": "156b7f30-f900-4b8f-af61-f7930eafb321"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T16:38:27+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Мне нужно:** "
+    ],
+    "session_id": "8258025c-4791-4065-b5ae-3cf6acb165b3"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T18:29:53+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "## Стоит ли показывать публично? "
+    ],
+    "session_id": "156b7f30-f900-4b8f-af61-f7930eafb321"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26 — detector-fp class: interrogative-heading (новый подкласс P5)
+
+**Класс:** P5 stop-reminder FP — вопрос в заголовке как структурный элемент.
+
+**Срабатывание:** «## Стоит ли показывать публично?» (заголовок раздела, вводящий аналитический разбор «вариант А vs вариант Б»). Не permission-request («хотите?», «продолжить?», «применить?»).
+
+**Природа FP:** русский синтаксис аналитического разбора часто использует вопрос-заголовок:
+- «Что выбрать?» → разбор вариантов → решение
+- «Стоит ли X?» → за и против → выбор
+- «Зачем это нужно?» → обоснование
+
+Эти заголовки **не запрашивают разрешения у пользователя** — они вводят аналитический раздел и сами же на него отвечают (рекомендацией / выбором / обоснованием). Это паттерн стиля «вопрос-ответ» в эссеистике.
+
+**Отличие от других зафиксированных FP-классов:**
+- `nominalisation` (5c4b572) — отглагольные существительные
+- `deontic-norm` (сегодня utc 12:08) — «X разрешает/запрещает Y»
+- `interrogative-heading` (этот) — вопрос как заголовок раздела
+
+**Признак true positive:** вопрос обращён к пользователю И ожидает явного ответа («хочешь?», «продолжить?», «добавить пункт?»).
+
+**Признак FP:** вопрос введён как заголовок (`## ...?`) или часть аналитической структуры, после которого Claude **сам же отвечает** вариантами и рекомендацией.
+
+**Митигация (для p5-stop-reminder.sh):** добавить regex-исключение для:
+- `^#{1,6}\s+.*\?$` (markdown heading с вопросительным знаком)
+- Контекст-aware: если за вопросом сразу следует «Вариант А / Вариант Б» или «Я бы выбрал X» — это аналитический паттерн, не permission-request.
+
+**Action item:** обновить детектор → суммарно 3 FP-подкласса игнорируются (nominalisation + deontic-norm + interrogative-heading). Иначе любой аналитический ответ с вопросом-заголовком триггерит FP.
+
+## 2026-04-26T18:30:32+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "## Стоит ли показывать публично? "
+    ],
+    "session_id": "156b7f30-f900-4b8f-af61-f7930eafb321"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T18:33:08+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "## Стоит ли показывать публично? "
+    ],
+    "session_id": "156b7f30-f900-4b8f-af61-f7930eafb321"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T18:45:16+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Вопрос 2 (A.19 Lawful Comparison):** Альтернативы уже сформулированы в моём предыдущем сообщении — A/B/C. Использую их"
+    ],
+    "session_id": "de78e42c-37c2-4357-b045-110262b0cdd9"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```

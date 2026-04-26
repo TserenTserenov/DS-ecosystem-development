@@ -3,82 +3,161 @@ type: architect-agenda
 title: "ИТ-встречи с архитектором — повестка и итоги"
 status: active
 created: 2026-04-01
-updated: 2026-04-19
-depends_on: WP-73, WP-183, WP-187, WP-212, WP-214, WP-215, WP-227, WP-228, WP-244, WP-250
-source: встречи 1–9 (29 мар → 19 апр)
+updated: 2026-04-26
+depends_on: WP-73, WP-228, WP-244, WP-250, WP-253, WP-258, WP-262, WP-265, WP-266, WP-268
+source: встречи 1–10 (29 мар → 21 апр)
 ---
 
 # ИТ-встречи с архитектором — повестка и решения
 
 <details>
-<summary><b>История встреч 1–9 (архив)</b></summary>
+<summary><b>История встреч 1–10 (архив)</b></summary>
 
 > **Встречи 1–5** закрыли: Блок А+Б+В, Keto-модель, Gateway, knowledge base, identity (ory_id), мягкое удаление, ЦД↔LMS, разделение Россия/мир, CRM = отдельный сервис.
-> **Встреча 6 (12 апр):** kid="" распутан, gateway-mcp уточнён. Принцип разделения «платформа Андрея ↔ инфра Паши» зафиксирован.
-> **Встреча 7 (13 апр):** принята двухшаговая MCP-безопасность (SET LOCAL + JWKS). pg_session_jwt закрыт. Neon консолидирована в одну базу `platform`. Реестр подписок `subscription_grants` DONE.
-> **Встреча 8 (14 апр):** kid="" исправлен (DONE). WP-212 B4.22–24 DONE (RLS wrapper asyncpg + migration 013). JWT-верификация knowledge-mcp задеплоена. Вариант E (ADR-IWE-012) утверждён: каждый MCP верифицирует Ory JWT (RS256 JWKS) самостоятельно. Neon Authorize упразднён.
-> **Встреча 9 (19 апр, оперативка ИТ):** 🔄 Стратегический разворот. **Решения:** (а) Q2 — инфраструктуру не развиваем, поддерживаем под MVP; (б) WP-215 (дуальный контур РФ/мир) — заморожен до подтверждения гипотезы массового продукта; (в) ER-диаграммы 9 БД — только физ.объекты (не technical relations); (г) публичная status page — готовый SaaS (Better Uptime / Statuspage.io), не своя реализация; (д) запрос ревью архитектуры безопасности от Паши (B7.3) и формализация процесса аудита изменений. Гипотеза W16-W17: «подписка = массовый продукт через адаптивную персонализацию».
+> **Встреча 6 (12 апр):** kid="" распутан, gateway-mcp уточнён. Принцип «платформа Андрея ↔ инфра Паши».
+> **Встреча 7 (13 апр):** двухшаговая MCP-безопасность (SET LOCAL + JWKS). Neon → одна `platform`. `subscription_grants` DONE.
+> **Встреча 8 (14 апр):** kid="" исправлен. WP-212 B4.22–24 DONE. Вариант E (ADR-IWE-012) — каждый MCP верифицирует JWT сам.
+> **Встреча 9 (19 апр, оперативка):** Q2-режим (поддерживаем MVP). WP-215 заморожен. ER-диаграммы только физ.объекты. Public status page = SaaS.
+> **Встреча 10 (21 апр, 14:00–17:00):** обсуждены А выжимка / Б ER 9 БД / В безопасность B7.3-5 / Г Keto. Утверждены **Р-MVP-Freeze** (Q2), **Р-ER-Guidelines** (Chen, физ.объекты, размещение в Pack), **Р-Audit-Process** перенесено на после MVP. Утренняя оперативка → 12 правок DP.ARCH.004 v2.
 
 </details>
 
 ---
 
-## Повестка встречи 10 (21 апр, вторник, 14:00)
+## Повестка встречи 11 (26 апр, воскресенье)
 
 <details open>
-<summary><b>Встреча 10 — вопросы на 21 апр</b></summary>
+<summary><b>Встреча 11 — статус с 21 апр</b></summary>
 
-> **Статус на утро 21 апр (ожидается):**
-> - ✅ ADR-IWE-012 DONE (14 апр). MCP-верификация JWT работает.
-> - 🟡 WP-228 Ф9 (ER-диаграммы по 9 БД, только физ.объекты) — в работе, к встрече результаты.
-> - 🟡 WP-244 Ф2–Ф4 (DB #8 health + Grafana) — в работе.
-> - ✅ WP-250 актуализация (19 апр): 4 стратегических блока, 20 гипотез, Q2-режим по всем РП.
+> **Что произошло за 5 дней (21→26 апр) — крупные сдвиги:**
+> - ✅ **WP-244 LIVE end-to-end** (24 апр): status.aisystant.com + Better Stack 11 monitors (composite SLA 100%) + CF Worker observability-webhook + Ф3b internal_metrics в event-gateway/projection-worker + /status команда в боте (pilot+prod) + bot heartbeat. Pack: DP.SC.123/DP.SC.124/DP.ROLE.035.
+> - ✅ **WP-253 Ф9 DONE** (24–25 апр): event-gateway → projection-worker LIVE. 4 gates PASS (Ф9.1+9.1b+9.2+9.3+9.4). Internal smoke G-I4: 10k req @1113 rps, p95=138ms, projection<1s, PII 7/7, idempotency. Узкое место MVP снято.
+> - ✅ **WP-228 v2 → v2.4** (22–26 апр): 9→**12 БД** v2.3 целевая карта; **v2.4 mutual read-only LMS↔Neon transition** добавлено сегодня. WP-228 в passive testing.
+> - ✅ **WP-268 ALL DONE** (26 апр, день): 6 БД (persona, subscription, indicators, learning, knowledge dev, finance) + Tseren end-to-end переехали в новую архитектуру за один день. Bridge-2 backfill mutual read-only.
+> - ✅ **WP-187 Ф-M.1** (24 апр): lazy-heal + bulk backfill 482/491 orphan grants (после инцидента Milla 21 апр).
+> - ✅ **ADR-IWE-014 accepted** (26 апр): «Граница L2/L3 — open-core IWE-платформа» (WP-250 Ф-F.1). Митигация Эволюционируемости + Безопасности из ArchGate Ф-F.
+> - ✅ **WP-263 DONE**: ARCH-version drift detector + явное `version:` в 7 ARCH frontmatters.
+> - ✅ **WP-266 Ф1-Ф4 DONE** (25 апр): «Гостевой пропуск» концепция v2 + DP.SC.125 + раздел в Концепции подписок (Ф5 заблокирован PMF Gate).
+> - 🟡 **WP-262 создан** (24 апр): «Бот как тонкий клиент» — Q2-Q3 после 1 мая.
+> - 🟡 **Aisystant MCP rebrand** (WP-259): IWE Knowledge Gateway → Aisystant MCP. Display vs machine identity HD.
+> - ❗ **Решение Tseren 26 апр (вечер):** WP-268 Phase 2 — **cut-over вместо dual-write soak**. Срок: cut-over 29 апр, DROP legacy 1 мая.
 
 ---
 
-**А. Компактная выжимка ключевых решений** *(запрос Андрея на встрече 9)*
+### А. WP-268 Phase 2 — Cut-over vs Dual-Write Soak vs Hybrid (главный вопрос)
 
-На встрече 19 апр Андрей озвучил: «может как-то получится у тебя, например, вытащить оттуда только прям ключевые решения, которые приняты, без понимания "для кого этот документ"». Подготовлена выжимка [WP-73-architecture-key-decisions.md](WP-73-architecture-key-decisions.md) — ~10 KB вместо 200 KB полного.
+> **Контекст:** сегодня (26 апр) за один день переехали 6 БД в новую архитектуру через **mutual read-only LMS↔Neon transition** + Bridge-2 backfill. Bot dual-write Phase A написан в ветке `wp268-dual-write-phase-a`. Tseren принял решение ускорить cut-over вместо классического dual-write soak (14 дней до DROP).
+
+**Три варианта стратегии перехода:**
+
+| Вариант | Срок до cut-over | Risk uptime | Code changes | Rollback |
+|---------|------------------|-------------|--------------|----------|
+| **Dual-Write Soak (изначальный план)** | 14 дней (DROP 14-15 мая) | низкий (legacy backup) | dual-write helpers (минимум) | мгновенный (feature flag) |
+| **Cut-Over (решение Tseren 26 апр)** | 3-5 дней (DROP 30 апр – 1 мая) | средний (нет soak validation) | rewrite writers полностью на новые БД | полный revert deploy + restore БД |
+| **Hybrid (компромисс)** | ~7 дней | средне-низкий | A: dual-write для critical state; B: cut-over для high-volume events | смешанный по типам writers |
+
+**Cut-over plan (по дням):**
+- **Пн 27 апр** — Strategy Session утвердить стратегию + Bridge-2 deploy + bot rewrite Phase A merge
+- **Вт 28 апр** — bot rewrite Phase B (events.py:log_event central) + parity verify + 24h pilot soak
+- **Ср 29 апр** — Production cut-over deploy + 5 core-team на cut-over prod
+- **Чт 30 апр** — production soak + decision DROP
+- **Пт 1 мая** — DROP digitaltwin + neondb + directus (aist_bot и platform — после exclusive tables ETL)
+
+**Что меняется в коде бота (cut-over):**
+- `users` → `persona.ory_identity` (single-write, не dual)
+- `digital_twins` → `indicators.calculated_profile`
+- `subscription_grants` → `subscription.contract`
+- `qa_history`, `notification_log`, `request_traces` → `learning.domain_event` (event_type=*)
+- `user_events` → POST в event-gateway
+- DEPRECATED: `DATABASE_URL`, `DT_DATABASE_URL`. ADDED: `PERSONA_URL`, `INDICATORS_URL`, `SUBSCRIPTION_URL`, `LEARNING_URL`, `KNOWLEDGE_URL`, `EVENT_GATEWAY_URL`.
+
+**Что просим от Андрея:**
+1. Согласие на **cut-over** (vs dual-write 14 дней vs hybrid).
+2. Замечания к Pre-cutover verify: count parity между legacy (на момент freeze) и новыми БД — что считать «достаточным» для go/no-go cut-over?
+3. Mitigations risks: regression в bot rewrite + lost data между freeze и cut-over + schema mismatch.
+4. **Critical:** `platform` БД содержит service tables (audit/concept_graph/health/knowledge/points/sync_state) которые bot читает — нужен audit «что bot READS из legacy?» перед cut-over. Кто делает?
+
+📄 [WP-268 Phase 2 cut-over strategy](../../../DS-my-strategy/inbox/WP-268-cutover-strategy.md)
+
+---
+
+### Б. DP.ARCH.004 v2.4 — Mutual read-only LMS↔Neon transition (утверждение pattern'а)
+
+> **Контекст:** добавлено в DP.ARCH.004 v2.4 сегодня (commit `0ae7caf`). Это новый паттерн миграции: на время перехода LMS читает Neon (через FDW/read-only view), Neon читает LMS — без write conflicts. Bridge-2 = backfill events poller.
 
 **Что утверждаем:**
-- Выжимка отражает фактическое состояние архитектуры на 19 апр.
-- Формат подходит для еженедельной сверки (не для глубоких решений — там читаем полный WP-73).
-- Поддерживаем вручную после каждой встречи.
+- Mutual read-only — рабочий паттерн для переезда между legacy и new архитектурой.
+- Bridge-2 (events poller, Railway) — операционный компонент на время transition; после DROP legacy выводится из эксплуатации.
+- Application reads через connection pool с явным `read_only=true` для legacy БД после freeze.
+
+**Связь с DP.ARCH.001 принцип 26 (новый):** «read-only mode для скиллов с side-effects» — добавлено сегодня (commit `99669fe`). Скилл может писать → может ломать состояние; в транзитный период writes ограничены белым списком.
+
+**Что просим от Андрея:** review pattern'а + замечания к границам применимости. Когда mutual read-only лучше чем blue-green deploy с DNS switchover?
+
+📄 [DP.ARCH.004 v2.4](../../../PACK-digital-platform/pack/digital-platform/02-domain-entities/DP.ARCH.004-neon-data-architecture.md)
 
 ---
 
-**Б. ER-диаграммы 9 БД — только физ.объекты** *(WP-228 Ф9)*
+### В. ADR-IWE-014 — Граница L2/L3 (open-core IWE-платформа)
 
-На встрече 9 Андрей: ER-диаграмма должна показывать физ.объекты домена (курс СМ-2026-S2, подписка-контракт Тсерена 01.04–01.07, конкретный сервер GitHub), **не** technical relations (session, request, audit_log, промежуточные M:N-таблицы).
+> **Контекст:** ArchGate Ф-F прошёл 22 апр; сегодня формализован ADR в [ADR-IWE-014-l2-l3-boundary.md](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/System-Implementations/ADR-IWE-014-l2-l3-boundary.md). Митигация ⚠️ Эволюционируемости + ⚠️ Безопасности из профиля ЭМОГССБ.
 
-**Зафиксировано в Pack:**
-- HD: «ER-диаграмма ≠ Физическая схема БД» → [distinctions.md](../../../../.claude/rules/distinctions.md)
-- HD: «Объект ≠ Отношение (тест имя собственное + показать пальцем)»
-- Метод: [DP.METHOD.040-er-modeling.md](../../../../PACK-digital-platform/pack/digital-platform/03-methods/DP.METHOD.040-er-modeling.md) — 8 секций: принципы, нотация Chen, правила трансформации ER→RDBMS, чек-лист, антипаттерны.
-- ADR: [DP.ARCH.004-decisions.md](../../../../PACK-digital-platform/pack/digital-platform/02-domain-entities/DP.ARCH.004-decisions.md) — 3 решения (Metabase DB #7, ContentPipeline DB #9, ER-правила разнесены).
+**Принято (Tseren, 26 апр):**
+- **L2 = общая платформа** (runtime под подпиской): MCP/Gateway, Knowledge-агенты, Память пользователя в Neon (events, payments, subscriptions, расчёты).
+- **L3 = персональный IWE пользователя** (Git): Pack-personal, captures, Lifework, Persona Git, preferences. Writer = пользователь, owner = его Git.
+- **Pack-platform публичная часть** (FPF, ZP, SOTA, базовые методы) — открыта на GitHub public.
 
-**Что смотрим:** ER-диаграммы по каждой из 9 БД (§5 DP.ARCH.004). Особое внимание: Product как конкретный курс/семинар (не абстрактный catalog entry), Subscription как контракт-документ.
+**Альтернативы зафиксированы как open** (триггеры пересмотра прописаны в ADR):
+- B. Моноуровневая SaaS — при регуляторном требовании РФ
+- C. Push-only L3 — при критическом падении CAC модели подписки
+- D. Трёхуровневая L1+L2+L3 — при требовании self-hostable L1
 
-**Вопрос к Андрею:** нотация Chen vs Crow's Foot — подтвердить выбор? Правила трансформации 1:1 / 1:N / M:N / IS-A — замечания?
-
----
-
-**В. Безопасность** *(запрос Tseren, встреча 9)*
-
-Три подвопроса:
-1. **B7.3 — ревью архитектуры безопасности от Паши.** Паша — кандидат на внутреннего ревьюера. Что именно ревьюим: модель RLS + MCP-верификацию JWT + subscription_grants как источник истины?
-2. **B7.4 — внешний human-аудит.** Кандидат на Q3 2026, после MVP. Кого звать? Формат?
-3. **B7.5 — формализация процесса аудита изменений.** Сейчас: ArchGate в CLAUDE.md. Достаточно? Нужен отдельный чек-лист Security Gate для ЧД-изменений?
-
-**WP-212 статус:** 49/65 задач (14 апр). RLS раскатана на 5 таблицах. B4.23 пр.1+2 незаблокированы.
+**Что просим от Андрея:**
+1. Согласие с границей L2/L3 как канонической для downstream-РП (WP-258 Plugin API L2, WP-262 Бот тонкий клиент, WP-188 Ф10.0 Landing).
+2. Замечания к матрице сервис×слой (ADR §3.2).
+3. Триггеры пересмотра — достаточны? Чего не хватает?
 
 ---
 
-**Г. Keto — статус** *(открыт с 9 апр, перенесён через встречи 6–9)*
+### Г. Открытые с встречи 10 — статус
 
-Задеплоен? URL для `POST /check`? Карта permissions готова (6 ns, 45 perm, 11 role-groups) — нужно подтверждение чтобы двигаться в WP-214 Ф3.
+| Вопрос | Статус 26 апр | Действие |
+|--------|---------------|----------|
+| **B7.3 ревью безопасности (Паша)** | отложено до после MVP 1 мая | подтвердить отложение (Q2-режим) |
+| **B7.4 внешний human-аудит** | Q3 2026 | без изменений |
+| **B7.5 Security Gate в CLAUDE.md** | RTM batch Евгения 10/10 ✅ (commit `eae4d7c`) — отдельный Security Gate чек-лист пока не требуется | подтвердить — текущий ArchGate достаточен |
+| **Г. Keto статус** | подвисло, обсуждать после MVP | подтвердить отложение |
 
-**Зависимость:** WP-214 Ф3 (Cedar conditions с sub=ory_id) ждёт ответа. Альтернатива — делать Cedar напрямую без Keto, если тот не нужен.
+---
+
+### Г2. Hetzner-сервер — статус WP-138 ✅ (закрыт TG-диалогом 15:46)
+
+> **Контекст:** сервер Hetzner куплен 1 апр 2026 (WP-70 DONE) — Intel Xeon E3-1275V6 / 64GB DDR4 / 2× NVMe 512GB / Finland HEL1-DC2. **$53.43/мес**.
+
+**Решения из TG-диалога Tseren↔Andrey 26 апр 15:03–15:46:**
+- Андрей: настройка сервера = **недостающий компонент платформы автоматизации инфраструктуры** (NixOS+автодеплой), займётся «скоро».
+- Tseren: «могу сам сейчас этот сервер загрузить руками» — ✅ Андрей подтвердил.
+- Andrey: «но для платформы его придётся очистить, так как это фактически переустановка ос. Можем потом взять новый и перенести туда всё».
+
+**План Tseren:** «Времянка с эвакуацией» — Ф0 руками сегодня вечером (4-6h: pre-prod Postgres + backup в B2 + embedding service). Всё восстанавливается из git за 1-2h после переустановки. Bridge-2/rewards-worker не переносим (state risk).
+
+**Открытое (фоновый follow-up Андрею):** уточнить таймлайн «скоро» (недели/месяц/квартал) — от этого зависит объём вложений в текущий сервер. На встрече 11 поднимать не надо.
+
+---
+
+### Д. Краткий статус остальных РП (FYI, без вопросов)
+
+- ✅ **WP-228 Ф24-Ф30 DONE**: карта 12 БД v2.3 → v2.4 mutual read-only. Passive testing.
+- ✅ **WP-244 LIVE**: status.aisystant.com, [@aisystant_status](https://t.me/aisystant_status), /status в боте.
+- ✅ **WP-187 Ф-M.1 DONE**: 482/491 orphan grants backfilled.
+- ✅ **WP-263 DONE**: ARCH-drift detector + version frontmatters в 7 файлах.
+- ✅ **WP-266 Ф1-Ф4 DONE**: «Гостевой пропуск» концепция v2 + DP.SC.125. Ф5 blocked PMF Gate.
+- ✅ **WP-7 RTM 0.28.5**: red-team Евгения 10/10 ✅.
+- ✅ **WP-265 Ф5 DONE**: dry-run контракт через ArchGate v3.
+- ✅ **WP-217 Ф9+Ф9a**: capture-bus промоцирован в FMT v0.28.3.
+- 🟡 **WP-262 создан**: «Бот тонкий клиент». Активация Q2-Q3 после 1 мая.
+- 🟡 **WP-258 создан**: Plugin API L2 (после ADR-IWE-014).
+- 🟡 **WP-259 Aisystant MCP rebrand**: production stale 14 дней (re-deploy планируется в W18).
 
 </details>
 
@@ -87,56 +166,33 @@ source: встречи 1–9 (29 мар → 19 апр)
 ## Решения на утверждение
 
 <details open>
-<summary><b>Р-MVP-Freeze. Q2 режим: поддержание, не развитие</b></summary>
+<summary><b>Р-CutOver. WP-268 Phase 2 стратегия перехода</b></summary>
 
-**Что утверждаем:** пока гипотеза массового продукта через подписку не подтверждена, инфраструктуру не развиваем, поддерживаем под MVP.
+**Что утверждаем:** одна из трёх стратегий перехода legacy → new Neon architecture.
 
-**Основание:** решение встречи 9 (19 апр). 11 лет курсов не взлетели — **тестируем** IWE как массовую среду через адаптивную персонализацию. До подтверждения гипотезы — фокус на MVP, не на архитектурное расширение.
+**Варианты:** Cut-over (3-5 дней) / Dual-Write soak (14 дней) / Hybrid.
 
-**Режим по РП:**
+**Рекомендация Tseren:** Cut-over (решение 26 апр вечер) — «не растягивать переходный режим».
 
-| РП | Q2 режим | Примечание |
-|----|----------|------------|
-| WP-73 (архитектурный план) | **поддержание** | обновления по запросу |
-| WP-183 (payments) | **MVP** | payment-registry DB #4: YooKassa + Stripe + Stars, портирование autopay (WP-246) |
-| WP-187 (Knowledge Gateway) | **MVP** | до фиксации MVP |
-| WP-212 (security) | **поддержание** | RLS раскатана. B7 (аудит) — по запросу |
-| **WP-215 (РФ/мир split)** | **frozen** | заморожен до подтверждения гипотезы массового продукта |
-| WP-228 (карта данных) | **active** | ER-диаграммы Ф9 |
-| WP-244 (health DB #8) | **active** | internal health + Grafana, publ. status page — SaaS |
-| WP-250 (план 2026) | **active** | умбрелла |
-
-**Что просим от Андрея:** согласие на Q2-режим. Приоритет: MVP + массовый продукт. Не расширяем инфру, не вкладываемся в РФ/мир split сейчас.
+**Что просим от Андрея:** согласие или контр-аргумент. Если Hybrid — какие writers оставляем dual, какие на cut-over.
 
 </details>
 
 <details open>
-<summary><b>Р-ER-Guidelines. Правила ER-моделирования (WP-228 Ф9)</b></summary>
+<summary><b>Р-MutualReadOnly. Pattern миграции LMS↔Neon</b></summary>
 
-**Что утверждаем:** правила ER-моделирования, зафиксированные 19 апр после обсуждения с Андреем.
+**Что утверждаем:** mutual read-only LMS↔Neon transition + Bridge-2 (events poller, Railway) — рабочий паттерн на время transition.
 
-**Три правила:**
-1. **ER ≠ Физ.схема.** ER показывает концепт домена (нотация Chen), независима от PostgreSQL. Физ.схема — таблицы, колонки, индексы, FK, типы.
-2. **Объект ≠ Отношение.** На ER только физ.объекты (человек, курс, подписка-контракт, платёж, сервер). Технические отношения (session, request, audit_log) — не узлы, а линии или вообще не на ER.
-3. **Размещение:** метод ER-моделирования (с нотацией и правилами трансформации) → в Pack как `DP.METHOD.040`. Различения (пары терминов) → в `.claude/rules/distinctions.md`. SPF не используется (запрет доменного содержания).
-
-**Что просим от Андрея:** (а) подтвердить выбор нотации Chen; (б) принять размещение (Pack для метода, distinctions для HD); (в) замечания к правилам трансформации 1:1 / 1:N / M:N / IS-A.
-
-**Результат:** на встрече — готовые ER-диаграммы 9 БД для ревью (DP.ARCH.004 §5, Ф9 результат).
+**Что просим от Андрея:** review границ применимости (vs blue-green deploy).
 
 </details>
 
 <details>
-<summary><b>Р-Audit-Process. Формализация процесса аудита безопасности (B7.5)</b></summary>
+<summary><b>Р-OpenCore. ADR-IWE-014 граница L2/L3</b></summary>
 
-**Что утверждаем:** процесс аудита изменений безопасности — отдельный Security Gate в CLAUDE.md для изменений, затрагивающих PII / payment_credentials / RLS.
+**Что утверждаем:** двухуровневая open-core IWE-платформа как канонический паттерн для downstream-РП.
 
-**Предложение:**
-- Ревьюер: Паша (для RLS/MCP/ORY), Дима (для платежей), Tseren (финальный).
-- Триггер: любое изменение таблицы с PII, любое новое правило RLS, любой новый JWT-flow.
-- Формат: чек-лист в PR-комментарии + ArchGate при существенных решениях.
-
-**Вопрос к команде:** достаточно ли текущего ArchGate, или нужен отдельный Security Gate с чек-листом?
+**Что просим от Андрея:** согласие с матрицей сервис×слой и триггерами пересмотра.
 
 </details>
 
@@ -147,35 +203,37 @@ source: встречи 1–9 (29 мар → 19 апр)
 
 | # | Вопрос | Решение | Дата |
 |---|--------|---------|------|
-| **Россия/мир** | Разделение инфраструктуры | ✅ Полное разделение финансов по юрлицам. Инфра дублируется. Сообщество — общее. → WP-215 (заморожен 19 апр) | 9 апр |
-| **CRM** | Отдельный сервис | ✅ Выделяем отдельный сервис учёта оплат (не часть LMS). Neon. | 9 апр |
-| **Neon** | Одна база | ✅ Одна `platform` со схемами (12–13 апр). Целевое: 9 БД (19 апр) | 9 / 13 / 19 апр |
-| **Сервер** | Activity Hub, Langfuse | ⏸️ Заморожено на Q2 (не AI-агент → не платформа Андрея) | 9 апр |
-| DE-34 + Р4 | Identity: ory_id | ✅ Не добавлять lms_id в Ory traits. Везде ory_id. | 7 апр |
-| DE-36 | Клуб → Ory | ✅ Паша передоплывает в новую инфраструктуру с нуля. | 12 апр |
-| ЦД ↔ LMS | Интеграция | ✅ Подтягивать при первом входе (не массовая миграция). | 7 апр |
-| Git | Хранилище | ✅ Git = primary. | 7 апр |
-| Удаление | Мягкое | ✅ Флаг «заархивировано». | 7 апр |
-| Gateway | Прозрачный прокси | ✅ Не фильтрует, не нормализует. | 5 апр |
-| Knowledge base | Разделение | ✅ Личная/проектная/публичная — разные репо, один способ. | 5 апр |
-| Gate T2+ | Keto permissions | ✅ Permissions → роли. Начать с семинаров. | 5 апр |
-| Ory URL | Keto URL | ⏳ Keto — ждём Пашу (задеплоен?). | 5 апр |
-| GDPR | Трансграничная передача | ⏸️ Отложено. Нужна юрконсультация. | 5 апр |
-| **kid="" природа** | JWT kid в Ory токене | ✅ Распутано 12 апр. access_token подписан Hydra-ключом `hydra.jwt.access-token` (не публикуется в JWKS). Fixed 14 апр | 12–14 апр |
-| **gateway-mcp архитектура** | JWT vs opaque | ✅ Уточнено Андреем: проблема в логике сервиса, не в типе токена. | 12 апр |
-| **Staging-таблица бота** | ЦД без Ory | ✅ Таблица бота сохраняется как staging. | 12 апр |
-| **Разделение платформ** | Андрей vs Паша | ✅ AI-агенты → Андрей. Инфра → Паша в облаке. | 12 апр |
-| **Архитектура MCP-безопасности** | RLS + JWT двухшаговая | ✅ Принято 13 апр. Шаг 1 = Вариант A (SET LOCAL). Шаг 2 = JWT через JWKS. | 13 апр |
-| **Neon консолидация** | Одна база `platform` | ✅ DONE (WP-232). Все сервисы на `platform`. | 13 апр |
-| **Реестр подписок** | subscription_grants | ✅ DONE. 2740/771 активных. GHA cron. Единый источник истины. | 13 апр |
-| **kid="" фикс** | JWKS gateway-mcp | ✅ DONE 13 апр. JWT-верификация в knowledge-mcp задеплоена. | 13 апр |
-| **WP-212 B4.22+23+24** | RLS + asyncpg wrapper | ✅ DONE 13 апр. 25/65. | 13 апр |
-| **Вариант E (ADR-IWE-012)** | MCP independent JWT verification | ✅ Принято 14 апр. Каждый MCP верифицирует Ory JWT (RS256 JWKS). Neon Authorize упразднён. | 14 апр |
-| **DB #8 health (ADR-IWE-013)** | Наблюдаемость изолирована | ✅ ArchGate пройден 15 апр. | 15 апр |
-| **9 БД архитектура (WP-228)** | Metabase #7, ContentPipeline #9 | ✅ ArchGate 19 апр. DP.ARCH.004 обновлён. | 19 апр |
-| **Q2 freeze WP-215** | Массовый vs нишевый продукт | ✅ Гипотеза: подписка = массовый продукт через адаптивную персонализацию. РФ/мир split заморожен до подтверждения. | 19 апр |
-| **ER-guidelines** | Только физ.объекты, Chen notation | ✅ HD + метод в Pack (DP.METHOD.040). | 19 апр |
-| **Public status page** | Готовый SaaS | ✅ Better Uptime / Statuspage.io — не своя реализация. Internal health (DB #8) отдельно. | 19 апр |
+| **Россия/мир** | Разделение инфраструктуры | ✅ Полное разделение финансов по юрлицам. → WP-215 (заморожен 19 апр) | 9 апр |
+| **CRM** | Отдельный сервис | ✅ Выделяем отдельный сервис учёта оплат | 9 апр |
+| **Neon** | Одна база | ✅ `platform` со схемами (12-13 апр). Целевое: 9→**12 БД** v2.3 (26 апр) | 9 / 13 / 19 / 26 апр |
+| **Сервер** | Activity Hub, Langfuse | ⏸️ Заморожено на Q2 | 9 апр |
+| DE-34 + Р4 | Identity: ory_id | ✅ Только ory_id. | 7 апр |
+| DE-36 | Клуб → Ory | ✅ Паша передоплывает с нуля | 12 апр |
+| ЦД ↔ LMS | Интеграция | ✅ Подтягивать при первом входе | 7 апр |
+| Git | Хранилище | ✅ Git = primary | 7 апр |
+| Удаление | Мягкое | ✅ Флаг «заархивировано» | 7 апр |
+| Gateway | Прозрачный прокси | ✅ Не фильтрует, не нормализует | 5 апр |
+| Knowledge base | Разделение | ✅ Личная/проектная/публичная | 5 апр |
+| Gate T2+ | Keto permissions | ✅ Permissions → роли | 5 апр |
+| Ory URL | Keto URL | ⏳ Подвисло, обсуждать после MVP | 5 апр |
+| GDPR | Трансграничная передача | ⏸️ Отложено | 5 апр |
+| **kid="" природа** | JWT kid в Ory токене | ✅ Распутано 12 апр; Fixed 14 апр | 12-14 апр |
+| **Архитектура MCP-безопасности** | RLS + JWT двухшаговая | ✅ ADR-IWE-010 | 13 апр |
+| **Neon консолидация** | Одна база `platform` | ✅ ADR-IWE-009 (WP-232) | 13 апр |
+| **Реестр подписок** | subscription_grants | ✅ ADR-IWE-011. 2740/771 активных | 13 апр |
+| **Вариант E** | MCP independent JWT verification | ✅ ADR-IWE-012 | 14 апр |
+| **DB #8 health** | Наблюдаемость изолирована | ✅ ADR-IWE-013 | 15 апр |
+| **9 БД** | Целевая архитектура (WP-228) | ✅ ArchGate. Эволюция → 12 БД v2.3 (26 апр) | 19 апр |
+| **Q2 freeze WP-215** | Массовый vs нишевый продукт | ✅ Гипотеза: подписка = массовый продукт через адаптивную персонализацию | 19 апр |
+| **ER-guidelines** | Только физ.объекты, Chen notation | ✅ HD + DP.METHOD.040 | 19 / 21 апр |
+| **Public status page** | Готовый SaaS | ✅ Better Uptime LIVE 24 апр | 19 / 24 апр |
+| **WP-244 observability** | LIVE end-to-end | ✅ status.aisystant.com + 11 monitors + /status в боте | 24 апр |
+| **WP-253 Ф9** | Event-gateway + projection-worker | ✅ LIVE, 4 gates PASS, узкое место MVP снято | 24-25 апр |
+| **ADR-IWE-014** | Граница L2/L3 open-core | ✅ Accepted (Tseren) | 26 апр |
+| **DP.ARCH.004 v2.4** | Mutual read-only LMS↔Neon | ✅ Pattern добавлен | 26 апр |
+| **DP.ARCH.001 принцип 26** | Read-only mode для скиллов с side-effects | ✅ Принято | 26 апр |
+| **WP-268 6 БД** | Переезд за день | ✅ DONE 26 апр | 26 апр |
+| **WP-268 cut-over vs dual-write** | Стратегия перехода | 🔄 На встрече 11 (26 апр) | 26 апр |
 
 </details>
 
