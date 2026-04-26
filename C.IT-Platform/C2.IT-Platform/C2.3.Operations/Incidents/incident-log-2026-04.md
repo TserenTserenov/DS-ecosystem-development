@@ -20089,3 +20089,173 @@ notes: |
   }
 }
 ```
+
+## 2026-04-26T08:34:17+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Это авторская кастомизация в workspace (в FMT этой строки нет — в FMT `check-dirty-repos.sh` живёт в week-close). Update",
+      "- Либо разрешить мне через явное «правь workspace day-close» (тогда обхожу gate cp/sed через Bash). "
+    ],
+    "session_id": "05c08e6a-621d-4ab0-9486-0f365da4d196"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T08:55:36+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- ⚠️ Мостик слабоват. Можно явно назвать: **дуга мировоззрения FORM.080** + **ролевая траектория FORM.087** (Ученик → Пр"
+    ],
+    "session_id": "4629f2aa-d056-479e-a14a-c6586411f46b"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T08:56:14+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "- ⚠️ Мостик слабоват. Можно явно назвать: **дуга мировоззрения FORM.080** + **ролевая траектория FORM.087** (Ученик → Пр",
+      "Принял. Нарушение P5: завершил вопросом «Согласовываем правки P1+P2 или сначала только P1?» — это запрос разрешения, хот"
+    ],
+    "session_id": "4629f2aa-d056-479e-a14a-c6586411f46b"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T08:57:15+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "2. **Миграция = отдельный большой проект.** Схемы legacy ≠ новые ER (DP.ARCH.004 v2.2 с маркерами О/С/Р/К). Нужны mapper"
+    ],
+    "session_id": "ca5d0815-ee02-44b1-8f14-3a04695b480f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T08:57:43+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "2. **Миграция = отдельный большой проект.** Схемы legacy ≠ новые ER (DP.ARCH.004 v2.2 с маркерами О/С/Р/К). Нужны mapper"
+    ],
+    "session_id": "ca5d0815-ee02-44b1-8f14-3a04695b480f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T09:24:21+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P1_not_capturing",
+    "severity": "minor",
+    "description": "Write в feedback_behaviour.md без ссылки на паттерн (pattern: P{N} / DP.FM.). Проверь DP.FM.010 перед записью нового правила (DP.FM.011 §Correction).",
+    "tool_context": {
+      "tool_name": "Edit",
+      "file_path": "/Users/tserentserenov/.claude/projects/-Users-tserentserenov-IWE/memory/feedback_behaviour.md",
+      "snippet": "**Правило.** Когда пользователь присылает evidence pack / список багов / список замечаний с N пунктами, отрабатывать **�"
+    }
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/FMT-exocortex-template"
+  }
+}
+```
+
+## 2026-04-26T09:59:32+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Три варианта что делать дальше: "
+    ],
+    "session_id": "eb6191f9-5693-4bc4-80b8-db808b2fd9ad"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-26T10:28:46+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "| БД | Source-of-truth | Можно ли удалить после перелива | Что хранит | "
+    ],
+    "session_id": "ca5d0815-ee02-44b1-8f14-3a04695b480f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
