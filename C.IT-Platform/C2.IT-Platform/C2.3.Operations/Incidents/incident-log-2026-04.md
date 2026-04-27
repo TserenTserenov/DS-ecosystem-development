@@ -21167,3 +21167,515 @@ vs реальный permission-request: «**можно/могу ли я** + Y?»
   }
 }
 ```
+
+## 2026-04-27T09:51:34+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "## Можно ли сегодня переключить старые БД на новые и удалить старые? "
+    ],
+    "session_id": "50cdab15-def3-4d66-8dd1-b17b08cd8f49"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T09:52:26+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "## Можно ли сегодня переключить старые БД на новые и удалить старые? "
+    ],
+    "session_id": "50cdab15-def3-4d66-8dd1-b17b08cd8f49"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T10:02:36+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "## Можно ли «в одной сессии» — нет "
+    ],
+    "session_id": "50cdab15-def3-4d66-8dd1-b17b08cd8f49"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T10:02:48+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "## Можно ли «в одной сессии» — нет "
+    ],
+    "session_id": "50cdab15-def3-4d66-8dd1-b17b08cd8f49"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T10:06:58+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "## Можно ли «в одной сессии» — нет "
+    ],
+    "session_id": "50cdab15-def3-4d66-8dd1-b17b08cd8f49"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T11:40:34+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "> **Бонусом — твой 08:10 вопрос про dirty FMT** разрешён архитектурно (вариант B, расширенный до Generated runtime, анал"
+    ],
+    "session_id": "b2863a15-b5cc-43f9-8564-e783ae174f5e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T11:41:09+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "> **Бонусом — твой 08:10 вопрос про dirty FMT** разрешён архитектурно (вариант B, расширенный до Generated runtime, анал",
+      "False positive P5-детектора. В сообщении нет yes/no-запроса разрешения к тебе. Триггер — фраза «твой 08:10 вопрос про di",
+      "- «Если что-то ещё всплывёт — пиши» — invitation Дмитрию, не запрос разрешения "
+    ],
+    "session_id": "b2863a15-b5cc-43f9-8564-e783ae174f5e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T11:43:56+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "> **Бонусом — твой 08:10 вопрос про dirty FMT** разрешён архитектурно (вариант B, расширенный до Generated runtime, анал",
+      "False positive P5-детектора. В сообщении нет yes/no-запроса разрешения к тебе. Триггер — фраза «твой 08:10 вопрос про di",
+      "- «Если что-то ещё всплывёт — пиши» — invitation Дмитрию, не запрос разрешения "
+    ],
+    "session_id": "b2863a15-b5cc-43f9-8564-e783ae174f5e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T11:44:54+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 4 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 4,
+    "examples": [
+      "> **Бонусом — твой 08:10 вопрос про dirty FMT** разрешён архитектурно (вариант B, расширенный до Generated runtime, анал",
+      "False positive P5-детектора. В сообщении нет yes/no-запроса разрешения к тебе. Триггер — фраза «твой 08:10 вопрос про di",
+      "- «Если что-то ещё всплывёт — пиши» — invitation Дмитрию, не запрос разрешения "
+    ],
+    "session_id": "b2863a15-b5cc-43f9-8564-e783ae174f5e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T11:45:12+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 4 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 4,
+    "examples": [
+      "False positive P5-детектора. В сообщении нет yes/no-запроса разрешения к тебе. Триггер — фраза «твой 08:10 вопрос про di",
+      "- «Если что-то ещё всплывёт — пиши» — invitation Дмитрию, не запрос разрешения ",
+      "Привет! Закрыли все пять пунктов из твоего разбора — опечатку в скрипте аудита, несовместимость команды получения времен"
+    ],
+    "session_id": "b2863a15-b5cc-43f9-8564-e783ae174f5e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T13:13:25+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Не делать без разрешения: переписывать rewards-projection-worker — он LIVE и работает. "
+    ],
+    "session_id": "cc01f132-cb08-4c3e-af9a-5024c5eaa9c3"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T14:23:36+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "✅ **17 rows + processed_events seeded + 3 roles + privileges OK.** Замечание: на `subscription.contract_event` и `indica"
+    ],
+    "session_id": "e97ef718-2bf7-4d0f-8a6e-edf81a4e4c53"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T14:34:55+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P1_not_capturing",
+    "severity": "minor",
+    "description": "Write в feedback_behaviour.md без ссылки на паттерн (pattern: P{N} / DP.FM.). Проверь DP.FM.010 перед записью нового правила (DP.FM.011 §Correction).",
+    "tool_context": {
+      "tool_name": "Edit",
+      "file_path": "/Users/tserentserenov/.claude/projects/-Users-tserentserenov-IWE/memory/feedback_behaviour.md",
+      "snippet": "**Правило.** Когда добавляешь exclusion / pattern / filter в один из чеков валидатора (или любого скрипта с симметричными че"
+    }
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/FMT-exocortex-template"
+  }
+}
+```
+
+## 2026-04-27T15:02:44+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "| `memory/hard-distinctions.md` | Различение «Байесовское наблюдение ≠ Quantum-like вмешательство». Тест: меняет ли набл"
+    ],
+    "session_id": "e6d9b249-c791-4bde-bb16-b340f66490b4"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T15:10:19+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Хочешь — сделаю **read-only аудит конфигов** (детальный GET по каждому monitor, проверка regions/intervals/SSL/keyword) "
+    ],
+    "session_id": "270c1c15-8858-4750-8a68-3301c86d0208"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T15:12:18+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Хочешь — сделаю **read-only аудит конфигов** (детальный GET по каждому monitor, проверка regions/intervals/SSL/keyword) "
+    ],
+    "session_id": "270c1c15-8858-4750-8a68-3301c86d0208"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T17:15:43+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "| **Репо** | `FMT-exocortex-template` (платформа). Author mode → прямое редактирование L1 разрешено. Затем `template-syn"
+    ],
+    "session_id": "51f7e727-0cf1-44b9-a342-9d0ab380e93e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T17:16:10+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "| **Репо** | `FMT-exocortex-template` (платформа). Author mode → прямое редактирование L1 разрешено. Затем `template-syn"
+    ],
+    "session_id": "51f7e727-0cf1-44b9-a342-9d0ab380e93e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T17:18:37+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Делаем verify-backfill сейчас, или закрываем эту overrun-сессию и продолжаем завтра? "
+    ],
+    "session_id": "cc01f132-cb08-4c3e-af9a-5024c5eaa9c3"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T17:19:06+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Делаем verify-backfill сейчас, или закрываем эту overrun-сессию и продолжаем завтра? "
+    ],
+    "session_id": "cc01f132-cb08-4c3e-af9a-5024c5eaa9c3"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T17:19:35+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Делаем verify-backfill сейчас, или закрываем эту overrun-сессию и продолжаем завтра? "
+    ],
+    "session_id": "cc01f132-cb08-4c3e-af9a-5024c5eaa9c3"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T17:21:55+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Делаем verify-backfill сейчас, или закрываем эту overrun-сессию и продолжаем завтра? "
+    ],
+    "session_id": "cc01f132-cb08-4c3e-af9a-5024c5eaa9c3"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T17:59:29+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "3. **«Хвост» с деталями закрытия добавляется после `~~ ~~`** — потому что markdown внутри (ссылки, code-blocks, эмодзи-м"
+    ],
+    "session_id": "fbddd66f-cd71-4389-878e-ee6f6f5327f7"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27T20:26:04+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- Security → разрешить группе `user-2896` (его личная группа, см. `user.groups` в API) с правом `Create / Reply / See` "
+    ],
+    "session_id": "1aff18d5-0cf6-472b-9492-7aaf6d77d926"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
