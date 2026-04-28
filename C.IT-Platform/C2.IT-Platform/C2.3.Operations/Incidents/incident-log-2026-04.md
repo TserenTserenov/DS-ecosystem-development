@@ -21786,23 +21786,50 @@ vs реальный permission-request: «**можно/могу ли я** + Y?»
 }
 ```
 
-## 2026-04-27 — digital-twin-mcp downtime (follow-up для root-cause)
+## 2026-04-27 — digital-twin-mcp silent zero-byte response (RESOLVED 27 апр через WP-275)
 
 ```yaml
-event_type: service_downtime
-service: digital-twin-mcp
-date: 2026-04-27
-discovery_source: Better Stack monitor (TG-уведомление в @aisystant_status)
-detection_status: ✅ работает (Better Stack отработал штатно)
-sla_impact: композитный SLA за месяц снизился со 100% до 98.5%
+event_type: service_silent_failure
+service: digital-twin-mcp (twin.aisystant.com)
+discovery_date: 2026-04-27
+resolution_date: 2026-04-27T13:22:51Z (16:22 МСК), confirmed 14:10:08Z (17:10 МСК)
+status: ✅ RESOLVED 27 апр (через WP-275 LIVE)
 disclosed_by: Tseren (встреча 12 ИТ-оперативки 28 апр 08:57-09:17 МСК)
 transcript: ~/Documents/Zoom/2026-04-28 08.57.42 Оперативка ИТ/transcript.txt
-status: open — нужен root-cause analysis
-followup:
-  - Кто: Tseren / Паша
-  - Что: проверить логи digital-twin-mcp за 27 апр (CF Workers logs / Sentry если есть)
-  - Когда: после MVP 1 мая (Q2-режим)
-  - Решение: было ли это deploy-related (WP-275 LIVE 27 апр + WP-269 read-path migration done 27 апр) или unrelated transient?
-  - Триггер мини-РП: если root-cause покажет системную проблему (regression от cut-over WP-268)
-related_wp: [WP-244, WP-275, WP-269]
+
+root_cause: |
+  CF Worker Route binding для twin.aisystant.com/* отсутствовал в deployed
+  wrangler.toml (потерян при предыдущих деплоях — wrangler config drift).
+  Cloudflare anycast принимал запросы и возвращал HTTP 200 с size 0 bytes
+  (no route → no worker → no content), но статус был 200.
+
+detection_gap: |
+  Better Stack monitor до 27 апр был на HTTP 200 status code → false-green
+  (200 + 0 bytes считалось OK). Реальное состояние не отражалось.
+  WP-275 LIVE 27 апр ввёл keyword-check monitors для всех 9 BU monitors
+  → keyword-check НЕ нашёл expected ключ → real failure detected → TG alert.
+
+resolution:
+  commit: 45d3acf (DS-MCP/digital-twin-mcp)
+  description: "config(wrangler): add twin.aisystant.com route binding"
+  deploys:
+    - 2026-04-27T13:22:51Z (16:22 МСК) — fix [[routes]] block в wrangler.toml
+    - 2026-04-27T14:10:08Z (17:10 МСК) — confirmation deploy через 50 мин
+  smoke_28_апр:
+    command: curl https://twin.aisystant.com/mcp
+    result: STATUS 200, SIZE 755 bytes, TIME 0.23s — работает
+sla_impact: композитный SLA за месяц 100% → 98.5% (исторический эффект до fix)
+
+lessons_learned:
+  - Паттерн HD: HTTP 200 monitor ≠ keyword-check (CF Worker без route → 200+0bytes silent)
+  - Wrangler config drift между main и deployed — нужен periodic check
+  - Better Stack keyword-check (введён WP-275) обязателен для всех CF Worker monitors
+
+mini_wp_needed: false
+reason: |
+  Resolved через WP-275 LIVE 27 апр. Lessons learned зафиксированы.
+  Кандидат на расширение WP-263 (ARCH-version drift detector) — periodic
+  wrangler config drift check. Не отдельный РП, мелкая задача в WP-263 backlog.
+
+related_wp: [WP-244, WP-275, WP-263]
 ```
