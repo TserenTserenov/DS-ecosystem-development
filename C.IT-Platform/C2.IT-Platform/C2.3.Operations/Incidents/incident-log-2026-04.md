@@ -21700,3 +21700,109 @@ vs реальный permission-request: «**можно/могу ли я** + Y?»
   }
 }
 ```
+
+## 2026-04-28T09:30:24+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Минусы:** объём, schema редизайн (DP.ARCH.004 описывает структуру normalized как DOCUMENT/PARAGRAPH/EMBEDDING — а pk-m"
+    ],
+    "session_id": "dde7701c-e0ab-4579-93e5-1db03f03bf63"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-28T09:34:41+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Сессия по WP-212 потратила ~6h (бюджет W18 был 3h). Дальнейшая работа на сегодня по WP-212 = diminishing returns. Если е"
+    ],
+    "session_id": "aa22bccf-b358-4d84-bc85-f28e7a6206a1"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-28T09:35:29+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Сессия по WP-212 потратила ~6h (бюджет W18 был 3h). Дальнейшая работа на сегодня по WP-212 = diminishing returns. Если е",
+      "Учёл — нарушил Правило 1, закончил «Что дальше?». Не повторю. "
+    ],
+    "session_id": "aa22bccf-b358-4d84-bc85-f28e7a6206a1"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-28T09:38:42+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "8. **Окно опережения сужается (enterprise AI orchestration → 40% к концу 2026)** — EY/Salesforce/JPMorgan на production-"
+    ],
+    "session_id": "12581ab0-f43c-4432-8bd6-c7816db2ab56"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-27 — digital-twin-mcp downtime (follow-up для root-cause)
+
+```yaml
+event_type: service_downtime
+service: digital-twin-mcp
+date: 2026-04-27
+discovery_source: Better Stack monitor (TG-уведомление в @aisystant_status)
+detection_status: ✅ работает (Better Stack отработал штатно)
+sla_impact: композитный SLA за месяц снизился со 100% до 98.5%
+disclosed_by: Tseren (встреча 12 ИТ-оперативки 28 апр 08:57-09:17 МСК)
+transcript: ~/Documents/Zoom/2026-04-28 08.57.42 Оперативка ИТ/transcript.txt
+status: open — нужен root-cause analysis
+followup:
+  - Кто: Tseren / Паша
+  - Что: проверить логи digital-twin-mcp за 27 апр (CF Workers logs / Sentry если есть)
+  - Когда: после MVP 1 мая (Q2-режим)
+  - Решение: было ли это deploy-related (WP-275 LIVE 27 апр + WP-269 read-path migration done 27 апр) или unrelated transient?
+  - Триггер мини-РП: если root-cause покажет системную проблему (regression от cut-over WP-268)
+related_wp: [WP-244, WP-275, WP-269]
+```

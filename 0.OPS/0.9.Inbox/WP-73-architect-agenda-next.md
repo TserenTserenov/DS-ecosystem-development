@@ -4,14 +4,14 @@ title: "ИТ-встречи с архитектором — повестка и 
 status: active
 created: 2026-04-01
 updated: 2026-04-28
-depends_on: WP-73, WP-228, WP-244, WP-250, WP-253, WP-258, WP-262, WP-265, WP-266, WP-268, WP-269, WP-270, WP-275
-source: встречи 1–11 (29 мар → 26 апр)
+depends_on: WP-73, WP-138, WP-228, WP-244, WP-250, WP-253, WP-258, WP-262, WP-265, WP-266, WP-268, WP-269, WP-270, WP-275, WP-276
+source: встречи 1–12 (29 мар → 28 апр)
 ---
 
 # ИТ-встречи с архитектором — повестка и решения
 
 <details>
-<summary><b>История встреч 1–11 (архив)</b></summary>
+<summary><b>История встреч 1–12 (архив)</b></summary>
 
 > **Встречи 1–5** закрыли: Блок А+Б+В, Keto-модель, Gateway, knowledge base, identity (ory_id), мягкое удаление, ЦД↔LMS, разделение Россия/мир, CRM = отдельный сервис.
 > **Встреча 6 (12 апр):** kid="" распутан, gateway-mcp уточнён. Принцип «платформа Андрея ↔ инфра Паши».
@@ -22,19 +22,28 @@ source: встречи 1–11 (29 мар → 26 апр)
 > **Встреча 11 (26 апр, оперативка + TG-диалог 15:03–15:46):**
 > - Обсуждены 4 темы: А WP-268 cut-over vs dual-write, Б DP.ARCH.004 v2.4 mutual read-only LMS↔Neon, В ADR-IWE-014 граница L2/L3, Г2 Hetzner-сервер.
 > - Утверждены: **Р-CutOver** (cut-over 3-5 дней вместо dual-write soak 14 дней — DROP 1 мая); **Р-MutualReadOnly** (pattern LMS↔Neon принят как рабочий, Bridge-2 операционный компонент на transition); **Р-OpenCore ADR-IWE-014** (двухуровневая open-core L2 платформа + L3 персональный IWE — каноничен для downstream WP-258/WP-262/WP-188).
-> - **Hetzner-сервер (Г2):** Tseren грузит руками («Времянка с эвакуацией» — pre-prod Postgres + B2 backup + embedding service); Андрей займётся NixOS+автодеплой «скоро» (таймлайн уточняется на встрече 12). Bridge-2/rewards-worker НЕ переносим (state risk).
-> - **Открыто (отложение Q2):** B7.3 ревью безопасности Паша → после MVP 1 мая; B7.4 внешний human-аудит → Q3; Г Keto статус → после MVP. Подтверждается на встрече 12.
+> - **Hetzner-сервер (Г2):** Tseren грузит руками («Времянка с эвакуацией»); Андрей займётся NixOS+автодеплой «скоро».
+> - **Открыто (отложение Q2):** B7.3 ревью безопасности Паша → после MVP 1 мая; B7.4 внешний human-аудит → Q3; Г Keto статус → после MVP.
+>
+> **Встреча 12 (28 апр, оперативка ИТ 08:57–09:17 МСК, ~20 мин):** transcript: `~/Documents/Zoom/2026-04-28 08.57.42 Оперативка ИТ/transcript.txt`.
+> - **А1 (Ory клуб-адаптер):** Наталья подтвердила работу с её стороны вчера. Андрей сделал поддержку Ory-токенов в адаптере клуба (помимо API-ключа). Сегодня проверит → задеплоит на прод. Бот сможет переиспользовать адаптер вместо собственного API-ключа клуба (tseren сейчас ходит мимо адаптера). **Передача:** «как закончу с клубом, с адаптером — скину тебе».
+> - **A1 (EU-инстанс Ory на Hetzner) — НЕ обсуждался** (выпал из повестки), оставляем open для встречи 13.
+> - **Б1+Б5 (2-server architecture):** ✅ **Андрей сам предложил купить второй сервер за свой счёт** для своей платформы автоматизации, чтобы «не на твоих вещах экспериментировать». Подключит Tseren когда будет готовность. Tseren продолжает «Времянку» на Сервере 1.
+> - **Б4 (embedding service):** ⚠️ **Отвергнут Андреем как daemon-сервис.** Новый паттерн: индексация = GitHub Actions workflow (триггер по коммиту), либо на GitHub-серверах, либо self-hosted GHA runner на Сервере 1. Влечёт правки в WP-138 + WP-276.
+> - **Б2 (NixOS таймлайн «скоро»):** не уточнён, но получено объяснение — это часть платформы автоматизации, упрощающий язык поверх NixOS пока не сделан. Без него NixOS «сложновато».
+> - **B+Г+Д+Е** (status-sync по WP-268/WP-253/Better Stack/security/Aisystant MCP rebrand): не дошли — встреча была короткая (~20 мин). Перенос на встречу 13 (когда Андрей закончит с адаптером клуба).
+> - **Инцидент 27 апр:** Tseren упомянул, вчера упал digital-twin-mcp; Better Stack отработал штатно (TG-уведомление). Композитный SLA за месяц 98.5% (вместо 100%). Зафиксировано в incident-log как follow-up для root-cause.
 
 </details>
 
 ---
 
-## Повестка встречи 12 (28 апр, вторник, 14:00–15:00 МСК)
+## Повестка встречи 13 (TBD — после задеплоя адаптера клуба Андреем)
 
 <details open>
-<summary><b>Встреча 12 — статус с 26 апр + ORY + загрузка сервера</b></summary>
+<summary><b>Встреча 13 — продолжение неотвеченных вопросов встречи 12 + status-sync MVP</b></summary>
 
-> **Главные вопросы:** (1) **ORY** — состояние и план EU-инстанса после покупки Hetzner; (2) **Загрузка Hetzner-сервера** — что Tseren грузит сегодня вечером, координация с NixOS-планом Андрея; (3) WP-268 Phase 2 cut-over статус (Day 2 сегодня, deploy 29 апр, DROP 1 мая); (4) WP-253 Ф9.5 prep к 30 апр; (5) FYI по WP-244/WP-269/WP-270/WP-275/WP-273.
+> **Триггер:** «Как закончу с клубом, с адаптером — скину тебе» (Андрей, 28 апр). Ориентировочно конец W18 / начало W19 после деплоя адаптера на прод и проверки Tseren.
 >
 > **Что произошло за 2 дня (27–28 апр) — крупные сдвиги:**
 > - ✅ **WP-269 read-path migration DONE 27 апр** — 3 readers + 4 lazy pools + retry-loop B4 → pilot → prod (FORCE_PROD=1), smoke @aist_me_bot PASS. Persona reader hotfix `COALESCE(canonical, alias)` для silent terminology drift `aisystant_suser_id` vs `aisystant_id`. 3 hold-outs G1/G2/G3 (FSM state, Q&A history, GitHub connections) → backlog Strategy Session W19.
@@ -47,108 +56,53 @@ source: встречи 1–11 (29 мар → 26 апр)
 
 ---
 
-### А. ORY — статус и план EU-инстанса (главный вопрос 1)
-
-> **Контекст:** ORY self-hosted в РФ (Hetzner Helsinki) утверждён 28 мар; гейтвей gateway-mcp Ory OAuth ✅ done 5 апр; kid="" fixed 14 апр; B4.21 Ory JWT глобально DONE 10 апр; subscription_grants как единый источник права ✅ done 13 апр (ADR-IWE-011); Вариант E (каждый MCP верифицирует JWKS сам) ✅ done 14 апр (ADR-IWE-012); **Hetzner-сервер куплен 1 апр (WP-70 DONE), $53.43/мес, Helsinki**.
-
-**Что просим от Андрея на встрече 12:**
+### А. Ory — продолжение
 
 | # | Вопрос | Контекст |
 |---|--------|----------|
-| **A1** | План EU-инстанса Ory: поднимаем на Hetzner сейчас (Tseren в «Времянке») или ждём NixOS-платформу? | Открытое с TG-диалога 26 апр 15:46 — таймлайн «скоро». Если NixOS через 2-3 недели — ставить ORY EU вручную сегодня вечером? |
-| **A2** | Q12 — РФ-хостинг для self-hosted ORY (заморожен): после Hetzner Finland что считаем РФ-инстансом? Hetzner Russia / VK Cloud / Selectel — кто принимает решение и когда? | Заморожен до MVP, но WP-215 Q2 freeze продлён — хотим подтвердить, что РФ-хостинг откладываем до Q3 |
-| **A3** | GDPR / репликация RU↔EU (Б8) — после Q2 freeze WP-215 что с этим вопросом? Юрконсультация Q9/Q11 заморожена — есть ли сигналы менять статус? | Олег: «европейцы спросят про русские данные». Open сейчас не блокирует MVP, но ставит лимит на iEU-маркетинг |
-| **A4** | После cut-over 1 мая нужен ли ревизия двухшаговой MCP-безопасности (ADR-IWE-010 + ADR-IWE-012)? Все 6 БД на prod Neon новой архитектуры — JWT-верификация работает корректно? | Smoke smoke @aist_me_bot ✅ 27 апр; нужно подтверждение, что кросс-БД RLS из персональных данных не сломан после миграции |
-| **A5** | **Aisystant MCP rebrand** — production stale 14 дней (5 коммитов). Re-deploy сегодня/завтра? Какой риск (display-identity-only, machine identity не меняем)? | WP-259 Ф5; smoke-test post-deploy ~5 мин |
+| **A1** | Адаптер клуба с Ory — задеплоен на прод? Tseren проверил с своей стороны? Бот переключён на адаптер вместо своего API-ключа? | Передача Андрея 28 апр: «как закончу с клубом, с адаптером — скину тебе». Деплой ожидался 28 апр после проверки. |
+| **A1bis** | План EU-инстанса Ory на Hetzner — выпал из встречи 12. Поднимаем на Сервере 1 в W19+ или ждём NixOS-платформу + Сервер 2 Андрея? | Открытое с TG 26 апр + повестка 12. |
+| **A4** | После cut-over 1 мая ревизия двухшаговой MCP-безопасности (ADR-IWE-010 + ADR-IWE-012)? JWT-верификация работает корректно на 6 БД новой архитектуры? | Smoke @aist_me_bot ✅ 27 апр; нужно подтверждение независимости JWKS-верификации. |
+| **A5** | Aisystant MCP rebrand prod re-deploy — stale 17+ дней (5 коммитов). Деплоим? | WP-259 Ф5, smoke-test ~5 мин. Display-identity-only, machine identity не меняем. |
 
-**Цель:** до конца встречи знать (1) поднимать ли ORY EU сегодня вечером в «Времянке», (2) что отложено до Q3, (3) что нужно re-verify после cut-over.
-
-📄 [WP-138 — Autonomous IWE cloud runtime](../../../DS-my-strategy/inbox/WP-138-autonomous-iwe-cloud-runtime.md) — context Hetzner+NixOS
-
----
-
-### Б. Загрузка Hetzner-сервера — план «Времянка с эвакуацией» (главный вопрос 2)
-
-> **Контекст:** Hetzner Intel Xeon E3-1275V6 / 64GB DDR4 / 2× NVMe 512GB / Finland HEL1-DC2, $53.43/мес. **TG-диалог 26 апр 15:03–15:46:** Андрей: NixOS+автодеплой «скоро» (как недостающий компонент платформы автоматизации); Tseren: «могу сам сейчас этот сервер загрузить руками» — ✅ Андрей подтвердил.
->
-> **План Tseren на сегодня вечер (4-6h):** «Времянка с эвакуацией» — Ф0 руками: pre-prod Postgres + B2 backup + embedding service. Всё восстанавливается из git за 1-2h после переустановки.
-
-**Что просим от Андрея на встрече 12:**
+### Б. WP-268 cut-over итоги (после 1 мая)
 
 | # | Вопрос | Контекст |
 |---|--------|----------|
-| **Б1** | Уточнение таймлайна «скоро» — недели / месяц / квартал? От этого зависит объём вложений в текущую «Времянку». | Если 2-3 недели — ставить минимум (только pre-prod Postgres). Если 1-2 месяца — добавлять embedding service и пробовать как ORY EU host. |
-| **Б2** | Список того, что Tseren грузит сегодня — корректно? Есть ли что-то, что НЕ ставить руками (state-критичное)? Bridge-2/rewards-worker/multi-domain-projection-worker — НЕ переносим (state risk + Railway-managed). | Tseren: pre-prod Postgres + B2 backup + embedding service. Возможно ORY EU (см. A1). |
-| **Б3** | Разделение ownership: что Tseren поддерживает «вручную» vs Андрей берёт на NixOS? Должен ли Tseren документировать установки в `configuration.nix`-friendly формате (списком пакетов/сервисов)? | Чтобы потом легко «переустановить ОС → восстановить из git за 1-2h» в NixOS-формате. |
-| **Б4** | Embedding service — какой вариант (sentence-transformers через FastAPI / Ollama / Hugging Face TEI)? Это будет общий сервис для knowledge-mcp / personal-knowledge-mcp / digital-twin-mcp / future ORY EU? | Сейчас knowledge-mcp использует pgvector через Neon — embedding генерится в Worker / в скриптах. Возможно вынести в выделенный сервис. |
-| **Б5** | После эвакуации — переезд в новый сервер или переиспользование текущего? «Можем потом взять новый и перенести туда всё» (Андрей 26 апр) — это решение или открыто? | Стоимость второго сервера $53/мес — приемлемо. Но если можно reuse — экономия. |
+| **Б1** | DROP digitaltwin/neondb/directus 1 мая — прошёл штатно? | Production cut-over deploy 29 апр, soak 30 апр, DROP 1 мая. |
+| **Б2** | Sequential worker throughput ceiling 50-60 ev/min (WP-270) — реальная нагрузка core-team прогона 30 апр и пилота 11-15 мая? | Триггер Ф3 scaling = когорта 50+ пользователей. |
+| **Б3** | DROP остальных legacy БД (aist_bot + platform) после exclusive tables ETL — таймлайн 16-17 мая подтверждён? | Зависит от Bridge-2 cleanup. |
 
-**Цель:** до конца встречи иметь чёткий список «что поставить сегодня вечером» + критерий «что точно не ставить» + понимание таймлайна NixOS-эвакуации.
+### В. WP-253 Ф9.5 итоги (после 30 апр core-team прогона)
 
-📄 [WP-138 — план Ф0-Ф5](../../../DS-my-strategy/inbox/WP-138-autonomous-iwe-cloud-runtime.md)
+| # | Вопрос | Контекст |
+|---|--------|----------|
+| **В1** | TG core-team прогон 30 апр (5 чел, инструкция /personal-guide-start) — feedback? Регрессии? | 5 чел: Tseren, Дима, Андрей, Паша, Ильшат. |
+| **В2** | WP-244 Ф3b internal_metrics writer LIVE (блокер Ф9.6 reliability gate 4-6 мая) — готов? | Сегодня делается. |
 
----
+### Г. Инцидент digital-twin-mcp 27 апр (новое из встречи 12)
 
-### В. WP-268 Phase 2 cut-over — статус Day 2 (FYI + sync)
+| # | Вопрос | Контекст |
+|---|--------|----------|
+| **Г1** | Root-cause падения digital-twin-mcp 27 апр (композитный SLA 98.5% за месяц вместо 100%) — известен? | Better Stack отработал штатно (TG-уведомление пришло). Нужен post-mortem или это было известное событие (например, deploy-related)? |
+| **Г2** | Нужен ли мини-РП на root-cause или закрываем как «известный transient»? | Решение зависит от ответа Г1. |
 
-> **Контекст:** решение 26 апр (Tseren) — cut-over (3-5 дней) вместо dual-write soak (14 дней). 26 апр (вс) 6 БД переехали за день; 27 апр Day 1 — WP-269+WP-270 done; 28 апр Day 2 — bot rewrite Phase B + parity verify + 24h pilot soak; 29 апр — production cut-over deploy + 5 core-team; 30 апр — production soak + DROP decision; 1 мая — DROP digitaltwin/neondb/directus.
+### Д. Подтверждение отложений Q2 (от встречи 11)
 
-**Status sync (без вопросов на утверждение):**
+| Вопрос | Текущий статус | Подтверждение нужно |
+|--------|----------------|----------------------|
+| B7.3 ревью безопасности (Паша) | отложено после MVP 1 мая | Да |
+| B7.4 внешний human-аудит | Q3 2026 | Без изменений |
+| Г Keto статус | подвисло, после MVP | Да |
+| Aisystant MCP rebrand | stale 17 дней | См. A5 |
 
-- **Сегодня (28 апр):** bot rewrite Phase B (events.py:log_event central → routing на 5 новых БД) + parity verify count'ы legacy vs new + 24h pilot soak.
-- **Завтра (29 апр):** production cut-over deploy, прогон с 5 core-team (Tseren, Дима, Андрей, Паша, Ильшат?).
-- **Чт (30 апр):** production soak 24h + decision DROP.
-- **Пт (1 мая):** DROP digitaltwin + neondb + directus (aist_bot и platform — после exclusive tables ETL, ETA 16-17 мая).
-- **B7.3 PII payment_credentials** payment-registry миграция — отложена до W18+ (рамка Q2-режима).
+### Е. WP-276 (новый зонтичный РП от 28 апр) — представление Андрею
 
-**Открытый возможный риск:** sequential worker throughput ceiling ~50-60 ev/min (WP-270). Для 5 core-team волонтёров пилот W19 — нет блокера, но при 50+ когорте Ф3 нужен сразу.
-
-📄 [WP-268 cut-over strategy](../../../DS-my-strategy/inbox/WP-268-cutover-strategy.md) · [WP-270 apply checklist](../../../DS-my-strategy/inbox/WP-270-apply-checklist.md)
-
----
-
-### Г. WP-253 Ф9.5 finalize prep к 30 апр (FYI)
-
-> **Контекст:** TG core-team прогон 30 апр (5 человек, инструкция /personal-guide-start готова). Деплой-runbook + smoke-tests финал + observability checklist.
-
-**Status sync (без вопросов на утверждение):**
-
-- **Сегодня (28 апр):** deploy-runbook commit + TG core-team message ready.
-- **Завтра (29 апр):** load-test runner + failure-mode runner подготовка.
-- **Чт (30 апр):** TG core-team прогон + сбор feedback + WP-244 Ф3b internal_metrics writer LIVE (блокер Ф9.6 reliability gate 4-6 мая).
-
-📄 [WP-253 Ф9.5 deploy-runbook](../../../DS-ecosystem-development/0.OPS/0.9.Inbox/WP-253-F9.5-deploy-runbook.md) (создаётся сегодня)
-
----
-
-### Д. Краткий статус остальных РП (FYI, без вопросов)
-
-- ✅ **WP-269 read-path migration DONE 27 апр**: 3 readers переключены на новую архитектуру, smoke pilot+prod PASS. Hold-outs G1/G2/G3 backlog.
-- ✅ **WP-270 projection-worker DONE 27 апр**: ArchGate v4 + Ф1 implement + apply LIVE на prod.
-- ✅ **WP-275 LIVE 27 апр**: 9 Better Uptime monitors + Twin route fix.
-- ✅ **WP-273 DONE 27 апр**: 8 релизов FMT 0.28.11→0.29.7.
-- ✅ **WP-274 DONE 27 апр**: quantum-like FPF C.26* интегрирована.
-- ✅ **WP-272 Ф4 DONE 27 апр**: 18 правил FPF A.7. Ф5 spawn (runtime activation 6.5h).
-- 🟡 **WP-187 Ф-L.1 + Ф-K.2 (Паша параллельно сегодня)**: MCP tools + auto-init, дедлайн 30 апр.
-- 🟡 **WP-244 Ф3b internal_metrics writer (сегодня, 1.5h)**: блокер WP-253 Ф9.6 reliability gate.
-- 🟡 **WP-250 Ф-F.2 done утром / Ф-F.3 синх с Пашей старт сегодня**: публикация ADR L2/L3 1 мая.
-- 🟡 **WP-262 «Бот тонкий клиент»**: активация Q2-Q3 после 1 мая.
-- 🟡 **WP-258 Plugin API L2**: активация после ADR-IWE-014 (accepted 26 апр).
-- 🟡 **Aisystant MCP rebrand prod re-deploy**: stale 14 дней (см. A5).
-
----
-
-### Е. Открытые с встречи 11 (статус)
-
-| Вопрос | Статус 28 апр | Действие |
-|--------|----------------|----------|
-| **B7.3 ревью безопасности (Паша)** | отложено до после MVP 1 мая | подтвердить отложение (Q2-режим) |
-| **B7.4 внешний human-аудит** | Q3 2026 | без изменений |
-| **B7.5 Security Gate в CLAUDE.md** | RTM batch Евгения 10/10 ✅ — отдельный Gate чек-лист пока не требуется | подтвердить — текущий ArchGate достаточен |
-| **Г. Keto статус** | подвисло, обсуждать после MVP | подтвердить отложение |
-| **Р-CutOver** | ✅ выполнено по плану (Day 1+2) | confirm — продолжаем по графику |
-| **Р-MutualReadOnly** | ✅ pattern LIVE (DP.ARCH.004 v2.4) | confirm — без изменений |
-| **Р-OpenCore ADR-IWE-014** | ✅ accepted 26 апр | confirm — публикация в составе WP-250 Ф-F.3 (1 мая) |
+| # | Что показать | Цель |
+|---|--------------|------|
+| **Е1** | Двухуровневая структура карты внешних провайдеров (Pack: 12 групп + DS: экземпляры). Drift-детектор как расширение паттерна WP-263. | Получить согласие на структуру и быть co-author |
+| **Е2** | Поправка по embedding service — теперь через GHA workflow по коммиту (паттерн Андрея). | Подтвердить корректное понимание |
+| **Е3** | Discourse / Sentry / GCP / Vercel — какие реально используются? | Закрыть слепые пятна перед Ф2 |
 
 </details>
 
