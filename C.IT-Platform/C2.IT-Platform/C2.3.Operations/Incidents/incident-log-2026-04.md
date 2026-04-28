@@ -21679,3 +21679,24 @@ vs реальный permission-request: «**можно/могу ли я** + Y?»
   }
 }
 ```
+
+## 2026-04-28T07:54:27+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "2. Можно ли их логировать (обычно — нет для PII/payment, никогда для secrets)? "
+    ],
+    "session_id": "9291f8cf-0f24-494c-b0d6-906f649e9a8a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
