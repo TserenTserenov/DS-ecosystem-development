@@ -21833,3 +21833,195 @@ reason: |
 
 related_wp: [WP-244, WP-275, WP-263]
 ```
+
+## 2026-04-28T10:43:58+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "### Что делать дальше "
+    ],
+    "session_id": "1212ec13-620a-4206-8829-c95c7ae950b9"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-28T11:50:43+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "3. **Координация** `bridge-2-events-poller` vs `legacy_lms` ETL — оба читают LMS, нужно ли консолидировать? "
+    ],
+    "session_id": "883be0d3-c5f4-4a05-9e5e-a1e5da766543"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-28T14:06:58+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "## Зачем Андрей и могу ли я сам ",
+      "2. **Координация с его «вторым сервером»** — он строит свой сервер на NixOS под платформу автоматизации. Чтобы наши конф"
+    ],
+    "session_id": "c57ced75-e273-487c-a4e7-2d2e8ec49c27"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-28T15:18:57+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Что мне нужно от вас одной фразой**, чтобы продолжить: "
+    ],
+    "session_id": "4f7a3949-b37b-4b01-aa2e-4a7f1888e764"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-28T15:26:59+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- Чтобы реально почистить domain_event, нужно либо менять event-gateway (ON CONFLICT DO UPDATE с условием `account_id IS"
+    ],
+    "session_id": "4f7a3949-b37b-4b01-aa2e-4a7f1888e764"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-28T15:35:48+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Запрос на разрешение был отклонён. Проверю текущее состояние и предложу альтернативу. ",
+      "Если хочешь, чтобы я выполнил команду сам — разреши Bash-разрешение в диалоге (или добавь правило `Bash(sudo pmset:*)` в"
+    ],
+    "session_id": "53812041-6564-477a-b284-cc17c1189ff0"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-28T15:35:57+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Запрос на разрешение был отклонён. Проверю текущее состояние и предложу альтернативу. ",
+      "Если хочешь, чтобы я выполнил команду сам — разреши Bash-разрешение в диалоге (или добавь правило `Bash(sudo pmset:*)` в"
+    ],
+    "session_id": "53812041-6564-477a-b284-cc17c1189ff0"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-28T16:46:54+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Какую начинаем? "
+    ],
+    "session_id": "0beeb3e5-658f-4b6e-a78d-4b6d86846311"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-28T18:45:21+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Исправление:** одна строка — разрешить принудительный импорт пула при первом старте. "
+    ],
+    "session_id": "c57ced75-e273-487c-a4e7-2d2e8ec49c27"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```

@@ -58,6 +58,7 @@
 | 33 | [gateway-mcp](https://github.com/aisystant/gateway-mcp) | DS/instrument | ИТ-платформа | code | team | no | Active |
 | 34 | [payment-registry](https://github.com/aisystant/payment-registry) | DS/instrument | ИТ-платформа | code | team | no | Active |
 | 35 | [payment-receiver](https://github.com/aisystant/payment-receiver) | DS/instrument | ИТ-платформа | code | team | no | Active |
+| 36 | [iwe-server-config](https://github.com/TserenTserenov/iwe-server-config) | DS/instrument | ИТ-платформа | code | personal | no | Active |
 | — | ~~DS-aist-bot~~ | — | — | — | — | — | Archived → aist_bot_newarchitecture |
 | — | ~~DS-synchronizer~~ | — | — | — | — | — | Archived → DS-ai-systems |
 | — | ~~DS-fixer-agent~~ | — | — | — | — | — | Archived → DS-ai-systems |
@@ -113,6 +114,7 @@
 | event-gateway *(pending push)* | CF Worker: приём событий Observed → Neon (WP-253 Ф9.2 skeleton, 24 апр 2026) | PACK-digital-platform | TserenTserenov |
 | rewards-projection-worker *(pending push)* | Python asyncpg LISTEN/NOTIFY: rewards Derived projection (WP-253 Ф9.3 skeleton, 24 апр 2026) | PACK-digital-platform | TserenTserenov |
 | [personal-guide](https://github.com/TserenTserenov/personal-guide) | Персональное руководство ЛР (плоское имя, один на пилота; WP-245 Ф28.5, 24 апр 2026) | PACK-personal | TserenTserenov |
+| [iwe-server-config](https://github.com/TserenTserenov/iwe-server-config) | NixOS-конфигурация сервера «Цех» tsekh-1 (WP-138, реактивирован 28 апр 2026) | PACK-digital-platform | TserenTserenov |
 
 ### DS/governance
 
@@ -213,4 +215,4 @@ FMT-exocortex-template (Base/Форматы, setup.sh встроен)
 
 ---
 
-*Последнее обновление: 2026-04-24* (добавлены: neon-migrations, personal-guide; event-gateway + rewards-projection-worker — pending push)
+*Последнее обновление: 2026-04-28* (добавлены: iwe-server-config #36)
