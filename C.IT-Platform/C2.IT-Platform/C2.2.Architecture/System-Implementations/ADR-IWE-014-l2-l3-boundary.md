@@ -2,9 +2,13 @@
 id: ADR-IWE-014
 title: "Граница L2/L3 — open-core IWE-платформа"
 status: accepted
+version: 2.0
 date: 2026-04-26
+updated: 2026-04-28
 deciders: [Tseren]
 context: "WP-250 Ф-F ArchGate PASS 22 апр; Ф-F.1 митигация Эволюционируемости через формальную фиксацию границы"
+changelog:
+  v2.0 (2026-04-28): "Sync §3.2 матрицы с реальной инфрой — 17 строк (было ~15 с округлением). Display name «Aisystant MCP» вместо «Gateway-MCP» (HD: паттерн ≠ инстанс). Digital-Twin разделён на read API + Profiler. Personal-Knowledge-MCP добавлен (был пропущен). Payment разнесён на Receiver + Registry + БД #3. БД-номера выровнены с DP.ARCH.004 v2.4. БД health снята (внешние SaaS). ContentPipeline помечен Q3 2026 planned."
 related:
   pack: [DP.ARCH.001, DP.ARCH.004]
   lifework: ["Lifework/Защита Дела созидателей.md", "Lifework/Уникальность IWE.md", "Lifework/Конституция Дела созидателей.md"]
@@ -25,7 +29,7 @@ role: Architecture
 
 Среди 4 митигаций критическая — **Ф-F.1: формально зафиксировать границу L2/L3** (митигация ⚠️ Эволюционируемости + ⚠️ Безопасности). Без явной фиксации:
 
-- **Эволюционируемость:** при росте ~15 сервисов (Gateway, Knowledge-MCP, Health DB, ContentPipeline, Digital-Twin, aist-bot, captures-flow, Pack-personal/platform, Persona Git, Activity-hub, Metabase, Langfuse, Ory, LMS-sync) команда не может сходу ответить «этот сервис где живёт?». При найме нового разработчика (Г-О1, к 1 июня) онбординг буксует. При создании Plugin API L2 (WP-258) непонятно, какие функции платформы открыть наружу.
+- **Эволюционируемость:** при росте ~17 сервисов (Aisystant MCP, Knowledge-MCP, Digital-Twin MCP, Profiler, Personal-Knowledge-MCP, Activity-hub, Payment Receiver, Payment Registry, Subscription Service, Persona stub, Health & observability, Ory Hydra, aist-bot, ContentPipeline, Pack-platform публичная, L3-репо пользователя, IWE Template) команда не может сходу ответить «этот сервис где живёт?». При найме нового разработчика (Г-О1, к 1 июня) онбординг буксует. При создании Plugin API L2 (WP-258) непонятно, какие функции платформы открыть наружу.
 - **Безопасность:** PII и payment_credentials (DP.ARCH.004 §2 П6.1) распределяются между L2 (Neon-стороны: payments, subscription, persona) и L3 (Git пользователя: captures, Lifework). Без явной классификации сервис×слой нельзя написать checklist для аудита.
 - **Коммуникация наружу:** Алёна (служба продвижения) делает landing'и под холодную аудиторию — нужна таблица «что открыто / что платно». Без границы нельзя сказать «это бесплатно навсегда» / «это часть подписки».
 
