@@ -22327,3 +22327,87 @@ related_wp: [WP-244, WP-275, WP-263]
   }
 }
 ```
+
+## 2026-04-29T16:27:56+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Вопросы перед отправкой: нужно ли упомянуть конкретный документ/раздел про Память.Derived, или оставить как «могу показа"
+    ],
+    "session_id": "36b591a2-c013-4b60-a700-c621d8fd8160"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-29T16:45:48+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Вопросы перед отправкой: нужно ли упомянуть конкретный документ/раздел про Память.Derived, или оставить как «могу показа"
+    ],
+    "session_id": "36b591a2-c013-4b60-a700-c621d8fd8160"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-29T18:52:39+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Это не одна архитектурная проблема, а **три** в стопке. ArchGate был пройден на неполных данных (subagent ошибся). Нужно"
+    ],
+    "session_id": "e66763b4-a500-4a6f-85c3-832201e6587b"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-29T19:59:06+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Фича реализована полностью. Нужно ли сейчас закрыть сессию? "
+    ],
+    "session_id": "3df28392-8ecb-4167-9d0b-265197b7dbfc"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
