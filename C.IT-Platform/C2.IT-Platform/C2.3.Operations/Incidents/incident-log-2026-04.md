@@ -22025,3 +22025,45 @@ related_wp: [WP-244, WP-275, WP-263]
   }
 }
 ```
+
+## 2026-04-29T09:36:54+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**3. 40% бизнес-приложений — AI-агенты к концу 2026.** Подтверждает обсуждение из W18 Q8 (окно сужается). Конкретный dat"
+    ],
+    "session_id": "13ba5cd4-0b95-403a-8e0a-f541ea00d291"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-29T09:37:06+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**3. 40% бизнес-приложений — AI-агенты к концу 2026.** Подтверждает обсуждение из W18 Q8 (окно сужается). Конкретный dat"
+    ],
+    "session_id": "13ba5cd4-0b95-403a-8e0a-f541ea00d291"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
