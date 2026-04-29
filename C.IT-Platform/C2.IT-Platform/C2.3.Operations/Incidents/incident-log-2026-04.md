@@ -22130,3 +22130,200 @@ related_wp: [WP-244, WP-275, WP-263]
   }
 }
 ```
+
+## 2026-04-29T11:12:46+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "У тебя **накопилось 56 зомби-процессов** — при каждом открытии новой сессии Claude Code старые MCP-серверы не гибнут, за",
+      "**Шаг 1 — разрешить раз и навсегда:** ",
+      "После этого диалог перестанет появляться: разрешение сохраняется системой для бинарника `/opt/homebrew/bin/node`, и новы"
+    ],
+    "session_id": "23909c34-2473-4875-98e9-2b22b3254e3f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-29T11:13:03+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 4 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 4,
+    "examples": [
+      "У тебя **накопилось 56 зомби-процессов** — при каждом открытии новой сессии Claude Code старые MCP-серверы не гибнут, за",
+      "**Шаг 1 — разрешить раз и навсегда:** ",
+      "После этого диалог перестанет появляться: разрешение сохраняется системой для бинарника `/opt/homebrew/bin/node`, и новы"
+    ],
+    "session_id": "23909c34-2473-4875-98e9-2b22b3254e3f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-29T11:14:32+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 4 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 4,
+    "examples": [
+      "У тебя **накопилось 56 зомби-процессов** — при каждом открытии новой сессии Claude Code старые MCP-серверы не гибнут, за",
+      "**Шаг 1 — разрешить раз и навсегда:** ",
+      "После этого диалог перестанет появляться: разрешение сохраняется системой для бинарника `/opt/homebrew/bin/node`, и новы"
+    ],
+    "session_id": "23909c34-2473-4875-98e9-2b22b3254e3f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-29T11:16:19+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "`npx` при каждом запуске берёт пакет из кеша в разных папках типа `/Users/tserentserenov/.npm/_npx/a23ca25355f98efb/...`",
+      "Тогда путь `/opt/homebrew/bin/google-calendar-mcp` будет стабильным, macOS запомнит разрешение навсегда. "
+    ],
+    "session_id": "23909c34-2473-4875-98e9-2b22b3254e3f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-29T11:17:12+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "`npx` при каждом запуске берёт пакет из кеша в разных папках типа `/Users/tserentserenov/.npm/_npx/a23ca25355f98efb/...`",
+      "Тогда путь `/opt/homebrew/bin/google-calendar-mcp` будет стабильным, macOS запомнит разрешение навсегда. "
+    ],
+    "session_id": "23909c34-2473-4875-98e9-2b22b3254e3f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-29T11:34:03+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Один node, один путь. Значит проблема в том, что macOS Tahoe (Darwin 25.x) для категории \"App Data\" не сохраняет разреше"
+    ],
+    "session_id": "23909c34-2473-4875-98e9-2b22b3254e3f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-29T11:34:23+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Один node, один путь. Значит проблема в том, что macOS Tahoe (Darwin 25.x) для категории \"App Data\" не сохраняет разреше"
+    ],
+    "session_id": "23909c34-2473-4875-98e9-2b22b3254e3f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-29T11:38:51+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "macOS TCC видит это как новый контекст доступа и требует повторного разрешения. При этом токен Google Calendar сейчас ис"
+    ],
+    "session_id": "23909c34-2473-4875-98e9-2b22b3254e3f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-29T11:39:43+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "macOS TCC видит это как новый контекст доступа и требует повторного разрешения. При этом токен Google Calendar сейчас ис"
+    ],
+    "session_id": "23909c34-2473-4875-98e9-2b22b3254e3f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
