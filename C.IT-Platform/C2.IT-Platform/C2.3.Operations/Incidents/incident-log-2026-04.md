@@ -22411,3 +22411,132 @@ related_wp: [WP-244, WP-275, WP-263]
   }
 }
 ```
+
+## 2026-04-30T08:25:56+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "С чего начнём? "
+    ],
+    "session_id": "92819566-ac47-4154-b2cf-ae060e6b44cc"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-30T10:54:20+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "**Что вы хотите:** ",
+      "Используйте `/extend` — там описано как вообще подключать новые инструменты/системы в IWE. Или уточните — что конкретно "
+    ],
+    "session_id": "9816183a-5552-478e-af97-144bd4105645"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-30T10:56:24+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "**Что вы хотите:** ",
+      "Используйте `/extend` — там описано как вообще подключать новые инструменты/системы в IWE. Или уточните — что конкретно ",
+      "- Локальная подстановка = можно ли переопределить модель в `settings.json` / `CLAUDE.md`? "
+    ],
+    "session_id": "9816183a-5552-478e-af97-144bd4105645"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-30T11:10:59+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Что дальше?** Начинать Блок 1 сегодня или есть вопросы? "
+    ],
+    "session_id": "9816183a-5552-478e-af97-144bd4105645"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-30T11:12:50+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Вопрос:** Вы хотите сделать именно WP-150 основным, или предпочитаете другой выбор? "
+    ],
+    "session_id": "9816183a-5552-478e-af97-144bd4105645"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-04-30T11:17:35+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Что дальше?** Три варианта: "
+    ],
+    "session_id": "92819566-ac47-4154-b2cf-ae060e6b44cc"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
