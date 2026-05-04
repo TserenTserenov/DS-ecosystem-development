@@ -653,3 +653,48 @@
   }
 }
 ```
+
+## 2026-05-03T16:06:23+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "  - Механизмы разрешения конфликтов (что если идеи расходятся) ",
+      "**Стратегия должна ответить:** с какого шага начинаем? Кто первые 100 человек? Какие инструменты им даём? "
+    ],
+    "session_id": "d7ab0ea1-bf0d-4226-a2de-c5e9ebfdc385"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-03T16:08:04+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "  - Механизмы разрешения конфликтов (что если идеи расходятся) ",
+      "**Стратегия должна ответить:** с какого шага начинаем? Кто первые 100 человек? Какие инструменты им даём? ",
+      "1. **CONSTITUTION.md** — инварианты, контракты ролей (Ученик до Просветителя), механизмы разрешения конфликтов, границы "
+    ],
+    "session_id": "d7ab0ea1-bf0d-4226-a2de-c5e9ebfdc385"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
