@@ -1077,3 +1077,239 @@
   }
 }
 ```
+
+## 2026-05-04T21:09:54+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Я готов продолжить. Что дальше? ",
+      "5. **Shared memory между агентами: является ли git-история источником истины, или нужен event-log + синхронизация?** Кон"
+    ],
+    "session_id": "83731e94-47d7-4fa4-8039-2cfbd402dc11"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-04T21:12:20+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Я готов продолжить. Что дальше? ",
+      "5. **Shared memory между агентами: является ли git-история источником истины, или нужен event-log + синхронизация?** Кон"
+    ],
+    "session_id": "83731e94-47d7-4fa4-8039-2cfbd402dc11"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-05T08:11:53+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "| **З.1** | Neon: нужно ли физическое разделение БД на Track A / Track B, EU-регион, Stripe vs YooKassa схема | ",
+      "| **З.2** | Ory: где сейчас хостится, нужно ли два realm-а, EU-инстанс (Hetzner или Ory Cloud) | "
+    ],
+    "session_id": "06009da3-6191-4e52-ac18-4f8289b5ed54"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-05T08:12:08+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "| **З.1** | Neon: нужно ли физическое разделение БД на Track A / Track B, EU-регион, Stripe vs YooKassa схема | ",
+      "| **З.2** | Ory: где сейчас хостится, нужно ли два realm-а, EU-инстанс (Hetzner или Ory Cloud) | "
+    ],
+    "session_id": "06009da3-6191-4e52-ac18-4f8289b5ed54"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-05T08:37:50+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "3. **Явное разрешение**: скажи «измени SKILL.md напрямую» — тогда S-33 позволит "
+    ],
+    "session_id": "221fbfa1-60d8-4f87-a2f5-c41cd7587e4a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-05T10:25:38+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "3. Параллельно проверить WP-109 Ф4 статус и оценить, можно ли стартовать WP-121 Ф2 в W19 (потенциально новая строка в We"
+    ],
+    "session_id": "d651a4eb-1f20-4faa-be23-71a6fa69f6c7"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-05T10:26:37+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "3. Параллельно проверить WP-109 Ф4 статус и оценить, можно ли стартовать WP-121 Ф2 в W19 (потенциально новая строка в We"
+    ],
+    "session_id": "d651a4eb-1f20-4faa-be23-71a6fa69f6c7"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-05T10:35:12+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что дальше делать? Вы хотите: "
+    ],
+    "session_id": "e76595ac-4c92-4d9f-be9a-08a5227aee53"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-05T10:35:21+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что дальше делать? Вы хотите: "
+    ],
+    "session_id": "e76595ac-4c92-4d9f-be9a-08a5227aee53"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-05T10:35:58+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что вы хотите сделать с WP-121? Уточните: "
+    ],
+    "session_id": "a8a9240e-b479-4170-af50-3403294c7baa"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-05T10:45:01+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "| **З.1** | Neon: нужно ли физическое разделение БД на Track A / Track B, EU-регион, Stripe vs YooKassa схема | ",
+      "| **З.2** | Ory: где сейчас хостится, нужно ли два realm-а, EU-инстанс (Hetzner или Ory Cloud) | "
+    ],
+    "session_id": "06009da3-6191-4e52-ac18-4f8289b5ed54"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
