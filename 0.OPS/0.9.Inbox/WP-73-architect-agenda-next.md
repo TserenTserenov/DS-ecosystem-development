@@ -4,8 +4,8 @@ title: "ИТ-встречи с архитектором — повестка и 
 status: active
 created: 2026-04-01
 updated: 2026-05-05
-depends_on: WP-73, WP-138, WP-150, WP-212, WP-218, WP-228, WP-244, WP-250, WP-253, WP-258, WP-262, WP-265, WP-266, WP-268, WP-269, WP-270, WP-275, WP-276, WP-281
-source: встречи 1–12 (29 мар → 28 апр)
+depends_on: WP-73, WP-138, WP-150, WP-212, WP-215, WP-218, WP-228, WP-244, WP-250, WP-253, WP-258, WP-262, WP-265, WP-266, WP-268, WP-269, WP-270, WP-275, WP-276, WP-281, WP-285
+source: встречи 1–13 (29 мар → 5 мая)
 ---
 
 # ИТ-встречи с архитектором — повестка и решения
@@ -28,147 +28,109 @@ source: встречи 1–12 (29 мар → 28 апр)
 > **Встреча 12 (28 апр, оперативка ИТ 08:57–09:17 МСК, ~20 мин):** transcript: `~/Documents/Zoom/2026-04-28 08.57.42 Оперативка ИТ/transcript.txt`.
 > - **А1 (Ory клуб-адаптер):** Наталья подтвердила работу с её стороны вчера. Андрей сделал поддержку Ory-токенов в адаптере клуба (помимо API-ключа). Сегодня проверит → задеплоит на прод. Бот сможет переиспользовать адаптер вместо собственного API-ключа клуба (tseren сейчас ходит мимо адаптера). **Передача:** «как закончу с клубом, с адаптером — скину тебе».
 > - **A1 (EU-инстанс Ory на Hetzner) — НЕ обсуждался** (выпал из повестки), оставляем open для встречи 13.
-> - **Б1+Б5 (2-server architecture):** ✅ **Андрей сам предложил купить второй сервер за свой счёт** для своей платформы автоматизации, чтобы «не на твоих вещах экспериментировать». Подключит Tseren когда будет готовность. Tseren продолжает «Времянку» на Сервере 1.
-> - **Б4 (embedding service):** ⚠️ **Отвергнут Андреем как daemon-сервис.** Новый паттерн: индексация = GitHub Actions workflow (триггер по коммиту), либо на GitHub-серверах, либо self-hosted GHA runner на Сервере 1. Влечёт правки в WP-138 + WP-276.
-> - **Б2 (NixOS таймлайн «скоро»):** не уточнён, но получено объяснение — это часть платформы автоматизации, упрощающий язык поверх NixOS пока не сделан. Без него NixOS «сложновато».
-> - **B+Г+Д+Е** (status-sync по WP-268/WP-253/Better Stack/security/Aisystant MCP rebrand): не дошли — встреча была короткая (~20 мин). Перенос на встречу 13 (когда Андрей закончит с адаптером клуба).
-> - **Инцидент 27 апр:** Tseren упомянул, вчера упал digital-twin-mcp; Better Stack отработал штатно (TG-уведомление). Композитный SLA за месяц 98.5% (вместо 100%). Зафиксировано в incident-log как follow-up для root-cause.
-
-</details>
-
----
-
-## Повестка встречи 13 (TBD — после задеплоя адаптера клуба Андреем)
-
-<details open>
-<summary><b>⭐ ГЛАВНЫЙ ВОПРОС: Track B — архитектура без России (новая инфраструктура)</b></summary>
-
-> **Контекст (Strategy Session W19, 4 мая):** принят стратегический разворот Two-Track.
-> **Track A** = legacy LMS + бот, передача Ильшату, поддержание до 1 сентября.
-> **Track B** = новая платформа для мирового рынка (YC-ready), EN-ready, Neon + Aisystant MCP, без зависимостей от российского LMS и 152-ФЗ.
->
-> Задача встречи 13 по этой теме: **получить архитектурное заключение** — что из текущей инфраструктуры переиспользуем для Track B, что строим заново, в какой последовательности.
-
-### З.1 Разделение хранилищ (Neon)
-
-| # | Вопрос | Контекст |
-|---|--------|----------|
-| **З.1.1** | Текущие 12 Neon БД содержат микс RU + global данных. Нужно ли физическое разделение схем/БД на Track A (RU) и Track B (world)? Или логическое — через `market` / `region` поле в каждой сущности? | WP-215 был заморожен (Q2). Теперь нужен ответ: делаем ли hard separation или мультиарендность на уровне одних таблиц. |
-| **З.1.2** | EU-регион Neon: текущие БД в каком регионе? Для Track B (GDPR) нужен явный EU-регион (aws-eu-central-1 или eu-west-2). Переносим текущие или создаём новые? | Сейчас неизвестно, где физически данные. GDPR требует EU-hosted для EU-пользователей. |
-| **З.1.3** | Схема `finance_payments` — YooKassa (RU). Track B требует Stripe. Это другая схема, другой провайдер, другие events. Как развязать, не сломав Track A? | Сейчас `finance_payments` общая. YooKassa: заблокируется для нероссийских карт. |
-
-### З.2 Ory — EU-инстанс и разделение identity
-
-| # | Вопрос | Контекст |
-|---|--------|----------|
-| **З.2.1** | EU-инстанс Ory: Hetzner Сервер 1 (сейчас) или Ory Cloud (managed EU)? Ory Cloud даёт geo-compliance из коробки; self-hosted на Сервере 1 даёт контроль. Trade-off? | WP-215 заморожен, A1bis открыт с встречи 12. Для YC-demo нужен EU/US-hosted Ory. |
-| **З.2.2** | Текущий Ory инстанс — он в России или на Hetzner EU? Если RU, то Track B пользователи не могут его использовать без переноса или разделения. | Неизвестен текущий хостинг Ory. Блокирует онбординг EU/US пользователей. |
-| **З.2.3** | Нужно ли два Ory realm-а (Track A / Track B) или один с разными `audience` claim-ами в JWT? | Один realm проще, но тогда нельзя разделить data residency. |
-
-### З.3 Платёжная инфраструктура (Stripe для Track B)
-
-| # | Вопрос | Контекст |
-|---|--------|----------|
-| **З.3.1** | Stripe: ИП/ООО в какой юрисдикции подключать? Нужна ли новая юрлицо (UK / US LLC / Кипр)? | Текущие ИП Tseren / ООО — российские, Stripe не принимает российских резидентов напрямую с 2022. Нужен EU/US entity. |
-| **З.3.2** | Stripe Webhooks → events в Neon. Это новый event-source (как `yookassa.payment_succeeded` → `stripe.payment_succeeded`). Нужна ли доработка event-gateway? | WP-253 event-gateway работает для YooKassa. Stripe — новая схема events. Хочу понять масштаб изменений. |
-| **З.3.3** | `subscription_grants` сейчас привязан к YooKassa payment_method. Stripe использует другую модель (Subscription object + PaymentIntent). Нужна миграция схемы или двойная схема Track A / Track B? | DP.ARCH.004 § finance. Критично для непрерывности Track A и параллельного запуска Track B. |
-
-### З.4 Зависимость от российского LMS (Bridge-2)
-
-| # | Вопрос | Контекст |
-|---|--------|----------|
-| **З.4.1** | Bridge-2 сейчас читает из LMS (suser_id, qualification_level, курсы). Track B пользователи не имеют записей в LMS. Что заменяет LMS для Track B? Нативная Neon модель? | WP-269 добавил COALESCE для graceful fallback. Для Track B нужен путь без LMS вообще. |
-| **З.4.2** | `knowledge_*` инструменты в Aisystant MCP сейчас отдают контент из LMS-синхронизированного хранилища. Для EN-рынка — отдельный контент? Или тот же, с переводом? | WP-276 открыт. Нужно понять, какой content-pipeline нужен для Track B. |
-| **З.4.3** | Таймлайн: когда Track A пользователи перестают влиять на архитектуру (полностью на Ильшате)? Это блокирует скорость Track B итерации. | WP-281: передача к 1 сентября. Значит до 1 сентября Track B живёт с legacy зависимостями? |
-
-### З.5 Многоагентная архитектура (WP-150) в контексте Track B
-
-| # | Вопрос | Контекст |
-|---|--------|----------|
-| **З.5.1** | WP-150 проектирует unified MCP Gateway для всех агентов (Claude + Kimikode + Ollama). Для Track B (YC-demo, EN-рынок) — это критический путь или параллельный? | WP-150 Ф6 = unified gateway в VS Code. Если YC-demo требует мультиагентность — блокирует таймлайн. |
-| **З.5.2** | Kimikode и Claude в WP-150 — оба через Aisystant MCP. Track B пользователи должны иметь свой Gateway endpoint или тот же? Как изолируются их данные? | Context isolation (WP-150 Ф1) — критично для Track B privacy. |
+> - **Б1+Б5 (2-server architecture):** ✅ **Андрей сам предложил купить второй сервер за свой счёт** для своей платформы автоматизации. Tseren продолжает «Времянку» на Сервере 1.
+> - **Б4 (embedding service):** ⚠️ **Отвергнут Андреем как daemon-сервис.** Новый паттерн: индексация = GitHub Actions workflow (триггер по коммиту). Влечёт правки в WP-138 + WP-276.
+> - **Б2 (NixOS таймлайн «скоро»):** не уточнён. Без него NixOS «сложновато».
+> - **B+Г+Д+Е** — не дошли (~20 мин встреча). Перенос на встречу 13.
 
 </details>
 
 <details>
-<summary><b>Встреча 13 — продолжение неотвеченных вопросов встречи 12 + status-sync MVP</b></summary>
+<summary><b>Встреча 13 (5 мая, оперативка ИТ ~50 мин) — Track B архитектура без России</b></summary>
 
-> **Триггер:** «Как закончу с клубом, с адаптером — скину тебе» (Андрей, 28 апр). Ориентировочно начало W19 после деплоя адаптера на прод и проверки Tseren. Сегодня 30 апр ИТ-оперативка 09:00 — частичный статус-sync возможен.
+> **Transcript:** `~/Documents/Zoom/2026-05-05 08.32.21 Оперативка ИТ/audio1875336260.txt`
+> **Фокус:** Новая мировая инфраструктура (Track B) — полная отвязка от России.
 >
-> **Что произошло за 4 дня (27–30 апр) — крупные сдвиги:**
-> - ✅ **WP-269 read-path migration DONE 27 апр** — 3 readers + 4 lazy pools + retry-loop B4 → pilot → prod (FORCE_PROD=1), smoke @aist_me_bot PASS. Persona reader hotfix `COALESCE(canonical, alias)` для silent terminology drift `aisystant_suser_id` vs `aisystant_id`. 3 hold-outs G1/G2/G3 (FSM state, Q&A history, GitHub connections) → backlog Strategy Session W19.
-> - ✅ **WP-270 multi-domain projection-worker DONE 27 апр** — ArchGate v4 PASS Вариант Б (per-domain cursor) + Ф1 implement. 9 миграций 022-103 на prod Neon + Railway worker `multi-domain-projection-worker` LIVE. 4 cursors persona/subscription/indicators/learning + UPSERT idempotency + `_when` поля + `_lookups` async resolve + PII redact + FORBIDDEN_FIELDS whitelist. Tests 24/24 PASS. **Worker задеплоен в проекте `attractive-optimism` (НЕ peaceful-vision — Railway "+ New" pitfall, см. feedback).** Sequential throughput ceiling ~50-60 ev/min на Neon-pooled.
-> - ✅ **WP-275 LIVE 27 апр** — 9 Better Uptime monitors (keyword-check + 3 регионов + SSL/domain expiry) + AIST Bot heartbeat + CF Worker Route `twin.aisystant.com/*` → digital-twin-mcp (commit `45d3acf` + `[[routes]]` в wrangler.toml). Найдено: **event-gateway 503 (DB auth `neondb_owner`)** — отдельный РП Паше. Новый HD: **CF Worker Route ≠ Worker Custom Domain** (OAuth-токен wrangler без `dns:write` → use Route).
-> - ✅ **WP-273 DONE 27 апр** — Архитектура интеграционных контрактов IWE (FMT-exocortex-template) — 8 релизов 0.28.11→0.29.7, 19 пунктов R4/R5/R6 закрыто, smoke 11/11 + validator 8/8 + sub-agent STABLE. Паттерн: «proactive audit нашёл 5 классов проблем до Round 6».
-> - ✅ **WP-274 DONE 27 апр** — Quantum-like линза FPF C.26* интегрирована (HD #50 + DP.SOTA.020 + DP.METHOD.050). Линза для ArchGate / observability / диагностики, активируется после исчерпания классики.
-> - ✅ **WP-272 Ф4 DONE 27 апр** — 18 правил агента расписаны по FPF A.7 (Object/Description/Carrier hint), audit fix (cycle-detection DFS), weekly evolution routine. Backlog 17→0.
-> - ✅ **Strategy Session W18 + Month-Close апреля (27 апр):** R-таблица: апрель закрыт (R1 Ory ✅, R2 архитектура ✅ ключевые, R6 Память.Derived ✅ через WP-253) → май R1-R5; ТОС-мая «безопасность + стабильность генерации руководства»; Strategy.md restructure.
-> - ✅ **WP-268 legacy DROP ДОСРОЧНО 26 апр** — digitaltwin/neondb/aist_bot/directus дропнуты 26 апр (на 5 дней раньше плана «1 мая»). Phase 3 Blocks 1–4 (FSM_URL / JOURNAL_URL / bot_data DSN / HEALTH_URL) выполнены 29 апр. Phase 5: G10/G9 done, G5 Tier1 done; G8/G7 в прогрессе сегодня 30 апр. DP.ARCH.004 v2.4.x обновлён: **15 БД** (12 entity + 3 special: Railway-local Postgres для FSM+journal+bot_data, health = external SaaS).
-> - ✅ **WP-253 Ф9.5 pre-flight ALL PASS 29 апр** — backfill verify 0 строк, smoke /personal-guide-start PASS, Bridge-2 events poller ✅, failure-mode smoke F2–F5 PASS. TG core-team (5 чел) — **дедлайн сегодня 30 апр утро**.
-> - ✅ **WP-218 Ф8 DONE 29 апр** — автоматический мультипликатор IWE в indicators (системное решение вместо костыля). Системная связка: events → projection-worker → indicators.multiplier работает end-to-end.
-> - ✅ **WP-138 DONE 29 апр** — все задачи завершены; 5 решений зафиксированы в decision-log 29 апр.
-> - ✅ **WP-212 B7.3.2–B7.3.5 DONE 29 апр** — 4 спецификации безопасности для Паши: ротация ключей (B7.3.2), аудит PII (B7.3.3), Persona/Memory/Context слои (B7.3.4), 152-ФЗ encryption layers (B7.3.5). B7.3.6 (GitHub login) — pending сегодня.
-> - ⚠️ **Инцидент 29 апр: activity-hub uncommitted changes** — зафиксирован в incident-log; требует разбора.
+> **Главные решения встречи:**
+
+| # | Решение | Статус |
+|---|---------|--------|
+| **Р-TrackB-1** | Юридическая, экономическая и техническая инфраструктура — **мировая**, не российская | ✅ |
+| **Р-TrackB-2** | Российских пользователей **не блокируем сами** (как GitHub). Россия заблокирует — их проблема. | ✅ |
+| **Р-TrackB-3** | **Платформы полностью независимы**: corp-сервисы больше не ходят в ru-сервисы (отказ от Bridge-схемы) | ✅ |
+| **Р-TrackB-4** | **Миграция = стандартный экспорт/импорт**: пользователь сам выгружает всё (посты, заметки, лайки, сессии, квалификации), загружает в новую. Без синхронизации, без прямого доступа к БД | ✅ |
+| **Р-TrackB-5** | **Vultr** для мировой платформы. Облака (GKE/EKS) — при росте > 500 пользователей. Стартуем с VPS/Docker Compose ~$73/мес | ✅ |
+| **Р-TrackB-6** | **Ory EU — отдельный инстанс** на Vultr (EU-регион). VK Cloud Ory = только Track A | ✅ |
+| **Р-TrackB-7** | В коде и документах — тип **Postgres**, не реализация Neon. Новые сервисы Track B = `postgres.js` | ✅ |
+| **Р-TrackB-8** | **Клуб — не приоритет сейчас**. Разбираемся когда понадобится. Скорее всего два клуба | ✅ |
+| **Р-TrackB-9** | **Паша**: Тсерен говорит высокоуровнево (готовность к зарубежной инфре), Андрей — детали Vultr | ✅ |
+
+> **Neon-аудит кода (О-1, сделан 5 мая):** Neon-специфика только на транспортном уровне (`@neondatabase/serverless` для CF Workers). SQL везде стандартный Postgres. Branching API не используется. CF Workers-сервисы остаются на CF. Новые Track B сервисы на Vultr — `postgres.js`.
+>
+> **Стоимость Vultr (О-2):** VPS 4vCPU/8GB ($48/мес) + Neon EU ($25/мес) = $73/мес старт. GKE/EKS при > 500 пользователей.
+>
+> **Создан РП:** → **WP-285** «Международная инфраструктура Track B» (Ф1–Ф6: Neon-аудит ✅, Vultr, Ory EU, Stripe, DNS, Export/Import)
+
+</details>
 
 ---
+
+## Повестка встречи 14 (TBD — после разговора Тсерена с Пашей по готовности к зарубежной инфре)
+
+<details open>
+<summary><b>⭐ Track B — открытые вопросы встречи 13</b></summary>
+
+> **Контекст:** Встреча 13 приняла принципиальные решения по Track B. Встреча 14 — технические детали реализации WP-285.
+
+### З. Track B — детали реализации (WP-285)
+
+| # | Вопрос | Контекст |
+|---|--------|----------|
+| **З.1** | **Паша: готов к зарубежной инфраструктуре?** Высокоуровневый разговор: мировой проект, Vultr EU-регион, Ory. | Тсерен говорит с Пашей до встречи 14. Без этого Ф2 WP-285 не стартует. |
+| **З.2** | **Паша: детали текущего Vultr** — что развёрнуто, что перенастроить, K8s или Docker Compose для старта? | Андрей + Паша; созвон после З.1. |
+| **З.3** | **БД для Ory EU**: отдельная БД в Neon (EU регион) или Postgres на Vultr VPS? Neon поддерживает EU-регион (aws-eu-central-1)? | При разворачивании Ф3 WP-285. Критично для GDPR compliance. |
+| **З.4** | **Stripe юрлицо**: UK/US LLC/Кипр? Stripe не принимает российских резидентов напрямую. | Нужна юрконсультация до Ф4 WP-285. |
+| **З.5** | **knowledge_* для Track B пользователей**: EN-контент — отдельный content-pipeline или перевод существующего? | WP-276 + WP-150. Не обсуждалось на встрече 13. |
+| **З.6** | **WP-150 (мультиагентность) и Track B**: Ф6 Unified MCP Gateway зависит от Ory EU (Ф3 WP-285). Таймлайн зависимости? | WP-150 Ф6 = critical для YC-demo. |
+
+</details>
+
+<details>
+<summary><b>А–Ж. Вопросы встречи 12, перенесённые в встречу 14</b></summary>
+
+> **Не рассматривались на встрече 13** (встреча была сфокусирована на Track B архитектуре).
 
 ### А. Ory — продолжение
 
 | # | Вопрос | Контекст |
 |---|--------|----------|
-| **A1** | Адаптер клуба с Ory — задеплоен на прод? Tseren проверил с своей стороны? Бот переключён на адаптер вместо своего API-ключа? | Передача Андрея 28 апр: «как закончу с клубом, с адаптером — скину тебе». Деплой ожидался 28 апр после проверки. |
-| **A1bis** | План EU-инстанса Ory на Hetzner — выпал из встречи 12. Поднимаем на Сервере 1 в W19+ или ждём NixOS-платформу + Сервер 2 Андрея? | Открытое с TG 26 апр + повестка 12. |
-| **A4** | После cut-over 1 мая ревизия двухшаговой MCP-безопасности (ADR-IWE-010 + ADR-IWE-012)? JWT-верификация работает корректно на 6 БД новой архитектуры? | Smoke @aist_me_bot ✅ 27 апр; нужно подтверждение независимости JWKS-верификации. |
-| **A5** | Aisystant MCP rebrand prod re-deploy — stale 17+ дней (5 коммитов). Деплоим? | WP-259 Ф5, smoke-test ~5 мин. Display-identity-only, machine identity не меняем. |
+| **A1** | Адаптер клуба с Ory — задеплоен на прод? Бот переключён на адаптер вместо своего API-ключа? | Передача Андрея 28 апр. Ожидался деплой 28 апр. |
+| **A4** | Ревизия двухшаговой MCP-безопасности (ADR-IWE-010 + ADR-IWE-012) после cut-over 1 мая? | Smoke @aist_me_bot ✅ 27 апр; нужно подтверждение. |
+| **A5** | Aisystant MCP rebrand prod re-deploy — stale 17+ дней (5 коммитов). Деплоим? | WP-259 Ф5, smoke-test ~5 мин. |
 
-### Б. WP-268 cut-over итоги
-
-| # | Вопрос | Контекст |
-|---|--------|----------|
-| **Б1** | ✅ **RESOLVED.** DROP digitaltwin/neondb/aist_bot/directus произошёл **26 апр** — на 5 дней раньше плана. Phase 3 (DSN переменные) done 29 апр. Phase 5 G8/G7 в прогрессе. | legacy DROP досрочно; WP-268 Phase 5 продолжается. |
-| **Б2** | Sequential worker throughput ceiling 50-60 ev/min (WP-270) — реальная нагрузка core-team прогона 30 апр (сегодня) и пилота 11-15 мая? | TG core-team message сегодня утром; первые данные нагрузки появятся к вечеру. Триггер Ф3 scaling = когорта 50+ пользователей. |
-| **Б3** | DROP platform БД (hold-out для FSM) — таймлайн? G8/G7 (нотификации, трейсы) — когда? | G10/G9 done 29 апр. G8/G7 сегодня 30 апр. G6 (нотификации/трейсы) — отложен W19 (требует архитектурных решений). DP.ARCH.004 v2.4.x: 3 special БД = Railway-local Postgres (FSM+journal+bot_data). |
-
-### В. WP-253 Ф9.5 итоги (30 апр — запуск сегодня)
+### Б. WP-268 cut-over — open items
 
 | # | Вопрос | Контекст |
 |---|--------|----------|
-| **В1** | TG core-team прогон 30 апр (5 чел, инструкция /personal-guide-start) — feedback? Регрессии? | 5 чел: Tseren, Дима, Андрей, Паша, Ильшат. Pre-flight ALL PASS 29 апр. TG-сообщение дедлайн сегодня утром (к ИТ-оперативке 09:00). |
-| **В2** | ✅ **RESOLVED.** WP-244 Ф3b internal_metrics writer LIVE — lag-метрики event-gateway + rewards-projection-worker LIVE с 27 апр (commits `4bf36d4` + `6ea8a74`). Блокер Ф9.6 снят. | Reliability gate 4–6 мая разблокирован. |
+| **Б2** | Sequential worker throughput ceiling 50-60 ev/min (WP-270) — реальная нагрузка пилота 11-15 мая? | Триггер Ф3 scaling = когорта 50+ пользователей. |
+| **Б3** | G6 (нотификации/трейсы) — таймлайн? Требует архитектурных решений. | G10/G9 done 29 апр; G8/G7 сегодня. G6 отложен W19. |
 
-### Г. Инцидент digital-twin-mcp 27 апр
+### В. WP-253 Ф9.5 статус
 
 | # | Вопрос | Контекст |
 |---|--------|----------|
-| **Г1** | ✅ **RESOLVED.** Root-cause: wrangler config drift (route binding `twin.aisystant.com/*` → digital-twin-mcp потерян между деплоями). Исправлено в WP-275: commit `45d3acf` + `[[routes]]` в wrangler.toml. Better Stack keyword-check обнаружил 27 апр (HTTP 200 + 0 bytes = CF anycast без route). HD #51 добавлен: «HTTP status check ≠ keyword check». | Закрыт. Урок: все CF Worker monitors → keyword-check, не только status-check. |
-| **Г2** | ✅ Мини-РП не нужен — причина известная (deploy drift), fix в WP-275, системная мера (keyword-check) применена ко всем 9 мониторам. | — |
+| **В1** | TG core-team прогон 30 апр (5 чел) — feedback? Регрессии? Ф9.6 reliability gate — PASS? | Результат reliability gate (4-6 мая) определяет старт пилота Ф9.7 11 мая. |
 
-### Д. Подтверждение отложений Q2 (от встречи 11)
+### Д. Отложения Q2
 
-| Вопрос | Текущий статус | Подтверждение нужно |
-|--------|----------------|----------------------|
-| B7.3 ревью безопасности (Паша) | Спецификации B7.3.2–B7.3.5 DONE 29 апр. B7.3.6 (GitHub login) — сегодня. Паша начинает ревью после MVP 1 мая | Подтвердить, что Паша получил все 5 спецификаций и может стартовать |
-| B7.4 внешний human-аудит | Q3 2026 | Без изменений |
-| Г Keto статус | подвисло, после MVP | Да |
-| Aisystant MCP rebrand | ✅ done — user-facing тексты обновлены (commit `fix(WP-259)` 29 апр; prod re-deploy done ранее) | Закрыто |
+| Вопрос | Статус | Что нужно |
+|--------|--------|-----------|
+| B7.3 ревью безопасности (Паша) | Спецификации B7.3.2–B7.3.6 DONE. Паша начинает ревью после MVP 1 мая | Подтвердить, что Паша получил все 6 спецификаций |
+| Keto статус | подвисло, после MVP | Подтвердить |
 
-### Е. WP-276 (новый зонтичный РП от 28 апр) — представление Андрею
+### Е. WP-276 — карта провайдеров
 
 | # | Что показать | Цель |
 |---|--------------|------|
-| **Е1** | Двухуровневая структура карты внешних провайдеров (Pack: 12 групп + DS: экземпляры). Drift-детектор как расширение паттерна WP-263. | Получить согласие на структуру и быть co-author |
-| **Е2** | Поправка по embedding service — теперь через GHA workflow по коммиту (паттерн Андрея). | Подтвердить корректное понимание |
+| **Е1** | Двухуровневая структура карты внешних провайдеров (Pack: 12 групп + DS: экземпляры). | Согласие Андрея на структуру |
 | **Е3** | Discourse / Sentry / GCP / Vercel — какие реально используются? | Закрыть слепые пятна перед Ф2 |
 
----
-
-### Ж. Новые вопросы с 29–30 апр
+### Ж. Новые вопросы
 
 | # | Вопрос | Контекст |
 |---|--------|----------|
-| **Ж1** | DP.ARCH.004 v2.4.x — 15 БД (12 entity + 3 special): Railway-local Postgres = FSM state + journal + bot_data как отдельная «3 special» группа. Нет возражений? | Обновлено 29 апр по итогам Phase 3–4 cutover. Ключевое изменение: Directus = Railway-local admin tool (не target Neon entity). Карта: `PACK-digital-platform/02-domain-entities/DP.ARCH.004`. |
-| **Ж2** | Инцидент 29 апр: activity-hub uncommitted changes — root-cause известен? Критично? | Зафиксировано в incident-log DS-ecosystem-development. Нужен разбор или self-healing? |
-| **Ж3** | event-gateway 503 (DB auth `neondb_owner`) — отдельный РП Паше актуален? Блокирует что-то в Ф9.6? | Найдено в WP-275 LIVE 27 апр. Нужен owner для фикса перед reliability gate 4–6 мая. |
+| **Ж2** | Инцидент 29 апр: activity-hub uncommitted changes — root-cause? Критично? | Зафиксировано в incident-log. |
+| **Ж3** | event-gateway 503 (DB auth `neondb_owner`) — owner для фикса перед reliability gate? | Найдено в WP-275 LIVE 27 апр. |
 
 </details>
 
@@ -182,7 +144,6 @@ source: встречи 1–12 (29 мар → 28 апр)
 | **Россия/мир** | Разделение инфраструктуры | ✅ Полное разделение финансов по юрлицам. → WP-215 (заморожен 19 апр) | 9 апр |
 | **CRM** | Отдельный сервис | ✅ Выделяем отдельный сервис учёта оплат | 9 апр |
 | **Neon** | Одна база | ✅ `platform` со схемами (12-13 апр). Целевое: 9→**12 БД** v2.3 (26 апр) | 9 / 13 / 19 / 26 апр |
-| **Сервер** | Activity Hub, Langfuse | ⏸️ Заморожено на Q2 | 9 апр |
 | DE-34 + Р4 | Identity: ory_id | ✅ Только ory_id. | 7 апр |
 | DE-36 | Клуб → Ory | ✅ Паша передоплывает с нуля | 12 апр |
 | ЦД ↔ LMS | Интеграция | ✅ Подтягивать при первом входе | 7 апр |
@@ -209,12 +170,15 @@ source: встречи 1–12 (29 мар → 28 апр)
 | **DP.ARCH.004 v2.4** | Mutual read-only LMS↔Neon | ✅ Pattern добавлен | 26 апр |
 | **DP.ARCH.001 принцип 26** | Read-only mode для скиллов с side-effects | ✅ Принято | 26 апр |
 | **WP-268 6 БД** | Переезд за день | ✅ DONE 26 апр | 26 апр |
-| **WP-268 cut-over vs dual-write** | Стратегия перехода | ✅ Cut-over accepted (3-5 дней, DROP 1 мая). Day 1+2 выполнен 27-28 апр, prod deploy 29 апр | 26 апр |
-| **WP-268 legacy DROP досрочно** | digitaltwin/neondb/aist_bot/directus | ✅ DROPPED 26 апр (5 дней раньше плана). Phase 3–5 продолжается. | 26 апр |
-| **DP.ARCH.004 v2.4.x** | 15 БД (12 entity + 3 special) | ✅ Обновлено 29 апр. 3 special: Railway-local Postgres (FSM+journal+bot_data) + health = external SaaS | 29 апр |
-| **WP-218 Ф8** | Мультипликатор IWE в indicators | ✅ DONE 29 апр. Системное решение (events → worker → indicators). | 29 апр |
-| **WP-212 B7.3.2–B7.3.5** | Спецификации безопасности для Паши | ✅ DONE 29 апр. 4 спецификации: ротация ключей / PII аудит / Persona-Memory-Context / 152-ФЗ encryption | 29 апр |
-| **Two-Track стратегия** | Track A (RU, Ильшат) / Track B (мир, YC) | ✅ Принято на Strategy Session W19, 4 мая | 4 мая |
+| **WP-268 cut-over vs dual-write** | Стратегия перехода | ✅ Cut-over accepted. Day 1+2 выполнен 27-28 апр, prod deploy 29 апр | 26 апр |
+| **WP-268 legacy DROP досрочно** | digitaltwin/neondb/aist_bot/directus | ✅ DROPPED 26 апр. Phase 3–5 продолжается. | 26 апр |
+| **DP.ARCH.004 v2.4.x** | 15 БД (12 entity + 3 special) | ✅ Обновлено 29 апр. 3 special: Railway-local Postgres + health = external SaaS | 29 апр |
+| **WP-218 Ф8** | Мультипликатор IWE в indicators | ✅ DONE 29 апр. | 29 апр |
+| **WP-212 B7.3.2–B7.3.5** | Спецификации безопасности для Паши | ✅ DONE 29 апр. 4 спецификации. | 29 апр |
+| **Two-Track стратегия** | Track A (RU, Ильшат) / Track B (мир, YC) | ✅ Принято Strategy Session W19, 4 мая | 4 мая |
+| **Р-TrackB: мировая инфраструктура** | Vultr + Ory EU + Postgres + Stripe + экспорт/импорт | ✅ 9 решений Р-TrackB-1–9 приняты на встрече 13. → WP-285 | 5 мая |
+| **Neon-аудит (О-1)** | `@neondatabase/serverless` только транспорт CF Workers | ✅ SQL везде стандартный Postgres. Branching API не используется. | 5 мая |
+| **Vultr vs облако (О-2)** | Vultr $73/мес start vs GKE $200/мес | ✅ Vultr для старта. GKE при > 500 пользователей. | 5 мая |
 
 </details>
 
@@ -222,16 +186,18 @@ source: встречи 1–12 (29 мар → 28 апр)
 <summary><b>Бэклог (не на ближайшую встречу)</b></summary>
 
 **Ждут внешних условий:**
-- **Юрконсультация Q9/Q11.** Заморожена вместе с WP-215.
-- **Перечень данных для RU↔EU репликации** — заморожен вместе с WP-215.
+- **Юрконсультация Q9/Q11.** Заморожена вместе с WP-215. Разморожена для Track B: юрлицо под Stripe → до Ф4 WP-285.
+- **Перечень данных для RU↔EU репликации** — не нужна (платформы независимы, Р-TrackB-3).
 
 **Архитектурные вопросы на отдельную встречу (Q3+):**
 - **Encryption at rest:** pgcrypto / app-level / Vault — после MVP.
 - **Inter-service auth:** стандартизация вызовов между сервисами — не блокер.
 - **Сертификации SOC 2 / ISO 27001** — после подтверждения массового продукта.
 - **Matcher каналов** (Telegram + email + Ory) — нет owner, нет срока.
-- **РФ-хостинг выбор** (Hetzner Russia vs VK Cloud vs Selectel) — Q12, заморожен.
+- **РФ-хостинг выбор** — заморожен (Track A отдаётся Ильшату).
 - **Unit economics по тирам** — C4, Q3+.
 - **Web App Vue/Nuxt** (ADR-001) — после подтверждения гипотезы.
+- **Клуб: один или два?** — после запуска Track B MVP (Р-TrackB-8).
+- **Баллы единые RU+мир** — юридически сложно, Q3 (юрконсультация).
 
 </details>
