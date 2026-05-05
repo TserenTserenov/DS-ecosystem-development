@@ -1,225 +1,228 @@
----
-type: architectural-comparison
-title: "Track B инфраструктура — сравнение Hetzner / Vultr / GKE / EKS"
-status: draft-for-discussion
-created: 2026-05-05
-related: WP-285, WP-215, WP-73 (встреча 13)
-audience: Андрей (архитектор), Паша (инженер), Тсерен
----
+# WP-285: Полная инфраструктура Track B — сравнение вариантов
 
-# Track B инфраструктура — сравнение вариантов
-
-> **Контекст:** Встреча 13 (5 мая) приняла Р-TrackB-5 (Vultr) как стартовое решение. Тсерен склоняется к **сразу облако**, чтобы не переделывать при росте. Документ — расчёты для финального выбора.
+> **Документ для встречи 14.** Версия 2 — полная картина всех расходов (Track A + Track B).
+> Связан с: WP-285, WP-73, WP-253
 
 ---
 
-## 1. Требования к инфраструктуре
+## Что мы сравниваем
 
-### Что должно работать в Track B
+**Не Hetzner vs Vultr vs GKE** — это разные категории, их нельзя сравнивать в одной строке.
 
-| Компонент | Назначение | Где сейчас (Track A) | Где должно быть в Track B |
-|-----------|------------|---------------------|---------------------------|
-| **Ory Kratos + Hydra** | Аутентификация + OAuth/JWT | VK Cloud (RU) | Track B EU |
-| **Postgres (12 БД)** | platform, learning, persona, indicators, subscription, finance, security, health, knowledge, content, … | Neon (регион?) | Track B EU (managed или self-hosted) |
-| **MCP-сервисы** | gateway, knowledge, event-gateway, payment-receiver, personal-knowledge, guides, digital-twin | CF Workers | **CF Workers (без изменений)** — edge, не зависят от региона |
-| **Bot** | aist_bot (aiogram) | Railway | Track B compute |
-| **Workers** | multi-domain-projection, rewards-projection, alerter | Railway | Track B compute |
-| **Storage** | бэкапы, артефакты | Railway/Neon backups | Track B S3-compatible |
-| **DNS/SSL/WAF** | edge-уровень | Cloudflare | Cloudflare (без изменений) |
-| **Monitoring** | uptime, alerts | Better Stack | Better Stack (без изменений) |
+| Категория | Что это | Примеры |
+|-----------|---------|---------|
+| **VPS/Bare metal** | Арендуем серверы, сами ставим ПО | Hetzner Cloud, Vultr VPS |
+| **Managed K8s** | Платформа управляет кластером | GKE Autopilot, EKS |
+| **Serverless** | Плата за вызов, без серверов | CF Workers (уже используем) |
+| **DBaaS** | Управляемые БД | Neon, Cloud SQL, Vultr Managed |
 
-### Базовая нагрузка
-
-| Сценарий | Активных пользователей | vCPU суммарно | RAM суммарно | Storage |
-|----------|------------------------|---------------|--------------|---------|
-| **MVP (Q3 2026)** | до 100 | ~5 | ~10 GB | ~100 GB |
-| **Production (Q4 2026)** | 100–1000 | ~10 | ~25 GB | ~300 GB |
-| **Масштаб (2027)** | 1000–10000 | 30+ | 80+ GB | 1+ TB |
+**Что реально выбираем:** платформу для нового Track B вычисления (боты, воркеры, Ory EU).
+Остальные слои (CF Workers, Cloudflare, Better Stack, Stripe) не меняются при любом выборе.
 
 ---
 
-## 2. Сравнение трёх вариантов
+## Текущая инфраструктура (до Track B)
 
-> Все цены в USD/мес. EUR конвертировано по курсу 1.08. Без учёта egress/traffic (см. §4).
+> Полная картина того, что сейчас работает и сколько стоит.
 
-### Вариант A — Hetzner Cloud (EU)
-
-**Регионы:** Falkenstein, Nuremberg, Helsinki — все EU, GDPR из коробки.
-
-| Этап | Конфигурация | Цена |
-|------|--------------|------|
-| **MVP** | CX32 (4vCPU/8GB/80GB SSD) для Postgres+Ory + CX22 (2vCPU/4GB) для bot/workers + Storage Box BX11 1TB | $13 + $7 + $4 = **$24** |
-| **Production** | CX42 (8vCPU/16GB) Postgres + CX32 Ory(2 replicas) + CX22 bot+workers + Storage Box BX21 5TB | $28 + $14 + $7 + $13 = **$62** |
-| **Масштаб** | AX41 dedicated (6c Ryzen/64GB/2×512GB NVMe) Postgres + 3×CX32 + Storage Box BX31 10TB | $43 + $42 + $25 = **$110** |
-| + CF Workers Paid | | $5 |
-| + Better Stack | | $0–10 |
-| **Итого MVP** | | **~$30/мес** |
-| **Итого Production** | | **~$70/мес** |
-
-**Плюсы:**
-- Самое дешёвое из всех вариантов EU
-- Доступ к dedicated bare metal (Robot) на следующем этапе — лучшее цена/производительность в индустрии
-- У Тсерена уже есть Hetzner-аккаунт + tsekh-1 (NixOS+ZFS) → есть опыт
-- Полный контроль над инфраструктурой
-
-**Минусы:**
-- Нужно администрировать самим: Postgres backup'ы, мониторинг, апдейты
-- Нет managed Kubernetes (нужно поднимать k3s/k0s самим, или использовать Docker Compose)
-- Менее масштабируемо при нагрузке > 10K пользователей (нужны кросс-региональные кластеры)
-- Меньше DC, чем у Vultr/AWS/GCP (только EU фактически)
+| Компонент | Что делает | Стоимость | Останется в Track A |
+|-----------|-----------|-----------|---------------------|
+| **Hetzner tsekh-1** | Dedicated сервер (NixOS+ZFS), backup Mac | ~€44/мес ($48) | Да (железо Тсерена) |
+| **Railway** | Python-бот @aist_me_bot + projection workers | ~$20-35/мес | Да → Ильшат |
+| **Neon (Production)** | 12 entity БД (~30GB+): events, knowledge, health, platform, payments, content... | ~$69/мес | Да (RU-данные остаются) |
+| **CF Workers (Paid)** | gateway-mcp, knowledge-mcp, event-gateway, payment-receiver, guides-mcp, DT-mcp | $5/мес | Да (RU endpoint'ы) |
+| **Cloudflare** | DNS, SSL, WAF (mcp.aisystant.com, aisystant.ru) | ~$0-20/мес | Да |
+| **VK Cloud Ory** | Kratos+Hydra для Russian users | ~$10-20/мес | Да → Ильшат |
+| **Better Stack** | Мониторинг 9 сервисов | ~$0-20/мес | Да |
+| **Stripe** | — не используем (YooKassa) | $0 | YooKassa → Ильшат |
+| **ИТОГО Track A** | | **~$152-217/мес** | |
 
 ---
 
-### Вариант B — Vultr (предложен Андреем)
+## Три сценария для Track B
 
-**Регионы:** Amsterdam, Frankfurt, London, Paris, Stockholm + глобально.
+> Track B = новая мировая платформа (YC-ready). Добавляется к Track A, не заменяет.
+> Нулевые расходы при Р-3 (платформы не пересекаются): можно запускать без отключения Track A.
 
-| Этап | Конфигурация | Цена |
-|------|--------------|------|
-| **MVP (без K8s, Docker Compose)** | 4vCPU/8GB ($24) Postgres+Ory + 2vCPU/4GB ($12) bot+workers + Block storage 100GB ($10) | **$46** |
-| **MVP (с VKE — Vultr Kubernetes Engine)** | VKE control $10 + 2 nodes 2vCPU/4GB ($24 каждая) + 100GB Block storage ($10) | **$68** |
-| **Production** | 4vCPU/16GB ($48) Postgres + 2vCPU/4GB ($12) Ory + 2vCPU/4GB ($12) bot+workers + 200GB Block storage ($20) | **$92** |
-| **Масштаб** | VKE + 3 nodes 4vCPU/8GB ($48 каждая) + 500GB Block ($50) + Managed DB ($60+) | **$254+** |
-| + CF Workers Paid | | $5 |
-| **Итого MVP** | | **~$50–75/мес** |
-| **Итого Production** | | **~$100/мес** |
+### Общее для всех сценариев (не зависит от выбора платформы)
 
-**Плюсы:**
-- У Андрея уже есть Vultr-аккаунт и опыт развёртывания
-- Есть managed Kubernetes (VKE) дешёвый ($10/мес control plane)
-- Более широкая сеть DC (есть APAC регионы для глобального роста)
-- Managed Database (Postgres) — $60+/мес, можно использовать вместо Neon
-
-**Минусы:**
-- В 2× дороже Hetzner на тех же конфигах
-- Меньше готовых интеграций с инструментами enterprise (Datadog, Grafana Cloud и т.п.)
-- VKE менее зрелый, чем GKE/EKS
+| Компонент | Стоимость | Примечание |
+|-----------|-----------|------------|
+| CF Workers (мировые endpoint'ы) | $0 доп. | Те же Workers, международные пользователи |
+| Cloudflare (Track B домен) | $0-10/мес | Новый домен (~$10-15/год) + DNS бесплатно |
+| Stripe | 2.9% + $0.30/транзакция | Нет ежемесячного платежа |
+| Better Stack (новые мониторы) | $0 доп. | В текущем плане (до лимита) |
+| **Постоянные добавки** | **~$0-10/мес** | |
 
 ---
 
-### Вариант C — GKE Autopilot (Google Cloud) или EKS (AWS)
+### Сценарий A — Hetzner Cloud (EU, дешевле всего)
 
-**Регионы GCP:** europe-west1 (Belgium), europe-west3 (Frankfurt), europe-west4 (Netherlands).
-**Регионы AWS:** eu-central-1 (Frankfurt), eu-west-1 (Ireland), eu-west-2 (London).
+> **Профиль:** минимальная стоимость, требует DevOps-знания Docker Compose / k3s.
+> Хорошо: у Тсерена уже есть аккаунт (tsekh-1).
 
-#### GKE Autopilot (рекомендуем как cloud-вариант)
+| Компонент | Конфигурация | Стоимость/мес |
+|-----------|-------------|---------------|
+| **Ory EU** | Hetzner CX22 (2 vCPU, 4GB, EU) | €5.83 ($6.4) |
+| **Bot + workers** | Hetzner CX32 (4 vCPU, 8GB) | €11.05 ($12) |
+| **Postgres Track B** | Hetzner Managed Postgres (стартовый) | €25 ($28) |
+| **Egress** | ~50GB/мес → включено в plan | €0 |
+| **Итого Track B (MVP)** | | **~$46/мес** |
 
-| Этап | Конфигурация | Цена |
-|------|--------------|------|
-| **MVP** | Autopilot pods 5vCPU/10GB constant + Cloud SQL db-g1-small Postgres + 50GB SSD + LB | ~$160 + $45 + $10 + $20 = **~$235** |
-| **Production** | Autopilot 10vCPU/25GB + Cloud SQL n1-standard-2 + 200GB SSD + LB + replicas | ~$280 + $130 + $40 + $30 = **~$480** |
-| **Масштаб** | Autopilot 30vCPU + Cloud SQL n1-standard-4 HA + cross-zone replicas | ~$700 + $400 + $100 = **~$1200** |
-| + CF Workers Paid | | $5 |
-| **Итого MVP** | | **~$240/мес** |
-| **Итого Production** | | **~$485/мес** |
+| Компонент | Production (3-5 тыс. пользователей) |
+|-----------|-------------------------------------|
+| +2 CX32 (масштабирование) | +€22 |
+| Postgres (рост данных) | +€15 |
+| **Итого Track B (Production)** | **~$83/мес** |
 
-> **GCP free tier:** $300 кредитов на 90 дней для новых аккаунтов. Покрывает первый месяц MVP с запасом.
-
-#### EKS (AWS) — для сравнения
-
-| Этап | Конфигурация | Цена |
-|------|--------------|------|
-| **MVP** | EKS control $73 + 2 t3.medium nodes ($60) + RDS db.t3.small ($30) + EBS+ALB+egress | $73 + $60 + $30 + $30 = **~$195** |
-| **Production** | EKS + 3 t3.large ($180) + RDS db.t3.medium ($60) + replicas | $73 + $180 + $60 + $60 = **~$375** |
-| **Итого MVP** | | **~$200/мес** |
-| **Итого Production** | | **~$380/мес** |
-
-**Плюсы (GKE/EKS):**
-- Управляемый K8s — apдейты, security patches, autoscaling вкл из коробки
-- Масштабирование hands-off до 100K+ пользователей
-- Любая Cloud-Native экосистема (Helm, Istio, Knative, ArgoCD) ставится за минуты
-- SOC 2 / ISO 27001 / GDPR-attestation на уровне provider'а — упрощает продажу enterprise
-- Multi-region failover настраивается стандартными средствами
-- **Не переделывать при росте** — главный плюс под целевую модель Тсерена
-
-**Минусы:**
-- В 5–10× дороже Hetzner на MVP-стадии
-- Серьёзная кривая обучения (особенно AWS) — Паше нужно будет инвестировать время
-- Egress дорогой ($0.08–0.12/GB исходящего трафика — на 1TB ~$100/мес сверху)
-- Vendor lock-in при использовании managed-фич (Cloud Spanner, Cloud Run, Lambda, …)
-- Сложнее разобрать счёт — много мелких позиций
+**Управление:** Docker Compose (старт) → k3s (при росте). Мигрировать при >5K пользователей.
 
 ---
 
-## 3. Сводная таблица
+### Сценарий B — Vultr (EU, опыт Андрея)
 
-| Параметр | Hetzner | Vultr | GKE Autopilot | EKS |
-|----------|---------|-------|---------------|-----|
-| **MVP цена/мес** | $30 | $50–75 | $240 | $200 |
-| **Production цена/мес** | $70 | $100 | $485 | $380 |
-| **Масштаб (10K users)** | $110 | $250+ | $1200 | $1000 |
-| **Регион EU** | ✅ DE/FI | ✅ NL/DE/UK | ✅ BE/DE/NL | ✅ DE/IE/UK |
-| **Managed K8s** | ❌ (k3s самим) | ✅ VKE | ✅ Autopilot | ✅ EKS |
-| **Managed Postgres** | ❌ self-hosted | ✅ Vultr DB | ✅ Cloud SQL | ✅ RDS |
-| **Auto-scale** | ❌ ручное | ⚠️ ограничено | ✅ из коробки | ✅ из коробки |
-| **Multi-region failover** | ⚠️ сложно | ⚠️ сложно | ✅ нативно | ✅ нативно |
-| **GDPR attestation** | ⚠️ сами | ⚠️ сами | ✅ provider | ✅ provider |
-| **SOC 2 / ISO 27001** | ❌ | ❌ | ✅ provider | ✅ provider |
-| **YC investor optics** | средне | средне | **высоко** | **высоко** |
-| **Кривая обучения** | низкая (Docker) | низкая | высокая | очень высокая |
-| **Опыт в команде** | Тсерен (tsekh-1) | Андрей | нет | нет |
-| **Free tier при старте** | ❌ | ❌ | ✅ $300/90 дней | ⚠️ только compute t-class |
+> **Профиль:** немного дороже Hetzner, зато Андрей знает платформу.
+> Внимание: Р-6 уже принято — Ory EU на Vultr (независимо от сценария для остального).
 
----
+| Компонент | Конфигурация | Стоимость/мес |
+|-----------|-------------|---------------|
+| **Ory EU** | Vultr VPS 2GB (Amsterdam) | $12/мес |
+| **Bot + workers** | Vultr VPS 4GB | $20/мес |
+| **Postgres Track B** | Vultr Managed Postgres | $15/мес |
+| **Egress** | ~50GB × $0.01/GB | $0.5 |
+| **Итого Track B (MVP)** | | **~$48/мес** |
 
-## 4. Скрытые расходы
+| Production | |
+|------------|--|
+| +2 VPS для масштабирования | +$40 |
+| Postgres рост | +$10 |
+| **Итого Track B (Production)** | **~$98/мес** |
 
-| Категория | Hetzner | Vultr | GKE | EKS |
-|-----------|---------|-------|-----|-----|
-| **Egress** (исходящий трафик) | 20TB включено | 1-10TB включено | $0.12/GB после 1GB | $0.09/GB после 1GB |
-| **Egress 1TB/мес** | $0 | $0 (если в плане) | ~$120 | ~$90 |
-| **Backup storage** | $4 (BX11) | $5–20 (Block) | в Cloud SQL | в RDS |
-| **Load balancer** | $5–10 | $10 | $20+ | $20+ (ALB) |
-| **Snapshot storage** | $0.011/GB | $0.05/GB | $0.04/GB | $0.05/GB |
-| **NAT gateway** | бесплатно | бесплатно | $0.045/час | $0.045/час |
-
-> **Важно:** для production-стадии egress на GCP/AWS может удвоить счёт. Hetzner включает 20TB egress в цену сервера — критическое преимущество при росте.
+**Управление:** Docker Compose → k3s. Схожа с Hetzner, но дороже за аналогичные ресурсы.
 
 ---
 
-## 5. Рекомендация
+### Сценарий C — GKE Autopilot (рекомендация для облака)
 
-### Если приоритет — «не переделывать при росте» (позиция Тсерена)
+> **Профиль:** дороже старт, но Cloud-native, SOC2/GDPR provider attestation, YC-friendly.
+> GKE Autopilot: плата **только за реально потреблённые ресурсы pods** (не за idle nodes).
+> $300 кредит / 90 дней Google Free Tier.
 
-**→ GKE Autopilot.** Почему:
-1. Autopilot биллит по реальному использованию (vCPU·сек + GB·сек), не за сами ноды — нет переплаты за idle
-2. Free tier $300/90 дней покрывает MVP-эксперимент почти бесплатно
-3. Cloud SQL — managed Postgres с EU-регионом, point-in-time recovery, автоматические бэкапы
-4. Стоимость растёт линейно с пользователями, нет «ступенек» при масштабировании
-5. Investor optics (YC, SOC 2 audit) — без работы со стороны команды
-6. Опыт работы с GKE — востребованный skill, проще нанимать инженеров
+| Компонент | Конфигурация | Стоимость/мес |
+|-----------|-------------|---------------|
+| **GKE Autopilot кластер** | europe-west4 (Нидерланды), pods по запросу | ~$60-80 |
+| **Cloud SQL Postgres** | db-f1-micro + 10GB SSD (shared core) | ~$15-20 |
+| **Ory EU** | Pod в GKE (не отдельный VPS) | в кластере |
+| **Egress** | ~50GB × $0.12/GB | $6 |
+| **Artifact Registry** (Docker images) | ~5GB × $0.10 | $0.5 |
+| **Итого Track B (MVP)** | | **~$82-107/мес** |
 
-**Когда GKE Autopilot становится дороже статической инфры:**
-- > 10K constant активных пользователей с равномерной нагрузкой → bare metal Hetzner экономичнее
-- Можно мигрировать в этой точке (через 2-3 года)
+| Production (3-5K пользователей) | |
+|----------------------------------|--|
+| Pods масштабируются автоматически | +$80 |
+| Cloud SQL (small, 2vCPU, 50GB) | +$70 |
+| Egress рост до 200GB | +$20 |
+| **Итого Track B (Production)** | **~$252-297/мес** |
 
-### Если приоритет — «минимальная стоимость до 1000 пользователей»
+**Управление:** kubectl + Helm. Паше нужно обучение (~3-4ч). CI/CD через Cloud Build или GitHub Actions.
 
-**→ Hetzner Cloud + CF Workers + Cloudflare R2 для backup.** Сэкономим $200–400/мес первые 6 месяцев.
-
-### Если приоритет — «использовать опыт Андрея»
-
-**→ Vultr с VKE.** Промежуточный вариант: managed K8s, но дешевле облаков.
-
----
-
-## 6. Что предлагаю на встречу 14
-
-1. **Принять решение:** GKE Autopilot vs Hetzner — на основе горизонта планирования. Если YC-заявка → демо Q4 2026 → пилот → масштаб 2027 — то GKE Autopilot оправдан. Если первая цель «работающий MVP до сентября» — Hetzner быстрее.
-2. **Если GKE Autopilot:** активировать GCP free tier credits. Паша обучается базовому GKE (~1 неделя). Cloud SQL Postgres EU.
-3. **Если Hetzner:** использовать существующий аккаунт Тсерена. Docker Compose на одной CX32 для старта. Миграция в k3s → GKE при росте.
-4. **Не выбирать Vultr** — он не побеждает ни в одной категории (дороже Hetzner, менее зрелый чем GKE/EKS).
-5. **EKS отбросить** — дороже GKE на сопоставимых конфигах + сложнее в эксплуатации, без преимуществ для нашего профиля.
+**Почему Cloud SQL вместо Neon:** egress между Neon (US-east) и GKE (EU) = ~$0.12/GB. При 10GB событий/мес = $1.2 (мало сейчас, растёт). Cloud SQL в том же регионе = $0 internal.
 
 ---
 
-## 7. Открытые вопросы для обсуждения
+## Полная таблица: Track A + Track B
 
-| # | Вопрос | Кто отвечает |
-|---|--------|--------------|
-| 1 | Горизонт планирования: цель до 2026-09 (MVP) или до 2027-Q2 (масштабирование)? | Тсерен |
-| 2 | Бюджет инфры: $30/мес vs $250/мес — что приемлемо при текущем runway? | Тсерен (S0 неудовлетворённость) |
-| 3 | YC заявка — есть ли требования к compliance (SOC 2)? | Тсерен |
-| 4 | Опыт Паши с GKE/Cloud SQL — есть или нужно учиться? | Паша |
-| 5 | Multi-region (US + EU) или только EU? | Тсерен (Track B стратегия) |
-| 6 | Cloudflare R2 vs cloud-native storage — где бэкапы? | Андрей |
+> Что нам обойдётся ежемесячно при каждом сценарии.
+
+### MVP фаза (запуск, первые 500 пользователей)
+
+| Статья | Track A (общий) | +Hetzner Cloud | +Vultr | +GKE Autopilot |
+|--------|----------------|----------------|--------|----------------|
+| Hetzner tsekh-1 | $48 | $48 | $48 | $48 |
+| Railway (Track A) | $28 | $28 | $28 | $28 |
+| Neon (Track A, 12 БД) | $69 | $69 | $69 | $69 |
+| CF Workers | $5 | $5 | $5 | $5 |
+| Cloudflare | $10 | $10 | $10 | $10 |
+| VK Cloud Ory (Track A) | $15 | $15 | $15 | $15 |
+| Better Stack | $10 | $10 | $10 | $10 |
+| **Track B compute** | — | **$46** | **$48** | **$82-107** |
+| **ИТОГО** | **~$185** | **~$231/мес** | **~$233/мес** | **~$267-292/мес** |
+
+### Production фаза (3-5 тыс. пользователей)
+
+| Статья | Track A (общий) | +Hetzner Cloud | +Vultr | +GKE Autopilot |
+|--------|----------------|----------------|--------|----------------|
+| Hetzner tsekh-1 | $48 | $48 | $48 | $48 |
+| Railway (Track A) | $28 | $28 | $28 | $28 |
+| Neon (Track A) | $69 | $69 | $69 | $69 |
+| CF Workers | $5 | $5 | $5 | $5 |
+| Cloudflare | $10 | $10 | $10 | $10 |
+| VK Cloud Ory (Track A) | $15 | $15 | $15 | $15 |
+| Better Stack | $20 | $20 | $20 | $20 |
+| **Track B compute** | — | **$83** | **$98** | **$252-297** |
+| **ИТОГО** | **~$195** | **~$278/мес** | **~$293/мес** | **~$447-492/мес** |
+
+### Scale (10K+ пользователей)
+
+| | Hetzner Cloud | Vultr | GKE Autopilot |
+|--|---------------|-------|----------------|
+| Track B compute | ~$150 | ~$250+ | ~$600-800 |
+| **Track B + Track A** | **~$345** | **~$445** | **~$795-995** |
+
+---
+
+## Скрытые расходы и ловушки
+
+| Статья | Hetzner | Vultr | GKE |
+|--------|---------|-------|-----|
+| **Egress (исходящий трафик)** | 20TB/мес **бесплатно** ✅ | $0.01/GB ⚠️ | $0.12/GB ❌ критично при росте |
+| **DevOps время** | ~8h начало + ~2h/мес | ~8h начало + ~2h/мес | ~4h начало (автоматизировано) |
+| **Managed upgrades** | ❌ ручной | ❌ ручной | ✅ автоматически |
+| **SOC2 attestation** | ❌ | ❌ | ✅ (важно для YC/enterprise) |
+| **Lock-in** | Минимальный | Минимальный | Средний (Cloud SQL, GKE APIs) |
+| **Backup автоматический** | ❌ настраивать | ❌ настраивать | ✅ автоматически |
+
+---
+
+## Итоговая рекомендация
+
+### Если цель — YC Demo Day и международный продукт
+
+**GKE Autopilot**: $267-292/мес на MVP — это ~$3200-3500/год. Разница с Hetzner Cloud = ~$430/год. За эту разницу: managed upgrades, SOC2/GDPR attestation, автомасштабирование, не нужно переделывать при росте до 100K пользователей. **Рекомендуем.**
+
+### Если цель — минимальный расход на стадии MVP
+
+**Hetzner Cloud**: $231/мес на MVP. Самый дешёвый старт. Придётся мигрировать при росте (~40h), но для первых 6 месяцев — экономия $400-500. Hetzner аккаунт у Тсерена уже есть.
+
+### Vultr: только если Андрей ведёт инфру и у него уже есть ресурсы
+
+Ory EU на Vultr (по Р-6) — нужен в любом случае ($12/мес VPS). Весь Stack на Vultr — дороже Hetzner без существенных преимуществ, если Паша/Тсерен основные.
+
+---
+
+## Переходный план (при выборе GKE Autopilot)
+
+1. Активировать GCP Free Tier ($300/90 дней) → MVP за $0 первые 3 месяца
+2. Ory EU: в GKE pod (не Vultr отдельно, пересмотреть Р-6)
+3. Cloud SQL: europe-west4 (Нидерланды) для новых Track B БД
+4. Neon (12 Track A БД): остаются для Track A — не трогаем (Р-3)
+5. CF Workers: тот же Cloudflare account — добавить routes для Track B endpoints
+6. Railway: остаётся для Track A ботов → Ильшат
+
+**Когда Neon → Cloud SQL для Track B новых БД:**
+- Ory требует отдельную Postgres (Р-5): Cloud SQL $15-20/мес
+- Track B новые сервисы: Cloud SQL (EU) — $0 egress внутри GKE
+- Track A (RU): Neon остаётся ($69/мес)
+
+---
+
+## Открытые вопросы для встречи 14
+
+| # | Вопрос | Влияние на расходы |
+|---|--------|-------------------|
+| 1 | Паша: готов к Google Cloud / обучению kubectl? | GKE vs Hetzner |
+| 2 | Андрей: что на текущем Vultr? Перенести Track B или новый аккаунт? | $50-100/мес |
+| 3 | GCP Free Tier: кто активирует ($300 кредит)? | MVP фактически бесплатный 3 мес |
+| 4 | Neon для Track B: гибрид (Neon EU регион) или Cloud SQL? | $15-40/мес |
+| 5 | Р-6 пересмотреть: Ory EU в GKE pod vs отдельный Vultr VPS | $12/мес экономия при GKE |
+| 6 | Домен Track B: aisystant.com или новый? | $10-15/год (незначительно) |
