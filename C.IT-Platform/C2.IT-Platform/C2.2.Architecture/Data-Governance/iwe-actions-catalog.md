@@ -59,7 +59,10 @@ related:
 | WP закрыт | `wp_closed` | Close-скилл или wp-gate (Edit WP-REGISTRY) | wp_id, actual_hours, result_quality | `wp` | 80 |
 | WP заблокирован/заморожен | `wp_blocked` | manual или strategy-session | wp_id, reason | `none` | 0 |
 
-**Текущий статус:** wp-gate-check.sh проверяет наличие РП, но **не эмитит событие**. Нужно добавить эмиттер в wp-gate-check.sh (при успешном создании WP) и в close-протокол (при фиксации done).
+**Текущий статус (✅ done, 5 май):**
+- `wp_created` — `.claude/hooks/iwe-wp-tracker.sh` PostToolUse на Write/Edit inbox/WP-NNN-*.md → эмитит с external_id `wp-{NNN}` (идемпотентно между сессиями)
+- `wp_closed` — `iwe-orz-tracker.sh` Stop-хук, per-WP external_id `wp-{NNN}`, расширенный regex (done/closed/✅/закрыт/завершён/complete)
+- Оба зарегистрированы в event-gateway LEGACY_BOT_EVENT_TYPES + zadeplоены (Worker 79e39dbb)
 
 ---
 
@@ -114,20 +117,24 @@ related:
 ## 3. Матрица покрытия: действие → статус реализации
 
 ```
-РАБОТАЕТ (✅)         ЕСТЬ HOOK (⚠️ не подключён)    НЕТ (❌)
-─────────────────────  ────────────────────────────    ──────────────────
-lesson_completed       wakatime-heartbeat.sh            wp_created
-qualification_granted  (не в settings.json)             wp_closed
-payment_received                                        week_plan_closed
-slot_logged                                             month_plan_closed
-command_invoked                                         strategy_session_completed
-day_plan_opened                                         knowledge_extracted
-day_plan_closed                                         git_commit
-                                                        git_push
-                                                        pack_updated
-                                                        iwe_session
-                                                        file_edited
-                                                        iwe_research
+РАБОТАЕТ (✅)                ЕСТЬ HOOK (⚠️)              НЕТ (❌)
+──────────────────────────  ──────────────────────       ──────────────────
+lesson_completed             wakatime-heartbeat.sh        file_edited
+qualification_granted        (в settings.json ✅,         iwe_research
+payment_received             но iwe_session Stop          git_push
+slot_logged                  детектирует ≥5 мин)
+command_invoked
+day_plan_opened
+day_plan_closed
+week_plan_closed             ← iwe-orz-tracker Stop
+month_plan_closed            ← iwe-orz-tracker Stop
+strategy_session_completed   ← iwe-orz-tracker Stop
+knowledge_extracted          ← iwe-orz-tracker Stop
+iwe_session                  ← iwe-orz-tracker Stop
+git_commit                   ← global post-commit hook
+pack_updated                 ← global post-commit hook
+wp_created                   ← iwe-wp-tracker PostToolUse
+wp_closed                    ← iwe-orz-tracker Stop
 ```
 
 ---
@@ -158,17 +165,16 @@ day_plan_closed                                         git_commit
 
 ## 5. Приоритизация реализации
 
-### HIGH: быстрый win, высокая ценность
-1. **WakaTime hook → settings.json** (30 мин): подключить существующий `wakatime-heartbeat.sh` + добавить эмиссию `iwe_session` при Stop с duration >15 мин
-2. **week_plan_closed / strategy_session_completed** (2h): добавить эмиттер в скиллы /week-close и /strategy-session
+### DONE (✅ 5 май 2026)
+1. **WakaTime hook** — подключён в settings.json Stop
+2. **week_plan_closed / month_plan_closed / strategy_session_completed / knowledge_extracted / iwe_session** — iwe-orz-tracker.sh Stop-хук
+3. **wp_created** — iwe-wp-tracker.sh PostToolUse (inbox/WP-NNN-*.md)
+4. **wp_closed** — iwe-orz-tracker.sh Stop-хук, per-WP external_id
+5. **git_commit / pack_updated** — global git template `~/.git-templates/hooks/post-commit`
 
-### MEDIUM: важно для баллов
-3. **wp_created / wp_closed** (3h): модифицировать wp-gate-check.sh + close-протокол
-4. **git_commit / pack_updated** (2h): глобальный git template с post-commit hook
-
-### LOW: детализация
-5. **file_edited / iwe_research** (2h): детекторы в capture-bus (уже есть каркас)
-6. **knowledge_extracted** (2h): emitter в скилл /ke
+### LOW: детализация (backlog)
+6. **file_edited / iwe_research** (2h): детекторы в capture-bus (каркас есть)
+7. **git_push** (30 мин): post-push hook в git-templates
 
 ---
 
