@@ -6,6 +6,22 @@
 
 ## Мировая платформа (Track B)
 
+### Ключевое архитектурное решение: Neon не нужен для Track B
+
+CF Workers могут подключаться к любому Postgres (включая Cloud SQL и Vultr Managed Postgres) напрямую через `postgres.js` + **Cloudflare Hyperdrive** (TCP через `cloudflare:sockets`, добавлено Cloudflare в 2023).
+
+| | Старый подход | Новый подход (Track B) |
+|--|---------------|------------------------|
+| Драйвер в CF Workers | `@neondatabase/serverless` (HTTP-транспорт) | `postgres.js` (TCP через cloudflare:sockets) |
+| Пулинг соединений | Neon pooler | **Hyperdrive** (Cloudflare, входит в Paid план $5/мес) |
+| База данных | Только Neon (нужен HTTP API) | Любой Postgres: Cloud SQL, Vultr, и т.д. |
+| Neon нужен? | Да | **Нет** |
+
+**Neon (12 БД) остаётся только в Track A** — там существующие данные, ничего не трогаем.
+Track B стартует с нуля: новые таблицы сразу в Cloud SQL или Vultr Managed Postgres.
+
+---
+
 ### Что входит в мировую платформу
 
 | Слой | Что нужно |
@@ -13,7 +29,7 @@
 | **Compute** | Запуск бота, projection workers |
 | **Аутентификация** | Ory EU (Kratos + Hydra) — мировые пользователи |
 | **База данных** | Postgres для entity БД + отдельная БД для Ory |
-| **API-слой** | CF Workers — gateway-mcp, knowledge-mcp, event-gateway |
+| **API-слой** | CF Workers + Hyperdrive — gateway-mcp, knowledge-mcp, event-gateway |
 | **DNS / SSL** | Cloudflare — мировой домен |
 | **Мониторинг** | Better Stack — keyword-check мониторы |
 | **Платежи** | Stripe |
@@ -29,7 +45,7 @@
 | **Vultr VPS 2GB** (Amsterdam / Frankfurt) | Ory EU: Kratos + Hydra + Postgres-for-Ory | $12 |
 | **Vultr VPS 4GB** (Amsterdam / Frankfurt) | Мировой бот + Projection workers | $20 |
 | **Vultr Managed Postgres** (EU) | Entity БД: platform, events, knowledge, payments, health | $15 |
-| **CF Workers** | gateway-mcp (world), knowledge-mcp, event-gateway | $5 |
+| **CF Workers + Hyperdrive** | gateway-mcp (world), knowledge-mcp, event-gateway → подключаются к Vultr Postgres через Hyperdrive (postgres.js) | $5 (Hyperdrive включён) |
 | **Cloudflare** | DNS + SSL (aisystant.com) | $0–10 |
 | **Better Stack** | Мониторы мировых сервисов | $10 |
 | **Stripe** | Приём оплаты | 2.9% + $0.30 |
@@ -76,9 +92,9 @@ Google предоставляет $300 кредита на 90 дней при п
 | Компонент | Что делает | Стоимость/мес |
 |-----------|-----------|---------------|
 | **GKE Standard** (europe-west4) — 1 нода e2-standard-2 (2vCPU, 8GB) | Ory Kratos + Ory Hydra + Мировой бот + Projection workers на одной ноде | ~$48 |
-| **Cloud SQL Postgres** (europe-west4) | Managed Postgres для всех entity БД + Ory. $0 egress с GKE в том же регионе | $15–25 |
+| **Cloud SQL Postgres** (europe-west4) | Единая БД для всего Track B: entity БД + Ory. $0 egress с GKE в том же регионе | $15–25 |
 | **Artifact Registry** (GCP, EU) | Docker-образы: Ory, бот, workers | $0.5 |
-| **CF Workers** | gateway-mcp (world), knowledge-mcp, event-gateway | $5 |
+| **CF Workers + Hyperdrive** | gateway-mcp (world), knowledge-mcp, event-gateway → подключаются к Cloud SQL через Hyperdrive (postgres.js, без Neon) | $5 (Hyperdrive включён) |
 | **Cloudflare** | DNS + SSL (aisystant.com) | $0–10 |
 | **Better Stack** | Мониторы мировых сервисов | $10 |
 | **Stripe** | Приём оплаты | 2.9% + $0.30 |
@@ -115,11 +131,28 @@ Google предоставляет $300 кредита на 90 дней при п
 |---|--------|-----------|
 | О-3 | Паша: готов к GKE (обучение kubectl / Helm)? | Выбор варианта |
 | О-4 | Андрей: что уже на текущем Vultr? Новый EU-аккаунт или существующий? | Вариант 1 |
-| О-5 | Vultr Managed Postgres или Neon EU (Amsterdam) для entity БД? | Вариант 1 |
 | О-9 | GCP Free Tier ($300): у кого нет истории GCP — кто активирует? | Вариант 2 |
 | О-10 | GKE: какие ещё неочевидные приколы с Autopilot видит Андрей? Standard → Autopilot при росте — ок? | Вариант 2 |
 | О-8 | Юрлицо для Stripe: UK / US LLC / Кипр? | Оба варианта, Ф4 |
 | О-6 | Основной домен: aisystant.com или новый? | Оба варианта, Ф5 |
+
+### Изменения в коде CF Workers для Track B
+
+Track B CF Workers пишутся с нуля (новые сервисы). Использовать `postgres.js` вместо `@neondatabase/serverless`:
+
+```typescript
+// Track A (старый код — оставляем как есть)
+import { neon } from '@neondatabase/serverless';
+const sql = neon(env.DATABASE_URL);
+
+// Track B (новый код)
+import postgres from 'postgres';
+const sql = postgres(env.DATABASE_URL); // Hyperdrive автоматически подхватывает
+```
+
+Hyperdrive настраивается в `wrangler.toml` как binding — CF Workers его подхватывает автоматически, код не меняется при добавлении/смене пула.
+
+Track A CF Workers (`@neondatabase/serverless`) — **не трогаем**. Они подключены к Neon и работают.
 
 ---
 
