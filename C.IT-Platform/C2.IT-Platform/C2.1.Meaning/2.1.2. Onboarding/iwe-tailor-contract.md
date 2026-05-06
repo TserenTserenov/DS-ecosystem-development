@@ -49,7 +49,7 @@ personal-guide/<github-login>/ (GitHub репо пилота)
 | `W, M1, M2, M4` | `rcs_current.*` | 1 | все = 2 |
 | `confidence` | `rcs_current.confidence` | 1 | 0.0 (неопределённо) |
 
-**Q2 ограничение:** `domain` берётся из `pilot-guides.yaml` (ручной конфиг), не из `rcs_current`. Автоматическое определение домена — Q3+.
+**Q2 ограничение:** `domain` берётся из `pilot-guides.yaml` (ручной конфиг), не из `rcs_current`. B-lite fallback также читает `path` из `indicators.3_4_qualification`, но в Q2 это поле не используется для выбора домена — домен берётся из конфига. Q3+: `path` станет источником для автоматического определения домена.
 
 **Иерархия fallback (из `render-pilot-guides.py:get_rcs_profile`):**
 1. `rcs_current` (полный RCS-профиль) — целевой после WP-253 Ф9.6 RCS computation
