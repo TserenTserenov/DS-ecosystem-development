@@ -24,13 +24,13 @@ wp: 292
 
 | Секция | Файл | Фаза | Статус |
 |--------|------|------|--------|
-| Foundations (onliness, архетип, ЦА, ценности) | [01-foundations.md](01-foundations.md) | Ф1 | ⏳ stub |
-| Naming (финальное имя, IPA, этимология) | [02-naming.md](02-naming.md) | Ф2 | ⏳ stub |
-| Verbal Identity (tagline, manifesto, tone, glossary) | [03-verbal-identity.md](03-verbal-identity.md) | Ф3 | ⏳ stub |
-| Positioning (карта конкурентов, отстройка) | [04-positioning.md](04-positioning.md) | Ф4 | ⏳ stub |
+| Foundations (onliness, архетип, ЦА, ценности) | [01-foundations.md](01-foundations.md) | Ф1 | 📝 draft |
+| Naming (финальное имя, IPA, этимология) | [02-naming.md](02-naming.md) | Ф2 | 📝 draft |
+| Verbal Identity (tagline, manifesto, tone, glossary) | [03-verbal-identity.md](03-verbal-identity.md) | Ф3 | 📝 draft |
+| Positioning (карта конкурентов, отстройка) | [04-positioning.md](04-positioning.md) | Ф4 | 📝 draft |
 | Visual Identity (бриф + приёмка работ дизайнера) | [05-visual-identity.md](05-visual-identity.md) | Ф5 | ⏳ stub |
 | Brand in Application (шаблоны) | [06-application.md](06-application.md) | Ф6 | ⏳ stub |
-| Brand Architecture (IWE-тип vs имя-продукт) | [07-architecture.md](07-architecture.md) | Ф7 | ⏳ stub |
+| Brand Architecture (IWE-тип vs имя-продукт) | [07-architecture.md](07-architecture.md) | Ф7 | 📝 draft |
 | Legal & IP (trademark, домены, NDA) | [08-legal-ip.md](08-legal-ip.md) | Ф8 | ⏳ stub |
 
 ## Assets (принятые работы дизайнера)
