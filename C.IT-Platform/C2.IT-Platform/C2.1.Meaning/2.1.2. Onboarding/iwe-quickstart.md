@@ -32,16 +32,24 @@ npm install -g @anthropic-ai/claude-code
 claude --version
 ```
 
-## Шаг 2. Форкните шаблон IWE (~3 мин)
+## Шаг 2. Форкните и установите IWE (~5 мин)
 
 1. Откройте [FMT-exocortex-template](https://github.com/TserenTserenov/FMT-exocortex-template) на GitHub
 2. Нажмите **Fork** → выберите свой аккаунт
-3. Склонируйте форк:
+3. Склонируйте и запустите wizard установки:
 
 ```bash
-git clone https://github.com/<ваш-логин>/FMT-exocortex-template ~/IWE
-cd ~/IWE
+mkdir -p ~/IWE && cd ~/IWE
+gh repo fork TserenTserenov/FMT-exocortex-template --clone
+cd FMT-exocortex-template
+bash setup.sh
 ```
+
+`setup.sh` — интерактивный wizard. Спросит GitHub-username, часовой пояс и согласие на Data Policy. На остальные вопросы — Enter (подставятся defaults). В конце предложит запустить финальную валидацию (`setup.sh --validate`) — нажмите `y`.
+
+**Альтернативные режимы:**
+- `bash setup.sh --core` — минимальная установка без сети (для офлайн / любого AI CLI, не только Claude Code)
+- `bash setup.sh --dry-run` — показать что будет сделано, без изменений
 
 ## Шаг 3. Подключите Aisystant бота (~2 мин)
 
