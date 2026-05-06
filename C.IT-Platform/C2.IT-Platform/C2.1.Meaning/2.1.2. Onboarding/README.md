@@ -17,6 +17,18 @@
 - **WP-245 (программа ЛР):** тёплый канал — генерируется Портным (WP-222) на основе ЦД, не здесь
 - **FMT-exocortex-template/README.md:** техническая документация для разработчиков (отдельный файл, не дублируем)
 
+## Владелец и процесс поддержки
+
+**Владелец:** Тseren (де-факто Product Owner IWE)
+
+**Docs Gate (Q2 — ручной):**
+При Close любого РП, меняющего поведение `.claude/skills/day-open/`, `.claude/skills/personal-guide-start/`, `gateway-mcp/src/index.ts` или `/start` бота → обязательно обновить файлы здесь.
+После обновления → `/verify` для проверки соответствия.
+*(Пункт добавлен в `memory/protocol-close.md` Quick Close checklist — 2026-05-06)*
+
+**Q3 (автоматический детектор):**
+Запись в `memory/sync-manifest.yaml` (id: `iwe-onboarding-docs-to-ux-code`, закомментирована до реализации multi-source scope в `iwe-drift.sh`).
+
 ## Q2 ограничения
 
 - Браузерная версия — Q4+, не включена
