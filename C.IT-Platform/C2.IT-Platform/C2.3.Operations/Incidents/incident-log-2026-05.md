@@ -1607,3 +1607,197 @@
   }
 }
 ```
+
+## 2026-05-06T16:07:12+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Это **предохранительное правило** на уровне разрешений. `rm -rf` — необратимая разрушительная команда, и обвязка требует",
+      "**Вариант 2.** Если хотите чтобы я попробовал — скажите явно «удали папку» / «обойди rm-rf блок» — тогда правило позволи"
+    ],
+    "session_id": "36790510-d80d-4e08-aa20-9d3b4233d13e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-06T16:07:34+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Это **предохранительное правило** на уровне разрешений. `rm -rf` — необратимая разрушительная команда, и обвязка требует",
+      "**Вариант 2.** Если хотите чтобы я попробовал — скажите явно «удали папку» / «обойди rm-rf блок» — тогда правило позволи"
+    ],
+    "session_id": "36790510-d80d-4e08-aa20-9d3b4233d13e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-06T16:14:42+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Это **предохранительное правило** на уровне разрешений. `rm -rf` — необратимая разрушительная команда, и обвязка требует",
+      "**Вариант 2.** Если хотите чтобы я попробовал — скажите явно «удали папку» / «обойди rm-rf блок» — тогда правило позволи"
+    ],
+    "session_id": "36790510-d80d-4e08-aa20-9d3b4233d13e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-06T16:27:16+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Вот полная картина — объясняю архитектуру и что делать дальше. "
+    ],
+    "session_id": "5e4c9c38-383f-4242-b884-04386d4ee625"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-06T19:11:35+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Корень проблемы:** когда пользователь форкает чужой репо, GitHub App **не наследует** разрешения автоматически. App ну"
+    ],
+    "session_id": "d8173808-34f7-4e99-ad2b-75d608f13030"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-06T19:12:02+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Корень проблемы:** когда пользователь форкает чужой репо, GitHub App **не наследует** разрешения автоматически. App ну"
+    ],
+    "session_id": "d8173808-34f7-4e99-ad2b-75d608f13030"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-06T19:15:08+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "**Корень проблемы:** когда пользователь форкает чужой репо, GitHub App **не наследует** разрешения автоматически. App ну",
+      "- `FMT-exocortex-template` — GitHub App IWE **имеет доступ** к этому репо (он в списке разрешённых). Файлы там были с са"
+    ],
+    "session_id": "d8173808-34f7-4e99-ad2b-75d608f13030"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-06T19:15:41+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "**Корень проблемы:** когда пользователь форкает чужой репо, GitHub App **не наследует** разрешения автоматически. App ну",
+      "- `FMT-exocortex-template` — GitHub App IWE **имеет доступ** к этому репо (он в списке разрешённых). Файлы там были с са"
+    ],
+    "session_id": "d8173808-34f7-4e99-ad2b-75d608f13030"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-06T19:20:56+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- `FMT-exocortex-template` — GitHub App IWE **имеет доступ** к этому репо (он в списке разрешённых). Файлы там были с са"
+    ],
+    "session_id": "d8173808-34f7-4e99-ad2b-75d608f13030"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
