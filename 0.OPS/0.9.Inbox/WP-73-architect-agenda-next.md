@@ -131,6 +131,7 @@ source: встречи 1–13 (29 мар → 5 мая)
 |---|--------|----------|
 | **Ж2** | Инцидент 29 апр: activity-hub uncommitted changes — root-cause? Критично? | Зафиксировано в incident-log. |
 | **Ж3** | event-gateway 503 (DB auth `neondb_owner`) — owner для фикса перед reliability gate? | Найдено в WP-275 LIVE 27 апр. |
+| **Ж4** | **Neon → Cloud SQL?** Андрей упомянул Cloud SQL как альтернативу. Р-TrackB-7 уже говорит «тип Postgres, не Neon». Вопрос: Neon уходит полностью при переходе на K8s + Cloud SQL, или оставляем для dev-бранчинга? Таймлайн? | TG-диалог 5 мая. |
 
 </details>
 
