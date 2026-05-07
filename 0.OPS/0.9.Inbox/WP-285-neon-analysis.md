@@ -139,7 +139,7 @@ audience: Андрей (архитектор), Паша (инженер), Тсе
 
 ---
 
-### Сценарий 5: Vultr Managed Postgres + Cloudflare Hyperdrive для Track B ✅ (ВЫБРАНО — встреча 13)
+### Сценарий 5: Vultr Managed Postgres + Cloudflare Hyperdrive для Track B (рассматривался, отменён встречей 14)
 
 **Что:** Vultr Managed Postgres ($15/мес, EU-регион Amsterdam/Frankfurt) для entity БД Track B. CF Workers подключаются к Vultr через `postgres.js` + **Cloudflare Hyperdrive** ($5/мес включён в Paid план). Ory EU — отдельная БД на Vultr VPS ($12/мес). Neon (12 БД) остаётся только для Track A.
 
@@ -160,6 +160,7 @@ id = "<hyperdrive-config-id>"
 
 **Плюсы:** Track A CF Workers не трогаем. Стандартный Postgres — смена провайдера без правки кода. Hyperdrive даёт connection pooling без своего PgBouncer. EU-регион = GDPR OK.
 **Минусы:** Vultr Managed Postgres менее удобен для branching/PITR чем Neon (нужен pg_dump + cron backup). Hyperdrive требует Paid план CF Workers ($5/мес).
+**Отменён на встрече 14 (7 мая):** Паша и Андрей согласились, что GKE + Cloud SQL надёжнее Vultr. Vultr KE корявый. → см. Сценарий 2 (активный).
 
 **Трудозатраты:** ~2h на сервис (wrangler.toml Hyperdrive binding + DSN) × 2-3 новых CF Workers Track B = **~4-6h** суммарно. Значительно меньше Сценариев 2-3.
 
@@ -175,9 +176,9 @@ id = "<hyperdrive-config-id>"
 
 **→ Сценарий 3 для нового, Сценарий 1 для старого.** Self-hosted Postgres на Hetzner для всех новых БД Track B. Track A на Neon до передачи Ильшату — он сам решит, мигрировать или нет.
 
-### Если Vultr выбран ✅ (решение встречи 13, Р-TrackB-5)
+### Если GKE Standard выбран ✅ (решение встречи 14, 7 мая)
 
-**→ Сценарий 5: Vultr Managed Postgres + Hyperdrive.** CF Workers Track B подключаются к Vultr Managed Postgres ($15/мес EU) через `postgres.js` + Cloudflare Hyperdrive. Ory EU — отдельная БД на Vultr VPS ($12/мес). Neon (12 БД) остаётся только для Track A до передачи Ильшату. Трудозатраты: ~4-6h на CF Workers привязки.
+**→ Сценарий 2: Cloud SQL (GKE).** CF Workers Track B подключаются к Cloud SQL (europe-west4) через `postgres.js` + Cloudflare Hyperdrive. Ory EU — отдельный инстанс, БД в Cloud SQL. Neon (12 БД) остаётся только для Track A до передачи Ильшату. Старт 18 мая: Паша создаёт GKE Standard кластер + Cloud SQL. Трудозатраты: ~12h (Cloud SQL + Hyperdrive привязки + wrangler.toml).
 
 ---
 
