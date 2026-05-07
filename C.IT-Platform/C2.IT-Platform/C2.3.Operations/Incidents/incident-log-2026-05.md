@@ -2159,3 +2159,110 @@
   }
 }
 ```
+
+## 2026-05-07T14:15:36+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Что мне нужно от тебя для финального шага** — пришли пароль `knowledge_app_reader` (тот который ты задал в `CREATE ROL"
+    ],
+    "session_id": "68540649-8a37-4f2d-bec9-8dcd5d1a0e3c"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-07T14:17:45+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "3. **Кто делает ORY-в-клубе и могу ли я с ним сверить план bridge'а?** (Имя, как связаться) — чтобы согласовать формат т"
+    ],
+    "session_id": "a4adf5e1-b5e5-4ade-9801-3f3620832ec8"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-07T14:17:55+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "3. **Кто делает ORY-в-клубе и могу ли я с ним сверить план bridge'а?** (Имя, как связаться) — чтобы согласовать формат т",
+      "Принято, переформулирую п.3 без запроса разрешения: "
+    ],
+    "session_id": "a4adf5e1-b5e5-4ade-9801-3f3620832ec8"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-07T17:22:37+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "По форкнутому репо с другого аккаунта: `personal_list_sources` показывает источники только текущего аккаунта (TserenTser"
+    ],
+    "session_id": "95d3e125-83d2-4dd7-90a6-02fcbf4143dc"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-07T17:23:08+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "По форкнутому репо с другого аккаунта: `personal_list_sources` показывает источники только текущего аккаунта (TserenTser",
+      "**Попутно:** `srt-template1` (108 docs) и `desktop-tutorial` (1 doc) мы удалили из L2, но в L4 личном индексе они остали"
+    ],
+    "session_id": "95d3e125-83d2-4dd7-90a6-02fcbf4143dc"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
