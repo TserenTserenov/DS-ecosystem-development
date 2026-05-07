@@ -2075,3 +2075,87 @@
   }
 }
 ```
+
+## 2026-05-07T12:42:45+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- Backlog Дорофеева (D-1..D-4): приоритет D-2 (кейс Даниила, нужно его разрешение), D-1 готов сразу "
+    ],
+    "session_id": "e1f85dd4-3e75-4408-928f-3785f884bb2e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-07T12:42:49+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- Backlog Дорофеева (D-1..D-4): приоритет D-2 (кейс Даниила, нужно его разрешение), D-1 готов сразу "
+    ],
+    "session_id": "e1f85dd4-3e75-4408-928f-3785f884bb2e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-07T12:56:13+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Можно ли автоматизировать платформенно?** Теоретически — если попросить пользователя установить GitHub App на чужую ор"
+    ],
+    "session_id": "ab0e14ac-3bd4-4283-8283-71808c8de9ff"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-07T12:56:25+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Можно ли автоматизировать платформенно?** Теоретически — если попросить пользователя установить GitHub App на чужую ор"
+    ],
+    "session_id": "ab0e14ac-3bd4-4283-8283-71808c8de9ff"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
