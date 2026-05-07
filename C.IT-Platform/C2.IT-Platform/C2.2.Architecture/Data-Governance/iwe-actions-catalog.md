@@ -3,9 +3,10 @@ family: F5
 kernel: C
 system: C2
 role: Architecture
-status: draft
+status: active
 created: 2026-05-05
-valid_from: 2026-05-05
+valid_from: 2026-05-07
+updated: 2026-05-07
 related:
   source: "WP-214"
   depends_on: [DP.SC.020, DP.ARCH.004]
@@ -36,105 +37,125 @@ related:
 
 ## 2. Полный каталог
 
+> **Колонка `activity_domain`** добавлена в `domain_event` (решение WP-214, 7 мая). Значения: `learning` / `practice` / `work`. Влияет на ступень Ученика (программа «Личное развитие»): только `learning + practice`. `work` — баллы, но не stage_raw.
+
 ### 2.1 Протоколы ОРЗ
 
-| Действие | event_type | Источник сигнала | Payload ключевые поля | Категория | base_points |
-|----------|-----------|------------------|-----------------------|-----------|-------------|
-| Day Open завершён | `day_plan_opened` | Claude Code hook Stop (скилл /day-open) | plan_date, is_strategy_day, planned_slots | `platform` | 15 |
-| Day Close завершён | `day_plan_closed` | Claude Code hook Stop (скилл /day-close) | plan_date, executed_slots, self_rating_outcome | `platform` | 20 |
-| Week Close завершён | `week_plan_closed` | Claude Code hook Stop (скилл /week-close) | week_start, total_slots, wps_closed | `platform` | 30 |
-| Month Close завершён | `month_plan_closed` | Claude Code hook Stop (скилл /month-close) | month, total_weeks, quality_rating | `platform` | 50 |
-| Strategy Session завершена | `strategy_session_completed` | Claude Code hook Stop (скилл /strategy-session) | week_start, wps_created, wps_closed | `platform` | 40 |
-| KE (экстракция знания) | `knowledge_extracted` | Claude Code hook Stop (скилл /ke) | target (pack/memory/claude), domain, extract_type | `quality` | 25 |
+| Действие | event_type | activity_domain | Источник сигнала | Категория | base_points |
+|----------|-----------|-----------------|-----------------|-----------|-------------|
+| Day Open завершён | `day_plan_opened` | `practice` | Claude Code hook Stop (/day-open) | `platform` | 15 |
+| Day Close завершён | `day_plan_closed` | `practice` | Claude Code hook Stop (/day-close) | `platform` | 20 |
+| Week Close завершён | `week_plan_closed` | `practice` | Claude Code hook Stop (/week-close) | `platform` | 30 |
+| Month Close завершён | `month_plan_closed` | `practice` | Claude Code hook Stop (/month-close) | `platform` | 50 |
+| Strategy Session завершена | `strategy_session_completed` | `learning` | Claude Code hook Stop (/strategy-session) | `platform` | 40 |
+| KE (экстракция знания) | `knowledge_extracted` | `learning` | Claude Code hook Stop (/ke) | `quality` | 25 |
 
-**Текущий статус:** `day_plan_opened`/`day_plan_closed` — эмитится из скилла (работает). Остальные — **не реализованы**, нужен emitter в каждом скилле (PostToolUse/Stop hook с фильтром по скиллу).
+**Статус (✅ 5 май):** все эмитятся через iwe-orz-tracker.sh Stop-хук.
 
 ---
 
 ### 2.2 Рабочие продукты (WP)
 
-| Действие | event_type | Источник сигнала | Payload ключевые поля | Категория | base_points |
-|----------|-----------|------------------|-----------------------|-----------|-------------|
-| WP зарегистрирован | `wp_created` | wp-gate-check.sh (PreToolUse Edit) | wp_id, wp_title, budget_hours, verification_class | `wp` | 30 |
-| WP закрыт | `wp_closed` | Close-скилл или wp-gate (Edit WP-REGISTRY) | wp_id, actual_hours, result_quality | `wp` | 80 |
-| WP заблокирован/заморожен | `wp_blocked` | manual или strategy-session | wp_id, reason | `none` | 0 |
+| Действие | event_type | activity_domain | Источник сигнала | Категория | base_points |
+|----------|-----------|-----------------|-----------------|-----------|-------------|
+| WP зарегистрирован | `wp_created` | `practice` | iwe-wp-tracker.sh PostToolUse | `wp` | 30 |
+| WP закрыт (IWE governance) | `wp_closed` | `practice` | iwe-orz-tracker.sh Stop | `wp` | 80 |
+| WP закрыт (продуктовые репо) | `wp_closed` | `work` | iwe-orz-tracker.sh Stop | `wp` | 80 |
+| WP заблокирован | `wp_blocked` | `practice` | manual / strategy-session | `none` | 0 |
 
-**Текущий статус (✅ done, 5 май):**
-- `wp_created` — `.claude/hooks/iwe-wp-tracker.sh` PostToolUse на Write/Edit inbox/WP-NNN-*.md → эмитит с external_id `wp-{NNN}` (идемпотентно между сессиями)
-- `wp_closed` — `iwe-orz-tracker.sh` Stop-хук, per-WP external_id `wp-{NNN}`, расширенный regex (done/closed/✅/закрыт/завершён/complete)
-- Оба зарегистрированы в event-gateway LEGACY_BOT_EVENT_TYPES + zadeplоены (Worker 79e39dbb)
+> `wp_closed` классифицируется по `reference.repo_domain_map`: governance-репо → `practice`, DS-IT/DS-MCP → `work`.
+
+**Статус (✅ 5 май):** wp_created + wp_closed работают (Worker 79e39dbb). Классификация по repo_domain_map — pending (Ф10.5).
 
 ---
 
 ### 2.3 Работа в редакторе (Claude Code)
 
-| Действие | event_type | Источник сигнала | Payload ключевые поля | Категория | base_points |
-|----------|-----------|------------------|-----------------------|-----------|-------------|
-| Сессия Claude Code (≥15 мин) | `iwe_session` | PostToolUse/Stop hook (с WakaTime duration) | project, duration_min, tools_used | `time` | 10 |
-| Редактирование файла | `file_edited` | PostToolUse hook (Edit/Write) | repo, file_path, tool_name | `time` | 3 |
-| Исследование (WebSearch/Read) | `iwe_research` | PostToolUse hook (WebSearch/WebFetch) | query, project | `time` | 2 |
+| Действие | event_type | activity_domain | Источник сигнала | Категория | base_points |
+|----------|-----------|-----------------|-----------------|-----------|-------------|
+| Сессия Claude Code (≥5 мин) | `iwe_session` | `practice` | iwe-orz-tracker.sh Stop | `time` | 10 |
+| Редактирование файла | `file_edited` | `practice` | PostToolUse hook (Edit/Write) | `time` | 3 |
+| Исследование | `iwe_research` | `practice` | PostToolUse hook (WebSearch) | `time` | 2 |
 
-**Текущий статус:** WakaTime hook (`wakatime-heartbeat.sh`) **существует, но НЕ подключён** в settings.json. Нужно добавить в UserPromptSubmit/PostToolUse/Stop. Для агрегации session duration — cron или Stop-hook с накоплением.
+**Статус:** `iwe_session` ✅ (Stop-хук). `file_edited` / `iwe_research` — ❌ backlog.
 
 ---
 
 ### 2.4 Git-действия
 
-| Действие | event_type | Источник сигнала | Payload ключевые поля | Категория | base_points |
-|----------|-----------|------------------|-----------------------|-----------|-------------|
-| Git commit | `git_commit` | git post-commit hook (в каждом репо) | repo, commit_hash, files_changed, message | `wp` | 20 |
-| Git push | `git_push` | git post-push hook | repo, branch, commits_count | `wp` | 10 |
-| Pack обновлён (commit в Pack-репо) | `pack_updated` | git post-commit hook (PACK-* репо) | pack_name, files_changed, commit_hash | `quality` | 30 |
+| Действие | event_type | activity_domain | Источник сигнала | Категория | base_points |
+|----------|-----------|-----------------|-----------------|-----------|-------------|
+| Commit (governance/Pack-репо) | `git_commit` | `practice` | global post-commit hook | `wp` | 20 |
+| Commit (продуктовые репо) | `git_commit` | `work` | global post-commit hook | `wp` | 20 |
+| Pack обновлён | `pack_updated` | `practice` | global post-commit hook (PACK-*) | `quality` | 30 |
+| Git push | `git_push` | `practice`/`work` | post-push hook | `wp` | 10 |
 
-**Текущий статус:** git hooks — только sample файлы, **не настроены**. Нужно установить post-commit hook в каждый репо ~/IWE (или глобальный git template).
+> domain определяется через `reference.repo_domain_map` по `repo` в payload.
+
+**Статус (✅ 5 май):** git_commit + pack_updated — global git template работает.
 
 ---
 
 ### 2.5 Учёба (из LMS)
 
-| Действие | event_type | Источник сигнала | Payload ключевые поля | Категория | base_points |
-|----------|-----------|------------------|-----------------------|-----------|-------------|
-| Урок завершён | `lesson_completed` | Bridge-2 (poll 15 мин) | lesson_id, course_id, score | `time` | 40 |
-| Квалификация получена | `qualification_granted` | Bridge-2 | qualification_id, level | `quality` | 200 |
-| Платёж принят | `payment_received` | Bridge-2 | amount, product_id | `none` | 0 |
+| Действие | event_type | activity_domain | Источник сигнала | Категория | base_points |
+|----------|-----------|-----------------|-----------------|-----------|-------------|
+| Урок завершён | `lesson_completed` | `learning` | Bridge-2 (poll 15 мин) | `time` | 40 |
+| Квалификация получена | `qualification_granted` | `learning` | Bridge-2 | `quality` | 200 |
+| Платёж принят | `payment_received` | `none` | Bridge-2 | `none` | 0 |
 
-**Текущий статус:** ✅ Работает через Bridge-2.
-
----
-
-### 2.6 Бот-команды (aist-bot)
-
-| Действие | event_type | Источник сигнала | Payload ключевые поля | Категория | base_points |
-|----------|-----------|------------------|-----------------------|-----------|-------------|
-| Слот залогирован | `slot_logged` | aist-bot inline | slot_type, duration_min, quality_rating | `time` | 10×duration_min |
-| Команда вызвана | `command_invoked` | aist-bot inline | command_name, mode | `time` | 5 |
-| Рефлексия через бота | `bot_reflection` | aist-bot (текущий сеанс) | reflection_type, content_length | `quality` | 15 |
-
-**Текущий статус:** ✅ `slot_logged` и `command_invoked` работают.
+**Статус:** ✅ Работает через Bridge-2.
 
 ---
 
-## 3. Матрица покрытия: действие → статус реализации
+### 2.6 Клуб (Discourse)
+
+| Действие | event_type | activity_domain | Источник сигнала | Категория | base_points |
+|----------|-----------|-----------------|-----------------|-----------|-------------|
+| Пост в клубе | `club_post_created` | `learning` | WP-296 ingestor | `quality` | 15 |
+| Тема в клубе | `club_topic_created` | `learning` | WP-296 ingestor | `quality` | 20 |
+
+**Статус (WP-296):** Ф1-Ф3 ✅ (schema, SC.128, ROLE.036). Ф4 ingestor — ждёт ORY-SSO.
+
+---
+
+### 2.7 Бот-команды (aist-bot)
+
+| Действие | event_type | activity_domain | Источник сигнала | Категория | base_points |
+|----------|-----------|-----------------|-----------------|-----------|-------------|
+| Слот залогирован | `slot_logged` | `practice` | aist-bot inline | `time` | 10×duration_min |
+| Команда вызвана | `command_invoked` | `practice` | aist-bot inline | `time` | 5 |
+| Рефлексия через бота | `bot_reflection` | `practice` | aist-bot | `quality` | 15 |
+
+**Статус:** ✅ `slot_logged` и `command_invoked` работают.
+
+---
+
+## 3. Матрица покрытия (актуально на 7 мая 2026)
 
 ```
-РАБОТАЕТ (✅)                ЕСТЬ HOOK (⚠️)              НЕТ (❌)
-──────────────────────────  ──────────────────────       ──────────────────
-lesson_completed             wakatime-heartbeat.sh        file_edited
-qualification_granted        (в settings.json ✅,         iwe_research
-payment_received             но iwe_session Stop          git_push
-slot_logged                  детектирует ≥5 мин)
-command_invoked
-day_plan_opened
-day_plan_closed
-week_plan_closed             ← iwe-orz-tracker Stop
-month_plan_closed            ← iwe-orz-tracker Stop
-strategy_session_completed   ← iwe-orz-tracker Stop
-knowledge_extracted          ← iwe-orz-tracker Stop
-iwe_session                  ← iwe-orz-tracker Stop
-git_commit                   ← global post-commit hook
-pack_updated                 ← global post-commit hook
-wp_created                   ← iwe-wp-tracker PostToolUse
-wp_closed                    ← iwe-orz-tracker Stop
+РАБОТАЕТ (✅)                                 BACKLOG (❌)
+──────────────────────────────────────────    ─────────────────────
+lesson_completed      Bridge-2                file_edited
+qualification_granted Bridge-2                iwe_research
+payment_received      Bridge-2                git_push
+slot_logged           bot inline              club_post_created (ждёт ORY-SSO)
+command_invoked       bot inline              club_topic_created (ждёт ORY-SSO)
+day_plan_opened       iwe-orz-tracker Stop
+day_plan_closed       iwe-orz-tracker Stop
+week_plan_closed      iwe-orz-tracker Stop
+month_plan_closed     iwe-orz-tracker Stop
+strategy_session_completed  iwe-orz-tracker
+knowledge_extracted   iwe-orz-tracker Stop
+iwe_session           iwe-orz-tracker Stop
+git_commit            global post-commit hook
+pack_updated          global post-commit hook
+wp_created            iwe-wp-tracker PostToolUse
+wp_closed             iwe-orz-tracker Stop
+
+PENDING (⏳ activity_domain classification)
+───────────────────────────────────────────
+wp_closed / git_commit — domain по repo_domain_map (Ф10.5 WP-214)
 ```
 
 ---
@@ -153,7 +174,7 @@ wp_closed                    ← iwe-orz-tracker Stop
 - **Когда:** post-commit, post-push
 - **Как:** `~/.git-templates/hooks/post-commit` → git log --format → POST event-gateway
 - **Примеры:** git_commit, pack_updated
-- **Готовность:** нет, нужно создать
+- **Готовность:** ✅ global post-commit hook работает (5 май)
 
 ### Тип C: External Source (Bridge-2, bot)
 - **Когда:** cron / inline в боте
@@ -163,18 +184,23 @@ wp_closed                    ← iwe-orz-tracker Stop
 
 ---
 
-## 5. Приоритизация реализации
+## 5. Статус реализации (7 мая 2026)
 
-### DONE (✅ 5 май 2026)
-1. **WakaTime hook** — подключён в settings.json Stop
-2. **week_plan_closed / month_plan_closed / strategy_session_completed / knowledge_extracted / iwe_session** — iwe-orz-tracker.sh Stop-хук
-3. **wp_created** — iwe-wp-tracker.sh PostToolUse (inbox/WP-NNN-*.md)
-4. **wp_closed** — iwe-orz-tracker.sh Stop-хук, per-WP external_id
-5. **git_commit / pack_updated** — global git template `~/.git-templates/hooks/post-commit`
+### DONE (✅)
+1. **iwe-orz-tracker.sh Stop-хук** — week_plan_closed, month_plan_closed, strategy_session_completed, knowledge_extracted, iwe_session, wp_closed
+2. **iwe-wp-tracker.sh PostToolUse** — wp_created (inbox/WP-NNN-*.md)
+3. **global post-commit hook** — git_commit, pack_updated (`~/.git-templates/hooks/post-commit`)
+4. **Bridge-2** — lesson_completed, qualification_granted, payment_received
+5. **Bot inline** — slot_logged, command_invoked
 
-### LOW: детализация (backlog)
-6. **file_edited / iwe_research** (2h): детекторы в capture-bus (каркас есть)
-7. **git_push** (30 мин): post-push hook в git-templates
+### PENDING (⏳ WP-214 Ф10)
+6. **reference.repo_domain_map** — таблица классификации репозиториев (Ф10.5): нужна чтобы domain_event.activity_domain заполнялась корректно для git_commit / wp_closed
+7. **Backfill activity_domain** — для исторических событий (при миграции колонки)
+
+### BACKLOG (❌)
+8. **club_post_created / club_topic_created** — WP-296 Ф4 (ждёт ORY-SSO Discourse)
+9. **file_edited / iwe_research** (~2h): детекторы в capture-bus
+10. **git_push** (~30 мин): post-push hook в git-templates
 
 ---
 
