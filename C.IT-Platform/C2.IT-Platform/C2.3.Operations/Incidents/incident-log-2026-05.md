@@ -2054,3 +2054,24 @@
   }
 }
 ```
+
+## 2026-05-07T11:34:23+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Какой выбираешь?** И могу ли я начать с **discovery** (15 мин на SSH — выяснить что запускает scheduler на NixOS) до о"
+    ],
+    "session_id": "8796752e-2a65-4c92-9b4b-e6c119ed2e37"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
