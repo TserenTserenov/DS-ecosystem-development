@@ -3,6 +3,7 @@ type: technical-analysis
 title: "Neon — что мы используем и что теряем при отказе"
 status: draft-for-discussion
 created: 2026-05-05
+updated: 2026-05-07
 related: WP-285, WP-253
 audience: Андрей (архитектор), Паша (инженер), Тсерен
 ---
@@ -138,6 +139,32 @@ audience: Андрей (архитектор), Паша (инженер), Тсе
 
 ---
 
+### Сценарий 5: Vultr Managed Postgres + Cloudflare Hyperdrive для Track B ✅ (ВЫБРАНО — встреча 13)
+
+**Что:** Vultr Managed Postgres ($15/мес, EU-регион Amsterdam/Frankfurt) для entity БД Track B. CF Workers подключаются к Vultr через `postgres.js` + **Cloudflare Hyperdrive** ($5/мес включён в Paid план). Ory EU — отдельная БД на Vultr VPS ($12/мес). Neon (12 БД) остаётся только для Track A.
+
+**Ключевое открытие (к встрече 14):** CF Workers умеют TCP через `cloudflare:sockets` (добавлено Cloudflare в 2023). `postgres.js` использует это — Neon HTTP-драйвер больше НЕ нужен. Hyperdrive добавляет пулинг и кэш запросов поверх любого Postgres.
+
+```typescript
+// Track B новые сервисы (с нуля)
+import postgres from "postgres";
+const sql = postgres(env.DATABASE_URL); // Hyperdrive подхватывает автоматически через binding
+```
+
+```toml
+# wrangler.toml — добавить Hyperdrive binding
+[[hyperdrive]]
+binding = "HYPERDRIVE"
+id = "<hyperdrive-config-id>"
+```
+
+**Плюсы:** Track A CF Workers не трогаем. Стандартный Postgres — смена провайдера без правки кода. Hyperdrive даёт connection pooling без своего PgBouncer. EU-регион = GDPR OK.
+**Минусы:** Vultr Managed Postgres менее удобен для branching/PITR чем Neon (нужен pg_dump + cron backup). Hyperdrive требует Paid план CF Workers ($5/мес).
+
+**Трудозатраты:** ~2h на сервис (wrangler.toml Hyperdrive binding + DSN) × 2-3 новых CF Workers Track B = **~4-6h** суммарно. Значительно меньше Сценариев 2-3.
+
+---
+
 ## 5. Рекомендация по Neon
 
 ### Если GKE Autopilot выбрана как инфраструктура
@@ -148,9 +175,9 @@ audience: Андрей (архитектор), Паша (инженер), Тсе
 
 **→ Сценарий 3 для нового, Сценарий 1 для старого.** Self-hosted Postgres на Hetzner для всех новых БД Track B. Track A на Neon до передачи Ильшату — он сам решит, мигрировать или нет.
 
-### Если Vultr выбран
+### Если Vultr выбран ✅ (решение встречи 13, Р-TrackB-5)
 
-**→ Сценарий 4: гибрид с Neon EU.** Vultr Managed Database дорогой, self-hosted на Vultr — невыгодно. Neon EU отдельный проект для Track B, ~$25-50/мес.
+**→ Сценарий 5: Vultr Managed Postgres + Hyperdrive.** CF Workers Track B подключаются к Vultr Managed Postgres ($15/мес EU) через `postgres.js` + Cloudflare Hyperdrive. Ory EU — отдельная БД на Vultr VPS ($12/мес). Neon (12 БД) остаётся только для Track A до передачи Ильшату. Трудозатраты: ~4-6h на CF Workers привязки.
 
 ---
 
@@ -183,10 +210,10 @@ const sql = neon(env.DATABASE_URL);
 
 ## 7. Открытые вопросы
 
-| # | Вопрос | Кто решает |
-|---|--------|------------|
-| 1 | Текущий регион Neon — RU или EU? Если RU — Track B пользователи нарушают GDPR | Андрей |
-| 2 | Какие БД у нас сейчас фактически в Neon (vs планируемые)? | Паша |
-| 3 | Реальные расходы на Neon в апреле 2026? | Тсерен (биллинг) |
-| 4 | Hyperdrive vs Cloud SQL Proxy для CF Workers → Cloud SQL — что лучше? | Андрей |
-| 5 | Готовы ли инвестировать 45h в self-hosted Postgres ради $30/мес экономии? | Тсерен (бюджет vs время) |
+| # | Вопрос | Кто решает | Статус |
+|---|--------|------------|--------|
+| 1 | Текущий регион Neon — RU или EU? (Track B: только Vultr EU, GDPR OK. Для Track A — вопрос к Андрею) | Андрей | Открыт |
+| 2 | Какие БД у нас сейчас фактически в Neon — 12 или меньше? | Паша | Открыт |
+| 3 | Реальные расходы на Neon в апреле 2026? | Тсерен (биллинг) | Открыт |
+| 4 | Hyperdrive binding в `wrangler.toml`: один на все БД Track B или отдельный на каждую схему? | Андрей / Паша | Открыт |
+| 5 | Neon branching нужен для dev/staging Track B? Если нет — Сценарий 5 достаточен | Тсерен | Открыт |

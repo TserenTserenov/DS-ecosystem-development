@@ -3,7 +3,7 @@ type: architect-agenda
 title: "ИТ-встречи с архитектором — повестка и итоги"
 status: active
 created: 2026-04-01
-updated: 2026-05-05
+updated: 2026-05-07
 depends_on: WP-73, WP-138, WP-150, WP-212, WP-215, WP-218, WP-228, WP-244, WP-250, WP-253, WP-258, WP-262, WP-265, WP-266, WP-268, WP-269, WP-270, WP-275, WP-276, WP-281, WP-285
 source: встречи 1–13 (29 мар → 5 мая)
 ---
@@ -65,12 +65,14 @@ source: встречи 1–13 (29 мар → 5 мая)
 
 ---
 
-## Повестка встречи 14 (TBD — после разговора Тсерена с Пашей по готовности к зарубежной инфре)
+## Повестка встречи 14 (7 мая — оперативка ИТ)
 
 <details open>
 <summary><b>⭐ Track B — открытые вопросы встречи 13</b></summary>
 
-> **Контекст:** Встреча 13 приняла принципиальные решения по Track B. Встреча 14 — технические детали реализации WP-285.
+> **Контекст:** Встреча 13 (5 мая) приняла принципиальные решения по Track B (Р-TrackB-1–9 ✅). **Vultr EU выбран** как платформа Track B (Р-TrackB-5). Встреча 14 — технические детали реализации WP-285: Паша готов? Vultr детали, Ory EU БД.
+>
+> ⭐ **Открытие к встрече 14 (из WP-285-track-b-infrastructure-comparison.md):** CF Workers подключаются к Vultr Managed Postgres напрямую через `postgres.js` + **Cloudflare Hyperdrive** ($5/мес) — Neon HTTP-транспорт НЕ нужен для Track B. Track A CF Workers (`@neondatabase/serverless`) — не трогаем.
 
 ### З. Track B — детали реализации (WP-285)
 
@@ -131,7 +133,8 @@ source: встречи 1–13 (29 мар → 5 мая)
 |---|--------|----------|
 | **Ж2** | Инцидент 29 апр: activity-hub uncommitted changes — root-cause? Критично? | Зафиксировано в incident-log. |
 | **Ж3** | event-gateway 503 (DB auth `neondb_owner`) — owner для фикса перед reliability gate? | Найдено в WP-275 LIVE 27 апр. |
-| **Ж4** | **Neon → Cloud SQL?** Андрей упомянул Cloud SQL как альтернативу. Р-TrackB-7 уже говорит «тип Postgres, не Neon». Вопрос: Neon уходит полностью при переходе на K8s + Cloud SQL, или оставляем для dev-бранчинга? Таймлайн? | TG-диалог 5 мая. |
+| **Ж4** | **CF Workers Track B → postgres.js + Hyperdrive**: новые Track B CF Workers-сервисы пишутся с нуля на `postgres.js` + Cloudflare Hyperdrive вместо `@neondatabase/serverless`. Track A CF Workers — не трогаем. Когда конкретно переключаем при создании первого Track B сервиса? | WP-285 Ф2 |
+| **Ж5** | **Neon для Track A до передачи Ильшату**: Neon (12 БД) остаётся для Track A. При передаче — Ильшат решает мигрировать или нет (Р-TrackB-7). Нужно зафиксировать решение в handoff WP-281. | WP-281 / WP-253 |
 
 </details>
 
