@@ -1,15 +1,17 @@
-name: Sync upstream + reindex
+name: Sync upstream
+
+# Синхронизирует форк с aisystant/DS-ecosystem-development.
+# Реиндексация НЕ нужна здесь — gateway-mcp автоматически реиндексирует
+# при получении push webhook от GitHub App (WP-5 Ф12b).
 
 on:
   schedule:
     - cron: '0 * * * *'   # каждый час — проверяет наличие изменений
-  workflow_dispatch:        # ручной запуск при необходимости
+  workflow_dispatch:        # ручной запуск
 
 jobs:
   sync:
     runs-on: ubuntu-latest
-    outputs:
-      has_changes: ${{ steps.check.outputs.has_changes }}
 
     steps:
       - uses: actions/checkout@v4
@@ -25,40 +27,15 @@ jobs:
       - name: Fetch upstream
         run: git remote add upstream https://github.com/aisystant/DS-ecosystem-development.git && git fetch upstream main
 
-      - name: Check for changes
-        id: check
+      - name: Check and sync if changed
         run: |
           LOCAL=$(git rev-parse HEAD)
           UPSTREAM=$(git rev-parse upstream/main)
           if [ "$LOCAL" = "$UPSTREAM" ]; then
-            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No changes from upstream — skipping"
           else
-            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "Changes detected — syncing"
+            git rebase upstream/main
+            git push origin main --force-with-lease
+            echo "Synced. Gateway-mcp получит push webhook и запустит реиндексацию автоматически."
           fi
-
-      - name: Rebase and push
-        if: steps.check.outputs.has_changes == 'true'
-        run: |
-          git rebase upstream/main
-          git push origin main --force-with-lease
-
-  reindex:
-    needs: sync
-    if: needs.sync.outputs.has_changes == 'true'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Trigger personal reindex via Aisystant MCP
-        run: |
-          curl -s -X POST https://mcp.aisystant.com/mcp \
-            -H "Authorization: Bearer ${{ secrets.AISYSTANT_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "jsonrpc": "2.0",
-              "method": "tools/call",
-              "params": {
-                "name": "personal_reindex_source",
-                "arguments": {"source": "DS-ecosystem-development"}
-              },
-              "id": 1
-            }'

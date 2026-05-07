@@ -2012,3 +2012,45 @@
   }
 }
 ```
+
+## 2026-05-07T11:14:28+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- Нужно ли M3 (проф-методы) сейчас, или оставляем на стадию РР (после программы ЛР, FORM.089)? "
+    ],
+    "session_id": "1e4572c0-c79f-43e8-8a56-fda554777036"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-07T11:14:37+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- Нужно ли M3 (проф-методы) сейчас, или оставляем на стадию РР (после программы ЛР, FORM.089)? "
+    ],
+    "session_id": "1e4572c0-c79f-43e8-8a56-fda554777036"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
