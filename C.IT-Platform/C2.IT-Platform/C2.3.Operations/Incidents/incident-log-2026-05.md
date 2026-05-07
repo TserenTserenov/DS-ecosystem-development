@@ -2266,3 +2266,67 @@
   }
 }
 ```
+
+## 2026-05-07T17:39:57+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что начинаем? **Ф10.1** (откалибровать пороги ступеней), или нужно сначала **Ф3** (Cedar-спецификация, currently unblock"
+    ],
+    "session_id": "00b5bed6-7ae6-4c3b-b541-cbfc356dea2d"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-07T17:40:08+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что начинаем? **Ф10.1** (откалибровать пороги ступеней), или нужно сначала **Ф3** (Cedar-спецификация, currently unblock"
+    ],
+    "session_id": "00b5bed6-7ae6-4c3b-b541-cbfc356dea2d"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-07T17:52:38+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "По форкнутому репо с другого аккаунта: `personal_list_sources` показывает источники только текущего аккаунта (TserenTser",
+      "**Попутно:** `srt-template1` (108 docs) и `desktop-tutorial` (1 doc) мы удалили из L2, но в L4 личном индексе они остали"
+    ],
+    "session_id": "95d3e125-83d2-4dd7-90a6-02fcbf4143dc"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
