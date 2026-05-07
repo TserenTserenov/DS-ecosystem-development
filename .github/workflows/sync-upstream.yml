@@ -1,0 +1,64 @@
+name: Sync upstream + reindex
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # каждый час — проверяет наличие изменений
+  workflow_dispatch:        # ручной запуск при необходимости
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    outputs:
+      has_changes: ${{ steps.check.outputs.has_changes }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Configure git
+        run: |
+          git config user.email "github-actions@github.com"
+          git config user.name "GitHub Actions"
+
+      - name: Fetch upstream
+        run: git remote add upstream https://github.com/aisystant/DS-ecosystem-development.git && git fetch upstream main
+
+      - name: Check for changes
+        id: check
+        run: |
+          LOCAL=$(git rev-parse HEAD)
+          UPSTREAM=$(git rev-parse upstream/main)
+          if [ "$LOCAL" = "$UPSTREAM" ]; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Rebase and push
+        if: steps.check.outputs.has_changes == 'true'
+        run: |
+          git rebase upstream/main
+          git push origin main --force-with-lease
+
+  reindex:
+    needs: sync
+    if: needs.sync.outputs.has_changes == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger personal reindex via Aisystant MCP
+        run: |
+          curl -s -X POST https://mcp.aisystant.com/mcp \
+            -H "Authorization: Bearer ${{ secrets.AISYSTANT_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "jsonrpc": "2.0",
+              "method": "tools/call",
+              "params": {
+                "name": "personal_reindex_source",
+                "arguments": {"source": "DS-ecosystem-development"}
+              },
+              "id": 1
+            }'
