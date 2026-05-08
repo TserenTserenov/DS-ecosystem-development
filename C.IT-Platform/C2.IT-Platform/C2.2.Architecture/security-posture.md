@@ -8,8 +8,9 @@ updated: 2026-05-08
 next_audit: 2026-06-01 (Month Close июнь, R24 Аудитор)
 owner: WP-212
 audit_cadence:
+  daily: tsekh-1 systemd-timer 04:30 МСК — R24 daily-headless по B7.4 A-D (~10-15 мин, $1.5)
   weekly: Week Close — quick check (2 мин, open_critical_count > 0?)
-  monthly: Month Close — R24 Аудитор full review (~1h, обновить все секции)
+  monthly: Month Close — R24 monthly-deep по B7.4 A-F (~1h, $5, обновить все секции)
   per_arch: ArchGate §Б — при добавлении нового сервиса (STRIDE + чеклист)
 related:
   protocol: DS-ecosystem-development/C.IT-Platform/C2.IT-Platform/C2.2.Architecture/Identity-and-Access/B7.4-external-audit-checklist.md
@@ -52,10 +53,10 @@ related:
 | Ф4 Auth Hardening | 17 | 15 | 88% | B4.23 пр.1 (dep WP-231), B4.23 пр.2 (dep WP-227) |
 | Ф5 CI/CD | 6 | 5 | 83% | B5.6 private repos (dep GitHub Pro) |
 | Ф6 Backup/DR | 4 | 4 | 100% | ✅ — |
-| Ф7 ArchGate | 9 | 6 | 67% | B7.2 review Паша, B7.3.6 доступ Павла |
-| Ф8 Compliance | 8 | 0 | 0% | B8.0 ToS+Privacy (unblocked, ~2h) |
+| Ф7 ArchGate | 14 | 11 | 79% | B7.3.6 доступ Павла (требует пользователя) |
+| Ф8 Compliance | 8 | 1 | 13% | B8.0 ToS+Privacy v0.1 done; B8.1-B8.5 dep WP-186 |
 | Ф9 Neon RLS roll-out | 7 | 1 | 14% | B9.x dep WP-228 |
-| **Итого** | **73** | **48** | **66%** | — |
+| **Итого** | **78** | **54** | **69%** | — |
 
 ---
 
@@ -110,8 +111,9 @@ related:
 | 2026-04-12 | Ф1 Remediation | Claude (Sonnet) + Паша | Ф1 ✅, Ф4 80% | WP-212 Ф4 |
 | 2026-04-14 | Ф2-Ф7 Deep dive | Claude (Sonnet) | 48/65 DONE, sub-agent верификация PASS | WP-212 Handoff 14 апр |
 | 2026-04-28 | STRIDE first-pass | Claude (Sonnet) | 8 сервисов охвачено, 6 open questions | B7.2-stride-threat-model.md |
-| 2026-05-08 | Статус ревью | R24 Аудитор (Sonnet) | 48/73 66%, 16 open vulns, посture level 1 | этот файл |
-| **2026-06-01** | Month Close аудит | **R24 Аудитор** | запланирован | — |
+| 2026-05-08 | Статус ревью | R24 Аудитор (Sonnet) | 54/78 69%, 14 open vulns, posture level 1; B8.0 ToS+Privacy v0.1 done; R24 как автономный агент задеплоен | этот файл |
+| **с 2026-05-09** | **Daily** | **R24 daily-headless (tsekh-1)** | автоматически 04:30 МСК | DS-agent-workspace/auditor/YYYY-MM-DD/ |
+| **2026-06-01** | Month Close аудит | **R24 monthly-deep** | запланирован | — |
 
 ---
 
