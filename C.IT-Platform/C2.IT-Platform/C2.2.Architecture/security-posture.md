@@ -5,12 +5,12 @@ wp: WP-212
 status: active
 created: 2026-05-08
 updated: 2026-05-08
-next_audit: 2026-06-01 (Month Close июнь, R24 Аудитор)
+next_audit: 2026-06-01 (Month Close июнь, VR.R.002 Аудитор)
 owner: WP-212
 audit_cadence:
-  daily: tsekh-1 systemd-timer 04:30 МСК — R24 daily-headless по B7.4 A-D (~10-15 мин, $1.5)
+  daily: tsekh-1 systemd-timer 04:30 МСК — VR.R.002 daily-headless по B7.4 A-D (~10-15 мин, $1.5)
   weekly: Week Close — quick check (2 мин, open_critical_count > 0?)
-  monthly: Month Close — R24 monthly-deep по B7.4 A-F (~1h, $5, обновить все секции)
+  monthly: Month Close — VR.R.002 monthly-deep по B7.4 A-F (~1h, $5, обновить все секции)
   per_arch: ArchGate §Б — при добавлении нового сервиса (STRIDE + чеклист)
 related:
   protocol: DS-ecosystem-development/C.IT-Platform/C2.IT-Platform/C2.2.Architecture/Identity-and-Access/B7.4-external-audit-checklist.md
@@ -21,7 +21,7 @@ related:
 # Security Posture Dashboard
 
 > **Источник правды:** WP-212 (Программа безопасности продуктов).
-> **Обновляется:** автоматически при закрытии задач WP-212, вручную — R24 Аудитор при Month Close.
+> **Обновляется:** автоматически при закрытии задач WP-212, вручную — VR.R.002 Аудитор при Month Close.
 > **Назначение:** единая точка для быстрой оценки состояния безопасности, подготовки к внешнему аудиту, принятия решений о приоритетах.
 
 ---
@@ -62,7 +62,7 @@ related:
 
 ## 3. Открытые уязвимости (по критичности)
 
-> Обновляется R24 Аудитором при каждом аудите. Источник: STRIDE B7.2 + ArchGate §Б + incident log.
+> Обновляется VR.R.002 Аудитором при каждом аудите. Источник: STRIDE B7.2 + ArchGate §Б + incident log.
 
 | Критичность | Кол-во | Примеры | Дедлайн |
 |-------------|--------|---------|---------|
@@ -111,9 +111,9 @@ related:
 | 2026-04-12 | Ф1 Remediation | Claude (Sonnet) + Паша | Ф1 ✅, Ф4 80% | WP-212 Ф4 |
 | 2026-04-14 | Ф2-Ф7 Deep dive | Claude (Sonnet) | 48/65 DONE, sub-agent верификация PASS | WP-212 Handoff 14 апр |
 | 2026-04-28 | STRIDE first-pass | Claude (Sonnet) | 8 сервисов охвачено, 6 open questions | B7.2-stride-threat-model.md |
-| 2026-05-08 | Статус ревью | R24 Аудитор (Sonnet) | 54/78 69%, 14 open vulns, posture level 1; B8.0 ToS+Privacy v0.1 done; R24 как автономный агент задеплоен | этот файл |
-| **с 2026-05-09** | **Daily** | **R24 daily-headless (tsekh-1)** | автоматически 04:30 МСК | DS-agent-workspace/auditor/YYYY-MM-DD/ |
-| **2026-06-01** | Month Close аудит | **R24 monthly-deep** | запланирован | — |
+| 2026-05-08 | Статус ревью | VR.R.002 Аудитор (Sonnet) | 54/78 69%, 14 open vulns, posture level 1; B8.0 ToS+Privacy v0.1 done; VR.R.002 как автономный агент задеплоен | этот файл |
+| **с 2026-05-09** | **Daily** | **VR.R.002 daily-headless (tsekh-1)** | автоматически 04:30 МСК | DS-agent-workspace/auditor/YYYY-MM-DD/ |
+| **2026-06-01** | Month Close аудит | **VR.R.002 monthly-deep** | запланирован | — |
 
 ---
 
@@ -129,10 +129,10 @@ related:
 
 ## 8. Как обновлять этот документ
 
-### R24 Аудитор — Monthly Close (~1h)
+### VR.R.002 Аудитор — Monthly Close (~1h)
 
 ```
-Роль: R24 Аудитор (context isolation, Sonnet)
+Роль: VR.R.002 Аудитор (context isolation, Sonnet)
 Триггер: Month Close (первый Пн месяца)
 Шаги:
 1. Открыть WP-212 context + этот файл
@@ -146,7 +146,7 @@ related:
 9. Коммит: `docs(WP-212): monthly security posture update YYYY-MM`
 ```
 
-### Week Close (2 мин, не R24, встроен в Week Close)
+### Week Close (2 мин, не VR.R.002, встроен в Week Close)
 
 ```
 Проверить: open_critical_count из §3 > 0?
