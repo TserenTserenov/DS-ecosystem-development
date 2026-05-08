@@ -8,7 +8,7 @@ updated: 2026-05-08
 next_audit: 2026-06-01 (Month Close июнь, VR.R.002 Аудитор)
 owner: WP-212
 audit_cadence:
-  daily: tsekh-1 systemd-timer 04:30 МСК — VR.R.002 daily-headless по B7.4 A-D (~10-15 мин, $1.5)
+  daily: tsekh-1 systemd-timer 04:45 МСК — VR.R.002 daily-headless по B7.4 A-D (~10-15 мин, $1.5)
   weekly: Week Close — quick check (2 мин, open_critical_count > 0?)
   monthly: Month Close — VR.R.002 monthly-deep по B7.4 A-F (~1h, $5, обновить все секции)
   per_arch: ArchGate §Б — при добавлении нового сервиса (STRIDE + чеклист)
@@ -112,7 +112,7 @@ related:
 | 2026-04-14 | Ф2-Ф7 Deep dive | Claude (Sonnet) | 48/65 DONE, sub-agent верификация PASS | WP-212 Handoff 14 апр |
 | 2026-04-28 | STRIDE first-pass | Claude (Sonnet) | 8 сервисов охвачено, 6 open questions | B7.2-stride-threat-model.md |
 | 2026-05-08 | Статус ревью | VR.R.002 Аудитор (Sonnet) | 54/78 69%, 14 open vulns, posture level 1; B8.0 ToS+Privacy v0.1 done; VR.R.002 как автономный агент задеплоен | этот файл |
-| **с 2026-05-09** | **Daily** | **VR.R.002 daily-headless (tsekh-1)** | автоматически 04:30 МСК | DS-agent-workspace/auditor/YYYY-MM-DD/ |
+| **с 2026-05-09** | **Daily** | **VR.R.002 daily-headless (tsekh-1)** | автоматически 04:45 МСК | DS-agent-workspace/auditor/YYYY-MM-DD/ |
 | **2026-06-01** | Month Close аудит | **VR.R.002 monthly-deep** | запланирован | — |
 
 ---
