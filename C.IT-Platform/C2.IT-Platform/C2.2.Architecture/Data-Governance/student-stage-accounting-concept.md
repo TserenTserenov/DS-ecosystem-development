@@ -1,11 +1,12 @@
 ---
 id: student-stage-accounting-concept
-version: v1.1
+version: v1.2
 status: approved
 created: 2026-05-07
+updated: 2026-05-11
 authors: [Тсерен, Claude]
 related_pack: PD.FORM.080, PD.FORM.089, PD.FORM.093
-related_wps: [WP-214 Ф10, WP-121, WP-151, WP-117]
+related_wps: [WP-214 Ф10, WP-121, WP-151, WP-117, WP-303]
 ---
 
 # Концепция учёта и расчёта ступени Ученика в IWE
@@ -629,6 +630,17 @@ VALUES ($1, $old_stage, $new_stage,
 **P6. Двойной gate против ложной регрессии (gate 4→5).** Количественный (rcs + graduate_gate) необходим, но недостаточен. Gate 3 (real_change) предотвращает сценарий «знает, но не делает».
 
 **P7. Эволюция через SR.NNN.md, не через хардкод.** Все пороги — в Pack (PACK-agent-rules/rules/SR.NNN.md). Программист не трогает числа в коде при калибровке. `generate-rules-registry.py` перегенерирует `.claude/rules-registry.yaml` → `reference.stage_criteria` синхронизируется.
+
+---
+
+## 6а. Известные gaps реализации (v1.2, WP-303)
+
+| Gap | Описание | Статус | Фикс |
+|-----|----------|--------|------|
+| **Эмиттеры не пишут `activity_domain`** | Миграция 210 сделала backfill исторических событий; новые события (после деплоя) приходят с `activity_domain = NULL` → не проходят фильтр `IN ('practice','learning')` в RCS-расчёте. Критично для `iwe_session`. | ✅ WP-303 | Миграция 211: DB-триггер `trg_domain_event_set_activity_domain` проставляет домен по `event_type` до INSERT. |
+| **`wp_completed_total = 0` в legacy path** | Legacy safety-net читал `iwe.get('wp_completed_total', 0)` — поле не заполнялось. Gate builder_s4 никогда не проходил. | ✅ WP-303 | Fallback: `wp_completed_total or registry_done`. |
+| **RCS-путь не активируется** | `recalculate_derived.py` пишет `2_rcs = None` без диагностики — профайлер молча падает на legacy. | ✅ WP-303 | Добавлено предупреждение с явной причиной в stderr. |
+| **`NEON_LEARNING_URL` не задан в prod** | Без learning DB `_load_rcs_metrics` возвращает None; весь RCS-путь недоступен. | 🔄 WP-303 диагностика | Нужно проверить env в Railway/launchd. |
 
 ---
 
