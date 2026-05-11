@@ -640,7 +640,10 @@ VALUES ($1, $old_stage, $new_stage,
 | **Эмиттеры не пишут `activity_domain`** | Миграция 210 сделала backfill исторических событий; новые события (после деплоя) приходят с `activity_domain = NULL` → не проходят фильтр `IN ('practice','learning')` в RCS-расчёте. Критично для `iwe_session`. | ✅ WP-303 | Миграция 211: DB-триггер `trg_domain_event_set_activity_domain` проставляет домен по `event_type` до INSERT. |
 | **`wp_completed_total = 0` в legacy path** | Legacy safety-net читал `iwe.get('wp_completed_total', 0)` — поле не заполнялось. Gate builder_s4 никогда не проходил. | ✅ WP-303 | Fallback: `wp_completed_total or registry_done`. |
 | **RCS-путь не активируется** | `recalculate_derived.py` пишет `2_rcs = None` без диагностики — профайлер молча падает на legacy. | ✅ WP-303 | Добавлено предупреждение с явной причиной в stderr. |
-| **`NEON_LEARNING_URL` не задан в prod** | Без learning DB `_load_rcs_metrics` возвращает None; весь RCS-путь недоступен. | 🔄 WP-303 диагностика | Нужно проверить env в Railway/launchd. |
+| **`NEON_LEARNING_URL` не задан в prod** | Без learning DB `_load_rcs_metrics` возвращает None; весь RCS-путь недоступен. | ✅ WP-303 | Добавлен в `~/.config/aist/env` (unpooled endpoint `learning` DB). |
+| **`first_seen_at` не маппится** | Collector пишет `first_event_at`, а profiler ищет `first_seen_at`/`created_at` → `age_weeks=0` блокирует все SR.NNN gates. | ✅ WP-303 | Fallback chain `first_seen_at → created_at → first_event_at` + ISO-string parse. |
+| **`age_weeks` ≠ актуальная история ученика** | Считается от первого события в системе. Для пользователей, начавших учиться задолго до подключения IWE, занижает реальный стаж — может задерживать переход на 3-4. | ⚠️ Открыто | Будущее решение: декларация stage_pre_tracking при онбординге или import из LMS. |
+| **`m4_quality_60d = 0` при высоком M4_idx** | M4 даёт idx=4 по объёму событий, но quality (verification_class=open-loop) = 0 — fact что РП закрываются без полей verification_class. | ⚠️ Открыто | Эмиттер `wp_completed` должен ставить `payload.verification_class` из контекст-файла. |
 
 ---
 
