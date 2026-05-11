@@ -1,13 +1,13 @@
 ---
 title: "Условия использования сервиса IWE (Terms of Service)"
 type: legal-document
-status: draft
+status: active
 wp: WP-212 (B8.0)
-version: 0.1
+version: 1.0
 created: 2026-05-08
-valid_from: 2026-05-08
+published: 2026-05-11
+valid_from: 2026-05-11
 language_primary: ru
-review_required: WP-186 (юрконсультация Олег Царев)
 publish_at:
   - https://system-school.ru/iwe/tos
   - бот /tos
@@ -15,9 +15,7 @@ publish_at:
 
 # Условия использования сервиса IWE
 
-**Версия 0.1 от 8 мая 2026 г.**
-
-> ⚠️ **Черновик.** Требует юридической проверки (WP-186, Олег Царев). До утверждения — действует как «предварительные условия» для пилотных пользователей.
+**Версия 1.0 от 11 мая 2026 г.**
 
 ---
 
@@ -119,12 +117,10 @@ publish_at:
 
 ## 10. Контакты
 
-- Email: aisystant@gmail.com
-- Telegram: @tseren
-- Адрес: указать (после регистрации ИП)
+- Email: info@system-school.ru
+- Telegram: @tserentserenov
 
 ---
 
 *Связанные документы:*
 - [Privacy Policy](privacy.md) — обработка персональных данных
-- [WP-186 Юридическая готовность](../../DS-my-strategy/inbox/WP-186-...) — финальная юрпроверка

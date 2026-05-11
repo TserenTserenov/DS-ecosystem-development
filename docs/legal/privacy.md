@@ -1,34 +1,32 @@
 ---
 title: "Политика конфиденциальности IWE (Privacy Policy)"
 type: legal-document
-status: draft
+status: active
 wp: WP-212 (B8.0)
-version: 0.1
+version: 1.0
 created: 2026-05-08
-valid_from: 2026-05-08
+published: 2026-05-11
+valid_from: 2026-05-11
 language_primary: ru
 based_on: B3.8-privacy-policy-draft.md (14 апр)
-review_required: WP-186 (юрконсультация Олег Царев)
 publish_at:
   - https://system-school.ru/iwe/privacy
   - бот /privacy
-gdpr_compliance: partial (полное — после WP-186)
+gdpr_compliance: partial
 fz152_compliance: partial (B7.3.5 К3 уровень — L1+L2)
 ---
 
 # Политика конфиденциальности сервиса IWE
 
-**Версия 0.1 от 8 мая 2026 г.**
-
-> ⚠️ **Черновик.** Требует юридической проверки (WP-186). Базируется на B3.8 (14 апр) с дополнениями B3.1, B7.3.4, B7.3.5.
+**Версия 1.0 от 11 мая 2026 г.**
 
 ---
 
 ## 1. Кто обрабатывает данные
 
-**Оператор:** ИП Церенов Цырен Иванович (ОГРНИП — указать).
-**Контакт по защите данных (DPO):** aisystant@gmail.com.
-**Юрисдикция:** Россия (152-ФЗ). Для пользователей ЕС — стремимся к соответствию GDPR baseline (полное соответствие — после WP-186).
+**Оператор:** ИП Церенов Цырен Иванович (ОГРНИП — указать).  
+**Контакт по защите данных (DPO):** info@system-school.ru.  
+**Юрисдикция:** Россия (152-ФЗ). Для пользователей ЕС — стремимся к соответствию GDPR baseline.
 
 ---
 
@@ -80,13 +78,11 @@ fz152_compliance: partial (B7.3.5 К3 уровень — L1+L2)
 
 | Слой | Сервис | Регион | Шифрование |
 |------|-------|--------|-----------|
-| **Постгрес-БД** | Neon | EU (default) / RU (Track A в roadmap) | AES-256 at-rest (managed) |
+| **Постгрес-БД** | Neon | EU (default) | AES-256 at-rest (managed) |
 | **MCP-серверы** | Cloudflare Workers | Edge global | TLS in-transit |
-| **Бот** | Railway | EU (US fallback) | TLS in-transit |
+| **Бот** | Railway | EU | TLS in-transit |
 | **Backups** | Neon PITR (30 дней) | EU | AES-256 |
 | **Платежи** | ЮKassa | RU | PCI DSS у ЮKassa |
-
-**Будущее:** колоночное шифрование OAuth токенов (Fernet, B2.5/WP-234) — в разработке.
 
 ---
 
@@ -106,7 +102,6 @@ fz152_compliance: partial (B7.3.5 К3 уровень — L1+L2)
 
 ### 6.1. Право на доступ
 - Команда `/mydata` в боте → JSON с вашими данными
-- Полный экспорт (Art. 15 GDPR): `/mydata-export` — JSON+CSV+PDF (B8.15, в разработке)
 
 ### 6.2. Право на исправление
 - `/profile-edit` в боте
@@ -118,12 +113,11 @@ fz152_compliance: partial (B7.3.5 К3 уровень — L1+L2)
 ### 6.4. Право на отзыв согласия
 - Любая интеграция: `/integrations` → отключить
 - Подписка: `/unsubscribe`
-- Согласие на OpenAI: можно отозвать в `/privacy-settings` — после этого `/scaffold` будет работать только для уже проиндексированных документов
+- Согласие на OpenAI: можно отозвать в `/privacy-settings`
 
 ### 6.5. Право на жалобу
-- Внутри: aisystant@gmail.com
+- Внутри: info@system-school.ru
 - Регулятор РФ: Роскомнадзор
-- Регулятор ЕС: национальный DPA
 
 ---
 
@@ -149,10 +143,7 @@ fz152_compliance: partial (B7.3.5 К3 уровень — L1+L2)
 - Row-Level Security (изоляция данных пользователей в БД)
 - JWT-верификация (Ory) на каждом запросе
 - Rate limiting (защита от brute force и DDoS)
-- Дневной аудит безопасности (R24 Аудитор, ежемесячный полный аудит)
-- Внешний аудит безопасности (планируется при достижении 1000 пользователей)
-
-Подробнее — в `Security Posture Dashboard` (доступен по запросу).
+- Дневной аудит безопасности
 
 ---
 
@@ -168,7 +159,12 @@ fz152_compliance: partial (B7.3.5 К3 уровень — L1+L2)
 
 ---
 
+## 11. Контакты
+
+- Email: info@system-school.ru
+- Telegram: @tserentserenov
+
+---
+
 *Связанные документы:*
 - [ToS](tos.md) — условия использования
-- [B3.1 PII Field Map](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/Data-Governance/B3.1-pii-field-map.md) — полная карта PII (внутренний)
-- [B7.3.5 Encryption Layers 152-ФЗ](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/Data-Governance/B7.3.5-encryption-layers-152fz.md)
