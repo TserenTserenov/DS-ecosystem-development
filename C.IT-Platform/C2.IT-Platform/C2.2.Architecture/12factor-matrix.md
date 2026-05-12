@@ -18,33 +18,33 @@
 
 | Сервис | F1 Codebase | F2 Deps | F3 Config | F4 Backing | F5 BRR | F6 Stateless | F7 Port | F8 Concurrency | F9 Disposability | F10 Dev/Prod | F11 Logs | F12 Admin |
 |--------|:-----------:|:-------:|:---------:|:----------:|:------:|:------------:|:-------:|:--------------:|:----------------:|:------------:|:--------:|:---------:|
-| B1 aist-bot prod | ⚠️ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| B2 aist-bot pilot | ⚠️ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W1 activity-hub | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W2 bridge-2-events-poller | ✅ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W3 multi-domain-projection-worker | ✅ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W4 rewards-projection-worker | ✅ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| B1 aist-bot prod | ⚠️ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| B2 aist-bot pilot | ⚠️ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| W1 activity-hub | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| W2 bridge-2-events-poller | ✅ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | N/A | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 |
+| W3 multi-domain-projection-worker | ✅ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | N/A | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 |
+| W4 rewards-projection-worker | ✅ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
 | W5 payment-registry | ⚠️ | ❌ | ❌ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M1 gateway-mcp (Cloud Gateway) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M2 knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M3 personal-knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M4 digital-twin-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M5 fsm-mcp | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M6 google-drive-mcp | ✅ | ❌ | ⚠️ | ⚠️ | ❌ | ✅ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M7 guides-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M8 event-gateway | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M9 observability-webhook | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M10 payment-receiver | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M11 status-proxy | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| L1 local-gateway (DP.IWE.005) | ✅ | ✅ | ⚠️ | N/A | ⚠️ | ⚠️ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| O1 OAuth Hydra gateway | N/A | N/A | 🟡 | N/A | N/A | N/A | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| A1 auditor (overnight) | ⚠️ | ❌ | ❌ | ✅ | ❌ | ⚠️ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| A2-A6 другие агенты | ⚠️ | ❌ | ❌ | ✅ | ❌ | ⚠️ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M1 gateway-mcp (Cloud Gateway) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| M2 knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| M3 personal-knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| M4 digital-twin-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| M5 fsm-mcp | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| M6 google-drive-mcp | ✅ | ❌ | ⚠️ | ⚠️ | ❌ | ✅ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| M7 guides-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| M8 event-gateway | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| M9 observability-webhook | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| M10 payment-receiver | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| M11 status-proxy | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| L1 local-gateway (DP.IWE.005) | ✅ | ✅ | ⚠️ | N/A | ⚠️ | ⚠️ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| O1 OAuth Hydra gateway | N/A | N/A | 🟡 | N/A | N/A | N/A | N/A | N/A | 🟡 | 🟡 | 🟡 | 🟡 |
+| A1 auditor (overnight) | ⚠️ | ❌ | ❌ | ✅ | ❌ | ⚠️ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| A2-A6 другие агенты | ⚠️ | ❌ | ❌ | ✅ | ❌ | ⚠️ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
 | X1 CRM Directus | ⚠️ | N/A | N/A | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| X2 hetzner-backstage | ✅ | ❌ | ❌ | 🟡 | ⚠️ | ✅ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| X3 ssm2025 | ⚠️ | ✅ | ⚠️ | N/A | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| P1 profiler | ❌ | ❌ | ⚠️ | ✅ | ❌ | ⚠️ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| T1 scheduler.sh (launchd) | ⚠️ | ⚠️ | ⚠️ | N/A | ❌ | N/A | N/A | 🟡 | 🟡 | N/A | 🟡 | 🟡 |
+| X2 hetzner-backstage | ✅ | ❌ | ❌ | 🟡 | ⚠️ | ✅ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| X3 ssm2025 | ⚠️ | ✅ | ⚠️ | N/A | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| P1 profiler | ❌ | ❌ | ⚠️ | ✅ | ❌ | ⚠️ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| T1 scheduler.sh (launchd) | ⚠️ | ⚠️ | ⚠️ | N/A | ❌ | N/A | N/A | N/A | 🟡 | N/A | 🟡 | 🟡 |
 | AD1 neon-migrations | N/A | ⚠️ | ⚠️ | ✅ | N/A | N/A | N/A | N/A | 🟡 | 🟡 | 🟡 | ✅* |
 
 > *AD1 neon-migrations — это сам admin process; для него F12 ≈ ✅ по определению. Остальные «runtime»-факторы (codebase, BRR, stateless, port, concurrency, disposability) к admin-скрипту не применяются.
@@ -67,6 +67,7 @@
 - **F5 Build/Release/Run (Ф5 done 2026-05-12):** ✅ 17/28 (Railway Dockerfile B1/B2/W1-W4 + CF Workers wrangler M1-M5/M7-M11 + Nomad X3 — все имеют immutable release artifact, runtime неизменяем), ⚠️ 2 (L1 `npm run build` без immutable release; X2 docker-compose с manual SSH), ❌ 5 (M6 Python запускается напрямую без build; A1-A6 `git pull && python` в systemd-timer без artifact; P1 launchd + git pull; T1 plists устанавливаются вручную, нет VCS-pipeline), N/A 2 (O1 managed SaaS, AD1 admin one-off), 🟡 2 (W5/X1 нет кода). **Позитив F5:** Railway/CF Workers/Nomad имеют platform-level versioning + rollback. **Главный риск:** автономные агенты (A1-A6) и launchd-сервисы (P1, T1) — `git pull` в production = build/release/run слиты, нет окна для отката, нет immutable snapshot.
 - **F6 Stateless (Ф6 done 2026-05-12):** ✅ 19/28 (B1/B2 PostgresStorage FSM; W1-W4 DB cursor + batched flush + shutdown handler; CF Workers M1-M11 inherently stateless; X2 stateless backup scripts; X3 static site), ⚠️ 4 (L1 in-memory locks с TTL — single-user design; A1-A6 module-level read-only YAML caches — intended single-process-per-night; P1 `/tmp/.pomodoro-state.json`), ❌ 0, N/A 3 (O1 managed, T1 scheduler без своего state, AD1 admin), 🟡 2 (W5/X1). **Позитив F6 (критично для R1→R2→R3):** бот переехал с MemoryStorage на PostgresStorage (Dispatcher line 259 bot.py); все 4 worker'а используют DB-cursor с per-domain isolation; CF Workers stateless by design. **Известный риск:** AD1 ETL-скрипты используют `/tmp/etl*_cursor.json` (теряется при container redeploy) — отдельная проблема для backfill-jobs, не блокер runtime.
 - **F7 Port Binding (Ф7 done 2026-05-12):** ✅ 13/28 (B1/B2 — PORT env var + TCPSite в webhook mode + OAUTH_SERVER_PORT; CF Workers M1-M5/M7-M11 — runtime-provided HTTP, app self-contained; X3 ssm2025 — nginx в Docker image + Nomad port allocation), N/A 13 (W1-W4 background workers без HTTP server; M6 stdio transport; L1 Unix socket; O1 managed SaaS; A1-A6 background; X2 backup scripts; P1 scheduled; T1/AD1 не runtime), ⚠️ 0, ❌ 0, 🟡 2 (W5/X1). **Позитив F7:** все HTTP-сервисы self-contained (no external nginx required); CF Workers по природе обеспечивают F7 (runtime = port binding); бот корректно использует PORT через config/settings.py:81 `int(os.getenv("PORT", os.getenv("OAUTH_SERVER_PORT", "8080")))`.
+- **F8 Concurrency (Ф8 done 2026-05-12):** ✅ 21/28 (B1/B2 webhook-ready multi-replica; W1 atomic CAS cursor; W4 atomic per-domain cursor; CF Workers M1-M11 stateless + shared KV; L1 file locks pessimistic; A1-A6/P1/X2 documented single-process-per-tick scheduler; X3 static site), ⚠️ 2 (W2 bridge-2-events-poller — polling cursor без leader election, single-replica de-facto undocumented; W3 multi-domain-projection-worker — LISTEN/NOTIFY multi-safe, но in-memory CursorCache flush-batch race при scale-up без advisory lock), ❌ 0, N/A 3 (O1/T1/AD1), 🟡 2 (W5/X1). **Главный риск R1→R2→R3:** W2/W3 — текущая архитектура держится на single-replica, контракт нигде явно не задокументирован. При scale Railway service до 2 replicas → дубли событий в gateway (W2) или drift cursors (W3). **Рекомендация:** добавить `SCALING.md` в W2/W3 с явным контрактом + план для leader election (postgres advisory lock на cursor table).
 - **F10 Dev/Prod parity:** ожидается ❌ — нет Docker Compose окружения для большинства сервисов; локальная разработка с одной БД, прод с другой архитектурой.
 - **F11 Logs:** ожидается ⚠️ — есть `feedback_silent_fail_log_to_stdout.md` (bash log() пишет в stderr — корректно для 12-factor), но для Python-сервисов нужно проверить структурированность.
 
@@ -108,5 +109,7 @@
 | 2026-05-12 | A1-A6 | F6 | DS-autonomous-agents — module-level `_memes_cache`, `_practices_cache` загружаются из YAML лениво. Single-process-per-night design (несколько инстансов одного агента сейчас не работают — каждый загрузит независимо) | Безопасно для single-instance overnight scheduling. Для multi-replica → перенести в Redis с TTL или DB. Сейчас acceptable | ⚠️ открыт |
 | 2026-05-12 | P1 | F6 | profiler — `STATE_FILE = Path(__file__).parent / ".pomodoro-state.json"` (pomodoro-alert.py). При перезагрузке Mac state сессии теряется → ложный alert | Перенести в `~/.local/share/iwe/pomodoro-state.json` или Neon table | ⚠️ открыт |
 | 2026-05-12 | AD1 | F6 (нарушение F6 при N/A статусе) | neon-migrations — `CURSOR_FILE = "/tmp/etl23_cursor.json"`. `/tmp` теряется при container redeploy → backfill придётся запускать заново или с дубликатами | Создать `etl_cursors (migration_id, last_event_id, updated_at)` таблицу в Neon (UPSERT) | ⚠️ информационно (F6 admin = N/A) |
+| 2026-05-12 | W2 | F8 | bridge-2-events-poller — polling-cursor single-replica de-facto, но контракт нигде не задокументирован. Если случайно scale Railway service до 2+ → обе replicas полят LMS одновременно → дубли событий в event-gateway | (1) Добавить `SCALING.md` с явным single-replica contract; (2) либо реализовать lease-based lock через advisory_lock в poller table перед batch read | ⚠️ открыт |
+| 2026-05-12 | W3 | F8 | multi-domain-projection-worker — LISTEN/NOTIFY безопасен для multi-listener, НО `CursorCache` (in-memory, batched flush 100 events / 5 sec) → при N replicas две из них могут обработать одно событие до flush первой. Идемпотентность projection-UPSERT защищает данные, но метрики `events_processed` дублируются | (1) Явный single-replica contract в SCALING.md; (2) либо advisory_lock на flush-операцию `pg_advisory_lock(domain_id::bigint)` перед UPDATE cursor | ⚠️ открыт |
 
 *Source: `DS-my-strategy/inbox/WP-307-12factor-compliance.md` (WP-context).*
