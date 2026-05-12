@@ -18,33 +18,33 @@
 
 | Сервис | F1 Codebase | F2 Deps | F3 Config | F4 Backing | F5 BRR | F6 Stateless | F7 Port | F8 Concurrency | F9 Disposability | F10 Dev/Prod | F11 Logs | F12 Admin |
 |--------|:-----------:|:-------:|:---------:|:----------:|:------:|:------------:|:-------:|:--------------:|:----------------:|:------------:|:--------:|:---------:|
-| B1 aist-bot prod | ⚠️ | ⚠️ | ⚠️ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| B2 aist-bot pilot | ⚠️ | ⚠️ | ⚠️ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W1 activity-hub | ✅ | ⚠️ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W2 bridge-2-events-poller | ✅ | ⚠️ | ⚠️ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W3 multi-domain-projection-worker | ✅ | ⚠️ | ⚠️ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W4 rewards-projection-worker | ✅ | ⚠️ | ⚠️ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| B1 aist-bot prod | ⚠️ | ⚠️ | ⚠️ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| B2 aist-bot pilot | ⚠️ | ⚠️ | ⚠️ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| W1 activity-hub | ✅ | ⚠️ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| W2 bridge-2-events-poller | ✅ | ⚠️ | ⚠️ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| W3 multi-domain-projection-worker | ✅ | ⚠️ | ⚠️ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| W4 rewards-projection-worker | ✅ | ⚠️ | ⚠️ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
 | W5 payment-registry | ⚠️ | ❌ | ❌ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M1 gateway-mcp (Cloud Gateway) | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M2 knowledge-mcp | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M3 personal-knowledge-mcp | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M4 digital-twin-mcp | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M5 fsm-mcp | ✅ | ✅ | ✅ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M6 google-drive-mcp | ✅ | ❌ | ⚠️ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M7 guides-mcp | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M8 event-gateway | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M9 observability-webhook | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M10 payment-receiver | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M11 status-proxy | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| L1 local-gateway (DP.IWE.005) | ✅ | ✅ | ⚠️ | N/A | 🟡 | 🟡 | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| O1 OAuth Hydra gateway | N/A | N/A | 🟡 | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| A1 auditor (overnight) | ⚠️ | ❌ | ❌ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| A2-A6 другие агенты | ⚠️ | ❌ | ❌ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M1 gateway-mcp (Cloud Gateway) | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M2 knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M3 personal-knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M4 digital-twin-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M5 fsm-mcp | ✅ | ✅ | ✅ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M6 google-drive-mcp | ✅ | ❌ | ⚠️ | ⚠️ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M7 guides-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M8 event-gateway | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M9 observability-webhook | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M10 payment-receiver | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M11 status-proxy | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| L1 local-gateway (DP.IWE.005) | ✅ | ✅ | ⚠️ | N/A | ⚠️ | 🟡 | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| O1 OAuth Hydra gateway | N/A | N/A | 🟡 | N/A | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| A1 auditor (overnight) | ⚠️ | ❌ | ❌ | ✅ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| A2-A6 другие агенты | ⚠️ | ❌ | ❌ | ✅ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
 | X1 CRM Directus | ⚠️ | N/A | N/A | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| X2 hetzner-backstage | ✅ | ❌ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| X3 ssm2025 | ⚠️ | ✅ | ⚠️ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| P1 profiler | ❌ | ❌ | ⚠️ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| T1 scheduler.sh (launchd) | ⚠️ | ⚠️ | ⚠️ | N/A | 🟡 | 🟡 | N/A | 🟡 | 🟡 | N/A | 🟡 | 🟡 |
+| X2 hetzner-backstage | ✅ | ❌ | ❌ | 🟡 | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| X3 ssm2025 | ⚠️ | ✅ | ⚠️ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| P1 profiler | ❌ | ❌ | ⚠️ | ✅ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| T1 scheduler.sh (launchd) | ⚠️ | ⚠️ | ⚠️ | N/A | ❌ | 🟡 | N/A | 🟡 | 🟡 | N/A | 🟡 | 🟡 |
 | AD1 neon-migrations | N/A | ⚠️ | ⚠️ | ✅ | N/A | N/A | N/A | N/A | 🟡 | 🟡 | 🟡 | ✅* |
 
 > *AD1 neon-migrations — это сам admin process; для него F12 ≈ ✅ по определению. Остальные «runtime»-факторы (codebase, BRR, stateless, port, concurrency, disposability) к admin-скрипту не применяются.
@@ -64,6 +64,7 @@
 - **F2 Dependencies (Ф2 done 2026-05-12):** ✅ 12/28 (M1-M5, M7-M11, L1, X3 — package.json + lock), ⚠️ 8/28 (все Python без lock-файла; B1/B2 + float-версии; T1 implicit), ❌ 6/28 (W5, M6, A1-A6, X2, P1 — нет manifest). X2 — implicit system deps (restic, ssh). Node.js CF Workers ✅: caret + package-lock = npm-стандарт.
 - **F3 Config (Ф3 done 2026-05-12):** ✅ 11/28 (CF Workers M1-M5, M7-M11, W1 — env vars/wrangler secrets), ⚠️ 11/28 (M6 + 10 без `.env.example`), ❌ 4/28. ~~🔴 КРИТИЧНО M6~~ — **проверено: ложная тревога** (`.env` никогда не был в истории; репо локальный без remote; `.gitignore` расширен в d1db091). **🟠 HIGH:** W5/A1-A6 (`.gitignore` без `.env`), X2 (паттерн `**/env` не покрывает `.env`). Hardcoded secrets в HEAD-коде НЕ найдены — это позитивно.
 - **F4 Backing Services (Ф4 done 2026-05-12):** ✅ 19/28 (B1/B2, W1-W4, M1-M4/M7-M11, A1-A6, P1, AD1 — все через env vars/wrangler secrets), N/A 7 (W5 пустой репо, M5 stateless, L1 без backing services, O1 managed SaaS, X1 нет IWE-репо, X3 статичный сайт, T1 scheduler), ⚠️ 1 (M6 Google Drive OAuth через `sync-config.json` вместо env var), ❌ 0, 🟡 1 (X2 ops-скрипты без Python/TS файлов — backing service connections не верифицированы). **Позитив F4:** 100% env-var-first для backing services (DATABASE_URL_* паттерн, wrangler secrets); fail-fast при старте (Pydantic Field required / _require_env()); pooled vs unpooled Neon правильно разделены на уровне отдельных env vars.
+- **F5 Build/Release/Run (Ф5 done 2026-05-12):** ✅ 17/28 (Railway Dockerfile B1/B2/W1-W4 + CF Workers wrangler M1-M5/M7-M11 + Nomad X3 — все имеют immutable release artifact, runtime неизменяем), ⚠️ 2 (L1 `npm run build` без immutable release; X2 docker-compose с manual SSH), ❌ 5 (M6 Python запускается напрямую без build; A1-A6 `git pull && python` в systemd-timer без artifact; P1 launchd + git pull; T1 plists устанавливаются вручную, нет VCS-pipeline), N/A 2 (O1 managed SaaS, AD1 admin one-off), 🟡 2 (W5/X1 нет кода). **Позитив F5:** Railway/CF Workers/Nomad имеют platform-level versioning + rollback. **Главный риск:** автономные агенты (A1-A6) и launchd-сервисы (P1, T1) — `git pull` в production = build/release/run слиты, нет окна для отката, нет immutable snapshot.
 - **F6 Stateless:** ожидается ⚠️ для бота (FSM-state хранится в БД ✅, но кэш `data['raw_state']` в памяти — см. `lessons_aiogram_raw_state_cache.md`) и workers (cursor в локальной памяти — см. `feedback_silent_projection_fail.md`).
 - **F10 Dev/Prod parity:** ожидается ❌ — нет Docker Compose окружения для большинства сервисов; локальная разработка с одной БД, прод с другой архитектурой.
 - **F11 Logs:** ожидается ⚠️ — есть `feedback_silent_fail_log_to_stdout.md` (bash log() пишет в stderr — корректно для 12-factor), но для Python-сервисов нужно проверить структурированность.
@@ -96,5 +97,11 @@
 | 2026-05-12 | B1, B2, W2-W4, L1, X3, AD1, P1 | F3 | `.gitignore` корректен, но отсутствует `.env.example` — onboarding-friction, разработчик не знает какие переменные нужны | Создать `.env.example` в каждом сервисе с placeholder-значениями | ⚠️ открыт |
 | 2026-05-12 | M6 | F4 | google-drive-mcp — Google Drive OAuth 2.0 credentials хранятся в `sync-config.json` (файл на диске), а не в env var. Замена инстанса = ручное редактирование файла | Перейти на env-based OAuth (GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REFRESH_TOKEN) + убрать sync-config.json из репо | ⚠️ открыт |
 | 2026-05-12 | X2 | F4 | hetzner-backstage — репо содержит только shell-скрипты (нет Python/TS файлов). Backing service connections в bash-скриптах не поддаются автоматической верификации через grep | Ручной аудит: проверить restore/backup-скрипты на env var usage (RESTIC_REPOSITORY, RESTIC_PASSWORD, BACKUP_TARGET) | 🟡 открыт |
+| 2026-05-12 | M6 | F5 | google-drive-mcp — нет build-стадии; Python-код запускается напрямую (`python mcp_server.py`) из исходников. Любая правка → следующий запуск получает новый код без immutable artifact | Локальный single-user tool → допустимо как N/A, либо добавить `pyinstaller` / `pip install -e .` + virtualenv pin | ❌ открыт |
+| 2026-05-12 | A1-A6 | F5 | DS-autonomous-agents — systemd-timer на tsekh-1: `cd /repo && git pull && python runner.py`. Build/release/run слиты в один шаг. Если код некорректен в main → сразу в production, нет окна для отката | Containerize (Dockerfile на agent) + Railway/Nomad deploy с immutable image tag; release = image digest, run = container start | ❌ открыт |
+| 2026-05-12 | P1 | F5 | profiler (DS-ai-systems) — macOS launchd + git pull + python runner. То же самое: build/release/run в одном шаге | Containerize + GH Actions build → tag → docker pull при запуске timer'a (или Railway aфтодеплой) | ❌ открыт |
+| 2026-05-12 | T1 | F5 | launchd plists (`~/Library/LaunchAgents/*.plist`) устанавливаются вручную; нет CI/CD; plists не находятся в VCS (см. F1) | Поместить plists в репозиторий + `install-launchd.sh` скрипт; release = git tag + apply install-script | ❌ открыт |
+| 2026-05-12 | L1 | F5 | local-gateway — `npm run build` создаёт `dist/`, но нет immutable release artifact (npm pack / tarball + version). Запуск из dist/ напрямую | Локальный single-user proxy → допустимо. Можно повысить до ✅ добавив semver tag + `npm pack` в `dist-versioned/` | ⚠️ открыт |
+| 2026-05-12 | X2 | F5 | hetzner-backstage — docker-compose.yml есть, но deploy = manual SSH + `docker-compose up`. Если меняется compose-файл локально → отличается от того, что на сервере. Нет immutable artifact | GH Actions: build → push digest-pinned image в registry → systemd unit с image digest. Или ansible playbook с tag pin | ⚠️ открыт |
 
 *Source: `DS-my-strategy/inbox/WP-307-12factor-compliance.md` (WP-context).*
