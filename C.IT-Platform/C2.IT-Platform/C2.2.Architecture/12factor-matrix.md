@@ -18,34 +18,34 @@
 
 | Сервис | F1 Codebase | F2 Deps | F3 Config | F4 Backing | F5 BRR | F6 Stateless | F7 Port | F8 Concurrency | F9 Disposability | F10 Dev/Prod | F11 Logs | F12 Admin |
 |--------|:-----------:|:-------:|:---------:|:----------:|:------:|:------------:|:-------:|:--------------:|:----------------:|:------------:|:--------:|:---------:|
-| B1 aist-bot prod | ⚠️ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| B2 aist-bot pilot | ⚠️ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| W1 activity-hub | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| W2 bridge-2-events-poller | ✅ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| W3 multi-domain-projection-worker | ✅ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| W4 rewards-projection-worker | ✅ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| B1 aist-bot prod | ⚠️ | ⚠️ | ⚠️ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| B2 aist-bot pilot | ⚠️ | ⚠️ | ⚠️ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| W1 activity-hub | ⚠️ | ⚠️ | ✅ | ✅ | ❌ | ✅ | N/A | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| W2 bridge-2-events-poller | ⚠️ | ⚠️ | ⚠️ | ✅ | ❌ | ✅ | N/A | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| W3 multi-domain-projection-worker | 🟡 | ⚠️ | ⚠️ | ✅ | 🟡 | ✅ | N/A | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| W4 rewards-projection-worker | ⚠️ | ⚠️ | ⚠️ | ✅ | ❌ | ✅ | N/A | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
 | W5 payment-registry | ⚠️ | ❌ | ❌ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M1 gateway-mcp (Cloud Gateway) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| M2 knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| M3 personal-knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| M4 digital-twin-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| M5 fsm-mcp | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| M6 google-drive-mcp | ✅ | ❌ | ⚠️ | ⚠️ | ❌ | ✅ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| M7 guides-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| M8 event-gateway | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| M9 observability-webhook | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| M10 payment-receiver | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| M11 status-proxy | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| L1 local-gateway (DP.IWE.005) | ✅ | ✅ | ⚠️ | N/A | ⚠️ | ⚠️ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| O1 OAuth Hydra gateway | N/A | N/A | 🟡 | N/A | N/A | N/A | N/A | N/A | 🟡 | 🟡 | 🟡 | 🟡 |
-| A1 auditor (overnight) | ⚠️ | ❌ | ❌ | ✅ | ❌ | ⚠️ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| A2-A6 другие агенты | ⚠️ | ❌ | ❌ | ✅ | ❌ | ⚠️ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
+| M1 gateway-mcp (Cloud Gateway) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| M2 knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| M3 personal-knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| M4 digital-twin-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| M5 fsm-mcp | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| M6 google-drive-mcp | ✅ | ❌ | ⚠️ | ⚠️ | ❌ | ✅ | N/A | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| M7 guides-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| M8 event-gateway | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| M9 observability-webhook | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| M10 payment-receiver | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| M11 status-proxy | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| L1 local-gateway (DP.IWE.005) | ✅ | ✅ | ⚠️ | N/A | ⚠️ | ⚠️ | N/A | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| O1 OAuth Hydra gateway | N/A | N/A | 🟡 | N/A | N/A | N/A | N/A | N/A | N/A | 🟡 | 🟡 | 🟡 |
+| A1 auditor (overnight) | ⚠️ | ❌ | ❌ | ✅ | ❌ | ⚠️ | N/A | ✅ | ⚠️ | 🟡 | 🟡 | 🟡 |
+| A2-A6 другие агенты | ⚠️ | ❌ | ❌ | ✅ | ❌ | ⚠️ | N/A | ✅ | ⚠️ | 🟡 | 🟡 | 🟡 |
 | X1 CRM Directus | ⚠️ | N/A | N/A | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| X2 hetzner-backstage | ✅ | ❌ | ❌ | 🟡 | ⚠️ | ✅ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| X3 ssm2025 | ⚠️ | ✅ | ⚠️ | N/A | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| P1 profiler | ❌ | ❌ | ⚠️ | ✅ | ❌ | ⚠️ | N/A | ✅ | 🟡 | 🟡 | 🟡 | 🟡 |
-| T1 scheduler.sh (launchd) | ⚠️ | ⚠️ | ⚠️ | N/A | ❌ | N/A | N/A | N/A | 🟡 | N/A | 🟡 | 🟡 |
-| AD1 neon-migrations | N/A | ⚠️ | ⚠️ | ✅ | N/A | N/A | N/A | N/A | 🟡 | 🟡 | 🟡 | ✅* |
+| X2 hetzner-backstage | ✅ | ❌ | ❌ | 🟡 | ⚠️ | ✅ | N/A | ✅ | ⚠️ | 🟡 | 🟡 | 🟡 |
+| X3 ssm2025 | ⚠️ | ✅ | ⚠️ | N/A | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 |
+| P1 profiler | ❌ | ❌ | ⚠️ | ✅ | ❌ | ⚠️ | N/A | ✅ | ⚠️ | 🟡 | 🟡 | 🟡 |
+| T1 scheduler.sh (launchd) | ⚠️ | ⚠️ | ⚠️ | N/A | ❌ | N/A | N/A | N/A | ⚠️ | N/A | 🟡 | 🟡 |
+| AD1 neon-migrations | N/A | ⚠️ | ⚠️ | ✅ | N/A | N/A | N/A | N/A | ✅ | 🟡 | 🟡 | ✅* |
 
 > *AD1 neon-migrations — это сам admin process; для него F12 ≈ ✅ по определению. Остальные «runtime»-факторы (codebase, BRR, stateless, port, concurrency, disposability) к admin-скрипту не применяются.
 
@@ -57,17 +57,19 @@
 > X1 F3 = N/A — нет IWE-репо, аудит невозможен.
 > M6 F3 = ❌ КРИТИЧНО — .env в git history. Требует ротации секретов и очистки истории.
 > **Позитив F3:** ни в одном сервисе НЕ найдено hardcoded секретов (Telegram tokens, API keys, sk-/pk-) в `*.py`/`*.ts`/`*.js` файлах HEAD-кода. Это значит, что культура «всё через env var» в целом соблюдается — проблемы только в `.gitignore` гигиене и истории.
+> **F1/F5 fold-back (2026-05-12, Ф9-диагностика):** B1/B2/W1/W2/W4 — Railway сервисы в `peaceful-vision` БЕЗ GitHub auto-deploy (нет `RAILWAY_GIT_*` env vars; все deployments `reason: "deploy"/"redeploy"` — manual `railway up`). Production runtime не привязан к git commit → F1 понижен ✅→⚠️ (W1/W2/W4) и F5 ✅→❌ (5 worker'ов). W3 → 🟡 (на Railway ещё не задеплоен — deployment model не подтверждён). Ф5b открыта для закрытия gap (см. WP-307-context).
 
 ## Заметки по факторам — итоги аудита и ожидаемые блокеры
 
-- **F1 Codebase (Ф1 done 2026-05-12):** ✅ 17/28 строк, ⚠️ 8/28, ❌ 1/28. Критический дефект: **P1 / DS-ai-systems — монорепо** с 8+ независимыми сервисами в одном репо. ⚠️-группы: B1/B2 (1 уникальный коммит в pilot — consent feature), A1-A6 (DS-autonomous-agents монорепо, deployment model не задокументирован), T1 (launchd plists не в VCS), W5/X1/X3 (deployment config неизвестен). M6 — Python MCP, не CF Worker (важно для F7/F10).
+- **F1 Codebase (Ф1 done 2026-05-12; F1 fold-back 2026-05-12 после Ф9-диагностики):** ✅ 13/28 строк, ⚠️ 11/28, ❌ 1/28, 🟡 1/28 (W3). Критический дефект: **P1 / DS-ai-systems — монорепо** с 8+ независимыми сервисами в одном репо. ⚠️-группы: B1/B2 (1 уникальный коммит в pilot — consent feature), **B1/B2/W1/W2/W4 (Railway без GitHub auto-deploy — production-runtime не привязан к git commit, см. Ф5b)**, A1-A6 (DS-autonomous-agents монорепо, deployment model не задокументирован), T1 (launchd plists не в VCS), W5/X1/X3 (deployment config неизвестен). W3 (multi-domain-projection-worker) → 🟡: на Railway не задеплоен (ждёт миграции по WP-270), deployment model не подтверждён. M6 — Python MCP, не CF Worker (важно для F7/F10).
 - **F2 Dependencies (Ф2 done 2026-05-12):** ✅ 12/28 (M1-M5, M7-M11, L1, X3 — package.json + lock), ⚠️ 8/28 (все Python без lock-файла; B1/B2 + float-версии; T1 implicit), ❌ 6/28 (W5, M6, A1-A6, X2, P1 — нет manifest). X2 — implicit system deps (restic, ssh). Node.js CF Workers ✅: caret + package-lock = npm-стандарт.
 - **F3 Config (Ф3 done 2026-05-12):** ✅ 11/28 (CF Workers M1-M5, M7-M11, W1 — env vars/wrangler secrets), ⚠️ 11/28 (M6 + 10 без `.env.example`), ❌ 4/28. ~~🔴 КРИТИЧНО M6~~ — **проверено: ложная тревога** (`.env` никогда не был в истории; репо локальный без remote; `.gitignore` расширен в d1db091). **🟠 HIGH:** W5/A1-A6 (`.gitignore` без `.env`), X2 (паттерн `**/env` не покрывает `.env`). Hardcoded secrets в HEAD-коде НЕ найдены — это позитивно.
 - **F4 Backing Services (Ф4 done 2026-05-12):** ✅ 19/28 (B1/B2, W1-W4, M1-M4/M7-M11, A1-A6, P1, AD1 — все через env vars/wrangler secrets), N/A 7 (W5 пустой репо, M5 stateless, L1 без backing services, O1 managed SaaS, X1 нет IWE-репо, X3 статичный сайт, T1 scheduler), ⚠️ 1 (M6 Google Drive OAuth через `sync-config.json` вместо env var), ❌ 0, 🟡 1 (X2 ops-скрипты без Python/TS файлов — backing service connections не верифицированы). **Позитив F4:** 100% env-var-first для backing services (DATABASE_URL_* паттерн, wrangler secrets); fail-fast при старте (Pydantic Field required / _require_env()); pooled vs unpooled Neon правильно разделены на уровне отдельных env vars.
-- **F5 Build/Release/Run (Ф5 done 2026-05-12):** ✅ 17/28 (Railway Dockerfile B1/B2/W1-W4 + CF Workers wrangler M1-M5/M7-M11 + Nomad X3 — все имеют immutable release artifact, runtime неизменяем), ⚠️ 2 (L1 `npm run build` без immutable release; X2 docker-compose с manual SSH), ❌ 5 (M6 Python запускается напрямую без build; A1-A6 `git pull && python` в systemd-timer без artifact; P1 launchd + git pull; T1 plists устанавливаются вручную, нет VCS-pipeline), N/A 2 (O1 managed SaaS, AD1 admin one-off), 🟡 2 (W5/X1 нет кода). **Позитив F5:** Railway/CF Workers/Nomad имеют platform-level versioning + rollback. **Главный риск:** автономные агенты (A1-A6) и launchd-сервисы (P1, T1) — `git pull` в production = build/release/run слиты, нет окна для отката, нет immutable snapshot.
+- **F5 Build/Release/Run (Ф5 done 2026-05-12; F5 fold-back 2026-05-12 после Ф9-диагностики):** ✅ 11/28 (CF Workers wrangler M1-M5/M7-M11 + Nomad X3 — все имеют immutable release artifact, runtime неизменяем + Git tag traceability), ⚠️ 2 (L1 `npm run build` без immutable release; X2 docker-compose с manual SSH), ❌ 10 (B1/B2/W1/W2/W4 — Railway peaceful-vision БЕЗ GitHub auto-deploy: manual `railway up` upload, image immutable digest есть, но git→deploy linkage отсутствует, нельзя rollback к конкретному commit; M6 Python запускается напрямую без build; A1-A6 `git pull && python` в systemd-timer без artifact; P1 launchd + git pull; T1 plists устанавливаются вручную, нет VCS-pipeline), N/A 2 (O1 managed SaaS, AD1 admin one-off), 🟡 3 (W5/X1 нет кода; W3 не задеплоен). **Главный риск (обновлён 2026-05-12):** ВСЕ 5 production-worker'ов peaceful-vision (B1/B2/W1/W2/W4) — push в GitHub не триггерит redeploy. Подтверждено отсутствием `RAILWAY_GIT_*` переменных в env и `reason: "deploy"/"redeploy"` (manual triggers) во всех 18+ deploy-записях. Закрытие через Ф5b (см. WP-307-context).
 - **F6 Stateless (Ф6 done 2026-05-12):** ✅ 19/28 (B1/B2 PostgresStorage FSM; W1-W4 DB cursor + batched flush + shutdown handler; CF Workers M1-M11 inherently stateless; X2 stateless backup scripts; X3 static site), ⚠️ 4 (L1 in-memory locks с TTL — single-user design; A1-A6 module-level read-only YAML caches — intended single-process-per-night; P1 `/tmp/.pomodoro-state.json`), ❌ 0, N/A 3 (O1 managed, T1 scheduler без своего state, AD1 admin), 🟡 2 (W5/X1). **Позитив F6 (критично для R1→R2→R3):** бот переехал с MemoryStorage на PostgresStorage (Dispatcher line 259 bot.py); все 4 worker'а используют DB-cursor с per-domain isolation; CF Workers stateless by design. **Известный риск:** AD1 ETL-скрипты используют `/tmp/etl*_cursor.json` (теряется при container redeploy) — отдельная проблема для backfill-jobs, не блокер runtime.
 - **F7 Port Binding (Ф7 done 2026-05-12):** ✅ 13/28 (B1/B2 — PORT env var + TCPSite в webhook mode + OAUTH_SERVER_PORT; CF Workers M1-M5/M7-M11 — runtime-provided HTTP, app self-contained; X3 ssm2025 — nginx в Docker image + Nomad port allocation), N/A 13 (W1-W4 background workers без HTTP server; M6 stdio transport; L1 Unix socket; O1 managed SaaS; A1-A6 background; X2 backup scripts; P1 scheduled; T1/AD1 не runtime), ⚠️ 0, ❌ 0, 🟡 2 (W5/X1). **Позитив F7:** все HTTP-сервисы self-contained (no external nginx required); CF Workers по природе обеспечивают F7 (runtime = port binding); бот корректно использует PORT через config/settings.py:81 `int(os.getenv("PORT", os.getenv("OAUTH_SERVER_PORT", "8080")))`.
 - **F8 Concurrency (Ф8 done 2026-05-12):** ✅ 23/28 (B1/B2 webhook-ready multi-replica; W1 atomic CAS cursor; W4 atomic per-domain cursor; CF Workers M1-M11 stateless + shared KV; L1 file locks pessimistic; A1-A6/P1/X2 documented single-process-per-tick scheduler; X3 static site; **W2/W3 — single-replica контракт enforced через pg_try_advisory_lock + SCALING.md** mitigated 2026-05-12), ⚠️ 0, ❌ 0, N/A 3 (O1/T1/AD1), 🟡 2 (W5/X1). **Mitigation done:** W2 (commit 36a38be) + W3 (commit db919c4) — `pg_try_advisory_lock(420220/420277)` на learning DB при старте; busy → exit(75); SCALING.md документирует контракт + ENV override.
+- **F9 Disposability (Ф9 done 2026-05-12):** ✅ 20/28 (B1/B2, W1-W4, M1-M11, L1, X3, AD1), ⚠️ 5/28 (A1/A2-A6, X2, P1, T1), 🟡 2/28 (W5/X1 TBD), N/A 1/28 (O1 managed SaaS). **Позитив:** Bot B1/B2 — явный SIGTERM handler (`signal.SIGTERM → loop.add_signal_handler → stop_event.set`), pool warmup на старте (~3-5 сек < 30s), FSM state в PostgresStorage. W2/W3/W4 — явный SIGTERM handler + advisory lock cleanup в finally + atomic cursor advance → crash-safe idempotency. W1 — CLI/cron с атомарным CAS cursor → идемпотентная перезапускаемость. CF Workers M1-M11 — <100ms cold start (V8 isolates), request-isolated (нет SIGTERM-концепции), stateless по дизайну. **Нарушения ⚠️:** A1-A6 — нет SIGTERM handler, `git pull` добавляет latency к cold start (сеть-зависимо); X2 — bash без `trap`-обработчика (restic graceful, но обёртки нет); P1 — launchd + Python без SIGTERM handler (риск дублированных алертов при retry); T1 — deprecated, shell без SIGTERM. **Нет блокеров R1** — все production runtime workers (B1/B2/W1-W4/M1-M11) ✅.
 - **F10 Dev/Prod parity:** ожидается ❌ — нет Docker Compose окружения для большинства сервисов; локальная разработка с одной БД, прод с другой архитектурой.
 - **F11 Logs:** ожидается ⚠️ — есть `feedback_silent_fail_log_to_stdout.md` (bash log() пишет в stderr — корректно для 12-factor), но для Python-сервисов нужно проверить структурированность.
 
@@ -111,5 +113,10 @@
 | 2026-05-12 | AD1 | F6 (нарушение F6 при N/A статусе) | neon-migrations — `CURSOR_FILE = "/tmp/etl23_cursor.json"`. `/tmp` теряется при container redeploy → backfill придётся запускать заново или с дубликатами | Создать `etl_cursors (migration_id, last_event_id, updated_at)` таблицу в Neon (UPSERT) | ⚠️ информационно (F6 admin = N/A) |
 | 2026-05-12 | W2 | F8 | bridge-2-events-poller — polling-cursor single-replica de-facto, но контракт нигде не задокументирован | ✅ Закрыто: `pg_try_advisory_lock(420220)` в `_amain` + SCALING.md (commit 36a38be) | ✅ closed |
 | 2026-05-12 | W3 | F8 | multi-domain-projection-worker — LISTEN/NOTIFY безопасен, но CursorCache flush-batch может дублировать метрики при N replicas | ✅ Закрыто: `pg_try_advisory_lock(420277)` в `run_listener` + SCALING.md (commit db919c4). Данные уже защищены CAS в `update_cursors_batch` | ✅ closed |
+| 2026-05-12 | A1, A2-A6 | F9 | DS-autonomous-agents (systemd-timer tsekh-1): нет явного SIGTERM handler в CLI-скриптах; `git pull` на старте добавляет latency (сеть-зависимо, потенциально > 30s); идемпотентность при прерывании агент-специфична | Добавить `trap ... SIGTERM` в shell-обёртки; заменить `git pull && python` на Docker image + fixed tag (уже требуется для F5); для критичных операций — атомарный state в Neon | ⚠️ открыт |
+| 2026-05-12 | X2 | F9 | hetzner-backstage bash scripts: нет `trap`-обработчиков SIGTERM. restic операции безопасны при прерывании (restic управляет snap locks), но shell-обёртки не защищены | Добавить `trap 'exit 130' SIGTERM` в критичные скрипты | ⚠️ открыт |
+| 2026-05-12 | P1 | F9 | profiler (macOS launchd): нет SIGTERM handler в Python-скриптах. Pomodoro-alert: риск дублированных алертов при прерывании и повторном запуске (если `.pomodoro-state.json` не обновлена) | Добавить `signal.signal(signal.SIGTERM, handler)` в pomodoro-alert.py; атомарный write для state file (write to tmp + rename) | ⚠️ открыт |
+| 2026-05-12 | T1 | F9 | scheduler.sh (launchd) — deprecated shell-скрипты без SIGTERM handler. Риск минимален ввиду deprecation | При замене launchd plists → SIGTERM handling в новом runtime | ⚠️ открыт (low priority, deprecated) |
+| 2026-05-12 | B1, B2, W1, W2, W4 | F1, F5 | **Railway peaceful-vision — все 5 production worker'ов БЕЗ GitHub auto-deploy.** Свидетельство: `RAILWAY_GIT_*` env vars отсутствуют (обычно Railway выставляет автоматически при connect-to-repo); 18+ deployments на сервис, все `reason: "deploy"/"redeploy"` + `ignoreWatchPatterns: true` — manual `railway up` или dashboard triggers. Последний SUCCESS deploy W2 — 2026-04-28; W4 — 2026-04-27. Push в GitHub не триггерит redeploy. F1 ✅→⚠️ (production-runtime не привязан к git commit); F5 ✅→❌ (нет git→deploy linkage, нельзя rollback к конкретному commit, image immutable digest есть, но не связан с git SHA). Прямое влияние: commit WP-307 advisory_lock (36a38be/db919c4) запушен 12 мая, но в production-коде до сих пор версия от 28 апреля | **Ф5b WP-307 (открыта 2026-05-12, ~3h):** для каждого worker'а в Railway dashboard → Settings → Source Repo → connect to TserenTserenov/* + production branch (B1: new-architecture, B2: pilot, W1/W2/W4: main). Затем smoke-test (пустой commit → verify auto-redeploy). Затем верификация advisory_lock в логах W2 | ❌ открыт |
 
 *Source: `DS-my-strategy/inbox/WP-307-12factor-compliance.md` (WP-context).*

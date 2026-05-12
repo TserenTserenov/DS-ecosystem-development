@@ -120,6 +120,33 @@
 |----|----------|------|-----------|
 | **AD1** | neon-migrations | `DS-IT-systems/neon-migrations` | DB-миграции (admin process) |
 
+## Deploy method matrix (добавлен 2026-05-12, fold-back Ф5)
+
+> Различение типа деплоя — критично для F1 (Codebase) и F5 (Build/Release/Run). Источник: Ф9-диагностика Railway-сервисов peaceful-vision.
+
+| ID | Сервис | Deploy method | Git→Deploy linkage | F1 implication | F5 implication |
+|----|--------|---------------|---------------------|----------------|-----------------|
+| B1 | aist_me_bot | `railway up` (manual CLI upload) | ❌ нет (отсутствуют `RAILWAY_GIT_*` env vars) | ⚠️ runtime не привязан к commit | ❌ нет immutable git→deploy |
+| B2 | aist_pilot_bot | `railway up` (manual) | ❌ нет | ⚠️ | ❌ |
+| W1 | activity-hub-worker | `railway up` (manual) | ❌ нет | ⚠️ | ❌ |
+| W2 | bridge-2-lms-poller | `railway up` (manual) | ❌ нет | ⚠️ | ❌ |
+| W3 | multi-domain-projection-worker | **не задеплоен** (ждёт миграции WP-270) | — | 🟡 | 🟡 |
+| W4 | rewards-projection-worker | `railway up` (manual) | ❌ нет | ⚠️ | ❌ |
+| W5 | payment-registry | TBD (нет Dockerfile) | — | ⚠️ | 🟡 |
+| M1-M5/M7-M11 | CF Workers | `wrangler deploy` (CLI, обычно из CI) | ⚠️ зависит от запускающего | ✅ | ✅ image immutable + wrangler.toml versioned |
+| M6 | google-drive-mcp | `python mcp_server.py` (без build) | — | ✅ local repo | ❌ нет build/release |
+| L1 | local-gateway | `npm run build` локально | — | ✅ | ⚠️ нет immutable artifact |
+| O1 | Ory Hydra | Managed SaaS | N/A | N/A | N/A |
+| A1-A6 | autonomous agents | `git pull && python` через systemd-timer на tsekh-1 | ⚠️ git pull, нет build | ⚠️ | ❌ слияние build/release/run |
+| X1 | CRM Directus | TBD | TBD | ⚠️ | 🟡 |
+| X2 | hetzner-backstage | manual SSH + `docker-compose up` | ❌ | ✅ | ⚠️ |
+| X3 | ssm2025 | GitHub Actions → Nomad | ✅ git tag → image | ⚠️ | ✅ |
+| P1 | profiler | `git pull && python` через launchd | ⚠️ | ❌ (DS-ai-systems монорепо) | ❌ |
+| T1 | launchd plists | manual install (`launchctl load`) | ❌ plists не в VCS | ⚠️ | ❌ |
+| AD1 | neon-migrations | manual `psql` или Python скрипт | N/A | N/A (admin) | N/A |
+
+**Ключевая находка:** Railway-сервисы peaceful-vision (B1/B2/W1/W2/W4) — деплой через manual `railway up` upload, не через GitHub auto-deploy. Все 18+ deployments в Railway: `reason: "deploy"/"redeploy"` (manual), не git-webhook. Это нарушение F1 (runtime не привязан к git commit) и F5 (нет immutable release artifact с git linkage). Закрытие через **Ф5b** WP-307.
+
 ## Уточнения по runtime (итог Ф1, 2026-05-12)
 
 **Закрыты в Ф1:**
