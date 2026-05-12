@@ -18,32 +18,32 @@
 
 | Сервис | F1 Codebase | F2 Deps | F3 Config | F4 Backing | F5 BRR | F6 Stateless | F7 Port | F8 Concurrency | F9 Disposability | F10 Dev/Prod | F11 Logs | F12 Admin |
 |--------|:-----------:|:-------:|:---------:|:----------:|:------:|:------------:|:-------:|:--------------:|:----------------:|:------------:|:--------:|:---------:|
-| B1 aist-bot prod | ⚠️ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| B2 aist-bot pilot | ⚠️ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W1 activity-hub | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W2 bridge-2-events-poller | ✅ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W3 multi-domain-projection-worker | ✅ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W4 rewards-projection-worker | ✅ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| B1 aist-bot prod | ⚠️ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| B2 aist-bot pilot | ⚠️ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| W1 activity-hub | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| W2 bridge-2-events-poller | ✅ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| W3 multi-domain-projection-worker | ✅ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| W4 rewards-projection-worker | ✅ | ⚠️ | ⚠️ | ✅ | ✅ | ✅ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
 | W5 payment-registry | ⚠️ | ❌ | ❌ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M1 gateway-mcp (Cloud Gateway) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M2 knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M3 personal-knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M4 digital-twin-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M5 fsm-mcp | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M6 google-drive-mcp | ✅ | ❌ | ⚠️ | ⚠️ | ❌ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M7 guides-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M8 event-gateway | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M9 observability-webhook | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M10 payment-receiver | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M11 status-proxy | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M1 gateway-mcp (Cloud Gateway) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M2 knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M3 personal-knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M4 digital-twin-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M5 fsm-mcp | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M6 google-drive-mcp | ✅ | ❌ | ⚠️ | ⚠️ | ❌ | ✅ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M7 guides-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M8 event-gateway | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M9 observability-webhook | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M10 payment-receiver | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M11 status-proxy | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
 | L1 local-gateway (DP.IWE.005) | ✅ | ✅ | ⚠️ | N/A | ⚠️ | ⚠️ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| O1 OAuth Hydra gateway | N/A | N/A | 🟡 | N/A | N/A | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| A1 auditor (overnight) | ⚠️ | ❌ | ❌ | ✅ | ❌ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| A2-A6 другие агенты | ⚠️ | ❌ | ❌ | ✅ | ❌ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| O1 OAuth Hydra gateway | N/A | N/A | 🟡 | N/A | N/A | N/A | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| A1 auditor (overnight) | ⚠️ | ❌ | ❌ | ✅ | ❌ | ⚠️ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| A2-A6 другие агенты | ⚠️ | ❌ | ❌ | ✅ | ❌ | ⚠️ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
 | X1 CRM Directus | ⚠️ | N/A | N/A | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| X2 hetzner-backstage | ✅ | ❌ | ❌ | 🟡 | ⚠️ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| X3 ssm2025 | ⚠️ | ✅ | ⚠️ | N/A | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| P1 profiler | ❌ | ❌ | ⚠️ | ✅ | ❌ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| X2 hetzner-backstage | ✅ | ❌ | ❌ | 🟡 | ⚠️ | ✅ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| X3 ssm2025 | ⚠️ | ✅ | ⚠️ | N/A | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| P1 profiler | ❌ | ❌ | ⚠️ | ✅ | ❌ | ⚠️ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
 | T1 scheduler.sh (launchd) | ⚠️ | ⚠️ | ⚠️ | N/A | ❌ | N/A | N/A | 🟡 | 🟡 | N/A | 🟡 | 🟡 |
 | AD1 neon-migrations | N/A | ⚠️ | ⚠️ | ✅ | N/A | N/A | N/A | N/A | 🟡 | 🟡 | 🟡 | ✅* |
 
@@ -66,6 +66,7 @@
 - **F4 Backing Services (Ф4 done 2026-05-12):** ✅ 19/28 (B1/B2, W1-W4, M1-M4/M7-M11, A1-A6, P1, AD1 — все через env vars/wrangler secrets), N/A 7 (W5 пустой репо, M5 stateless, L1 без backing services, O1 managed SaaS, X1 нет IWE-репо, X3 статичный сайт, T1 scheduler), ⚠️ 1 (M6 Google Drive OAuth через `sync-config.json` вместо env var), ❌ 0, 🟡 1 (X2 ops-скрипты без Python/TS файлов — backing service connections не верифицированы). **Позитив F4:** 100% env-var-first для backing services (DATABASE_URL_* паттерн, wrangler secrets); fail-fast при старте (Pydantic Field required / _require_env()); pooled vs unpooled Neon правильно разделены на уровне отдельных env vars.
 - **F5 Build/Release/Run (Ф5 done 2026-05-12):** ✅ 17/28 (Railway Dockerfile B1/B2/W1-W4 + CF Workers wrangler M1-M5/M7-M11 + Nomad X3 — все имеют immutable release artifact, runtime неизменяем), ⚠️ 2 (L1 `npm run build` без immutable release; X2 docker-compose с manual SSH), ❌ 5 (M6 Python запускается напрямую без build; A1-A6 `git pull && python` в systemd-timer без artifact; P1 launchd + git pull; T1 plists устанавливаются вручную, нет VCS-pipeline), N/A 2 (O1 managed SaaS, AD1 admin one-off), 🟡 2 (W5/X1 нет кода). **Позитив F5:** Railway/CF Workers/Nomad имеют platform-level versioning + rollback. **Главный риск:** автономные агенты (A1-A6) и launchd-сервисы (P1, T1) — `git pull` в production = build/release/run слиты, нет окна для отката, нет immutable snapshot.
 - **F6 Stateless (Ф6 done 2026-05-12):** ✅ 19/28 (B1/B2 PostgresStorage FSM; W1-W4 DB cursor + batched flush + shutdown handler; CF Workers M1-M11 inherently stateless; X2 stateless backup scripts; X3 static site), ⚠️ 4 (L1 in-memory locks с TTL — single-user design; A1-A6 module-level read-only YAML caches — intended single-process-per-night; P1 `/tmp/.pomodoro-state.json`), ❌ 0, N/A 3 (O1 managed, T1 scheduler без своего state, AD1 admin), 🟡 2 (W5/X1). **Позитив F6 (критично для R1→R2→R3):** бот переехал с MemoryStorage на PostgresStorage (Dispatcher line 259 bot.py); все 4 worker'а используют DB-cursor с per-domain isolation; CF Workers stateless by design. **Известный риск:** AD1 ETL-скрипты используют `/tmp/etl*_cursor.json` (теряется при container redeploy) — отдельная проблема для backfill-jobs, не блокер runtime.
+- **F7 Port Binding (Ф7 done 2026-05-12):** ✅ 13/28 (B1/B2 — PORT env var + TCPSite в webhook mode + OAUTH_SERVER_PORT; CF Workers M1-M5/M7-M11 — runtime-provided HTTP, app self-contained; X3 ssm2025 — nginx в Docker image + Nomad port allocation), N/A 13 (W1-W4 background workers без HTTP server; M6 stdio transport; L1 Unix socket; O1 managed SaaS; A1-A6 background; X2 backup scripts; P1 scheduled; T1/AD1 не runtime), ⚠️ 0, ❌ 0, 🟡 2 (W5/X1). **Позитив F7:** все HTTP-сервисы self-contained (no external nginx required); CF Workers по природе обеспечивают F7 (runtime = port binding); бот корректно использует PORT через config/settings.py:81 `int(os.getenv("PORT", os.getenv("OAUTH_SERVER_PORT", "8080")))`.
 - **F10 Dev/Prod parity:** ожидается ❌ — нет Docker Compose окружения для большинства сервисов; локальная разработка с одной БД, прод с другой архитектурой.
 - **F11 Logs:** ожидается ⚠️ — есть `feedback_silent_fail_log_to_stdout.md` (bash log() пишет в stderr — корректно для 12-factor), но для Python-сервисов нужно проверить структурированность.
 
