@@ -30,7 +30,7 @@
 | M3 personal-knowledge-mcp | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
 | M4 digital-twin-mcp | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
 | M5 fsm-mcp | ✅ | ✅ | ✅ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M6 google-drive-mcp | ✅ | ❌ | ❌ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M6 google-drive-mcp | ✅ | ❌ | ⚠️ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
 | M7 guides-mcp | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
 | M8 event-gateway | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
 | M9 observability-webhook | ✅ | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
@@ -62,7 +62,7 @@
 
 - **F1 Codebase (Ф1 done 2026-05-12):** ✅ 17/28 строк, ⚠️ 8/28, ❌ 1/28. Критический дефект: **P1 / DS-ai-systems — монорепо** с 8+ независимыми сервисами в одном репо. ⚠️-группы: B1/B2 (1 уникальный коммит в pilot — consent feature), A1-A6 (DS-autonomous-agents монорепо, deployment model не задокументирован), T1 (launchd plists не в VCS), W5/X1/X3 (deployment config неизвестен). M6 — Python MCP, не CF Worker (важно для F7/F10).
 - **F2 Dependencies (Ф2 done 2026-05-12):** ✅ 12/28 (M1-M5, M7-M11, L1, X3 — package.json + lock), ⚠️ 8/28 (все Python без lock-файла; B1/B2 + float-версии; T1 implicit), ❌ 6/28 (W5, M6, A1-A6, X2, P1 — нет manifest). X2 — implicit system deps (restic, ssh). Node.js CF Workers ✅: caret + package-lock = npm-стандарт.
-- **F3 Config (Ф3 done 2026-05-12):** ✅ 11/28 (CF Workers M1-M5, M7-M11, W1 — env vars/wrangler secrets), ⚠️ 10/28 (отсутствует `.env.example`), ❌ 5/28. **🔴 КРИТИЧНО: M6** — `.env` в git history (leaked secrets). **🟠 HIGH:** W5/A1-A6 (`.gitignore` без `.env`), X2 (паттерн `**/env` не покрывает `.env`). Hardcoded secrets в HEAD-коде НЕ найдены — это позитивно.
+- **F3 Config (Ф3 done 2026-05-12):** ✅ 11/28 (CF Workers M1-M5, M7-M11, W1 — env vars/wrangler secrets), ⚠️ 11/28 (M6 + 10 без `.env.example`), ❌ 4/28. ~~🔴 КРИТИЧНО M6~~ — **проверено: ложная тревога** (`.env` никогда не был в истории; репо локальный без remote; `.gitignore` расширен в d1db091). **🟠 HIGH:** W5/A1-A6 (`.gitignore` без `.env`), X2 (паттерн `**/env` не покрывает `.env`). Hardcoded secrets в HEAD-коде НЕ найдены — это позитивно.
 - **F4 Backing Services (Ф4 done 2026-05-12):** ✅ 19/28 (B1/B2, W1-W4, M1-M4/M7-M11, A1-A6, P1, AD1 — все через env vars/wrangler secrets), N/A 7 (W5 пустой репо, M5 stateless, L1 без backing services, O1 managed SaaS, X1 нет IWE-репо, X3 статичный сайт, T1 scheduler), ⚠️ 1 (M6 Google Drive OAuth через `sync-config.json` вместо env var), ❌ 0, 🟡 1 (X2 ops-скрипты без Python/TS файлов — backing service connections не верифицированы). **Позитив F4:** 100% env-var-first для backing services (DATABASE_URL_* паттерн, wrangler secrets); fail-fast при старте (Pydantic Field required / _require_env()); pooled vs unpooled Neon правильно разделены на уровне отдельных env vars.
 - **F6 Stateless:** ожидается ⚠️ для бота (FSM-state хранится в БД ✅, но кэш `data['raw_state']` в памяти — см. `lessons_aiogram_raw_state_cache.md`) и workers (cursor в локальной памяти — см. `feedback_silent_projection_fail.md`).
 - **F10 Dev/Prod parity:** ожидается ❌ — нет Docker Compose окружения для большинства сервисов; локальная разработка с одной БД, прод с другой архитектурой.
@@ -89,7 +89,7 @@
 | 2026-05-12 | B1, B2 | F2 | requirements.txt: `aiogram>=3.20.0`, `langfuse>=4.0.0` — floating-версии (>=). Нет lock-файла | Заменить >= на ==; добавить `requirements.lock` через `pip-compile` | ⚠️ открыт |
 | 2026-05-12 | W1-W4 | F2 | requirements.txt / pyproject.toml есть, версии зафиксированы (==), но lock-файл отсутствует у всех 4 | Добавить `poetry.lock` или `.txt` от `pip-compile` | ⚠️ открыт |
 | 2026-05-12 | AD1 | F2 | neon-migrations — Python ETL-скрипты (`etl-*.py`) без requirements.txt. SQL-файлы — N/A | Создать requirements.txt для Python-скриптов (pandas, psycopg2 и др.) | ⚠️ открыт |
-| 2026-05-12 | M6 | F3 | **🔴 CRITICAL:** `.env` коммитился в git history (google-drive-mcp). Сейчас не в HEAD, но история содержит. Плюс `.gitignore` без `.env` — повторная утечка вероятна | (1) Добавить `.env*` в `.gitignore`; (2) ротировать все секреты, которые могли утечь; (3) `bfg-repo-cleaner` или `git-filter-branch` для очистки истории | 🔴 открыт |
+| 2026-05-12 | M6 | F3 | ~~**🔴 CRITICAL: `.env` в git history**~~ — **ЗАКРЫТО (ложная тревога).** Верификация в соседней сессии: git log --all -- '*.env' пусто, репо чисто локальный без remote, 2 коммита. `.gitignore` был только `__pycache__/`; расширен до `.env*`, `*.token`, `credentials*.json`, `token*.json` в коммите d1db091. `sync-config.json` содержит только path-маппинг, никаких секретов. Остаток ⚠️: нет `.env.example` для OAuth-переменных | `.env.example` с placeholder OAuth vars | ⚠️ открыт |
 | 2026-05-12 | W5 | F3 | payment-registry — `.gitignore` не содержит `.env` (только `_backups`, `.claude`). Любой `git add .env` пройдёт без предупреждения | Добавить `*.env` и `.env*` в `.gitignore`; создать `.env.example` | ❌ открыт |
 | 2026-05-12 | A1-A6 | F3 | DS-autonomous-agents — `.gitignore` без `.env`-правила. Config pattern не очевиден | (1) Добавить `.env*` в `.gitignore`; (2) аудит на hardcoded config в агентах; (3) создать `.env.example` | ❌ открыт |
 | 2026-05-12 | X2 | F3 | hetzner-backstage — `.gitignore` содержит `**/env` (без точки) — НЕ покрывает `.env` файлы | Заменить `**/env` на `**/.env*` | ❌ открыт |
