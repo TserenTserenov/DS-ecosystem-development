@@ -18,34 +18,34 @@
 
 | Сервис | F1 Codebase | F2 Deps | F3 Config | F4 Backing | F5 BRR | F6 Stateless | F7 Port | F8 Concurrency | F9 Disposability | F10 Dev/Prod | F11 Logs | F12 Admin |
 |--------|:-----------:|:-------:|:---------:|:----------:|:------:|:------------:|:-------:|:--------------:|:----------------:|:------------:|:--------:|:---------:|
-| B1 aist-bot prod | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| B2 aist-bot pilot | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W1 activity-hub | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W2 bridge-2-events-poller | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W3 multi-domain-projection-worker | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W4 rewards-projection-worker | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W5 payment-registry | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M1 gateway-mcp (Cloud Gateway) | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M2 knowledge-mcp | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M3 personal-knowledge-mcp | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M4 digital-twin-mcp | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M5 fsm-mcp | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M6 google-drive-mcp | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M7 guides-mcp | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M8 event-gateway | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M9 observability-webhook | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M10 payment-receiver | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M11 status-proxy | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| L1 local-gateway (DP.IWE.005) | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| O1 OAuth Hydra gateway | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| A1 auditor (overnight) | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| A2-A6 другие агенты | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| X1 CRM Directus | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| X2 hetzner-backstage | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| X3 ssm2025 | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| P1 profiler | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| T1 scheduler.sh (launchd) | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | N/A | 🟡 | 🟡 | N/A | 🟡 | 🟡 |
-| AD1 neon-migrations | N/A | 🟡 | 🟡 | 🟡 | N/A | N/A | N/A | N/A | 🟡 | 🟡 | 🟡 | ✅* |
+| B1 aist-bot prod | ⚠️ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| B2 aist-bot pilot | ⚠️ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| W1 activity-hub | ✅ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| W2 bridge-2-events-poller | ✅ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| W3 multi-domain-projection-worker | ✅ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| W4 rewards-projection-worker | ✅ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| W5 payment-registry | ⚠️ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M1 gateway-mcp (Cloud Gateway) | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M2 knowledge-mcp | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M3 personal-knowledge-mcp | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M4 digital-twin-mcp | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M5 fsm-mcp | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M6 google-drive-mcp | ✅ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M7 guides-mcp | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M8 event-gateway | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M9 observability-webhook | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M10 payment-receiver | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M11 status-proxy | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| L1 local-gateway (DP.IWE.005) | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| O1 OAuth Hydra gateway | N/A | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| A1 auditor (overnight) | ⚠️ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| A2-A6 другие агенты | ⚠️ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| X1 CRM Directus | ⚠️ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| X2 hetzner-backstage | ✅ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| X3 ssm2025 | ⚠️ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| P1 profiler | ❌ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| T1 scheduler.sh (launchd) | ⚠️ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | N/A | 🟡 | 🟡 | N/A | 🟡 | 🟡 |
+| AD1 neon-migrations | N/A | ⚠️ | 🟡 | 🟡 | N/A | N/A | N/A | N/A | 🟡 | 🟡 | 🟡 | ✅* |
 
 > *AD1 neon-migrations — это сам admin process; для него F12 ≈ ✅ по определению. Остальные «runtime»-факторы (codebase, BRR, stateless, port, concurrency, disposability) к admin-скрипту не применяются.
 
@@ -58,6 +58,7 @@
 ## Заметки по факторам — итоги аудита и ожидаемые блокеры
 
 - **F1 Codebase (Ф1 done 2026-05-12):** ✅ 17/28 строк, ⚠️ 8/28, ❌ 1/28. Критический дефект: **P1 / DS-ai-systems — монорепо** с 8+ независимыми сервисами в одном репо. ⚠️-группы: B1/B2 (1 уникальный коммит в pilot — consent feature), A1-A6 (DS-autonomous-agents монорепо, deployment model не задокументирован), T1 (launchd plists не в VCS), W5/X1/X3 (deployment config неизвестен). M6 — Python MCP, не CF Worker (важно для F7/F10).
+- **F2 Dependencies (Ф2 done 2026-05-12):** ✅ 12/28 (M1-M5, M7-M11, L1, X3 — package.json + lock), ⚠️ 8/28 (все Python без lock-файла; B1/B2 + float-версии; T1 implicit), ❌ 6/28 (W5, M6, A1-A6, X2, P1 — нет manifest). X2 — implicit system deps (restic, ssh). Node.js CF Workers ✅: caret + package-lock = npm-стандарт.
 - **F3 Config (security tax):** ожидается ❌ для большинства сервисов — секреты в `.env` файлах и/или дублирование переменных между Railway / wrangler / локальной средой. Нужен ревизионный grep на коммиты.
 - **F6 Stateless:** ожидается ⚠️ для бота (FSM-state хранится в БД ✅, но кэш `data['raw_state']` в памяти — см. `lessons_aiogram_raw_state_cache.md`) и workers (cursor в локальной памяти — см. `feedback_silent_projection_fail.md`).
 - **F10 Dev/Prod parity:** ожидается ❌ — нет Docker Compose окружения для большинства сервисов; локальная разработка с одной БД, прод с другой архитектурой.
@@ -76,6 +77,14 @@
 | 2026-05-12 | W5 | F1 | payment-registry — нет Dockerfile в корне; deployment model не идентифицирован (Railway? schema-only? manual?) | Уточнить deployment config; добавить Dockerfile или задокументировать как schema-only (тогда → AD2) | ⚠️ открыт |
 | 2026-05-12 | X1 | F1 | CRM Directus — в IWE-репо найдена только схема в Neon. Активный Directus-сервер (deployment unit) не обнаружен в IWE-репозиториях | Подтвердить: активен? Где задеплоен? Добавить репо в реестр или исключить из scope | ⚠️ открыт |
 | 2026-05-12 | X3 | F1 | ssm2025 — `deploy-nomad.sh` + GitHub Actions `deploy.yml` есть, но полный deployment config не проверен | Проверить Nomad job config; убедиться, что prod deployment из main branch | ⚠️ открыт |
+| 2026-05-12 | W5 | F2 | payment-registry — нет manifest (requirements.txt / package.json) вообще. Только shell-скрипты | Создать manifest; уточнить runtime (shell-only или Python/Node?) | ❌ открыт |
+| 2026-05-12 | M6 | F2 | google-drive-mcp — Python MCP server без requirements.txt и pyproject.toml | Создать requirements.txt с зафиксированными версиями | ❌ открыт |
+| 2026-05-12 | A1-A6 | F2 | DS-autonomous-agents — нет ни requirements.txt, ни package.json в корне или в каждом агенте | Если агенты prompt-only → N/A обоснованно; если есть Python/Node зависимости → создать manifest | ❌ открыт |
+| 2026-05-12 | X2 | F2 | hetzner-backstage — только shell-скрипты (setup-ssh-keys.sh, restic-prune.sh и др.), нет manifest. Implicit system deps: restic, ssh, systemd | Создать `infrastructure.md` с перечнем system tools ИЛИ Dockerfile с apt-get резервных deps | ❌ открыт |
+| 2026-05-12 | P1 | F2 | DS-ai-systems монорепо — нет единого manifest. Только `publisher/scripts/requirements.txt` (floating: httpx>=0.27, pyyaml>=6.0). Profiler, strategist, extractor и др. — без manifest | Добавить `requirements.txt` для каждого sub-сервиса с pinned-версиями; добавить lock-файл | ❌ открыт |
+| 2026-05-12 | B1, B2 | F2 | requirements.txt: `aiogram>=3.20.0`, `langfuse>=4.0.0` — floating-версии (>=). Нет lock-файла | Заменить >= на ==; добавить `requirements.lock` через `pip-compile` | ⚠️ открыт |
+| 2026-05-12 | W1-W4 | F2 | requirements.txt / pyproject.toml есть, версии зафиксированы (==), но lock-файл отсутствует у всех 4 | Добавить `poetry.lock` или `.txt` от `pip-compile` | ⚠️ открыт |
+| 2026-05-12 | AD1 | F2 | neon-migrations — Python ETL-скрипты (`etl-*.py`) без requirements.txt. SQL-файлы — N/A | Создать requirements.txt для Python-скриптов (pandas, psycopg2 и др.) | ⚠️ открыт |
 
 ---
 
