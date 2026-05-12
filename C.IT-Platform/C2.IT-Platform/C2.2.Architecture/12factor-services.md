@@ -35,31 +35,33 @@
 
 > B1 и B2 — один codebase, разные deployments (factor 1 совпадает). Аудит делается раз, статусы заносятся по обоим.
 
-### Tier R-2: Projection workers + event infrastructure (Railway или TBD)
-
-| ID | Сервис | Репо | Runtime (TBD/уточнить) | Entry point |
-|----|--------|------|--------|-------------|
-| **W1** | activity-hub (event store + collector) | `DS-IT-systems/activity-hub` | TBD (Dockerfile есть) | `runner.py` |
-| **W2** | bridge-2-events-poller | `DS-IT-systems/bridge-2-events-poller` | TBD | TBD |
-| **W3** | multi-domain-projection-worker | `DS-IT-systems/multi-domain-projection-worker` | TBD | TBD |
-| **W4** | rewards-projection-worker | `DS-IT-systems/rewards-projection-worker` | TBD | TBD |
-| **W5** | payment-registry | `DS-IT-systems/payment-registry` | TBD | TBD |
-
-### Tier R-3: MCP-серверы (Cloudflare Workers / Node.js)
+### Tier R-2: Projection workers + event infrastructure (Railway)
 
 | ID | Сервис | Репо | Runtime | Entry point |
-|----|--------|------|--------|-------------|
-| **M1** | gateway-mcp (Aisystant MCP / Cloud Gateway DP.IWE.003) | `DS-MCP/gateway-mcp` | Cloudflare Workers (wrangler.toml) | `src/` (TypeScript) |
+|----|--------|------|---------|-------------|
+| **W1** | activity-hub (event store + collector) | `DS-IT-systems/activity-hub` | Railway (Dockerfile, github.com/aisystant/activity-hub) | `runner.py` |
+| **W2** | bridge-2-events-poller | `DS-IT-systems/bridge-2-events-poller` | Railway (Dockerfile, github.com/TserenTserenov/bridge-2-events-poller) | TBD |
+| **W3** | multi-domain-projection-worker | `DS-IT-systems/multi-domain-projection-worker` | Railway (Dockerfile, github.com/aisystant/multi-domain-projection-worker) | TBD |
+| **W4** | rewards-projection-worker | `DS-IT-systems/rewards-projection-worker` | Railway (Dockerfile, github.com/aisystant/rewards-projection-worker) | TBD |
+| **W5** | payment-registry | `DS-IT-systems/payment-registry` | **⚠️ TBD** — нет Dockerfile в корне, deployment model не идентифицирован (Ф1: F1=⚠️) | TBD |
+
+### Tier R-3: MCP-серверы (Cloudflare Workers / Node.js / Python)
+
+| ID | Сервис | Репо | Runtime | Entry point |
+|----|--------|------|---------|-------------|
+| **M1** | gateway-mcp (Aisystant MCP / Cloud Gateway DP.IWE.003) | `DS-MCP/gateway-mcp` | Cloudflare Workers (`name = "gateway-mcp-v2"`, custom domain mcp.aisystant.com) | `src/` (TypeScript) |
 | **M2** | knowledge-mcp | `DS-MCP/knowledge-mcp` | Cloudflare Workers | TypeScript |
-| **M3** | personal-knowledge-mcp | `DS-MCP/personal-knowledge-mcp` | TBD | TypeScript |
-| **M4** | digital-twin-mcp | `DS-MCP/digital-twin-mcp` | TBD | TBD |
-| **M5** | fsm-mcp | `DS-MCP/fsm-mcp` | TBD | TBD |
-| **M6** | google-drive-mcp | `DS-MCP/google-drive-mcp` | TBD | TBD |
-| **M7** | guides-mcp | `DS-MCP/guides-mcp` | TBD | TBD |
-| **M8** | event-gateway | `DS-MCP/event-gateway` | TBD | TBD |
-| **M9** | observability-webhook | `DS-MCP/observability-webhook` | TBD | TBD |
-| **M10** | payment-receiver | `DS-MCP/payment-receiver` | TBD | TBD |
-| **M11** | status-proxy | `DS-MCP/status-proxy` | TBD | TBD |
+| **M3** | personal-knowledge-mcp | `DS-MCP/personal-knowledge-mcp` | Cloudflare Workers (wrangler.toml: `name = "personal-knowledge-mcp"`) | TypeScript |
+| **M4** | digital-twin-mcp | `DS-MCP/digital-twin-mcp` | Cloudflare Workers (wrangler.toml: `name = "digital-twin-mcp"`) | TypeScript |
+| **M5** | fsm-mcp | `DS-MCP/fsm-mcp` | Cloudflare Workers (wrangler.toml: `name = "fsm-mcp"`) | TypeScript |
+| **M6** | google-drive-mcp | `DS-MCP/google-drive-mcp` | **Python MCP server** (НЕ CF Worker — нет wrangler.toml, есть `mcp_server.py`) | `mcp_server.py` |
+| **M7** | guides-mcp | `DS-MCP/guides-mcp` | Cloudflare Workers (wrangler.toml: `name = "guides-mcp"`) | TypeScript |
+| **M8** | event-gateway | `DS-MCP/event-gateway` | Cloudflare Workers (wrangler.toml: `name = "event-gateway"`) | TypeScript |
+| **M9** | observability-webhook | `DS-MCP/observability-webhook` | Cloudflare Workers (wrangler.toml: `name = "observability-webhook"`) | TypeScript |
+| **M10** | payment-receiver | `DS-MCP/payment-receiver` | Cloudflare Workers (wrangler.toml: `name = "payment-receiver"`) | TypeScript |
+| **M11** | status-proxy | `DS-MCP/status-proxy` | Cloudflare Workers (wrangler.toml: `name = "status-proxy"`) | TypeScript |
+
+> **M6 уточнение (Ф1):** google-drive-mcp — Python MCP server, не CF Worker. Важно для F7 (порт vs stdio), F10 (dev/prod parity), F11 (логи).
 
 ### Tier R-4: Local Gateway (DP.IWE.005)
 
@@ -71,7 +73,9 @@
 
 | ID | Сервис | Репо | Runtime | Entry point |
 |----|--------|------|---------|-------------|
-| **O1** | OAuth Hydra gateway | TBD (ссылка в `reference_ory_hydra_gateway.md`) | Cloudflare Workers | TBD |
+| **O1** | OAuth Hydra gateway | **Managed SaaS** — Ory Cloud / self-hosted на `auth.system-school.ru/hydra/` | Managed — нет IWE-codebase | N/A |
+
+> **O1 уточнение (Ф1):** Hydra — управляемый OAuth2-провайдер (Ory SaaS или self-hosted Hetzner). Нет IWE-owned codebase → F1 = N/A. Конфигурация (client registrations, realm) не версионирована в IWE-репо — потенциальный F3-gap.
 
 ### Tier R-6: Autonomous agents (VPS tsekh-1) — под вопросом
 
@@ -98,13 +102,17 @@
 
 | ID | Сервис | Репо | Runtime | Entry point |
 |----|--------|------|---------|-------------|
-| **P1** | DT Profile Calculator (S52) | `DS-IT-systems/DS-ai-systems/profiler` | TBD | `system.yaml` |
+| **P1** | DT Profile Calculator (S52) | `DS-IT-systems/DS-ai-systems/profiler/` (часть монорепо `github.com/TserenTserenov/DS-ai-systems`) | macOS launchd (cron 04:30 МСК по `system.yaml`) + per-role systemd plist | `system.yaml` |
+
+> **P1 / F1 = ❌:** DS-ai-systems — монорепо с 8+ независимыми сервисами. P1 (profiler) делит репо с strategist, extractor, fixer, pulse, evaluator, hw-checker, synchronizer.
 
 ### Tier R-9: Local scheduler (launchd)
 
 | ID | Сервис | Где | Runtime | Назначение |
 |----|--------|-----|---------|-----------|
-| **T1** | scheduler.sh (S17 Scheduler Dispatch) | `DS-IT-systems/DS-ai-systems/synchronizer/scripts/scheduler.sh` | macOS launchd (ноутбук пилота) | 10x/день запуск агентов (Стратег, Экстрактор, и др.) |
+| **T1** | per-role launchd плисты | `~/Library/LaunchAgents/*.plist` (**НЕ в VCS**) | macOS launchd (ноутбук пилота) | Запуск агентов DS-ai-systems по расписанию |
+
+> **T1 уточнение (Ф1):** `scheduler.sh` задепрекейчен 2026-03-10. Текущий scheduler = per-role launchd plist файлы (`com.strategist.morning`, `com.exocortex.pomodoro-alert`, etc.) в `~/Library/LaunchAgents/` — **вне VCS**. Это F1-нарушение (deployment config не версионирован). Исходный path (`synchronizer/scripts/scheduler.sh`) оставлен как историческая справка.
 
 ### Admin / one-shot processes (Factor 12)
 
@@ -112,17 +120,18 @@
 |----|----------|------|-----------|
 | **AD1** | neon-migrations | `DS-IT-systems/neon-migrations` | DB-миграции (admin process) |
 
-## Уточнения по runtime (для проверки в Ф1)
+## Уточнения по runtime (итог Ф1, 2026-05-12)
 
-В Ф0 не удалось установить runtime платформу для:
-- W1-W5 projection workers (Railway? отдельный VPS?)
-- M3-M11 MCP-серверы — какие в production, какие dormant?
-- O1 OAuth Hydra gateway — отдельный CF Worker или часть gateway-mcp?
-- P1 profiler — где запускается?
-- X1 CRM Directus — Railway? репо?
-- X3 ssm2025 — назначение и активность
+**Закрыты в Ф1:**
+- W1-W4: Railway (Dockerfile подтверждён, github.com/aisystant или TserenTserenov)
+- M3-M11: CF Workers (wrangler.toml с именами подтверждён). Исключение: **M6 — Python MCP server**, не CF Worker
+- O1: Managed SaaS (Ory), нет IWE-codebase — F1 = N/A
+- P1: macOS launchd/systemd, часть DS-ai-systems монорепо
+- X3: Nomad (deploy-nomad.sh + GitHub Actions deploy.yml)
 
-Эти TBD заполняются в Ф1 (Codebase) при первом проходе по сервисам.
+**Остаётся TBD (уточнить в Ф2-Ф3):**
+- W5: deployment model не идентифицирован (нет Dockerfile в корне)
+- X1 CRM Directus: не найдено IWE-репо с Directus-сервером; только схема в Neon
 
 ## Итог Ф0
 
