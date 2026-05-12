@@ -18,34 +18,34 @@
 
 | Сервис | F1 Codebase | F2 Deps | F3 Config | F4 Backing | F5 BRR | F6 Stateless | F7 Port | F8 Concurrency | F9 Disposability | F10 Dev/Prod | F11 Logs | F12 Admin |
 |--------|:-----------:|:-------:|:---------:|:----------:|:------:|:------------:|:-------:|:--------------:|:----------------:|:------------:|:--------:|:---------:|
-| B1 aist-bot prod | ⚠️ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| B2 aist-bot pilot | ⚠️ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W1 activity-hub | ✅ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W2 bridge-2-events-poller | ✅ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W3 multi-domain-projection-worker | ✅ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W4 rewards-projection-worker | ✅ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| W5 payment-registry | ⚠️ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M1 gateway-mcp (Cloud Gateway) | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M2 knowledge-mcp | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M3 personal-knowledge-mcp | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M4 digital-twin-mcp | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M5 fsm-mcp | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M6 google-drive-mcp | ✅ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M7 guides-mcp | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M8 event-gateway | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M9 observability-webhook | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M10 payment-receiver | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| M11 status-proxy | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| L1 local-gateway (DP.IWE.005) | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| B1 aist-bot prod | ⚠️ | ⚠️ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| B2 aist-bot pilot | ⚠️ | ⚠️ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| W1 activity-hub | ✅ | ⚠️ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| W2 bridge-2-events-poller | ✅ | ⚠️ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| W3 multi-domain-projection-worker | ✅ | ⚠️ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| W4 rewards-projection-worker | ✅ | ⚠️ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| W5 payment-registry | ⚠️ | ❌ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M1 gateway-mcp (Cloud Gateway) | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M2 knowledge-mcp | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M3 personal-knowledge-mcp | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M4 digital-twin-mcp | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M5 fsm-mcp | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M6 google-drive-mcp | ✅ | ❌ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M7 guides-mcp | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M8 event-gateway | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M9 observability-webhook | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M10 payment-receiver | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| M11 status-proxy | ✅ | ✅ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| L1 local-gateway (DP.IWE.005) | ✅ | ✅ | ⚠️ | 🟡 | 🟡 | 🟡 | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
 | O1 OAuth Hydra gateway | N/A | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| A1 auditor (overnight) | ⚠️ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| A2-A6 другие агенты | ⚠️ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| X1 CRM Directus | ⚠️ | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| X2 hetzner-backstage | ✅ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| X3 ssm2025 | ⚠️ | ✅ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| P1 profiler | ❌ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
-| T1 scheduler.sh (launchd) | ⚠️ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | N/A | 🟡 | 🟡 | N/A | 🟡 | 🟡 |
-| AD1 neon-migrations | N/A | ⚠️ | 🟡 | 🟡 | N/A | N/A | N/A | N/A | 🟡 | 🟡 | 🟡 | ✅* |
+| A1 auditor (overnight) | ⚠️ | ❌ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| A2-A6 другие агенты | ⚠️ | ❌ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| X1 CRM Directus | ⚠️ | N/A | N/A | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| X2 hetzner-backstage | ✅ | ❌ | ❌ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| X3 ssm2025 | ⚠️ | ✅ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| P1 profiler | ❌ | ❌ | ⚠️ | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 | 🟡 |
+| T1 scheduler.sh (launchd) | ⚠️ | ⚠️ | ⚠️ | 🟡 | 🟡 | 🟡 | N/A | 🟡 | 🟡 | N/A | 🟡 | 🟡 |
+| AD1 neon-migrations | N/A | ⚠️ | ⚠️ | 🟡 | N/A | N/A | N/A | N/A | 🟡 | 🟡 | 🟡 | ✅* |
 
 > *AD1 neon-migrations — это сам admin process; для него F12 ≈ ✅ по определению. Остальные «runtime»-факторы (codebase, BRR, stateless, port, concurrency, disposability) к admin-скрипту не применяются.
 
@@ -54,12 +54,15 @@
 > O1 F1 = N/A — управляемый SaaS (Ory Cloud / self-hosted), нет IWE-codebase. Остальные факторы O1 = 🟡 TBD (конфигурация Hydra не версионирована в IWE).
 > T1 F1 = ⚠️ — scheduler.sh задепрекейчен (2026-03-10). Текущий runtime = per-role launchd plists в `~/Library/LaunchAgents/` — НЕ в VCS.
 > P1 F1 = ❌ — DS-ai-systems монорепо (8+ независимых сервисов в одном репо: profiler, strategist, extractor, fixer, pulse, evaluator, hw-checker, synchronizer).
+> X1 F3 = N/A — нет IWE-репо, аудит невозможен.
+> M6 F3 = ❌ КРИТИЧНО — .env в git history. Требует ротации секретов и очистки истории.
+> **Позитив F3:** ни в одном сервисе НЕ найдено hardcoded секретов (Telegram tokens, API keys, sk-/pk-) в `*.py`/`*.ts`/`*.js` файлах HEAD-кода. Это значит, что культура «всё через env var» в целом соблюдается — проблемы только в `.gitignore` гигиене и истории.
 
 ## Заметки по факторам — итоги аудита и ожидаемые блокеры
 
 - **F1 Codebase (Ф1 done 2026-05-12):** ✅ 17/28 строк, ⚠️ 8/28, ❌ 1/28. Критический дефект: **P1 / DS-ai-systems — монорепо** с 8+ независимыми сервисами в одном репо. ⚠️-группы: B1/B2 (1 уникальный коммит в pilot — consent feature), A1-A6 (DS-autonomous-agents монорепо, deployment model не задокументирован), T1 (launchd plists не в VCS), W5/X1/X3 (deployment config неизвестен). M6 — Python MCP, не CF Worker (важно для F7/F10).
 - **F2 Dependencies (Ф2 done 2026-05-12):** ✅ 12/28 (M1-M5, M7-M11, L1, X3 — package.json + lock), ⚠️ 8/28 (все Python без lock-файла; B1/B2 + float-версии; T1 implicit), ❌ 6/28 (W5, M6, A1-A6, X2, P1 — нет manifest). X2 — implicit system deps (restic, ssh). Node.js CF Workers ✅: caret + package-lock = npm-стандарт.
-- **F3 Config (security tax):** ожидается ❌ для большинства сервисов — секреты в `.env` файлах и/или дублирование переменных между Railway / wrangler / локальной средой. Нужен ревизионный grep на коммиты.
+- **F3 Config (Ф3 done 2026-05-12):** ✅ 11/28 (CF Workers M1-M5, M7-M11, W1 — env vars/wrangler secrets), ⚠️ 10/28 (отсутствует `.env.example`), ❌ 5/28. **🔴 КРИТИЧНО: M6** — `.env` в git history (leaked secrets). **🟠 HIGH:** W5/A1-A6 (`.gitignore` без `.env`), X2 (паттерн `**/env` не покрывает `.env`). Hardcoded secrets в HEAD-коде НЕ найдены — это позитивно.
 - **F6 Stateless:** ожидается ⚠️ для бота (FSM-state хранится в БД ✅, но кэш `data['raw_state']` в памяти — см. `lessons_aiogram_raw_state_cache.md`) и workers (cursor в локальной памяти — см. `feedback_silent_projection_fail.md`).
 - **F10 Dev/Prod parity:** ожидается ❌ — нет Docker Compose окружения для большинства сервисов; локальная разработка с одной БД, прод с другой архитектурой.
 - **F11 Logs:** ожидается ⚠️ — есть `feedback_silent_fail_log_to_stdout.md` (bash log() пишет в stderr — корректно для 12-factor), но для Python-сервисов нужно проверить структурированность.
@@ -85,7 +88,10 @@
 | 2026-05-12 | B1, B2 | F2 | requirements.txt: `aiogram>=3.20.0`, `langfuse>=4.0.0` — floating-версии (>=). Нет lock-файла | Заменить >= на ==; добавить `requirements.lock` через `pip-compile` | ⚠️ открыт |
 | 2026-05-12 | W1-W4 | F2 | requirements.txt / pyproject.toml есть, версии зафиксированы (==), но lock-файл отсутствует у всех 4 | Добавить `poetry.lock` или `.txt` от `pip-compile` | ⚠️ открыт |
 | 2026-05-12 | AD1 | F2 | neon-migrations — Python ETL-скрипты (`etl-*.py`) без requirements.txt. SQL-файлы — N/A | Создать requirements.txt для Python-скриптов (pandas, psycopg2 и др.) | ⚠️ открыт |
-
----
+| 2026-05-12 | M6 | F3 | **🔴 CRITICAL:** `.env` коммитился в git history (google-drive-mcp). Сейчас не в HEAD, но история содержит. Плюс `.gitignore` без `.env` — повторная утечка вероятна | (1) Добавить `.env*` в `.gitignore`; (2) ротировать все секреты, которые могли утечь; (3) `bfg-repo-cleaner` или `git-filter-branch` для очистки истории | 🔴 открыт |
+| 2026-05-12 | W5 | F3 | payment-registry — `.gitignore` не содержит `.env` (только `_backups`, `.claude`). Любой `git add .env` пройдёт без предупреждения | Добавить `*.env` и `.env*` в `.gitignore`; создать `.env.example` | ❌ открыт |
+| 2026-05-12 | A1-A6 | F3 | DS-autonomous-agents — `.gitignore` без `.env`-правила. Config pattern не очевиден | (1) Добавить `.env*` в `.gitignore`; (2) аудит на hardcoded config в агентах; (3) создать `.env.example` | ❌ открыт |
+| 2026-05-12 | X2 | F3 | hetzner-backstage — `.gitignore` содержит `**/env` (без точки) — НЕ покрывает `.env` файлы | Заменить `**/env` на `**/.env*` | ❌ открыт |
+| 2026-05-12 | B1, B2, W2-W4, L1, X3, AD1, P1 | F3 | `.gitignore` корректен, но отсутствует `.env.example` — onboarding-friction, разработчик не знает какие переменные нужны | Создать `.env.example` в каждом сервисе с placeholder-значениями | ⚠️ открыт |
 
 *Source: `DS-my-strategy/inbox/WP-307-12factor-compliance.md` (WP-context).*
