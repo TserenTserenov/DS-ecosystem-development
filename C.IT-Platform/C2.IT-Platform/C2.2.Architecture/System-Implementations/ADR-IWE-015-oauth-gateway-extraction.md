@@ -1,11 +1,13 @@
 ---
 id: ADR-IWE-015
 title: "Вынос OAuth flows в standalone DS-oauth-gateway (CF Worker)"
-status: accepted
+status: superseded
+superseded_by: ADR-IWE-016
 version: 1.0
 date: 2026-05-12
+superseded_on: 2026-05-12
 deciders: [Tseren]
-context: "WP-305 Ф1 ArchGate PASS 12 мая (Вариант B vs A vs C)"
+context: "WP-305 Ф1 ArchGate PASS 12 мая (Вариант B vs A vs C). Через ~2h independent review (Opus subagent) обнаружил premature decomposition — пересмотрено в ADR-IWE-016 (A-lite)"
 related:
   pack: [DP.SC.130, DP.ROLE.040, DP.ARCH.001]
   realized_by: [WP-305]
@@ -16,6 +18,8 @@ kernel: C
 system: C2
 role: Architecture
 ---
+
+> ⚠️ **SUPERSEDED 2026-05-12** by [ADR-IWE-016](ADR-IWE-016-oauth-gateway-modular-extension.md). Решение оставлено в архиве как опорная точка профиля ЭМОГССБ A/B/C и lessons («ArchGate без operational backing — слабый довод» — см. ADR-IWE-016 §7).
 
 # ADR-IWE-015: Вынос OAuth flows в standalone DS-oauth-gateway
 
