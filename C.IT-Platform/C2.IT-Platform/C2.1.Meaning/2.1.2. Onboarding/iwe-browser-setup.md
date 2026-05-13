@@ -99,6 +99,46 @@ claude.ai Project:
 
 Все подключённые репо (свои + форки) попадают в единую выдачу `personal_search`. Разделить — только по `source:`-фильтру в запросе. Разделение на два MCP-профиля = feature request в IWE (Q3+).
 
+## Персональное руководство через браузер
+
+Если вы пилот программы ЛР — `personal-guide` доступен в браузере целиком (создание / чтение / запись рефлексии / пересборка), без `git` и VS Code.
+
+### Создание (один раз, ~5 мин)
+
+В чате claude.ai вызови `/personal-guide-start`. Скилл:
+
+1. Создаст репо `personal-guide` под вашим GitHub-аккаунтом (через `create_repository` MCP).
+2. Делегирует наполнение в `/personal-guide-render`: 6 файлов (`README.md`, `profile.md`, `worldview.md`, `methods.md`, `weekly/<неделя>.md`, `daily/<сегодня>.md`) + `history/reflection-template.md`.
+3. Положит 5 скиллов в `<repo>/.claude/skills/` (lesson, lesson-close, connect-guide, personal-guide-render, personal-guide-start) — после этого они будут доступны в любой следующей сессии claude.ai с тем же проектом.
+
+**Требование:** активная подписка Aisystant + GitHub подключён в `Settings → Integrations → Aisystant MCP`.
+
+### Чтение руководства
+
+Прямо в чате: «покажи мой `profile.md`», «прочитай `daily/<дата>.md`». Агент через `personal_search(source: "personal-guide", path: "...")` подтянет файл.
+
+### Запись рефлексии (~5 мин)
+
+Браузер не имеет `git`, но `personal_write` MCP пишет напрямую в GitHub через Gateway — отдельный push не нужен.
+
+1. Открой `history/reflection-template.md` (5 вопросов на 5 минут).
+2. Ответь.
+3. Скажи агенту: «закоммить рефлексию за сегодня». Он вызовет `personal_write(source: "personal-guide", path: "history/<YYYY-MM-DD>-reflection.md", content: "...")`.
+4. После записи reindex MCP `personal_search` обновляется автоматически.
+
+### Пересборка (при изменении RCS)
+
+Когда обновился RCS-профиль в Память.Derived (например, прошла W-рефлексия или повысился slot baseline) — вызови `/personal-guide-render`. Скилл прочитает RCS, выберет новые ступенные/доменные заготовки, перезапишет 6 файлов. Прежние weekly/daily автоматически уйдут в `history/` (Шаг 5 скилла).
+
+### Ограничения
+
+- Нет `git pull/push/commit` — все коммиты через `personal_write` (это норма для браузерного канала).
+- Нет hooks (PreToolUse / PostToolUse), нет launchd, нет cron.
+- Скиллы `/lesson`, `/lesson-close` и т.д. работают только если они уже разданы в `<repo>/.claude/skills/` (происходит на первом `/personal-guide-render`).
+- Раздача `personal_connect_source` (форки чужих репо) — отдельная инструкция (см. `iwe-quickstart.md` → раздел «Подключение источников»).
+
+Полная матрица каналов × операций → [personal-guide-channels.md](personal-guide-channels.md).
+
 ## Сравнение с VS Code
 
 | Возможность | VS Code + Claude Code | Браузер (claude.ai) |
