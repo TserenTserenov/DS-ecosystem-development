@@ -22,7 +22,7 @@
 | B2 aist-bot pilot | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ |
 | W1 activity-hub | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ⚠️ | ⚠️ | ⚠️ |
 | W2 bridge-2-events-poller | ⚠️ | ⚠️ | ✅ | ✅ | ❌ | ✅ | N/A | ✅ | ✅ | ⚠️ | ✅ | N/A |
-| W3 multi-domain-projection-worker | 🟡 | ⚠️ | ✅ | ✅ | 🟡 | ✅ | N/A | ✅ | ✅ | ⚠️ | ⚠️ | ⚠️ |
+| W3 multi-domain-projection-worker | 🟡 | ⚠️ | ✅ | ✅ | 🟡 | ✅ | N/A | ✅ | ✅ | ⚠️ | ✅ | ⚠️ |
 | W4 rewards-projection-worker | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ⚠️ | ✅ | ⚠️ |
 | W5 payment-registry | ⚠️ | ❌ | ⚠️ | N/A | N/A | N/A | N/A | N/A | N/A | ❌ | N/A | N/A |
 | M1 gateway-mcp (Cloud Gateway) | ⚠️ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
@@ -146,5 +146,7 @@
 | 2026-05-13 | B1/B2/W2/W3/W4/L1/X3/P1 | F3 | .env.example добавлен во все сервисы. F3 ⚠️→✅ | — | ✅ closed |
 | 2026-05-13 | W5/A1-A6 | F3 | .gitignore: добавлено .env* + !.env.example в payment-registry и DS-autonomous-agents | — | ✅ closed |
 | 2026-05-13 | X2 | F3 | .gitignore: **/env → **/.env* (+ !**/.env.example) | — | ✅ closed |
+| 2026-05-13 | W3/W4 | F11 | print() → logging.getLogger: runner.py + backfill_events.py (W3); runner.py (W4). F11 ⚠️→✅ | WP-307 Ф15 | ✅ closed |
+| 2026-05-13 | meta | F11 | Создан DS-autonomous-agents/scripts/12factor-reaudit.sh: автоматическая проверка F1/F2/F3/F5/F11 для 14 сервисов. Интегрирован в overnight-auditor. | WP-307 Ф18 | ✅ closed |
 
 *Source: `DS-my-strategy/inbox/WP-307-12factor-compliance.md` (WP-context).*
