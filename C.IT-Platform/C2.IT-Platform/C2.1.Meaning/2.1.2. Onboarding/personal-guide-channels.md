@@ -88,6 +88,37 @@ related:
 - **Refresh:** `/personal-guide-render` + локальная пересборка + push.
 - **Identity-зависимость:** `/connect-guide` требует `telegram_user_id` (пробел для VS Code-only-пилотов — закрывается WP-303 Ory-direct).
 
+## Reflection contract (Ф3)
+
+**Формат:** `history/<YYYY-MM-DD>-reflection.md`, 5 вопросов на 5 минут.
+
+Шаблон-источник: `~/IWE/.claude/skills/personal-guide-render/templates/reflection-template.md`. Копируется в репо пилота при first-run через `/personal-guide-render` Шаг 6.8 (`history/reflection-template.md`).
+
+**5 вопросов:**
+
+1. Что сделал сегодня (три факта)
+2. Что не сделал (одна-две вещи)
+3. Что узнал
+4. Зачем это (связь с программой развития)
+5. Что завтра (одна вещь)
+
+**Куда писать (по каналу):**
+
+| Канал | Способ записи |
+|-------|--------------|
+| Бот | через команду `/reflect <дата> <содержимое>` (Ф4 — ещё не реализована) |
+| Браузер | `personal_write(source: "personal-guide", path: "history/<дата>-reflection.md", content: ...)` |
+| VS Code | редактирование локального файла + `git commit` + `git push` |
+
+**Как Портной (WP-149) читает обратно:**
+
+В Шаге 1 следующего render (`/personal-guide-render`) — после `dt_read_digital_twin` дополнительно вызывается `personal_search(source: "personal-guide", path: "history/", pattern: "*-reflection.md")` за последние 7 дней. Извлекаются:
+
+- Ответ на (3) «Что узнал» → сигнал для PD.FORM.087 фазового перехода (Шаг 2 проверки ступени).
+- Ответ на (5) «Что завтра» → input для пересборки `daily/<завтра>.md` (Шаг 6.6).
+
+**Контракт не закрывает:** в Ф3 не описан handler бота `/reflect` (это Ф4 — браузерный smoke + ботовая реализация). До Ф4 пилоты wave-1 пишут рефлексию через VS Code или браузер.
+
 ## Lifecycle (детализация — Ф6)
 
 Каждый из 4 циклов требует явного контракта:
