@@ -20,7 +20,7 @@
 |--------|:-----------:|:-------:|:---------:|:----------:|:------:|:------------:|:-------:|:--------------:|:----------------:|:------------:|:--------:|:---------:|
 | B1 aist-bot prod | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ |
 | B2 aist-bot pilot | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ |
-| W1 activity-hub | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ⚠️ | ⚠️ | ⚠️ |
+| W1 activity-hub | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ⚠️ | ✅ | ⚠️ |
 | W2 bridge-2-events-poller | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ⚠️ | ✅ | N/A |
 | W3 multi-domain-projection-worker | 🟡 | ⚠️ | ✅ | ✅ | 🟡 | ✅ | N/A | ✅ | ✅ | ⚠️ | ✅ | ⚠️ |
 | W4 rewards-projection-worker | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ⚠️ | ✅ | ⚠️ |
@@ -30,7 +30,7 @@
 | M3 personal-knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
 | M4 digital-twin-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
 | M5 fsm-mcp | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
-| M6 google-drive-mcp | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | N/A | ✅ | ✅ | ✅ | ⚠️ | N/A |
+| M6 google-drive-mcp | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | N/A |
 | M7 guides-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
 | M8 event-gateway | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
 | M9 observability-webhook | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
@@ -43,7 +43,7 @@
 | X1 CRM Directus | ⚠️ | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
 | X2 hetzner-backstage | ✅ | ❌ | ⚠️ | 🟡 | ⚠️ | ✅ | N/A | ✅ | ⚠️ | N/A | ⚠️ | ✅ |
 | X3 ssm2025 | ⚠️ | ✅ | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
-| P1 profiler | ❌ | ⚠️ | ✅ | ✅ | ❌ | ⚠️ | N/A | ✅ | ⚠️ | ⚠️ | ⚠️ | ✅ |
+| P1 profiler | ❌ | ⚠️ | ✅ | ✅ | ❌ | ⚠️ | N/A | ✅ | ⚠️ | ⚠️ | ✅ | ✅ |
 | T1 scheduler.sh (launchd) | ⚠️ | ⚠️ | ⚠️ | N/A | ❌ | N/A | N/A | N/A | ⚠️ | N/A | N/A | N/A |
 | AD1 neon-migrations | N/A | ✅ | ✅ | ✅ | N/A | N/A | N/A | N/A | ✅ | N/A | N/A | ✅* |
 
@@ -72,7 +72,7 @@
 - **F8 Concurrency (Ф8 done 2026-05-12):** ✅ 23/28 (B1/B2 webhook-ready multi-replica; W1 atomic CAS cursor; W4 atomic per-domain cursor; CF Workers M1-M11 stateless + shared KV; L1 file locks pessimistic; A1-A6/P1/X2 documented single-process-per-tick scheduler; X3 static site; **W2/W3 — single-replica контракт enforced через pg_try_advisory_lock + SCALING.md** mitigated 2026-05-12), ⚠️ 0, ❌ 0, N/A 3 (O1/T1/AD1), 🟡 2 (W5/X1). **Mitigation done:** W2 (commit 36a38be) + W3 (commit db919c4) — `pg_try_advisory_lock(420220/420277)` на learning DB при старте; busy → exit(75); SCALING.md документирует контракт + ENV override.
 - **F9 Disposability (Ф9 done 2026-05-12):** ✅ 20/28 (B1/B2, W1-W4, M1-M11, L1, X3, AD1), ⚠️ 5/28 (A1/A2-A6, X2, P1, T1), 🟡 2/28 (W5/X1 TBD), N/A 1/28 (O1 managed SaaS). **Позитив:** Bot B1/B2 — явный SIGTERM handler (`signal.SIGTERM → loop.add_signal_handler → stop_event.set`), pool warmup на старте (~3-5 сек < 30s), FSM state в PostgresStorage. W2/W3/W4 — явный SIGTERM handler + advisory lock cleanup в finally + atomic cursor advance → crash-safe idempotency. W1 — CLI/cron с атомарным CAS cursor → идемпотентная перезапускаемость. CF Workers M1-M11 — <100ms cold start (V8 isolates), request-isolated (нет SIGTERM-концепции), stateless по дизайну. **Нарушения ⚠️:** A1-A6 — нет SIGTERM handler, `git pull` добавляет latency к cold start (сеть-зависимо); X2 — bash без `trap`-обработчика (restic graceful, но обёртки нет); P1 — launchd + Python без SIGTERM handler (риск дублированных алертов при retry); T1 — deprecated, shell без SIGTERM. **Нет блокеров R1** — все production runtime workers (B1/B2/W1-W4/M1-M11) ✅.
 - **F10 Dev/Prod Parity (Ф10 done 2026-05-12):** ✅ 13/28 (CF Workers M1-M11 — wrangler dev=prod identical; L1 local single-user; X3 ssm2025 docker-compose), ⚠️ 7 (B1/B2/W1-W4/P1 — Dockerfile есть, docker-compose нет → локально dev workflow без полного prod-стека), ❌ 3 (W5 нет runtime; A1/A2-A6 config-only repo, dev=Mac vs prod=Linux tsekh-1), N/A 4 (O1 managed SaaS, X2 infra-tool, T1 dev=prod tooling, AD1 admin one-off), 🟡 1 (X1). **Главный gap:** отсутствие docker-compose у Railway-сервисов — разработчик локально запускает Python (Mac) → prod runs on Linux container; различия libpq/libssl могут проявиться только в проде. Для R1 не критично (Neon тот же на dev и prod), но при росте команды стоит ввести devcontainer.
-- **F11 Logs (Ф11 done 2026-05-12):** ✅ 16/28 (B1/B2 structlog/JSON; W2/W4 structured logging.getLogger; CF Workers M1-M5/M7-M11 console.log → CF Logs; L1 console; X3 nginx+node stdout), ⚠️ 7 (W1 33×print(); W3 4×print(); M6 logging unclear; A1/A2-A6 prompt-only; X2 bash unstructured; P1 logging unclear), 🟡 3 (W5/X1/T1), N/A 2 (O1 managed, AD1 admin). **Главный gap:** W1/W3 — `print()` вперемешку с logging → потеря уровней (INFO/DEBUG/ERROR) при aggregation. Bot и W2/W4 — образцовая structured-практика, копируется на W1/W3.
+- **F11 Logs (Ф11 done 2026-05-12; Ф15 fixes 2026-05-13):** ✅ 20/28 (B1/B2/W1/W2/W3/W4, M1-M5/M7-M11, M6, L1, X3, P1), ⚠️ 3 (A1/A2-A6 prompt-only; X2 bash unstructured), N/A 5 (W5, O1, X1, T1, AD1). **Закрыто Ф15:** W1 (stage_evaluator.py 1×print→logging), P1 (recalculate_derived.py 32×print→logging.getLogger + basicConfig), M6 (gdrive.py logging.basicConfig + error→critical). **Главный gap:** W1/W3 — `print()` вперемешку с logging → потеря уровней (INFO/DEBUG/ERROR) при aggregation. Bot и W2/W4 — образцовая structured-практика, копируется на W1/W3.
 - **F12 Admin Processes (Ф12 done 2026-05-12; W5/X1/T1 🟡→N/A после VR.R.001):** ✅ 5/28 (B1/B2 миграции через отдельный AD1 neon-migrations; X2 backup/restore = отдельные scripts; P1 scripts/recalculate_derived.py отдельно от runtime; AD1 — сам admin process), ⚠️ 5 (W1 migrations/ в репо сервиса, тип неясен; W3/W4 runner.py с режимами run/cleanup — mixed admin/runtime; A1/A2-A6 `git pull && python` — admin не отделён), N/A 18 (W2 read-only; CF Workers M1-M11 нет миграций; L1 local; O1 managed; X3 static; W5/X1/T1 closed as out-of-scope), 🟡 0. **Главный gap:** W3/W4 — admin tasks (cleanup, replay) выполняются через тот же `runner.py` что и main loop. Не блокер R1, но при масштабировании cleanup-задачи нужно выделить в отдельный entrypoint.
 
 ## Журнал нарушений и исправлений
@@ -149,5 +149,7 @@
 | 2026-05-13 | X2 | F3 | .gitignore: **/env → **/.env* (+ !**/.env.example) | — | ✅ closed |
 | 2026-05-13 | W3/W4 | F11 | print() → logging.getLogger: runner.py + backfill_events.py (W3); runner.py (W4). F11 ⚠️→✅ | WP-307 Ф15 | ✅ closed |
 | 2026-05-13 | meta | F11 | Создан DS-autonomous-agents/scripts/12factor-reaudit.sh: автоматическая проверка F1/F2/F3/F5/F11 для 14 сервисов. Интегрирован в overnight-auditor. | WP-307 Ф18 | ✅ closed |
+| 2026-05-13 | W1, P1 | F11 | activity-hub: recalculate_derived.py 32×print()→logging.getLogger (basicConfig в main), stage_evaluator.py 1×print()→critical. F11 ⚠️→✅ | WP-307 Ф15 | ✅ closed |
+| 2026-05-13 | M6 | F11 | google-drive-mcp gdrive.py: import logging + basicConfig + stderr error→logging.critical. F11 ⚠️→✅ | WP-307 Ф15 | ✅ closed |
 
 *Source: `DS-my-strategy/inbox/WP-307-12factor-compliance.md` (WP-context).*

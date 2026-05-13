@@ -5,22 +5,23 @@
 >
 > **Обновляется:** при закрытии каждой фазы Ф1-Ф12 WP-307.
 
-## Текущее состояние (2026-05-12, audit-фаза закрыта + VR.R.001 fold-back)
+## Текущее состояние (2026-05-13, Ф13-Ф15 fix-стадия применена)
 
 | Показатель | Значение |
 |------------|----------|
 | Сервисов в scope | 28 deployment unit + 1 admin (neon-migrations) |
 | Всего ячеек | 336 (28 × 12) |
-| Бюджет РП | 60h |
+| Бюджет РП | 60h + 22h fixes |
 | Подход | A — линейный, 12 фаз по фактору |
-| Подтверждённых ✅ ячеек | **155** (46%) |
-| ⚠️ ячеек | **71** (21%) |
-| ❌ ячеек | **33** (10%) |
+| Подтверждённых ✅ ячеек | **204** (61%) |
+| ⚠️ ячеек | **43** (13%) |
+| ❌ ячеек | **12** (4%) |
 | N/A ячеек (обоснованных) | **74** (22%) |
 | 🟡 TBD ячеек (legit pending) | **3** (1% — W3 F1/F5, X2 F4) |
 | 🔴 КРИТИЧЕСКИХ (security) | **0** |
-| Прогресс аудита | **12/12 факторов закрыто.** VR.R.001 fold-back применён (CF Workers F1/F5 → ⚠️/❌) |
-| DoD | НЕ достигнут — 31% ячеек violations. Закрытие WP-307 как **audit-completed**; fixes выделены в отдельные РП |
+| Прогресс fix-стадии | **Ф13 ✅, Ф14 ✅, Ф15 ✅ (частично), Ф18 ✅ (частично). Ф16/Ф17 pending** |
+| Last automated re-audit | 2026-05-13 (12factor-reaudit.sh: ✅19 ⚠️12 ❌0 drift=warn) |
+| DoD | НЕ достигнут — 16% violations. Pending: Ф16 (admin-split), Ф17 (docker-compose) |
 
 ## 🚨 VR.R.001 Fold-back (2026-05-12, Ф-Close)
 
@@ -82,19 +83,15 @@
 
 ## Следующий шаг
 
-**Audit-фаза закрыта 2026-05-12.** Остаётся:
+**Fix-стадия (Ф13-Ф18) в процессе.** Выполнено 2026-05-13:
+- ✅ **Ф13** — Railway GitHub App (W2) + CLOUDFLARE_API_TOKEN (10 CF Workers). 15/15 production-сервисов → git→deploy linkage.
+- ✅ **Ф14** — .env.example ×9, requirements.txt ×3, pip-compile B1/B2, .gitignore ×5, OAuth env M6.
+- ✅ **Ф15** — print()→logging: W3/W4, W1, P1, M6. F11: 16✅→20✅.
+- ✅ **Ф18 (частично)** — 12factor-reaudit.sh + overnight-auditor интеграция.
 
-**Ф-Close (~0.5h):** VR.R.001 верификация матрицы (Sonnet sub-agent с эталоном 12factor.net) + ArchGate review (ЭМОГССБ) + Capture-to-Pack (что добавить в PACK-digital-platform).
-
-**Ф5b (fix-фаза, ~3h, в очереди вне audit-scope):** GitHub auto-deploy для 5 Railway worker'ов — connect в Railway dashboard. Закрывает F1/F5 gap для B1/B2/W1/W2/W4.
-
-**Дальше — fix-фазы по приоритету (не входят в WP-307, выделяются в новые РП):**
-1. F11 W1/W3 print()→logging (~2h, простой быстрый win)
-2. F10 docker-compose для Railway-сервисов (~4h, повышает onboarding speed)
-3. F12 W3/W4 admin CLI выделение (~3h, нужно при scaling > R1)
-4. F5 A1-A6 containerization (~6h, большая работа, ждёт R2 когорту)
-
-(M6 google-drive-mcp F3 — снято с критики, ложная тревога, см. matrix journal.)
+**Pending (P3):**
+- **Ф16** (~3h): admin/runtime split для W3/W4 runner.py; SIGTERM для P1/X2.
+- **Ф17** (~4h): docker-compose + devcontainer для Railway-сервисов (F10 ⚠️→✅ для B1/B2/W1-W4).
 
 ---
 
