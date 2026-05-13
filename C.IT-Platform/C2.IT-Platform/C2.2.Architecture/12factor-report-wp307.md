@@ -21,7 +21,7 @@
 - **Ф17:** `docker-compose.yml` + `.devcontainer/devcontainer.json` для B1/B2/W1/W3/W4
 - **Ф18:** `12factor-reaudit.sh` + `upload-compliance-report.py` + таблица `compliance_audits` в Neon
 
-**Инцидент (2026-05-13):** credentials leak (`npg_kz65bVamqRwh`) в коммите `1a7b8ff` DS-ai-systems. Коммит удалён (force-push), пароль ротирован, все `.env` обновлены. Риск нейтрализован.
+**Инцидент (2026-05-13):** credentials leak (`<redacted>`) в коммите `1a7b8ff` DS-ai-systems. Коммит удалён (force-push), пароль ротирован, все `.env` обновлены. Риск нейтрализован.
 
 ---
 
@@ -278,7 +278,7 @@
 
 | # | Фактор | Сервис | Описание | Риск | Срок | Владелец | Статус |
 |---|--------|--------|----------|------|------|----------|--------|
-| 1 | F3 | — | **Credentials leak:** `npg_kz65bVamqRwh` в коммите `1a7b8ff` DS-ai-systems | 🔴 **HIGH** — пароль в публичном репозитории | 2026-05-13 | Клауд | ✅ **Закрыт:** force-push + ротация пароля + обновление всех `.env` |
+| 1 | F3 | — | **Credentials leak:** `<redacted>` в коммите `1a7b8ff` DS-ai-systems | 🔴 **HIGH** — пароль в публичном репозитории | 2026-05-13 | Клауд | ✅ **Закрыт:** force-push + ротация пароля + обновление всех `.env` |
 | 2 | F1 | P1 | `DS-ai-systems` — монорепо с 8+ независимыми сервисами | 🟡 **MEDIUM** — tech debt, не блокер | 2026-Q3 | Пилот | ⚠️ **Принят как debt** |
 | 3 | F2 | W5 | Нет `requirements.txt` / `pyproject.toml` | 🟡 **MEDIUM** — нет runtime | 2026-Q3 | Пилот | ⚠️ **Принят как debt** |
 | 4 | F5 | M6 | Нет CI deploy (local Python MCP) | 🟡 **MEDIUM** — single-user | 2026-Q3 | Пилот | ⚠️ **Принят как debt** |
