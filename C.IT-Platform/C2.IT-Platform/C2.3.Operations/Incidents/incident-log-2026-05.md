@@ -3458,3 +3458,129 @@
   }
 }
 ```
+
+## 2026-05-13T18:38:28+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Хочешь начать с Шага 1-2 прямо сейчас? Мне нужно открыть FORM.093 из PACK-personal — там 8 характеристик. Пройдём по каж"
+    ],
+    "session_id": "0b476bbb-d6c5-4581-9b19-ac5a0b2c10f5"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-13T18:43:26+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Матрица имеет `❌3` для F10 (W5/A1-A6) и `⚠️2` для F12 (A1-A6). Это давние issues, явно за пределами scope WP-307. Чтобы "
+    ],
+    "session_id": "42e0db24-89b2-4e47-9d8e-97baa79a31eb"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-13T18:43:57+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Матрица имеет `❌3` для F10 (W5/A1-A6) и `⚠️2` для F12 (A1-A6). Это давние issues, явно за пределами scope WP-307. Чтобы "
+    ],
+    "session_id": "42e0db24-89b2-4e47-9d8e-97baa79a31eb"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-13T18:50:26+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Матрица имеет `❌3` для F10 (W5/A1-A6) и `⚠️2` для F12 (A1-A6). Это давние issues, явно за пределами scope WP-307. Чтобы "
+    ],
+    "session_id": "42e0db24-89b2-4e47-9d8e-97baa79a31eb"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-13T18:55:38+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "## Сценарий — что делать дальше "
+    ],
+    "session_id": "0b476bbb-d6c5-4581-9b19-ac5a0b2c10f5"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-13T18:56:48+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "## Сценарий — что делать дальше "
+    ],
+    "session_id": "0b476bbb-d6c5-4581-9b19-ac5a0b2c10f5"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```

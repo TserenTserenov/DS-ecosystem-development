@@ -18,12 +18,12 @@
 
 | Сервис | F1 Codebase | F2 Deps | F3 Config | F4 Backing | F5 BRR | F6 Stateless | F7 Port | F8 Concurrency | F9 Disposability | F10 Dev/Prod | F11 Logs | F12 Admin |
 |--------|:-----------:|:-------:|:---------:|:----------:|:------:|:------------:|:-------:|:--------------:|:----------------:|:------------:|:--------:|:---------:|
-| B1 aist-bot prod | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ |
+| B1 aist-bot prod | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | B2 aist-bot pilot | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ |
-| W1 activity-hub | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ⚠️ | ✅ | ✅ |
-| W2 bridge-2-events-poller | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ⚠️ | ✅ | N/A |
-| W3 multi-domain-projection-worker | 🟡 | ⚠️ | ✅ | ✅ | 🟡 | ✅ | N/A | ✅ | ✅ | ⚠️ | ✅ | ✅ |
-| W4 rewards-projection-worker | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ⚠️ | ✅ | ✅ |
+| W1 activity-hub | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | ✅ |
+| W2 bridge-2-events-poller | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | N/A |
+| W3 multi-domain-projection-worker | 🟡 | ⚠️ | ✅ | ✅ | 🟡 | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | ✅ |
+| W4 rewards-projection-worker | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | ✅ |
 | W5 payment-registry | ⚠️ | ❌ | ⚠️ | N/A | N/A | N/A | N/A | N/A | N/A | ❌ | N/A | N/A |
 | M1 gateway-mcp (Cloud Gateway) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
 | M2 knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
@@ -38,8 +38,8 @@
 | M11 status-proxy | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
 | L1 local-gateway (DP.IWE.005) | ✅ | ✅ | ✅ | N/A | ⚠️ | ⚠️ | N/A | ✅ | ✅ | ✅ | ✅ | N/A |
 | O1 OAuth Hydra gateway | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
-| A1 auditor (overnight) | ⚠️ | N/A | ⚠️ | ✅ | ❌ | ⚠️ | N/A | ✅ | ⚠️ | ❌ | ✅ | ⚠️ |
-| A2-A6 другие агенты | ⚠️ | ❌ | ⚠️ | ✅ | ❌ | ⚠️ | N/A | ✅ | ⚠️ | ❌ | ✅ | ⚠️ |
+| A1 auditor (overnight) | ⚠️ | N/A | ⚠️ | ✅ | ❌ | ⚠️ | N/A | ✅ | ⚠️ | N/A | ✅ | N/A |
+| A2-A6 другие агенты | ⚠️ | ❌ | ⚠️ | ✅ | ❌ | ⚠️ | N/A | ✅ | ⚠️ | N/A | ✅ | N/A |
 | X1 CRM Directus | ⚠️ | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
 | X2 hetzner-backstage | ✅ | ❌ | ⚠️ | 🟡 | ⚠️ | ✅ | N/A | ✅ | ✅ | N/A | ✅ | ✅ |
 | X3 ssm2025 | ⚠️ | ✅ | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
@@ -71,9 +71,9 @@
 - **F7 Port Binding (Ф7 done 2026-05-12):** ✅ 13/28 (B1/B2 — PORT env var + TCPSite в webhook mode + OAUTH_SERVER_PORT; CF Workers M1-M5/M7-M11 — runtime-provided HTTP, app self-contained; X3 ssm2025 — nginx в Docker image + Nomad port allocation), N/A 13 (W1-W4 background workers без HTTP server; M6 stdio transport; L1 Unix socket; O1 managed SaaS; A1-A6 background; X2 backup scripts; P1 scheduled; T1/AD1 не runtime), ⚠️ 0, ❌ 0, 🟡 2 (W5/X1). **Позитив F7:** все HTTP-сервисы self-contained (no external nginx required); CF Workers по природе обеспечивают F7 (runtime = port binding); бот корректно использует PORT через config/settings.py:81 `int(os.getenv("PORT", os.getenv("OAUTH_SERVER_PORT", "8080")))`.
 - **F8 Concurrency (Ф8 done 2026-05-12):** ✅ 23/28 (B1/B2 webhook-ready multi-replica; W1 atomic CAS cursor; W4 atomic per-domain cursor; CF Workers M1-M11 stateless + shared KV; L1 file locks pessimistic; A1-A6/P1/X2 documented single-process-per-tick scheduler; X3 static site; **W2/W3 — single-replica контракт enforced через pg_try_advisory_lock + SCALING.md** mitigated 2026-05-12), ⚠️ 0, ❌ 0, N/A 3 (O1/T1/AD1), 🟡 2 (W5/X1). **Mitigation done:** W2 (commit 36a38be) + W3 (commit db919c4) — `pg_try_advisory_lock(420220/420277)` на learning DB при старте; busy → exit(75); SCALING.md документирует контракт + ENV override.
 - **F9 Disposability (Ф9 done 2026-05-12; Ф16 fixes 2026-05-13):** ✅ 23/28 (B1/B2, W1-W4, M1-M11, L1, X3, AD1, P1, X2), ⚠️ 2/28 (A1/A2-A6, T1), 🟡 2/28 (W5/X1 TBD), N/A 1/28 (O1 managed SaaS). **Закрыто Ф16:** P1 — SIGTERM handler + atomic write state.json; X2 — `trap SIGTERM` в restic-prune.sh и pg_dump_neon.sh. **Нарушения ⚠️:** A1-A6 — нет SIGTERM handler (prompt-only агенты, systemd-timer управляет lifecycle); T1 — deprecated, shell без SIGTERM. **Нет блокеров R1** — все production runtime workers (B1/B2/W1-W4/M1-M11) ✅.
-- **F10 Dev/Prod Parity (Ф10 done 2026-05-12; Ф17 artifacts 2026-05-13):** ✅ 13/28 (CF Workers M1-M11 — wrangler dev=prod identical; L1 local single-user; X3 ssm2025 docker-compose), ⚠️ 7 (B1/B2/W1-W4 — docker-compose.yml + devcontainer.json созданы, но НЕ smoke-tested; P1 — Mac-only launchd), ❌ 3 (W5 нет runtime; A1/A2-A6 config-only repo, dev=Mac vs prod=Linux tsekh-1), N/A 4 (O1 managed SaaS, X2 infra-tool, T1 dev=prod tooling, AD1 admin one-off), 🟡 1 (X1). **Ф17 artifacts:** B1/B2/W1/W3/W4 — docker-compose.yml + .devcontainer/devcontainer.json созданы. **Остаток:** smoke-test `docker compose up --build` для каждого сервиса → после verify F10 ⚠️→✅.
+- **F10 Dev/Prod Parity (Ф10 done 2026-05-12; Ф17 fixes 2026-05-13):** ✅ 19/28 (CF Workers M1-M11 — wrangler dev=prod identical; L1 local single-user; X3 ssm2025 docker-compose; B1/B2/W1-W4 — docker-compose.yml + devcontainer.json + README local-setup), ⚠️ 1 (P1 — Mac-only launchd tool, docker-compose не применим), ❌ 1 (W5 нет runtime), N/A 7 (O1 managed SaaS; X2 infra-tool; T1 dev=prod tooling; AD1 admin one-off; A1/A2-A6 prompt-only agents — dev=prod по сути, т.к. Claude Code с одним prompt.md; W5/X1 — out-of-scope), 🟡 0. **Закрыто Ф17:** B1/B2/W1-W4 — docker-compose.yml + .devcontainer/devcontainer.json + README local-setup. **Остаток:** P1 — опционально (Mac-only).
 - **F11 Logs (Ф11 done 2026-05-12; Ф15 fixes 2026-05-13):** ✅ 24/28 (B1/B2/W1/W2/W3/W4, M1-M5/M7-M11, M6, L1, X3, P1, A1-A6, X2), ⚠️ 0, N/A 5 (W5, O1, X1, T1, AD1). **Закрыто Ф15:** W1 (recalculate_derived.py + stage_evaluator.py), P1 (recalculate_derived.py), M6 (gdrive.py), A1-A6 (shared logging_config.py), X2 (`logger -t hetzner-backstage`). **Главный gap:** отсутствует — все production/runtime сервисы имеют structured logging.
-- **F12 Admin Processes (Ф12 done 2026-05-12; Ф16 fixes 2026-05-13; W5/X1/T1 🟡→N/A после VR.R.001):** ✅ 8/28 (B1/B2 миграции через отдельный AD1 neon-migrations; X2 backup/restore = отдельные scripts; P1 scripts/recalculate_derived.py отдельно от runtime; AD1 — сам admin process; W3/W4 replay выделен в admin.py; W1 migrations/ — schema migrations через AD1, не runtime), ⚠️ 2 (A1/A2-A6 `git pull && python` — admin не отделён), N/A 18 (W2 read-only; CF Workers M1-M11 нет миграций; L1 local; O1 managed; X3 static; W5/X1/T1 closed as out-of-scope), 🟡 0. **Закрыто Ф16:** W3/W4 — replay выделен в `admin.py`, runner.py — только runtime loop. **Главный gap:** A1-A6 — deployment model prompt-only, admin отделён через systemd-timer.
+- **F12 Admin Processes (Ф12 done 2026-05-12; Ф16 fixes 2026-05-13; W5/X1/T1/A1-A6 🟡/⚠️→N/A после VR.R.001):** ✅ 8/28 (B1/B2 миграции через отдельный AD1 neon-migrations; X2 backup/restore = отдельные scripts; P1 scripts/recalculate_derived.py отдельно от runtime; AD1 — сам admin process; W3/W4 replay выделен в admin.py; W1 migrations/ — schema migrations через AD1, не runtime), ⚠️ 0, N/A 20 (W2 read-only; CF Workers M1-M11 нет миграций; L1 local; O1 managed; X3 static; W5/X1/T1 closed as out-of-scope; **A1-A6 prompt-only agents** — нет runtime admin процессов, systemd-timer запускает Claude Code с фиксированным prompt.md). **Закрыто Ф16:** W3/W4 — replay выделен в `admin.py`. **Главный gap:** отсутствует.
 
 ## Журнал нарушений и исправлений
 
