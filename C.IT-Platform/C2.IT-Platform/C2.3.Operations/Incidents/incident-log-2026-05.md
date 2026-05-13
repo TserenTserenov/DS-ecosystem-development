@@ -3225,3 +3225,87 @@
   }
 }
 ```
+
+## 2026-05-13T13:40:36+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "6. **EC для конфликтов** — если 2 кандидата одинаково весомые → построить дилемму (нужда A vs нужда B → скрытое допущени"
+    ],
+    "session_id": "64cdb6f4-38f3-4d13-9356-e2a63b4c4678"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-13T13:42:22+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "6. **EC для конфликтов** — если 2 кандидата одинаково весомые → построить дилемму (нужда A vs нужда B → скрытое допущени"
+    ],
+    "session_id": "64cdb6f4-38f3-4d13-9356-e2a63b4c4678"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-13T14:00:10+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Зачем:** Strategy Session сейчас оперирует неудовлетворённостями и приоритетами, но не разрешает **конфликты приоритет"
+    ],
+    "session_id": "64cdb6f4-38f3-4d13-9356-e2a63b4c4678"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-13T14:01:08+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Принято. «Что предлагаю сделать» — soft-form запроса разрешения. Делаю. "
+    ],
+    "session_id": "64cdb6f4-38f3-4d13-9356-e2a63b4c4678"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```

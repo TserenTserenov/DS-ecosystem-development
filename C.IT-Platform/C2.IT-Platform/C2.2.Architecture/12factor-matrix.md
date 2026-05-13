@@ -18,34 +18,34 @@
 
 | Сервис | F1 Codebase | F2 Deps | F3 Config | F4 Backing | F5 BRR | F6 Stateless | F7 Port | F8 Concurrency | F9 Disposability | F10 Dev/Prod | F11 Logs | F12 Admin |
 |--------|:-----------:|:-------:|:---------:|:----------:|:------:|:------------:|:-------:|:--------------:|:----------------:|:------------:|:--------:|:---------:|
-| B1 aist-bot prod | ⚠️ | ⚠️ | ⚠️ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ |
-| B2 aist-bot pilot | ⚠️ | ⚠️ | ⚠️ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ |
-| W1 activity-hub | ⚠️ | ⚠️ | ✅ | ✅ | ❌ | ✅ | N/A | ✅ | ✅ | ⚠️ | ⚠️ | ⚠️ |
-| W2 bridge-2-events-poller | ⚠️ | ⚠️ | ⚠️ | ✅ | ❌ | ✅ | N/A | ✅ | ✅ | ⚠️ | ✅ | N/A |
-| W3 multi-domain-projection-worker | 🟡 | ⚠️ | ⚠️ | ✅ | 🟡 | ✅ | N/A | ✅ | ✅ | ⚠️ | ⚠️ | ⚠️ |
-| W4 rewards-projection-worker | ⚠️ | ⚠️ | ⚠️ | ✅ | ❌ | ✅ | N/A | ✅ | ✅ | ⚠️ | ✅ | ⚠️ |
-| W5 payment-registry | ⚠️ | ❌ | ❌ | N/A | N/A | N/A | N/A | N/A | N/A | ❌ | N/A | N/A |
-| M1 gateway-mcp (Cloud Gateway) | ⚠️ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
-| M2 knowledge-mcp | ⚠️ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
-| M3 personal-knowledge-mcp | ⚠️ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
-| M4 digital-twin-mcp | ⚠️ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
-| M5 fsm-mcp | ⚠️ | ✅ | ✅ | N/A | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
-| M6 google-drive-mcp | ✅ | ❌ | ⚠️ | ⚠️ | ❌ | ✅ | N/A | ✅ | ✅ | ✅ | ⚠️ | N/A |
-| M7 guides-mcp | ⚠️ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
-| M8 event-gateway | ⚠️ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
-| M9 observability-webhook | ⚠️ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
-| M10 payment-receiver | ⚠️ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
-| M11 status-proxy | ⚠️ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
-| L1 local-gateway (DP.IWE.005) | ✅ | ✅ | ⚠️ | N/A | ⚠️ | ⚠️ | N/A | ✅ | ✅ | ✅ | ✅ | N/A |
+| B1 aist-bot prod | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ |
+| B2 aist-bot pilot | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ |
+| W1 activity-hub | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ⚠️ | ⚠️ | ⚠️ |
+| W2 bridge-2-events-poller | ⚠️ | ⚠️ | ✅ | ✅ | ❌ | ✅ | N/A | ✅ | ✅ | ⚠️ | ✅ | N/A |
+| W3 multi-domain-projection-worker | 🟡 | ⚠️ | ✅ | ✅ | 🟡 | ✅ | N/A | ✅ | ✅ | ⚠️ | ⚠️ | ⚠️ |
+| W4 rewards-projection-worker | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ⚠️ | ✅ | ⚠️ |
+| W5 payment-registry | ⚠️ | ❌ | ⚠️ | N/A | N/A | N/A | N/A | N/A | N/A | ❌ | N/A | N/A |
+| M1 gateway-mcp (Cloud Gateway) | ⚠️ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
+| M2 knowledge-mcp | ⚠️ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
+| M3 personal-knowledge-mcp | ⚠️ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
+| M4 digital-twin-mcp | ⚠️ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
+| M5 fsm-mcp | ⚠️ | ✅ | ✅ | N/A | ⚠️ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
+| M6 google-drive-mcp | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | N/A | ✅ | ✅ | ✅ | ⚠️ | N/A |
+| M7 guides-mcp | ⚠️ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
+| M8 event-gateway | ⚠️ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
+| M9 observability-webhook | ⚠️ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
+| M10 payment-receiver | ⚠️ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
+| M11 status-proxy | ⚠️ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
+| L1 local-gateway (DP.IWE.005) | ✅ | ✅ | ✅ | N/A | ⚠️ | ⚠️ | N/A | ✅ | ✅ | ✅ | ✅ | N/A |
 | O1 OAuth Hydra gateway | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
-| A1 auditor (overnight) | ⚠️ | N/A | ❌ | ✅ | ❌ | ⚠️ | N/A | ✅ | ⚠️ | ❌ | ⚠️ | ⚠️ |
-| A2-A6 другие агенты | ⚠️ | ❌ | ❌ | ✅ | ❌ | ⚠️ | N/A | ✅ | ⚠️ | ❌ | ⚠️ | ⚠️ |
+| A1 auditor (overnight) | ⚠️ | N/A | ⚠️ | ✅ | ❌ | ⚠️ | N/A | ✅ | ⚠️ | ❌ | ⚠️ | ⚠️ |
+| A2-A6 другие агенты | ⚠️ | ❌ | ⚠️ | ✅ | ❌ | ⚠️ | N/A | ✅ | ⚠️ | ❌ | ⚠️ | ⚠️ |
 | X1 CRM Directus | ⚠️ | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
-| X2 hetzner-backstage | ✅ | ❌ | ❌ | 🟡 | ⚠️ | ✅ | N/A | ✅ | ⚠️ | N/A | ⚠️ | ✅ |
-| X3 ssm2025 | ⚠️ | ✅ | ⚠️ | N/A | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
-| P1 profiler | ❌ | ❌ | ⚠️ | ✅ | ❌ | ⚠️ | N/A | ✅ | ⚠️ | ⚠️ | ⚠️ | ✅ |
+| X2 hetzner-backstage | ✅ | ❌ | ⚠️ | 🟡 | ⚠️ | ✅ | N/A | ✅ | ⚠️ | N/A | ⚠️ | ✅ |
+| X3 ssm2025 | ⚠️ | ✅ | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
+| P1 profiler | ❌ | ⚠️ | ✅ | ✅ | ❌ | ⚠️ | N/A | ✅ | ⚠️ | ⚠️ | ⚠️ | ✅ |
 | T1 scheduler.sh (launchd) | ⚠️ | ⚠️ | ⚠️ | N/A | ❌ | N/A | N/A | N/A | ⚠️ | N/A | N/A | N/A |
-| AD1 neon-migrations | N/A | ⚠️ | ⚠️ | ✅ | N/A | N/A | N/A | N/A | ✅ | N/A | N/A | ✅* |
+| AD1 neon-migrations | N/A | ✅ | ✅ | ✅ | N/A | N/A | N/A | N/A | ✅ | N/A | N/A | ✅* |
 
 > *AD1 neon-migrations — это сам admin process; для него F12 ≈ ✅ по определению. Остальные «runtime»-факторы (codebase, BRR, stateless, port, concurrency, disposability) к admin-скрипту не применяются.
 
@@ -136,5 +136,15 @@
 | 2026-05-12 | O1 | F3 | **🟡→N/A closing:** OAuth Hydra gateway — managed SaaS (Ory Cloud). Configuration (client registrations, scopes) не управляется через IWE-codebase. Все остальные факторы O1 = N/A; приведено в соответствие | Если в будущем переход на self-hosted Ory с Terraform — переоценить F3 | N/A (managed) |
 | 2026-05-12 | A1 | F2 | **Внутренняя согласованность (VR.R.001):** A1 auditor — prompt-only repo (только agent-card.yaml + prompt.md, нет Python). F2 переведено из ❌ в N/A. A2-A6 остаются ❌ — в `DS-autonomous-agents/agents/` есть Python код (tailor, render-pilot-guides) без manifest | A2-A6: создать requirements.txt либо явно разделить prompt-only agents (N/A) от Python-runtime agents (❌) | ⚠️ scope refinement |
 | 2026-05-12 | B1, B2, W1, W2, W4 | F1, F5 | **Railway peaceful-vision — все 5 production worker'ов БЕЗ GitHub auto-deploy.** Свидетельство: `RAILWAY_GIT_*` env vars отсутствуют (обычно Railway выставляет автоматически при connect-to-repo); 18+ deployments на сервис, все `reason: "deploy"/"redeploy"` + `ignoreWatchPatterns: true` — manual `railway up` или dashboard triggers. Последний SUCCESS deploy W2 — 2026-04-28; W4 — 2026-04-27. Push в GitHub не триггерит redeploy. F1 ✅→⚠️ (production-runtime не привязан к git commit); F5 ✅→❌ (нет git→deploy linkage, нельзя rollback к конкретному commit, image immutable digest есть, но не связан с git SHA). Прямое влияние: commit WP-307 advisory_lock (36a38be/db919c4) запушен 12 мая, но в production-коде до сих пор версия от 28 апреля | **Ф5b WP-307 (открыта 2026-05-12, ~3h):** для каждого worker'а в Railway dashboard → Settings → Source Repo → connect to TserenTserenov/* + production branch (B1: new-architecture, B2: pilot, W1/W2/W4: main). Затем smoke-test (пустой commit → verify auto-redeploy). Затем верификация advisory_lock в логах W2 | ❌ открыт |
+
+| 2026-05-13 | B1/B2/W1/W4 | F1, F5 | Railway auto-deploy уже был настроен (repoTriggers + RAILWAY_GIT_* vars подтверждены). F1 ⚠️→✅, F5 ❌→✅ | — | ✅ closed |
+| 2026-05-13 | M1-M5,M7-M11 | F5 | deploy.yml добавлен во все 10 CF Worker репо (cloudflare/wrangler-action@v3). Pending: CLOUDFLARE_API_TOKEN secret в GitHub. F5 ❌→⚠️ | Пользователь: создать token на dash.cloudflare.com/profile/api-tokens → bash /tmp/set-cf-secret.sh | ⚠️ pending secret |
+| 2026-05-13 | B1/B2 | F2 | pip-compile: aiogram>=→3.28.2, langfuse>=→4.6.1, PyJWT>=→2.12.1. requirements.in добавлен | — | ✅ closed |
+| 2026-05-13 | M6 | F2 | requirements.txt создан (google-api-python-client==2.193.0 + google-auth-oauthlib==1.3.0 + mcp==1.27.0) | — | ✅ closed |
+| 2026-05-13 | AD1 | F2, F3 | requirements.txt создан (asyncpg/httpx/psycopg/pgvector). .env.example добавлен | — | ✅ closed |
+| 2026-05-13 | M6 | F3, F4 | .env.example добавлен. gdrive.py: поддержка GOOGLE_CLIENT_ID/SECRET/REFRESH_TOKEN (env-first, file-fallback). F3 ⚠️→✅, F4 ⚠️→✅ | — | ✅ closed |
+| 2026-05-13 | B1/B2/W2/W3/W4/L1/X3/P1 | F3 | .env.example добавлен во все сервисы. F3 ⚠️→✅ | — | ✅ closed |
+| 2026-05-13 | W5/A1-A6 | F3 | .gitignore: добавлено .env* + !.env.example в payment-registry и DS-autonomous-agents | — | ✅ closed |
+| 2026-05-13 | X2 | F3 | .gitignore: **/env → **/.env* (+ !**/.env.example) | — | ✅ closed |
 
 *Source: `DS-my-strategy/inbox/WP-307-12factor-compliance.md` (WP-context).*
