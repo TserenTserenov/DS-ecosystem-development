@@ -137,7 +137,7 @@
 | M6 | google-drive-mcp | `python mcp_server.py` (без build) | — | ✅ local repo | ❌ нет build/release |
 | L1 | local-gateway | `npm run build` локально | — | ✅ | ⚠️ нет immutable artifact |
 | O1 | Ory Hydra | Managed SaaS | N/A | N/A | N/A |
-| A1-A6 | autonomous agents | `git pull && python` через systemd-timer на tsekh-1 | ⚠️ git pull, нет build | ⚠️ | ❌ слияние build/release/run |
+| A1-A6 | autonomous agents | GitHub Actions → GHCR → `docker run` через systemd timer (Python SDK) | ✅ | ✅ | ✅ |
 | X1 | CRM Directus | TBD | TBD | ⚠️ | 🟡 |
 | X2 | hetzner-backstage | GitHub Actions → SSH → `docker-compose up -d` | ✅ | ✅ | ✅ |
 | X3 | ssm2025 | GitHub Actions → Nomad | ✅ git tag → image | ⚠️ | ✅ |
