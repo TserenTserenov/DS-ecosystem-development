@@ -76,6 +76,7 @@
 - [12factor-services.md](12factor-services.md) — реестр production runtime сервисов
 - [12factor-matrix.md](12factor-matrix.md) — детальная матрица сервис × фактор
 - [WP-307 context](../../../../DS-my-strategy/inbox/WP-307-12factor-compliance.md) — рабочий контекст РП
+- [12factor-report-wp307.md](12factor-report-wp307.md) — итоговый отчёт после fix-стадии Ф13-Ф18
 
 ## Открытые вопросы (Ф0)
 
