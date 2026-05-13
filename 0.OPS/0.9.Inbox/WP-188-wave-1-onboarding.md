@@ -68,8 +68,10 @@ ToS / Privacy: `system-school.ru/iwe/legal` (опубликовано 12 мая,
 
 ### Шаг 2. Запустить онбординг
 
+> **Где запускать:** в **Claude Code (VS Code)**, не в боте @aist_me_bot.
+
 ```
-@aist_me_bot → /personal-guide-start
+Claude Code (VS Code) → /personal-guide-start
 ```
 
 Что произойдёт автоматически (≈4 секунды end-to-end, по PROD smoke 11 мая):

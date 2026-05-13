@@ -3309,3 +3309,152 @@
   }
 }
 ```
+
+## 2026-05-13T16:11:16+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "4. Разрешить доступ к репо `TserenTserenov/bridge-2-lms-poller` "
+    ],
+    "session_id": "059519ef-10b0-41e2-ae08-e1b7c07d539b"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-13T16:11:36+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "4. Разрешить доступ к репо `TserenTserenov/bridge-2-lms-poller` ",
+      "Хук сработал ошибочно — шаг 4 «Разрешить доступ» это инструкция браузерного UI (Railway просит установить GitHub App), а"
+    ],
+    "session_id": "059519ef-10b0-41e2-ae08-e1b7c07d539b"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-13T16:17:47+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "4. Разрешить доступ к репо `TserenTserenov/bridge-2-lms-poller` ",
+      "Хук сработал ошибочно — шаг 4 «Разрешить доступ» это инструкция браузерного UI (Railway просит установить GitHub App), а"
+    ],
+    "session_id": "059519ef-10b0-41e2-ae08-e1b7c07d539b"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-13T16:19:04+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Хук сработал ошибочно — шаг 4 «Разрешить доступ» это инструкция браузерного UI (Railway просит установить GitHub App), а"
+    ],
+    "session_id": "059519ef-10b0-41e2-ae08-e1b7c07d539b"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-13T16:22:57+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "2. Connect Repo → Railway предложит установить GitHub App на TserenTserenov → разрешить → выбрать `bridge-2-events-polle"
+    ],
+    "session_id": "059519ef-10b0-41e2-ae08-e1b7c07d539b"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-13T16:23:13+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "2. Connect Repo → Railway предложит установить GitHub App на TserenTserenov → разрешить → выбрать `bridge-2-events-polle"
+    ],
+    "session_id": "059519ef-10b0-41e2-ae08-e1b7c07d539b"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-13T17:02:55+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "До этой сессии было ясно только «надо разослать 5 людям». Непонятно было — когда, в каком порядке, стоит ли ждать пока W"
+    ],
+    "session_id": "a59938a6-0b81-4339-a71b-ca3daa3ed98c"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
