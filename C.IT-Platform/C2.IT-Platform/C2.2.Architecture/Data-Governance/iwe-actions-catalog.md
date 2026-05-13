@@ -222,3 +222,135 @@ wp_closed / git_commit — domain по repo_domain_map (Ф10.5 WP-214)
 
 **Идемпотентность:** `(source, external_id)` — уникальный ключ в `domain_event`.
 **Авторизация:** service token для `iwe-hooks` source (не OAuth, не per-user JWT — это машинный источник).
+
+---
+
+## 7. Attribution: маппинг событий → характеристики ступени
+
+> **Назначение.** Конфигурация весов для MVP авто-расчёта ступени по 5-характеристичной модели (FORM.089 §12, WP-310).
+> **Потребитель:** `stage_evaluator.py` в activity-hub. Веса — числа очков за одно событие. Нормализация — в вычислителе.
+
+### 7.1 Систематичность (`self_dev_days_per_week`)
+
+**Смысл:** регулярность саморазвития, а не любой IWE-активности. Учитываются только дни с целенаправленным обучением или рефлексией.
+
+**Принцип:** окно расчёта зависит от текущей ступени пользователя (`i.accounting_period`):
+
+| Ступень | Окно SQL |
+|---|---|
+| Случайный (1) | `INTERVAL '7 days'` |
+| Практикующий (2) | `INTERVAL '28 days'` |
+| Систематический (3) | `INTERVAL '56 days'` |
+| Дисциплинированный (4) | `INTERVAL '84 days'` |
+| Проактивный (5) | `INTERVAL '168 days'` |
+
+```sql
+-- Шаблон: подставить окно под текущую ступень пользователя
+SELECT COUNT(DISTINCT DATE(occurred_at))::float / {accounting_weeks} AS self_dev_days_per_week
+FROM domain_event
+WHERE account_id = %s::uuid
+  AND event_type = ANY(ARRAY[
+    'lesson_completed', 'knowledge_extracted', 'pack_updated', 'qualification_granted',
+    'day_plan_opened', 'day_open',         -- day_open = legacy alias (iwe.py)
+    'day_plan_closed', 'day_close',        -- day_close = legacy alias (ORZ hook)
+    'week_plan_closed', 'month_plan_closed',
+    'strategy_session_completed', 'iwe_session'
+  ])
+  AND occurred_at >= NOW() - INTERVAL '{accounting_weeks * 7} days'
+```
+
+**НЕ входят:** `git_commit`, `coding_time`, `wp_created`, `wp_closed`, `wp_completed`, `command_invoked`, `slot_logged`, `club_post_created`.
+
+> **Gap-Д:** текущий rcs-collector (`recalculate_derived.py`) использует `activity_domain IN ('practice', 'learning')` — шире SELF_DEV_EVENT_TYPES. Аттестатор требует отдельного запроса. Фикс — Ф4+ WP-310.
+>
+> **Gap-Б (minor):** legacy aliases `day_close`/`day_open` в ORZ hook и iwe.py. Поддерживать оба до миграции.
+
+### 7.2 Инвестированное время (`avg_hours_per_week`)
+
+Суммируются часы из источников за окно текущей ступени (аналогично §7.1), делятся на `accounting_weeks`.
+
+| Источник | event_type | Поле payload | Формула |
+|----------|-----------|-------------|---------|
+| WakaTime | `coding_time` | `payload.total_seconds` | `/ 3600` |
+| Бот-слоты | `slot_logged` | `payload.hours` | прямо |
+| Обучение LMS | `lesson_completed` | `payload.duration_minutes` | `/ 60` |
+| Day Close bonus | `day_close` | `payload.wakatime_h` | прямо (если WakaTime не подключён) |
+
+```sql
+SELECT COALESCE(SUM(hours), 0) / 4.0 AS avg_per_week FROM (
+  SELECT (payload->>'total_seconds')::float / 3600 AS hours
+    FROM domain_event WHERE event_type = 'coding_time'
+      AND occurred_at > NOW() - INTERVAL '28 days'
+  UNION ALL
+  SELECT (payload->>'hours')::float
+    FROM domain_event WHERE event_type = 'slot_logged'
+      AND occurred_at > NOW() - INTERVAL '28 days'
+  UNION ALL
+  SELECT (payload->>'duration_minutes')::float / 60
+    FROM domain_event WHERE event_type = 'lesson_completed'
+      AND occurred_at > NOW() - INTERVAL '28 days'
+) t
+```
+
+Нормализация в индекс 0–5: < 1 ч/нед → 0 / 1–2 → 1 / 2–5 → 2 / 5–8 → 3 / 8–12 → 4 / > 12 → 5.
+
+> **Аудит Ф1:** WakaTime хранится как event_type=`coding_time` с `payload.total_seconds` (iwe.py adapter). Не `slot_logged` и не `payload.hours`. Скорректировано.
+
+### 7.3 Методичность мышления (`methodical_events_per_month`)
+
+Прямой счёт событий за 30 дней. Нормализация: 0 → 0 / 1–3 → 1 / 4–10 → 2 / 11–25 → 3 / 26–50 → 4 / > 50 → 5.
+
+| event_type | Вес (очков за событие) |
+|-----------|------------------------|
+| `lesson_completed` | 2 |
+| `knowledge_extracted` | 1.5 |
+| `pack_updated` | 1 |
+| `qualification_granted` | 3 |
+
+### 7.4 Системность мировоззрения (`worldview_score`)
+
+Взвешенная сумма за 30 дней → нормализация в индекс 0–5.
+Нормализация: 0 → 0 / 1–4 → 1 / 5–12 → 2 / 13–28 → 3 / 29–50 → 4 / > 50 → 5.
+
+| event_type | Вес | Условие |
+|-----------|-----|---------|
+| `week_plan_closed` | 4 | `payload.quality >= 3` (⚠️ Gap-А: поле отсутствует в текущем ORZ hook — всегда fallback 1) |
+| `week_plan_closed` | 1 | fallback если `payload.quality` не заполнен (текущее состояние) |
+| `month_plan_closed` | 8 | — |
+| `strategy_session_completed` | 6 | — |
+| `knowledge_extracted` | 1 | — |
+| `pack_updated` | 1 | — |
+
+### 7.5 Агентность (`agency_score`)
+
+Взвешенная сумма за 30 дней → нормализация в индекс 0–5.
+Нормализация: 0 → 0 / 1–3 → 1 / 4–8 → 2 / 9–17 → 3 / 18–30 → 4 / > 30 → 5.
+
+| event_type | Вес | Примечание |
+|-----------|-----|-----------|
+| `wp_created` | 3 | MVP: все wp_created = самоинициированные (нет поля `initiator`, WP-214 Ф10.5) |
+| `wp_closed` | 2 | завершение инициативы |
+| `wp_completed` | 2 | — |
+| `strategy_session_completed` | 5 | собственная стратегическая повестка |
+
+### 7.6 Пример расчёта (Тсерен, 12 мая 2026)
+
+Текущая ступень: 2 (Практикующий) → окно расчёта = 4 нед (28 дней).
+
+| Характеристика | Данные | Расчёт | Индекс |
+|---|---|---|:---:|
+| Систематичность | ~20 self-dev дней за 28 дн | 20/4 = 5 дн/нед | **3** (≥5 — Систематический порог ✅) |
+| Инвестированное время | WakaTime ~2.5 ч/нед | 2.5 ч/нед < 4 | **1** (ниже Практикующего порога) |
+| Накоп. часы | ~60 ч всего | 60 ≥ 20 ✅, ≥ 48 ✅ | gate до ст.3 пройден |
+| Методичность | 55 events/30d (ke+pack+iwe) | 26/мес | **4** |
+| Системность | 1 Week Close, q=3 | worldview_points = 4 | **1** |
+| Агентность | не реализован | — | **0** |
+
+```
+compute_stage_mvp(s=3, t=1, m=4, w=1, a=0, total_hours=60)
+→ t=1 → ступень 2 (t < 2, нельзя подняться до 3)
+→ hours gate: 60 ≥ 20 (ст.2) ✅
+→ итог: ступень 2
+```
+
+Bottleneck: **Инвестированное время** (нужно ≥ 4 ч/нед × 4 нед, сейчас ~2.5). Второй bottleneck: Агентность = 0 (заблокирует ст.3 даже при исправлении времени).
