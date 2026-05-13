@@ -20,7 +20,7 @@
 | 🟡 TBD ячеек (legit pending) | **3** (1% — W3 F1/F5, X2 F4) |
 | 🔴 КРИТИЧЕСКИХ (security) | **0** |
 | Прогресс fix-стадии | **Ф13 ✅, Ф14 ✅, Ф15 ✅ (частично), Ф18 ✅ (частично). Ф16/Ф17 pending** |
-| Last automated re-audit | 2026-05-13 (12factor-reaudit.sh: ✅19 ⚠️12 ❌0 drift=warn) |
+| Last automated re-audit | <!-- AUTO-UPDATED by 12factor-reaudit.sh --> 2026-05-13 (12factor-reaudit.sh: ✅19 ⚠️12 ❌0 drift=warn) |
 | DoD | НЕ достигнут — 16% violations. Pending: Ф16 (admin-split), Ф17 (docker-compose) |
 
 ## 🚨 VR.R.001 Fold-back (2026-05-12, Ф-Close)
@@ -89,9 +89,16 @@
 - ✅ **Ф15** — print()→logging: W3/W4, W1, P1, M6. F11: 16✅→20✅.
 - ✅ **Ф18 (частично)** — 12factor-reaudit.sh + overnight-auditor интеграция.
 
-**Pending (P3):**
-- **Ф16** (~3h): admin/runtime split для W3/W4 runner.py; SIGTERM для P1/X2.
-- **Ф17** (~4h): docker-compose + devcontainer для Railway-сервисов (F10 ⚠️→✅ для B1/B2/W1-W4).
+**Выполнено 2026-05-13 (доделано):**
+- ✅ **Ф15** — остаток: A1-A6 shared logging_config.py; X2 logger -t + SIGTERM trap.
+- ✅ **Ф16** — W3/W4 admin.py (replay отделён от runner.py); P1 SIGTERM + atomic write; X2 SIGTERM trap.
+- ✅ **Ф17** — docker-compose.yml + .devcontainer/devcontainer.json для B1/B2/W1/W3/W4.
+- ✅ **Ф18** — upload-compliance-report.py + Neon table `compliance_audits`; auto-update posture.
+
+**Pending (теперь только DoD):**
+- Ручная проверка docker-compose на каждом сервисе ( smoke-test `docker compose up --build` ).
+- Перевод матрицы F10 ⚠️→✅ после verify docker-compose работает.
+- РП307 → status: done когда 100% green-or-justified-N/A.
 
 ---
 
