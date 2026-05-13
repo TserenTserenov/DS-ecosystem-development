@@ -139,10 +139,10 @@
 | O1 | Ory Hydra | Managed SaaS | N/A | N/A | N/A |
 | A1-A6 | autonomous agents | `git pull && python` через systemd-timer на tsekh-1 | ⚠️ git pull, нет build | ⚠️ | ❌ слияние build/release/run |
 | X1 | CRM Directus | TBD | TBD | ⚠️ | 🟡 |
-| X2 | hetzner-backstage | manual SSH + `docker-compose up` | ❌ | ✅ | ⚠️ |
+| X2 | hetzner-backstage | GitHub Actions → SSH → `docker-compose up -d` | ✅ | ✅ | ✅ |
 | X3 | ssm2025 | GitHub Actions → Nomad | ✅ git tag → image | ⚠️ | ✅ |
-| P1 | profiler | `git pull && python` через launchd | ⚠️ | ❌ (DS-ai-systems монорепо) | ❌ |
-| T1 | launchd plists | manual install (`launchctl load`) | ❌ plists не в VCS | ⚠️ | ❌ |
+| P1 | profiler | GitHub Actions → GHCR → `docker run` через launchd | ✅ | ✅ | ✅ |
+| T1 | launchd plists | `install-launchd.sh` (versioned plists + idempotent copy) | ✅ | ✅ | ✅ |
 | AD1 | neon-migrations | manual `psql` или Python скрипт | N/A | N/A (admin) | N/A |
 
 **Ключевая находка:** Railway-сервисы peaceful-vision (B1/B2/W1/W2/W4) — деплой через manual `railway up` upload, не через GitHub auto-deploy. Все 18+ deployments в Railway: `reason: "deploy"/"redeploy"` (manual), не git-webhook. Это нарушение F1 (runtime не привязан к git commit) и F5 (нет immutable release artifact с git linkage). Закрытие через **Ф5b** WP-307.
