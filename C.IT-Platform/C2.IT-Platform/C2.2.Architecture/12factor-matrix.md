@@ -19,12 +19,12 @@
 | Сервис | F1 Codebase | F2 Deps | F3 Config | F4 Backing | F5 BRR | F6 Stateless | F7 Port | F8 Concurrency | F9 Disposability | F10 Dev/Prod | F11 Logs | F12 Admin |
 |--------|:-----------:|:-------:|:---------:|:----------:|:------:|:------------:|:-------:|:--------------:|:----------------:|:------------:|:--------:|:---------:|
 | B1 aist-bot prod | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| B2 aist-bot pilot | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ |
+| B2 aist-bot pilot | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | W1 activity-hub | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | ✅ |
 | W2 bridge-2-events-poller | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | N/A |
 | W3 multi-domain-projection-worker | 🟡 | ⚠️ | ✅ | ✅ | 🟡 | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | ✅ |
 | W4 rewards-projection-worker | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | ✅ |
-| W5 payment-registry | ⚠️ | ❌ | ⚠️ | N/A | N/A | N/A | N/A | N/A | N/A | ❌ | N/A | N/A |
+| W5 payment-registry | ⚠️ | ❌ | ⚠️ | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
 | M1 gateway-mcp (Cloud Gateway) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
 | M2 knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
 | M3 personal-knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
