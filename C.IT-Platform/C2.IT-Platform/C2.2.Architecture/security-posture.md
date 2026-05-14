@@ -4,7 +4,7 @@ type: security-dashboard
 wp: WP-212
 status: active
 created: 2026-05-08
-updated: 2026-05-08
+updated: 2026-05-14
 next_audit: 2026-06-01 (Month Close июнь, VR.R.002 Аудитор)
 owner: WP-212
 audit_cadence:
@@ -103,7 +103,49 @@ related:
 
 ---
 
-## 6. История аудитов
+## 6. Secret Inventory
+
+> **Источник правды:** WP-315 (Реестр и валидатор инсталляций секретов IWE).
+> **Обновляется:** при ротации credential (AR.205 probe), при Month Close (VR.R.002), при добавлении нового сервиса.
+> **Назначение:** единая точка для ответа на вопрос «где всё живёт этот секрет?»
+
+### Bootstrap inventory (минимум 3 секрета)
+
+| Секрет | Layer 1 (env) | Layer 2 (cloud) | Layer 3 (PG metadata) | Layer 4 (smoke) | Последняя ротация | Владелец |
+|--------|---------------|-----------------|----------------------|-----------------|-------------------|----------|
+| **Neon main** `neondb_owner` | `~/.secrets/neon`, tsekh-1 `/etc/iwe/env`, `~/IWE/**/.env` | Railway variables (7 сервисов) | `pg_user_mapping` (rewards, learning, analytics, platform), `pg_subscription` | `SELECT 1` через каждую роль | 2026-05-12 | WP-212 |
+| **GitHub PAT** `aisystant-knowledge` | `~/.secrets/github` | — | — | GitHub API `repos` read | 2026-04-15 | WP-253 |
+| **Telegram pilot** `aist_pilot_bot` | `~/.secrets/telegram` | Railway variables (aist_bot) | — | Bot webhook test | 2026-03-20 | WP-198 |
+
+### Инструменты (WP-315)
+
+- **Сканер:** `FMT-exocortex-template/scripts/iwe-grep-secret.sh` (Layer 1 + Layer 3 MVP, Layer 2 deferred)
+- **Паритет:** `FMT-exocortex-template/scripts/check-setup-update-parity.sh` + `.claude/parity-contract.yaml`
+- **FDW rotation:** `DS-IT-systems/neon-migrations/apply-fdw-rotation.sh` + `mvp/215-sync-fdw-credentials.sql`
+- **Enforcer:** `PACK-agent-rules/rules/AR.205-rotation-verify-pass.md`
+- **Service Clause:** `PACK-digital-platform/08-service-clauses/DP.SC.125-secret-drift-detector.md`
+
+### Чеклист ротации (AR.205 probe)
+
+При изменении секрета X:
+1. [ ] Запустить `iwe-grep-secret.sh '<old>'` — записать N hits по слоям
+2. [ ] Применить новое значение во всех местах из inventory
+3. [ ] Повторить `iwe-grep-secret.sh '<old>'` — assert 0 hits
+4. [ ] Повторить `iwe-grep-secret.sh '<new>'` — assert ≥1 hit (confirmation new is deployed)
+5. [ ] Smoke-test: каждый сервис из inventory подключается успешно
+6. [ ] Обновить колонку «Последняя ротация» в таблице выше
+
+### Расширение inventory
+
+```
+Роль: VR.R.002 Аудитор (или инженер при ротации)
+Шаги:
+1. Новый секрет/сервис → добавить строку в таблицу выше
+2. Указать все 4 слоя (если слой не применим — "—")
+3. Обновить WP-315 context если секрет добавлен в рамках РП
+```
+
+## 7. История аудитов
 
 | Дата | Тип | Аудитор | Итог | Артефакт |
 |------|-----|---------|------|---------|
@@ -117,7 +159,7 @@ related:
 
 ---
 
-## 7. Ключевые риски (топ-3 на сейчас)
+## 8. Ключевые риски (топ-3 на сейчас)
 
 | # | Риск | Вероятность | Impact | Митигация |
 |---|------|-------------|--------|-----------|
@@ -127,7 +169,7 @@ related:
 
 ---
 
-## 8. Как обновлять этот документ
+## 9. Как обновлять этот документ
 
 ### VR.R.002 Аудитор — Monthly Close (~1h)
 
@@ -140,10 +182,11 @@ related:
 3. Обновить §3 (open vulns) — добавить закрытые, добавить новые из STRIDE/ArchGate
 4. Обновить §4 (CI coverage) — проверить репо на наличие security.yml
 5. Обновить §5 (compliance) — изменилось что-то в WP-186/юр?
-6. Добавить строку в §6 (история аудитов)
-7. Пересмотреть §7 (топ-3 риска) — остались ли актуальны?
-8. Обновить `next_audit` и `updated` в frontmatter
-9. Коммит: `docs(WP-212): monthly security posture update YYYY-MM`
+6. Добавить строку в §7 (история аудитов)
+7. Обновить §6 (inventory) если были ротации или новые сервисы
+8. Пересмотреть §8 (топ-3 риска) — остались ли актуальны?
+9. Обновить `next_audit` и `updated` в frontmatter
+10. Коммит: `docs(WP-212): monthly security posture update YYYY-MM`
 ```
 
 ### Week Close (2 мин, не VR.R.002, встроен в Week Close)
@@ -165,5 +208,6 @@ related:
 ```
 1. Добавить сервис в B7.2 STRIDE (новая строка в scope-таблице + per-service анализ)
 2. Обновить §4 CI coverage (+1 репо)
-3. Пересмотреть §7 топ-3 рисков
+3. Добавить секрет/сервис в §6 inventory
+4. Пересмотреть §8 топ-3 рисков
 ```
