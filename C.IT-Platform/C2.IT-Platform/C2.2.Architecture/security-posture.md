@@ -48,7 +48,7 @@ related:
 | Фаза | Задач | Сделано | % | Ближайший незаблокированный шаг |
 |------|-------|---------|---|----------------------------------|
 | Ф1 Критические | 8 | 8 | 100% | ✅ — |
-| Ф2 Секреты | 5 | 4 | 80% | B2.5 OAuth шифрование (dep: Дима + aist_bot) |
+| Ф2 Секреты | 5 | 5 | 100% | ✅ WP-315 Ф-Close (automator tsekh-1 04:45 МСК + VR.R.002 daily-headless) |
 | Ф3 Данные пользователей | 9 | 5 | 56% | B3.6 GDPR erasure, B3.9 consent (dep: aist_bot) |
 | Ф4 Auth Hardening | 17 | 15 | 88% | B4.23 пр.1 (dep WP-231), B4.23 пр.2 (dep WP-227) |
 | Ф5 CI/CD | 6 | 5 | 83% | B5.6 private repos (dep GitHub Pro) |
@@ -88,6 +88,27 @@ related:
 | event-gateway | — | ✅ | — | 🔴 (GitHub Pro) | — |
 
 **Coverage score:** 7/8 репо TruffleHog, 8/8 Dependabot, 6/8 SAST, 3/8 Branch Protection.
+
+### 4.1 Infrastructure Secret Scanning (Runtime)
+
+> **Automator:** tsekh-1 (systemd timer daily at 04:45 МСК)
+> **Artifact:** WP-315 Ф-Close (Secret Drift Detector) — see DP.SC.125
+
+**Automation Flow:**
+1. **Layer 1 (Local):** `iwe-grep-secret.sh` scans `.git/.env` files on tsekh-1
+2. **Layer 2 (Railway):** GraphQL API v2 introspection → service vars audit
+3. **Layer 3 (Cloudflare):** Workers environment variables scanning
+4. **Layer 4 (Neon):** Direct role/password audit (unpooled endpoint)
+
+**Result Flow:** scan results → systemd journal (tsekh-1) → JSON parsing → VR.R.002 daily-headless audit agent (Sonnet) → notification + inventory update
+
+**Detection Scope:**
+- Leaked secrets (grep via 50+ patterns: AWS keys, RSA privates, Neon tokens, etc.)
+- Misplaced credentials (Layer N secrets should be in Layer M)
+- Rotation status (age-check: >90 days flagged)
+- Orphaned tokens (auth'n success but source unknown)
+
+**SLA:** Detection latency ≤24h. Notification on **critical** finding within 30 min same day.
 
 ---
 
@@ -135,12 +156,62 @@ related:
 5. [ ] Smoke-test: каждый сервис из inventory подключается успешно
 6. [ ] Обновить колонку «Последняя ротация» в таблице выше
 
-### Расширение inventory
+### 6.1 Автоматизация инвентаря (WP-315 Ф4)
+
+> **Automator:** `secret-inventory-sync.sh` (systemd timer, ~05:00 МСК, после VR.R.002)
+> **Input:** JSON из systemd journal (Secret Drift Detector results)
+> **Output:** обновлённый security-posture.md + git commit
+
+**Механизм:**
+1. Secret Drift Detector пишет результаты в systemd journal (Layer 1-4 findings)
+2. VR.R.002 daily-headless парсит journal, формирует JSON-сводку
+3. `secret-inventory-sync.sh` читает JSON → обновляет §6 таблицу:
+   - Обновить колонку «Последняя ротация» (если ротация обнаружена)
+   - Добавить новые строки (если обнаружены новые секреты)
+   - Отметить orphaned (если найдены в Layer N, но не в inventory)
+4. Git commit: `docs(WP-315): secret inventory update YYYY-MM-DD`
+
+**Данные в JSON:**
+```json
+{
+  "timestamp": "2026-05-14T04:45:00Z",
+  "findings": [
+    {
+      "secret_id": "neondb_owner",
+      "type": "postgresql_role",
+      "layers_found": [1, 2, 3],
+      "last_rotated": "2026-05-12",
+      "age_days": 2,
+      "status": "ok"
+    },
+    {
+      "secret_id": "orphaned_cf_token",
+      "type": "cloudflare",
+      "layers_found": [3],
+      "status": "orphaned",
+      "note": "found in CF but not in local inventory"
+    }
+  ]
+}
+```
+
+**Вход в скрипт:**
+- Путь к JSON-файлу (или journalctl parsing)
+- Путь к security-posture.md
+
+**Выход:**
+- Изменённый security-posture.md (дифф в §6)
+- Git commit + push (optional)
+- Лог ошибок в stderr (если дифф не применилась)
+
+**SLA:** Обновление ≤15 мин после Secret Drift Detector. Notification if orphaned secrets found.
+
+### 6.2 Расширение inventory (ручное)
 
 ```
-Роль: VR.R.002 Аудитор (или инженер при ротации)
+Роль: Инженер при ротации (или VR.R.002 при автоматизации)
 Шаги:
-1. Новый секрет/сервис → добавить строку в таблицу выше
+1. Новый секрет/сервис → добавить строку в таблицу §6
 2. Указать все 4 слоя (если слой не применим — "—")
 3. Обновить WP-315 context если секрет добавлен в рамках РП
 ```
