@@ -119,7 +119,7 @@ related:
 
 ### Инструменты (WP-315)
 
-- **Сканер:** `FMT-exocortex-template/scripts/iwe-grep-secret.sh` (Layer 1 + Layer 3 MVP, Layer 2 deferred)
+- **Сканер:** `FMT-exocortex-template/scripts/iwe-grep-secret.sh` v0.2.0 (Layer 1 + Layer 2 Railway + Layer 3; CF Workers write-only — скан по значению невозможен by design)
 - **Паритет:** `FMT-exocortex-template/scripts/check-setup-update-parity.sh` + `.claude/parity-contract.yaml`
 - **FDW rotation:** `DS-IT-systems/neon-migrations/apply-fdw-rotation.sh` + `mvp/215-sync-fdw-credentials.sql`
 - **Enforcer:** `PACK-agent-rules/rules/AR.205-rotation-verify-pass.md`
