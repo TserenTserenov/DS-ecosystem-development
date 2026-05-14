@@ -10,10 +10,11 @@ wp: 309
 phase: Ф2
 note: SoT-документ доставки персонального руководства через 3 интерфейса (бот / браузер / VS Code). Матрица операций × каналов + инварианты + lifecycle.
 related:
-  - DP.SC.020 (доставка занятий)
+  - DP.SC.020 §Цикл ВДВ (5-шаговый каскад + feedback loop)
   - WP-149 (Портной — write-side)
   - WP-188 (consent gate Ф17)
   - WP-287 (публичные docs IWE)
+  - DS-autonomous-agents/PROCESSES.md §S60 (процессный уровень цикла)
 ---
 
 # Каналы доставки персонального руководства
@@ -38,8 +39,8 @@ related:
 |----------|-----------|----------------|
 | **Create** | Создать репо на GitHub пилота + первое наполнение 6 файлами | Пилот один раз через `/personal-guide-start` |
 | **Read** | Прочитать руководство (profile / worldview / methods / weekly / daily / README) | Пилот многократно |
-| **Commit reflection** | Записать дневную рефлексию по шаблону `history/YYYY-MM-DD-reflection.txt` | Пилот ежедневно |
-| **Refresh on RCS change** | Пересобрать руководство при обновлении RCS-профиля (Память.Derived) | Портной (автоматически) или пилот командой |
+| **Commit reflection** | Записать дневную рефлексию по шаблону `history/YYYY-MM-DD-reflection.md` (5 вопросов) | Пилот ежедневно — замыкает feedback loop цикла ВДВ |
+| **Refresh on RCS change** | Пересобрать руководство при обновлении RCS-профиля (Память.Derived) | Портной (автоматически по таймеру) или пилот командой |
 
 ## Матрица каналов × операций
 
@@ -88,7 +89,9 @@ related:
 - **Refresh:** `/personal-guide-render` + локальная пересборка + push.
 - **Identity-зависимость:** `/connect-guide` требует `telegram_user_id` (пробел для VS Code-only-пилотов — закрывается WP-303 Ory-direct).
 
-## Reflection contract (Ф3)
+## Reflection contract (Ф3) — часть цикла ВДВ
+
+> **Контекст:** Reflection — это стадия 5 цикла ВДВ (Потребление → Обратная связь). Пилот пишет → Портной-2 читает → следующее руководство адаптируется. Полный цикл: [DP.SC.020 §Цикл ВДВ](../../../../../../../PACK-digital-platform/pack/digital-platform/08-service-clauses/DP.SC.020-personal-development-program.md), процессный уровень: [DS-autonomous-agents/PROCESSES.md §S60](../../../../../../../DS-autonomous-agents/PROCESSES.md).
 
 **Формат:** `history/<YYYY-MM-DD>-reflection.md`, 5 вопросов на 5 минут.
 
@@ -110,12 +113,14 @@ related:
 | Браузер | `personal_write(source: "personal-guide", path: "history/<дата>-reflection.md", content: ...)` |
 | VS Code | редактирование локального файла + `git commit` + `git push` |
 
-**Как Портной (WP-149) читает обратно:**
+**Как Портной-2 (WP-149) читает обратно:**
 
-В Шаге 1 следующего render (`/personal-guide-render`) — после `dt_read_digital_twin` дополнительно вызывается `personal_search(source: "personal-guide", path: "history/", pattern: "*-reflection.md")` за последние 7 дней. Извлекаются:
+При следующем рендере (Пн 05:00 или Вт–Вс 06:00) серверный процесс `render-pilot-guides.py` вызывает `get_pilot_reflections()` — читает `history/*-reflection.md` за последние 7 дней через GitHub API. Извлекаются:
 
-- Ответ на (3) «Что узнал» → сигнал для PD.FORM.087 фазового перехода (Шаг 2 проверки ступени).
-- Ответ на (5) «Что завтра» → input для пересборки `daily/<завтра>.md` (Шаг 6.6).
+- **Q3 «Что узнал»** → `trigger_info["reflection_learned"]` → сигнал для PD.FORM.087 фазового перехода (проверка ступени).
+- **Q5 «Что завтра»** → `horizon_ctx.pilot_reflection_tomorrow_intention` → input для пересборки `daily/<завтра>.md` (акцент, приоритеты).
+
+Это замыкает **feedback loop** цикла ВДВ: пилот пишет → Портной читает → руководство адаптируется.
 
 **Контракт не закрывает:** в Ф3 не описан handler бота `/reflect` (это Ф4 — браузерный smoke + ботовая реализация). До Ф4 пилоты wave-1 пишут рефлексию через VS Code или браузер.
 
