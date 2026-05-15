@@ -3962,3 +3962,66 @@
   }
 }
 ```
+
+## 2026-05-15T17:21:01+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Оба про одно, но разные углы. Вопрос: нужно ли нам для каждой оси (Мировоззрение/Мастерство для Пилота, Информация/Прогр"
+    ],
+    "session_id": "244cd3dd-70fb-46d6-89ae-8a5e9b19c46a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-15T17:21:33+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Оба про одно, но разные углы. Вопрос: нужно ли нам для каждой оси (Мировоззрение/Мастерство для Пилота, Информация/Прогр"
+    ],
+    "session_id": "244cd3dd-70fb-46d6-89ae-8a5e9b19c46a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-15T19:16:41+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Сейчас это не проблема только потому что Кими офлайн. Но если будете запускать нас параллельно на одном РП — нужно либо "
+    ],
+    "session_id": "e6bd72b1-0809-4c88-bcb9-9eedc2aee6fd"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
