@@ -37,7 +37,7 @@ related:
 | Неделя закрыта | `week_plan_closed` | Систематичность, Системность мировоззрения | Week Close завершён | ✅ | ОРЗ-хук (Stop) |
 | Месяц закрыт | `month_plan_closed` | Систематичность, Системность мировоззрения | Month Close завершён | ✅ | ОРЗ-хук (Stop) |
 | Стратегическая сессия | `strategy_session_completed` | Систематичность, Системность мировоззрения, Агентность | /strategy-session | ✅ | ОРЗ-хук (Stop) |
-| Время в редакторе | `coding_time` | Инвестированное время | WakaTime, IDE активность | ✅ | iwe.py adapter |
+| Время в редакторе | `coding_time` | информационно (planned bh.inv с domain filter, WP-214 Ф10.5) | WakaTime, IDE активность | ✅ | iwe.py adapter |
 | Слот залогирован | `slot_logged` | Инвестированное время | /slot в боте | ✅ | aist-bot |
 | Pack обновлён | `pack_updated` | Методичность, Системность мировоззрения | Коммит в PACK-* | ✅ | git hook (post-commit) |
 | Квалификация получена | `qualification_granted` | Методичность | LMS, завершение программы | ⚠️ Gap-В | Bridge-2 (не реализовано) |
@@ -305,29 +305,28 @@ WHERE account_id = %s::uuid
 >
 > **Gap-Б (minor):** legacy aliases `day_close`/`day_open` в ORZ hook и iwe.py. Поддерживать оба до миграции.
 
-### 7.2 Инвестированное время (`avg_hours_per_week`)
+### 7.2 Инвестированное время (bh.inv, `avg_hours_per_week`)
 
 Суммируются часы из источников за окно текущей ступени (аналогично §7.1), делятся на `accounting_weeks`.
 
+> **К4 (FORM.089 v4 §12.2):** `coding_time` (WakaTime) исключён из bh.inv — WakaTime включает все репозитории, включая рабочие. Используются только чистые учебные события. Нормативы установлены с учётом этого занижения.
+> Информационно `coding_time` доступен в evidence для будущего bh.inv с domain_filter (WP-214 Ф10.5).
+
 | Источник | event_type | Поле payload | Формула |
 |----------|-----------|-------------|---------|
-| WakaTime | `coding_time` | `payload.total_seconds` | `/ 3600` |
 | Бот-слоты | `slot_logged` | `payload.hours` | прямо |
 | Обучение LMS | `lesson_completed` | `payload.duration_minutes` | `/ 60` |
-| Day Close bonus | `day_close` | `payload.wakatime_h` | прямо (если WakaTime не подключён) |
 
 ```sql
 SELECT COALESCE(SUM(hours), 0) / 4.0 AS avg_per_week FROM (
-  SELECT (payload->>'total_seconds')::float / 3600 AS hours
-    FROM domain_event WHERE event_type = 'coding_time'
-      AND occurred_at > NOW() - INTERVAL '28 days'
-  UNION ALL
-  SELECT (payload->>'hours')::float
+  SELECT (payload->>'hours')::float AS hours
     FROM domain_event WHERE event_type = 'slot_logged'
+      AND payload->>'hours' IS NOT NULL
       AND occurred_at > NOW() - INTERVAL '28 days'
   UNION ALL
   SELECT (payload->>'duration_minutes')::float / 60
     FROM domain_event WHERE event_type = 'lesson_completed'
+      AND payload->>'duration_minutes' IS NOT NULL
       AND occurred_at > NOW() - INTERVAL '28 days'
 ) t
 ```
