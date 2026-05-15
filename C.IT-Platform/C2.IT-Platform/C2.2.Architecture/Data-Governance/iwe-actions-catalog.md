@@ -38,7 +38,7 @@ related:
 | Месяц закрыт | `month_plan_closed` | Систематичность, Системность мировоззрения | Month Close завершён | ✅ | ОРЗ-хук (Stop) |
 | Стратегическая сессия | `strategy_session_completed` | Систематичность, Системность мировоззрения, Агентность | /strategy-session | ✅ | ОРЗ-хук (Stop) |
 | Время в редакторе | `coding_time` | информационно (planned bh.inv с domain filter, WP-214 Ф10.5) | WakaTime, IDE активность | ✅ | iwe.py adapter |
-| Слот залогирован | `slot_logged` | Инвестированное время | /slot в боте | ✅ | aist-bot |
+| Слот залогирован | `slot_logged` | Инвестированное время | бот (active/self_report_*) | ✅ | aist-bot |
 | Pack обновлён | `pack_updated` | Методичность, Системность мировоззрения | Коммит в PACK-* | ✅ | git hook (post-commit) |
 | Квалификация получена | `qualification_granted` | Методичность | LMS, завершение программы | ⚠️ Gap-В | Bridge-2 (не реализовано) |
 | РП зарегистрирован | `wp_created` | Агентность | Создание WP-NNN файла | ✅ | ОРЗ-хук (PostToolUse) |
@@ -263,6 +263,16 @@ wp_closed / git_commit — domain по repo_domain_map (Ф10.5 WP-214)
 **Идемпотентность:** `(source, external_id)` — уникальный ключ в `domain_event`.
 **Авторизация:** service token для `iwe-hooks` source (не OAuth, не per-user JWT — это машинный источник).
 
+**Пример payload для `slot_logged` (К4-uplift Ф13):**
+
+```yaml
+event_type: slot_logged
+payload:
+  hours: 1.5  # number of hours
+  source: active | self_report_backfill | self_report_daily | self_report_weekly
+  confidence: measured | estimated  # measured = real-time, estimated = self-report (default by source)
+```
+
 ---
 
 ## 7. Attribution: маппинг событий → характеристики ступени
@@ -314,7 +324,10 @@ WHERE account_id = %s::uuid
 
 | Источник | event_type | Поле payload | Формула |
 |----------|-----------|-------------|---------|
-| Бот-слоты | `slot_logged` | `payload.hours` | прямо |
+| Бот-слоты (active) | `slot_logged` `payload.source='active'` | `payload.hours` | вручную через `/slot` после практики |
+| Onboarding backfill | `slot_logged` `payload.source='self_report_backfill'` | `payload.hours` | одноразовый ввод среднего ч/нед за прошлый период |
+| Day Close self-report | `slot_logged` `payload.source='self_report_daily'` | `payload.hours` | прямой ответ на prompt после Day Close |
+| Week Close self-report | `slot_logged` `payload.source='self_report_weekly'` | `payload.hours` | catch-all при Week Close |
 | Обучение LMS | `lesson_completed` | `payload.duration_minutes` | `/ 60` |
 
 ```sql
@@ -343,6 +356,8 @@ SELECT COALESCE(SUM(hours), 0) / 4.0 AS avg_per_week FROM (
 | **0** | — | < 0.5 |
 
 > ~~Нормализация в индекс 0–5: < 1 ч/нед → 0 / 1–2 → 1 / 2–5 → 2 / 5–8 → 3 / 8–12 → 4 / > 12 → 5~~ — устарело (WP-310 Ф7, 15 мая 2026). Заменено на multi-window выше.
+
+> **Ф13 (15 мая):** все четыре `source` равноценны для bh.inv (FORM.089 §12.2 К4-uplift). bh.sys/bh.stb не включают self-report.
 
 > **Аудит Ф1:** WakaTime хранится как event_type=`coding_time` с `payload.total_seconds` (iwe.py adapter). Не `slot_logged` и не `payload.hours`. Скорректировано.
 
