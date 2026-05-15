@@ -54,7 +54,7 @@ related:
 | Ф5 CI/CD | 6 | 5 | 83% | B5.6 private repos (dep GitHub Pro) |
 | Ф6 Backup/DR | 4 | 4 | 100% | ✅ — |
 | Ф7 ArchGate | 14 | 11 | 79% | B7.3.6 доступ Павла (требует пользователя) |
-| Ф8 Compliance | 8 | 1 | 13% | B8.0 ToS+Privacy v0.1 done; B8.1-B8.5 dep WP-186 |
+| Ф8 Compliance | 8 | 1 | 13% | B3.8 Privacy draft ✅; B8.0 ToS+Privacy v0.1 draft ready, не опубликован; B8.1-B8.5 dep WP-186 |
 | Ф9 Neon RLS roll-out | 7 | 1 | 14% | B9.x dep WP-228 |
 | **Итого** | **78** | **54** | **69%** | — |
 
@@ -224,7 +224,7 @@ related:
 | 2026-04-12 | Ф1 Remediation | Claude (Sonnet) + Паша | Ф1 ✅, Ф4 80% | WP-212 Ф4 |
 | 2026-04-14 | Ф2-Ф7 Deep dive | Claude (Sonnet) | 48/65 DONE, sub-agent верификация PASS | WP-212 Handoff 14 апр |
 | 2026-04-28 | STRIDE first-pass | Claude (Sonnet) | 8 сервисов охвачено, 6 open questions | B7.2-stride-threat-model.md |
-| 2026-05-08 | Статус ревью | VR.R.002 Аудитор (Sonnet) | 54/78 69%, 14 open vulns, posture level 1; B8.0 ToS+Privacy v0.1 done; VR.R.002 как автономный агент задеплоен | этот файл |
+| 2026-05-08 | Статус ревью | VR.R.002 Аудитор (Sonnet) | 54/78 69%, 14 open vulns, posture level 1; B8.0 ToS+Privacy v0.1 draft ready (публикация pending); VR.R.002 как автономный агент задеплоен | этот файл |
 | **с 2026-05-09** | **Daily** | **VR.R.002 daily-headless (tsekh-1)** | автоматически 04:45 МСК | DS-agent-workspace/auditor/YYYY-MM-DD/ |
 | **2026-06-01** | Month Close аудит | **VR.R.002 monthly-deep** | запланирован | — |
 
