@@ -36,6 +36,7 @@ target_audience:
 | Инструмент | Ссылка | Что показывает |
 |-----------|--------|----------------|
 | **Metabase** | [dashboard/2](https://metabase-production-a4f6.up.railway.app/dashboard/2) | Пользовательские метрики (ступени, активность, баллы) |
+| **Metabase — Аттестатор** | `TODO: stage-distribution-v1` после создания | Распределение по ступеням, переходы, consent, health Аттестатора (WP-310 Ф8) |
 | **Grafana** | `TODO: вставить URL` | Latency, error rates, Neon connection pools |
 | **Neon Console** | [console.neon.tech](https://console.neon.tech) | 15 БД, connection stats, query inspector |
 
