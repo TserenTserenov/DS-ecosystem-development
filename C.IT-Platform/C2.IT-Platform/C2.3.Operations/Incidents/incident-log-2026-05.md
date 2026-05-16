@@ -4046,3 +4046,68 @@
   }
 }
 ```
+
+## 2026-05-16T09:34:48+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P1_not_capturing",
+    "severity": "minor",
+    "description": "Write в feedback_create_wp_via_script.md без ссылки на паттерн (pattern: P{N} / DP.FM.). Проверь DP.FM.010 перед записью нового правила (DP.FM.011 §Correction).",
+    "tool_context": {
+      "tool_name": "Edit",
+      "file_path": "/Users/tserentserenov/.claude/projects/-Users-tserentserenov-IWE/memory/feedback_create_wp_via_script.md",
+      "snippet": "  originSessionId: f8d9c154-d7fe-485c-8a82-48ed19576a34---Новый РП = только `bash $IWE_SCRIPTS/create-wp.sh --title \"...\" --budget Xh --priority PN`.`$IWE_SCRIPTS` = `~/IWE/FMT-exocortex-"
+    }
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-16T09:35:14+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P1_not_capturing",
+    "severity": "minor",
+    "description": "Write в feedback_fmt_scripts_sync_gap.md без ссылки на паттерн (pattern: P{N} / DP.FM.). Проверь DP.FM.010 перед записью нового правила (DP.FM.011 §Correction).",
+    "tool_context": {
+      "tool_name": "Write",
+      "file_path": "/Users/tserentserenov/.claude/projects/-Users-tserentserenov-IWE/memory/feedback_fmt_scripts_sync_gap.md",
+      "snippet": "Все три удалены 16 мая. Баг-файл `inbox/bugs/bug-2026-05-08-fmt-validate-blocks-extractor-fixes.md` фиксировал это ещё 8 мая.**Why:** `template-sync.sh` по�"
+    }
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-16 — template-script-level-confusion
+
+**Тип:** архитектурный drift  
+**Severity:** medium  
+**Паттерн:** P10 (реализация до проектирования) / неверная классификация L1 vs L3
+
+**Что произошло:**  
+WP-291 (12 мая) добавил флаг `--related` в `FMT/scripts/create-wp.sh` напрямую.  
+При «исправлении» 16 мая создали backport L1-скрипта в `DS-my-strategy/scripts/create-wp.sh` — ошибочно приняв за L3.  
+Там же обнаружены `active-wp-sweep.sh` и `archive-done-wp.sh` — устаревшие копии FMT с hardcoded путями.  
+Баг-файл `inbox/bugs/bug-2026-05-08-fmt-validate-blocks-extractor-fixes.md` диагностировал это ещё 8 мая, но не был выполнен.  
+MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный относительный путь.
+
+**Root cause:** Нет чёткой видимой границы между L1 (FMT/scripts/) и L3 (DS-my-strategy/scripts/) при записи команд.
+
+**Fix:**  
+- Удалены 3 дублирующих скрипта из DS-my-strategy/scripts/  
+- MEMORY.md: `bash scripts/*` → `bash $IWE_SCRIPTS/*`  
+- feedback_create_wp_via_script.md исправлен  
+- feedback_fmt_scripts_sync_gap.md переписан с правильной архитектурой
+
+**Системная защита:** детектор `diff -rq $IWE_SCRIPTS/ ~/IWE/DS-my-strategy/scripts/` — имена пересекаются = подозрительный дубликат.
