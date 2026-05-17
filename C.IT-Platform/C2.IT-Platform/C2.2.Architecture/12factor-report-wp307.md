@@ -36,7 +36,7 @@
 | W1 | activity-hub | `DS-IT-systems/activity-hub` | Railway | `runner.py` | ✅ |
 | W2 | bridge-2-events-poller | `DS-IT-systems/bridge-2-events-poller` | Railway | TBD | ✅ |
 | W3 | multi-domain-projection-worker | `DS-IT-systems/multi-domain-projection-worker` | Railway (не задеплоен) | TBD | ✅ |
-| W4 | rewards-projection-worker | `DS-IT-systems/rewards-projection-worker` | Railway | TBD | ✅ |
+| ~~W4~~ | ~~rewards-projection-worker~~ ⛔ decommission'd 2026-05-17 (WP-311 Ф-Close) | `DS-IT-systems/rewards-projection-worker` (DEPRECATED.md) | — (Railway service удалён) | — | — |
 | W5 | payment-registry | `DS-IT-systems/payment-registry` | TBD (нет Dockerfile) | TBD | ✅ |
 | M1 | gateway-mcp | `DS-MCP/gateway-mcp` | Cloudflare Workers | `src/` (TypeScript) | ✅ |
 | M2 | knowledge-mcp | `DS-MCP/knowledge-mcp` | Cloudflare Workers | TypeScript | ✅ |
