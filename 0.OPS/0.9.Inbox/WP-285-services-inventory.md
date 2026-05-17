@@ -52,7 +52,7 @@ author: Церен
 |--------|-----------|-----------------|--------------|------------|---------------|---------|-----|
 | **aist_bot_newarchitecture** | Telegram-бот (@aist_me_bot, @aist_pilot_me) | **нет** (Telegram pull) | не нужен | ✓ | Railway, `railway up` manual ⚠️ | GKE Deployment | Deployment |
 | **multi-domain-projection-worker** | Проекции событий → persona / subscription / indicators | **нет** (читает БД) | не нужен | ✓ | Railway, **не задеплоен** (ждёт WP-270) 🟡 | GKE CronJob | CronJob |
-| **rewards-projection-worker** | Расчёт баллов и достижений | **нет** (читает БД) | не нужен | ✓ | Railway, `railway up` manual ⚠️ | GKE CronJob | CronJob |
+| ~~**rewards-projection-worker**~~ ⛔ **decommission'd 2026-05-17** (WP-311 Ф-Close) | — | — | — | — | — | — | Функционал поглощён `multi-domain-projection-worker` (см. строку выше) |
 | **activity-hub** | Сборщик событий (medallion: bronze/silver/gold) | **нет** (читает journal из БД) | не нужен | ✓ | Railway, `railway up` manual ⚠️ | GKE Deployment | Deployment |
 | **payment-registry** | Единый журнал транзакций | **нет** (внутренний API) | cluster-internal | **⚠️ TBD** — нет Dockerfile в корне (WP-307 Ф1) | TBD | GKE Deployment | Deployment |
 | **google-drive-mcp** | Интеграция с Google Drive (Python MCP server) | **да** (HTTPS MCP + OAuth callback) | TBD | TBD (сейчас `python mcp_server.py` без build) | локально/stateless | GKE Deployment | Deployment |

@@ -98,7 +98,7 @@
 | **W1** activity-hub | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | ✅ |
 | **W2** bridge-2-events-poller | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | N/A |
 | **W3** multi-domain-projection-worker | N/A | ⚠️ | ✅ | ✅ | N/A | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **W4** rewards-projection-worker | ✅ | ⚠️ | ✅ | ✅ | ✅ | ✅ | N/A | ✅ | ✅ | ✅ | ✅ | ✅ |
+| ~~**W4** rewards-projection-worker~~ ⛔ decommission'd 2026-05-17 | — | — | — | — | — | — | — | — | — | — | — | — |
 | **W5** payment-registry | ⚠️ | ❌ | ⚠️ | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
 | **M1** gateway-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |
 | **M2** knowledge-mcp | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | N/A |

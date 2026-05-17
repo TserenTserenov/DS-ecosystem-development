@@ -42,7 +42,7 @@
 | **W1** | activity-hub (event store + collector) | `DS-IT-systems/activity-hub` | Railway (Dockerfile, github.com/aisystant/activity-hub) | `runner.py` |
 | **W2** | bridge-2-events-poller | `DS-IT-systems/bridge-2-events-poller` | Railway (Dockerfile, github.com/TserenTserenov/bridge-2-events-poller) | TBD |
 | **W3** | multi-domain-projection-worker | `DS-IT-systems/multi-domain-projection-worker` | Railway (Dockerfile, github.com/aisystant/multi-domain-projection-worker) | TBD |
-| **W4** | rewards-projection-worker | `DS-IT-systems/rewards-projection-worker` | Railway (Dockerfile, github.com/aisystant/rewards-projection-worker) | TBD |
+| ~~**W4**~~ | ~~rewards-projection-worker~~ ⛔ **decommission'd 2026-05-17** (WP-311 Ф-Close) | `DS-IT-systems/rewards-projection-worker` (DEPRECATED.md) | Railway — удалён из `peaceful-vision`; функционал в W3 `multi-domain-projection-worker` (`attractive-optimism`) | — |
 | **W5** | payment-registry | `DS-IT-systems/payment-registry` | **⚠️ TBD** — нет Dockerfile в корне, deployment model не идентифицирован (Ф1: F1=⚠️) | TBD |
 
 ### Tier R-3: MCP-серверы (Cloudflare Workers / Node.js / Python)
@@ -131,7 +131,7 @@
 | W1 | activity-hub-worker | `railway up` (manual) | ❌ нет | ⚠️ | ❌ |
 | W2 | bridge-2-lms-poller | `railway up` (manual) | ❌ нет | ⚠️ | ❌ |
 | W3 | multi-domain-projection-worker | **не задеплоен** (ждёт миграции WP-270) | — | 🟡 | 🟡 |
-| W4 | rewards-projection-worker | `railway up` (manual) | ❌ нет | ⚠️ | ❌ |
+| ~~W4~~ | ~~rewards-projection-worker~~ ⛔ decommission'd 2026-05-17 | — | — | — | — |
 | W5 | payment-registry | TBD (нет Dockerfile) | — | ⚠️ | 🟡 |
 | M1-M5/M7-M11 | CF Workers | `wrangler deploy` (CLI, обычно из CI) | ⚠️ зависит от запускающего | ✅ | ✅ image immutable + wrangler.toml versioned |
 | M6 | google-drive-mcp | `python mcp_server.py` (без build) | — | ✅ local repo | ❌ нет build/release |

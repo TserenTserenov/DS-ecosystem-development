@@ -97,12 +97,14 @@ psql "$DATABASE_URL_REWARDS" -v consumer=rewards -v window_hours=24 -f count-par
 
 ### Шаг 4. Перезапустить projection-worker
 
-После replay PASS — projection-worker возвращается в строй:
+После replay PASS — projection-worker возвращается в строй.
+
+> **Update 2026-05-17 (WP-311 Ф-Close):** production projection-worker = `multi-domain-projection-worker` в проекте `attractive-optimism` (legacy `rewards-projection-worker` в `peaceful-vision` decommission'd).
 
 ```bash
-railway service restart rewards-projection-worker
-# Verify он LISTEN'ит:
-railway logs --service rewards-projection-worker --tail 20 | grep "LISTEN"
+railway --service multi-domain-projection-worker restart
+# Verify он LISTEN'ит / cursor движется:
+railway --service multi-domain-projection-worker logs --tail 20 | grep -E "LISTEN|cursor"
 ```
 
 Проверить что новые события идут:

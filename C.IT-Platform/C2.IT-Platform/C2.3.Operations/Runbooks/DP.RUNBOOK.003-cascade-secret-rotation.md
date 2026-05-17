@@ -118,7 +118,7 @@ Cascade order: **сначала создать новый**, потом обно
 
 1. **Local scripts + `.secrets/`** (~/IWE/.secrets/<key>) — обновить файл, проверить wrapper-скриптом.
 2. **Аналитика и наблюдаемость** (Langfuse, Metabase, observability-webhook, status-proxy) — обновить env, перезапустить если нужно.
-3. **Worker-сервисы вторичные** (rewards-projection-worker, bridge-2-events-poller, payment-registry, multi-domain-projection-worker) — `wrangler secret put` или Railway env.
+3. **Worker-сервисы вторичные** (multi-domain-projection-worker, bridge-2-events-poller, payment-registry) — `wrangler secret put` или Railway env. ⚠️ `rewards-projection-worker` decommission'd 2026-05-17 (WP-311 Ф-Close), функционал поглощён multi-domain.
 4. **MCP-бэкенды** (knowledge-mcp, digital-twin-mcp, personal-knowledge-mcp, event-gateway, payment-receiver) — `wrangler secret put` + smoke.
 5. **Gateway-MCP** (gateway-mcp) — обновить, перепроверить routing к бэкендам.
 6. **Activity-hub** (Railway) — `railway variables --set`, перезапустить.

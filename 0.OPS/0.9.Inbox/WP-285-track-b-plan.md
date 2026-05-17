@@ -145,7 +145,7 @@ source: ИТ-встречи 13-15 (5-14 мая), транскрипт опера
 | 3.2.6 | **fsm-mcp** | Андрей | 11 июня | 1h | `wrangler.toml` → stateless, env vars под Track B |
 | 3.2.7 | **activity-hub** | Андрей + Паша | 12 июня | 2h | Dockerfile → GKE Deployment, читает Cloud SQL journal |
 | 3.2.8 | **multi-domain-projection-worker** | Андрей + Паша | 13 июня | 2h | Dockerfile → GKE CronJob |
-| 3.2.9 | **rewards-projection-worker** | Андрей + Паша | 13 июня | 2h | Dockerfile → GKE CronJob |
+| ~~3.2.9~~ | ~~**rewards-projection-worker**~~ ⛔ decommission'd 2026-05-17 (WP-311 Ф-Close) | — | — | — | Функционал поглощён `multi-domain-projection-worker` (см. 3.2.8) |
 
 ### 3.3 Приоритет 3 — остальные сервисы (14-30 июня)
 
