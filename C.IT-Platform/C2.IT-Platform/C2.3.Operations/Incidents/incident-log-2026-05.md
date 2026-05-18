@@ -6381,3 +6381,154 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-18T15:36:25+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Короткий ответ:** оба остатка — это не «забыл сделать», а «делать не было экономного способа». Первый требует смыслово"
+    ],
+    "session_id": "66a007d6-c3b2-4b92-99b6-c4bab3db248a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-18T15:36:37+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Мы отправили им пять вопросов о безопасности: где они хранят данные, можно ли подписать юридическое соглашение, как удал"
+    ],
+    "session_id": "6ce69aec-6227-4ee6-8ba8-130b8cd68764"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-18T15:36:39+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "**Короткий ответ:** оба остатка — это не «забыл сделать», а «делать не было экономного способа». Первый требует смыслово",
+      "P5 сработал ложно — в ответе не было запроса разрешения, фраза «Короткий ответ» — заключение объяснения, не вопрос. Объя"
+    ],
+    "session_id": "66a007d6-c3b2-4b92-99b6-c4bab3db248a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-18T15:36:55+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Мы отправили им пять вопросов о безопасности: где они хранят данные, можно ли подписать юридическое соглашение, как удал",
+      "Мы отправили им пять вопросов о безопасности: где хранят данные, есть ли юридическое соглашение, как удалить данные конк"
+    ],
+    "session_id": "6ce69aec-6227-4ee6-8ba8-130b8cd68764"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-18T15:45:20+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "P5 сработал ложно — в ответе не было запроса разрешения, фраза «Короткий ответ» — заключение объяснения, не вопрос. Объя"
+    ],
+    "session_id": "66a007d6-c3b2-4b92-99b6-c4bab3db248a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-18T15:55:48+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Ответ придёт в комментарий к тому же вопросу, который мы опубликовали на их GitHub-странице. GitHub должен прислать emai",
+      "2. **Согласие — отдельным действием.** Мы хотим брать у пилотов отдельное согласие именно на анализ текстов — не включат"
+    ],
+    "session_id": "6ce69aec-6227-4ee6-8ba8-130b8cd68764"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-18T15:56:15+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Ответ придёт в комментарий к тому же вопросу, который мы опубликовали на их GitHub-странице. GitHub должен прислать emai",
+      "2. **Согласие — отдельным действием.** Мы хотим брать у пилотов отдельное согласие именно на анализ текстов — не включат"
+    ],
+    "session_id": "6ce69aec-6227-4ee6-8ba8-130b8cd68764"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
