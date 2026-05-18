@@ -6659,3 +6659,194 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-18T18:55:52+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "В CHECKLIST-subsection/section/guide уже есть трёхуровневая каскадная система (🔴 машинный → 🟡 агент → 🟢 пилот). Матрица "
+    ],
+    "session_id": "0dd97dd6-994d-47cb-8aea-f078fbd9a770"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-principles-curriculum"
+  }
+}
+```
+
+## 2026-05-18T18:56:28+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "В CHECKLIST-subsection/section/guide уже есть трёхуровневая каскадная система (🔴 машинный → 🟡 агент → 🟢 пилот). Матрица ",
+      "Принято. Риторический вопрос «Как связан F1 матрицы с 🔴 A-F из CHECKLIST-subsection?» в п.4 — детектирован как P5. В кри"
+    ],
+    "session_id": "0dd97dd6-994d-47cb-8aea-f078fbd9a770"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-principles-curriculum"
+  }
+}
+```
+
+## 2026-05-18T19:15:53+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "| `next_best_action` — что делать дальше | `cognitive` schema, вычисляется Портным | DP.SC.142 + DP.ROLE.052 | "
+    ],
+    "session_id": "4828f9da-b6e2-43bf-8c00-e13b3fc84e54"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-18T19:16:12+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "| `next_best_action` — что делать дальше | `cognitive` schema, вычисляется Портным | DP.SC.142 + DP.ROLE.052 | "
+    ],
+    "session_id": "4828f9da-b6e2-43bf-8c00-e13b3fc84e54"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-18T19:27:29+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "| `next_best_action` — что делать дальше | `cognitive` schema, вычисляется Портным | DP.SC.142 + DP.ROLE.052 | ",
+      "«Или хочешь, чтобы я спланировал пошаговый план…» — это yes/no запрос разрешения, не choice-question. Три Slice перед не"
+    ],
+    "session_id": "4828f9da-b6e2-43bf-8c00-e13b3fc84e54"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-18T19:27:42+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "«Или хочешь, чтобы я спланировал пошаговый план…» — это yes/no запрос разрешения, не choice-question. Три Slice перед не"
+    ],
+    "session_id": "4828f9da-b6e2-43bf-8c00-e13b3fc84e54"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-18T19:31:25+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "«Или хочешь, чтобы я спланировал пошаговый план…» — это yes/no запрос разрешения, не choice-question. Три Slice перед не"
+    ],
+    "session_id": "4828f9da-b6e2-43bf-8c00-e13b3fc84e54"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-18T19:52:00+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Один DB role `cognitive_proxy_reader` не может покрыть все четыре. Нужно либо описать доступ per-field, либо признать, ч"
+    ],
+    "session_id": "4828f9da-b6e2-43bf-8c00-e13b3fc84e54"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-18T19:52:15+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Один DB role `cognitive_proxy_reader` не может покрыть все четыре. Нужно либо описать доступ per-field, либо признать, ч"
+    ],
+    "session_id": "4828f9da-b6e2-43bf-8c00-e13b3fc84e54"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
