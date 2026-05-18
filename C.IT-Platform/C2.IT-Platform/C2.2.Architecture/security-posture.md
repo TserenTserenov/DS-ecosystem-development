@@ -144,7 +144,7 @@ related:
 - **Паритет:** `FMT-exocortex-template/scripts/check-setup-update-parity.sh` + `.claude/parity-contract.yaml`
 - **FDW rotation:** `DS-IT-systems/neon-migrations/apply-fdw-rotation.sh` + `mvp/215-sync-fdw-credentials.sql`
 - **Enforcer:** `PACK-agent-rules/rules/AR.205-rotation-verify-pass.md`
-- **Service Clause:** `PACK-digital-platform/08-service-clauses/DP.SC.125-secret-drift-detector.md`
+- **Service Clause:** `PACK-digital-platform/08-service-clauses/DP.SC.146-secret-drift-detector.md`
 
 ### Чеклист ротации (AR.205 probe)
 

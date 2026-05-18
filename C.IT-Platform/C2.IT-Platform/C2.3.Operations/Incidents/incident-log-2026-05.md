@@ -6212,3 +6212,150 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-18T13:11:25+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P1_not_capturing",
+    "severity": "minor",
+    "description": "Write в feedback_lean_mvp_after_full_archgate.md без ссылки на паттерн (pattern: P{N} / DP.FM.). Проверь DP.FM.010 перед записью нового правила (DP.FM.011 §Correction).",
+    "tool_context": {
+      "tool_name": "Write",
+      "file_path": "/Users/tserentserenov/.claude/projects/-Users-tserentserenov-IWE/memory/feedback_lean_mvp_after_full_archgate.md",
+      "snippet": "4. **Если пилот выбирает (б):** Pack-артефакты (ServiceClause, Role, Method) — частично в MVP (минимально нужные), остальные в Ф{next+1"
+    }
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-18T14:11:24+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- **WP-296 (клуб)** — заблокирован ORY-SSO от Дмитрия. Внешний блокер, агент не разрешает. "
+    ],
+    "session_id": "a250de32-713a-4972-bcb4-365b2a85a95b"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-18T14:11:43+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- **WP-296 (клуб)** — заблокирован ORY-SSO от Дмитрия. Внешний блокер, агент не разрешает. "
+    ],
+    "session_id": "a250de32-713a-4972-bcb4-365b2a85a95b"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-18T14:19:25+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P1_not_capturing",
+    "severity": "minor",
+    "description": "Write в feedback_direction_files_staleness.md без ссылки на паттерн (pattern: P{N} / DP.FM.). Проверь DP.FM.010 перед записью нового правила (DP.FM.011 §Correction).",
+    "tool_context": {
+      "tool_name": "Write",
+      "file_path": "/Users/tserentserenov/.claude/projects/-Users-tserentserenov-IWE/memory/feedback_direction_files_staleness.md",
+      "snippet": "- WP-310 Ф14-hotfix 17 мая — двойной gate (cp_assessments permission denied с 14 мая) починен; 2 миграции + Pack v5.0 sync- WP-318 Ф6-Ф10 ✅ done 16 мая — /diag"
+    }
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-18T14:20:48+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "> **Работа:** Разрешить старые ID-коллизии в Pack по варианту 1 (rename + replace refs) "
+    ],
+    "session_id": "66a007d6-c3b2-4b92-99b6-c4bab3db248a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-18T14:21:09+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "> **Работа:** Разрешить старые ID-коллизии в Pack по варианту 1 (rename + replace refs) "
+    ],
+    "session_id": "66a007d6-c3b2-4b92-99b6-c4bab3db248a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-18T14:27:04+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P1_not_capturing",
+    "severity": "minor",
+    "description": "Write в feedback_wp_scope_vs_done_check.md без ссылки на паттерн (pattern: P{N} / DP.FM.). Проверь DP.FM.010 перед записью нового правила (DP.FM.011 §Correction).",
+    "tool_context": {
+      "tool_name": "Write",
+      "file_path": "/Users/tserentserenov/.claude/projects/-Users-tserentserenov-IWE/memory/feedback_wp_scope_vs_done_check.md",
+      "snippet": "Симптом: handoff в начале сессии говорит «~70% выполнено, осталось N тасок». Я фокусируюсь на N задачах, выполняю, сч�"
+    }
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-Knowledge-Index-Tseren"
+  }
+}
+```
