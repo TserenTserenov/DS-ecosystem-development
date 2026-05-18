@@ -6359,3 +6359,25 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-18T15:30:47+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Канал найден: GitHub Issues с label `question` (Honcho активно отвечает на self-host / privacy вопросы за дни). Готовлю ",
+      "- **Ф8.3 benchmark Honcho/Mem0/Hindsight** — blocked: нужны API keys Mem0/Hindsight + закрытый PII Gate (только синтетик"
+    ],
+    "session_id": "6ce69aec-6227-4ee6-8ba8-130b8cd68764"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
