@@ -104,6 +104,7 @@ Cascade order: **сначала создать новый**, потом обно
 | Cloudflare API | dash.cloudflare.com → My Profile → API Tokens → Create Token (с тем же scope, что старый) |
 | Ory | `ory patch oauth2-client <client_id>` или dashboard → создать новый secret рядом со старым |
 | GitHub OAuth App | github.com/settings/developers → app → Generate new client secret |
+| **GitHub App (private key)** | `github.com/organizations/<org>/settings/apps/<app-slug>` → **Private keys** → **Generate a private key** → скачать `.pem`. ⚠️ Если app зарегистрирован на **личном** аккаунте — URL: `github.com/settings/apps/<app-slug>`. Для org `aisystant` и app `aisystant-knowledge`: `https://github.com/organizations/aisystant/settings/apps/aisystant-knowledge` |
 | Google OAuth | console.cloud.google.com → APIs → Credentials → Create new key |
 | Anthropic / OpenAI | console.anthropic.com / platform.openai.com → API keys → Create new |
 | Telegram bot | @BotFather → /token → /revoke — **исключение:** Telegram не поддерживает coexistence, новый сразу заменяет старый. Готовь бот к downtime ~5 мин. |
@@ -168,6 +169,7 @@ chmod 600 ~/IWE/.secrets/<service>-<purpose>
 | Cloudflare API | dash.cloudflare.com → API Tokens → Roll / Delete старый |
 | Ory | `ory delete oauth2-client-secret <id>` или dashboard → Revoke старый |
 | GitHub / Google OAuth | dashboard → revoke старый client secret |
+| **GitHub App private key** | org settings → Private keys → **Delete** старый ключ (он помечен датой генерации) |
 | Anthropic / OpenAI | dashboard → API keys → Revoke старый |
 | Telegram | (выполнен на шаге 0, особый случай) |
 

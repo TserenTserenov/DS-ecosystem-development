@@ -135,7 +135,7 @@ related:
 | Секрет | Layer 1 (env) | Layer 2 (cloud) | Layer 3 (PG metadata) | Layer 4 (smoke) | Последняя ротация | Владелец |
 |--------|---------------|-----------------|----------------------|-----------------|-------------------|----------|
 | **Neon main** `neondb_owner` | `~/.secrets/neon`, tsekh-1 `/etc/iwe/env`, `~/IWE/**/.env` | Railway variables (7 сервисов) | `pg_user_mapping` (rewards, learning, analytics, platform), `pg_subscription` | `SELECT 1` через каждую роль | 2026-05-12 | WP-212 |
-| **GitHub PAT** `aisystant-knowledge` | `~/.secrets/github` | — | — | GitHub API `repos` read | 2026-04-15 | WP-253 |
+| **GitHub App Private Key** `aisystant-knowledge` | `~/.secrets/github`, CF secret (`gateway-mcp`, `personal-knowledge-mcp`) | — | — | GitHub App JWT → installation token (ADR-IWE-004) | 2026-04-15 | WP-212 |
 | **Telegram pilot** `aist_pilot_bot` | `~/.secrets/telegram` | Railway variables (aist_bot) | — | Bot webhook test | 2026-03-20 | WP-198 |
 
 ### Инструменты (WP-315)
