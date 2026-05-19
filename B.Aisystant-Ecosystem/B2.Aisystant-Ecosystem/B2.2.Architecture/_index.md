@@ -38,9 +38,9 @@ source_of_truth: PACK-digital-platform
 
 ### Подразделы
 
-| Подраздел | Назначение |
-|-----------|------------|
-| 2.2.1. IT-Platform-Concept | Пользовательский взгляд |
+| Подраздел | Назначение | Каноническая копия |
+|-----------|------------|-------------------|
+| ~~2.2.1. IT-Platform-Concept~~ | ~~Пользовательский взгляд~~ | **→ [A3.2.1](../../../../A.Systems-Builder/A3.Aisystant-Ecosystem-Builder/A3.2.Architecture/3.2.1.%20IT-Platform-Concept/)** (убран дубль 2026-05-19) |
 | 2.2.2. Architectural-Decisions | Технические решения |
 | 2.2.3. Deterministic-IT-Systems | 14 систем |
 | 2.2.4. AI-Assistants | Диалоговые интерфейсы |
