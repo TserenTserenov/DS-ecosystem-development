@@ -7846,3 +7846,66 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-20T22:14:19+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "S-33 (CLAUDE.md §2 п.6, Hooks/Scripts Bypass Gate): менять скрипты/конфиги шаблона `FMT-exocortex-template/` — только с "
+    ],
+    "session_id": "72e483b4-4875-4c1e-b7e2-01b2fe07485e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-20T22:14:31+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "S-33 (CLAUDE.md §2 п.6, Hooks/Scripts Bypass Gate): менять скрипты/конфиги шаблона `FMT-exocortex-template/` — только с "
+    ],
+    "session_id": "72e483b4-4875-4c1e-b7e2-01b2fe07485e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-20T22:15:37+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "S-33 (CLAUDE.md §2 п.6, Hooks/Scripts Bypass Gate): менять скрипты/конфиги шаблона `FMT-exocortex-template/` — только с "
+    ],
+    "session_id": "72e483b4-4875-4c1e-b7e2-01b2fe07485e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
