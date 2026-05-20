@@ -153,6 +153,12 @@ domain: 'community'
   ├─ post_shared (post_id, where)
   ├─ discussion_participated (discussion_id)
   └─ co_creator_action (action_type)
+
+domain: 'support'
+  ├─ ticket_created (ticket_id, category: 'bug'|'question'|'feature'|'points'|'guide', channel: 'telegram'|'web')
+  ├─ ticket_assigned (ticket_id, assignee_id, auto: boolean)
+  ├─ ticket_resolved (ticket_id, resolution_time_min, resolved_by: 'human'|'faq_bot')
+  └─ ticket_escalated (ticket_id, reason, escalation_level: 1|2|3)
 ```
 
 ### Projection Rules (events → indicators)
@@ -319,6 +325,8 @@ owner: "user"
 Агент памяти        — хранит паттерны работы, предлагает методы и чек-листы
 Артефактор          — помогает создавать, организовывать и восстанавливать контекст артефактов
 Агент сообщества    — рекомендует релевантные посты и практики из сообщества
+Агент поддержки     — принимает /support-запросы, автоматически отвечает по FAQ, маршрутизирует тикеты
+                      (реализация: Chatwoot + Telegram inbox; домен = 'support'; read-scope = tier/stage для контекста)
 Верификатор         — read-only, проверяет соответствие доступа Service Clause'ам
 Координатор         — маршрутизирует запросы между агентами, stateless
 ```
@@ -357,6 +365,12 @@ owner: "user"
    - Coordinator маршрутизирует к нужному агенту
    - Агент памяти предлагает метод или чек-лист
    - Если паттерна нет → generic method для текущей ступени
+
+4a. Ошибка или инцидент обнаружен (автоматически)
+   - n8n-workflow (health probe / alerter) детектирует outage
+   - n8n создаёт тикет в Chatwoot (Telegram-канал поддержки)
+   - ticket_created event → activity_log domain='support'
+   - Агент поддержки добавляет контекст ступени пользователя к тикету
 
 5. Пользователь завершает задачу, коммитит артефакт
    - Artifact → Git (Слой 1 Персона)
@@ -419,8 +433,11 @@ New events → activity_log (цикл)
 
 ```
 Сейчас (MVP):       LMS + базовые сервисы + ступени S1-S5 + агенты через бот/VS Code
+                    Helpdesk: Chatwoot self-hosted на Railway + Neon (chatwoot DB) + Telegram inbox
 Q3-Q4 2026:         Marketplace микроприложений + Multi-surface (PWA) + внешние интеграции
+                    Helpdesk: Linear/GitHub Issues интеграция + автотикеты из алертов (WP-314)
 Q1 2027+ (Prod):    Parliament Model на полную мощность + GKE + Cloud SQL + SLA
+                    Helpdesk Track B: Chatwoot на GKE (решение: shared с Track A или отдельный инстанс → ArchGate)
 ```
 
 </details>
@@ -436,5 +453,8 @@ Q1 2027+ (Prod):    Parliament Model на полную мощность + GKE + 
 4. **Service scopes:** кто может менять scope агента — только пилот или и пользователь?
 5. **Coordinator state:** stateless координатор — нужно ли кэшировать разрешения?
 6. **WP-285 gap:** `subscription.contract_event` пустая 6 недель при 541 active subscriptions — нужна диагностика projection-worker (WP-228 Ф32) до миграции в Track B
+7. **Helpdesk Track B placement:** Chatwoot shared один инстанс для Track A + Track B (проще, но смешивает данные разных юрисдикций) или отдельный инстанс на GKE (изоляция EU-данных, GDPR-чистота, но +операционная сложность)? Ответ влияет на схему Neon БД и Parliament Model scope для Агента поддержки.
+8. **Helpdesk в Parliament Model:** Агент поддержки читает tier/stage пользователя для контекста тикета — минимальный read-scope через Coordinator. Нужен ли отдельный Verifier-check или достаточно существующего?
+9. **Support events в activity_log:** `ticket_created` — писать ли в activity_log (learning DB) или отдельная таблица (support DB)? Цель: аналитика по типам обращений + выявление ступеней с наибольшим числом вопросов.
 
 </details>
