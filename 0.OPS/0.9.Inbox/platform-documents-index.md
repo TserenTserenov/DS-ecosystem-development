@@ -20,7 +20,7 @@ related: [WP-73, WP-336, WP-74, WP-250, WP-292, WP-285]
 
 | # | Документ | Что внутри | Канон |
 |---|----------|-----------|-------|
-| 1.1 | **Уникальность IWE** | 5 природ IWE (Наставник, Мастерская, Со-творец, Аватар, Железный человек). Вариант 4 «про специальность». Фундаментальная формулировка. Слоган T6. Запрещённые слова. | `DS-my-strategy/Lifework/Уникальность IWE.md` |
+| 1.1 | **Уникальность IWE** | 5 природ IWE (Мастерская, Железный человек, Аватар, Тамагочи, Наставник). Вариант 4 «про специальность». Фундаментальная формулировка. Слоган T6. Запрещённые слова. | `DS-my-strategy/Lifework/Уникальность IWE.md` |
 | 1.2 | **Brand Foundations** | Onliness v0.2, 5 природ в таблице, JTBD, архетип Sage+Creator, ценности, антипозиционирование. | `DS-ecosystem-development/C.IT-Platform/C2.IT-Platform/C2.1.Meaning/2.1.1. Brand/01-foundations.md` |
 | 1.3 | **Обещание и сценарии** | 5 гарантий платформы. 10 ролей + сценарии использования (Новичок → Организатор групп). | `DS-ecosystem-development/0.OPS/0.9.Inbox/WP-336-обещание-и-сценарии.md` |
 | 1.4 | **Стратегия экосистемы 2026** | Операционная цель: пивот от курсов к платформе+IWE. Формула. Стратегические инварианты. Окно момента. | `DS-ecosystem-development/A.Systems-Builder/A3.Aisystant-Ecosystem-Builder/A3.1.Meaning/3.1.2. Strategy-2026/Стратегия экосистемы 2026.md` |
@@ -58,7 +58,7 @@ related: [WP-73, WP-336, WP-74, WP-250, WP-292, WP-285]
 | 3.2.3 | **Digital Twin architecture** | DP.ARCH.003 — Events→State→Views, Persona/Memory/Context. | `PACK-digital-platform/pack/digital-platform/02-domain-entities/DP.ARCH.003-digital-twin-architecture.md` |
 | 3.2.4 | **Neon data architecture** | DP.ARCH.004 v2.4+ — 12 БД, схемы, migration roadmap. | `PACK-digital-platform/pack/digital-platform/02-domain-entities/DP.ARCH.004-neon-data-architecture.md` |
 | 3.2.5 | **IWE — Intelligent Working Environment** | DP.IWE.001 — определение, границы, интерфейсы. | `PACK-digital-platform/pack/digital-platform/02-domain-entities/DP.IWE.001-intelligent-working-environment.md` |
-| 3.2.6 | **Five natures of IWE** | DP.IWE.007 — 5 природ: Наставник, Мастерская, Со-творец, Аватар, Железный человек. | `PACK-digital-platform/pack/digital-platform/02-domain-entities/DP.IWE.007-five-natures-iwe.md` |
+| 3.2.6 | **Five natures of IWE** | DP.IWE.007 — 5 природ: Мастерская, Железный человек, Аватар, Тамагочи, Наставник. | `PACK-digital-platform/pack/digital-platform/02-domain-entities/DP.IWE.007-five-natures-iwe.md` |
 | 3.2.7 | **IWE Service Catalog** | DP.MAP.002 — 56 сервисов, роли, триггеры, маппинг на SC. | `PACK-digital-platform/pack/digital-platform/07-map/DP.MAP.002-iwe-service-catalog.md` |
 | 3.2.8 | **Platform concept** | DP.CONCEPT.001 — концепция платформы (formal). | `PACK-digital-platform/pack/digital-platform/02-domain-entities/DP.CONCEPT.001-platform-concept.md` |
 | 3.2.9 | **IWE layer portability** | DP.D.056 — переносимость слоёв IWE. | `PACK-digital-platform/pack/digital-platform/01-domain-contract/DP.D.056-iwe-layer-portability.md` |
