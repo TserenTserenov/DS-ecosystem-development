@@ -8528,3 +8528,92 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-21T19:13:11+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "`iwe-server` — локальное репо без remote. Соседи под `aisystant`. Чтобы задеплоить, нужно либо: ",
+      "**P3 миграция** (`preferred_channel`) ещё не применена в Neon — это SQL-команда, нужен ты с доступом к БД или разрешение"
+    ],
+    "session_id": "098cf738-bff7-407d-aaad-e2715236307c"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
+
+## 2026-05-21T20:31:15+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Исправить второй вариант проще всего: **переподключить Google Drive в настройках claude.ai** — Settings → Integrations →"
+    ],
+    "session_id": "fe40dd81-dd4d-41aa-b8f4-5f071687a38c"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-21T20:36:34+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "Пробую снова — возможно, разрешения обновились. ",
+      "Ошибка та же — это не про разрешения инструмента в настройках Claude, а про OAuth-скоупы Google. Токен был выдан без пра",
+      "3. **Connect again** — при повторном подключении Google запросит разрешения заново, включая право создавать файлы "
+    ],
+    "session_id": "fe40dd81-dd4d-41aa-b8f4-5f071687a38c"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-21T20:36:55+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "Пробую снова — возможно, разрешения обновились. ",
+      "Ошибка та же — это не про разрешения инструмента в настройках Claude, а про OAuth-скоупы Google. Токен был выдан без пра",
+      "3. **Connect again** — при повторном подключении Google запросит разрешения заново, включая право создавать файлы "
+    ],
+    "session_id": "fe40dd81-dd4d-41aa-b8f4-5f071687a38c"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
