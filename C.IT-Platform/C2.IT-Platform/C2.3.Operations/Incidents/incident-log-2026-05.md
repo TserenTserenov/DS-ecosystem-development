@@ -7909,3 +7909,129 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-21T08:35:21+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- Синхронизировать с Андреем нужно ли — спросить на встрече с Андреем (пункт Е.13 повестки) "
+    ],
+    "session_id": "ef688486-ea55-4d32-81e9-0209cf05cf1d"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-ecosystem-development"
+  }
+}
+```
+
+## 2026-05-21T08:35:28+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- Синхронизировать с Андреем нужно ли — спросить на встрече с Андреем (пункт Е.13 повестки) "
+    ],
+    "session_id": "ef688486-ea55-4d32-81e9-0209cf05cf1d"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-ecosystem-development"
+  }
+}
+```
+
+## 2026-05-21T10:09:40+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P1_not_capturing",
+    "severity": "minor",
+    "description": "Write в feedback_dayopen_missing_ke_section.md без ссылки на паттерн (pattern: P{N} / DP.FM.). Проверь DP.FM.010 перед записью нового правила (DP.FM.011 §Correction).",
+    "tool_context": {
+      "tool_name": "Write",
+      "file_path": "/Users/tserentserenov/.claude/projects/-Users-tserentserenov-IWE/memory/feedback_dayopen_missing_ke_section.md",
+      "snippet": "Шаг 5e (KE-кандидаты из `extraction-reports/`) определён ТОЛЬКО в `extensions/day-open.after.md`, но НЕ генерируется `day-open-scaffold.sh` как PENDING"
+    }
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-21T10:54:27+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- **P2 — Активация репо у 5-6 wave-1 пилотов (Work Execution).** Узче, чем P1: только про /personal-guide-start. Если ру"
+    ],
+    "session_id": "0add02ba-a917-4d43-9aa5-9423a786a123"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-21T10:54:55+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- **P2 — Активация репо у 5-6 wave-1 пилотов (Work Execution).** Узче, чем P1: только про /personal-guide-start. Если ру"
+    ],
+    "session_id": "0add02ba-a917-4d43-9aa5-9423a786a123"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-21T11:43:22+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Побочный артефакт: в разделе разрешений (не хуки) остались 4 сломанные записи с задвоенным путём (`/Users/.../IWE//Users"
+    ],
+    "session_id": "dce4916f-40d9-43b4-a816-76019d427523"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
