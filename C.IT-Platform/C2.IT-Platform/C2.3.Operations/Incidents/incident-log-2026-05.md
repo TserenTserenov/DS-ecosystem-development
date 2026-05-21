@@ -8295,3 +8295,109 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-21T15:09:40+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P1_not_capturing",
+    "severity": "minor",
+    "description": "Write в feedback_peer_agent_wrong_repo_push.md без ссылки на паттерн (pattern: P{N} / DP.FM.). Проверь DP.FM.010 перед записью нового правила (DP.FM.011 §Correction).",
+    "tool_context": {
+      "tool_name": "Write",
+      "file_path": "/Users/tserentserenov/.claude/projects/-Users-tserentserenov-IWE/memory/feedback_peer_agent_wrong_repo_push.md",
+      "snippet": "---Перед push от peer-агента всегда проверять `git remote get-url origin` — агент мог скопировать SSH URL из соседнего репо в той ж"
+    }
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
+
+## 2026-05-21T15:18:09+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "«Начинаю работу?» — снова вопрос разрешения. Правило: ритуал WP Gate заканчивается на Шаг 2 — «Дождаться согласования» —",
+      "**P5 у Кими в конце:** «Начинаю работу?» — вопрос разрешения. WP Gate Шаг 2 = молчаливое ожидание твоего явного «да»/«де"
+    ],
+    "session_id": "3c068e0c-7d73-4a3d-a707-5d3d0cdc361a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-21T15:37:32+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**P5 у Кими в конце:** «Начинаю работу?» — вопрос разрешения. WP Gate Шаг 2 = молчаливое ожидание твоего явного «да»/«де"
+    ],
+    "session_id": "3c068e0c-7d73-4a3d-a707-5d3d0cdc361a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-21T15:51:13+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**P5 в отчёте:** «Если Клож примет ассоциацию...» — Кими сам понял, что DP.M.087 неверный. Правильно было исправить до о"
+    ],
+    "session_id": "414d318d-28ef-4de3-82cd-66aff55fea66"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/PACK-personal"
+  }
+}
+```
+
+## 2026-05-21T15:51:31+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**P5 в отчёте:** «Если Клож примет ассоциацию...» — Кими сам понял, что DP.M.087 неверный. Правильно было исправить до о"
+    ],
+    "session_id": "414d318d-28ef-4de3-82cd-66aff55fea66"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/PACK-personal"
+  }
+}
+```
