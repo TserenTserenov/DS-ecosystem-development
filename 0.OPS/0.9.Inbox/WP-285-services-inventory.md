@@ -200,7 +200,9 @@ Track A: 16 БД в Neon (project `purple-bread-37001042/production`, источ
 
 | Документ | Назначение |
 |----------|-----------|
+| [`WP-285-decisions-registry.md`](WP-285-decisions-registry.md) | **Реестр принятых решений по Track B** (Р-14-*, Р-15-*, Р-инв-*, Р-22-*) + открытые вопросы на встречу 24 мая |
 | [`WP-285-track-b-plan.md`](WP-285-track-b-plan.md) | Детальный план реализации Track B (фазы 0-6, дедлайн MVP — конец июня) |
+| [`WP-285-ory-vs-zitadel-emogssb.md`](WP-285-ory-vs-zitadel-emogssb.md) | ArchGate IdP — профиль ЭМОГССБ Ory vs Zitadel (22 мая) |
 | [`12factor-services.md`](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-services.md) | Полный реестр production-runtime (31 deployment unit) + deploy-method matrix |
 | [`12factor-matrix.md`](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-matrix.md) | Compliance-матрица по 12 факторам для каждого сервиса (WP-307) |
 | [`12factor-report-wp307.md`](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-report-wp307.md) | Итоговый отчёт аудита 12-factor (закрыт 13 мая) |
