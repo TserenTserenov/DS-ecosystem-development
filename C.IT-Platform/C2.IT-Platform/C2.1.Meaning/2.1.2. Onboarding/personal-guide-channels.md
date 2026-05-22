@@ -5,11 +5,11 @@ system: C2
 role: Meaning
 audience: pilots, cold-warm-channel
 valid_from: 2026-05-13
-updated: 2026-05-15
+updated: 2026-05-22
 status: draft
 wp: 309
 phase: Ф2
-note: SoT-документ доставки персонального руководства через 3 интерфейса (бот / браузер / VS Code). Матрица операций × каналов + инварианты + lifecycle.
+note: SoT-документ доставки персонального руководства через 4 интерфейса (бот / браузер / VS Code / Managed web-ридер). Матрица операций × каналов + инварианты + lifecycle.
 related:
   - DP.SC.020 §Цикл ВДВ (5-шаговый каскад + feedback loop)
   - WP-149 (Портной — write-side)
@@ -24,13 +24,14 @@ related:
 > **Что это:** SoT-документ о том, как одно и то же репо `personal-guide` живёт в 3 интерфейсах (бот / браузер / VS Code) и какие гарантии каждый канал даёт.
 > **Парные документы:** [iwe-browser-setup.md](iwe-browser-setup.md) (как настроить браузер), [iwe-pilot-starter.md](iwe-pilot-starter.md) (первые шаги).
 
-## Зачем три канала
+## Зачем четыре канала
 
 Пилот заходит в pipeline персонального руководства из разной обстановки:
 
 - С мобильного — нет VS Code, есть бот.
 - С чужого ноутбука — нет VS Code, есть браузер.
 - Со своего рабочего места — есть всё.
+- **Ступень 1-2 без GitHub-аккаунта** — платформа сама создаёт managed-репо в org `aisystant`, пилот читает через web-ридер (4-й канал, T3a).
 
 Один и тот же репо `personal-guide` должен работать одинаково везде, иначе пилот теряет нить программы при смене обстановки.
 
@@ -47,14 +48,14 @@ related:
 
 > Статус: ✅ работает / ⚠️ частично / ❌ не работает / ⬜ не проверено
 
-| Операция | Бот (@aist_me_bot) | Браузер (claude.ai/code) | VS Code (Claude Code) |
-|----------|--------------------|-----------------------|----------------------|
-| Create | ✅ SC.020 PROD, 4 сек | ⬜ smoke в WP-309 Ф4 | ✅ через `/personal-guide-start` |
-| Read | ✅ кнопки бота | ⬜ smoke в WP-309 Ф4 | ✅ файлы в `~/IWE/personal-guide/` |
-| Commit reflection | ❌ нет `/reflect` или эквивалента | ⚠️ через `personal_write` MCP, не задокументировано | ✅ `git commit` + push |
-| Refresh on RCS change | ❌ нет webhook-listener | ⚠️ через MCP, не задокументировано | ✅ ручной `/personal-guide-render` |
+| Операция | Бот (@aist_me_bot) | Браузер (claude.ai/code) | VS Code (Claude Code) | **Managed (web-ридер, T3a)** |
+|----------|--------------------|-----------------------|----------------------|-------------------------------|
+| Create | ✅ SC.020 PROD, 4 сек | ⬜ smoke в WP-309 Ф4 | ✅ через `/personal-guide-start` | ✅ авто при msg_7 через `create_managed_repo()` |
+| Read | ✅ кнопки бота | ⬜ smoke в WP-309 Ф4 | ✅ файлы в `~/IWE/personal-guide/` | ✅ web-ридер `GUIDE_WEB_URL/guide/{uuid}` (auth: magic-link) |
+| Commit reflection | ❌ нет `/reflect` или эквивалента | ⚠️ через `personal_write` MCP, не задокументировано | ✅ `git commit` + push | ⬜ нет (managed-трек не поддерживает commit reflection в Ф8; Ф10+) |
+| Refresh on RCS change | ❌ нет webhook-listener | ⚠️ через MCP, не задокументировано | ✅ ручной `/personal-guide-render` | ✅ авто через `iwe-render-pilot-guides-queue` (каждые 10 мин или по `stage_transition`) |
 
-**Wave-1 (13 мая)** использует только колонку «Бот create». Wave-2 (16-17 мая) требует все 12 ячеек ✅.
+**Wave-1 (13 мая)** использует только колонку «Бот create». **Wave-2 (16-17 мая) + управляемые пилоты без GitHub** → 4-й канал Managed.
 
 ## Инварианты (одинаково для всех каналов)
 
@@ -89,6 +90,25 @@ related:
 - **Коммит рефлексии:** `git commit` + `git push` — стандартный flow.
 - **Refresh:** `/personal-guide-render` + локальная пересборка + push.
 - **Identity-зависимость:** `/connect-guide` требует `telegram_user_id` (пробел для VS Code-only-пилотов — закрывается WP-303 Ory-direct).
+
+### Managed (web-ридер, T3a, WP-309 Ф8)
+
+**Для кого:** пилоты ступени 1-2 без GitHub-аккаунта. Репо хранится в org `aisystant` (не виден пилоту в GitHub).
+
+- **Создание:** автоматическое при msg_7 onboarding sequence (`create_managed_repo(pilot_uuid)`). Репо: `aisystant/pg-{uuid8}`. Время создания ≤5 сек. Пилот получает TG-нудж с прямой ссылкой на web-ридер.
+- **Чтение:** web-ридер `GUIDE_WEB_URL/guide/{pilot_uuid}`. Auth: magic-link (POST `/start` по email → JWT cookie на 24h). DNS fallback: `https://web-production-1812d.up.railway.app`.
+- **Коммит рефлексии:** ⬜ не поддерживается в Ф8. Managed-репо — read-only для пилота. Открывается в Ф10+ (миграция managed→sovereign при ступени 3).
+- **Refresh on RCS change:** ✅ автоматический через `iwe-render-pilot-guides-queue.service` (каждые 10 мин на tsekh-1). При `stage_transition` — enqueue немедленно.
+- **Инфраструктура:** `DS-IT-systems/iwe-guide-web/main.py` (Railway), `DS-autonomous-agents/scripts/create-managed-repo.py`, `DS-IT-systems/iwe-server/scripts/onboarding_controller.py` (tsekh-1).
+- **Ограничения:** пилот не видит репо в своём GitHub, нет commit-доступа, зависимость от Railway (single-region). Миграция в sovereign — при ступени 3 (future).
+
+**Критерий smoke Ф8:**
+```bash
+# Smoke 1: 6 файлов в managed-репо
+gh api repos/aisystant/pg-{uuid8}/git/trees/HEAD?recursive=1 --jq '.tree[] | .path'
+# Smoke 4: read-path
+curl -s -X POST RAILWAY/start -d "email=EMAIL" ... → magic cookie → GET /guide/{uuid} → profile/worldview/methods видны
+```
 
 ## Reflection contract (Ф3) — часть цикла ВДВ
 
@@ -233,4 +253,4 @@ related:
 
 ---
 
-*Создан 2026-05-13 (WP-309 Ф2). Обновляется при изменении канала или операции.*
+*Создан 2026-05-13 (WP-309 Ф2). Обновлён 2026-05-22 — добавлен 4-й канал Managed (WP-309 Ф8).*
