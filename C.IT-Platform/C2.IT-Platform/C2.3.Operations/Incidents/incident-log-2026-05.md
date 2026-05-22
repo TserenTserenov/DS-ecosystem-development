@@ -8617,3 +8617,281 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-22T09:07:23+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "По правилу §2 п.4: жду вашего решения, не разрешаю конфликт автоном�"
+    ],
+    "session_id": "a7eb2eef-8022-4851-9a0f-5052bfc4c76e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-22T09:18:15+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Вопрос в конце — нормален.** Это choice-question (\"делаем X или Y?\"), не yes/no разрешение — разрешено правилами автон"
+    ],
+    "session_id": "6f97f400-6a63-435c-a562-b6b87f555e7f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-autonomous-agents"
+  }
+}
+```
+
+## 2026-05-22T09:18:42+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Вопрос в конце — нормален.** Это choice-question (\"делаем X или Y?\"), не yes/no разрешение — разрешено правилами автон"
+    ],
+    "session_id": "6f97f400-6a63-435c-a562-b6b87f555e7f"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-autonomous-agents"
+  }
+}
+```
+
+## 2026-05-22T09:18:47+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Запустить? "
+    ],
+    "session_id": "ef67335f-ca40-4c28-9426-d2ddaae91c87"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/docs"
+  }
+}
+```
+
+## 2026-05-22T09:18:59+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Запустить? "
+    ],
+    "session_id": "ef67335f-ca40-4c28-9426-d2ddaae91c87"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/docs"
+  }
+}
+```
+
+## 2026-05-22T10:23:32+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Чтобы предложить осмысленный план на 10ч, мне нужно сначала посмотреть, что именно прислал Кими. Где его предложения — в"
+    ],
+    "session_id": "46dd4266-3fd0-4c6f-ab17-47e7235442d9"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-22T10:31:07+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- Если хотите видеть 5 — нужно либо: (а) починить компонент «обучение» в profiler (что считается?), либо (б) переключить"
+    ],
+    "session_id": "5fb8a591-780b-4cd0-b7ee-c581d1c0c07d"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
+
+## 2026-05-22T10:32:27+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P1_not_capturing",
+    "severity": "minor",
+    "description": "Write в feedback_method_file_key_concepts_section.md без ссылки на паттерн (pattern: P{N} / DP.FM.). Проверь DP.FM.010 перед записью нового правила (DP.FM.011 §Correction).",
+    "tool_context": {
+      "tool_name": "Write",
+      "file_path": "/Users/tserentserenov/.claude/projects/-Users-tserentserenov-IWE/memory/feedback_method_file_key_concepts_section.md",
+      "snippet": "Любой файл метода в Pack обязан содержать раздел **«Ключевые понятия»**.**Структура раздела:** `Термин: определени"
+    }
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/PACK-personal"
+  }
+}
+```
+
+## 2026-05-22T11:15:31+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Стадия = шаг процесса воздействия (что делать в программе, форматы, методы) → PACK-MIM. ",
+      "Если хочешь развёрнутую версию с тестами и примерами — она по правилам идёт в `memory/distinctions-warm.md`. Сейчас там "
+    ],
+    "session_id": "712cfd67-64a3-44d4-8e20-a19fd39d5fdc"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-22T11:34:45+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Как запустить: в `@aist_me_bot` написать `/start` или `/twin` — там есть кнопка подключения. После клика откроется стран"
+    ],
+    "session_id": "fba31c97-dce7-4b5b-83e3-67cd17b5c039"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
+
+## 2026-05-22T12:00:49+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Ясно — `email` scope не разрешён для клиента `aist-bot`. Сгенерирую правильный URL без него: "
+    ],
+    "session_id": "fba31c97-dce7-4b5b-83e3-67cd17b5c039"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
+
+---
+
+## 2026-05-21 → 2026-05-22 — MCP write-path PKCS#8 outage
+
+**Severity:** major (18ч простоя `personal_write`).
+**Service:** `mcp.aisystant.com` (gateway-mcp + personal-knowledge-mcp, CF Workers).
+**Detected:** 2026-05-22 ~10:30 МСК (отчёт Марфы пилоту).
+**Resolved:** 2026-05-22 11:55 МСК.
+**WP:** WP-7 Ф-MCP-JWT-PKCS.
+
+### Симптом
+
+`personal_write` через Aisystant MCP падает с `Backend error: Invalid PKCS8 input`. Чтение / `github_status` работают.
+
+### Timeline
+
+- **21.05 19:44 МСК** — скачан новый GitHub App private key (`aisystant-knowledge.2026-05-21.private-key.pem`, PKCS#1 формат, 1675 байт).
+- **21.05 19:46 МСК** — `wrangler secret put GITHUB_APP_PRIVATE_KEY` в CF (deployment Source: Secret Change на `personal-knowledge-mcp`). Запись стала падать. Точный механизм порчи secret в CF неизвестен — после ротации explicit-проверка показала «PEM header is neither PRIVATE KEY nor RSA PRIVATE KEY», т.е. заголовки потерялись (вероятный путь: pipe/echo без `-e` или JSON-copy ломает переводы строк).
+- **22.05 10:30** — отчёт Марфы пилоту.
+- **22.05 11:10** — диагностика: найден баг в `createGitHubAppJWT()` (regex PKCS#1-only) в обоих воркерах (двойная копия кода).
+- **22.05 11:30** — открыта фаза WP-7 Ф-MCP-JWT-PKCS.
+- **22.05 11:35-11:50** — патч + 2 итерации CI-фикса + self-heal `\n`.
+- **22.05 11:55** — secret перезалит из локального .pem через `wrangler secret put < file`, smoke-test passed (commit `532afe3`).
+
+### Root cause
+
+Двойной:
+1. **Code (latent):** `createGitHubAppJWT` поддерживал только PKCS#1 PEM-заголовки, но передавал DER в `crypto.subtle.importKey("pkcs8", ...)`. До 21.05 работало из-за либеральности BoringSSL к PKCS#1; перестало после неизвестного обновления CF-рантайма.
+2. **Operational:** secret после ротации оказался без PEM-заголовков (вероятно из-за способа подачи в `wrangler secret put`).
+
+### Fix
+
+- `importGitHubAppPrivateKey()` — explicit format detection PKCS#8 vs PKCS#1 + runtime wrap PKCS#1 в PKCS#8 SubjectPrivateKeyInfo + explicit error при невалидном PEM.
+- Self-heal: `\\n` → real newline перед регексом.
+- Secret reuploaded через `wrangler secret put < file` (file redirect, не pipe-echo).
+- CI bonus: `--legacy-peer-deps` в personal-knowledge-mcp/deploy.yml (pre-existing wrangler/workers-types peer-dep mismatch).
+
+### Defer
+
+- **DRY consolidation:** `importGitHubAppPrivateKey` существует в двух идентичных копиях (personal-knowledge-mcp + gateway-mcp). Вынести в shared module = architectural decision (CF Workers в разных репо, требуется npm package или git submodule) → следующая фаза WP-7 с ArchGate.
+
+### Lessons
+
+→ `memory/lessons_cf_worker_secret_rotation.md` — паттерн «secret rotation без deploy-валидации = silent breakage write-path; новый secret требует health-probe».
+
