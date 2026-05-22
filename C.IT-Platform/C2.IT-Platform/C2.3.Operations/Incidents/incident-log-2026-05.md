@@ -9088,3 +9088,46 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-22T18:25:57+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- Ф10: re-entry — «С возвращением! Продолжим с [шаг]?» если last_active_date < today "
+    ],
+    "session_id": "bb2c53a0-56e4-470c-80c8-17cac5c71eff"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-22T18:26:08+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "- Ф10: re-entry — «С возвращением! Продолжим с [шаг]?» если last_active_date < today ",
+      "Хук сработал на false positive. «С возвращением! Продолжим с [шаг]?» — это пользовательский текст Telegram-сообщения, ко"
+    ],
+    "session_id": "bb2c53a0-56e4-470c-80c8-17cac5c71eff"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
