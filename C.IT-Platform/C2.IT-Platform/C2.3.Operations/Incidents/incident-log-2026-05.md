@@ -8876,9 +8876,11 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
 
 ### Root cause
 
-Двойной:
-1. **Code (latent):** `createGitHubAppJWT` поддерживал только PKCS#1 PEM-заголовки, но передавал DER в `crypto.subtle.importKey("pkcs8", ...)`. До 21.05 работало из-за либеральности BoringSSL к PKCS#1; перестало после неизвестного обновления CF-рантайма.
-2. **Operational:** secret после ротации оказался без PEM-заголовков (вероятно из-за способа подачи в `wrangler secret put`).
+**Operational (доказан, единственная причина выстрела):** secret после `wrangler secret put` оказался в CF без PEM-заголовков. Explicit-проверка после фикса подтвердила «PEM header is neither PRIVATE KEY nor RSA PRIVATE KEY». Вероятный путь — pipe-echo без `-e` или JSON-encoded copy ломает переводы строк при upload. Старый код с корректно залитым PKCS#1 ключом (формат, который выдаёт GitHub App, см. файл в ~/Downloads от 19:44) продолжал бы работать.
+
+**Code (latent, не выстрелил в этом инциденте — обнаружен попутно):** `createGitHubAppJWT` поддерживал только PKCS#1 PEM-заголовки и передавал DER в `crypto.subtle.importKey("pkcs8", ...)`. Работало за счёт нестандартной либеральности BoringSSL к PKCS#1. Это latent — выстрелил бы при ужесточении CF-рантайма ИЛИ при ротации secret в PKCS#8. Устранён в той же фазе (defence-in-depth), не входит в причинную цепочку текущего outage.
+
+**Поправка к первой формулировке incident-report (verify Кими 2026-05-22):** ранее первый cause был приписан «неизвестному обновлению CF-рантайма» — недоказанная спекуляция. Из имеющихся данных доказуем только operational cause.
 
 ### Fix
 
@@ -8895,3 +8897,45 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
 
 → `memory/lessons_cf_worker_secret_rotation.md` — паттерн «secret rotation без deploy-валидации = silent breakage write-path; новый secret требует health-probe».
 
+
+## 2026-05-22T12:36:13+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "| Многоповторно: где сейчас в репах хранятся SQL-миграции? Нужно ли стандартизировать структуру? | Аудит реп до 24 мая |"
+    ],
+    "session_id": "48c242b3-d1cc-4971-9f18-029577fb9911"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-22T12:39:48+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P1_not_capturing",
+    "severity": "minor",
+    "description": "Write в feedback_root_cause_verify_in_code.md без ссылки на паттерн (pattern: P{N} / DP.FM.). Проверь DP.FM.010 перед записью нового правила (DP.FM.011 §Correction).",
+    "tool_context": {
+      "tool_name": "Write",
+      "file_path": "/Users/tserentserenov/.claude/projects/-Users-tserentserenov-IWE/memory/feedback_root_cause_verify_in_code.md",
+      "snippet": "Peer-агент (Kimi) перепроверил по коду за ~30 мин и опроверг все три. Без ревью пилот получил бы 3 неверных задачи на �"
+    }
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
