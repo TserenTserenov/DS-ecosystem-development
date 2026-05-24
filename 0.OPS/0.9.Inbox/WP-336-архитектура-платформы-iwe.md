@@ -44,7 +44,14 @@
 
 Все остальные части платформы (events, Parliament Model, агентный уровень) строятся поверх этих трёх слоёв.
 
-### Слой 1: Персона (Git, пользователь владеет) — ~10%
+> **Владельцы слоёв:**
+> | Слой | Владелец | Где живёт |
+> |------|----------|-----------|
+> | Слой 1 — Персона | Пользователь (IWE) | Git-репо пользователя |
+> | Слой 2 — Память | Платформа Aisystant | Neon (облако) |
+> | Слой 3 — Контекст | Ephemeral (runtime) | Оперативная память LLM |
+
+### Слой 1: Персона (Git, **IWE**-данные, Платформа не владеет) — ~10%
 
 ```
 ~/.iwe/persona/
@@ -291,14 +298,12 @@ Failure mode:
 │  ├─ Can read: lesson metadata, user stage
 │  └─ Can't read: work calendar, email
 │
-├─ Service: IWE (IDE)
-│  ├─ Can read: user's own Git repo, Persona
-│  └─ Can't read: other users' data
-│
 └─ Coordinator routes to correct agent
    ├─ Parliament Model ensures isolation
    └─ Verifier logs all access
 ```
+
+> **Важно:** IWE — **не платформенный сервис** и отсутствует в Parliament Model. IWE (VS Code + Claude Code + скиллы) работает автономно на стороне пользователя и подключается к Платформе только через MCP Gateway как внешний клиент. Parliament Model изолирует домены **внутри Платформы** — IWE находится за её границей.
 
 ### Service Composition (Ф2+)
 
@@ -324,7 +329,9 @@ owner: "user"
 <details>
 <summary><b>7. Агентный уровень</b></summary>
 
-Агенты — прикладной слой поверх Data Layers, Event Sourcing, Parliament Model и сервисов. Каждый агент:
+Агенты — прикладной слой поверх Data Layers, Event Sourcing, Parliament Model и сервисов. **Все перечисленные ниже агенты — платформенные** (работают на Платформе, управляются Aisystant). IWE-сторона = Claude Code + его скиллы (CLAUDE.md, memory/, .claude/) — они работают на стороне пользователя в VS Code и в Parliament Model не входят.
+
+Каждый платформенный агент:
 - Имеет **Service Clause** с явным обещанием, входами, выходами и режимом отказа
 - Работает только через Coordinator — не имеет прямого доступа к чужому домену
 - Proверяется Verifier при каждом запросе данных
@@ -437,8 +444,8 @@ New events → activity_log (цикл)
 
 | Развилка | Варианты | Решено |
 |----------|---------|--------|
-| IDE для работы в курсе | Cloud IDE / Embed Claude Code в браузер / Custom через Agent SDK | — |
-| LMS-формат | UX-обёртка над текстом / Рабочая тетрадь → применение в IWE / Гибрид | — |
+| IDE для работы в курсе | Cloud IDE / Embed Claude Code в браузер ⚠️ ArchGate (Claude Code — хост Anthropic, не Aisystant) / Custom через Agent SDK | — |
+| LMS-формат | UX-обёртка над текстом / Рабочая тетрадь (применяется через IWE пользователя) / Гибрид | — |
 | Мобильное расширение | Бот как основной интерфейс / **PWA с адаптивным дизайном** / Native iOS+Android | ✅ PWA (оперативка 19 мая) |
 | Граница витрина/внутренняя часть | Monorepo / Два фронтенда + SSR-сайт / Hybrid | — |
 | Post-MVP roadmap phasing | Что в Q3-Q4, что в Q1-2027+, критерии готовности | — |
