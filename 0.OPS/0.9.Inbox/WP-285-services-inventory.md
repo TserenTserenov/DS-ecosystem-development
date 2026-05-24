@@ -14,6 +14,8 @@ author: Церен
 > «Дублировать» = развернуть новый инстанс с тем же кодом, но указывающий на Track B инфраструктуру (Cloud SQL, Ory EU, Stripe).
 >
 > **Scope этого документа** — MVP-сервисы для онбординга первого пользователя Track B (16 сервисов: 10 CF Workers + 6 Python) + 15 БД (16 Track A минус metabase). Полный operational scope production-runtime — **31 deployment unit**, см. [`C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-services.md`](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-services.md) (WP-307). Сервисы вне MVP-scope — раздел §7.
+>
+> **Граница Платформа / IWE:** все сервисы в §1–6 — это **Платформа Aisystant** (облачные, управляются командой). IWE (локальная среда пользователя: git-репо, VS Code, memory/) — не мигрируется, каждый пользователь разворачивает сам. Единственный IWE-компонент в этом документе: `L1 iwe-local-gateway` (§7, вне scope Track B). Подробнее: [WP-73-iwe-platform-distinction.md](WP-73-iwe-platform-distinction.md).
 
 ---
 
@@ -26,7 +28,7 @@ author: Церен
 |--------|-----------|-----------------|--------------|------------|---------|---------|------------|
 | **gateway-mcp** | API-шлюз: OAuth, роутинг по доменам, MCP-точка входа | **да** (HTTPS MCP + OAuth) | TBD (напр. `mcp.world.aisystant.com`) | нет (CF Worker) | `mcp.aisystant.com` | новый домен | Обновить Hyperdrive binding → Cloud SQL |
 | **knowledge-mcp** | Поиск по базе знаний (Pack, guides, SOTA, граф концептов) | **да** (HTTPS MCP) | TBD | нет (CF Worker) | Neon #7 knowledge | Cloud SQL knowledge | Переиндексировать граф под EN-контент |
-| **personal-knowledge-mcp** | Личная база знаний пользователя (заметки, эмбеддинги) | **да** (HTTPS MCP) | TBD | нет (CF Worker) | Neon #1 persona | Cloud SQL persona | Обновить строку подключения |
+| **personal-knowledge-mcp** | Личная база знаний пользователя (заметки, эмбеддинги). **Платформенный сервис**, который по запросу возвращает данные из IWE-пространства пользователя через MCP Gateway — сам по себе является облачным сервисом Aisystant, не частью IWE | **да** (HTTPS MCP) | TBD | нет (CF Worker) | Neon #1 persona | Cloud SQL persona | Обновить строку подключения |
 | **digital-twin-mcp** | Показатели, состояния, прогресс ученика | **да** (HTTPS MCP) | TBD | нет (CF Worker) | Neon #5 indicators | Cloud SQL indicators | Обновить строку подключения |
 | **guides-mcp** | Каталог программ и руководств | **да** (HTTPS MCP) | TBD | нет (CF Worker) | Neon #8 reference | Cloud SQL reference | Загрузить EN-программы |
 | **event-gateway** | Единственный writer событий в journal | **да** (HTTPS POST от сервисов) | TBD | нет (CF Worker) | Neon #2 journal | Cloud SQL journal | Обновить строку подключения |
