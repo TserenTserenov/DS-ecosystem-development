@@ -10729,3 +10729,153 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-25T19:13:46+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Главная развилка: нужно ли принять `preferred variant B` сейчас или после Ф18.1? "
+    ],
+    "session_id": "c21dbeed-8759-4d22-b71b-5ec2a07026e1"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T19:14:03+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Главная развилка: нужно ли принять `preferred variant B` сейчас или после Ф18.1? ",
+      "Зафиксировано. P5-нарушение в последней строке «Итога»: «нужно ли принять X?» — замаскированный yes/no запрос разрешения"
+    ],
+    "session_id": "c21dbeed-8759-4d22-b71b-5ec2a07026e1"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T19:14:58+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Корень:** нужно либо переопределить daily_cap как жёсткий дневной потолок суммарных баллов (и тогда Тсерен должен зара"
+    ],
+    "session_id": "01881c1e-ecf6-4afd-9c66-b00b23e74047"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T19:32:30+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Да, но не как yes/no вопрос. Правильный формат: «Вот план на Ф18.2 + Ф17.5 — три шага, 2.5h оценка. Два внешних запроса "
+    ],
+    "session_id": "c3761072-982f-49ee-8edc-6597fc510887"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T19:33:03+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Да, но не как yes/no вопрос. Правильный формат: «Вот план на Ф18.2 + Ф17.5 — три шага, 2.5h оценка. Два внешних запроса ",
+      "**Почему это не нарушение:** P5 — это yes/no запрос разрешения («хотите?», «продолжить?»). Rule 7 в CLAUDE.md явно делае"
+    ],
+    "session_id": "c3761072-982f-49ee-8edc-6597fc510887"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T20:20:16+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Ключевое разногласие:** тест-план Кими предполагает, что `exit 3` — наблюдаемое поведение. Фактически exit 3 никогда н"
+    ],
+    "session_id": "0ebbcb2c-8c6f-498b-8f94-21778dc24ce6"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T20:20:45+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "**Ключевое разногласие:** тест-план Кими предполагает, что `exit 3` — наблюдаемое поведение. Фактически exit 3 никогда н",
+      "Исправляю — убираю финальный вопрос-разрешение, заменяю прямой рекомендацией. "
+    ],
+    "session_id": "0ebbcb2c-8c6f-498b-8f94-21778dc24ce6"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
