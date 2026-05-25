@@ -2,7 +2,7 @@
 
 **Дата:** 2026-05-25  
 **Система:** AISYS.008 ДЗ-чекер (n8n workflow)  
-**Статус:** 🔴 Активный баг — требует ручного действия в n8n cloud
+**Статус:** 🔴 Активный баг — требует апгрейда n8n cloud плана
 
 ---
 
@@ -23,32 +23,45 @@ Content-Length: 0
 |---------|-----------|
 | guides-mcp жив? | ✅ `semantic_search` отвечает корректно |
 | OpenAI API в guides-mcp? | ✅ embeddings возвращаются |
-| Anthropic Haiku API? | Не проверено (требует n8n логов) |
-| Репо-файл `n8n-workflow-v3.json` правильный? | ✅ `responseMode: responseNode`, `respondWith: json` |
-| Deployed workflow = репо? | ❌ **НЕ СОВПАДАЕТ** — 200мс vs ожидаемых 3-10 сек |
+| n8n workflow код правильный? | ✅ Исправлен и задеплоен 2026-05-25 |
+| n8n исполнение запускается? | ❌ **НЕТ — лимит плана исчерпан** |
 
-**Вывод:** n8n workflow был изменён в UI без сохранения в JSON-файл репо. Deployed workflow расходится с `n8n-workflow-v3.json`.
+**Вывод:** n8n cloud план достиг лимита исполнений. Каждый запрос отклоняется на уровне Webhook node ещё до запуска workflow.
 
-## Исправление (требует доступа к n8n cloud)
+Из логов n8n executions (execution #6858):
+```
+"Execution limit reached. Consider upgrading your plan"
+```
 
-1. Открыть `https://tseren.app.n8n.cloud` → Workflows
-2. Найти workflow с path `check`
-3. Проверить `Respond to Webhook` node → поле `Respond With`  
-   Должно быть: `"json"`, `Response Body` = `={{ $json.body ?? $json }}`  
-   Если другое — исправить или переимпортировать
-4. **Рекомендуется:** сделать Export workflow из n8n UI и сравнить с `hw-checker/n8n-workflow-v3.json`
-5. **Если расхождение большое:** удалить текущий workflow, импортировать `n8n-workflow-v3.json` из репо, активировать
+## Исправление (требует действия в n8n cloud)
 
-## Дополнительный баг (исправлен в репо, нужен реимпорт)
+**Вариант A — апгрейд плана:**
+1. Открыть `https://app.n8n.cloud/account/change-plan`
+2. Выбрать план с бо́льшим лимитом исполнений
 
-В `Build Prompt` node был баг: `r.heading` → guides-mcp не возвращает поле `heading`, возвращает `section`/`guide`/`filename`. Все результаты поиска показывались как `[score=0.85] undefined:\n<content>`.
+**Вариант B — ждать сброса лимита:**
+Лимит сбрасывается 1-го числа следующего месяца (1 июня 2026).
 
-**Исправлено в коммите (сегодня):** `r.heading` → `r.section || r.guide || r.filename`
+## Дополнительные исправления (уже задеплоены, вступят в силу после разблокировки)
 
-После реимпорта workflow из репо этот баг тоже будет исправлен.
+Пока разбирались с симптомом, в workflow были обнаружены и устранены два бага:
+
+### Баг 1: r.heading → r.section || r.guide || r.filename
+В `Build Prompt` node использовалось поле `r.heading`, которое guides-mcp не возвращает.
+guides-mcp возвращает `section`/`guide`/`filename`. Все заголовки чанков отображались как `undefined`.
+
+**Исправлено:** коммит `2e5545c` в репо + задеплоено в n8n cloud 2026-05-25.
+
+### Баг 2: IF ok? FALSE ветка → Respond to Webhook (race condition с v1 execution order)
+С `settings.executionOrder: "v1"` и IF FALSE ветка, подключённая к тому же `Respond to Webhook` что и основной pipeline:
+n8n v1 выполнял FALSE ветку (0 элементов) немедленно, что тригерило `Respond to Webhook` с пустым body до того, как основной pipeline завершался.
+
+**Исправлено:** добавлен отдельный `respond-error-001` "Respond Error" node для IF FALSE ветки.
+Задеплоено в n8n cloud 2026-05-25 (версия `814e3065-78a7-4192-8005-6c9f3e103131`).
 
 ## Что НЕ является причиной
 
 - guides-mcp: работает корректно
 - OpenAI API: работает (embeddings возвращаются)
-- Anthropic API: не проверялось, но даже при отказе `Parse + Format` должен вернуть fallback-ответ с `comment: "Нет ответа от модели"` — не пустой body
+- Anthropic API (Haiku): нет причин подозревать (до лимита workflow работал)
+- Код workflow: исправлен и задеплоен
