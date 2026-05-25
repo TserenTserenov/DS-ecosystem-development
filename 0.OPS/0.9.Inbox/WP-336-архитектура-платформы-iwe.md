@@ -9,12 +9,15 @@
 
 ---
 
-> **Две разные системы в этом документе:**
+> **Системы в этом документе:**
 >
 > | Система | Что это | Где живёт | Кто разрабатывает |
 > |---|---|---|---|
-> | **Платформа Aisystant** | Облачный бэкенд: Identity, сервисы, данные прогресса, Knowledge Index, Gateway, марафон | Railway / Neon / CF Workers | Андрей |
+> | **Платформа Aisystant (Track B — Мир)** | Облачный бэкенд: Identity, сервисы, данные прогресса, Knowledge Index, Gateway, марафон | GKE Standard europe-west4 / Cloud SQL / Stripe | Андрей |
+> | **Платформа МИМ (Track A — Россия)** | Облачный бэкенд: Identity, сервисы, данные прогресса, Knowledge Index, Gateway, марафон | VK Cloud K8s / Neon / YooKassa | Ильшат |
 > | **IWE** | Автономная персональная среда пользователя | Git-репо, VS Code, файловая система у пользователя | Тсерен |
+>
+> _Текущий MVP работает на Railway / Neon / CF Workers — переходное состояние до завершения миграции на Track B (GKE) и Track A (VK Cloud)._
 >
 > В этом документе описывается **Платформа** (§1–9). IWE = §3 Слой 1 (Персона, Git) + хост VS Code (Anthropic). Граница: MCP Gateway `mcp.aisystant.com`.
 
