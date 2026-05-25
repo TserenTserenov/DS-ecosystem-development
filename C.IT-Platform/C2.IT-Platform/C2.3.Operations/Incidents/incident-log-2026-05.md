@@ -10279,3 +10279,366 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-25T12:59:18+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что предпочтительнее — апгрейд сейчас или сразу переехать на Railway? "
+    ],
+    "session_id": "d8b7d1da-be4a-47ac-8ff7-bd8e77b5828a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T12:59:41+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Что предпочтительнее — апгрейд сейчас или сразу переехать на Railway? "
+    ],
+    "session_id": "d8b7d1da-be4a-47ac-8ff7-bd8e77b5828a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T13:10:37+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "## Итоговая оценка: стоит ли переезжать? "
+    ],
+    "session_id": "d8b7d1da-be4a-47ac-8ff7-bd8e77b5828a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T13:10:57+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "## Итоговая оценка: стоит ли переезжать? "
+    ],
+    "session_id": "d8b7d1da-be4a-47ac-8ff7-bd8e77b5828a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T13:30:30+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "## Что делать дальше (три шага) "
+    ],
+    "session_id": "de6c5b29-243e-44f8-816f-a3a76342e39a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T13:30:57+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "## Что делать дальше (три шага) ",
+      "Хук сработал на секцию «Что делать дальше» — но это ответ на явный вопрос пользователя («что можно делее сделать»), не п"
+    ],
+    "session_id": "de6c5b29-243e-44f8-816f-a3a76342e39a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T13:32:13+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "## Итоговая оценка: стоит ли переезжать? ",
+      "**Зачем Светофор каждые 5 минут и можно ли снизить?** ",
+      "**Нужно ли увеличивать Railway подписку?** "
+    ],
+    "session_id": "d8b7d1da-be4a-47ac-8ff7-bd8e77b5828a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T13:32:33+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "**Зачем Светофор каждые 5 минут и можно ли снизить?** ",
+      "**Нужно ли увеличивать Railway подписку?** "
+    ],
+    "session_id": "d8b7d1da-be4a-47ac-8ff7-bd8e77b5828a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T14:04:45+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Мы планировали проверить систему на 5 пилотах и сказать «работает/не работает». Кими говорит: 5 — это слишком мало, чтоб"
+    ],
+    "session_id": "863be9ba-c159-4e77-8823-c2e4ba8cd3f4"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T15:34:49+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "| **Ты** | Заказчик и арбитр. Ставишь цели, принимаешь решения, разрешаешь конфликты. Не исполнитель. | "
+    ],
+    "session_id": "ae25144c-e026-495c-b6d0-616278d5d8b7"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T15:35:21+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "| **Ты** | Заказчик и арбитр. Ставишь цели, принимаешь решения, разрешаешь конфликты. Не исполнитель. | ",
+      "Хук сработал на строку таблицы `| **Ты** | Заказчик и арбитр...` — это ложное срабатывание. Строка отвечает на прямой во"
+    ],
+    "session_id": "ae25144c-e026-495c-b6d0-616278d5d8b7"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T15:35:33+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Продолжим? 🎯 "
+    ],
+    "session_id": "003bcb0e-bcdf-4744-9e3a-681609eb52c5"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T15:42:38+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**A (закрытый пилот)** проверяет гипотезу: *можно ли вообще поставить процесс «перевода экспертизы» воспроизводимо*. Рез"
+    ],
+    "session_id": "be1a016d-599a-431d-947c-00607066b0f2"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T15:43:11+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**A (закрытый пилот)** проверяет гипотезу: *можно ли вообще поставить процесс «перевода экспертизы» воспроизводимо*. Рез"
+    ],
+    "session_id": "be1a016d-599a-431d-947c-00607066b0f2"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T15:43:39+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "| **Ты** | Заказчик и арбитр. Ставишь цели, принимаешь решения, разрешаешь конфликты. Не исполнитель. | ",
+      "Хук сработал на строку таблицы `| **Ты** | Заказчик и арбитр...` — это ложное срабатывание. Строка отвечает на прямой во"
+    ],
+    "session_id": "ae25144c-e026-495c-b6d0-616278d5d8b7"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T15:57:14+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Blocker #1 (Catalog drift 217)** — разрешён 17 мая. Migration 217 применена, 29481 событие backfilled. ✅ RESOLVED "
+    ],
+    "session_id": "96e521f1-dc4d-46ce-ad36-a6779070b9ee"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T16:02:32+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Хук сработал на строку таблицы `| **Ты** | Заказчик и арбитр...` — это ложное срабатывание. Строка отвечает на прямой во"
+    ],
+    "session_id": "ae25144c-e026-495c-b6d0-616278d5d8b7"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
