@@ -10685,3 +10685,47 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-25T17:28:07+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "1. **P5 Autonomy violation (Turn 1 peer-session):** Спрашивал разрешение вместо автономного решения. Исправлено: инженер",
+      "3. **Неуверенность в Memory Injector:** Разрешено через текстовый анализ (SoC, переиспользование, граница ролей). "
+    ],
+    "session_id": "003bcb0e-bcdf-4744-9e3a-681609eb52c5"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-25T17:30:40+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "1. **P5 Autonomy violation (Turn 1 peer-session):** Спрашивал разрешение вместо автономного решения. Исправлено: инженер",
+      "3. **Неуверенность в Memory Injector:** Разрешено через текстовый анализ (SoC, переиспользование, граница ролей). "
+    ],
+    "session_id": "003bcb0e-bcdf-4744-9e3a-681609eb52c5"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
