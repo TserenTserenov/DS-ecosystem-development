@@ -3,7 +3,7 @@
 ## Эндпоинт
 
 ```
-POST https://tseren.app.n8n.cloud/webhook/check
+POST https://n8n-production-c098.up.railway.app/webhook/check
 Content-Type: application/json; charset=utf-8
 ```
 
@@ -111,7 +111,7 @@ Content-Type: application/json; charset=utf-8
 
 ```javascript
 async function checkHomework(questionText, answerText, courseName = null) {
-  const response = await fetch('https://tseren.app.n8n.cloud/webhook/check', {
+  const response = await fetch('https://n8n-production-c098.up.railway.app/webhook/check', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json; charset=utf-8'
@@ -163,7 +163,7 @@ function HomeworkChecker({ question, courseName }) {
   const handleCheck = async () => {
     setLoading(true);
     try {
-      const response = await fetch('https://tseren.app.n8n.cloud/webhook/check', {
+      const response = await fetch('https://n8n-production-c098.up.railway.app/webhook/check', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
         body: JSON.stringify({
@@ -211,7 +211,7 @@ function HomeworkChecker({ question, courseName }) {
 ### cURL (Linux/Mac)
 
 ```bash
-curl -X POST https://tseren.app.n8n.cloud/webhook/check \
+curl -X POST https://n8n-production-c098.up.railway.app/webhook/check \
   -H "Content-Type: application/json; charset=utf-8" \
   -d '{
     "question_text": "Почему важно развивать мышление письмом?",
@@ -229,7 +229,7 @@ $body = @{
 
 $bytes = [System.Text.Encoding]::UTF8.GetBytes($body)
 
-Invoke-RestMethod -Uri "https://tseren.app.n8n.cloud/webhook/check" -Method POST -ContentType "application/json; charset=utf-8" -Body $bytes
+Invoke-RestMethod -Uri "https://n8n-production-c098.up.railway.app/webhook/check" -Method POST -ContentType "application/json; charset=utf-8" -Body $bytes
 ```
 
 ---
