@@ -1,14 +1,15 @@
 ---
 type: architecture-proposal
-title: "WP-337: Доступ агентов к личной памяти пилота — архитектура Парламент"
+title: "WP-336/Platform: Доступ агентов к личной памяти пилота — архитектура Parliament Model"
 status: draft
 created: 2026-05-24
-updated: 2026-05-24
+updated: 2026-05-26
 source: peer-session 2026-05-24-02-memory-access-mcp-tree + Parliament-review субагент
-related_wps: [WP-337, WP-316, WP-150]
+related_wps: [WP-336, WP-337, WP-316, WP-150]
 related_docs:
   - WP-73-architect-agenda-next.md
   - WP-336-архитектура-платформы-iwe.md
+  - WP-337/local-coordination-hub.md  # IWE-уровень (Local Coordination Hub)
 for_meeting: Встреча 21 (следующая после 24 мая)
 ---
 
@@ -16,6 +17,7 @@ for_meeting: Встреча 21 (следующая после 24 мая)
 
 > **Источник:** пункты 3–6 оперативки ИТ 24 мая (приватность памяти, MCP-память, операторский MCP, дерево/граф).
 > **Принятый принцип:** Парламент-модель (встреча 18, май 2026) — отказ доступа на уровне платформы, не промпта.
+> **Граница (уточнено 26 мая, peer-сессия):** Parliament Model = Платформа (WP-336, Андрей). IWE не дублирует Parliament Model — IWE реализует Local Coordination Hub (WP-337/И) + Platform Adapter (DP.IWE.011). См. `sessions/2026-05/2026-05-26-16-wp337-parliament-boundary/report.md`.
 > **Цель:** согласовать до реализации.
 
 ---
