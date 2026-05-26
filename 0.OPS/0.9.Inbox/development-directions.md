@@ -2,11 +2,11 @@
 type: plan
 created: 2026-05-19
 updated: 2026-05-19
-scope: development directions for Aisystant IWE platform (post-MVP)
+scope: development directions for Aisystant platform and IWE system (post-MVP)
 related: [WP-336, WP-73, WP-285, WP-150, WP-253, WP-292]
 ---
 
-# Направления плана развития платформы Aisystant IWE
+# Направления плана развития платформы Aisystant и системы IWE
 
 > **Контекст:** после пивота продукта (курсы → платформа+IWE) и формирования новой архитектуры (WP-73, WP-336) требуется системный план развития. Направления ниже — не roadmap с датами, а стратегические векторы с приоритетами, owner'ами и критериями готовности.
 >
