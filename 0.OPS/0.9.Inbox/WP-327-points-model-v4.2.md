@@ -1,9 +1,9 @@
 ---
 date: 2026-05-27
-status: for-review
+status: ready-for-review
 wp: WP-327
 target: DP.ECON.001 v4.2 + DP.SC.105
-version: "v4.2 (peer-calibrated)"
+version: "v4.2 (final)"
 authors: Claude + Kimi (peer-сессия 2026-05-27-14)
 reviewer: Ильшат
 ---
