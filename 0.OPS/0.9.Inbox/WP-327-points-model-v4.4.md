@@ -595,6 +595,18 @@ Welcome не конфликтует с принципом «Случайный =
 <details open>
 <summary><b>14. Дорожная карта реализации</b></summary>
 
+### ✅ Задеплоено (2026-05-28)
+
+| Этап | Что сделано | Репо / коммит |
+|---|---|---|
+| **Этап 13** — hard-gate: не-подписчики не копят бонусы | `public.subscribers_snapshot` в rewards DB (ежедневный snapshot T2–T5); PRIMARY GATE в projection-worker (проверяет EXISTS до начисления); DEFENSE-IN-DEPTH в trigger 241; cron 01:00 UTC в scheduler.py; staleness alert view | neon-migrations a49a08c · mdpw 4bd5bc8 · aist_bot f175192 |
+| **Этап 22** — приветственный бонус 100 pts | `workshop.py`: при первой оплате подписки (count=1) эмитирует `subscription_first_purchased` через `dual_write.post_event()`, idempotency по `external_id=sub-first-{payment_id}`; `reference.reward_rules`: amount=100 | aist_bot 89b21af |
+
+**Known limitations:**
+- Подписчик, оформивший подписку до следующего snapshot, не получит бонусы до 01:00 UTC следующего дня (~24ч задержка). Это known limitation, не баг.
+- `club_*` события (club_like_received, club_comment_received, club_topic_created, club_trust_promoted, club_badge_granted, club_like_created) имеют `amount=0` — Discourse webhook (Этап 23) не подключён, события не поступают в pipeline. Это незавершённая реализация, не ошибка. **⚠️ При подключении Этапа 23 обязательно выставить `amount > 0` в `reference.reward_rules` для клубных событий** — иначе `compute_effective_amount_v4` вернёт 0 (guard на нулевом amount).
+- `onboarding_completed` имеет `amount=0` — оставить до явного решения (риск double-count с `subscription_first_purchased`).
+
 ### Приоритет 1 — миграция конфига (~1 ч)
 
 - [ ] Обновить курс: → 0.10 ₽/бонус
@@ -621,7 +633,7 @@ Welcome не конфликтует с принципом «Случайный =
 - [ ] Применить новый суточный лимит (25 × коэф. Квалификации × 8)
 - [ ] При коэф. Квалификации = 0 — баллы не начисляются (return 0 до записи в журнал)
 - [ ] Серия: 4 уровня с порогами 7/14/28 дней (×1.0/×1.3/×1.7/×2.2) — уже реализовано в `_compute_streak_mult`, активируется флагом `use_v4_formula`
-- [ ] Реализовать обработку события `subscription_first_purchased` → +100 бонусов с idempotency по user_id
+- [x] Реализовать обработку события `subscription_first_purchased` → +100 бонусов с idempotency по `external_id=sub-first-{payment_id}` (Этап 22, 2026-05-28)
 
 ### Приоритет 5 — UI бота (~2 ч)
 
