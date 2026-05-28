@@ -12216,3 +12216,46 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-28T15:22:38+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Чтобы получить `invalid_request`, нужно либо отсутствие поля `grant_type`, либо дублирование параметра, либо отсутствие "
+    ],
+    "session_id": "5229affb-d1af-4fff-b460-38f3430d8993"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-28T15:23:01+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Чтобы получить `invalid_request`, нужно либо отсутствие поля `grant_type`, либо дублирование параметра, либо отсутствие ",
+      "Хук зафиксирован. Пример в feedback обрезан — определить точную фразу-триггер не удаётся, но вероятно срабатывание на «н"
+    ],
+    "session_id": "5229affb-d1af-4fff-b460-38f3430d8993"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
