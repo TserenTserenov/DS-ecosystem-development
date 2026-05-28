@@ -699,61 +699,22 @@ Welcome не конфликтует с принципом «Случайный =
 ---
 
 <details open>
-<summary><b>17. Следующие фазы (не задеплоено, сессия 2026-05-28)</b></summary>
+<summary><b>17. Статус задеплоенного (сессия 2026-05-28-23)</b></summary>
 
-> Сформировано по итогам сессии 2026-05-28 (бэкфил Этап 15 + диагностика клубных событий).
-> Эти фазы выполнять в следующей сессии.
+> Обновлено 2026-05-28-23 (peer-сессия wp-fix-ismarker-club). Все критические задачи из предыдущего чеклиста выполнены.
 
-### 🔴 Критический: клубные события не начисляют баллы
+### ✅ Этап 26 — клубные события live — DONE 2026-05-28
 
-**Причина:** в `reference.projection_rules` нет ни одной строки для событий `club_*`.
-Воркер (multi-domain-projection-worker) при обработке события делает `SELECT rule_id FROM reference.projection_rules WHERE event_type = 'club_post_created'` → ноль строк → пропускает событие (NOOP). Баллы не начисляются и в `applied_events` ничего не пишется.
+- `is_marker=true` баг исправлен в `compute_effective_amount_v4`: `v_base := r_rule.amount` (не `1.0`)
+- `projection_rules` добавлены для всех 11 club-событий + `subscription_first_purchased`
+- Backfill: 17 пропущенных событий → 244 балла
+- Коммит: `neon-migrations 76aaf1f`
 
-Это означает: **с момента запуска вебхука клубные события не считались никогда** — не сегодня.
+### ✅ Этап 21 — серия / streak v4.4 — DONE 2026-05-28
 
-**Что нужно сделать:**
+`_compute_streak_mult` v4.4: 4 уровня (0-6d ×1.0 / 7-13d ×1.3 / 14-27d ×1.7 / 28+d ×2.2), окно 28 дней, `SUM(effective) > 0` per day. CHECK constraint расширен до 2.5. Применено к production. Коммит: `neon-migrations bdbb21a`.
 
-**Шаг 1. Добавить записи в `reference.projection_rules`** для каждого club-события:
-
-```sql
-INSERT INTO reference.projection_rules
-  (event_type, target_db, op, compute_fn, reward_rule_id)
-VALUES
-  ('club_post_created',        'rewards', 'UPSERT', 'compute_effective_amount_v4', '<uuid из reward_rules>'),
-  ('club_topic_created',       'rewards', 'UPSERT', 'compute_effective_amount_v4', '<uuid>'),
-  ('club_like_created',        'rewards', 'UPSERT', 'compute_effective_amount_v4', '<uuid>'),
-  ('club_like_received',       'rewards', 'UPSERT', 'compute_effective_amount_v4', '<uuid>'),
-  ('club_comment_received',    'rewards', 'UPSERT', 'compute_effective_amount_v4', '<uuid>'),
-  ('club_trust_promoted',      'rewards', 'UPSERT', 'compute_effective_amount_v4', '<uuid>'),
-  ('club_badge_granted',       'rewards', 'UPSERT', 'compute_effective_amount_v4', '<uuid>');
-```
-
-UUID брать из `reference.reward_rules WHERE event_type = 'club_*'` — правила уже существуют.
-
-**Шаг 2. Исправить баг `is_marker=true` в `compute_effective_amount_v4`**
-
-В функции `compute_effective_amount_v4` (rewards DB):
-- Текущий код: когда `is_marker=true`, функция устанавливает `v_base = 1.0` (жёстко, игнорирует `v_amount`).
-- Результат: все marker-события дадут `1.0 * qual_mult * streak_mult` ≈ 1–3.5 балла вместо заявленных 5–25.
-- Исправление: заменить `v_base = 1.0` на `v_base = v_amount` для `is_marker=true` случая.
-
-Локализация в коде: в `reward_functions.py` или в PL/pgSQL функции найти блок `IF r_rule.is_marker THEN v_base := 1.0` → заменить на `v_base := r_rule.amount`.
-
-**Шаг 3. Backfill пропущенных клубных событий**
-
-После фикса — сделать backfill: найти все `learning.domain_event` с `event_type LIKE 'club_%'` которые не имеют соответствующей записи в `rewards.applied_events` и перепровести их через `compute_effective_amount_v4`. SQL по образцу `backfill-2026-06-01.sql`.
-
----
-
-### 🟡 Средний: `subscription_first_purchased` в projection_rules
-
-**Ситуация:** Бэкфил Этап 15 покрыл 432 существующих подписчика. Новые подписчики получают бонус через Этап 22 (бот эмитирует событие + прямой INSERT в applied_events через `dual_write.post_event()`). Но если схема изменится на «только через воркер», событие не будет обработано — в `reference.projection_rules` записи для `subscription_first_purchased` нет.
-
-**Что нужно:** добавить строку в `reference.projection_rules` для `subscription_first_purchased` (rule_id: `95298a08-a583-4fb6-b033-6b662c5d37cb`). Даст idempotent-страховку для воркера.
-
----
-
-### 🟡 Средний: Metabase дашборды
+### 🟡 Средний: Metabase дашборды (manual)
 
 SQL для трёх вопросов готов в `DS-IT-systems/neon-migrations/scripts/metabase-questions-wp327.md`:
 1. Топ-20 пилотов по earned_total
@@ -762,28 +723,22 @@ SQL для трёх вопросов готов в `DS-IT-systems/neon-migration
 
 Создать вручную в Metabase UI (New Question → Native SQL → вставить запрос → Save).
 
----
-
-### ✅ Этап 21 (серия / streak) — DONE 2026-05-28
-
-Механика streak v4.4 (4 уровня: ×1.0/×1.3/×1.7/×2.2, окно 28 дней, SUM(effective)>0) реализована в migration 248. CHECK constraint на `streak_mult` расширен до 2.5. Активируется флагом `use_v4_formula=TRUE` (Приоритет 1 §14).
-
 ### 🔵 Отложено: Этап 14 (referral_paid)
 
 Заблокировано командой. Не трогать до явного решения.
 
 ---
 
-### Чеклист для следующей сессии
+### Чеклист для следующей сессии (Приоритеты 1-4 из §14)
 
-- [ ] Прочитать эту секцию перед началом
-- [ ] Проверить `reference.projection_rules` — убедиться что club_* до сих пор отсутствуют (на случай если кто-то уже добавил)
-- [ ] Найти UUID для каждого club_* reward_rule: `SELECT id, event_type, amount FROM reference.reward_rules WHERE event_type LIKE 'club_%'`
-- [ ] Исправить `is_marker=true` баг в `compute_effective_amount_v4` ПЕРЕД добавлением projection_rules (иначе будут начислять неверные суммы)
-- [ ] Добавить projection_rules (можно миграцией 247)
-- [ ] Backfill пропущенных club-событий
-- [ ] Добавить `subscription_first_purchased` в projection_rules
-- [ ] Metabase 3 вопроса
+- [x] Клубные события: projection_rules + is_marker fix + backfill — DONE 2026-05-28
+- [x] `subscription_first_purchased` в projection_rules — DONE 2026-05-28
+- [x] streak v4.4 (migration 248) — DONE 2026-05-28
+- [ ] Приоритет 1: обновить `loyalty_pool_config` (курс 0.10, base_multiplier=25, use_v4_formula=TRUE)
+- [ ] Приоритет 2: обновить шкалу квалификации (12 ступеней, Случайный=0)
+- [ ] Приоритет 3: заполнить параметры 15 активных событий + вес=0 для 18 отложенных
+- [ ] Приоритет 4: qual_mult=0 → return 0 (не начислять Случайным)
+- [ ] Metabase 3 вопроса (manual, Ильшат)
 
 </details>
 
