@@ -12153,3 +12153,66 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-28T12:35:45+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- Мердж `pilot → new-architecture` с разрешением конфликтов (исправлен баг: пилот использовал `learning_pool` для `devel"
+    ],
+    "session_id": "d3961e8c-1ba4-416d-a6eb-198ad9354f87"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
+
+## 2026-05-28T12:42:33+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P1_not_capturing",
+    "severity": "minor",
+    "description": "Write в feedback_architecture.md без ссылки на паттерн (pattern: P{N} / DP.FM.). Проверь DP.FM.010 перед записью нового правила (DP.FM.011 §Correction).",
+    "tool_context": {
+      "tool_name": "Edit",
+      "file_path": "/Users/tserentserenov/.claude/projects/-Users-tserentserenov-IWE/memory/feedback_architecture.md",
+      "snippet": "**How to apply:** Перед любым UPDATE/INSERT в таблицу — проверить схему (development.* → get_pool(), learning.* → get_learning_pool()). Имя переменно�"
+    }
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
+
+## 2026-05-28T14:31:33+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "С чего начинаем? "
+    ],
+    "session_id": "4d3cedf2-c631-41de-ae6e-83f21cefd358"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
