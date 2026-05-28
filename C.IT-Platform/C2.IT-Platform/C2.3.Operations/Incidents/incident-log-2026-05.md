@@ -11920,3 +11920,215 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-27T22:11:55+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P1_not_capturing",
+    "severity": "minor",
+    "description": "Write в feedback_wp_gate_ritual_for_child_wp.md без ссылки на паттерн (pattern: P{N} / DP.FM.). Проверь DP.FM.010 перед записью нового правила (DP.FM.011 §Correction).",
+    "tool_context": {
+      "tool_name": "Write",
+      "file_path": "/Users/tserentserenov/.claude/projects/-Users-tserentserenov-IWE/memory/feedback_wp_gate_ritual_for_child_wp.md",
+      "snippet": "**How to apply:**- Когда работа по родительскому РП обнаруживает дополнительные drift'ы / системные проблемы — вариант�"
+    }
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-28T08:40:33+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Документ читается за 5 минут перед встречей. Не закоммитил — твоё решение, нужно ли это в общий репозиторий или оставить"
+    ],
+    "session_id": "9a875360-33ae-4b9e-9243-219f4be5bc87"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-28T08:41:09+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Документ читается за 5 минут перед встречей. Не закоммитил — твоё решение, нужно ли это в общий репозиторий или оставить"
+    ],
+    "session_id": "9a875360-33ae-4b9e-9243-219f4be5bc87"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-ecosystem-development"
+  }
+}
+```
+
+## 2026-05-28T09:02:53+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "  - **fix**: убрать `resolve_dlq` из `process_event` (строки 221–222) — отвественность за DLQ-разрешение должна лежать н"
+    ],
+    "session_id": "da0a09b4-4662-4c04-9dc3-488ade305cfc"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-28T09:03:47+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "  - **fix**: убрать `resolve_dlq` из `process_event` (строки 221–222) — отвественность за DLQ-разрешение должна лежать н"
+    ],
+    "session_id": "da0a09b4-4662-4c04-9dc3-488ade305cfc"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-28T09:10:54+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- **listener.py:538–541**: `insert_dlq` вызывается с переставленными позиционными аргументами: `domain=event_id` (int), "
+    ],
+    "session_id": "593f74fb-f0a9-490e-8be9-4addb9474417"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-28T09:11:10+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- **listener.py:538–541**: `insert_dlq` вызывается с переставленными позиционными аргументами: `domain=event_id` (int), "
+    ],
+    "session_id": "593f74fb-f0a9-490e-8be9-4addb9474417"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-28T10:16:33+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "## Что делать дальше ",
+      "Нужно либо писать `domain` правильно (но на timeout неизвестно какой домен завис), либо `__timeout__` не писать в DLQ со"
+    ],
+    "session_id": "08b8dde3-46fb-4453-9fd1-eaf32ae896ff"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
+
+## 2026-05-28T10:16:58+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "## Что делать дальше ",
+      "Нужно либо писать `domain` правильно (но на timeout неизвестно какой домен завис), либо `__timeout__` не писать в DLQ со"
+    ],
+    "session_id": "08b8dde3-46fb-4453-9fd1-eaf32ae896ff"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
+
+## 2026-05-28T11:41:18+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "`club_like_created` («Лайк поставлен») — в документе явно в **отложенных** со словами «Триггер спама» (§6.5). Мы его вкл"
+    ],
+    "session_id": "729f4546-d7c2-47f5-84e5-43017a4f7250"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
