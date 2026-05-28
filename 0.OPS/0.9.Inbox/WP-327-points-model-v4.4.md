@@ -599,7 +599,8 @@ Welcome не конфликтует с принципом «Случайный =
 
 | Этап | Что сделано | Репо / коммит |
 |---|---|---|
-| **Этап 13** — hard-gate: не-подписчики не копят бонусы | `public.subscribers_snapshot` в rewards DB (ежедневный snapshot T2–T5); PRIMARY GATE в projection-worker (проверяет EXISTS до начисления); DEFENSE-IN-DEPTH в trigger 241; cron 01:00 UTC в scheduler.py; staleness alert view | neon-migrations a49a08c · mdpw 4bd5bc8 · aist_bot f175192 |
+| **Этап 13** — hard-gate: не-подписчики не копят бонусы | `public.subscribers_snapshot` в rewards DB (ежедневный snapshot T2–T5); PRIMARY GATE в projection-worker (проверяет EXISTS до начисления); DEFENSE-IN-DEPTH в trigger 241; cron 01:00 UTC в scheduler.py; staleness alert view. **Применено к production 2026-05-28, снапшот заполнен (432 подписчика).** | neon-migrations a49a08c / 245 / 246 · mdpw 4bd5bc8 · aist_bot f175192 |
+| **Этап 15** — backfill welcome bonus для существующих подписчиков | 432 записи `subscription_first_purchased` добавлены в `applied_events`; 43 200 баллов начислено (100 pts × 432); `point_balances` обновлён (258 existing + 174 new). Досрочно — дедлайн был 1 июня. | neon-migrations 478bd16 |
 | **Этап 22** — приветственный бонус 100 pts | `workshop.py`: при первой оплате подписки (count=1) эмитирует `subscription_first_purchased` через `dual_write.post_event()`, idempotency по `external_id=sub-first-{payment_id}`; `reference.reward_rules`: amount=100 | aist_bot 89b21af |
 
 **Known limitations:**
@@ -647,7 +648,7 @@ Welcome не конфликтует с принципом «Случайный =
 
 - Накопленные баллы — без изменений (история не переписывается).
 - Текущие бонусные балансы остаются. При смене курса 0.05 → 0.10 рублёвая ценность каждого бонуса удваивается без действий пилота. Пример: было 10 409 бонусов = 520 ₽ (по 0.05), станет 10 409 бонусов = 1 041 ₽ (по 0.10). Это подарок пилотам в духе принципа П7 «пересчёт в сторону пользователя».
-- Приветственный бонус существующим подписчикам — раздаётся в рамках backfill 1 июня (отдельная задача, см. скрипт `4b680de`).
+- ✅ Приветственный бонус существующим подписчикам — **выполнено 2026-05-28** (neon-migrations 478bd16). 432 подписчика, 43 200 баллов. Скрипт: `scripts/backfill-2026-06-01.sql`.
 
 ### Post-MVP (дальнейшая дорожная карта)
 
