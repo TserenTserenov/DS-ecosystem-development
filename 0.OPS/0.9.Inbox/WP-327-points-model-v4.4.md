@@ -692,6 +692,97 @@ Welcome не конфликтует с принципом «Случайный =
 
 ---
 
+<details open>
+<summary><b>17. Следующие фазы (не задеплоено, сессия 2026-05-28)</b></summary>
+
+> Сформировано по итогам сессии 2026-05-28 (бэкфил Этап 15 + диагностика клубных событий).
+> Эти фазы выполнять в следующей сессии.
+
+### 🔴 Критический: клубные события не начисляют баллы
+
+**Причина:** в `reference.projection_rules` нет ни одной строки для событий `club_*`.
+Воркер (multi-domain-projection-worker) при обработке события делает `SELECT rule_id FROM reference.projection_rules WHERE event_type = 'club_post_created'` → ноль строк → пропускает событие (NOOP). Баллы не начисляются и в `applied_events` ничего не пишется.
+
+Это означает: **с момента запуска вебхука клубные события не считались никогда** — не сегодня.
+
+**Что нужно сделать:**
+
+**Шаг 1. Добавить записи в `reference.projection_rules`** для каждого club-события:
+
+```sql
+INSERT INTO reference.projection_rules
+  (event_type, target_db, op, compute_fn, reward_rule_id)
+VALUES
+  ('club_post_created',        'rewards', 'UPSERT', 'compute_effective_amount_v4', '<uuid из reward_rules>'),
+  ('club_topic_created',       'rewards', 'UPSERT', 'compute_effective_amount_v4', '<uuid>'),
+  ('club_like_created',        'rewards', 'UPSERT', 'compute_effective_amount_v4', '<uuid>'),
+  ('club_like_received',       'rewards', 'UPSERT', 'compute_effective_amount_v4', '<uuid>'),
+  ('club_comment_received',    'rewards', 'UPSERT', 'compute_effective_amount_v4', '<uuid>'),
+  ('club_trust_promoted',      'rewards', 'UPSERT', 'compute_effective_amount_v4', '<uuid>'),
+  ('club_badge_granted',       'rewards', 'UPSERT', 'compute_effective_amount_v4', '<uuid>');
+```
+
+UUID брать из `reference.reward_rules WHERE event_type = 'club_*'` — правила уже существуют.
+
+**Шаг 2. Исправить баг `is_marker=true` в `compute_effective_amount_v4`**
+
+В функции `compute_effective_amount_v4` (rewards DB):
+- Текущий код: когда `is_marker=true`, функция устанавливает `v_base = 1.0` (жёстко, игнорирует `v_amount`).
+- Результат: все marker-события дадут `1.0 * qual_mult * streak_mult` ≈ 1–3.5 балла вместо заявленных 5–25.
+- Исправление: заменить `v_base = 1.0` на `v_base = v_amount` для `is_marker=true` случая.
+
+Локализация в коде: в `reward_functions.py` или в PL/pgSQL функции найти блок `IF r_rule.is_marker THEN v_base := 1.0` → заменить на `v_base := r_rule.amount`.
+
+**Шаг 3. Backfill пропущенных клубных событий**
+
+После фикса — сделать backfill: найти все `learning.domain_event` с `event_type LIKE 'club_%'` которые не имеют соответствующей записи в `rewards.applied_events` и перепровести их через `compute_effective_amount_v4`. SQL по образцу `backfill-2026-06-01.sql`.
+
+---
+
+### 🟡 Средний: `subscription_first_purchased` в projection_rules
+
+**Ситуация:** Бэкфил Этап 15 покрыл 432 существующих подписчика. Новые подписчики получают бонус через Этап 22 (бот эмитирует событие + прямой INSERT в applied_events через `dual_write.post_event()`). Но если схема изменится на «только через воркер», событие не будет обработано — в `reference.projection_rules` записи для `subscription_first_purchased` нет.
+
+**Что нужно:** добавить строку в `reference.projection_rules` для `subscription_first_purchased` (rule_id: `95298a08-a583-4fb6-b033-6b662c5d37cb`). Даст idempotent-страховку для воркера.
+
+---
+
+### 🟡 Средний: Metabase дашборды
+
+SQL для трёх вопросов готов в `DS-IT-systems/neon-migrations/scripts/metabase-questions-wp327.md`:
+1. Топ-20 пилотов по earned_total
+2. Распределение баллов по типам событий за последние 7 дней
+3. Daily active earners (уникальные account_id с applied_events за день)
+
+Создать вручную в Metabase UI (New Question → Native SQL → вставить запрос → Save).
+
+---
+
+### 🔵 Отложено: Этап 21 (серия / streak)
+
+Механика streak реализована в `_compute_streak_mult`, но флаг `use_v4_formula` в `loyalty_pool_config` = FALSE. Включение = Приоритет 1 из §14. Отдельная сессия.
+
+### 🔵 Отложено: Этап 14 (referral_paid)
+
+Заблокировано командой. Не трогать до явного решения.
+
+---
+
+### Чеклист для следующей сессии
+
+- [ ] Прочитать эту секцию перед началом
+- [ ] Проверить `reference.projection_rules` — убедиться что club_* до сих пор отсутствуют (на случай если кто-то уже добавил)
+- [ ] Найти UUID для каждого club_* reward_rule: `SELECT id, event_type, amount FROM reference.reward_rules WHERE event_type LIKE 'club_%'`
+- [ ] Исправить `is_marker=true` баг в `compute_effective_amount_v4` ПЕРЕД добавлением projection_rules (иначе будут начислять неверные суммы)
+- [ ] Добавить projection_rules (можно миграцией 247)
+- [ ] Backfill пропущенных club-событий
+- [ ] Добавить `subscription_first_purchased` в projection_rules
+- [ ] Metabase 3 вопроса
+
+</details>
+
+---
+
 *История изменений документа: см. [CHANGELOG-WP-327.md](./CHANGELOG-WP-327.md).*
 
 *Документ подготовлен на основе peer-сессий Claude + Kimi 27–28 мая 2026 (последняя: 2026-05-28-07 — фиксация решений по 6 расхождениям v4.3 spec). Текущая редакция: v4.4 от 2026-05-28.*
