@@ -273,18 +273,22 @@ changelog: ./CHANGELOG-WP-327.md
 
 | Действие | Тип | event | мин. усилий | Лимит в день | Эффективные баллы |
 |---|:---:|---|:---:|:---:|:---:|
-| Тема создана | Б (маркер) | `club_topic_created` | — | 3 | 5.2 |
-| Пост в клубе | Б (маркер) | `club_post_created` | — | 2 | 5.2 |
-| Комментарий | Б (маркер) | `club_post_created` (reply) | — | 3 | 5.2 |
-| Лайк поставлен | Б (маркер) | `club_like_created` | — | 2 | 5.2 |
-| Лайк получен | Б (маркер) | `club_like_received` | — | 5 | 5.2 |
-| Комментарий получен | Б (маркер) | `club_comment_received` | — | 3 | 5.2 |
-| Ответ принят как решение | Б (маркер) | `club_solution_accepted` | — | 2 | 5.2 |
-| Значок выдан (бронза) | Б (маркер) | `club_badge_granted` (type=bronze) | — | 1 | 5.2 |
-| Значок выдан (серебро) | Б (маркер) | `club_badge_granted` (type=silver) | — | 1 | 5.2 |
-| Значок выдан (золото) | Б (маркер) | `club_badge_granted` (type=gold) | — | 1 | 5.2 |
-| Уровень доверия повышен | Б (маркер) | `club_trust_promoted` | — | 1 | 5.2 |
-| Реферал принял приглашение | Б (маркер) | `club_invite_accepted` | — | 2 | 5.2 |
+| Тема создана | Б (маркер) | `club_topic_created` | — | 3 | 12 |
+| Пост в клубе | Б (маркер) | `club_post_created` | — | 2 | 5 |
+| Комментарий | Б (маркер) | `club_comment_received` (у получателя) | — | 3 | 4 |
+| Лайк поставлен | Б (маркер) | `club_like_created` | — | 2 | 1 |
+| Лайк получен | Б (маркер) | `club_like_received` | — | 3 | 2 |
+| Комментарий получен | Б (маркер) | `club_comment_received` | — | 3 | 4 |
+| Ответ принят как решение | Б (маркер) | `club_solution_accepted` | — | 2 | 12 |
+| Значок выдан (бронза) | Б (маркер) | `club_badge_granted` (нет match_condition) | — | 1 | 3 |
+| Значок выдан (серебро) | Б (маркер) | `club_badge_granted` (`{"badge_type":"silver"}`) | — | 1 | 15 |
+| Значок выдан (золото) | Б (маркер) | `club_badge_granted` (`{"badge_type":"gold"}`) | — | 1 | 46 |
+| Уровень доверия TL2 | Б (маркер) | `club_trust_promoted` (`{"to_level":2}`) | — | 1 | 25 |
+| Уровень доверия TL3 | Б (маркер) | `club_trust_promoted` (`{"to_level":3}`) | — | 1 | 70 |
+| Уровень доверия TL4 | Б (маркер) | `club_trust_promoted` (`{"to_level":4}`) | — | 1 | 0 |
+| Зарегистрировался в клубе | Б (маркер) | `club_user_created` | — | 1 | 5 |
+| Подтвердил email в клубе | Б (маркер) | `club_email_confirmed` | — | 1 | 2 |
+| Реферал принял приглашение | Б (маркер) | `club_invite_accepted` | — | 2 | 35 |
 | Реферал оплатил подписку | спец. | — | — | — | формула §11 (через реферальный пул) |
 
 > **Примечание по лайк поставлен.** Лимит 2/день — антиспам-барьер (в отличие от прежней позиции «отложен»). При превышении 2 лайков в день начисления прекращаются до следующего дня.
@@ -602,6 +606,8 @@ Welcome не конфликтует с принципом «Случайный =
 | **Этап 13** — hard-gate: не-подписчики не копят бонусы | `public.subscribers_snapshot` в rewards DB (ежедневный snapshot T2–T5); PRIMARY GATE в projection-worker (проверяет EXISTS до начисления); DEFENSE-IN-DEPTH в trigger 241; cron 01:00 UTC в scheduler.py; staleness alert view. **Применено к production 2026-05-28, снапшот заполнен (432 подписчика).** | neon-migrations a49a08c / 245 / 246 · mdpw 4bd5bc8 · aist_bot f175192 |
 | **Этап 15** — backfill welcome bonus для существующих подписчиков | 432 записи `subscription_first_purchased` добавлены в `applied_events`; 43 200 баллов начислено (100 pts × 432); `point_balances` обновлён (258 existing + 174 new). Досрочно — дедлайн был 1 июня. | neon-migrations 478bd16 |
 | **Этап 22** — приветственный бонус 100 pts | `workshop.py`: при первой оплате подписки (count=1) эмитирует `subscription_first_purchased` через `dual_write.post_event()`, idempotency по `external_id=sub-first-{payment_id}`; `reference.reward_rules`: amount=100 | aist_bot 89b21af |
+| **Этап 21** — streak ×2.2 (migration 248) | `_compute_streak_mult` v4.4: 4-уровневый (28d, SUM>0); CHECK streak_mult≤2.5; dynamic constraint drop. Применено к production. | neon-migrations 76aaf1f |
+| **Этап 26** — club events live (миграции 247+247b) | is_marker bugfix в compute_effective_amount_v4; projection_rules для 11 club-событий; backfill 17 событий (244 pts). is_marker ветка: v_base=v_amount (не 1.0). | neon-migrations 76aaf1f |
 
 **Known limitations:**
 - Подписчик, оформивший подписку до следующего snapshot, не получит бонусы до 01:00 UTC следующего дня (~24ч задержка). Это known limitation, не баг.
@@ -633,7 +639,7 @@ Welcome не конфликтует с принципом «Случайный =
 
 - [ ] Применить новый суточный лимит (25 × коэф. Квалификации × 8)
 - [ ] При коэф. Квалификации = 0 — баллы не начисляются (return 0 до записи в журнал)
-- [ ] Серия: 4 уровня с порогами 7/14/28 дней (×1.0/×1.3/×1.7/×2.2) — уже реализовано в `_compute_streak_mult`, активируется флагом `use_v4_formula`
+- [x] Серия: 4 уровня с порогами 7/14/28 дней (×1.0/×1.3/×1.7/×2.2) — реализовано в migration 248 (Этап 21, 2026-05-28); флаг `use_v4_formula=TRUE` активирует через Приоритет 1
 - [x] Реализовать обработку события `subscription_first_purchased` → +100 бонусов с idempotency по `external_id=sub-first-{payment_id}` (Этап 22, 2026-05-28)
 
 ### Приоритет 5 — UI бота (~2 ч)
@@ -758,9 +764,9 @@ SQL для трёх вопросов готов в `DS-IT-systems/neon-migration
 
 ---
 
-### 🔵 Отложено: Этап 21 (серия / streak)
+### ✅ Этап 21 (серия / streak) — DONE 2026-05-28
 
-Механика streak реализована в `_compute_streak_mult`, но флаг `use_v4_formula` в `loyalty_pool_config` = FALSE. Включение = Приоритет 1 из §14. Отдельная сессия.
+Механика streak v4.4 (4 уровня: ×1.0/×1.3/×1.7/×2.2, окно 28 дней, SUM(effective)>0) реализована в migration 248. CHECK constraint на `streak_mult` расширен до 2.5. Активируется флагом `use_v4_formula=TRUE` (Приоритет 1 §14).
 
 ### 🔵 Отложено: Этап 14 (referral_paid)
 
