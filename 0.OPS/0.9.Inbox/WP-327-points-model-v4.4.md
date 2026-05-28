@@ -604,7 +604,7 @@ Welcome не конфликтует с принципом «Случайный =
 
 **Known limitations:**
 - Подписчик, оформивший подписку до следующего snapshot, не получит бонусы до 01:00 UTC следующего дня (~24ч задержка). Это known limitation, не баг.
-- `club_*` события (club_like_received, club_comment_received, club_topic_created, club_trust_promoted, club_badge_granted, club_like_created) имеют `amount=0` — Discourse webhook (Этап 23) не подключён, события не поступают в pipeline. Это незавершённая реализация, не ошибка. **⚠️ При подключении Этапа 23 обязательно выставить `amount > 0` в `reference.reward_rules` для клубных событий** — иначе `compute_effective_amount_v4` вернёт 0 (guard на нулевом amount).
+- `club_*` события работают с 2026-05-28 (WP-296 + фикс вебхука в сессии 2026-05-28-03). Суммы: club_topic_created=12, club_post_created=5, club_like_created=1 (лимит 2/день), club_like_received=2 (лимит 5/день), club_comment_received=4 (лимит 3/день), club_trust_promoted=25/70, club_badge_granted=15/46.
 - `onboarding_completed` имеет `amount=0` — оставить до явного решения (риск double-count с `subscription_first_purchased`).
 
 ### Приоритет 1 — миграция конфига (~1 ч)
