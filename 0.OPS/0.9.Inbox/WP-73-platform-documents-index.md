@@ -3,9 +3,9 @@ type: index
 name: "Индекс документов платформы Aisystant и системы IWE"
 status: active
 created: 2026-05-19
-updated: 2026-05-19
+updated: 2026-05-29
 scope: post-MVP architecture, v2.0 platform concept, 5 natures of IWE
-related: [WP-73, WP-336, WP-74, WP-250, WP-292, WP-285]
+related: [WP-73, WP-336, WP-74, WP-250, WP-292, WP-285, WP-281, WP-337]
 ---
 
 # Индекс документов платформы Aisystant и системы IWE (post-MVP)
