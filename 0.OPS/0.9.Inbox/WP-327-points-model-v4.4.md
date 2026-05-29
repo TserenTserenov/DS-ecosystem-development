@@ -1,5 +1,5 @@
 ---
-date: 2026-05-28
+date: 2026-05-29
 status: ready-for-implementation
 wp: WP-327
 target: DP.ECON.001 v4.4 + DP.SC.105

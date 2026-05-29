@@ -1,7 +1,7 @@
 ---
 type: plan
 created: 2026-05-19
-updated: 2026-05-19
+updated: 2026-05-29
 scope: development directions for Aisystant platform and IWE system (post-MVP)
 related: [WP-336, WP-73, WP-285, WP-150, WP-253, WP-292]
 ---

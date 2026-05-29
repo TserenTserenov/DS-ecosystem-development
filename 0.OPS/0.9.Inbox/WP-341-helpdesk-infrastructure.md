@@ -1,7 +1,8 @@
 ---
 title: "Инфраструктура хелпдеска IWE"
-status: draft
+status: active
 created: 2026-05-29
+updated: 2026-05-29
 wp_ref: WP-341
 family: F7
 owner: ops

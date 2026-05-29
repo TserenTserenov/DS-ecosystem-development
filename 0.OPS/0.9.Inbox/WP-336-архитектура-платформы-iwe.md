@@ -1,3 +1,10 @@
+---
+type: architecture-context
+status: active
+source_wp: WP-336 (закрыт), контент актуален для WP-337 + WP-281
+updated: 2026-05-29
+---
+
 # WP-336: Архитектура Платформы Aisystant и IWE — контекст для архитектора
 ## Документ для Андрея
 

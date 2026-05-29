@@ -4,7 +4,7 @@ number: "74"
 title: "Концепция использования ИТ-платформы Aisystant"
 status: in_progress
 created: 2026-02-27
-updated: 2026-05-07
+updated: 2026-05-29
 parent: WP-73
 repo: DS-ecosystem-development
 artifact: "Концепция использования: роли, сценарии, тиры, UX-принципы"

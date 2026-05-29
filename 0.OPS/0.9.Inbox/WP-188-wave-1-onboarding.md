@@ -6,9 +6,10 @@ participants: 5
 start_date: 2026-05-13
 end_date: 2026-06-12
 horizon_days: 30
-status: draft
+status: active
 related_wp: [WP-188, WP-245 Block Б, WP-253-F9.7, WP-301]
 created: 2026-05-12
+updated: 2026-05-29
 owner: Стратег
 ---
 
@@ -16,6 +17,7 @@ owner: Стратег
 
 > **Wave-1 = 5 человек core-team.** Старт: 13 мая 2026. Финиш: 12 июня 2026.
 > Цель wave-1: end-to-end проверка pipeline персонального руководства до wave-2 (15 чел, 16-17 мая).
+> **Актуализация 29 мая:** wave-1 активна, wave-2 расширена +5 дней. Marathon WP-330 Ф8.2 smoke ✅ PASS (28 мая). Дедлайн 12 июня держится.
 
 ---
 
