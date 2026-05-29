@@ -37,9 +37,9 @@ owner: ops
 
 | Канал | Ссылка | Участников | Назначение | Алерты |
 |-------|--------|-----------|-----------|--------|
-| **Ops (основной)** | t.me/+2Tdn-M33vasyNzli | ~5 | Инциденты платформы: алерты BetterStack + mcp-health-probe | ✅ настроен |
-| **Пользовательские репорты** | t.me/+5WH59nuwrnY3M2Ji | ~100 | Сообщения пользователей о работе платформы | ❌ не подключён к Chatwoot |
-| **Неопределённый** | t.me/+I2t97dfgL68xZmU6 | ? | Роль не определена → см. Roadmap Фаза B | ❌ нет алертов |
+| **Aisystant_status** | t.me/+2Tdn-M33vasyNzli | ~5 | Инциденты платформы: алерты BetterStack + mcp-health-probe | ✅ настроен |
+| **Aisystant - feedback chat** | t.me/+5WH59nuwrnY3M2Ji | ~100 | Сообщения пользователей о работе платформы | ❌ не подключён к Chatwoot |
+| **Helpdesk Aisystant** | t.me/+I2t97dfgL68xZmU6 | ? | Роль не определена → см. Roadmap Фаза B | ❌ нет алертов |
 
 </details>
 
@@ -51,11 +51,11 @@ owner: ops
 ```
 Внешние               Внутренние             Каналы
 ─────────             ──────────             ──────
-BetterStack ──────→  webhook/check ──────→  Ops Telegram
-(каждые 3 мин)       keyword: "verdict"     +2Tdn-M33vasyNzli
+BetterStack ──────→  webhook/check ──────→  Aisystant_status
+(каждые 3 мин)       keyword: "verdict"     (TG)
 
-n8n health-probe ──→ guides-mcp ──────────→ Ops Telegram
-(каждые 30 мин)      knowledge-mcp          +2Tdn-M33vasyNzli
+n8n health-probe ──→ guides-mcp ──────────→ Aisystant_status
+(каждые 30 мин)      knowledge-mcp          (TG)
                      digital-twin-mcp
                      hw-checker-webhook
 
@@ -70,7 +70,7 @@ BetterStack ──────→  aisystant.betteruptime.com
 - **Тело запроса:** `{"question_text":"Что такое системное мышление?","answer_text":"monitor-check","course_name":"monitor"}`
 - **Частота:** каждые 3 минуты
 - **Recovery period:** 3 минуты
-- **Получатель алертов:** primary on-call → Ops Telegram (`+2Tdn-M33vasyNzli`)
+- **Получатель алертов:** primary on-call → **Aisystant_status** (TG)
 - **Статус-страница:** https://aisystant.betteruptime.com (публичная, для пользователей)
 
 > ⚠️ BetterStack запускает полный LLM-пайплайн при каждой проверке (Claude Haiku).
@@ -85,7 +85,7 @@ BetterStack ──────→  aisystant.betteruptime.com
   - `knowledge-mcp` — graph_stats
   - `digital-twin-mcp` — tools/list
   - `hw-checker-webhook` — POST /webhook/check, keyword: `"ok"` (keyword-check)
-- **Алерт:** Telegram Bot → `-1003907065350` (Ops группа `+2Tdn-M33vasyNzli`)
+- **Алерт:** Telegram Bot → `-1003907065350` (**Aisystant_status**)
 - **Логирование:** Neon learning DB → таблица `mcp_health_log`
 
 </details>
@@ -159,7 +159,7 @@ BetterStack ──────→  aisystant.betteruptime.com
 
 ### Текущее использование
 
-> ⚠️ Chatwoot установлен, но **не интегрирован** с Telegram-группой пользователей (`+5WH59nuwrnY3M2Ji`).
+> ⚠️ Chatwoot установлен, но **не интегрирован** с Telegram-группой пользователей (**Aisystant - feedback chat**).
 > Сообщения пользователей из этой группы не попадают в тикеты Chatwoot.
 
 </details>
@@ -169,8 +169,8 @@ BetterStack ──────→  aisystant.betteruptime.com
 
 | # | Проблема | Приоритет |
 |---|---------|-----------|
-| 1 | `+5WH59nuwrnY3M2Ji` (100 чел.) не подключён к Chatwoot — сообщения теряются | 🔴 высокий |
-| 2 | `+I2t97dfgL68xZmU6` — роль не определена, алертов нет | 🟡 средний |
+| 1 | **Aisystant - feedback chat** (100 чел.) не подключён к Chatwoot — сообщения теряются | 🔴 высокий |
+| 2 | **Helpdesk Aisystant** — роль не определена, алертов нет | 🟡 средний |
 | 3 | BetterStack мониторит через полный LLM-пайплайн (дорого, ~480 req/сутки) — нет отдельного `/healthz` | 🟡 средний |
 | 4 | Legacy воркфлоу (7 штук) засоряют n8n | 🟢 низкий |
 | 5 | Нет disk usage alert для Railway Postgres (инцидент 28 мая) | 🟡 средний |
@@ -184,13 +184,13 @@ BetterStack ──────→  aisystant.betteruptime.com
 
 ### Фаза A — Интеграция Telegram → Chatwoot (🔴 приоритет 1)
 
-**Задача:** подключить группу `+5WH59nuwrnY3M2Ji` как inbox в Chatwoot.
+**Задача:** подключить группу **Aisystant - feedback chat** как inbox в Chatwoot.
 
 **Как (Вариант 1 — бот в группе):**
 1. BotFather → `/newbot` → создать бота (например, `@aisystant_support_bot`)
 2. BotFather → `/setprivacy` → выбрать бота → `Disable` (иначе бот читает только @упоминания)
 3. Chatwoot → Settings → Inboxes → New Inbox → **Telegram** → вставить токен бота
-4. Добавить бота в группу `+5WH59nuwrnY3M2Ji` как участника
+4. Добавить бота в группу **Aisystant - feedback chat** как участника
 
 **Поведение:** каждый пользователь группы = отдельный тикет в Chatwoot. Оператор отвечает из Chatwoot → ответ появляется в группе от имени бота.
 
@@ -198,10 +198,10 @@ BetterStack ──────→  aisystant.betteruptime.com
 
 **Результат:** все сообщения из группы 100 пользователей → тикеты Chatwoot → операторы отвечают из одного интерфейса.
 
-### Фаза B — Определить роль `+I2t97dfgL68xZmU6`
+### Фаза B — Определить роль канала **Helpdesk Aisystant**
 
 **Варианты:**
-- **Ops эскалация (уровень 2):** если primary (2Tdn) не ответил за 15 мин → алерт сюда
+- **Ops эскалация (уровень 2):** если primary (Aisystant_status) не ответил за 15 мин → алерт сюда
 - **Dev-канал:** уведомления о деплоях, PR, технические события
 - **Архивировать:** если группа неактивна — убрать из схемы
 
@@ -245,11 +245,11 @@ BetterStack ──────→  aisystant.betteruptime.com
 <summary><b>8. Зависимости</b></summary>
 
 ```
-Пользователь → +5WH59nuwrnY3M2Ji → [TODO: Chatwoot inbox] → Chatwoot → Оператор
+Пользователь → Aisystant - feedback chat → [TODO: Chatwoot inbox] → Chatwoot → Оператор
 Пользователь → ДЗ-чекер webhook → n8n → guides-mcp + knowledge-mcp → Claude Haiku → Ответ
-Оператор → Chatwoot → [TODO: reply bot] → +5WH59nuwrnY3M2Ji
-Мониторинг → BetterStack → aisystant.betteruptime.com → Ops Telegram
-Мониторинг → mcp-health-probe (n8n) → Neon log + Ops Telegram
+Оператор → Chatwoot → [TODO: reply bot] → Aisystant - feedback chat
+Мониторинг → BetterStack → aisystant.betteruptime.com → Aisystant_status (TG)
+Мониторинг → mcp-health-probe (n8n) → Neon log + Aisystant_status (TG)
 ```
 
 </details>
