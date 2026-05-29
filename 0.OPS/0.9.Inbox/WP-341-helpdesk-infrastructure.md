@@ -267,3 +267,17 @@ BetterStack ──────→  aisystant.betteruptime.com
 ---
 
 *Создан: 2026-05-29. Следующий ревью: при изменении любого сервиса или при Week Close.*
+
+---
+
+## Осталось (сессия 2026-05-29)
+
+**Что пробовали:** создали n8n воркфлоу /healthz (Фаза C), активировали через API — 404 без рестарта сервиса.
+**Что узнали:** n8n на Railway регистрирует webhook-маршруты только при старте, API activate не обновляет in-memory реестр.
+
+**Что дальше:**
+- [ ] Рестарт n8n: Railway → peaceful-vision → n8n → Redeploy (сервис `c284d699-0e05-463a-b319-db3e7fd1931a`)
+- [ ] Переключить BetterStack: POST /webhook/check → GET /webhook/healthz, keyword: `"ok"`
+- [ ] Фаза F: BetterStack status page — компоненты, custom domain `status.aisystant.com`
+
+**Следующий шаг:** рестарт n8n в Railway

@@ -12701,3 +12701,88 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-29T10:09:03+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "| E | **Watchdog: strategy-session 93.9ч** | Формально — провести Strategy Session W22 (но WeekPlan уже есть). Можно либ"
+    ],
+    "session_id": "64d5baf2-53b2-4da1-a2bb-05c3ec95d37e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
+
+## 2026-05-29T10:10:09+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "| E | **Watchdog: strategy-session 93.9ч** | Формально — провести Strategy Session W22 (но WeekPlan уже есть). Можно либ"
+    ],
+    "session_id": "64d5baf2-53b2-4da1-a2bb-05c3ec95d37e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
+
+## 2026-05-29T11:01:40+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Добавить один вопрос в путь Марафона: «В какое время удобно получать урок?» (ЧЧ:ММ). Изменить логику очереди в `start_ma"
+    ],
+    "session_id": "04aa2960-d926-4d22-971b-5d74e4224c3c"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-29T11:02:28+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Добавить один вопрос в путь Марафона: «В какое время удобно получать урок?» (ЧЧ:ММ). Изменить логику очереди в `start_ma",
+      "В какое время удобно получать урок? (ЧЧ:ММ) "
+    ],
+    "session_id": "04aa2960-d926-4d22-971b-5d74e4224c3c"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
