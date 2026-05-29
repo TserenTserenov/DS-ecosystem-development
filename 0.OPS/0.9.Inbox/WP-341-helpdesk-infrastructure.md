@@ -205,9 +205,19 @@ BetterStack ──────→  aisystant.betteruptime.com
 - **Dev-канал:** уведомления о деплоях, PR, технические события
 - **Архивировать:** если группа неактивна — убрать из схемы
 
-### Фаза C — Лёгкий `/healthz` эндпоинт
+### Фаза C — Лёгкий `/healthz` эндпоинт ⏳ (ожидает restart n8n)
 
-**Задача:** добавить в n8n webhook `GET /webhook/healthz` (или `POST /webhook/check` с `mode=health`), который возвращает `{"ok":true,"ts":...}` без LLM-вызова за <100ms.
+**Задача:** добавить в n8n webhook `GET /webhook/healthz` без LLM-вызова за <100ms.
+
+**Статус:** воркфлоу `healthz` (ID: xbT7EV6wZrkhPp9n) **создан и активен в БД** (29 мая).
+Возвращает `{"ok":true,"ts":...,"service":"hw-checker"}`.
+Не отвечает до рестарта n8n — Railway загружает webhooks только при старте.
+
+**Активировать:** зайти в Railway → peaceful-vision → n8n → Restart (или дождаться следующего деплоя). После рестарта `GET /webhook/healthz` заработает автоматически.
+
+**Что сделать после активации:**
+1. Переключить BetterStack монитор с `/webhook/check` → `GET /webhook/healthz`, убрать тело запроса, keyword: `"ok"`
+2. Экономия: ~480 req Haiku в сутки (~$0.10/день) → 0
 
 **Результат:** BetterStack мониторит через `/healthz` (не тратит токены), mcp-health-probe мониторит полный пайплайн включая LLM.
 
