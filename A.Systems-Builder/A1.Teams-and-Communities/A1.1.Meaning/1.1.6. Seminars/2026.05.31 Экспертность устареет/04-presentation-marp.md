@@ -3,8 +3,9 @@ marp: true
 theme: may31
 paginate: true
 size: 16:9
-header: "**31 мая 2026** · Ваша экспертность устареет. Как вырастить новую — не за 10 лет"
-footer: "v3.2.1 · Aisystant · @aist_me_bot"
+html: true
+header: "31 мая 2026 · Ваша экспертность устареет. Как вырастить новую — не за 10 лет"
+footer: "v3.2.3 · Aisystant · @aist_me_bot"
 ---
 
 <!-- _class: title -->
@@ -54,60 +55,46 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 
 ---
 
-<!-- _class: with-eyebrow split -->
+<!-- _class: with-eyebrow -->
 
-<div class="eyebrow">Блок 2 · Две сломанные опоры</div>
+<div class="cards-2" style="margin-top:10px">
 
-<div>
+<div class="card muted">
+<span class="num">Анна, 24 · 40 секунд</span>
+<h3 style="color:#94a3b8">Лестница входа сломалась</h3>
+<p style="font-size:0.95em">Юрист на старте. 80 откликов — ни одного оффера.</p>
+<p class="muted" style="font-size:0.85em">Junior-задачи делает ИИ.</p>
+</div>
 
-<p class="big-label muted" style="font-size:1.5em">Анна, 24</p>
-
-<p class="muted" style="font-size:0.95em"><em>40 секунд</em></p>
-
-<p>Юрист на старте. 80 откликов — ни одного оффера.</p>
-
-<p class="muted">Сломалась <strong>лестница входа</strong>: junior-задачи делает ИИ.</p>
+<div class="card accent">
+<span class="num">Олег, 42 · 3 минуты · главный персонаж</span>
+<h3>Опора идентичности сломалась</h3>
+<p style="font-size:0.95em">Юрист с 18-летним опытом. GPT за 10 минут сделал договор, который Олег делал бы 4 часа.</p>
+<p class="muted" style="font-size:0.85em">Впервые не понимает: его опыт — опора или вчерашний актив?</p>
+</div>
 
 </div>
 
-<div>
+<p style="text-align:center;margin-top:24px;font-size:1.15em;color:#f1f5f9"><strong style="color:#f97316">Семинар — в первую очередь про Олега.</strong></p>
 
-<p class="big-label accent" style="font-size:1.5em">Олег, 42</p>
-
-<p class="muted" style="font-size:0.95em"><em>3 минуты — главный персонаж</em></p>
-
-<p>Юрист с 18-летним опытом. GPT за 10 минут сделал договор, который Олег делал бы 4 часа.</p>
-
-<p class="muted">Сломалась <strong>опора идентичности</strong>. Впервые не понимает: его опыт — это опора или вчерашний актив?</p>
-
-</div>
-
-<div class="highlight-box" style="grid-column:1/-1;margin-top:24px">
-
-Семинар — в первую очередь про Олега.<br>
-**О человеке с опытом, который не понимает, является ли его опыт опорой или вчерашним активом.**
-
-</div>
+<p class="muted" style="text-align:center;font-size:0.9em;margin-top:6px">О человеке с опытом, который не понимает: его опыт — это опора или вчерашний актив.</p>
 
 ---
 
 <!-- _class: with-eyebrow -->
 
-![bg left:45%](images/tony-robot.png)
+![bg left:42%](images/tony-robot.png)
 
-<div class="eyebrow">Блок 2 · Два сценария · Сценарий 1</div>
-
-### 1951 год · Айзек Азимов
+<p style="color:#94a3b8;font-size:0.75em;letter-spacing:0.15em;text-transform:uppercase;margin:0">1951 · Айзек Азимов · цикл «Я, робот»</p>
 
 # Тони-робот
-
-<p class="muted" style="font-size:0.95em;max-width:90%">Рассказ из&nbsp;цикла «Я,&nbsp;робот». Один из&nbsp;самых ранних образов идеального ИИ-помощника.</p>
 
 > Робот приходит в дом к Клэр.
 > Умеет всё: готовить, убирать, помогать.
 > Любую просьбу — мгновенно.
 >
-> Идеальный помощник. <span class="accent">Клэр счастлива.</span>
+> Идеальный помощник.
+> <span class="accent">Клэр счастлива.</span>
 
 ---
 
@@ -139,23 +126,21 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 
 ![bg fit](images/iron-man-triptych.png)
 
-<div class="eyebrow" style="background:rgba(15,23,42,0.85);padding:6px 12px;border-radius:4px;display:inline-block">Блок 2 · Сценарий 2 · Железный человек</div>
-
-<div style="position:absolute;bottom:60px;left:80px;right:80px;background:rgba(15,23,42,0.88);padding:20px 28px;border-radius:12px;border-left:4px solid #f97316">
-<p class="big" style="font-size:1.3em;margin:0;text-align:center">Связка — не человек с инструментом.<br>Это <span style="color:#f97316">третья система</span>.</p>
+<div style="position:absolute;bottom:40px;left:60px;right:60px;background:rgba(15,23,42,0.92);padding:28px 36px;border-radius:14px;border-left:6px solid #f97316;backdrop-filter:blur(6px)">
+<p style="font-size:1.6em;font-weight:800;margin:0;text-align:center;color:#f1f5f9;line-height:1.2">Связка — не человек с инструментом.<br><span style="color:#f97316">Это третья система.</span></p>
 </div>
 
 ---
 
 <!-- _class: center -->
 
-<p class="huge">Решить задачу</p>
+<p class="huge" style="font-size:2.4em">Решить задачу</p>
 
-<p style="font-size:2.5em;color:#f97316;font-weight:900;margin:0">≠</p>
+<p style="font-size:6em;color:#f97316;font-weight:900;line-height:1;margin:0.1em 0">≠</p>
 
-<p class="huge">Развить человека</p>
+<p class="huge" style="font-size:2.4em">Развить человека</p>
 
-<p class="sub">Часто это противоположное.</p>
+<p class="sub" style="margin-top:30px">Часто это противоположное.</p>
 
 ---
 
@@ -199,26 +184,19 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 
 <!-- _class: with-eyebrow -->
 
-![bg right:42%](images/exoskeleton-vs-prosthesis.png)
+![bg right:55%](images/exoskeleton-vs-prosthesis.png)
 
-<div class="eyebrow">Блок 4 · Различение — ключ всего семинара</div>
+<div style="margin-top:10px">
 
-<div style="margin-top:20px">
+<p style="font-size:1.3em;font-weight:800;margin:0.2em 0;line-height:1.2"><span style="color:#34d399">Экзоскелет</span><br>усиливает то, что есть.</p>
+<p class="muted" style="margin:0.2em 0;font-size:0.85em">Снял — навык остался.</p>
 
-<p style="font-size:1.5em;font-weight:800;margin:0.2em 0"><span style="color:#34d399">Экзоскелет</span> усиливает то, что есть.</p>
-<p class="muted" style="margin-top:0;font-size:0.95em">Снял — навык остался с человеком.</p>
-
-<p style="font-size:1.5em;font-weight:800;margin:0.6em 0 0.2em 0"><span style="color:#f87171">Протез</span> заменяет то, чего нет.</p>
-<p class="muted" style="margin-top:0;font-size:0.95em">Снял — функция исчезла.</p>
+<p style="font-size:1.3em;font-weight:800;margin:0.8em 0 0.2em 0;line-height:1.2"><span style="color:#f87171">Протез</span><br>заменяет то, чего нет.</p>
+<p class="muted" style="margin:0.2em 0;font-size:0.85em">Снял — функция исчезла.</p>
 
 </div>
 
-<div class="highlight-box" style="margin-top:24px">
-
-ИИ может быть любым из двух.
-Зависит от того, **как вы с ним работаете**.
-
-</div>
+<p style="margin-top:20px;font-size:0.95em;line-height:1.3"><strong style="color:#f97316">ИИ может быть любым.</strong><br>Зависит от того, <em style="color:#fbbf24;font-style:normal">как вы с ним работаете</em>.</p>
 
 ---
 
@@ -340,43 +318,37 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 
 <!-- _class: with-eyebrow -->
 
-<div class="eyebrow">Блок 4 · Микрошаблон диагностики</div>
-
 # За последний месяц ИИ помог мне&nbsp;получить:
 
-<div class="cards-2" style="margin-top:24px">
+<div class="cards-2" style="margin-top:16px;gap:14px">
 
-<div class="card">
-<span class="num">Пункт 1</span>
-<h3>Результаты</h3>
-<p class="muted" style="font-size:0.9em">Готовые тексты, отчёты, код. Закрытые задачи.</p>
+<div class="card" style="padding:14px 18px">
+<span class="num" style="font-size:0.65em">Пункт 1</span>
+<h3 style="font-size:1em;margin-bottom:0.2em">Результаты</h3>
+<p class="muted" style="font-size:0.8em;margin:0">Готовые тексты, отчёты, код. Закрытые задачи.</p>
 </div>
 
-<div class="card">
-<span class="num">Пункт 2</span>
-<h3>Новые знания</h3>
-<p class="muted" style="font-size:0.9em">Чего раньше не знал. Что теперь понимаю по-другому.</p>
+<div class="card" style="padding:14px 18px">
+<span class="num" style="font-size:0.65em">Пункт 2</span>
+<h3 style="font-size:1em;margin-bottom:0.2em">Новые знания</h3>
+<p class="muted" style="font-size:0.8em;margin:0">Чего раньше не знал. Что теперь понимаю по-другому.</p>
 </div>
 
-<div class="card">
-<span class="num">Пункт 3</span>
-<h3>Новые способы работы</h3>
-<p class="muted" style="font-size:0.9em">Методы, которыми теперь буду пользоваться сам.</p>
+<div class="card" style="padding:14px 18px">
+<span class="num" style="font-size:0.65em">Пункт 3</span>
+<h3 style="font-size:1em;margin-bottom:0.2em">Новые способы работы</h3>
+<p class="muted" style="font-size:0.8em;margin:0">Методы, которыми буду пользоваться сам.</p>
 </div>
 
-<div class="card">
-<span class="num">Пункт 4</span>
-<h3>Рабочие продукты</h3>
-<p class="muted" style="font-size:0.9em">Шаблоны, документы, инструменты — можно использовать дальше.</p>
+<div class="card" style="padding:14px 18px">
+<span class="num" style="font-size:0.65em">Пункт 4</span>
+<h3 style="font-size:1em;margin-bottom:0.2em">Рабочие продукты</h3>
+<p class="muted" style="font-size:0.8em;margin:0">Шаблоны, документы — можно использовать дальше.</p>
 </div>
 
 </div>
 
-<div class="highlight-box" style="margin-top:24px">
-
-Если у вас есть только Пункт 1 — **это сигнал**.
-
-</div>
+<p style="margin-top:18px;text-align:center;font-size:1.05em">Если есть только <strong style="color:#f97316">Пункт 1</strong> — это сигнал.</p>
 
 ---
 
@@ -528,17 +500,19 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 
 ---
 
-<!-- _class: with-eyebrow split -->
+<!-- _class: with-eyebrow -->
 
-<div class="eyebrow">Рычаг 01 · Мировоззрение, культура работы, стиль жизни</div>
+<h3 style="color:#94a3b8;font-size:0.85em;margin-bottom:10px">Рычаг 01 · Мировоззрение, культура работы, стиль жизни</h3>
+
+<div class="cards-2" style="margin-top:10px">
 
 <div>
 
 <p class="big-label muted">Было</p>
 
-<p style="color:#94a3b8;font-size:1.2em">Хаос</p>
-<p style="color:#94a3b8;font-size:1.2em">Ступор</p>
-<p style="color:#94a3b8;font-size:1.2em">«Непонятно»</p>
+<p style="color:#94a3b8;font-size:1.2em;margin:0.3em 0">Хаос</p>
+<p style="color:#94a3b8;font-size:1.2em;margin:0.3em 0">Ступор</p>
+<p style="color:#94a3b8;font-size:1.2em;margin:0.3em 0">«Непонятно»</p>
 
 </div>
 
@@ -546,37 +520,39 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 
 <p class="big-label accent">Стало</p>
 
-<p style="color:#f1f5f9;font-size:1.2em"><strong>Проблема</strong> — есть объект для мысли</p>
-<p style="color:#f1f5f9;font-size:1.2em"><strong>Задача</strong> — есть метод</p>
-<p style="color:#f1f5f9;font-size:1.2em">«Понятно, что делать»</p>
+<p style="font-size:1.15em;margin:0.3em 0"><strong>Проблема</strong> — есть объект для мысли</p>
+<p style="font-size:1.15em;margin:0.3em 0"><strong>Задача</strong> — есть метод</p>
+<p style="font-size:1.15em;margin:0.3em 0">«Понятно, что делать»</p>
 
 </div>
 
-<p class="big" style="grid-column:1/-1;text-align:center;margin-top:30px;font-size:1.2em">Меняется не только работа.<br>Меняется стиль жизни.</p>
+</div>
+
+<p style="text-align:center;margin-top:30px;font-size:1.3em;font-weight:800;color:#f97316">Меняется не только работа. Меняется стиль жизни.</p>
 
 ---
 
-<!-- _class: with-eyebrow split -->
+<!-- _class: with-eyebrow -->
 
-<div class="eyebrow">Рычаг 02 · Костюм Железного человека — в двух ролях</div>
+<h3 style="color:#94a3b8;font-size:0.85em;margin-bottom:10px">Рычаг 02 · Костюм Железного человека — в двух ролях</h3>
+
+<div class="cards-2" style="margin-top:10px">
 
 <div class="card accent">
-<h3>Пользователь костюма</h3>
-
-Больше за то же время.
-
-Сложность, которая раньше была не по силам.
+<h3 style="margin-bottom:0.4em">Пользователь костюма</h3>
+<p style="margin:0.3em 0">Больше за то же время.</p>
+<p class="muted" style="margin-top:0.4em;font-size:0.9em">Сложность, которая раньше была не по силам.</p>
 </div>
 
 <div class="card accent">
-<h3>Создатель костюма</h3>
-
-Проектирует. Настраивает.
-
-Развивает костюм под свои задачи и проекты.
+<h3 style="margin-bottom:0.4em">Создатель костюма</h3>
+<p style="margin:0.3em 0">Проектирует. Настраивает.</p>
+<p class="muted" style="margin-top:0.4em;font-size:0.9em">Развивает костюм под свои задачи и проекты.</p>
 </div>
 
-<p class="big" style="grid-column:1/-1;text-align:center;margin-top:24px;font-size:1.1em">Оба нужны. Но потолок — у тех, кто строит.</p>
+</div>
+
+<p style="text-align:center;margin-top:30px;font-size:1.3em;font-weight:800;color:#f97316">Оба нужны. Но потолок — у тех, кто строит.</p>
 
 ---
 
@@ -604,17 +580,19 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 
 ---
 
-<!-- _class: with-eyebrow split -->
+<!-- _class: with-eyebrow -->
 
-<div class="eyebrow">Рычаг 04 · Сообщество и среда сопроизводителей</div>
+<h3 style="color:#94a3b8;font-size:0.85em;margin-bottom:10px">Рычаг 04 · Сообщество и среда сопроизводителей</h3>
+
+<div class="cards-2" style="margin-top:10px">
 
 <div>
 
 <p class="big-label muted">В одиночку</p>
 
-<p style="color:#94a3b8;font-size:1.2em">Темп падает</p>
-<p style="color:#94a3b8;font-size:1.2em">Норма размывается</p>
-<p style="color:#94a3b8;font-size:1.2em">Откат к старому стилю</p>
+<p style="color:#94a3b8;font-size:1.2em;margin:0.3em 0">Темп падает</p>
+<p style="color:#94a3b8;font-size:1.2em;margin:0.3em 0">Норма размывается</p>
+<p style="color:#94a3b8;font-size:1.2em;margin:0.3em 0">Откат к старому стилю</p>
 
 </div>
 
@@ -622,18 +600,15 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 
 <p class="big-label accent">В среде</p>
 
-<p style="font-size:1.2em">Темп держится</p>
-<p style="font-size:1.2em">Норма видна</p>
-<p style="font-size:1.2em">Рост вместе с другими</p>
+<p style="font-size:1.2em;margin:0.3em 0">Темп держится</p>
+<p style="font-size:1.2em;margin:0.3em 0">Норма видна</p>
+<p style="font-size:1.2em;margin:0.3em 0">Рост вместе с другими</p>
 
 </div>
 
-<div class="highlight-box" style="grid-column:1/-1;margin-top:20px">
-
-Среда — это не клуб по интересам.<br>
-Это **рычаг, которого нет в волевом усилии**.
-
 </div>
+
+<p style="text-align:center;margin-top:24px;font-size:1.2em">Среда — не клуб по интересам.<br><strong style="color:#f97316">Это рычаг, которого нет в волевом усилии.</strong></p>
 
 ---
 
@@ -649,30 +624,24 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 
 <!-- _class: with-eyebrow -->
 
-<div class="eyebrow">Блок 6 · Первый шаг — сегодня</div>
-
 # Что разделяет Мастерскую и&nbsp;Железного&nbsp;человека?
 
-<p class="muted" style="margin-top:10px;font-size:1.05em">Не сложность инструмента. Не деньги.</p>
+<p class="muted" style="margin-top:6px;font-size:1em">Не сложность инструмента. Не деньги.</p>
 
-<div class="cards-2" style="margin-top:30px">
+<div class="cards-2" style="margin-top:20px">
 
 <div class="card muted">
-<h3 style="color:#94a3b8">Сейчас</h3>
-
-ChatGPT не знает, кто вы.
-Каждый разговор с нуля.
-
-<p style="color:#94a3b8"><strong style="color:#94a3b8">ИИ — незнакомец.</strong></p>
+<h3 style="color:#94a3b8;margin-bottom:0.4em">Сейчас</h3>
+<p style="margin:0.3em 0">ChatGPT не знает, кто вы.</p>
+<p style="margin:0.3em 0">Каждый разговор с нуля.</p>
+<p style="color:#94a3b8;margin-top:0.6em;font-weight:700">ИИ — незнакомец.</p>
 </div>
 
 <div class="card accent">
-<h3>После сегодня</h3>
-
-ИИ знает три вещи о вас.
-Каждый разговор начинается с контекста.
-
-<p><strong>ИИ — коллега.</strong></p>
+<h3 style="margin-bottom:0.4em">После сегодня</h3>
+<p style="margin:0.3em 0">ИИ знает три вещи о вас.</p>
+<p style="margin:0.3em 0">Каждый разговор начинается с контекста.</p>
+<p style="color:#f97316;margin-top:0.6em;font-weight:700">ИИ — коллега.</p>
 </div>
 
 </div>
@@ -776,27 +745,21 @@ ChatGPT не знает, кто вы.
 
 <!-- _class: with-eyebrow -->
 
-<div class="eyebrow">Карточка связки · Точка 3 из 3 · Пункт 4 (в финале)</div>
-
 # Какую следующую задачу сделаю с&nbsp;приростом?
 
-<div style="background:#1e293b;border:2px solid #f97316;border-radius:14px;padding:28px 36px;margin-top:24px;font-size:0.95em">
+<div style="background:#1e293b;border:2px solid #f97316;border-radius:12px;padding:18px 26px;margin-top:16px;font-size:0.85em">
 
-<p class="muted" style="margin:0 0 0.4em 0">1. Что ИИ делал за меня за последний месяц: <em style="color:#94a3b8;font-style:normal">✓</em></p>
-<p class="muted" style="margin:0 0 1em 0">_____________________________________________</p>
+<p class="muted" style="margin:0 0 0.4em 0">1. Что ИИ делал за меня за последний месяц <em style="color:#34d399;font-style:normal">✓</em></p>
 
-<p class="muted" style="margin:0 0 0.4em 0">2. Что после этого осталось моим: <em style="color:#94a3b8;font-style:normal">✓</em></p>
-<p class="muted" style="margin:0 0 1em 0">_____________________________________________</p>
+<p class="muted" style="margin:0 0 0.4em 0">2. Что после этого осталось моим <em style="color:#34d399;font-style:normal">✓</em></p>
 
-<p class="muted" style="margin:0 0 0.4em 0">3. Где я стал быстрее, но не сильнее: <em style="color:#94a3b8;font-style:normal">✓</em></p>
-<p class="muted" style="margin:0 0 1em 0">_____________________________________________</p>
+<p class="muted" style="margin:0 0 0.6em 0">3. Где я стал быстрее, но не сильнее <em style="color:#34d399;font-style:normal">✓</em></p>
 
-<p style="background:rgba(249,115,22,0.18);padding:12px 16px;border-radius:8px;margin:0 0 0.4em 0"><strong style="color:#f97316">4. Какую следующую задачу сделаю так, чтобы после неё остались знания, решение или продукт:</strong> ← <em style="color:#fbbf24;font-style:normal">одна строка в чат</em></p>
-<p style="margin:0">_____________________________________________</p>
+<p style="background:rgba(249,115,22,0.22);padding:10px 14px;border-radius:8px;margin:0;font-size:1.05em"><strong style="color:#f97316">4. Какую следующую задачу сделаю так, чтобы после неё остались знания, решение или продукт?</strong></p>
 
 </div>
 
-<p class="muted" style="margin-top:18px;font-size:0.85em;text-align:center">Карточка собрана. Это ваш коммитмент и ваш первый артефакт новой нормы.</p>
+<p style="margin-top:16px;text-align:center;font-size:1em"><strong style="color:#fbbf24">Одна строка в чат.</strong> Это ваш коммитмент.</p>
 
 ---
 
@@ -884,40 +847,5 @@ QR
 
 <div class="speaker">Церен Церенов · сооснователь МИМ</div>
 
-<div class="meta">31 мая 2026 · v3.2.2</div>
+<div class="meta">31 мая 2026 · v3.2.3</div>
 
----
-
-<!-- _class: with-eyebrow -->
-
-<div class="eyebrow">Приложение · Промпты для иллюстраций (смешанный режим)</div>
-
-# Иллюстрации для трёх ключевых слайдов
-
-**1. Тони-робот (Блок 2.1)**
-```
-1950s science fiction illustration style, a helpful domestic robot
-serving a woman in a mid-century modern home, retro futuristic
-aesthetic, warm orange and dark navy color palette, vintage sci-fi
-book cover style, no text, cinematic atmosphere
-```
-
-**2. Экзоскелет vs протез (Блок 4.1)**
-```
-Split image comparison: left side shows a construction worker wearing
-a powerful exoskeleton suit lifting heavy steel beams, muscles still
-engaged, glowing orange highlights; right side shows a person with
-an advanced prosthetic leg walking normally. Clean editorial
-illustration, dark navy background with orange accents, technical
-diagram style, no text
-```
-
-**3. Тамагочи (Природа 4, в карте 5 природ)**
-```
-Close-up of vintage Tamagotchi virtual pet held in someone's palm,
-small pixelated creature on tiny LCD screen glowing warmly orange
-against dark navy background, nostalgic late 1990s aesthetic,
-photography style, no text
-```
-
-<p class="muted" style="margin-top:24px;font-size:0.8em">Прогнать через GPT-Image / Midjourney / DALL-E.<br>Вставить как изображение перед соответствующим слайдом, заменив SVG-плейсхолдер или добавив через ![bg right](image.png) в Marp.</p>

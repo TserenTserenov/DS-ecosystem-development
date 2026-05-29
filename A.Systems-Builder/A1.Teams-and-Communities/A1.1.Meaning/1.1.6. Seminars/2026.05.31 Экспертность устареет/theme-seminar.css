@@ -250,17 +250,12 @@ section.split-l {
 
 /* Заголовок в углу + контент */
 section.with-eyebrow {
-  padding-top: 72px;
+  padding-top: 56px;
 }
 
+/* Eyebrow убран — header сверху достаточен, не дублируем */
 section.with-eyebrow .eyebrow {
-  position: absolute;
-  top: 36px;
-  left: 80px;
-  color: var(--color-text-muted);
-  font-size: 0.65em;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
+  display: none;
 }
 
 /* Цитата-крюк */
@@ -382,13 +377,23 @@ section::after {
 
 header {
   color: var(--color-text-muted);
-  font-size: 0.6em;
-  letter-spacing: 0.1em;
+  font-size: 0.55em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%;
+  font-weight: 400;
+}
+
+header strong {
+  color: var(--color-text-muted);
+  font-weight: 400;
 }
 
 footer {
   color: var(--color-text-muted);
-  font-size: 0.6em;
-  letter-spacing: 0.1em;
+  font-size: 0.55em;
+  letter-spacing: 0.08em;
 }
