@@ -11,6 +11,8 @@ owner: ops
 
 > Описание текущего состояния и пути развития. Версия 0.1 (29 мая 2026).
 > Артефакт WP-341. Обновлять при каждом изменении инфраструктуры.
+>
+> 📊 **Статус платформы для пользователей:** https://aisystant.betteruptime.com
 
 <details open>
 <summary><b>1. Карта сервисов</b></summary>
@@ -19,7 +21,7 @@ owner: ops
 |--------|-----|---------|--------|------|
 | **Chatwoot** | chatwoot-web-production-177b.up.railway.app | Railway / chatwoot-iwe | ✅ | Helpdesk-система: тикеты, ответы операторов |
 | **n8n** | n8n-production-c098.up.railway.app | Railway / peaceful-vision | ✅ | Автоматизация: ДЗ-чекер, health probe |
-| **BetterStack** | aisystant.betteruptime.com | SaaS | ✅ | Внешний мониторинг + статус-страница |
+| **BetterStack** | [aisystant.betteruptime.com](https://aisystant.betteruptime.com) | SaaS | ✅ | Внешний мониторинг + [статус-страница](https://aisystant.betteruptime.com) для пользователей |
 | **guides-mcp** | guides-mcp.aisystant.workers.dev/mcp | Cloudflare Workers | ✅ | Семантический поиск по руководствам |
 | **knowledge-mcp** | knowledge-mcp.aisystant.workers.dev/mcp | Cloudflare Workers | ✅ | Анализ вербализации, граф знаний |
 | **digital-twin-mcp** | digital-twin-mcp.aisystant.workers.dev/mcp | Cloudflare Workers | ✅ | Цифровой двойник пользователя |
@@ -69,7 +71,7 @@ BetterStack ──────→  aisystant.betteruptime.com
 - **Частота:** каждые 3 минуты
 - **Recovery period:** 3 минуты
 - **Получатель алертов:** primary on-call → Ops Telegram (`+2Tdn-M33vasyNzli`)
-- **Статус-страница:** https://aisystant.betteruptime.com (публичная)
+- **Статус-страница:** https://aisystant.betteruptime.com (публичная, для пользователей)
 
 > ⚠️ BetterStack запускает полный LLM-пайплайн при каждой проверке (Claude Haiku).
 > Стоимость: ~480 запросов/сутки к ДЗ-чекеру только от мониторинга.
@@ -184,12 +186,15 @@ BetterStack ──────→  aisystant.betteruptime.com
 
 **Задача:** подключить группу `+5WH59nuwrnY3M2Ji` как inbox в Chatwoot.
 
-**Как:**
-1. Chatwoot Settings → Inboxes → New Inbox → Telegram
-2. Создать Telegram-бота для Chatwoot (BotFather)
-3. Указать бота как webhook-получателя для группы
-4. Настроить auto-assignment на операторов
-5. Опционально: бот-посредник (n8n workflow) для классификации тикетов по типу
+**Как (Вариант 1 — бот в группе):**
+1. BotFather → `/newbot` → создать бота (например, `@aisystant_support_bot`)
+2. BotFather → `/setprivacy` → выбрать бота → `Disable` (иначе бот читает только @упоминания)
+3. Chatwoot → Settings → Inboxes → New Inbox → **Telegram** → вставить токен бота
+4. Добавить бота в группу `+5WH59nuwrnY3M2Ji` как участника
+
+**Поведение:** каждый пользователь группы = отдельный тикет в Chatwoot. Оператор отвечает из Chatwoot → ответ появляется в группе от имени бота.
+
+**Ограничение:** ответы оператора публичны в группе (не в личку). Если нужны личные ответы — Вариант 2 (n8n как посредник, извлекает `user_id` и шлёт DM).
 
 **Результат:** все сообщения из группы 100 пользователей → тикеты Chatwoot → операторы отвечают из одного интерфейса.
 
@@ -217,6 +222,22 @@ BetterStack ──────→  aisystant.betteruptime.com
 **Задача:** создать в `DS-ecosystem-development/0.OPS/`:
 - `0.9.Runbooks/helpdesk-incident-runbook.md` — шаги при инциденте (500/502/disk full)
 - `0.9.Runbooks/chatwoot-operator-guide.md` — онбординг оператора поддержки
+
+### Фаза F — Табло статуса платформы для пользователей
+
+**Задача:** сделать публичную страницу статуса сервисов, доступную пользователям платформы — по аналогии с [status.claude.com](https://status.claude.com/).
+
+**Текущее состояние:** страница https://aisystant.betteruptime.com уже существует (BetterStack), но не настроена под пользователей: нет компонентов, нет истории инцидентов, не опубликована.
+
+**Что сделать:**
+1. BetterStack → Status Pages → добавить компоненты: ДЗ-чекер, IWE, Бот, MCP-сервисы, Обучение
+2. Настроить кастомный домен `status.aisystant.com` (CNAME → BetterStack)
+3. Включить историю инцидентов (инцидент 28 мая — ретроспективно)
+4. Опубликовать ссылку: в боте (`/status`), на сайте (footer), в FAQ
+
+**Референс:** [status.claude.com](https://status.claude.com/) — каждый компонент со статусом + история инцидентов + подписка на уведомления.
+
+**Результат:** пользователь сам проверяет статус платформы без запроса в поддержку. Уменьшает нагрузку на Chatwoot при инцидентах.
 
 </details>
 
