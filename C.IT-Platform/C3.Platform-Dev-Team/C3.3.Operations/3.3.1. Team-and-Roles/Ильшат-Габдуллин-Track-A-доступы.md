@@ -41,6 +41,7 @@ owner: Церен
 | 10 | **Chatwoot** (self-hosted) | ✅ Выдано (administrator через super_admin/users) | 1. Открыть instance Chatwoot (URL в Railway) → **Settings** → **Agents** → **Add agent** → `igabdullin@gmail.com` → роль **Administrator** | Поддержка, тикеты |
 | 11 | **n8n** | ✅ Выдано (owner/admin) | 1. Открыть instance n8n (URL в Railway) → **Settings** → **Users** → **Invite** → `igabdullin@gmail.com` → роль **Owner** или **Admin** | Автоматизация, Светофор, health probes |
 | 12 | **Telegram** (IT-группы) | ✅ Выдано (добавлен в группы) | 1. Добавить `@igabdullin` (username) или номер телефона в группы: **IT-ops**, **Alerts (Better Stack)**, **Команда Track A** | Алерты, оперативка |
+| 13 | **Grafana** ([tserenov1972.grafana.net](https://tserenov1972.grafana.net/d/neon-all-dbs/neon3a-12-aktivnyh-bd)) | ⬜ Нужно выдать | 1. [tserenov1972.grafana.net](https://tserenov1972.grafana.net) → **Administration** → **Users and access** → **Users** → **Invite new member** → `igabdullin@gmail.com` → роль **Admin** или **Editor** | Дашборд `neon-all-dbs` — мониторинг всех активных Neon БД (connections, latency, размеры) |
 
 ---
 
@@ -58,6 +59,7 @@ owner: Церен
 - [x] Chatwoot — administrator (super_admin/users)
 - [x] n8n — owner/admin
 - [x] Telegram — добавлен в группы
+- [ ] Grafana — admin/editor (дашборд `neon-all-dbs`)
 
 ---
 

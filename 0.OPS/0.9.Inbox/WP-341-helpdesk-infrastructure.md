@@ -23,6 +23,7 @@ owner: ops
 | **Chatwoot** | chatwoot-web-production-177b.up.railway.app | Railway / chatwoot-iwe | ✅ | Helpdesk-система: тикеты, ответы операторов |
 | **n8n** | n8n-production-c098.up.railway.app | Railway / peaceful-vision | ✅ | Автоматизация: ДЗ-чекер, health probe |
 | **BetterStack** | [aisystant.betteruptime.com](https://aisystant.betteruptime.com) | SaaS | ✅ | Внешний мониторинг + [статус-страница](https://aisystant.betteruptime.com) для пользователей |
+| **Grafana** | [tserenov1972.grafana.net](https://tserenov1972.grafana.net/d/neon-all-dbs/neon3a-12-aktivnyh-bd) | Grafana Cloud (SaaS) | ✅ | Дашборд `neon-all-dbs` — мониторинг всех активных Neon БД (connections, latency, размеры). Источник диагностики для оператора при инциденте уровня БД |
 | **guides-mcp** | guides-mcp.aisystant.workers.dev/mcp | Cloudflare Workers | ✅ | Семантический поиск по руководствам |
 | **knowledge-mcp** | knowledge-mcp.aisystant.workers.dev/mcp | Cloudflare Workers | ✅ | Анализ вербализации, граф знаний |
 | **digital-twin-mcp** | digital-twin-mcp.aisystant.workers.dev/mcp | Cloudflare Workers | ✅ | Цифровой двойник пользователя |
@@ -62,6 +63,9 @@ n8n health-probe ──→ guides-mcp ──────────→ Aisystan
 
 BetterStack ──────→  aisystant.betteruptime.com
                      (публичная статус-страница)
+
+Grafana ───────────→ Neon Postgres ────────→ дашборд `neon-all-dbs`
+(scrape метрик)      (все активные БД)       (connections, latency, размеры)
 ```
 
 ### BetterStack
@@ -77,6 +81,15 @@ BetterStack ──────→  aisystant.betteruptime.com
 > ⚠️ BetterStack запускает полный LLM-пайплайн при каждой проверке (Claude Haiku).
 > Стоимость: ~480 запросов/сутки к ДЗ-чекеру только от мониторинга.
 > **TODO:** рассмотреть отдельный `/healthz` эндпоинт без LLM для внешнего мониторинга.
+
+### Grafana — мониторинг БД (Track A)
+
+- **Инстанс:** [tserenov1972.grafana.net](https://tserenov1972.grafana.net) (Grafana Cloud)
+- **Основной дашборд:** [`neon-all-dbs`](https://tserenov1972.grafana.net/d/neon-all-dbs/neon3a-12-aktivnyh-bd) — все активные Neon БД на одном экране
+- **Метрики:** connections, latency, размеры, нагрузка
+- **Источник данных:** Neon Postgres (scrape-метрики)
+- **Назначение в хелпдеске:** оператор открывает дашборд при инциденте уровня БД — медленный ответ бота / ДЗ-чекера, ошибки 500/502 → сразу видно, есть ли проблема с БД (раздутые connections, всплеск latency)
+- **TODO:** алерты Grafana → Aisystant_status (TG) — пока не настроено
 
 ### mcp-health-probe (n8n, ID: OZe8hJBLlOwYahVk)
 
@@ -263,6 +276,7 @@ BetterStack ──────→  aisystant.betteruptime.com
 Оператор → Chatwoot → [TODO: reply bot] → Aisystant - feedback chat
 Мониторинг → BetterStack → aisystant.betteruptime.com → Aisystant_status (TG)
 Мониторинг → mcp-health-probe (n8n) → Neon log + Aisystant_status (TG)
+Мониторинг → Grafana → дашборд neon-all-dbs (диагностика БД оператором при инциденте)
 ```
 
 </details>

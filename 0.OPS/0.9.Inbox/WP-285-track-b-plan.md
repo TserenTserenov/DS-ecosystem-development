@@ -206,7 +206,8 @@ source: ИТ-встречи 13-15 (5-14 мая), транскрипт опера
 | 5.3 | SSL-сертификаты (Let's Encrypt или Cloudflare) | Паша | 20 мая | 1h | HTTPS работает |
 | 5.4 | **Better Stack:** новые мониторы для Track B (по одному на каждый сервис с endpoint) | Паша | 25-30 мая | 2h | Мониторы созданы, алерты настроены |
 | 5.5 | **Better Stack:** keyword-check для gateway-mcp, event-gateway, бота | Паша | 30 мая | 1h | Алерты на 5xx ошибки |
-| 5.6 | Обновить `DP.ARCH.004 v3.0` — добавить Track B инфру | Андрей | 30 июня | 2h | Архитектурный документ актуален |
+| 5.6 | **Grafana для Cloud SQL:** настроить дашборд по аналогии с Track A ([`neon-all-dbs`](https://tserenov1972.grafana.net/d/neon-all-dbs/neon3a-12-aktivnyh-bd) на Neon). Варианты: Grafana Cloud + GCP Cloud SQL datasource, или self-hosted Grafana в GKE, или нативный GCP Monitoring. Решение принять перед Ф6 (миграция данных) | Паша | 25-30 июня | 2h | Дашборд показывает все БД Cloud SQL: connections, latency, размеры |
+| 5.7 | Обновить `DP.ARCH.004 v3.0` — добавить Track B инфру | Андрей | 30 июня | 2h | Архитектурный документ актуален |
 
 ---
 
