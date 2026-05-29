@@ -39,8 +39,8 @@ owner: Церен
 | 8 | **Metabase** | ⬜ Нужно выдать | 1. Открыть instance Metabase (URL в Railway) → шестерёнка **Admin** → **People** → **Invite** → `igabdullin@gmail.com` → группа **All Users** + дать доступ к коллекциям аналитики | Аналитика, дашборды |
 | 9 | **Directus** | ⬜ Нужно выдать | 1. Открыть instance Directus (URL в Railway) → **Settings** → **Users** → **Create user** → `igabdullin@gmail.com` → роль **Admin** или кастомная роль с правами на CRM | CRM, конфигурация баллов |
 | 10 | **Chatwoot** (self-hosted) | ✅ Выдано (administrator через super_admin/users) | 1. Открыть instance Chatwoot (URL в Railway) → **Settings** → **Agents** → **Add agent** → `igabdullin@gmail.com` → роль **Administrator** | Поддержка, тикеты |
-| 11 | **n8n** | ⬜ Нужно выдать | 1. Открыть instance n8n (URL в Railway) → **Settings** → **Users** → **Invite** → `igabdullin@gmail.com` → роль **Owner** или **Admin** | Автоматизация, Светофор, health probes |
-| 12 | **Telegram** (IT-группы) | ⬜ Нужно выдать | 1. Добавить `@igabdullin` (username) или номер телефона в группы: **IT-ops**, **Alerts (Better Stack)**, **Команда Track A** | Алерты, оперативка |
+| 11 | **n8n** | ✅ Выдано (owner/admin) | 1. Открыть instance n8n (URL в Railway) → **Settings** → **Users** → **Invite** → `igabdullin@gmail.com` → роль **Owner** или **Admin** | Автоматизация, Светофор, health probes |
+| 12 | **Telegram** (IT-группы) | ✅ Выдано (добавлен в группы) | 1. Добавить `@igabdullin` (username) или номер телефона в группы: **IT-ops**, **Alerts (Better Stack)**, **Команда Track A** | Алерты, оперативка |
 
 ---
 
@@ -56,8 +56,8 @@ owner: Церен
 - [ ] Metabase — admin
 - [ ] Directus — admin
 - [x] Chatwoot — administrator (super_admin/users)
-- [ ] n8n — owner/admin
-- [ ] Telegram — добавить в группы
+- [x] n8n — owner/admin
+- [x] Telegram — добавлен в группы
 
 ---
 
