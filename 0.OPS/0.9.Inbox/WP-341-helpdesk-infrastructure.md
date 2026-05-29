@@ -205,21 +205,23 @@ BetterStack ──────→  aisystant.betteruptime.com
 - **Dev-канал:** уведомления о деплоях, PR, технические события
 - **Архивировать:** если группа неактивна — убрать из схемы
 
-### Фаза C — Лёгкий `/healthz` эндпоинт ⏳ (ожидает restart n8n)
+### Фаза C — Лёгкий `/healthz` эндпоинт ✅ Done (29 мая)
 
-**Задача:** добавить в n8n webhook `GET /webhook/healthz` без LLM-вызова за <100ms.
+**Задача:** мониторинг n8n без LLM-вызовов за <100ms.
 
-**Статус:** воркфлоу `healthz` (ID: xbT7EV6wZrkhPp9n) **создан и активен в БД** (29 мая).
-Возвращает `{"ok":true,"ts":...,"service":"hw-checker"}`.
-Не отвечает до рестарта n8n — Railway загружает webhooks только при старте.
+**Решение:** n8n имеет встроенный эндпоинт `GET /healthz` → `{"status":"ok"}` (HTTP 200).
+Никакого воркфлоу не нужно — endpoint всегда доступен пока n8n жив.
 
-**Активировать:** зайти в Railway → peaceful-vision → n8n → Restart (или дождаться следующего деплоя). После рестарта `GET /webhook/healthz` заработает автоматически.
+**BetterStack переключить:**
+- URL: `GET https://n8n-production-c098.up.railway.app/healthz`
+- Keyword check: `"ok"`
+- Убрать тело запроса (не нужно)
 
-**Что сделать после активации:**
-1. Переключить BetterStack монитор с `/webhook/check` → `GET /webhook/healthz`, убрать тело запроса, keyword: `"ok"`
-2. Экономия: ~480 req Haiku в сутки (~$0.10/день) → 0
+**Экономия:** ~480 req Haiku в сутки (~$0.10/день) → 0
 
-**Результат:** BetterStack мониторит через `/healthz` (не тратит токены), mcp-health-probe мониторит полный пайплайн включая LLM.
+**Примечание:** воркфлоу `healthz` (ID: xbT7EV6wZrkhPp9n) деактивирован — был попыткой решить ту же задачу, встроенный endpoint лучше.
+
+**Результат:** BetterStack мониторит через встроенный `/healthz` (не тратит токены), mcp-health-probe продолжает мониторить полный пайплайн включая LLM.
 
 ### Фаза D — Disk alert для Railway Postgres
 
@@ -270,14 +272,12 @@ BetterStack ──────→  aisystant.betteruptime.com
 
 ---
 
-## Осталось (сессия 2026-05-29)
+## Осталось (сессия 2026-05-29, обновлено)
 
-**Что пробовали:** создали n8n воркфлоу /healthz (Фаза C), активировали через API — 404 без рестарта сервиса.
-**Что узнали:** n8n на Railway регистрирует webhook-маршруты только при старте, API activate не обновляет in-memory реестр.
+**Что сделано:** Фаза C закрыта — n8n встроенный `/healthz` работает без воркфлоу.
 
 **Что дальше:**
-- [ ] Рестарт n8n: Railway → peaceful-vision → n8n → Redeploy (сервис `c284d699-0e05-463a-b319-db3e7fd1931a`)
-- [ ] Переключить BetterStack: POST /webhook/check → GET /webhook/healthz, keyword: `"ok"`
-- [ ] Фаза F: BetterStack status page — компоненты, custom domain `status.aisystant.com`
+- [ ] Переключить BetterStack монитор: с `POST /webhook/check` на `GET /healthz`, keyword: `"ok"`
+- [ ] Фаза F: BetterStack status page — добавить компоненты, custom domain `status.aisystant.com`
 
-**Следующий шаг:** рестарт n8n в Railway
+**Следующий шаг:** переключить BetterStack монитор
