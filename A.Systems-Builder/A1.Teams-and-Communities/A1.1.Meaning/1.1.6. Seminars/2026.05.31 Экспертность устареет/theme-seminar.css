@@ -1,0 +1,350 @@
+/* @theme may31 */
+
+@import 'default';
+
+:root {
+  --color-bg: #0f172a;
+  --color-bg-elev: #1e293b;
+  --color-accent: #f97316;
+  --color-accent-soft: #7c2d12;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-highlight: #fbbf24;
+  --color-positive: #34d399;
+  --color-negative: #f87171;
+  --color-line: rgba(255, 255, 255, 0.08);
+}
+
+section {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Inter', 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+  padding: 56px 80px;
+  font-size: 26px;
+  line-height: 1.5;
+}
+
+h1 {
+  color: var(--color-accent);
+  font-size: 2.0em;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.3em 0;
+  border: none;
+}
+
+h2 {
+  color: var(--color-text);
+  font-size: 1.4em;
+  font-weight: 700;
+  margin: 0 0 0.4em 0;
+  border: none;
+}
+
+h3 {
+  color: var(--color-highlight);
+  font-size: 1.1em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p {
+  margin: 0.5em 0;
+}
+
+strong {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+em {
+  color: var(--color-text-muted);
+  font-style: normal;
+}
+
+blockquote {
+  border-left: 4px solid var(--color-accent);
+  background: var(--color-bg-elev);
+  padding: 18px 28px;
+  margin: 24px 0;
+  border-radius: 0 10px 10px 0;
+  font-size: 0.95em;
+}
+
+blockquote p {
+  color: var(--color-text);
+  margin: 0.3em 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.78em;
+  margin: 16px 0;
+}
+
+th {
+  background: var(--color-bg-elev);
+  color: var(--color-accent);
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 700;
+  border-bottom: 2px solid var(--color-accent);
+}
+
+td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--color-line);
+  vertical-align: top;
+}
+
+tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+code {
+  background: var(--color-bg-elev);
+  color: var(--color-highlight);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+pre {
+  background: var(--color-bg-elev);
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid var(--color-line);
+  font-size: 0.8em;
+}
+
+ul, ol {
+  line-height: 1.7;
+}
+
+li::marker {
+  color: var(--color-accent);
+}
+
+/* === LAYOUT CLASSES === */
+
+/* Титульный */
+section.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(ellipse at center, #1e293b 0%, #0f172a 60%, #020617 100%);
+}
+
+section.title h1 {
+  font-size: 2.6em;
+  margin-bottom: 0.2em;
+  max-width: 90%;
+}
+
+section.title h2 {
+  color: var(--color-text-muted);
+  font-size: 1.1em;
+  font-weight: 400;
+  max-width: 80%;
+}
+
+section.title .meta {
+  position: absolute;
+  bottom: 40px;
+  color: var(--color-text-muted);
+  font-size: 0.75em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Только текст по центру */
+section.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+section.center h1 {
+  font-size: 2.2em;
+  max-width: 90%;
+}
+
+section.center .lead {
+  font-size: 1.3em;
+  max-width: 850px;
+  color: var(--color-text);
+  margin: 0.4em 0;
+}
+
+section.center .sub {
+  color: var(--color-text-muted);
+  font-size: 0.95em;
+  margin-top: 1em;
+}
+
+/* Делёный 50/50 */
+section.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+/* Делёный 40/60 */
+section.split-l {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 50px;
+  align-items: center;
+}
+
+/* Заголовок в углу + контент */
+section.with-eyebrow {
+  padding-top: 72px;
+}
+
+section.with-eyebrow .eyebrow {
+  position: absolute;
+  top: 36px;
+  left: 80px;
+  color: var(--color-text-muted);
+  font-size: 0.65em;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* Цитата-крюк */
+section.hook {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--color-bg);
+}
+
+section.hook .quote {
+  font-size: 1.5em;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-text);
+  max-width: 950px;
+}
+
+section.hook .quote .accent {
+  color: var(--color-accent);
+}
+
+/* Хайлайт-блок */
+.highlight-box {
+  background: var(--color-bg-elev);
+  border: 2px solid var(--color-accent);
+  border-radius: 14px;
+  padding: 28px 36px;
+  margin: 24px 0;
+  text-align: center;
+}
+
+.highlight-box p {
+  font-size: 1.3em;
+  font-weight: 700;
+  margin: 0;
+  color: var(--color-text);
+}
+
+/* Карточки */
+.card {
+  background: var(--color-bg-elev);
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  padding: 24px 28px;
+}
+
+.card.accent {
+  border-color: var(--color-accent);
+}
+
+.card.muted {
+  opacity: 0.6;
+}
+
+.card h3 {
+  margin: 0 0 0.5em 0;
+  color: var(--color-accent);
+}
+
+.card .num {
+  color: var(--color-text-muted);
+  font-size: 0.7em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.cards-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+}
+
+.cards-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+/* Большой акцент */
+.big {
+  font-size: 1.8em;
+  font-weight: 800;
+  color: var(--color-accent);
+  line-height: 1.2;
+}
+
+.huge {
+  font-size: 3em;
+  font-weight: 900;
+  color: var(--color-accent);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.muted {
+  color: var(--color-text-muted);
+}
+
+.strike {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+
+/* SVG-схемы */
+svg.diagram {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Footer */
+section::after {
+  content: '';
+}
+
+header {
+  color: var(--color-text-muted);
+  font-size: 0.6em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+footer {
+  color: var(--color-text-muted);
+  font-size: 0.6em;
+  letter-spacing: 0.1em;
+}
