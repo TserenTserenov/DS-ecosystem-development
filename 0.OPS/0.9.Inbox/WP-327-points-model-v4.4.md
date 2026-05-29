@@ -609,10 +609,19 @@ Welcome не конфликтует с принципом «Случайный =
 | **Этап 21** — streak ×2.2 (migration 248) | `_compute_streak_mult` v4.4: 4-уровневый (28d, SUM>0); CHECK streak_mult≤2.5; dynamic constraint drop. Применено к production. | neon-migrations 76aaf1f |
 | **Этап 26** — club events live (миграции 247+247b) | is_marker bugfix в compute_effective_amount_v4; projection_rules для 11 club-событий; backfill 17 событий (244 pts). is_marker ветка: v_base=v_amount (не 1.0). | neon-migrations 76aaf1f |
 
+### ✅ Задеплоено (2026-05-29)
+
+| Этап | Что сделано | Репо / коммит |
+|---|---|---|
+| **Этап 26 доп.** — club_invite_accepted gap fix | Добавлена пропущенная запись в `reference.projection_rules` для `club_invite_accepted` (reward_rules: amount=35, is_marker=true). Migration 253. | neon-migrations migration 253 |
+| **Этап 22+27 event-gateway fix** | Добавлены JSON Schema для `subscription_first_purchased`, `user_typing_tracked`, `slot_logged` в event-gateway Worker. До этого 40 событий `user_typing_tracked` за 7 дней отклонялись с `unknown_event_type`. Deployed: CF Worker `345fc25e`. | DS-MCP/event-gateway |
+| **Discourse webhook инструкция** | Документ `DS-my-strategy/inbox/WP-327/discourse-webhook-setup-instruction.md` — URL, secret, 9 событий Discourse. Endpoint: `https://event-gateway.aisystant.workers.dev/club/webhook`. | DS-my-strategy |
+
 **Known limitations:**
 - Подписчик, оформивший подписку до следующего snapshot, не получит бонусы до 01:00 UTC следующего дня (~24ч задержка). Это known limitation, не баг.
 - `club_*` события работают с 2026-05-28 (WP-296 + фикс вебхука в сессии 2026-05-28-03). Суммы: club_topic_created=12, club_post_created=5, club_like_created=1 (лимит 2/день), club_like_received=2 (лимит 5/день), club_comment_received=4 (лимит 3/день), club_trust_promoted=25/70, club_badge_granted=15/46.
 - `onboarding_completed` имеет `amount=0` — оставить до явного решения (риск double-count с `subscription_first_purchased`).
+- `typing_daily` (pipeline из `user_typing_tracked`) требует отдельной диагностики — события теперь доходят до event-gateway, но projection_worker должен процессировать их в `typing_daily`. Статус: не верифицировано.
 
 ### Приоритет 1 — миграция конфига (~1 ч)
 
