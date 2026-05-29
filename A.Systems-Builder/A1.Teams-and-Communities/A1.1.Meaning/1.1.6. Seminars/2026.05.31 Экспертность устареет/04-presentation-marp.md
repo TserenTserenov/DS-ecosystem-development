@@ -44,31 +44,48 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 
 ---
 
+<!-- _class: with-eyebrow center -->
+
+<div class="eyebrow">Главная линия семинара</div>
+
+<p class="big-label accent" style="font-size:1.8em;line-height:1.2;margin-bottom:0.5em">Как работать с&nbsp;ИИ так,<br>чтобы задачи закрывались,<br>а ваша способность росла</p>
+
+<p class="muted" style="font-size:1.05em;max-width:820px;margin-top:30px">Не «экспертность устареет». Не «ИИ заберёт работу». А внутренний вопрос: что после сотни выполненных задач остаётся <strong>со мной</strong> — навыки, знания, решения, рабочие продукты — или только результаты для других?</p>
+
+---
+
 <!-- _class: with-eyebrow split -->
 
-<div class="eyebrow">Блок 1 · Захват</div>
+<div class="eyebrow">Блок 2 · Две сломанные опоры</div>
 
 <div>
 
-## Конец 80-х — начало 90-х
+<p class="big-label muted" style="font-size:1.5em">Анна, 24</p>
 
-рушились правила рынка
+<p class="muted" style="font-size:0.95em"><em>40 секунд</em></p>
 
-<br>
+<p>Юрист на старте. 80 откликов — ни одного оффера.</p>
 
-## Сейчас, эпоха ИИ
-
-рушатся правила мышления
-
-<p class="muted">— Быстрее. Глубже. —</p>
+<p class="muted">Сломалась <strong>лестница входа</strong>: junior-задачи делает ИИ.</p>
 
 </div>
 
 <div>
 
-> **«Старые ответы не подходят к новым вопросам.**
-> Тревога — это сигнал, а не диагноз.
-> Сегодня ищем новые ответы.»
+<p class="big-label accent" style="font-size:1.5em">Олег, 42</p>
+
+<p class="muted" style="font-size:0.95em"><em>3 минуты — главный персонаж</em></p>
+
+<p>Юрист с 18-летним опытом. GPT за 10 минут сделал договор, который Олег делал бы 4 часа.</p>
+
+<p class="muted">Сломалась <strong>опора идентичности</strong>. Впервые не понимает: его опыт — это опора или вчерашний актив?</p>
+
+</div>
+
+<div class="highlight-box" style="grid-column:1/-1;margin-top:24px">
+
+Семинар — в первую очередь про Олега.<br>
+**О человеке с опытом, который не понимает, является ли его опыт опорой или вчерашним активом.**
 
 </div>
 
@@ -252,6 +269,41 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 
 ---
 
+<!-- _class: with-eyebrow -->
+
+<div class="eyebrow">Блок 3 · Что говорят люди, ещё не видящие связки</div>
+
+# Три типичные реакции
+
+<div class="cards-3" style="margin-top:30px">
+
+<div class="card muted">
+<span class="num">Реакция 1</span>
+<h3 style="color:#94a3b8">«ИИ всё умеет —<br>мне поздно учиться»</h3>
+
+<p class="muted" style="font-size:0.85em">Не видит, что учиться нужно <strong style="color:#f97316">не конкурировать</strong> с ИИ, а собирать связку.</p>
+</div>
+
+<div class="card muted">
+<span class="num">Реакция 2</span>
+<h3 style="color:#94a3b8">«Я уже эксперт —<br>меня это не касается»</h3>
+
+<p class="muted" style="font-size:0.85em">Не видит, что эксперт без связки <strong style="color:#f97316">= протез-эксперт</strong>.</p>
+</div>
+
+<div class="card muted">
+<span class="num">Реакция 3</span>
+<h3 style="color:#94a3b8">«Подожду,<br>пока станет ясно»</h3>
+
+<p class="muted" style="font-size:0.85em">Не видит, что ясность приходит <strong style="color:#f97316">из заполненной карточки</strong>, а не из новостной ленты.</p>
+</div>
+
+</div>
+
+<p class="muted" style="margin-top:30px;text-align:center;font-size:0.95em">Каждая реакция оставляет в старой модели экспертности.</p>
+
+---
+
 <!-- _class: hook -->
 
 <div class="quote">
@@ -260,6 +312,32 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 </div>
 
 <p class="muted" style="margin-top:40px">Напишите в чат — одним словом или фразой.</p>
+
+---
+
+<!-- _class: with-eyebrow -->
+
+<div class="eyebrow">Карточка связки · Точка 1 из 3 · Черновик пункта 2</div>
+
+# Что осталось <em style="color:#f97316;font-style:normal">моим</em>?
+
+<div style="background:#1e293b;border:2px solid #f97316;border-radius:14px;padding:28px 36px;margin-top:24px;font-size:0.95em">
+
+<p class="muted" style="margin:0 0 0.4em 0">1. Что ИИ делал за меня за последний месяц:</p>
+<p class="muted" style="margin:0 0 1em 0">_____________________________________________</p>
+
+<p style="background:rgba(249,115,22,0.18);padding:12px 16px;border-radius:8px;margin:0 0 0.4em 0"><strong style="color:#f97316">2. Что после этого осталось моим:</strong> ← <em style="color:#fbbf24;font-style:normal">пишем сейчас в чат</em></p>
+<p style="margin:0 0 1em 0">_____________________________________________</p>
+
+<p class="muted" style="margin:0 0 0.4em 0">3. Где я стал быстрее, но не сильнее:</p>
+<p class="muted" style="margin:0 0 1em 0">_____________________________________________</p>
+
+<p class="muted" style="margin:0 0 0.4em 0">4. Какую следующую задачу сделаю с приростом:</p>
+<p class="muted" style="margin:0">_____________________________________________</p>
+
+</div>
+
+<p class="muted" style="margin-top:18px;font-size:0.85em;text-align:center">Черновик. Уточним позже. Пишите в чат коротко — одной строкой.</p>
 
 ---
 
@@ -309,27 +387,69 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 
 <!-- _class: with-eyebrow -->
 
-<div class="eyebrow">Блок 4 · Рабочий продукт — карточка связки</div>
+<div class="eyebrow">Блок 4 · Микрошаблон диагностики</div>
 
-# Карточка связки человек&nbsp;—&nbsp;ИИ
+# За последний месяц ИИ помог мне&nbsp;получить:
 
-<div style="background:#1e293b;border:2px solid #f97316;border-radius:14px;padding:32px 40px;margin-top:24px;font-size:0.9em">
+<div class="cards-2" style="margin-top:24px">
 
-**1.** Что ИИ делал за меня за последний месяц:
-<span class="muted">_____________________________________________</span>
+<div class="card">
+<span class="num">Пункт 1</span>
+<h3>Результаты</h3>
+<p class="muted" style="font-size:0.9em">Готовые тексты, отчёты, код. Закрытые задачи.</p>
+</div>
 
-**2.** Что после этого осталось моим:
-<span class="muted">_____________________________________________</span>
+<div class="card">
+<span class="num">Пункт 2</span>
+<h3>Новые знания</h3>
+<p class="muted" style="font-size:0.9em">Чего раньше не знал. Что теперь понимаю по-другому.</p>
+</div>
 
-**3.** Где я стал быстрее, но не сильнее:
-<span class="muted">_____________________________________________</span>
+<div class="card">
+<span class="num">Пункт 3</span>
+<h3>Новые способы работы</h3>
+<p class="muted" style="font-size:0.9em">Методы, которыми теперь буду пользоваться сам.</p>
+</div>
 
-**4.** Какую следующую задачу сделаю так, чтобы остались знания, решение или продукт:
-<span class="muted">_____________________________________________</span>
+<div class="card">
+<span class="num">Пункт 4</span>
+<h3>Рабочие продукты</h3>
+<p class="muted" style="font-size:0.9em">Шаблоны, документы, инструменты — можно использовать дальше.</p>
+</div>
 
 </div>
 
-<p class="muted" style="margin-top:20px;font-size:0.85em">Заполняем по ходу семинара. Пункты 1–3 — сейчас в чат. Пункт 4 — в финале.</p>
+<div class="highlight-box" style="margin-top:24px">
+
+Если у вас есть только Пункт 1 — **это сигнал**.
+
+</div>
+
+---
+
+<!-- _class: with-eyebrow -->
+
+<div class="eyebrow">Карточка связки · Точка 2 из 3 · Пункты 1 и 3</div>
+
+# Что ИИ делал и где я не&nbsp;стал&nbsp;сильнее
+
+<div style="background:#1e293b;border:2px solid #f97316;border-radius:14px;padding:28px 36px;margin-top:24px;font-size:0.95em">
+
+<p style="background:rgba(249,115,22,0.18);padding:12px 16px;border-radius:8px;margin:0 0 0.4em 0"><strong style="color:#f97316">1. Что ИИ делал за меня за последний месяц:</strong> ← <em style="color:#fbbf24;font-style:normal">в чат</em></p>
+<p style="margin:0 0 1em 0">_____________________________________________</p>
+
+<p class="muted" style="margin:0 0 0.4em 0">2. Что после этого осталось моим: <em style="color:#94a3b8;font-style:normal">(черновик уже есть)</em></p>
+<p class="muted" style="margin:0 0 1em 0">_____________________________________________</p>
+
+<p style="background:rgba(249,115,22,0.18);padding:12px 16px;border-radius:8px;margin:0 0 0.4em 0"><strong style="color:#f97316">3. Где я стал быстрее, но не сильнее:</strong> ← <em style="color:#fbbf24;font-style:normal">в чат</em></p>
+<p style="margin:0 0 1em 0">_____________________________________________</p>
+
+<p class="muted" style="margin:0 0 0.4em 0">4. Какую следующую задачу сделаю с приростом: <em style="color:#94a3b8;font-style:normal">(в финале)</em></p>
+<p class="muted" style="margin:0">_____________________________________________</p>
+
+</div>
+
+<p class="muted" style="margin-top:18px;font-size:0.85em;text-align:center">Карточка собирается по ходу семинара. К финалу — готовая, заполнена вашими руками.</p>
 
 ---
 
@@ -681,15 +801,41 @@ ChatGPT не знает, кто вы.
 
 ---
 
-<!-- _class: with-eyebrow center -->
+<!-- _class: hook -->
 
-<div class="eyebrow">Финал · Возьмите ближайшую задачу</div>
+<div class="quote" style="font-size:1.35em">
+<span class="accent">Опасность не в том, что ИИ выполнит вашу задачу.</span><br><br>
+Опасность в том, что через год интенсивной работы с&nbsp;ИИ<br>
+<span class="accent">вы окажетесь там же, где сейчас</span>.
+</div>
 
-# Пункт 4 карточки связки
+<p class="muted" style="margin-top:36px;font-size:0.9em">Это и есть итоговая боль, которую решает диагностика связки.</p>
 
-<p class="lead" style="margin-top:10px">Какую следующую задачу сделаю так, чтобы после неё остались знания, решение или продукт?</p>
+---
 
-<p class="muted" style="margin-top:20px">Одна строка в чат. Это ваш коммитмент.</p>
+<!-- _class: with-eyebrow -->
+
+<div class="eyebrow">Карточка связки · Точка 3 из 3 · Пункт 4 (в финале)</div>
+
+# Какую следующую задачу сделаю с&nbsp;приростом?
+
+<div style="background:#1e293b;border:2px solid #f97316;border-radius:14px;padding:28px 36px;margin-top:24px;font-size:0.95em">
+
+<p class="muted" style="margin:0 0 0.4em 0">1. Что ИИ делал за меня за последний месяц: <em style="color:#94a3b8;font-style:normal">✓</em></p>
+<p class="muted" style="margin:0 0 1em 0">_____________________________________________</p>
+
+<p class="muted" style="margin:0 0 0.4em 0">2. Что после этого осталось моим: <em style="color:#94a3b8;font-style:normal">✓</em></p>
+<p class="muted" style="margin:0 0 1em 0">_____________________________________________</p>
+
+<p class="muted" style="margin:0 0 0.4em 0">3. Где я стал быстрее, но не сильнее: <em style="color:#94a3b8;font-style:normal">✓</em></p>
+<p class="muted" style="margin:0 0 1em 0">_____________________________________________</p>
+
+<p style="background:rgba(249,115,22,0.18);padding:12px 16px;border-radius:8px;margin:0 0 0.4em 0"><strong style="color:#f97316">4. Какую следующую задачу сделаю так, чтобы после неё остались знания, решение или продукт:</strong> ← <em style="color:#fbbf24;font-style:normal">одна строка в чат</em></p>
+<p style="margin:0">_____________________________________________</p>
+
+</div>
+
+<p class="muted" style="margin-top:18px;font-size:0.85em;text-align:center">Карточка собрана. Это ваш коммитмент и ваш первый артефакт новой нормы.</p>
 
 ---
 
