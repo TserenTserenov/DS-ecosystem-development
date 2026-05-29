@@ -12786,3 +12786,25 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-29T11:26:46+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Добавить один вопрос в путь Марафона: «В какое время удобно получать урок?» (ЧЧ:ММ). Изменить логику очереди в `start_ma",
+      "В какое время удобно получать урок? (ЧЧ:ММ) "
+    ],
+    "session_id": "04aa2960-d926-4d22-971b-5d74e4224c3c"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
