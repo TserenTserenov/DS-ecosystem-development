@@ -91,31 +91,23 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 
 ---
 
-<!-- _class: with-eyebrow split-l -->
+<!-- _class: with-eyebrow -->
+
+![bg left:45%](images/tony-robot.png)
 
 <div class="eyebrow">Блок 2 · Два сценария · Сценарий 1</div>
-
-<div>
 
 ### 1951 год · Айзек Азимов
 
 # Тони-робот
 
-<p class="muted" style="font-size:0.85em">Рассказ из&nbsp;цикла «Я,&nbsp;робот».<br>
-Один из&nbsp;самых ранних образов идеального ИИ-помощника.</p>
+<p class="muted" style="font-size:0.95em;max-width:90%">Рассказ из&nbsp;цикла «Я,&nbsp;робот». Один из&nbsp;самых ранних образов идеального ИИ-помощника.</p>
 
-</div>
-
-<div>
-
-> Робот Тони приходит в дом к Клэр.
-> Умеет всё: готовить, убирать, помогать с делами.
+> Робот приходит в дом к Клэр.
+> Умеет всё: готовить, убирать, помогать.
 > Любую просьбу — мгновенно.
 >
-> Идеальный помощник.
-> Клэр счастлива.
-
-</div>
+> Идеальный помощник. <span class="accent">Клэр счастлива.</span>
 
 ---
 
@@ -143,42 +135,15 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 
 ---
 
-<!-- _class: with-eyebrow center -->
+<!-- _class: with-eyebrow -->
 
-<div class="eyebrow">Блок 2 · Сценарий 2 · Железный человек</div>
+![bg fit](images/iron-man-triptych.png)
 
-<svg class="diagram" viewBox="0 0 1000 360" xmlns="http://www.w3.org/2000/svg">
-  <!-- Tony -->
-  <g transform="translate(80,80)">
-    <rect x="0" y="0" width="220" height="200" rx="14" fill="#1e293b" stroke="#94a3b8" stroke-width="2"/>
-    <text x="110" y="50" text-anchor="middle" fill="#f1f5f9" font-family="Inter" font-size="22" font-weight="700">Тони Старк</text>
-    <text x="110" y="100" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="16">Умный.</text>
-    <text x="110" y="125" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="16">Уязвимый.</text>
-    <text x="110" y="150" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="16">Один.</text>
-  </g>
-  <text x="335" y="195" text-anchor="middle" fill="#f97316" font-family="Inter" font-size="48" font-weight="800">+</text>
-  <!-- Suit -->
-  <g transform="translate(380,80)">
-    <rect x="0" y="0" width="220" height="200" rx="14" fill="#1e293b" stroke="#94a3b8" stroke-width="2"/>
-    <text x="110" y="50" text-anchor="middle" fill="#f1f5f9" font-family="Inter" font-size="22" font-weight="700">Костюм</text>
-    <text x="110" y="100" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="16">Металл.</text>
-    <text x="110" y="125" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="16">Без пилота —</text>
-    <text x="110" y="150" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="16">груда.</text>
-  </g>
-  <text x="635" y="195" text-anchor="middle" fill="#f97316" font-family="Inter" font-size="48" font-weight="800">=</text>
-  <!-- System -->
-  <g transform="translate(680,60)">
-    <rect x="0" y="0" width="240" height="240" rx="14" fill="#7c2d12" stroke="#f97316" stroke-width="3"/>
-    <text x="120" y="55" text-anchor="middle" fill="#fbbf24" font-family="Inter" font-size="20" font-weight="800">НОВАЯ СИСТЕМА</text>
-    <text x="120" y="105" text-anchor="middle" fill="#f1f5f9" font-family="Inter" font-size="15">JARVIS в ухе.</text>
-    <text x="120" y="130" text-anchor="middle" fill="#f1f5f9" font-family="Inter" font-size="15">Армия дронов.</text>
-    <text x="120" y="155" text-anchor="middle" fill="#f1f5f9" font-family="Inter" font-size="15">Скорость недоступная</text>
-    <text x="120" y="175" text-anchor="middle" fill="#f1f5f9" font-family="Inter" font-size="15">человеку.</text>
-    <text x="120" y="215" text-anchor="middle" fill="#fbbf24" font-family="Inter" font-size="15" font-style="italic">И Тони меняется.</text>
-  </g>
-</svg>
+<div class="eyebrow" style="background:rgba(15,23,42,0.85);padding:6px 12px;border-radius:4px;display:inline-block">Блок 2 · Сценарий 2 · Железный человек</div>
 
-<p class="big" style="margin-top:30px;font-size:1.2em">Связка — не человек с инструментом.<br>Это третья система.</p>
+<div style="position:absolute;bottom:60px;left:80px;right:80px;background:rgba(15,23,42,0.88);padding:20px 28px;border-radius:12px;border-left:4px solid #f97316">
+<p class="big" style="font-size:1.3em;margin:0;text-align:center">Связка — не человек с инструментом.<br>Это <span style="color:#f97316">третья система</span>.</p>
+</div>
 
 ---
 
@@ -232,35 +197,23 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 
 ---
 
-<!-- _class: with-eyebrow split -->
+<!-- _class: with-eyebrow -->
+
+![bg right:42%](images/exoskeleton-vs-prosthesis.png)
 
 <div class="eyebrow">Блок 4 · Различение — ключ всего семинара</div>
 
-<div>
+<div style="margin-top:20px">
 
-## Экзоскелет
+<p style="font-size:1.5em;font-weight:800;margin:0.2em 0"><span style="color:#34d399">Экзоскелет</span> усиливает то, что есть.</p>
+<p class="muted" style="margin-top:0;font-size:0.95em">Снял — навык остался с человеком.</p>
 
-<p style="color:#34d399;font-weight:700">Усиливает то, что есть.</p>
-
-<p class="muted">Строительный рабочий поднимает 200&nbsp;кг.<br>
-Снял костюм — поднимает свои 80.<br>
-Навык остался с&nbsp;человеком.</p>
+<p style="font-size:1.5em;font-weight:800;margin:0.6em 0 0.2em 0"><span style="color:#f87171">Протез</span> заменяет то, чего нет.</p>
+<p class="muted" style="margin-top:0;font-size:0.95em">Снял — функция исчезла.</p>
 
 </div>
 
-<div>
-
-## Протез
-
-<p style="color:#f87171;font-weight:700">Заменяет то, чего нет.</p>
-
-<p class="muted">Без ноги — протез позволяет ходить.<br>
-Это замечательно.<br>
-Но нога не вырастает.</p>
-
-</div>
-
-<div class="highlight-box" style="grid-column:1/-1">
+<div class="highlight-box" style="margin-top:24px">
 
 ИИ может быть любым из двух.
 Зависит от того, **как вы с ним работаете**.
@@ -523,13 +476,21 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 
 ---
 
-<!-- _class: center -->
+<!-- _class: with-eyebrow -->
 
-<p class="big" style="font-size:1.6em">IWE нельзя купить.</p>
+![bg left:45%](images/tamagotchi.png)
 
-<p class="huge" style="margin-top:10px">Его можно только<br>вырастить.</p>
+<div class="eyebrow">Природа 4 · «Как тамагочи»</div>
 
-<p class="sub" style="margin-top:30px">Как тамагочи. Каждый день. Не рывками.</p>
+<div style="margin-top:40px">
+
+<p class="big" style="font-size:1.6em;margin-bottom:0.2em">IWE нельзя купить.</p>
+
+<p class="huge" style="margin-top:10px;font-size:2.4em">Его можно только<br>вырастить.</p>
+
+<p class="muted" style="margin-top:36px;font-size:1.05em">Как тамагочи.<br>Каждый день. Не рывками.</p>
+
+</div>
 
 ---
 
@@ -915,11 +876,15 @@ QR
 <!-- _class: title -->
 <!-- _paginate: false -->
 
+![bg blur:4px brightness:0.35](images/primer.png)
+
 # Спасибо
 
 <h2>Связка — это&nbsp;вы&nbsp;и&nbsp;ваш&nbsp;ИИ.<br>Растите её.</h2>
 
-<div class="meta">31 мая 2026 · v3.2.1</div>
+<div class="speaker">Церен Церенов · сооснователь МИМ</div>
+
+<div class="meta">31 мая 2026 · v3.2.2</div>
 
 ---
 
