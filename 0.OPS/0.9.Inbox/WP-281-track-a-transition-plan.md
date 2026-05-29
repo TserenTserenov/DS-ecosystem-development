@@ -6,7 +6,7 @@ created: 2026-05-28
 updated: 2026-05-28
 owner: Ильшат
 source: "WP-281 Ф4, оперативка ИТ 14 мая, Strategy Session W22"
-related: [WP-285, WP-327, WP-355, WP-183, WP-253, WP-336, WP-74, WP-350, WP-316]
+related: [WP-285, WP-327, WP-355, WP-183, WP-253, WP-336, WP-74, WP-350, WP-316, WP-341]
 deadline: "15 июля 2026"
 ---
 
@@ -60,8 +60,8 @@ deadline: "15 июля 2026"
 | **6 Python-сервисов** | aist_bot, multi-domain-projection-worker, activity-hub, payment-registry, google-drive-mcp, scheduler | Railway / частично cron |
 | **Ory** | Единая авторизация (VK Cloud) | Работает |
 | **MCP Gateway** | `mcp.aisystant.com` — unified access к L2 + L4 знаниям | Live |
-| **Chatwoot** | Поддержка пользователей (self-hosted на Railway + Neon) | Работает |
-| **n8n** | Автоматизация, Светофор, health probes | Развёрнут на Railway |
+| **Chatwoot** | Поддержка пользователей (self-hosted на Railway + Neon). [Инфраструктура →](WP-341-helpdesk-infrastructure.md) | Работает |
+| **n8n** | Автоматизация, ДЗ-чекер, health probes. [Инфраструктура →](WP-341-helpdesk-infrastructure.md) | Работает |
 | **Metabase + Directus** | Аналитика и CRM | Развёрнуты на Railway |
 | **CI/CD руководств** | Pipeline v4, machine gates, staging → production | Stage 1 done |
 | **Pack-граф** | 2717+ узлов, CF-cron каждые 30 мин | Live |
@@ -139,7 +139,8 @@ deadline: "15 июля 2026"
 |---|--------|-----|---|
 | 0.1 | Доступы: Neon, Railway, Cloudflare Track A, VK Cloud Ory | Церен | |
 | 0.2 | Аварийная книжка создана и заведено всё в 1Password | Ильшат | |
-| 0.3 | Канал алертов: Better Stack + TG чат | Церен | |
+| ~~0.3~~ | ~~Канал алертов: Better Stack + TG чат~~ | ~~Церен~~ | ✅ |
+| 0.3a | **MVP Helpdesk развёрнут (29 мая):** BetterStack настроен (keyword `verdict`, 3 мин → Ops Telegram), mcp-health-probe активирован (guides/knowledge/digital-twin/hw-checker каждые 30 мин), Chatwoot работает. Документ: [WP-341-helpdesk-infrastructure.md](WP-341-helpdesk-infrastructure.md) | Церен | ✅ |
 | 0.4 | Первый самостоятельный бэкап клуба | Ильшат | |
 | 0.5 | Карта БД и сервисов — Ильшат объясняет своими словами | Ильшат | |
 | 0.6 | **Культура:** Ильшат + Наталья + Дима — Claude Code + IWE Template установлены | Церен | |

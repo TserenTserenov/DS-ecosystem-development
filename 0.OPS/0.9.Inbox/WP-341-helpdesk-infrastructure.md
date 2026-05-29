@@ -12,9 +12,8 @@ owner: ops
 > Описание текущего состояния и пути развития. Версия 0.1 (29 мая 2026).
 > Артефакт WP-341. Обновлять при каждом изменении инфраструктуры.
 
----
-
-## 1. Карта сервисов
+<details open>
+<summary><b>1. Карта сервисов</b></summary>
 
 | Сервис | URL | Хостинг | Статус | Роль |
 |--------|-----|---------|--------|------|
@@ -29,19 +28,21 @@ owner: ops
 | **Neon DB (chatwoot)** | ep-dark-hall-ag8bo8lf (EU Central) | Neon Serverless | ✅ | БД Chatwoot |
 | **Railway Postgres** | postgres.railway.internal | Railway / peaceful-vision | ✅ | БД n8n |
 
----
+</details>
 
-## 2. Telegram-каналы
+<details>
+<summary><b>2. Telegram-каналы</b></summary>
 
 | Канал | Ссылка | Участников | Назначение | Алерты |
 |-------|--------|-----------|-----------|--------|
 | **Ops (основной)** | t.me/+2Tdn-M33vasyNzli | ~5 | Инциденты платформы: алерты BetterStack + mcp-health-probe | ✅ настроен |
 | **Пользовательские репорты** | t.me/+5WH59nuwrnY3M2Ji | ~100 | Сообщения пользователей о работе платформы | ❌ не подключён к Chatwoot |
-| **Неопределённый** | t.me/+I2t97dfgL68xZmU6 | ? | Роль не определена → см. §5 Roadmap | ❌ нет алертов |
+| **Неопределённый** | t.me/+I2t97dfgL68xZmU6 | ? | Роль не определена → см. Roadmap Фаза B | ❌ нет алертов |
 
----
+</details>
 
-## 3. Мониторинг и алертинг
+<details>
+<summary><b>3. Мониторинг и алертинг</b></summary>
 
 ### Схема
 
@@ -85,9 +86,10 @@ BetterStack ──────→  aisystant.betteruptime.com
 - **Алерт:** Telegram Bot → `-1003907065350` (Ops группа `+2Tdn-M33vasyNzli`)
 - **Логирование:** Neon learning DB → таблица `mcp_health_log`
 
----
+</details>
 
-## 4. n8n — Автоматизация
+<details>
+<summary><b>4. n8n — Автоматизация</b></summary>
 
 ### ДЗ-чекер (hw-checker-v3, ID: FMuoh9mV2q8OpkVv)
 
@@ -139,9 +141,10 @@ BetterStack ──────→  aisystant.betteruptime.com
 
 > **TODO:** удалить legacy воркфлоу v1, v1.2, v1.3, v1.4, v2 и hw-checker-v3 copy.
 
----
+</details>
 
-## 5. Chatwoot — Helpdesk-система
+<details>
+<summary><b>5. Chatwoot — Helpdesk-система</b></summary>
 
 - **URL:** https://chatwoot-web-production-177b.up.railway.app
 - **Инсталляция:** IWE Helpdesk (community plan)
@@ -157,9 +160,10 @@ BetterStack ──────→  aisystant.betteruptime.com
 > ⚠️ Chatwoot установлен, но **не интегрирован** с Telegram-группой пользователей (`+5WH59nuwrnY3M2Ji`).
 > Сообщения пользователей из этой группы не попадают в тикеты Chatwoot.
 
----
+</details>
 
-## 6. Текущие проблемы и пробелы
+<details>
+<summary><b>6. Текущие проблемы и пробелы</b></summary>
 
 | # | Проблема | Приоритет |
 |---|---------|-----------|
@@ -171,9 +175,10 @@ BetterStack ──────→  aisystant.betteruptime.com
 | 6 | Нет документации онбординга оператора Chatwoot | 🟡 средний |
 | 7 | Нет runbook по инцидентам (что делать при 500/502 webhook) | 🟡 средний |
 
----
+</details>
 
-## 7. Roadmap развития
+<details>
+<summary><b>7. Roadmap развития</b></summary>
 
 ### Фаза A — Интеграция Telegram → Chatwoot (🔴 приоритет 1)
 
@@ -213,9 +218,10 @@ BetterStack ──────→  aisystant.betteruptime.com
 - `0.9.Runbooks/helpdesk-incident-runbook.md` — шаги при инциденте (500/502/disk full)
 - `0.9.Runbooks/chatwoot-operator-guide.md` — онбординг оператора поддержки
 
----
+</details>
 
-## 8. Зависимости
+<details>
+<summary><b>8. Зависимости</b></summary>
 
 ```
 Пользователь → +5WH59nuwrnY3M2Ji → [TODO: Chatwoot inbox] → Chatwoot → Оператор
@@ -224,6 +230,8 @@ BetterStack ──────→  aisystant.betteruptime.com
 Мониторинг → BetterStack → aisystant.betteruptime.com → Ops Telegram
 Мониторинг → mcp-health-probe (n8n) → Neon log + Ops Telegram
 ```
+
+</details>
 
 ---
 
