@@ -3,7 +3,7 @@ marp: true
 theme: may31
 paginate: true
 size: 16:9
-header: "Семинар 31 мая 2026 · Бесплатник · 70 мин"
+header: "**31 мая 2026** · Ваша экспертность устареет. Как вырастить новую — не за 10 лет"
 footer: "v3.2.1 · Aisystant · @aist_me_bot"
 ---
 
@@ -12,9 +12,13 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 <!-- _header: "" -->
 <!-- _footer: "" -->
 
-# Что произошло с вами&nbsp;за&nbsp;сотню часов с&nbsp;ИИ?
+# Ваша экспертность устареет.<br>Как вырастить новую — не&nbsp;за&nbsp;10&nbsp;лет
 
 ## Диагностика связки человек&nbsp;—&nbsp;ИИ
+
+<div class="speaker">
+Церен Церенов · сооснователь МИМ
+</div>
 
 <div class="meta">31 мая 2026 · бесплатный онлайн-семинар</div>
 
@@ -46,13 +50,13 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 
 <div>
 
-## Тогда
+## Конец 80-х — начало 90-х
 
 рушились правила рынка
 
 <br>
 
-## Сейчас
+## Сейчас, эпоха ИИ
 
 рушатся правила мышления
 
@@ -80,8 +84,8 @@ footer: "v3.2.1 · Aisystant · @aist_me_bot"
 
 # Тони-робот
 
-<p class="muted">Иллюстрация — см. промпт ниже.<br>
-GPT-Image / DALL-E / Midjourney.</p>
+<p class="muted" style="font-size:0.85em">Рассказ из&nbsp;цикла «Я,&nbsp;робот».<br>
+Один из&nbsp;самых ранних образов идеального ИИ-помощника.</p>
 
 </div>
 
@@ -449,7 +453,7 @@ GPT-Image / DALL-E / Midjourney.</p>
 
 <div>
 
-<h3 class="muted">Было</h3>
+<p class="big-label muted">Было</p>
 
 <p style="color:#94a3b8;font-size:1.2em">Хаос</p>
 <p style="color:#94a3b8;font-size:1.2em">Ступор</p>
@@ -459,7 +463,7 @@ GPT-Image / DALL-E / Midjourney.</p>
 
 <div>
 
-<h3 style="color:#f97316">Стало</h3>
+<p class="big-label accent">Стало</p>
 
 <p style="color:#f1f5f9;font-size:1.2em"><strong>Проблема</strong> — есть объект для мысли</p>
 <p style="color:#f1f5f9;font-size:1.2em"><strong>Задача</strong> — есть метод</p>
@@ -525,21 +529,21 @@ GPT-Image / DALL-E / Midjourney.</p>
 
 <div>
 
-<h3 class="muted">В одиночку</h3>
+<p class="big-label muted">В одиночку</p>
 
-<p style="color:#94a3b8">Темп падает</p>
-<p style="color:#94a3b8">Норма размывается</p>
-<p style="color:#94a3b8">Откат к старому стилю</p>
+<p style="color:#94a3b8;font-size:1.2em">Темп падает</p>
+<p style="color:#94a3b8;font-size:1.2em">Норма размывается</p>
+<p style="color:#94a3b8;font-size:1.2em">Откат к старому стилю</p>
 
 </div>
 
 <div>
 
-<h3 style="color:#f97316">В среде</h3>
+<p class="big-label accent">В среде</p>
 
-<p>Темп держится</p>
-<p>Норма видна</p>
-<p>Рост вместе с другими</p>
+<p style="font-size:1.2em">Темп держится</p>
+<p style="font-size:1.2em">Норма видна</p>
+<p style="font-size:1.2em">Рост вместе с другими</p>
 
 </div>
 
@@ -598,7 +602,9 @@ ChatGPT не знает, кто вы.
 
 <div class="eyebrow">Блок 6 · Три предложения для вашего ИИ</div>
 
-# Три карточки. Три минуты.
+# Напишите ИИ три предложения о&nbsp;себе
+
+<p class="muted" style="font-size:1.05em;margin-top:0">Вставите их в начало следующего разговора с&nbsp;ChatGPT или Claude — и&nbsp;ИИ начнёт его не с&nbsp;нуля, а&nbsp;с&nbsp;понимания, кто вы и что делаете.</p>
 
 <div class="cards-3" style="margin-top:24px">
 

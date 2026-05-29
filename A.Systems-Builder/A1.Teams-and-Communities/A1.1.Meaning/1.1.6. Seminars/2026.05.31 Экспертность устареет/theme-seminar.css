@@ -78,29 +78,48 @@ blockquote p {
 }
 
 table {
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   width: 100%;
-  font-size: 0.78em;
+  font-size: 1em;
   margin: 16px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: transparent;
 }
 
 th {
-  background: var(--color-bg-elev);
+  background: #1e293b;
   color: var(--color-accent);
-  padding: 12px 16px;
+  padding: 14px 22px;
   text-align: left;
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 0.85em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   border-bottom: 2px solid var(--color-accent);
 }
 
 td {
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--color-line);
-  vertical-align: top;
+  background: #1e293b;
+  padding: 16px 22px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  vertical-align: middle;
+  color: var(--color-text) !important;
+  font-weight: 600;
+  font-size: 1.05em;
 }
 
-tr:nth-child(even) td {
-  background: rgba(255, 255, 255, 0.02);
+tbody tr:last-child td {
+  background: rgba(249, 115, 22, 0.18);
+  color: var(--color-accent) !important;
+  font-weight: 800;
+  border-bottom: none;
+  border-top: 2px solid var(--color-accent);
+}
+
+tbody tr:last-child td strong {
+  color: var(--color-accent) !important;
 }
 
 code {
@@ -159,6 +178,31 @@ section.title .meta {
   font-size: 0.75em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+section.title .speaker {
+  margin-top: 1.5em;
+  color: var(--color-highlight);
+  font-size: 1.1em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Большая метка-категория (Было / Стало, В одиночку / В среде) */
+.big-label {
+  font-size: 2em;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.4em 0;
+  line-height: 1.1;
+}
+
+.big-label.muted {
+  color: var(--color-text-muted);
+}
+
+.big-label.accent {
+  color: var(--color-accent);
 }
 
 /* Только текст по центру */
