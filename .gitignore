@@ -79,3 +79,8 @@ temp_*.md
 
 # === Архив старой структуры ===
 .old/
+
+# === Operational derived state (WP-7 WD 2026-05-30) ===
+# backup-checker output — derived state ежедневного проверщика бэкапов на tsekh-1.
+# Не SoT, не должен попадать в коммиты.
+C.IT-Platform/C2.IT-Platform/C2.3.Operations/backup-reports/
