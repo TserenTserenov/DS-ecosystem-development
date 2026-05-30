@@ -14098,3 +14098,87 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-30T20:38:33+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Сессия:** 5 ходов + 1 эскалация (разрешена твоей директивой), 1 итерация cold-review закрыла 5 issues (2 Critical + 2 "
+    ],
+    "session_id": "ae7a8869-a219-46fa-9e39-1516d63acf06"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-30T20:38:44+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Сессия:** 5 ходов + 1 эскалация (разрешена твоей директивой), 1 итерация cold-review закрыла 5 issues (2 Critical + 2 "
+    ],
+    "session_id": "ae7a8869-a219-46fa-9e39-1516d63acf06"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-30T21:26:24+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "2. **Если `/ory_test` не отвечает** — попробуй сначала `/connect` и пришли скриншот меню. Возможно я что-то пропустил в "
+    ],
+    "session_id": "b9c056d7-34ea-46e2-8bf2-7c94291780ec"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-30T21:50:39+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Бутылочное горлышко зонтика сейчас — Ф6a.** Это первый осмысленный шаг разметки, после которого станет понятно: (а) по"
+    ],
+    "session_id": "5d44c535-7b71-4512-92de-f09f072f16a2"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
