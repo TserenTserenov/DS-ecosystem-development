@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
     inputs:
       ai_analysis:
-        description: 'Включить AI-анализ (требует ANTHROPIC_API_KEY)'
+        description: 'Включить AI-анализ (требует OPENROUTER_API_KEY)'
         required: false
         type: boolean
         default: false
@@ -52,14 +52,11 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pyyaml
-          # Устанавливаем anthropic только если нужен AI-анализ
-          if [ "${{ github.event_name }}" == "schedule" ] || [ "${{ github.event.inputs.ai_analysis }}" == "true" ]; then
-            pip install anthropic
-          fi
+          pip install httpx
 
       - name: Generate reports
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
           REPORT_TYPE="${{ github.event.inputs.report_type || 'all' }}"
 
@@ -106,7 +103,7 @@ jobs:
           Триггер: ${{ github.event_name }}
           Время: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
 
-          Generated with [Claude Code](https://claude.com/claude-code)"
+          Generated with OpenRouter (moonshotai/kimi-k2) via IWE WP-366"
 
       - name: Push changes
         if: steps.check_changes.outputs.changed == 'true'

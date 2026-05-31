@@ -8,7 +8,7 @@
     python3 .ops/build_report.py --report technical-issues
     python3 .ops/build_report.py --report all
 
-    # С AI-анализом (требует ANTHROPIC_API_KEY)
+    # С AI-анализом (требует OPENROUTER_API_KEY)
     python3 .ops/build_report.py --report terminology --ai-analysis
     python3 .ops/build_report.py --report recommendations --ai-analysis
 
@@ -49,10 +49,10 @@ except ImportError:
 
 # Опциональная поддержка AI-анализа
 try:
-    import anthropic
-    HAS_ANTHROPIC = True
+    import httpx
+    HAS_HTTPX = True
 except ImportError:
-    HAS_ANTHROPIC = False
+    HAS_HTTPX = False
 
 # Константы
 CONTENT_DIR = Path("content")
@@ -72,44 +72,58 @@ FAMILIES = {
     "F9": {"name": "Команда и службы", "level": "Экосистема", "role": "Менеджер", "section": "3.3"},
 }
 
-# Модель для AI-анализа
-AI_MODEL = "claude-sonnet-4-20250514"
+# OpenRouter конфигурация для AI-анализа (WP-366 Ф4.E)
+OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
+AI_MODEL = "moonshotai/kimi-k2"
 AI_MAX_TOKENS = 4096
 
 
 class AIAnalyzer:
-    """Класс для AI-анализа документов с использованием Claude."""
+    """Класс для AI-анализа документов через OpenRouter (WP-366 Ф4.E)."""
 
     def __init__(self):
-        if not HAS_ANTHROPIC:
+        if not HAS_HTTPX:
             raise RuntimeError(
-                "Для AI-анализа требуется библиотека anthropic.\n"
-                "Установите: pip install anthropic"
+                "Для AI-анализа требуется библиотека httpx.\n"
+                "Установите: pip install httpx"
             )
 
-        api_key = os.environ.get("ANTHROPIC_API_KEY")
+        api_key = os.environ.get("OPENROUTER_API_KEY")
         if not api_key:
             raise RuntimeError(
-                "Не установлена переменная окружения ANTHROPIC_API_KEY.\n"
-                "Получите ключ на https://console.anthropic.com/"
+                "Не установлена переменная окружения OPENROUTER_API_KEY.\n"
+                "Получите ключ на https://openrouter.ai/"
             )
 
-        self.client = anthropic.Anthropic(api_key=api_key)
+        self.api_key = api_key
 
     def analyze(self, prompt: str, context: str, max_tokens: int = AI_MAX_TOKENS) -> str:
-        """Выполнение AI-анализа."""
+        """Выполнение AI-анализа через OpenRouter."""
+        payload = {
+            "model": AI_MODEL,
+            "max_tokens": max_tokens,
+            "messages": [
+                {
+                    "role": "user",
+                    "content": f"{prompt}\n\n---\n\nКонтекст:\n{context}"
+                }
+            ]
+        }
         try:
-            response = self.client.messages.create(
-                model=AI_MODEL,
-                max_tokens=max_tokens,
-                messages=[
-                    {
-                        "role": "user",
-                        "content": f"{prompt}\n\n---\n\nКонтекст:\n{context}"
-                    }
-                ]
+            resp = httpx.post(
+                OPENROUTER_API_URL,
+                headers={
+                    "Authorization": f"Bearer {self.api_key}",
+                    "Content-Type": "application/json",
+                    "HTTP-Referer": "https://iwe.local",
+                    "X-Title": "IWE-AI-Reports",
+                },
+                json=payload,
+                timeout=120,
             )
-            return response.content[0].text
+            resp.raise_for_status()
+            data = resp.json()
+            return data["choices"][0]["message"]["content"]
         except Exception as e:
             return f"*Ошибка AI-анализа: {e}*"
 
@@ -1694,8 +1708,8 @@ class ReportGenerator:
             report += "python3 .ops/build_report.py --report terminology --ai-analysis\n"
             report += "```\n\n"
             report += "**Требования:**\n"
-            report += "- Установите: `pip install anthropic`\n"
-            report += "- Задайте переменную окружения `ANTHROPIC_API_KEY`\n"
+            report += "- Установите: `pip install httpx`\n"
+            report += "- Задайте переменную окружения `OPENROUTER_API_KEY`\n"
             return report
 
         print("   🤖 Выполняется AI-анализ терминологии...")
