@@ -272,7 +272,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 </div>
 
-<p class="muted" style="margin-top:18px;font-size:0.85em;text-align:center">Черновик. Уточним позже. Пишите в чат коротко — одной строкой.</p>
+<p class="muted" style="margin-top:18px;font-size:0.85em;text-align:center">Пишите в чат коротко. К финалу карточка заполнена: сравните пункты 1 и 3 — это диагностика. Пункт 4 — ваш первый шаг после семинара.</p>
 
 ---
 
@@ -286,7 +286,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 <div class="card muted">
 <span class="num">Позиция 1</span>
-<h3 style="color:#94a3b8">Мастерская</h3>
+<h3 style="color:#94a3b8">Инструмент</h3>
 
 **Что осталось:**
 выполненные задачи, документы, тексты.
@@ -384,7 +384,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 <!-- _class: center -->
 
-<p class="huge">Мастерская —</p>
+<p class="huge">Инструмент —</p>
 <p class="huge" style="color:#f1f5f9">диагноз,<br>не приговор.</p>
 
 <p class="sub" style="margin-top:30px">Пять природ. Вы на первой. Есть четыре следующих.</p>
@@ -397,37 +397,36 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 # Пять природ — куда двигаться
 
-<div style="display:flex;align-items:center;justify-content:space-between;margin:24px 0;position:relative">
-  <div style="position:absolute;top:36px;left:60px;right:60px;height:2px;background:repeating-linear-gradient(90deg,#475569 0,#475569 8px,transparent 8px,transparent 16px)"></div>
-  <div style="text-align:center;position:relative;z-index:1">
-    <div style="width:72px;height:72px;border-radius:50%;background:rgba(148,163,184,0.3);border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.2em;font-weight:800;color:#f1f5f9">1</div>
-    <p style="color:#94a3b8;font-size:0.75em;font-weight:700;margin:8px 0 2px">Мастерская</p>
-    <p style="color:#94a3b8;font-size:0.65em;margin:0">ИИ помогает делать</p>
+<div style="display:flex;align-items:flex-start;justify-content:space-around;margin:20px 0 8px;position:relative">
+  <div style="position:absolute;top:27px;left:8%;right:8%;height:2px;background:repeating-linear-gradient(90deg,#475569 0,#475569 6px,transparent 6px,transparent 12px)"></div>
+  <div style="width:17%;text-align:center;position:relative;z-index:1">
+    <div style="width:54px;height:54px;border-radius:50%;background:rgba(148,163,184,0.3);border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1em;font-weight:800;color:#f1f5f9">1</div>
+    <p style="color:#94a3b8;font-size:0.62em;font-weight:700;margin:5px 0 2px;line-height:1.2">Инструмент</p>
+    <p style="color:#94a3b8;font-size:0.54em;margin:0;line-height:1.3">ИИ помогает<br>делать</p>
   </div>
-  <div style="text-align:center;position:relative;z-index:1">
-    <div style="width:72px;height:72px;border-radius:50%;background:#7c2d12;border:3px solid #f97316;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.2em;font-weight:800;color:#fbbf24">2</div>
-    <p style="color:#f97316;font-size:0.75em;font-weight:700;margin:8px 0 2px">Железный человек</p>
-    <p style="color:#94a3b8;font-size:0.65em;margin:0">ИИ усиливает меня</p>
+  <div style="width:17%;text-align:center;position:relative;z-index:1">
+    <div style="width:54px;height:54px;border-radius:50%;background:#7c2d12;border:3px solid #f97316;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1em;font-weight:800;color:#fbbf24">2</div>
+    <p style="color:#f97316;font-size:0.62em;font-weight:700;margin:5px 0 2px;line-height:1.2">Железный<br>человек</p>
+    <p style="color:#94a3b8;font-size:0.54em;margin:0;line-height:1.3">ИИ усиливает<br>меня</p>
   </div>
-  <div style="text-align:center;position:relative;z-index:1">
-    <div style="width:72px;height:72px;border-radius:50%;background:#1e293b;border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.2em;font-weight:800;color:#f1f5f9">3</div>
-    <p style="color:#f1f5f9;font-size:0.75em;font-weight:700;margin:8px 0 2px">Аватар</p>
-    <p style="color:#94a3b8;font-size:0.65em;margin:0">общая среда даёт общий язык</p>
+  <div style="width:17%;text-align:center;position:relative;z-index:1">
+    <div style="width:54px;height:54px;border-radius:50%;background:#1e293b;border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1em;font-weight:800;color:#f1f5f9">3</div>
+    <p style="color:#f1f5f9;font-size:0.62em;font-weight:700;margin:5px 0 2px;line-height:1.2">Аватар</p>
+    <p style="color:#94a3b8;font-size:0.54em;margin:0;line-height:1.3">общая среда,<br>общий язык</p>
   </div>
-  <div style="text-align:center;position:relative;z-index:1">
-    <div style="width:72px;height:72px;border-radius:50%;background:#1e293b;border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.2em;font-weight:800;color:#f1f5f9">4</div>
-    <p style="color:#f1f5f9;font-size:0.75em;font-weight:700;margin:8px 0 2px">Тамагочи</p>
-    <p style="color:#94a3b8;font-size:0.65em;margin:0">среда растёт от заботы</p>
+  <div style="width:17%;text-align:center;position:relative;z-index:1">
+    <div style="width:54px;height:54px;border-radius:50%;background:#1e293b;border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1em;font-weight:800;color:#f1f5f9">4</div>
+    <p style="color:#f1f5f9;font-size:0.62em;font-weight:700;margin:5px 0 2px;line-height:1.2">Тамагочи</p>
+    <p style="color:#94a3b8;font-size:0.54em;margin:0;line-height:1.3">среда растёт<br>от заботы</p>
   </div>
-  <div style="text-align:center;position:relative;z-index:1">
-    <div style="width:72px;height:72px;border-radius:50%;background:#1e293b;border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.2em;font-weight:800;color:#f1f5f9">5</div>
-    <p style="color:#f1f5f9;font-size:0.75em;font-weight:700;margin:8px 0 2px">Букварь</p>
-    <p style="color:#94a3b8;font-size:0.65em;margin:0">среда ведёт по траектории</p>
+  <div style="width:17%;text-align:center;position:relative;z-index:1">
+    <div style="width:54px;height:54px;border-radius:50%;background:#1e293b;border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1em;font-weight:800;color:#f1f5f9">5</div>
+    <p style="color:#f1f5f9;font-size:0.62em;font-weight:700;margin:5px 0 2px;line-height:1.2">Букварь</p>
+    <p style="color:#94a3b8;font-size:0.54em;margin:0;line-height:1.3">среда ведёт<br>по траектории</p>
   </div>
 </div>
 
-<p class="muted" style="margin-top:24px;text-align:center;font-size:0.85em">Не пять инструментов. Пять способов устроить рост человека в связке с&nbsp;ИИ.<br>
-<span style="color:#f97316">Природа 2 — это и есть Тони Старк, которого мы только что видели.</span></p>
+<p class="muted" style="margin-top:14px;text-align:center;font-size:0.78em">Не пять инструментов. Пять способов устроить рост человека в связке с&nbsp;ИИ. <span style="color:#f97316">Природа 2 — тот самый Тони Старк.</span></p>
 
 ---
 
@@ -455,24 +454,24 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 # Чтобы экзоскелет стал нормой —<br>работают четыре рычага
 
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px">
-  <div style="background:#1e293b;border:2px solid #f97316;border-radius:12px;padding:18px 22px">
-    <p style="color:#f97316;font-size:0.72em;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 8px">01 · Мировоззрение</p>
-    <p style="color:#f1f5f9;font-size:1em;font-weight:700;margin:0;line-height:1.3">Видеть проблему там, где был хаос.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px">
+  <div style="background:#1e293b;border:2px solid #f97316;border-radius:10px;padding:14px 16px">
+    <p style="color:#f97316;font-size:0.62em;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 6px">01 · Мировоззрение</p>
+    <p style="color:#f1f5f9;font-size:0.88em;font-weight:700;margin:0;line-height:1.25">Видеть проблему там,<br>где был хаос.</p>
   </div>
-  <div style="background:#1e293b;border:2px solid #f97316;border-radius:12px;padding:18px 22px">
-    <p style="color:#f97316;font-size:0.72em;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 8px">02 · Костюм — две роли</p>
-    <p style="color:#f1f5f9;font-size:1em;font-weight:700;margin:0 0 4px;line-height:1.3">Пользователь &amp; Создатель</p>
-    <p style="color:#94a3b8;font-size:0.82em;margin:0">Не просто носить — проектировать.</p>
+  <div style="background:#1e293b;border:2px solid #f97316;border-radius:10px;padding:14px 16px">
+    <p style="color:#f97316;font-size:0.62em;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 6px">02 · Костюм — две роли</p>
+    <p style="color:#f1f5f9;font-size:0.88em;font-weight:700;margin:0 0 3px;line-height:1.25">Пользователь &amp; Создатель</p>
+    <p style="color:#94a3b8;font-size:0.74em;margin:0">Не просто носить — проектировать.</p>
   </div>
-  <div style="background:#1e293b;border:2px solid #f97316;border-radius:12px;padding:18px 22px">
-    <p style="color:#f97316;font-size:0.72em;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 8px">03 · Системное мышление</p>
-    <p style="color:#f1f5f9;font-size:1em;font-weight:700;margin:0;line-height:1.3">Конвертирует проблему в задачу.</p>
+  <div style="background:#1e293b;border:2px solid #f97316;border-radius:10px;padding:14px 16px">
+    <p style="color:#f97316;font-size:0.62em;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 6px">03 · Системное мышление</p>
+    <p style="color:#f1f5f9;font-size:0.88em;font-weight:700;margin:0;line-height:1.25">Конвертирует проблему<br>в задачу.</p>
   </div>
-  <div style="background:#1e293b;border:2px solid #f97316;border-radius:12px;padding:18px 22px">
-    <p style="color:#f97316;font-size:0.72em;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 8px">04 · Сообщество</p>
-    <p style="color:#f1f5f9;font-size:1em;font-weight:700;margin:0 0 4px;line-height:1.3">Среда сопроизводителей</p>
-    <p style="color:#94a3b8;font-size:0.82em;margin:0">держит темп и норму.</p>
+  <div style="background:#1e293b;border:2px solid #f97316;border-radius:10px;padding:14px 16px">
+    <p style="color:#f97316;font-size:0.62em;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 6px">04 · Сообщество</p>
+    <p style="color:#f1f5f9;font-size:0.88em;font-weight:700;margin:0 0 3px;line-height:1.25">Среда сопроизводителей</p>
+    <p style="color:#94a3b8;font-size:0.74em;margin:0">держит темп и норму.</p>
   </div>
 </div>
 
@@ -600,7 +599,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 <!-- _class: with-eyebrow -->
 
-# Что разделяет Мастерскую и&nbsp;Железного&nbsp;человека?
+# Что разделяет Инструмент и&nbsp;Железного&nbsp;человека?
 
 <p class="muted" style="margin-top:6px;font-size:1em">Не сложность инструмента. Не деньги.</p>
 
