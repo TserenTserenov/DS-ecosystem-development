@@ -29,9 +29,9 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 <div class="quote">
 Вы провели <span class="accent">десятки или сотни часов</span> с&nbsp;ИИ за прошлый год.<br>
-Помогали себе. Закрывали задачи. Получали ответы.<br><br>
+Помогали себе. Закрывали задачи. Получали ответы.<br>
 А теперь честный вопрос:<br>
-<span class="accent">что произошло за это время не с задачами, а с&nbsp;вами?</span><br><br>
+<span class="accent">что произошло за это время не с задачами, а с&nbsp;вами?</span><br>
 И второй — более редкий:<br>
 <span class="accent">выросли ли вы в масштабе проблем, которые можете ставить — или только в&nbsp;скорости?</span>
 </div>
@@ -44,6 +44,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 <p class="lead">Напишите в чат одним словом.</p>
 <p class="sub">Без объяснений. Просто реакция.</p>
+<p class="sub" style="margin-top:12px;color:#94a3b8">Или: «Ничего не изменилось»</p>
 
 ---
 
@@ -53,7 +54,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 <p class="big-label accent" style="font-size:1.8em;line-height:1.2;margin-bottom:0.5em">Мы научили ИИ закрывать задачи.<br>Выросли ли мы в&nbsp;масштабе проблем,<br>которые можем ставить?</p>
 
-<p class="muted" style="font-size:1.05em;max-width:820px;margin-top:30px">Не «заберёт ли ИИ работу». Не «устареет ли экспертность». Вопрос глубже: большинство смотрит на ИИ или на себя по отдельности. Сегодня мы посмотрим на то, что возникает <strong>между ними</strong> — и это меняет оба вопроса сразу.</p>
+<p class="muted" style="font-size:1.05em;max-width:820px;margin-top:30px">Не «заберёт ли ИИ работу». Не «устареет ли экспертность». Вопрос глубже: большинство смотрит на ИИ или на себя по отдельности. Сегодня мы посмотрим на то, что возникает <strong>между ними</strong> — и тогда и вопрос про ИИ, и вопрос про себя начинают звучать иначе.</p>
 
 ---
 
@@ -69,7 +70,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 </div>
 
 <div class="card accent">
-<span class="num">Олег, 42 · 3 минуты · главный персонаж</span>
+<span class="num">Олег, 38 · 3 минуты · главный персонаж</span>
 <h3>Опора идентичности сломалась</h3>
 <p style="font-size:0.95em">Юрист с 18-летним опытом. GPT за 10 минут сделал договор, который Олег делал бы 4 часа.</p>
 <p class="muted" style="font-size:0.85em">Впервые не понимает: его опыт — опора или вчерашний актив?</p>
@@ -87,7 +88,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 ![bg left:42%](images/tony-robot.png)
 
-<p style="color:#94a3b8;font-size:0.75em;letter-spacing:0.15em;text-transform:uppercase;margin:0">1951 · Айзек Азимов · цикл «Я, робот»</p>
+<p style="color:#94a3b8;font-size:0.75em;letter-spacing:0.15em;text-transform:uppercase;margin:0">1951 · Айзек Азимов · «Satisfaction Guaranteed» · цикл «Я, робот»</p>
 
 # Тони-робот
 
@@ -118,6 +119,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 <p class="muted">✗&nbsp;Клэр не изменилась<br>
 ✗&nbsp;Без робота — не справляется<br>
+✗&nbsp;Роста никто не замечал — все видели только закрытые задачи<br>
 ✗&nbsp;Это и есть <span style="color:#f97316">зависимость</span></p>
 
 </div>
@@ -129,7 +131,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 ![bg fit](images/iron-man-triptych.png)
 
 <div style="position:absolute;bottom:40px;left:60px;right:60px;background:rgba(15,23,42,0.92);padding:28px 36px;border-radius:14px;border-left:6px solid #f97316;backdrop-filter:blur(6px)">
-<p style="font-size:1.6em;font-weight:800;margin:0;text-align:center;color:#f1f5f9;line-height:1.2">Связка — не человек с инструментом.<br><span style="color:#f97316">Это третья система.</span></p>
+<p style="font-size:1.6em;font-weight:800;margin:0;text-align:center;color:#f1f5f9;line-height:1.2">Связка — это больше, чем человек с инструментом.<br><span style="color:#f97316">Это третья система.</span></p>
 </div>
 
 ---
@@ -138,7 +140,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 <p class="huge" style="font-size:2.4em">Решить задачу</p>
 
-<p style="font-size:6em;color:#f97316;font-weight:900;line-height:1;margin:0.1em 0">≠</p>
+<p style="font-size:9em;color:#f97316;font-weight:900;line-height:1;margin:0.1em 0">≠</p>
 
 <p class="huge" style="font-size:2.4em">Развить человека</p>
 
@@ -170,7 +172,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 |---|---|---|
 | ИИ | Инструмент | Что он умеет? |
 | Человек | Пилот | Как не отстать? |
-| **Связка** | **Новая система** | **Кем я становлюсь?** |
+| **Связка** | **Новая система** | **Кем я становлюсь вместе с ИИ?** |
 
 <p class="muted" style="margin-top:24px">Третья строка — самая важная.</p>
 
@@ -298,7 +300,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 <h3 style="color:#fbbf24">Зависимость</h3>
 
 **Что осталось:**
-ощущение, что без ИИ уже сложнее.
+без ИИ не могу уже ничего.
 
 <p class="muted">ИИ не усилил навыки.<br>
 Заместил их.</p>
@@ -309,7 +311,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 <h3 style="color:#f97316">Связка</h3>
 
 **Что осталось:**
-что-то стало яснее. Изменились решения. Появились привычки.
+появились новые, более сложные цели, проблемы, задачи.
 
 <p class="muted">ИИ менял вас, а не только работал.</p>
 </div>
@@ -345,7 +347,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 <div class="card" style="padding:14px 18px">
 <span class="num" style="font-size:0.65em">Пункт 4</span>
 <h3 style="font-size:1em;margin-bottom:0.2em">Рабочие продукты</h3>
-<p class="muted" style="font-size:0.8em;margin:0">Шаблоны, документы — можно использовать дальше.</p>
+<p class="muted" style="font-size:0.8em;margin:0">Шаблоны, базы знаний, оформленный опыт. Формализация того, что умеете — не просто результат задачи.</p>
 </div>
 
 </div>
@@ -376,7 +378,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 </div>
 
-<p class="muted" style="margin-top:18px;font-size:0.85em;text-align:center">Карточка собирается по ходу семинара. К финалу — готовая, заполнена вашими руками.</p>
+<p class="muted" style="margin-top:18px;font-size:0.85em;text-align:center"><strong style="color:#f97316">Правило:</strong> если пункт 1 длинный и совпадает с пунктом 3 — ИИ заменял, а не помогал. Пункты 2 и 4 — то, что останется с вами.</p>
 
 ---
 
@@ -395,55 +397,34 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 # Пять природ — куда двигаться
 
-<svg class="diagram" viewBox="0 0 1100 320" xmlns="http://www.w3.org/2000/svg">
-  <!-- Connecting line -->
-  <line x1="100" y1="180" x2="1000" y2="180" stroke="#475569" stroke-width="2" stroke-dasharray="6 6"/>
-
-  <!-- Node 1 -->
-  <g transform="translate(110,180)">
-    <circle cx="0" cy="0" r="40" fill="#94a3b8" opacity="0.3" stroke="#94a3b8" stroke-width="2"/>
-    <text x="0" y="6" text-anchor="middle" fill="#f1f5f9" font-family="Inter" font-size="20" font-weight="800">1</text>
-    <text x="0" y="-65" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="15" font-weight="700">Мастерская</text>
-    <text x="0" y="65" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="12">ИИ помогает</text>
-    <text x="0" y="80" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="12">делать</text>
-  </g>
-
-  <!-- Node 2 -->
-  <g transform="translate(310,180)">
-    <circle cx="0" cy="0" r="40" fill="#7c2d12" stroke="#f97316" stroke-width="3"/>
-    <text x="0" y="6" text-anchor="middle" fill="#fbbf24" font-family="Inter" font-size="20" font-weight="800">2</text>
-    <text x="0" y="-65" text-anchor="middle" fill="#f97316" font-family="Inter" font-size="15" font-weight="700">Железный человек</text>
-    <text x="0" y="65" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="12">ИИ усиливает</text>
-    <text x="0" y="80" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="12">меня</text>
-  </g>
-
-  <!-- Node 3 -->
-  <g transform="translate(550,180)">
-    <circle cx="0" cy="0" r="40" fill="#1e293b" stroke="#94a3b8" stroke-width="2"/>
-    <text x="0" y="6" text-anchor="middle" fill="#f1f5f9" font-family="Inter" font-size="20" font-weight="800">3</text>
-    <text x="0" y="-65" text-anchor="middle" fill="#f1f5f9" font-family="Inter" font-size="15" font-weight="700">Аватар</text>
-    <text x="0" y="65" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="12">общая среда</text>
-    <text x="0" y="80" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="12">даёт общий язык</text>
-  </g>
-
-  <!-- Node 4 -->
-  <g transform="translate(790,180)">
-    <circle cx="0" cy="0" r="40" fill="#1e293b" stroke="#94a3b8" stroke-width="2"/>
-    <text x="0" y="6" text-anchor="middle" fill="#f1f5f9" font-family="Inter" font-size="20" font-weight="800">4</text>
-    <text x="0" y="-65" text-anchor="middle" fill="#f1f5f9" font-family="Inter" font-size="15" font-weight="700">Тамагочи</text>
-    <text x="0" y="65" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="12">среда растёт</text>
-    <text x="0" y="80" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="12">от заботы</text>
-  </g>
-
-  <!-- Node 5 -->
-  <g transform="translate(990,180)">
-    <circle cx="0" cy="0" r="40" fill="#1e293b" stroke="#94a3b8" stroke-width="2"/>
-    <text x="0" y="6" text-anchor="middle" fill="#f1f5f9" font-family="Inter" font-size="20" font-weight="800">5</text>
-    <text x="0" y="-65" text-anchor="middle" fill="#f1f5f9" font-family="Inter" font-size="15" font-weight="700">Букварь</text>
-    <text x="0" y="65" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="12">среда ведёт</text>
-    <text x="0" y="80" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="12">по траектории</text>
-  </g>
-</svg>
+<div style="display:flex;align-items:center;justify-content:space-between;margin:24px 0;position:relative">
+  <div style="position:absolute;top:36px;left:60px;right:60px;height:2px;background:repeating-linear-gradient(90deg,#475569 0,#475569 8px,transparent 8px,transparent 16px)"></div>
+  <div style="text-align:center;position:relative;z-index:1">
+    <div style="width:72px;height:72px;border-radius:50%;background:rgba(148,163,184,0.3);border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.2em;font-weight:800;color:#f1f5f9">1</div>
+    <p style="color:#94a3b8;font-size:0.75em;font-weight:700;margin:8px 0 2px">Мастерская</p>
+    <p style="color:#94a3b8;font-size:0.65em;margin:0">ИИ помогает делать</p>
+  </div>
+  <div style="text-align:center;position:relative;z-index:1">
+    <div style="width:72px;height:72px;border-radius:50%;background:#7c2d12;border:3px solid #f97316;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.2em;font-weight:800;color:#fbbf24">2</div>
+    <p style="color:#f97316;font-size:0.75em;font-weight:700;margin:8px 0 2px">Железный человек</p>
+    <p style="color:#94a3b8;font-size:0.65em;margin:0">ИИ усиливает меня</p>
+  </div>
+  <div style="text-align:center;position:relative;z-index:1">
+    <div style="width:72px;height:72px;border-radius:50%;background:#1e293b;border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.2em;font-weight:800;color:#f1f5f9">3</div>
+    <p style="color:#f1f5f9;font-size:0.75em;font-weight:700;margin:8px 0 2px">Аватар</p>
+    <p style="color:#94a3b8;font-size:0.65em;margin:0">общая среда даёт общий язык</p>
+  </div>
+  <div style="text-align:center;position:relative;z-index:1">
+    <div style="width:72px;height:72px;border-radius:50%;background:#1e293b;border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.2em;font-weight:800;color:#f1f5f9">4</div>
+    <p style="color:#f1f5f9;font-size:0.75em;font-weight:700;margin:8px 0 2px">Тамагочи</p>
+    <p style="color:#94a3b8;font-size:0.65em;margin:0">среда растёт от заботы</p>
+  </div>
+  <div style="text-align:center;position:relative;z-index:1">
+    <div style="width:72px;height:72px;border-radius:50%;background:#1e293b;border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.2em;font-weight:800;color:#f1f5f9">5</div>
+    <p style="color:#f1f5f9;font-size:0.75em;font-weight:700;margin:8px 0 2px">Букварь</p>
+    <p style="color:#94a3b8;font-size:0.65em;margin:0">среда ведёт по траектории</p>
+  </div>
+</div>
 
 <p class="muted" style="margin-top:24px;text-align:center;font-size:0.85em">Не пять инструментов. Пять способов устроить рост человека в связке с&nbsp;ИИ.<br>
 <span style="color:#f97316">Природа 2 — это и есть Тони Старк, которого мы только что видели.</span></p>
@@ -474,31 +455,26 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 # Чтобы экзоскелет стал нормой —<br>работают четыре рычага
 
-<svg class="diagram" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" style="margin-top:20px">
-  <!-- Quadrant -->
-  <g transform="translate(80,40)">
-    <!-- 1 -->
-    <rect x="0" y="0" width="350" height="130" rx="12" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
-    <text x="20" y="40" fill="#f97316" font-family="Inter" font-size="14" font-weight="800" letter-spacing="2">01 · МИРОВОЗЗРЕНИЕ</text>
-    <text x="20" y="75" fill="#f1f5f9" font-family="Inter" font-size="18" font-weight="700">Видеть проблему</text>
-    <text x="20" y="100" fill="#f1f5f9" font-family="Inter" font-size="18" font-weight="700">там, где был хаос.</text>
-    <!-- 2 -->
-    <rect x="380" y="0" width="350" height="130" rx="12" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
-    <text x="400" y="40" fill="#f97316" font-family="Inter" font-size="14" font-weight="800" letter-spacing="2">02 · КОСТЮМ — ДВЕ РОЛИ</text>
-    <text x="400" y="75" fill="#f1f5f9" font-family="Inter" font-size="18" font-weight="700">Пользователь &amp; Создатель</text>
-    <text x="400" y="100" fill="#94a3b8" font-family="Inter" font-size="15">Не просто носить — проектировать.</text>
-    <!-- 3 -->
-    <rect x="0" y="155" width="350" height="130" rx="12" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
-    <text x="20" y="195" fill="#f97316" font-family="Inter" font-size="14" font-weight="800" letter-spacing="2">03 · СИСТЕМНОЕ МЫШЛЕНИЕ</text>
-    <text x="20" y="230" fill="#f1f5f9" font-family="Inter" font-size="18" font-weight="700">Конвертирует проблему</text>
-    <text x="20" y="255" fill="#f1f5f9" font-family="Inter" font-size="18" font-weight="700">в задачу.</text>
-    <!-- 4 -->
-    <rect x="380" y="155" width="350" height="130" rx="12" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
-    <text x="400" y="195" fill="#f97316" font-family="Inter" font-size="14" font-weight="800" letter-spacing="2">04 · СООБЩЕСТВО</text>
-    <text x="400" y="230" fill="#f1f5f9" font-family="Inter" font-size="18" font-weight="700">Среда сопроизводителей</text>
-    <text x="400" y="255" fill="#94a3b8" font-family="Inter" font-size="15">держит темп и норму.</text>
-  </g>
-</svg>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px">
+  <div style="background:#1e293b;border:2px solid #f97316;border-radius:12px;padding:18px 22px">
+    <p style="color:#f97316;font-size:0.72em;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 8px">01 · Мировоззрение</p>
+    <p style="color:#f1f5f9;font-size:1em;font-weight:700;margin:0;line-height:1.3">Видеть проблему там, где был хаос.</p>
+  </div>
+  <div style="background:#1e293b;border:2px solid #f97316;border-radius:12px;padding:18px 22px">
+    <p style="color:#f97316;font-size:0.72em;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 8px">02 · Костюм — две роли</p>
+    <p style="color:#f1f5f9;font-size:1em;font-weight:700;margin:0 0 4px;line-height:1.3">Пользователь &amp; Создатель</p>
+    <p style="color:#94a3b8;font-size:0.82em;margin:0">Не просто носить — проектировать.</p>
+  </div>
+  <div style="background:#1e293b;border:2px solid #f97316;border-radius:12px;padding:18px 22px">
+    <p style="color:#f97316;font-size:0.72em;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 8px">03 · Системное мышление</p>
+    <p style="color:#f1f5f9;font-size:1em;font-weight:700;margin:0;line-height:1.3">Конвертирует проблему в задачу.</p>
+  </div>
+  <div style="background:#1e293b;border:2px solid #f97316;border-radius:12px;padding:18px 22px">
+    <p style="color:#f97316;font-size:0.72em;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 8px">04 · Сообщество</p>
+    <p style="color:#f1f5f9;font-size:1em;font-weight:700;margin:0 0 4px;line-height:1.3">Среда сопроизводителей</p>
+    <p style="color:#94a3b8;font-size:0.82em;margin:0">держит темп и норму.</p>
+  </div>
+</div>
 
 ---
 
@@ -562,21 +538,19 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 <div class="eyebrow">Рычаг 03 · Системное мышление</div>
 
-<svg class="diagram" viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg">
-  <!-- Layer 1 -->
-  <rect x="100" y="20" width="400" height="50" rx="8" fill="#1e293b" stroke="#94a3b8" stroke-width="1.5"/>
-  <text x="300" y="52" text-anchor="middle" fill="#94a3b8" font-family="Inter" font-size="18" font-weight="600">Хаос · неопределённость</text>
-  <!-- Arrow -->
-  <path d="M 300 80 L 300 105 M 290 95 L 300 105 L 310 95" stroke="#f97316" stroke-width="2.5" fill="none"/>
-  <!-- Layer 2 -->
-  <rect x="100" y="110" width="400" height="60" rx="8" fill="#7c2d12" stroke="#f97316" stroke-width="2.5"/>
-  <text x="300" y="146" text-anchor="middle" fill="#fbbf24" font-family="Inter" font-size="18" font-weight="800" letter-spacing="2">СИСТЕМНОЕ МЫШЛЕНИЕ</text>
-  <!-- Arrow -->
-  <path d="M 300 180 L 300 205 M 290 195 L 300 205 L 310 195" stroke="#f97316" stroke-width="2.5" fill="none"/>
-  <!-- Layer 3 -->
-  <rect x="100" y="210" width="400" height="50" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
-  <text x="300" y="242" text-anchor="middle" fill="#f1f5f9" font-family="Inter" font-size="17" font-weight="700">Проблема → Задача → Метод</text>
-</svg>
+<div style="display:flex;flex-direction:column;align-items:center;gap:0;margin:20px auto;max-width:500px">
+  <div style="background:#1e293b;border:1.5px solid #94a3b8;border-radius:8px;padding:14px 32px;text-align:center;width:100%">
+    <span style="color:#94a3b8;font-size:1em;font-weight:600">Хаос · неопределённость</span>
+  </div>
+  <div style="color:#f97316;font-size:1.6em;font-weight:900;line-height:1;margin:4px 0">↓</div>
+  <div style="background:#7c2d12;border:2.5px solid #f97316;border-radius:8px;padding:16px 32px;text-align:center;width:100%">
+    <span style="color:#fbbf24;font-size:1em;font-weight:800;letter-spacing:0.1em;text-transform:uppercase">Системное мышление</span>
+  </div>
+  <div style="color:#f97316;font-size:1.6em;font-weight:900;line-height:1;margin:4px 0">↓</div>
+  <div style="background:#1e293b;border:1.5px solid #f97316;border-radius:8px;padding:14px 32px;text-align:center;width:100%">
+    <span style="color:#f1f5f9;font-size:1em;font-weight:700">Проблема → Задача → Метод</span>
+  </div>
+</div>
 
 <p class="big" style="margin-top:24px;font-size:1.1em">ИИ не делает этот шаг за вас.<br><span style="color:#f97316">Этот шаг и есть ваша роль.</span></p>
 
@@ -702,34 +676,32 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 # Карта семинара
 
-<svg class="diagram" viewBox="0 0 1000 260" xmlns="http://www.w3.org/2000/svg">
-  <g font-family="Inter" font-size="15" fill="#f1f5f9">
-    <!-- Step 1 -->
-    <circle cx="80" cy="50" r="14" fill="#34d399"/>
-    <text x="50" y="55" fill="#34d399" font-weight="800">✓</text>
-    <text x="110" y="55">Сотня часов с ИИ — что произошло с вами?</text>
-    <!-- Step 2 -->
-    <circle cx="80" cy="90" r="14" fill="#34d399"/>
-    <text x="50" y="95" fill="#34d399" font-weight="800">✓</text>
-    <text x="110" y="95">Тони-робот vs Железный человек — два сценария связки</text>
-    <!-- Step 3 -->
-    <circle cx="80" cy="130" r="14" fill="#34d399"/>
-    <text x="50" y="135" fill="#34d399" font-weight="800">✓</text>
-    <text x="110" y="135">Смотреть на связку — не на инструмент</text>
-    <!-- Step 4 -->
-    <circle cx="80" cy="170" r="14" fill="#34d399"/>
-    <text x="50" y="175" fill="#34d399" font-weight="800">✓</text>
-    <text x="110" y="175">Диагноз: большинство — Мастерская. Это не приговор</text>
-    <!-- Step 5 -->
-    <circle cx="80" cy="210" r="14" fill="#34d399"/>
-    <text x="50" y="215" fill="#34d399" font-weight="800">✓</text>
-    <text x="110" y="215">Четыре рычага: мировоззрение, костюм, мышление, сообщество</text>
-    <!-- Step 6 -->
-    <circle cx="80" cy="250" r="14" fill="#f97316"/>
-    <text x="50" y="255" fill="#f97316" font-weight="800">→</text>
-    <text x="110" y="255" fill="#f97316" font-weight="700">Первый шаг сделан — три предложения для вашего ИИ</text>
-  </g>
-</svg>
+<div style="display:flex;flex-direction:column;gap:12px;margin-top:20px">
+  <div style="display:flex;align-items:center;gap:16px">
+    <span style="color:#34d399;font-size:1.2em;font-weight:800;min-width:24px">✓</span>
+    <span style="color:#f1f5f9;font-size:0.95em">Сотня часов с ИИ — что произошло с вами?</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px">
+    <span style="color:#34d399;font-size:1.2em;font-weight:800;min-width:24px">✓</span>
+    <span style="color:#f1f5f9;font-size:0.95em">Тони-робот vs Железный человек — два сценария связки</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px">
+    <span style="color:#34d399;font-size:1.2em;font-weight:800;min-width:24px">✓</span>
+    <span style="color:#f1f5f9;font-size:0.95em">Смотреть на связку — не на инструмент</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px">
+    <span style="color:#34d399;font-size:1.2em;font-weight:800;min-width:24px">✓</span>
+    <span style="color:#f1f5f9;font-size:0.95em">Диагноз: большинство — Мастерская. Это не приговор</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px">
+    <span style="color:#34d399;font-size:1.2em;font-weight:800;min-width:24px">✓</span>
+    <span style="color:#f1f5f9;font-size:0.95em">Четыре рычага: мировоззрение, костюм, мышление, сообщество</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px">
+    <span style="color:#f97316;font-size:1.2em;font-weight:800;min-width:24px">→</span>
+    <span style="color:#f97316;font-size:0.95em;font-weight:700">Первый шаг сделан — три предложения для вашего ИИ</span>
+  </div>
+</div>
 
 ---
 
