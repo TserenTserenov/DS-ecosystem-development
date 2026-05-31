@@ -14182,3 +14182,408 @@ MEMORY.md ссылался на `bash scripts/create-wp.sh` — неверный
   }
 }
 ```
+
+## 2026-05-30T22:53:04+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "2. Временно отключить v4-lint для этого commit (явное разрешение от тебя). "
+    ],
+    "session_id": "f0a8bed4-4b31-4992-ad17-462f57340b5e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-31T07:46:42+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "**Параллельная peer-сессия по WP-149 сейчас = почти гарантированный race condition** (повторение конфликта 30 мая с clos",
+      "3. **Альтернатива** — открыть peer-сессию для других задач (не WP-149) пока конфликт не разрешится. "
+    ],
+    "session_id": "a32ab1fb-12fb-49c2-aed1-cab2d2530cb7"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-31T07:47:02+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "**Параллельная peer-сессия по WP-149 сейчас = почти гарантированный race condition** (повторение конфликта 30 мая с clos",
+      "3. **Альтернатива** — открыть peer-сессию для других задач (не WP-149) пока конфликт не разрешится. "
+    ],
+    "session_id": "a32ab1fb-12fb-49c2-aed1-cab2d2530cb7"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-31T08:00:48+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "### Что дальше? "
+    ],
+    "session_id": "440dbe60-e06e-40b5-867a-3c9a82e16774"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-31T08:01:03+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- Проверку доступа делает сервер (`gateway-mcp` на CF Worker), не локальный bridge — bridge ему доверять нельзя как защи"
+    ],
+    "session_id": "14f87fa0-8ace-4fad-b16d-ab39b50fdce7"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-31T08:04:05+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "6. **Warning про конфликты при next merge** — мои 2 cherry-pick'а уже в new-architecture, нужен `merge -X theirs` или ру"
+    ],
+    "session_id": "ee7918aa-996e-47bd-99da-7de5b9078c4a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-31T08:04:22+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "6. **Warning про конфликты при next merge** — мои 2 cherry-pick'а уже в new-architecture, нужен `merge -X theirs` или ру",
+      "False positive детектора. В цитируемом фрагменте — пункт документации в incident-note (что будущему ридеру понадобится п"
+    ],
+    "session_id": "ee7918aa-996e-47bd-99da-7de5b9078c4a"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-31T08:28:03+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "**2. Можно ли уже вызывать** ",
+      "- «**В тайне**» — нарушает прямой инвариант R31: согласие субъекта = обязательное условие (записано в DP.SC.049 §1). Не "
+    ],
+    "session_id": "9421221f-87e4-47ef-a508-5287512b6c71"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-31T08:30:53+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Что делать дальше в РП-364 — три варианта по приоритету:** "
+    ],
+    "session_id": "f0a8bed4-4b31-4992-ad17-462f57340b5e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-31T08:31:08+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Что делать дальше в РП-364 — три варианта по приоритету:** "
+    ],
+    "session_id": "f0a8bed4-4b31-4992-ad17-462f57340b5e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-31T08:35:07+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "**2. Можно ли уже вызывать** ",
+      "- «**В тайне**» — нарушает прямой инвариант R31: согласие субъекта = обязательное условие (записано в DP.SC.049 §1). Не "
+    ],
+    "session_id": "9421221f-87e4-47ef-a508-5287512b6c71"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-31T08:41:33+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "1. **Программа как производное:** правильно ли я понял — программа выводится из данных пилота на Этапе 1 (как «рекоменду",
+      "2. **Семантический поиск на Этапе 2.3:** это то самое место, которое держится на K-инварианте разметки склада (WP-364 Ф6"
+    ],
+    "session_id": "89c85c0a-74d5-4e16-8469-facbb778a2ee"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/personal-guide"
+  }
+}
+```
+
+## 2026-05-31T08:42:00+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "1. **Программа как производное:** правильно ли я понял — программа выводится из данных пилота на Этапе 1 (как «рекоменду",
+      "2. **Семантический поиск на Этапе 2.3:** это то самое место, которое держится на K-инварианте разметки склада (WP-364 Ф6"
+    ],
+    "session_id": "89c85c0a-74d5-4e16-8469-facbb778a2ee"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/personal-guide"
+  }
+}
+```
+
+## 2026-05-31T08:52:08+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- **Б.** Вмешаться сейчас — твоя позиция по entity vs snapshot и нужно ли вводить `personas` table в Neon. "
+    ],
+    "session_id": "cc7e7869-7dec-4849-bb9c-2771bd31aa66"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-31T08:56:30+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Стоит ли переименовать «Персона» в «Версона» (версия описания), как это ложится на SOTA 2025-2026 (Letta, Mem0, Honcho, "
+    ],
+    "session_id": "cc7e7869-7dec-4849-bb9c-2771bd31aa66"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-31T08:59:32+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Что дальше?** "
+    ],
+    "session_id": "d3d63f69-4355-44e1-8a11-a32dcaa98e53"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-agent-workspace"
+  }
+}
+```
+
+## 2026-05-31T09:00:46+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Что дальше?** "
+    ],
+    "session_id": "d3d63f69-4355-44e1-8a11-a32dcaa98e53"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-agent-workspace"
+  }
+}
+```
+
+## 2026-05-31T09:04:54+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P3_structure_without_map",
+    "severity": "minor",
+    "description": "Write новый .md в корень репо (Strategy.md). Routing карта (DP.KR.001 §5) ожидает знание в docs/, inbox/ или тематической подпапке.",
+    "tool_context": {
+      "tool_name": "Write",
+      "file_path": "/Users/tserentserenov/IWE/DS-my-strategy/Strategy.md"
+    }
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-05-31T09:11:26+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Стоит ли переименовать «Персона» в «Версона» (версия описания), как это ложится на SOTA 2025-2026 (Letta, Mem0, Honcho, "
+    ],
+    "session_id": "cc7e7869-7dec-4849-bb9c-2771bd31aa66"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
