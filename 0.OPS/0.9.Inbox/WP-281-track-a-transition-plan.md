@@ -72,6 +72,19 @@ deadline: "15 июля 2026"
 ---
 
 <details>
+<summary><b>Personal Knowledge MCP — индексация личных репо</b></summary>
+
+Данные участника лежат в его GitHub-репо (он контролирует), платформа хранит только эмбеддинги. Запись из AI-клиента через MCP write tool → GitHub App «Aisystant Knowledge» коммитит в репо → push → webhook → автоматическая переиндексация изменённых файлов. Никаких ручных шагов: запись и индексация — один атомарный шаг для пользователя.
+
+Цепочка: AI-клиент → MCP Gateway → GitHub App `Aisystant Knowledge` → GitHub репо пилота → webhook → переиндексация в эмбеддинги.
+
+Реализовано в WP-187 (Gateway v2.0.0, апр 2026). Подробно → [WP-74 §SC-17 «IWE как сервис»](WP-74-platform-concept-of-use.md).
+
+</details>
+
+---
+
+<details>
 <summary><b>Что должно быть доработано к 15 июля</b></summary>
 
 | # | Доработка | Зачем |
