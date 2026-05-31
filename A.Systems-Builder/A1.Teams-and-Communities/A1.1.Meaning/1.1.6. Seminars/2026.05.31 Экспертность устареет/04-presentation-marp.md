@@ -5,7 +5,7 @@ paginate: true
 size: 16:9
 html: true
 header: "31 мая 2026 · Ваша экспертность устареет. Как вырастить новую — не за 10 лет"
-footer: "v3.3.0 · Aisystant · @aist_me_bot"
+footer: "v3.4.0 · Aisystant · @aist_me_bot"
 ---
 
 <!-- _class: title -->
@@ -397,32 +397,32 @@ footer: "v3.3.0 · Aisystant · @aist_me_bot"
 
 # Пять природ — куда двигаться
 
-<div style="display:flex;align-items:flex-start;justify-content:space-around;margin:20px 0 8px;position:relative">
-  <div style="position:absolute;top:27px;left:8%;right:8%;height:2px;background:repeating-linear-gradient(90deg,#475569 0,#475569 6px,transparent 6px,transparent 12px)"></div>
+<div style="display:flex;align-items:flex-start;justify-content:space-around;margin:24px 0 10px;position:relative">
+  <div style="position:absolute;top:36px;left:8%;right:8%;height:3px;background:linear-gradient(90deg,#475569 0%,#94a3b8 40%,#f97316 60%,#fbbf24 100%)"></div>
   <div style="width:17%;text-align:center;position:relative;z-index:1">
-    <div style="width:54px;height:54px;border-radius:50%;background:rgba(148,163,184,0.3);border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1em;font-weight:800;color:#f1f5f9">1</div>
-    <p style="color:#94a3b8;font-size:0.62em;font-weight:700;margin:5px 0 2px;line-height:1.2">Инструмент</p>
-    <p style="color:#94a3b8;font-size:0.54em;margin:0;line-height:1.3">ИИ помогает<br>делать</p>
+    <div style="width:72px;height:72px;border-radius:50%;background:rgba(148,163,184,0.2);border:2px solid #475569;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.1em;font-weight:800;color:#94a3b8">1</div>
+    <p style="color:#94a3b8;font-size:0.72em;font-weight:700;margin:8px 0 3px;line-height:1.2">Инструмент</p>
+    <p style="color:#64748b;font-size:0.62em;margin:0;line-height:1.3">ИИ помогает<br>делать</p>
   </div>
   <div style="width:17%;text-align:center;position:relative;z-index:1">
-    <div style="width:54px;height:54px;border-radius:50%;background:#7c2d12;border:3px solid #f97316;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1em;font-weight:800;color:#fbbf24">2</div>
-    <p style="color:#f97316;font-size:0.62em;font-weight:700;margin:5px 0 2px;line-height:1.2">Железный<br>человек</p>
-    <p style="color:#94a3b8;font-size:0.54em;margin:0;line-height:1.3">ИИ усиливает<br>меня</p>
+    <div style="width:72px;height:72px;border-radius:50%;background:#7c2d12;border:3px solid #f97316;box-shadow:0 0 18px rgba(249,115,22,0.6);display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.1em;font-weight:800;color:#fbbf24">2</div>
+    <p style="color:#f97316;font-size:0.72em;font-weight:700;margin:8px 0 3px;line-height:1.2">Железный<br>человек</p>
+    <p style="color:#94a3b8;font-size:0.62em;margin:0;line-height:1.3">ИИ усиливает<br>меня</p>
   </div>
   <div style="width:17%;text-align:center;position:relative;z-index:1">
-    <div style="width:54px;height:54px;border-radius:50%;background:#1e293b;border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1em;font-weight:800;color:#f1f5f9">3</div>
-    <p style="color:#f1f5f9;font-size:0.62em;font-weight:700;margin:5px 0 2px;line-height:1.2">Аватар</p>
-    <p style="color:#94a3b8;font-size:0.54em;margin:0;line-height:1.3">общая среда,<br>общий язык</p>
+    <div style="width:72px;height:72px;border-radius:50%;background:#1e293b;border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.1em;font-weight:800;color:#f1f5f9">3</div>
+    <p style="color:#f1f5f9;font-size:0.72em;font-weight:700;margin:8px 0 3px;line-height:1.2">Аватар</p>
+    <p style="color:#94a3b8;font-size:0.62em;margin:0;line-height:1.3">общая среда,<br>общий язык</p>
   </div>
   <div style="width:17%;text-align:center;position:relative;z-index:1">
-    <div style="width:54px;height:54px;border-radius:50%;background:#1e293b;border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1em;font-weight:800;color:#f1f5f9">4</div>
-    <p style="color:#f1f5f9;font-size:0.62em;font-weight:700;margin:5px 0 2px;line-height:1.2">Тамагочи</p>
-    <p style="color:#94a3b8;font-size:0.54em;margin:0;line-height:1.3">среда растёт<br>от заботы</p>
+    <div style="width:72px;height:72px;border-radius:50%;background:#1e293b;border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.1em;font-weight:800;color:#f1f5f9">4</div>
+    <p style="color:#f1f5f9;font-size:0.72em;font-weight:700;margin:8px 0 3px;line-height:1.2">Тамагочи</p>
+    <p style="color:#94a3b8;font-size:0.62em;margin:0;line-height:1.3">среда растёт<br>от заботы</p>
   </div>
   <div style="width:17%;text-align:center;position:relative;z-index:1">
-    <div style="width:54px;height:54px;border-radius:50%;background:#1e293b;border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1em;font-weight:800;color:#f1f5f9">5</div>
-    <p style="color:#f1f5f9;font-size:0.62em;font-weight:700;margin:5px 0 2px;line-height:1.2">Букварь</p>
-    <p style="color:#94a3b8;font-size:0.54em;margin:0;line-height:1.3">среда ведёт<br>по траектории</p>
+    <div style="width:72px;height:72px;border-radius:50%;background:#1e293b;border:2px solid #94a3b8;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.1em;font-weight:800;color:#f1f5f9">5</div>
+    <p style="color:#f1f5f9;font-size:0.72em;font-weight:700;margin:8px 0 3px;line-height:1.2">Букварь</p>
+    <p style="color:#94a3b8;font-size:0.62em;margin:0;line-height:1.3">среда ведёт<br>по траектории</p>
   </div>
 </div>
 
@@ -454,7 +454,7 @@ footer: "v3.3.0 · Aisystant · @aist_me_bot"
 
 # Чтобы экзоскелет стал нормой —<br>работают четыре рычага
 
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;width:100%;align-self:stretch">
   <div style="background:#1e293b;border:2px solid #f97316;border-radius:10px;padding:14px 16px">
     <p style="color:#f97316;font-size:0.62em;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 6px">01 · Мировоззрение</p>
     <p style="color:#f1f5f9;font-size:0.88em;font-weight:700;margin:0;line-height:1.25">Видеть проблему там,<br>где был хаос.</p>
