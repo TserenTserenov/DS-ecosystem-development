@@ -63,14 +63,14 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 <div class="cards-2" style="margin-top:10px">
 
 <div class="card muted">
-<span class="num">Анна, 24 · 40 секунд</span>
+<span class="num">Анна, 24</span>
 <h3 style="color:#94a3b8">Лестница входа сломалась</h3>
 <p style="font-size:0.95em">Юрист на старте. 80 откликов — ни одного оффера.</p>
 <p class="muted" style="font-size:0.85em">Junior-задачи делает ИИ.</p>
 </div>
 
 <div class="card accent">
-<span class="num">Олег, 38 · 3 минуты · главный персонаж</span>
+<span class="num">Олег, 38 · главный персонаж</span>
 <h3>Опора идентичности сломалась</h3>
 <p style="font-size:0.95em">Юрист с 18-летним опытом. GPT за 10 минут сделал договор, который Олег делал бы 4 часа.</p>
 <p class="muted" style="font-size:0.85em">Впервые не понимает: его опыт — опора или вчерашний актив?</p>
@@ -140,7 +140,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 <p class="huge" style="font-size:2.4em">Решить задачу</p>
 
-<p style="font-size:9em;color:#f97316;font-weight:900;line-height:1;margin:0.1em 0">≠</p>
+<p style="font-size:16em;color:#f97316;font-weight:900;line-height:0.9;margin:0">≠</p>
 
 <p class="huge" style="font-size:2.4em">Развить человека</p>
 
