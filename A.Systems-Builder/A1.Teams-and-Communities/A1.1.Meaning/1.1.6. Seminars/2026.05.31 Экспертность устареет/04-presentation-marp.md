@@ -264,7 +264,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 <p style="background:rgba(249,115,22,0.18);padding:12px 16px;border-radius:8px;margin:0 0 0.4em 0"><strong style="color:#f97316">2. Что после этого осталось моим:</strong> ← <em style="color:#fbbf24;font-style:normal">пишем сейчас в чат</em></p>
 <p style="margin:0 0 1em 0">_____________________________________________</p>
 
-<p class="muted" style="margin:0 0 0.4em 0">3. Где я стал быстрее, но не сильнее:</p>
+<p class="muted" style="margin:0 0 0.4em 0">3. Где я стал быстрее и масштабнее:</p>
 <p class="muted" style="margin:0 0 1em 0">_____________________________________________</p>
 
 <p class="muted" style="margin:0 0 0.4em 0">4. Какую следующую задачу сделаю с приростом:</p>
@@ -370,7 +370,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 <p class="muted" style="margin:0 0 0.4em 0">2. Что после этого осталось моим: <em style="color:#94a3b8;font-style:normal">(черновик уже есть)</em></p>
 <p class="muted" style="margin:0 0 1em 0">_____________________________________________</p>
 
-<p style="background:rgba(249,115,22,0.18);padding:12px 16px;border-radius:8px;margin:0 0 0.4em 0"><strong style="color:#f97316">3. Где я стал быстрее, но не сильнее:</strong> ← <em style="color:#fbbf24;font-style:normal">в чат</em></p>
+<p style="background:rgba(249,115,22,0.18);padding:12px 16px;border-radius:8px;margin:0 0 0.4em 0"><strong style="color:#f97316">3. Где я стал быстрее и масштабнее:</strong> ← <em style="color:#fbbf24;font-style:normal">в чат</em></p>
 <p style="margin:0 0 1em 0">_____________________________________________</p>
 
 <p class="muted" style="margin:0 0 0.4em 0">4. Какую следующую задачу сделаю с приростом: <em style="color:#94a3b8;font-style:normal">(в финале)</em></p>
@@ -591,9 +591,9 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 <p class="big" style="font-size:1.5em">Меняется человек —</p>
 
-<p class="huge" style="margin-top:10px">потому что собираются<br>четыре рычага.</p>
+<p class="huge" style="margin-top:10px">когда четыре рычага<br>работают как система.</p>
 
-<p class="sub" style="margin-top:30px">Не курс. Не подписка. Среда, в которой это&nbsp;становится&nbsp;нормой.</p>
+<p class="sub" style="margin-top:30px">Для этого строится <strong style="color:#f97316">IWE</strong> — Intellectual&nbsp;Work&nbsp;Environment.<br>Персональная среда, где рост экспертности встроен в&nbsp;рабочий день.</p>
 
 ---
 
@@ -709,7 +709,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 <div class="quote" style="font-size:1.35em">
 <span class="accent">Опасность не в том, что ИИ выполнит вашу задачу.</span><br><br>
 Опасность в том, что через год интенсивной работы с&nbsp;ИИ<br>
-<span class="accent">вы окажетесь там же, где сейчас</span>.
+<span class="accent">вы окажетесь там же, где сейчас — как в рассказе о&nbsp;Тони</span>.
 </div>
 
 <p class="muted" style="margin-top:36px;font-size:0.9em">Это и есть итоговая боль, которую решает диагностика связки.</p>
@@ -726,7 +726,7 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 <p class="muted" style="margin:0 0 0.4em 0">2. Что после этого осталось моим <em style="color:#34d399;font-style:normal">✓</em></p>
 
-<p class="muted" style="margin:0 0 0.6em 0">3. Где я стал быстрее, но не сильнее <em style="color:#34d399;font-style:normal">✓</em></p>
+<p class="muted" style="margin:0 0 0.6em 0">3. Где я стал быстрее и масштабнее <em style="color:#34d399;font-style:normal">✓</em></p>
 
 <p style="background:rgba(249,115,22,0.22);padding:10px 14px;border-radius:8px;margin:0;font-size:1.05em"><strong style="color:#f97316">4. Какую следующую задачу сделаю так, чтобы после неё остались знания, решение или продукт?</strong></p>
 
@@ -752,13 +752,13 @@ footer: "v3.2.3 · Aisystant · @aist_me_bot"
 
 </div>
 
-<div style="text-align:center">
+<div style="text-align:center;padding-top:20px">
 
-<div style="width:240px;height:240px;background:#f1f5f9;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;color:#0f172a;font-weight:800">
-QR
+<p class="muted" style="font-size:0.85em;margin:0 0 16px">Ссылка в чате:</p>
+
+<div style="display:inline-block;background:#1e293b;border:2px solid #f97316;border-radius:14px;padding:22px 36px">
+  <p style="color:#f97316;font-size:1.15em;font-weight:800;margin:0;letter-spacing:0.01em">t.me/intro_systemsthinking</p>
 </div>
-
-<p class="muted" style="margin-top:16px;font-size:0.85em">Сканируйте — попадёте на регистрацию</p>
 
 </div>
 
