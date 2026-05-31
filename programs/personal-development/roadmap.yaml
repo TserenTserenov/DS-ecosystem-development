@@ -1,0 +1,80 @@
+# DS-Program Roadmap: Personal Development (ЛР)
+# Контракт: WP-371 v2
+# Program ID: PD
+
+program_id: PD
+program_name: "Личное Развитие"
+applies_contract: "WP-371 v2"
+content_repo: "docs/ru/personal-design/"
+
+stages:
+  - level: 1
+    name: "Случайный"
+    seed_lookup: "stage-1-random"
+    narrative_phase: "Я могу меняться"
+    typical_bottleneck: "фокус и собранность"
+    rhythm: "3-5h/wk"
+
+  - level: 2
+    name: "Практикующий"
+    seed_lookup: "stage-2-practicing"
+    narrative_phase: "Я — система"
+    typical_bottleneck: "систематичность"
+    rhythm: "5-8h/wk"
+
+  - level: 3
+    name: "Систематический"
+    seed_lookup: "stage-3-systematic"
+    narrative_phase: "Окружение влияет на меня"
+    typical_bottleneck: "глубина понимания"
+    rhythm: "8-12h/wk"
+
+  - level: 4
+    name: "Дисциплинированный"
+    seed_lookup: "stage-4-disciplined"
+    narrative_phase: "Мир — система, и я в ней деятель"
+    typical_bottleneck: "масштабирование влияния"
+    rhythm: "12-20h/wk"
+
+  - level: 5
+    name: "Проактивный"
+    seed_lookup: "stage-5-proactive"
+    narrative_phase: "Мы меняем мир"
+    typical_bottleneck: "системное мировоззрение"
+    rhythm: "20h+/wk"
+
+bottleneck_to_methods:
+  "фокус и собранность":
+    - PD.METHOD.001
+    - PD.METHOD.010
+  "систематичность":
+    - PD.METHOD.003
+    - PD.METHOD.009
+  "глубина понимания":
+    - PD.METHOD.003
+    - PD.METHOD.004
+  "масштабирование влияния":
+    - PD.METHOD.008
+    - PD.METHOD.005
+
+domains_applicable:
+  - domain-knowledge-worker
+  - domain-generic
+
+applicability:
+  required:
+    - "Желание осознанного личностного развития"
+  recommended:
+    - "Наличие 3-5 часов в неделю на учебные слоты"
+  not_applicable:
+    - "Только карьерный рост без личностной составляющей → программа work-development"
+
+transition_criteria:
+  1_to_2:
+    - "Стабильная практика учёта времени ≥ 2 недели"
+  2_to_3:
+    - "Освоены базовые методы саморазвития; систематичность выше случайности"
+  3_to_4:
+    - "Видит системные связи в своём окружении; применяет мировоззренческие мемы"
+  4_to_5:
+    - "Ведёт активное созидание; влияет на системы вокруг себя"

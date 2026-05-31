@@ -1,0 +1,74 @@
+# DS-Program Roadmap: Work Development (РР)
+# Stub → MVP для WP-379 Ф1
+# Контракт: WP-371 v2
+# Program ID: WD
+
+program_id: WD
+program_name: "Рабочее Развитие"
+applies_contract: "WP-371 v2"
+content_repo: "docs/ru/professional/"
+
+stages:
+  - level: 1
+    name: "Работник"
+    seed_lookup: "stage-2-practicing"
+    narrative_phase: "Я — участник"
+    typical_bottleneck: "видимость в команде"
+    rhythm: "5-8h/wk"
+
+  - level: 2
+    name: "Стратег"
+    seed_lookup: "stage-3-systematic"
+    narrative_phase: "Я вижу команду как систему"
+    typical_bottleneck: "понимание целей команды"
+    rhythm: "8-12h/wk"
+
+  - level: 3
+    name: "Специалист"
+    seed_lookup: "stage-4-disciplined"
+    narrative_phase: "Я несу одну из ключевых ролей команды"
+    typical_bottleneck: "глубина доменной экспертизы"
+    rhythm: "12-20h/wk"
+
+  - level: 4
+    name: "Практик"
+    seed_lookup: "stage-5-proactive"
+    narrative_phase: "Я веду команду / cross-team"
+    typical_bottleneck: "масштабирование влияния"
+    rhythm: "20h+/wk"
+
+bottleneck_to_methods:
+  "видимость в команде":
+    - PD.METHOD.001
+    - PD.METHOD.004
+  "понимание целей команды":
+    - PD.METHOD.003
+    - PD.METHOD.005
+  "глубина доменной экспертизы":
+    - PD.METHOD.003
+    - PD.METHOD.008
+  "масштабирование влияния":
+    - PD.METHOD.008
+    - PD.METHOD.005
+
+domains_applicable:
+  - domain-knowledge-worker
+  - domain-generic
+
+applicability:
+  required:
+    - "Работа в команде с явным coord-action (standup/planning/retro/async чаты)"
+    - "Желание осознанного развития в роли участника (не только 'выполнять задачи')"
+  recommended:
+    - "Квалификация ЛР ≥ ступени 3 (Систематический) — гигиена саморазвития освоена"
+  not_applicable:
+    - "Solo-contributor без команды → программа personal-development больше подходит"
+    - "Исследовательская работа без явной командной структуры → программа research-development"
+
+transition_criteria:
+  1_to_2:
+    - "Видимость в команде стабильна — стэндапы регулярны, вклад трекаемый"
+  2_to_3:
+    - "Понимает цели команды и свою роль в них; принимает самостоятельные решения"
+  3_to_4:
+    - "Глубокая доменная экспертиза; ведёт кросс-командное взаимодействие"

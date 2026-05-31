@@ -1,0 +1,60 @@
+# DS-Program Roadmap: Research Development (ИР)
+# Placeholder — открыта для будущего РП
+# Контракт: WP-371 v2
+# Program ID: RD
+
+program_id: RD
+program_name: "Исследовательское Развитие"
+applies_contract: "WP-371 v2"
+content_repo: "docs/ru/research/"
+
+stages:
+  - level: 1
+    name: "Наблюдатель"
+    seed_lookup: "stage-2-practicing"
+    narrative_phase: "Я исследую фронтир"
+    typical_bottleneck: "формулировка гипотезы"
+    rhythm: "5-8h/wk"
+
+  - level: 2
+    name: "Исследователь"
+    seed_lookup: "stage-3-systematic"
+    narrative_phase: "Я систематизирую знания"
+    typical_bottleneck: "глубина методологии"
+    rhythm: "8-12h/wk"
+
+  - level: 3
+    name: "Фронтир"
+    seed_lookup: "stage-4-disciplined"
+    narrative_phase: "Я создаю новое знание"
+    typical_bottleneck: "масштабирование исследования"
+    rhythm: "12-20h/wk"
+
+bottleneck_to_methods:
+  "формулировка гипотезы":
+    - PD.METHOD.004
+    - PD.METHOD.016
+  "глубина методологии":
+    - PD.METHOD.003
+    - PD.METHOD.008
+  "масштабирование исследования":
+    - PD.METHOD.008
+    - PD.METHOD.005
+
+domains_applicable:
+  - domain-knowledge-worker
+  - domain-generic
+
+applicability:
+  required:
+    - "Исследовательская деятельность с явной гипотезой или фронтиром"
+  recommended:
+    - "Квалификация ЛР ≥ ступени 3 (Систематический)"
+  not_applicable:
+    - "Только исполнительская работа → программа work-development"
+
+transition_criteria:
+  1_to_2:
+    - "Сформулированы и проверены первые гипотезы"
+  2_to_3:
+    - "Создано оригинальное знание, признанное сообществом"
