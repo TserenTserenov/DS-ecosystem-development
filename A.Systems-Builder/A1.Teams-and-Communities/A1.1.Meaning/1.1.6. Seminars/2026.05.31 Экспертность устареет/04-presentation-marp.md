@@ -5,7 +5,7 @@ paginate: true
 size: 16:9
 html: true
 header: "31 мая 2026 · Ваша экспертность устареет. Как вырастить новую — не за 10 лет"
-footer: "v3.2.3 · Aisystant · @aist_me_bot"
+footer: "v3.3.0 · Aisystant · @aist_me_bot"
 ---
 
 <!-- _class: title -->
