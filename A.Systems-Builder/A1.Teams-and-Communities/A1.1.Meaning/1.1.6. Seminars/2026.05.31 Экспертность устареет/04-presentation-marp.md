@@ -5,7 +5,7 @@ paginate: true
 size: 16:9
 html: true
 header: "31 мая 2026 · Ваша экспертность устареет. Как вырастить новую — не за 10 лет"
-footer: "v3.5.0 · Aisystant · @aist_me_bot"
+footer: "v3.6.0 · Aisystant · @aist_me_bot"
 ---
 
 <!-- _class: title -->
@@ -393,44 +393,6 @@ footer: "v3.5.0 · Aisystant · @aist_me_bot"
 
 <!-- _class: with-eyebrow -->
 
-<div class="eyebrow">Блок 5 · Карта пути</div>
-
-# Пять природ — куда двигаться
-
-<div style="display:flex;gap:10px;margin:18px 0 0;height:360px">
-  <div style="flex:1;border-radius:12px;background:rgba(71,85,105,0.15);border:1px solid #475569;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 10px;text-align:center">
-    <div style="font-size:2.6em;font-weight:900;color:#475569;line-height:1;margin-bottom:14px">1</div>
-    <div style="font-size:0.76em;font-weight:700;color:#94a3b8;margin-bottom:10px;line-height:1.2">Инструмент</div>
-    <div style="font-size:0.63em;color:#64748b;line-height:1.4">ИИ помогает<br>делать</div>
-  </div>
-  <div style="flex:1;border-radius:12px;background:#7c2d12;border:2px solid #f97316;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 10px;text-align:center">
-    <div style="font-size:2.6em;font-weight:900;color:#f97316;line-height:1;margin-bottom:14px">2</div>
-    <div style="font-size:0.76em;font-weight:700;color:#fbbf24;margin-bottom:10px;line-height:1.2">Железный<br>человек</div>
-    <div style="font-size:0.63em;color:#fed7aa;line-height:1.4">ИИ усиливает<br>меня</div>
-  </div>
-  <div style="flex:1;border-radius:12px;background:#0f172a;border:1px solid #334155;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 10px;text-align:center">
-    <div style="font-size:2.6em;font-weight:900;color:#334155;line-height:1;margin-bottom:14px">3</div>
-    <div style="font-size:0.76em;font-weight:700;color:#475569;margin-bottom:10px;line-height:1.2">Аватар</div>
-    <div style="font-size:0.63em;color:#475569;line-height:1.4">общая среда,<br>общий язык</div>
-  </div>
-  <div style="flex:1;border-radius:12px;background:#0f172a;border:1px solid #334155;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 10px;text-align:center">
-    <div style="font-size:2.6em;font-weight:900;color:#334155;line-height:1;margin-bottom:14px">4</div>
-    <div style="font-size:0.76em;font-weight:700;color:#475569;margin-bottom:10px;line-height:1.2">Тамагочи</div>
-    <div style="font-size:0.63em;color:#475569;line-height:1.4">среда растёт<br>от заботы</div>
-  </div>
-  <div style="flex:1;border-radius:12px;background:#0f172a;border:1px solid #334155;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 10px;text-align:center">
-    <div style="font-size:2.6em;font-weight:900;color:#334155;line-height:1;margin-bottom:14px">5</div>
-    <div style="font-size:0.76em;font-weight:700;color:#475569;margin-bottom:10px;line-height:1.2">Букварь</div>
-    <div style="font-size:0.63em;color:#475569;line-height:1.4">среда ведёт<br>по траектории</div>
-  </div>
-</div>
-
-<p class="muted" style="margin-top:12px;text-align:center;font-size:0.78em">Не пять инструментов. Пять способов устроить рост человека в связке с&nbsp;ИИ. <span style="color:#f97316">Природа 2 — тот самый Тони Старк.</span></p>
-
----
-
-<!-- _class: with-eyebrow -->
-
 ![bg left:45%](images/tamagotchi.png)
 
 <div class="eyebrow">Природа 4 · «Как тамагочи»</div>
@@ -443,35 +405,6 @@ footer: "v3.5.0 · Aisystant · @aist_me_bot"
 
 <p class="muted" style="margin-top:36px;font-size:1.05em">Как тамагочи.<br>Каждый день. Не рывками.</p>
 
-</div>
-
----
-
-<!-- _class: with-eyebrow -->
-
-<div class="eyebrow">Блок 5.5 · За счёт чего</div>
-
-# Чтобы экзоскелет стал нормой —<br>работают четыре рычага
-
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px">
-  <div style="background:#1e293b;border:2px solid #f97316;border-radius:10px;padding:14px 16px">
-    <p style="color:#f97316;font-size:0.62em;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 6px">01 · Мировоззрение</p>
-    <p style="color:#f1f5f9;font-size:0.88em;font-weight:700;margin:0;line-height:1.25">Видеть проблему там,<br>где был хаос.</p>
-  </div>
-  <div style="background:#1e293b;border:2px solid #f97316;border-radius:10px;padding:14px 16px">
-    <p style="color:#f97316;font-size:0.62em;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 6px">02 · Костюм — две роли</p>
-    <p style="color:#f1f5f9;font-size:0.88em;font-weight:700;margin:0 0 3px;line-height:1.25">Пользователь &amp; Создатель</p>
-    <p style="color:#94a3b8;font-size:0.74em;margin:0">Не просто носить — проектировать.</p>
-  </div>
-  <div style="background:#1e293b;border:2px solid #f97316;border-radius:10px;padding:14px 16px">
-    <p style="color:#f97316;font-size:0.62em;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 6px">03 · Системное мышление</p>
-    <p style="color:#f1f5f9;font-size:0.88em;font-weight:700;margin:0;line-height:1.25">Конвертирует проблему<br>в задачу.</p>
-  </div>
-  <div style="background:#1e293b;border:2px solid #f97316;border-radius:10px;padding:14px 16px">
-    <p style="color:#f97316;font-size:0.62em;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 6px">04 · Сообщество</p>
-    <p style="color:#f1f5f9;font-size:0.88em;font-weight:700;margin:0 0 3px;line-height:1.25">Среда сопроизводителей</p>
-    <p style="color:#94a3b8;font-size:0.74em;margin:0">держит темп и норму.</p>
-  </div>
 </div>
 
 ---
