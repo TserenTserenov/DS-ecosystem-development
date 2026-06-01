@@ -1,0 +1,147 @@
+# Roadmap Schema — DS Implementation Notes for DP.M.255
+# Defines the structure of program-specific roadmap.yaml files
+# and their relationship to DP.M.255 "Poly-root Context Assembly"
+#
+# Contract: WP-371 v2
+# Pack reference: DP.M.255 §1 (Abstract program model)
+
+schema_version: "1.0"
+description: |
+  Schema for DS-program roadmap.yaml files.
+  Each program (ЛР, РР, ИР, etc.) maintains a roadmap.yaml that defines:
+  - stage levels and their narrative seeds
+  - domain applicability
+  - bottleneck-to-method mappings
+  
+  DP.M.255 uses this schema to resolve `qualification_map` and `context_resolver`.
+  The schema itself is DS-specific; DP.M.255 remains abstract and universal.
+
+type: object
+required:
+  - program_id
+  - program_name
+  - stages
+  - domains_applicable
+
+properties:
+  program_id:
+    type: string
+    description: "Short identifier (e.g., PD, WD, RD)"
+    example: "PD"
+
+  program_name:
+    type: string
+    description: "Human-readable program name"
+    example: "Личное Развитие"
+
+  applies_contract:
+    type: string
+    description: "Version of WP-371 contract this roadmap implements"
+    example: "WP-371 v2"
+
+  content_repo:
+    type: string
+    description: "Path to universal guide content repository"
+    example: "docs/ru/personal-design/"
+
+  stages:
+    type: array
+    description: "Ordered list of stages (levels) within the program"
+    items:
+      type: object
+      required:
+        - level
+        - name
+        - seed_lookup
+      properties:
+        level:
+          type: integer
+          minimum: 1
+          description: "Stage level number"
+        name:
+          type: string
+          description: "Stage name"
+        seed_lookup:
+          type: string
+          description: "Key for context_resolver to lookup stage-specific seed content"
+          note: "DP.M.255 §1: context_resolver(program_id) resolves this to context_block"
+        narrative_phase:
+          type: string
+          description: "Identity statement for this stage"
+        typical_bottleneck:
+          type: string
+          description: "Most common bottleneck at this stage"
+        rhythm:
+          type: string
+          description: "Recommended time commitment"
+
+  bottleneck_to_methods:
+    type: object
+    description: |
+      Mapping from bottleneck descriptions to applicable method IDs.
+      Used by DS implementation to enrich poly_context with method recommendations.
+    additionalProperties:
+      type: array
+      items:
+        type: string
+      description: "List of method IDs applicable to this bottleneck"
+    example:
+      "фокус и собранность":
+        - "PD.METHOD.001"
+        - "PD.METHOD.010"
+
+  domains_applicable:
+    type: array
+    description: "List of domain tags where this program applies"
+    items:
+      type: string
+    example:
+      - "domain-knowledge-worker"
+      - "domain-generic"
+
+  applicability:
+    type: object
+    properties:
+      required:
+        type: array
+        items: { type: string }
+      recommended:
+        type: array
+        items: { type: string }
+      not_applicable:
+        type: array
+        items: { type: string }
+
+  transition_criteria:
+    type: object
+    description: "Criteria for advancing between stages"
+    additionalProperties:
+      type: array
+      items: { type: string }
+    example:
+      "1_to_2":
+        - "Стабильная практика учёта времени ≥ 2 недели"
+
+# Implementation Notes for DP.M.255
+# ---------------------------------
+# The following fields are DS-specific and support DP.M.255 runtime:
+#
+# qualification_map construction:
+#   - Source: cp_assessments (Neon) + profile.md qualification field
+#   - Mapping logic: see DS-autonomous-agents/agents/tailor/poly_root.py
+#   - Output: qualification_id → [program_id+] (ordered sequence)
+#
+# context_resolver implementation:
+#   - Input: program_id (e.g., "PD")
+#   - Process:
+#     1. Load roadmap.yaml for program_id
+#     2. Resolve stage_seed → seed_lookup for pilot's current stage
+#     3. Resolve domain_seed → seed_lookup for pilot's domain
+#     4. Concatenate seeds into context_block string
+#   - Output: context_block (string, non-empty)
+#   - Error handling: per DP.M.255 §3 documented error conditions
+#
+# Fields used by context_resolver:
+#   - stage_seed  → stages[].seed_lookup (by level)
+#   - domain_seed → domains_applicable (filtered by pilot domain)
+#   - bottleneck_to_methods → optional enrichment (not part of DP.M.255 contract)
