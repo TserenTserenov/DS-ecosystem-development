@@ -3416,3 +3416,240 @@
   }
 }
 ```
+
+## 2026-06-05T13:21:42+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "3. Кими забраковал мою первую идею «разрешать на всю сессию» — это выключатель защиты, а не послабление. Сделали разреше"
+    ],
+    "session_id": "704f8517-18a0-4a94-8248-01fc1a4f39c9"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-05T13:22:05+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "3. Кими забраковал мою первую идею «разрешать на всю сессию» — это выключатель защиты, а не послабление. Сделали разреше",
+      "Ложное срабатывание детектора: подсвеченная фраза — это пересказ позиции Кими («Кими забраковал мою идею…»), а не запрос"
+    ],
+    "session_id": "704f8517-18a0-4a94-8248-01fc1a4f39c9"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-05T14:02:22+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "3. Кими забраковал мою первую идею «разрешать на всю сессию» — это выключатель защиты, а не послабление. Сделали разреше",
+      "Ложное срабатывание детектора: подсвеченная фраза — это пересказ позиции Кими («Кими забраковал мою идею…»), а не запрос"
+    ],
+    "session_id": "704f8517-18a0-4a94-8248-01fc1a4f39c9"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-05T14:11:45+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- [ ] **№1 — ничья в тесте.** [core/assessment.py:80](DS-IT-systems/aist_bot_newarchitecture/core/assessment.py#L80) — о"
+    ],
+    "session_id": "f1fc7010-028c-4d61-b09b-e09db12b6bd9"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
+
+## 2026-06-05T14:12:20+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "- [ ] **№1 — ничья в тесте.** [core/assessment.py:80](DS-IT-systems/aist_bot_newarchitecture/core/assessment.py#L80) — о",
+      "Принято — снимаю вопрос в конце, это был лишний запрос разрешения. Чек-лист готов и есть выше, это и был заказанный резу"
+    ],
+    "session_id": "f1fc7010-028c-4d61-b09b-e09db12b6bd9"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
+
+## 2026-06-05T14:14:03+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Ложное срабатывание детектора: подсвеченная фраза — это пересказ позиции Кими («Кими забраковал мою идею…»), а не запрос"
+    ],
+    "session_id": "704f8517-18a0-4a94-8248-01fc1a4f39c9"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-05T14:24:26+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "DOC9 и DOC10 не трогают шаблонные скрипты — могу сделать сразу. DOC8 требует твоего разрешения на правку `day-close.sh`.",
+      "**Есть срочность:** ближайшее закрытие дня превратит конфиг в петлю. Разрешаешь починить `day-close.sh` (DOC8) — тогда a"
+    ],
+    "session_id": "75d68efa-ce46-4e3a-90ee-3d94081f061e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-05T15:19:11+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Не сделано.** Код моста тира (шлюз читает тир из persona-базы) лежит в ветке, но Pull Request #12 открыт, проверка без"
+    ],
+    "session_id": "0da88a55-1e21-4e66-9abb-66f179b7b374"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-05T15:20:09+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "**Не сделано.** Код моста тира (шлюз читает тир из persona-базы) лежит в ветке, но Pull Request #12 открыт, проверка без",
+      "Это ложное срабатывание детектора — в том абзаце я не запрашивал разрешения, а перечислял фактические блокеры WP-392 Б1 "
+    ],
+    "session_id": "0da88a55-1e21-4e66-9abb-66f179b7b374"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-05T15:47:50+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Значит код-часть Б1 закрыта и в проде. Осталась **данные-часть**: бэкфилл тира существующих T3/T4 в persona + e2e с твои"
+    ],
+    "session_id": "0da88a55-1e21-4e66-9abb-66f179b7b374"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-MCP"
+  }
+}
+```
+
+## 2026-06-05T19:52:42+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Два стопора не дают мне сделать это молча: правка боевой базы необратима, и заход в базу требует твоего явного разрешени",
+      "Понял — запускаю только проверочный запрос (чтение, боевую базу не меняю). Разрешение на доступ к секретам ты дал этим в"
+    ],
+    "session_id": "219830d5-2c53-4608-85cb-6c7b28f813aa"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
