@@ -66,11 +66,9 @@ style: |
 
 ---
 
-<!-- _class: split-l -->
-
 # Узнаёте себя?
 
-<div>
+<img src="images/three-pains.png" style="float: right; width: 57%; margin: -10px -80px 20px 30px;">
 
 *(голосуем — отметьте несколько)*
 
@@ -83,13 +81,6 @@ style: |
 7. Не хватает проводника в мир ИИ
 
 <span class="ex">К каждой поднятой руке — пример. К концу дня у каждой боли будет ответ.</span>
-
-</div>
-<div style="align-self: start; margin-top: -52px; margin-right: -80px; padding: 0;">
-
-![w:600](images/three-pains.png)
-
-</div>
 
 ---
 
@@ -348,11 +339,9 @@ style: |
 
 ---
 
-<!-- _class: split-l -->
-
 # Что останется, когда среда сменится
 
-<div>
+<img src="images/envs-changeable.png" style="float: right; width: 44%; margin: -10px -80px 15px 30px;">
 
 Не кнопки конкретного инструмента, а:
 
@@ -363,13 +352,6 @@ style: |
 **Тест на системность:** различаешь агента и систему · роль и агента · характеристику и состояние · знание и мировоззрение?
 
 > Если да — среда умнеет. Если нет — копишь шум.
-
-</div>
-<div style="align-self: start; margin-top: -52px; margin-right: -80px; padding: 0;">
-
-![w:560](images/envs-changeable.png)
-
-</div>
 
 ---
 
@@ -540,7 +522,7 @@ style: |
 
 # Карта освоения IWE
 
-<div class="ladder" style="font-size: 0.72em; line-height: 1.4;">
+<div class="ladder" style="font-size: 0.82em; line-height: 1.45;">
 <p>Начинай работать — и осваивай по порядку. <span class="demo">▶</span> покажем вживую.</p>
 
 <p><b>Ступень 1 · Войти и держать ритм</b> — управлять собой и костюмом<br>
