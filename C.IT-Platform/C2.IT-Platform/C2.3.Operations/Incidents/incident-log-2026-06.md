@@ -3889,3 +3889,174 @@
   }
 }
 ```
+
+## 2026-06-06T12:38:30+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "2. Семинар −700 от 21.05 — хотите чтобы эти 700 вернулись в текущий баланс, или достаточно просто убрать из истории (всё"
+    ],
+    "session_id": "31d73c5f-08e8-45ff-a3f1-dbd2c66d53ca"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-06T13:44:20+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Переменная `LEARNING_URL` на пилоте = пустая строка. Railway reference variable `${{Postgres.DATABASE_URL}}` не разрешил"
+    ],
+    "session_id": "b79c05bd-10ce-46fb-a76f-01542b45a214"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-06T16:01:01+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Это **не «вы что-то сломали»**. Три из четырёх жалоб — следствие того, как бот устроен сейчас, и затронут любого участни"
+    ],
+    "session_id": "3465b9db-4011-479d-ab1d-23a28e7c4535"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
+
+## 2026-06-06T16:01:31+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Это **не «вы что-то сломали»**. Три из четырёх жалоб — следствие того, как бот устроен сейчас, и затронут любого участни"
+    ],
+    "session_id": "3465b9db-4011-479d-ab1d-23a28e7c4535"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
+
+## 2026-06-06T16:23:49+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Браузер попросит выбрать аккаунт Google → разрешить доступ к Calendar → покажет **код** (строка вида `4/0A...`). Скопиру"
+    ],
+    "session_id": "4c523110-8460-493b-8312-611a8a30982e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-06T16:46:50+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Открой эту ссылку в браузере, войди под своим Google-аккаунтом, разреши доступ к Календарю — браузер покажет код вида `4"
+    ],
+    "session_id": "4c523110-8460-493b-8312-611a8a30982e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-06T16:47:07+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Открой эту ссылку в браузере, войди под своим Google-аккаунтом, разреши доступ к Календарю — браузер покажет код вида `4",
+      "Браузер открылся. Войди под своим аккаунтом Google, разреши доступ к Календарю — браузер покажет код вида `4/0AX...`. Вс"
+    ],
+    "session_id": "4c523110-8460-493b-8312-611a8a30982e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-06T16:48:00+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "Открой эту ссылку в браузере, войди под своим Google-аккаунтом, разреши доступ к Календарю — браузер покажет код вида `4",
+      "Браузер открылся. Войди под своим аккаунтом Google, разреши доступ к Календарю — браузер покажет код вида `4/0AX...`. Вс",
+      "Разреши доступ к Календарю. После нажатия «Разрешить» браузер перейдёт на `localhost` и покажет «Сайт недоступен» — это "
+    ],
+    "session_id": "4c523110-8460-493b-8312-611a8a30982e"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
