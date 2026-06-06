@@ -15,7 +15,7 @@ style: |
   .ex { display: block; color: var(--color-highlight); font-style: italic; font-size: 0.78em; margin-top: 18px; }
   .util { background: var(--color-bg-elev); border-left: 5px solid var(--color-highlight); border-radius: 0 10px 10px 0; padding: 14px 24px; margin-top: 8px; }
   .kicker { color: var(--color-text-muted); font-size: 0.72em; margin-top: 12px; }
-  .ladder { font-size: 0.6em; line-height: 1.3; }
+  .ladder { font-size: 0.9em; line-height: 1.5; }
   .ladder p { margin: 7px 0; }
   .ladder b { color: var(--color-accent); }
   .demo { color: var(--color-positive); font-weight: 700; }
@@ -66,9 +66,9 @@ style: |
 
 ---
 
-# Узнаёте себя?
+![bg right:55%](images/three-pains.png)
 
-<img src="images/three-pains.png" style="float: right; width: 57%; margin: -10px -80px 20px 30px;">
+# Узнаёте себя?
 
 *(голосуем — отметьте несколько)*
 
@@ -339,9 +339,9 @@ style: |
 
 ---
 
-# Что останется, когда среда сменится
+![bg right:42%](images/envs-changeable.png)
 
-<img src="images/envs-changeable.png" style="float: right; width: 44%; margin: -10px -80px 15px 30px;">
+# Что останется, когда среда сменится
 
 Не кнопки конкретного инструмента, а:
 
@@ -522,7 +522,7 @@ style: |
 
 # Карта освоения IWE
 
-<div class="ladder" style="font-size: 0.82em; line-height: 1.45;">
+<div class="ladder">
 <p>Начинай работать — и осваивай по порядку. <span class="demo">▶</span> покажем вживую.</p>
 
 <p><b>Ступень 1 · Войти и держать ритм</b> — управлять собой и костюмом<br>
