@@ -244,8 +244,16 @@ section.split {
 section.split-l {
   display: grid;
   grid-template-columns: 2fr 3fr;
-  gap: 50px;
+  column-gap: 50px;
+  row-gap: 12px;
   align-items: center;
+}
+
+/* Заголовок на всю ширину в split-лейаутах */
+section.split-l > h1,
+section.split > h1 {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
 }
 
 /* Заголовок в углу + контент */
