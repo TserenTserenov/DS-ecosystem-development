@@ -38,7 +38,7 @@
 | **bridge-scope-service** | https://github.com/aisystant/bridge-scope-service | Проверяет, можно ли агенту писать в репозиторий пользователя | `POST /check-scope`, `GET /health` | Dockerfile ✅, README ✅ |
 | **agent-status-service** | https://github.com/aisystant/agent-status-service | Доска статусов агентов (кто чем занят, какие файлы трогает) | `POST /api/v1/status`, `GET /api/v1/status` (фильтр `?repo=`), `GET /health` | Dockerfile ❌ (добавить), README ✅ |
 | **github-integration-service** | https://github.com/aisystant/github-integration-service | Вебхуки GitHub App, вход через GitHub, создание репозиториев пользователей | `POST /github/webhook`; `/api/v1/github/*` (`connect`/`status`/`disconnect`/`repo`); `/github/*` (`install`/`setup`/`create-repo`/`repo-callback`); `GET /health` | Dockerfile ✅, README ✅ |
-| **user-profile-service** | https://github.com/aisystant/user-profile-service | Профиль пользователя: контекст, тариф, ключи к моделям (BYOK), уведомления боту | `GET /user-context`, `GET /tier`, `POST /byok`, `POST /notify-bot`, `GET /github-connected`, `GET /onboarding-context` | Dockerfile ✅, README ✅ |
+| **user-profile-service** | https://github.com/aisystant/user-profile-service | Профиль пользователя: контекст, тариф, ключи к моделям (BYOK + управление ключами), уведомления боту | `GET /user-context`, `GET /tier`, `POST /byok`, `GET\|POST /llm-keys`, `POST /llm-keys/revoke`, `POST /notify-bot`, `GET /github-connected`, `GET /onboarding-context` | Dockerfile ✅, README ✅ |
 | **learning-context-service** | https://github.com/aisystant/learning-context-service | Согласие на обработку данных, когнитивный бриф, состояние онбординга | `GET /consent`, `POST /grant-consent`, `GET /cognitive-brief`, `GET /onboarding-state` | Dockerfile ✅, README ✅ |
 
 > **Итог по конфигу шлюза:** после выноса логики шлюз держит только адреса — 3 сервера знаний (B) + 5 вспомогательных сервисов (C) = 8 адресов с парными ключами, без баз данных на пути маршрутизации (известные исключения — в разделе 4).
@@ -82,7 +82,7 @@ wrangler secret put LEARNING_CONTEXT_SHARED_SECRET
 
 | Переменная | Зачем нужна | Когда уйдёт |
 |------------|-------------|-------------|
-| `DATABASE_URL` | База персон: подключение источников, вебхук GitHub, страница Scout, синхронизация форков, управление ключами BYOK | После выноса управления BYOK (раздел 4) |
+| `DATABASE_URL` | База персон: подключение источников, вебхук GitHub, страница Scout, синхронизация форков | Часть осталась вне пути маршрутизации |
 | `SUBSCRIPTION_DATABASE_URL` | Хук выдачи токенов читает подписку, чтобы вшить признак в токен | После установки короткого времени жизни токена в Ory (5 мин) |
 | `INDICATORS_DATABASE_URL` | Запись стартовых прав агента при онбординге | После того как bridge-scope-service получит эндпоинт выдачи прав |
 
@@ -188,10 +188,11 @@ wrangler secret put LEARNING_CONTEXT_SHARED_SECRET
 <details>
 <summary><b>4. Известные ограничения</b></summary>
 
-Шлюз = маршрутизатор + авторизация (Ory JWT) + раздача запросов серверам знаний. Путь маршрутизации почти чист от баз, кроме двух мест:
+Шлюз = маршрутизатор + авторизация (Ory JWT) + раздача запросов серверам знаний. Путь маршрутизации чист от баз, кроме одного места:
 
 - **Хук выдачи токенов** (`/hydra-hook/token`) — читает базу подписок, чтобы вшить признак подписки в токен. Это эндпоинт выдачи токена, не путь маршрутизации — оставлен осознанно.
-- **Управление ключами BYOK** (`list`/`grant`/`revoke` ключей к моделям) — пока ходит в базу напрямую из шлюза. Это последний кусок прикладной логики на пути маршрутизации; план — вынести его в `user-profile-service` или оставить как осознанное исключение.
+
+Управление ключами к моделям (BYOK) раньше ходило в базу из шлюза напрямую — теперь вынесено в `user-profile-service` (эндпоинты `/llm-keys`), шлюз только проксирует. Прикладной логики с базой на пути маршрутизации не осталось.
 
 </details>
 
