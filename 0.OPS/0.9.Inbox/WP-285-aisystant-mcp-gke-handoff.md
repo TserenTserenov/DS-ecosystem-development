@@ -6,18 +6,43 @@
 > **Статус одной строкой:** вынос кода Р1-Р9 закрыт и в проде (gateway авто-деплоится при push в main). Сервисы НЕ развёрнуты → `mcp.aisystant.com/health` сейчас отдаёт **503** (`missing: USER_PROFILE_SERVICE_URL, LEARNING_CONTEXT_SERVICE_URL`). Главная работа Андрея — развернуть 5 сервисов в GKE и подключить их к gateway (раздел 3).
 
 <details open>
-<summary><b>1. Список передаваемых MCP</b></summary>
+<summary><b>1. Карта сервисов за Aisystant MCP</b></summary>
+
+> **Важно про терминологию.** «Aisystant MCP» = это **шлюз** (`gateway-mcp`, `mcp.aisystant.com`) — единственная точка, к которой подключаются внешние клиенты (claude.ai, Claude Code, VS Code). За ним стоят два РАЗНЫХ класса сервисов: исходные backend-MCP (серверы знаний) и вынесенные из шлюза вспомогательные сервисы (WP-402). Пять новых сервисов — это НЕ замена трёх MCP, а вынесенная наружу прикладная логика самого шлюза.
+
+**A. Шлюз (Aisystant MCP)**
+
+| Сервис | Репозиторий | Платформа | Статус |
+|--------|-------------|-----------|--------|
+| **gateway-mcp** | https://github.com/aisystant/gateway-mcp | Cloudflare Worker | **Задеплоен** (авто-деплой при push в main); `/health` = 503 пока 5 сервисов группы C не подключены |
+
+**B. Backend-MCP — серверы знаний за шлюзом (НЕ часть WP-402, без изменений)**
+
+Шлюз делает fan-out (раздачу запросов) к ним: поиск, цифровой двойник, личные знания. Они существовали до WP-402 и не менялись. Это и есть «3 URL» из теста Андрея.
+
+| Сервис | Репозиторий | Платформа | Что делает | В scope WP-402? |
+|--------|-------------|-----------|------------|------------------|
+| **knowledge-mcp** | https://github.com/aisystant/knowledge-mcp | Cloudflare Worker | Поиск по базе знаний (Pack, гайды) | Нет |
+| **digital-twin-mcp** | https://github.com/aisystant/digital-twin-mcp | Cloudflare Worker | Цифровой двойник пилота | Нет |
+| **personal-knowledge-mcp** | https://github.com/aisystant/personal-knowledge-mcp | Cloudflare Worker | Личные знания пользователя | Нет |
+
+> **Открытый вопрос Андрею:** три backend-MCP сейчас на Cloudflare. Мигрируют ли они в GKE Track B вместе со шлюзом или остаются на Cloudflare — отдельное решение, в WP-402 не входило.
+
+**C. Вспомогательные сервисы — вынесенная из шлюза логика (WP-402, новые, в GKE)**
+
+Это прикладная логика, которую шлюз раньше держал в себе; WP-402 вынес её в отдельные сервисы, чтобы шлюз стал чистым маршрутизатором.
 
 | Сервис | Репозиторий | Платформа | Статус | Dockerfile |
 |--------|-------------|-----------|--------|------------|
-| **gateway-mcp** | https://github.com/aisystant/gateway-mcp | Cloudflare Worker (Wrangler) | **Задеплоен** (авто-деплой при push в main); `/health` = 503 пока сервисы не подключены | Нет (Worker) |
 | **bridge-scope-service** | https://github.com/aisystant/bridge-scope-service | GKE Standard europe-west4 | Код готов, не задеплоен | ✅ Есть |
 | **agent-status-service** | https://github.com/aisystant/agent-status-service | GKE Standard europe-west4 | Код готов, не задеплоен | ❌ **Нет** (добавить — см. раздел 3) |
 | **github-integration-service** | https://github.com/aisystant/github-integration-service | GKE Standard europe-west4 | Код готов, не задеплоен | ✅ Есть |
 | **user-profile-service** | https://github.com/aisystant/user-profile-service | GKE Standard europe-west4 | Код готов, не задеплоен | ✅ Есть |
 | **learning-context-service** | https://github.com/aisystant/learning-context-service | GKE Standard europe-west4 | Код готов, не задеплоен | ✅ Есть |
 
-> **Авто-деплой gateway:** репозиторий `gateway-mcp` содержит `.github/workflows/deploy.yml` на `push: [main]` → каждый push в main выкатывается на прод `mcp.aisystant.com`. Код Р1-Р9 уже в проде; сервисы нужно поднять под него.
+> **Итог по конфигу шлюза (тест Андрея):** после WP-402 шлюз содержит только адреса — 3 backend-MCP (группа B) + 5 вынесенных сервисов (группа C) = 8 URL + парные секреты, без баз данных на роутинг-пути (кроме легитимных остатков — token hook + техдолг BYOK, см. 4.4).
+>
+> **Авто-деплой gateway:** репозиторий `gateway-mcp` содержит `.github/workflows/deploy.yml` на `push: [main]` → каждый push в main выкатывается на прод. Код Р1-Р9 уже в проде; сервисы группы C нужно поднять под него.
 
 </details>
 
