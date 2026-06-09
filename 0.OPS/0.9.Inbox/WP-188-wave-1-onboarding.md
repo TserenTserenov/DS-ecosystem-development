@@ -6,10 +6,11 @@ participants: 5
 start_date: 2026-05-13
 end_date: 2026-06-12
 horizon_days: 30
-status: active
+status: closing
+archive_after: 2026-06-13
 related_wp: [WP-188, WP-245 Block Б, WP-253-F9.7, WP-301]
 created: 2026-05-12
-updated: 2026-05-29
+updated: 2026-06-09
 owner: Стратег
 ---
 

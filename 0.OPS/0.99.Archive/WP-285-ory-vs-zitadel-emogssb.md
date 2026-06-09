@@ -1,6 +1,7 @@
 ---
 type: doc
-status: draft
+status: archived
+archived_date: 2026-06-09
 created: 2026-05-22
 updated: 2026-05-22
 family: F8

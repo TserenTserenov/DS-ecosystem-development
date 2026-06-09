@@ -1,9 +1,11 @@
 ---
 type: architecture-proposal
 title: "WP-336/Platform: Доступ агентов к личной памяти пилота — архитектура Parliament Model"
-status: draft
+status: stalled
+stalled_since: 2026-05-26
+blocker: "ожидание решения по архитектуре Parliament Model после встречи 21"
 created: 2026-05-24
-updated: 2026-05-29
+updated: 2026-06-09
 source: peer-session 2026-05-24-02-memory-access-mcp-tree + Parliament-review субагент
 related_wps: [WP-336, WP-337, WP-316, WP-150]
 related_docs:

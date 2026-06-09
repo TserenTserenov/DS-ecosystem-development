@@ -2,7 +2,8 @@
 id: WP-73-phase-platform-iwe-distinction
 wp: WP-73
 type: decision-artifact
-status: active
+status: delegated
+promoted_to: .claude/rules/distinctions.md
 created: 2026-05-24
 source: "Встреча ИТ-оперативка 20, 24 мая 2026. Peer-review: сессия 2026-05-24-03. Дополнено: Оперативка ИТ 2026-05-31 (Push-модель + Embeddings + Vault)."
 ---

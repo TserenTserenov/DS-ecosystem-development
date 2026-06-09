@@ -452,4 +452,30 @@ A.Systems-Builder/
 
 ---
 
-*Последнее обновление: 2026-04-10*
+## 9. Правило frontmatter для файлов из Inbox
+
+При открытии любого файла из `0.OPS/0.9.Inbox/` агент обязан:
+
+1. **Проверить `updated`** — если дата старше 14 дней, файл требует актуализации или архивации.
+2. **Проверить `next_review`** — если поле есть и дата прошла, файл требует ревью.
+3. **Обновить `updated`** при любом изменении — даже если это одна строка.
+
+**Pull-on-Touch:** не перебивать все файлы сразу. Добавлять `next_review` и `owner` при первом касании файла.
+
+**Минимальный шаблон для новых inbox-файлов:**
+
+```yaml
+---
+type: [agenda|plan|decision|concept|inventory|proposal|handoff]
+status: [draft|active|in_progress|delegated|archived]
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+owner: [Ильшат|Церен|Андрей|Паша]
+next_review: YYYY-MM-DD
+related: []
+---
+```
+
+---
+
+*Последнее обновление: 2026-06-09*
