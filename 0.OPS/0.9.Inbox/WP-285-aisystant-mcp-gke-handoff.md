@@ -36,11 +36,11 @@
 
 | Сервис | Репозиторий | О чём сервис | Статус | Dockerfile |
 |--------|-------------|--------------|--------|------------|
-| **bridge-scope-service** | https://github.com/aisystant/bridge-scope-service | Проверяет права агента на запись в репозитории пилота (scope) и выдаёт стартовые права при онбординге | Код готов, не задеплоен | ✅ Есть |
-| **agent-status-service** | https://github.com/aisystant/agent-status-service | Доска статусов агентов: кто сейчас работает, чем занят и какие файлы трогает (защита от конфликтов) | Код готов, не задеплоен | ❌ **Нет** (добавить — см. раздел 3) |
-| **github-integration-service** | https://github.com/aisystant/github-integration-service | Обрабатывает вебхуки GitHub App, вход через GitHub (OAuth) и создание репозиториев пользователей | Код готов, не задеплоен | ✅ Есть |
-| **user-profile-service** | https://github.com/aisystant/user-profile-service | Профиль пользователя: контекст, тариф, свои ключи к моделям (BYOK), уведомления боту, статус подключения GitHub | Код готов, не задеплоен | ✅ Есть |
-| **learning-context-service** | https://github.com/aisystant/learning-context-service | Согласие на обработку данных (consent), когнитивный бриф пользователя, состояние онбординга | Код готов, не задеплоен | ✅ Есть |
+| **bridge-scope-service** | https://github.com/aisystant/bridge-scope-service | Scope enforcement for bridge write-tools (agent write permissions) | Code ready, not deployed | ✅ Dockerfile, ✅ README EN, ✅ tests (30) |
+| **agent-status-service** | https://github.com/aisystant/agent-status-service | Agent status board (conflict prevention for multi-agent workspaces) | Code ready, not deployed | ❌ Dockerfile (add — see §3), ✅ README EN, ✅ tests (8) |
+| **github-integration-service** | https://github.com/aisystant/github-integration-service | GitHub App webhooks, OAuth and user repository creation | Code ready, not deployed | ✅ Dockerfile, ✅ README EN, ✅ tests (5) |
+| **user-profile-service** | https://github.com/aisystant/user-profile-service | User identity, tier, BYOK key resolution, bot notifications | Code ready, not deployed | ✅ Dockerfile, ✅ README EN, ✅ tests (2) |
+| **learning-context-service** | https://github.com/aisystant/learning-context-service | Consent management, cognitive brief, onboarding state | Code ready, not deployed | ✅ Dockerfile, ✅ README EN, ✅ tests (3) |
 
 > **Итог по конфигу шлюза (тест Андрея):** после WP-402 шлюз содержит только адреса — 3 backend-MCP (группа B) + 5 вынесенных сервисов (группа C) = 8 URL + парные секреты, без баз данных на роутинг-пути (кроме легитимных остатков — token hook + техдолг BYOK, см. 4.4).
 >
@@ -257,8 +257,8 @@ Gateway = маршрутизатор + Ory JWT auth + fan-out к backends.
 ### 4.5 Открытый техдолг (не блокирует деплой)
 
 - **BYOK-management вынос** (Р11, требует ArchGate) — см. 4.4.
-- **Тесты новых сервисов** (Р12): у 5 сервисов нет тестов; `health-check.test.ts` дублирует логику вместо вызова реального обработчика.
-- **Гигиена публичных репо** (Р13, **блокер передачи**): у всех 5 сервисов нет README; в коде и тестах есть ссылки на номера РП (`WP-402`/`WP-381`/`WP-373`/`WP-391`); русские комментарии в исходниках 4 из 5. Прямое требование Андрея (ИТ-встреча 07.06): репозитории самодостаточные, на английском, без отсылок к личной стратегии. README (EN) + чистка РП-ссылок = must-have; перевод комментариев (Р14) = опционально.
+- **Тесты новых сервисов** (Р12): базовые тесты написаны для 4 сервисов (bridge-scope: 30, agent-status: 8, github-integration: 5, user-profile: 2, learning-context: 3). `health-check.test.ts` в gateway-mcp всё ещё дублирует логику вместо вызова реального обработчика — требует рефакторинга server.ts (export app).
+- **Гигиена публичных репо** (Р13, **блокер передачи — ЗАКРЫТ**): README (EN) добавлены для всех 5 сервисов; ссылки на номера РП (`WP-402`/`WP-381`/`WP-373`/`WP-391`) вычищены из кода и тестов. Русские комментарии в исходниках 4 из 5 — остаются как опционный post-handoff пункт (Р14).
 - GitHub issue #13: [Migrate GET endpoints from ?userId= query param to X-User-Id header](https://github.com/aisystant/gateway-mcp/issues/13) — API-гигиена.
 
 > **Проверка на чувствительные данные (2026-06-09):** этот документ просканирован регулярками на значения ключей/токенов/строк подключения — **значений нет**, только имена переменных и команды их установки без значений. Безопасен для приватного репозитория `aisystant/*`. Не выкладывать в публичный доступ как есть: содержит полный инвентарь имён секретов и внутреннюю карту архитектуры.
