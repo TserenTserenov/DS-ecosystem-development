@@ -1,24 +1,28 @@
-# W286 — Передача Aisystant MCP в GKE
+# WP-285 — Передача Aisystant MCP в GKE
 
 > Документ handoff для Андрея Смирнова (архитектор / Track B).
-> Актуально на 2026-06-09. Все репозитории приватные (`aisystant/*`).
+> Актуально на 2026-06-09 (после верификации WP-402 Р8+Р9, peer-сессия 2026-06-09-07). Все репозитории приватные (`aisystant/*`).
+>
+> **Статус одной строкой:** вынос кода Р1-Р9 закрыт и в проде (gateway авто-деплоится при push в main). Сервисы НЕ развёрнуты → `mcp.aisystant.com/health` сейчас отдаёт **503** (`missing: USER_PROFILE_SERVICE_URL, LEARNING_CONTEXT_SERVICE_URL`). Главная работа Андрея — развернуть 5 сервисов в GKE и подключить их к gateway (раздел 3).
 
----
-
-## 1. Список передаваемых MCP
+<details open>
+<summary><b>1. Список передаваемых MCP</b></summary>
 
 | Сервис | Репозиторий | Платформа | Статус | Dockerfile |
 |--------|-------------|-----------|--------|------------|
-| **gateway-mcp** | https://github.com/aisystant/gateway-mcp | Cloudflare Worker (Wrangler) | Очищен, код готов | Нет (Worker) |
+| **gateway-mcp** | https://github.com/aisystant/gateway-mcp | Cloudflare Worker (Wrangler) | **Задеплоен** (авто-деплой при push в main); `/health` = 503 пока сервисы не подключены | Нет (Worker) |
 | **bridge-scope-service** | https://github.com/aisystant/bridge-scope-service | GKE Standard europe-west4 | Код готов, не задеплоен | ✅ Есть |
-| **agent-status-service** | https://github.com/aisystant/agent-status-service | GKE Standard europe-west4 | Код готов, не задеплоен | ❌ **Нет** |
+| **agent-status-service** | https://github.com/aisystant/agent-status-service | GKE Standard europe-west4 | Код готов, не задеплоен | ❌ **Нет** (добавить — см. раздел 3) |
 | **github-integration-service** | https://github.com/aisystant/github-integration-service | GKE Standard europe-west4 | Код готов, не задеплоен | ✅ Есть |
 | **user-profile-service** | https://github.com/aisystant/user-profile-service | GKE Standard europe-west4 | Код готов, не задеплоен | ✅ Есть |
 | **learning-context-service** | https://github.com/aisystant/learning-context-service | GKE Standard europe-west4 | Код готов, не задеплоен | ✅ Есть |
 
----
+> **Авто-деплой gateway:** репозиторий `gateway-mcp` содержит `.github/workflows/deploy.yml` на `push: [main]` → каждый push в main выкатывается на прод `mcp.aisystant.com`. Код Р1-Р9 уже в проде; сервисы нужно поднять под него.
 
-## 2. Всё необходимое для переноса
+</details>
+
+<details>
+<summary><b>2. Всё необходимое для переноса (секреты и env)</b></summary>
 
 ### 2.1 Gateway — новые Wrangler-секреты
 
@@ -47,12 +51,14 @@ wrangler secret put LEARNING_CONTEXT_SHARED_SECRET
 ```
 
 > **Naming стыковки:** gateway шлёт `Authorization: Bearer <SERVICE>_SHARED_SECRET` + `X-User-Id` заголовок. Каждый сервис читает секрет из переменной `GATEWAY_SHARED_SECRET` (та же строка, другое имя env).
+>
+> **/health hard-required (после WP-402 verify, коммит `fed4f7f`):** `USER_PROFILE_*` и `LEARNING_CONTEXT_*` теперь обязательны в проверке здоровья gateway — без них `/health` отдаёт 503 (закрыт ложно-зелёный статус). `SCOPE_*`/`AGENT_STATUS_*`/`GITHUB_INTEGRATION_*` пока по схеме «обе или ни одной» (both-unset проходит как зелёный — потенциальный ложно-зелёный, кандидат на ужесточение, см. раздел 4.4).
 
 ### 2.2 Оставшиеся секреты gateway (не убирать)
 
 | Секрет | Зачем | Когда уйдёт |
 |--------|-------|-------------|
-| `DATABASE_URL` | persona DB: personal_connect_source, GitHub webhook, scout page, syncUpstreamForks | После выноса остатков (вне WP-402) |
+| `DATABASE_URL` | persona DB: personal_connect_source, GitHub webhook, scout page, syncUpstreamForks, **BYOK-management (list/grant/revoke_llm_key — техдолг Р11)** | После выноса остатков (вне WP-402) |
 | `SUBSCRIPTION_DATABASE_URL` | Token hook `/hydra-hook/token` — читает подписку для claim injection | После установки Ory TTL 5 мин + подтверждения что hotfix-B больше не нужен |
 | `INDICATORS_DATABASE_URL` | `provisionBridgeScopes` — fire-and-forfeit запись в `indicators.agent_scopes_mvp` | Когда bridge-scope-service получит provisioning endpoint |
 
@@ -92,15 +98,19 @@ wrangler secret put LEARNING_CONTEXT_SHARED_SECRET
 - `GATEWAY_SHARED_SECRET` — для middleware auth (обязательно)
 - `LEARNING_DATABASE_URL` — Neon **learning** DB (или `DATABASE_URL`, сервис сам деривирует `/persona` → `/learning`)
 - `PORT` — default 3000
+- **БД-зависимости (применить миграции на LEARNING):** `learning.consent_grant` (`neon-migrations/mvp/229`, `261`), `cognitive.brief` (схема `cognitive` в той же learning-БД, `neon-migrations/mvp/230`). Без них `/grant-consent` и `/cognitive-brief` падают.
 
----
+</details>
 
-## 3. Рекомендация Андрею — пошаговый план
+<details>
+<summary><b>3. Рекомендация Андрею — пошаговый план</b></summary>
 
 ### Критично (до первого деплоя)
 
 1. **Добавить Dockerfile в `agent-status-service`** — единственный сервис без контейнера.
-2. **Применить RLS-миграцию `262-scope-rls.sql`** на prod INDICATORS DB (`neon-migrations/mvp/262-scope-rls.sql`) — блокер для `bridge-scope-service`.
+2. **Применить миграции БД:**
+   - `262-scope-rls.sql` на prod **INDICATORS** (`neon-migrations/mvp/262-scope-rls.sql`) — блокер для `bridge-scope-service`.
+   - `consent_grant` (`229`, `261`) + `cognitive.brief` (`230`) на prod **LEARNING** — блокер для `learning-context-service`.
 3. **Установить Ory access-token TTL = 5 мин** в Ory Network — после этого `SUBSCRIPTION_DATABASE_URL` можно убрать из gateway routing path (hotfix-B станет не нужен).
 
 ### Порядок деплоя (рекомендуемый)
@@ -118,18 +128,21 @@ wrangler secret put LEARNING_CONTEXT_SHARED_SECRET
    - Проверить `/tier?userId=<uuid>`
 5. **learning-context-service** → GKE + Secret Manager
    - Проверить `/health`
-   - Проверить `/consent?userId=<uuid>`
+   - Проверить `/consent?userId=<uuid>` и `/cognitive-brief?userId=<uuid>`
 6. **gateway-mcp** — обновить Wrangler secrets (все `*_SERVICE_URL` + `*_SHARED_SECRET` пары)
-   - Проверить `/health` возвращает `{"ok":true}`
-   - Проверить tool handlers проксируются (smoke: `get_user_context`, `grant_consent`, `github_connect`)
+   - Проверить `/health` возвращает `{"ok":true}` (сейчас 503 — это и есть сигнал «сервисы не подключены»)
+   - Проверить tool handlers проксируются (smoke: `get_user_context`, `grant_consent`, `get_cognitive_brief`, `get_journey_state`, `github_connect`)
+
+> **Важно по порядку:** поднять сервисы + миграции ПЕРВЫМИ, env-vars в gateway — последним шагом. Gateway авто-деплоится при push, но секреты `wrangler secret put` применяются к уже задеплоенному Worker сразу. До установки секретов `/health` остаётся 503.
 
 ### Private networking
 
 Все новые сервисы деплоятся в **тот же GKE-кластер Track B** (europe-west4) → ClusterIP недоступны извне → вариант C auth (shared-secret + `X-User-Id`) безопасен без mTLS.
 
----
+</details>
 
-## 4. Что сделано — очистка gateway-mcp и новые сервисы
+<details>
+<summary><b>4. Что сделано — очистка gateway-mcp, новые сервисы, верификация</b></summary>
 
 ### 4.1 Что удалено из gateway-mcp
 
@@ -139,7 +152,7 @@ wrangler secret put LEARNING_CONTEXT_SHARED_SECRET
 | `agent-status.ts` | `gateway-mcp/src/` | `agent-status-service` (proxy) | `6ae2d09` |
 | `backend-registry.ts` | `gateway-mcp/src/` | Удалён полностью | `d4203f4` |
 | `github-setup.ts` (~1185 строк) | `gateway-mcp/src/` | `github-integration-service` | `07b5b14` + `a38fcb7` |
-| `checkTier` + `checkConsent` + `getCognitiveBrief` + `grantConsentInGateway` + `resolveUserLlmKey` + `notifyBotUserRepoIndexing` + `decryptApiKey` | `gateway-mcp/src/index.ts` | Удалены; заменены на HTTP-прокси | `ff24dcd` |
+| `checkTier` + `checkConsent` + `getCognitiveBrief` + `grantConsentInGateway` + `resolveUserLlmKey` + `notifyBotUserRepoIndexing` + `decryptApiKey` | `gateway-mcp/src/index.ts` | Удалены; заменены на HTTP-прокси | `ff24dcd`, `903891a` |
 
 ### 4.2 Что создано — новые сервисы
 
@@ -151,24 +164,39 @@ wrangler secret put LEARNING_CONTEXT_SHARED_SECRET
 | **user-profile-service** | https://github.com/aisystant/user-profile-service | Identity, context, BYOK, bot notify, tier | `GET /user-context`, `GET /tier`, `POST /byok`, `POST /notify-bot`, `GET /github-connected`, `GET /onboarding-context` |
 | **learning-context-service** | https://github.com/aisystant/learning-context-service | Consent, cognitive brief, onboarding state | `GET /consent`, `POST /grant-consent`, `GET /cognitive-brief`, `GET /onboarding-state` |
 
-### 4.3 Gateway — что осталось
+### 4.3 Верификация WP-402 Р8+Р9 (peer-сессия 2026-06-09-07)
 
-Gateway = чистый маршрутизатор + Ory JWT auth + fan-out к backends.
+165 тестов gateway зелёные, production-код компилируется чисто. При проверке найдены и **починены 2 блокера + 1 дефект:**
 
-- **Проходит тест Андрея** (роутинг-путь без прикладных Neon-коннектов, кроме легитимных остатков).
+| Дефект | Починка |
+|--------|---------|
+| `get_cognitive_brief` читал таблицу `learning.cognitive_brief`, которой нет в миграциях → 500 на проде. Каноническая — `cognitive.brief`. | learning-context-service `bc0fee6`: чтение `cognitive.brief` + прежний контракт полей + GUC в `begin()` |
+| Потерян consent-guard: `cognitive_profile` (PII) отдавался без `text_analysis` consent | тот же коммит — guard восстановлен (B7.3) |
+| Фикс `grant-consent` был незакоммичен; закоммиченная версия использовала старую схему consent_grant → упала бы в проде | закоммичен в `bc0fee6` (каноническая схема) |
+| `/health` не проверял два новых сервиса → ложно-зелёный | gateway `fed4f7f`: пары добавлены в health-check |
+
+### 4.4 Gateway — что осталось
+
+Gateway = маршрутизатор + Ory JWT auth + fan-out к backends.
+
+- **Роутинг-путь почти чист** — кроме легитимных остатков (token hook) **и одного техдолга:**
+  - **Hydra token hook** (`/hydra-hook/token`) — легитимный остаток: endpoint выдачи claims, читает БД по роли, не на роутинг-пути.
+  - **⚠️ BYOK-management** (`list_llm_keys`/`grant_llm_key`/`revoke_llm_key`, `index.ts:2109+`) — всё ещё ходит в `DATABASE_URL` напрямую. Это **прикладная БД-логика на роутинг-пути, нарушает тест Андрея**. Не успели в Р8. Решение (Р11 в WP-402): вынести в `user-profile-service` (`/llm-keys`) или признать остатком — **через ArchGate**.
 - **Tool handlers** остаются в `tools/list` для внешних MCP-клиентов, но делегируют вызовы в сервисы.
-- **Hydra token hook** (`/hydra-hook/token`) — признан легитимным остатком: endpoint выдачи claims, читает БД по роли, не на роутинг-пути.
 
-### 4.4 Открытый техдолг (не блокирует деплой)
+### 4.5 Открытый техдолг (не блокирует деплой)
 
-- GitHub issue #13: [Migrate GET endpoints from ?userId= query param to X-User-Id header](https://github.com/aisystant/gateway-mcp/issues/13) — API-гигиена, условие Kimi для отложения П3.
+- **BYOK-management вынос** (Р11, требует ArchGate) — см. 4.4.
+- **Тесты новых сервисов** (Р12): у 5 сервисов нет тестов; `health-check.test.ts` дублирует логику вместо вызова реального обработчика.
+- GitHub issue #13: [Migrate GET endpoints from ?userId= query param to X-User-Id header](https://github.com/aisystant/gateway-mcp/issues/13) — API-гигиена.
 
----
+</details>
 
-## 5. Быстрая проверка после деплоя (smoke)
+<details>
+<summary><b>5. Быстрая проверка после деплоя (smoke)</b></summary>
 
 ```bash
-# Gateway health
+# Gateway health (сейчас 503; после подключения сервисов → {"ok":true})
 curl https://mcp.aisystant.com/health | jq .
 
 # Service health (через kubectl port-forward или внутри кластера)
@@ -182,6 +210,10 @@ curl http://learning-context-service/health
 curl -H "Authorization: Bearer <JWT>" https://mcp.aisystant.com/api/v1/user-context
 ```
 
+**Критерий приёмки переключённых инструментов:** `get_cognitive_brief` возвращает бриф известного пользователя (а не «service not configured»); `get_journey_state` возвращает корректный stage (а не «consent=false для всех»).
+
+</details>
+
 ---
 
-*Составлено: Kimi (WP-402 Р8+Р9) + Claude Code (Р1-Р7).*
+*Составлено: Kimi (WP-402 Р8+Р9) + Claude Code (Р1-Р7, верификация 2026-06-09-07).*
