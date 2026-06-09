@@ -1,9 +1,11 @@
-# WP-285 — Передача Aisystant MCP в GKE
+# WP-285 — Передача Aisystant MCP (Россия → Мир)
 
-> Документ handoff для Андрея Смирнова (архитектор / Track B).
-> Актуально на 2026-06-09 (после верификации WP-402 Р8+Р9, peer-сессия 2026-06-09-07). Все репозитории приватные (`aisystant/*`).
+> Документ handoff для Андрея Смирнова (архитектор / Track B — мировая инфраструктура).
+> Актуально на 2026-06-09 (после верификации WP-402 Р8+Р9 + переформулировки Russia/World, peer-сессия 2026-06-09-10). Все репозитории приватные (`aisystant/*`).
 >
-> **Статус одной строкой:** вынос кода Р1-Р9 закрыт и в проде (gateway авто-деплоится при push в main). Сервисы НЕ развёрнуты → `mcp.aisystant.com/health` сейчас отдаёт **503** (`missing: USER_PROFILE_SERVICE_URL, LEARNING_CONTEXT_SERVICE_URL`). Главная работа Андрея — развернуть 5 сервисов в GKE и подключить их к gateway (раздел 3).
+> **Принцип передачи (уточнение пилота 2026-06-09).** Андрей **не переносит и не удаляет** текущие сервисы — он **пересоздаёт их заново** в мировой инфраструктуре (GKE) для новых платящих пользователей мира. Текущая (российская) инфра **остаётся** и обязана работать для ВСЕХ текущих пользователей. Наша задача по РП402 — отдать **чистую, документированную и работающую** российскую версию, с которой Андрей копирует всё для мира **без нашего участия**.
+>
+> **Статус одной строкой:** вынос кода Р1-Р9 закрыт и в проде (gateway авто-деплоится при push в main). 5 сервисов не развёрнуты → `mcp.aisystant.com/health` отдаёт **503** → у текущих (российских) пользователей переключённые инструменты (бриф, тариф, journey) деградируют. **Это наш долг — фаза Р10-RU (раздел 3А), а не работа Андрея.** Работа Андрея — пересоздание на GKE (Р10-World, раздел 3Б) с уже чистой российской версии.
 
 <details open>
 <summary><b>1. Карта сервисов за Aisystant MCP</b></summary>
@@ -28,17 +30,17 @@
 
 > **Контейнеризация (важно):** все три сейчас Cloudflare Workers — для GKE нужны Dockerfile + адаптация (runtime Workers ≠ Node-контейнер). Добавить так же, как для agent-status-service (раздел 3). После переезда `KNOWLEDGE_MCP_URL` / `DIGITAL_TWIN_MCP_URL` / `PERSONAL_KNOWLEDGE_MCP_URL` в шлюзе указывают на ClusterIP кластера, а не на CF.
 
-**C. Вспомогательные сервисы — вынесенная из шлюза логика (WP-402, новые, в GKE)**
+**C. Вспомогательные сервисы — вынесенная из шлюза логика (WP-402, новые)**
 
-Это прикладная логика, которую шлюз раньше держал в себе; WP-402 вынес её в отдельные сервисы, чтобы шлюз стал чистым маршрутизатором.
+Это прикладная логика, которую шлюз раньше держал в себе; WP-402 вынес её в отдельные сервисы, чтобы шлюз стал чистым маршрутизатором. **Платформа:** для России — хостинг определяется (раздел 3, Р10-RU; рекомендация — Railway-контейнеры); для мира — Андрей пересоздаёт их на GKE Standard (europe-west4) сам.
 
-| Сервис | Репозиторий | Платформа | Статус | Dockerfile |
-|--------|-------------|-----------|--------|------------|
-| **bridge-scope-service** | https://github.com/aisystant/bridge-scope-service | GKE Standard europe-west4 | Код готов, не задеплоен | ✅ Есть |
-| **agent-status-service** | https://github.com/aisystant/agent-status-service | GKE Standard europe-west4 | Код готов, не задеплоен | ❌ **Нет** (добавить — см. раздел 3) |
-| **github-integration-service** | https://github.com/aisystant/github-integration-service | GKE Standard europe-west4 | Код готов, не задеплоен | ✅ Есть |
-| **user-profile-service** | https://github.com/aisystant/user-profile-service | GKE Standard europe-west4 | Код готов, не задеплоен | ✅ Есть |
-| **learning-context-service** | https://github.com/aisystant/learning-context-service | GKE Standard europe-west4 | Код готов, не задеплоен | ✅ Есть |
+| Сервис | Репозиторий | О чём сервис | Статус | Dockerfile |
+|--------|-------------|--------------|--------|------------|
+| **bridge-scope-service** | https://github.com/aisystant/bridge-scope-service | Проверяет права агента на запись в репозитории пилота (scope) и выдаёт стартовые права при онбординге | Код готов, не задеплоен | ✅ Есть |
+| **agent-status-service** | https://github.com/aisystant/agent-status-service | Доска статусов агентов: кто сейчас работает, чем занят и какие файлы трогает (защита от конфликтов) | Код готов, не задеплоен | ❌ **Нет** (добавить — см. раздел 3) |
+| **github-integration-service** | https://github.com/aisystant/github-integration-service | Обрабатывает вебхуки GitHub App, вход через GitHub (OAuth) и создание репозиториев пользователей | Код готов, не задеплоен | ✅ Есть |
+| **user-profile-service** | https://github.com/aisystant/user-profile-service | Профиль пользователя: контекст, тариф, свои ключи к моделям (BYOK), уведомления боту, статус подключения GitHub | Код готов, не задеплоен | ✅ Есть |
+| **learning-context-service** | https://github.com/aisystant/learning-context-service | Согласие на обработку данных (consent), когнитивный бриф пользователя, состояние онбординга | Код готов, не задеплоен | ✅ Есть |
 
 > **Итог по конфигу шлюза (тест Андрея):** после WP-402 шлюз содержит только адреса — 3 backend-MCP (группа B) + 5 вынесенных сервисов (группа C) = 8 URL + парные секреты, без баз данных на роутинг-пути (кроме легитимных остатков — token hook + техдолг BYOK, см. 4.4).
 >
@@ -128,7 +130,39 @@ wrangler secret put LEARNING_CONTEXT_SHARED_SECRET
 </details>
 
 <details>
-<summary><b>3. Рекомендация Андрею — пошаговый план</b></summary>
+<summary><b>3. План доделок (Р10–Р14) + рекомендация Андрею по GKE</b></summary>
+
+### План остатка РП402 (peer-сессия 2026-06-09-10, Claude + Kimi)
+
+> Рамка: «Россия (наша работа) → Мир (работа Андрея)». Граница — фаза Р10 расщеплена на Р10-RU (мы восстанавливаем текущих пользователей) и Р10-World (Андрей пересоздаёт на GKE).
+
+| Фаза | Владелец | Суть | Блокер / критерий |
+|------|----------|------|-------------------|
+| **Р10-RU** | **Мы** | Восстановить работу текущих российских пользователей: развернуть 5 сервисов и подключить их к текущему gateway (Cloudflare Worker) | **Открытый пункт:** где хостить 5 сервисов на российской стороне (рекомендация — Railway-контейнеры, т.к. 4/5 уже с Dockerfile). Нужно «да» Андрея/пилота, т.к. это пересекает разделение Track A/B. Критерий: `/health` → `{"ok":true}` + smoke брифа и journey возвращает корректные значения для известного пользователя (не только «не 5xx» — у journey тихая деградация) |
+| **Р10-World** | **Андрей** | Пересоздание всех сервисов на GKE Standard (europe-west4) + Cloud SQL, копированием с чистой документированной российской версии | Без нашего участия. Пошаговый плейбук — раздел 3Б ниже |
+| **Р11** | Мы | BYOK-management (`list/grant/revoke_llm_key`) — вынести из gateway в `user-profile-service` (`/llm-keys`) **или** признать осознанным остатком в ADR | Через `/archgate`. Это единственное живое нарушение теста Андрея на роутинг-пути |
+| **Р12** | Мы | Тесты 5 сервисов + переписать `health-check.test.ts` на вызов реального обработчика (сейчас дублирует логику) | — |
+| **Р13** | Мы (**блокер передачи**) | README (EN) на каждый из 5 сервисов по единому шаблону + вычистить ссылки на номера РП из кода и тестов | Прямое требование Андрея: «репозиторий самодостаточный, на английском, без отсылок к твоей стратегии» |
+| **Р14** | Мы (опционально, low) | Перевести русские комментарии в исходниках 4 сервисов на английский | Post-handoff или по запросу Андрея. Комментарии ≠ публичная витрина |
+
+> **Что в этой рамке означает «передать по правильным принципам»:** Андрей получает (1) работающую российскую инфру — текущие пользователи не сломаны (Р10-RU); (2) самодостаточные репозитории с README на английском без внутренних ссылок (Р13); (3) чистый роутер по своему тесту (Р11 закрыт или задокументирован); (4) этот документ как карту развёртывания. С этого он копирует мир сам.
+
+---
+
+### 3А. Р10-RU — восстановить текущих пользователей (владелец: мы)
+
+> **Зачем:** gateway после Р1-Р9 уже в проде и зовёт 5 сервисов, которых нет → бриф/тариф/journey деградируют у живых российских пользователей прямо сейчас. Это наша регрессия, не работа Андрея.
+
+1. **Решить, где хостить 5 сервисов на российской стороне** (открытый пункт на подтверждение Андрея/пилота). Рекомендация — Railway-контейнеры: 4/5 сервисов уже с Dockerfile, текущий gateway (Cloudflare Worker) сможет звать их по публичным URL. Оговорки: на Railway аутентификация остаётся только на общем ключе (без приватной сети, как в GKE) → для `bridge-scope` (запись + персональные данные) это слабее; и Railway по текущему плану уходит Ильшату (Track A) — нужно явное согласование.
+2. **Применить миграции** (те же, что для мира): `262-scope-rls.sql` на INDICATORS; `consent_grant` (229, 261) + `cognitive.brief` (230) на LEARNING.
+3. **Развернуть 5 сервисов** на выбранной российской платформе + прописать пары URL/ключ в gateway (`wrangler secret put`, раздел 2.1).
+4. **Smoke (обязательно содержательный):** `/health` → `{"ok":true}`; `get_cognitive_brief` возвращает бриф известного пользователя; `get_journey_state` — корректный stage (а не «consent=false для всех»). Мониторинг по 5xx тихую деградацию journey не ловит.
+
+---
+
+### 3Б. Р10-World — пересоздание на GKE (владелец: Андрей)
+
+> Ниже — рекомендованный пошаговый плейбук для пересоздания на мировой инфраструктуре. Андрей проходит его сам (с Пашей), копируя с чистой российской версии.
 
 ### Критично (до первого деплоя)
 
@@ -194,9 +228,9 @@ wrangler secret put LEARNING_CONTEXT_SHARED_SECRET
 
 | Сервис | Репозиторий | Что делает | Endpoints |
 |--------|-------------|------------|-----------|
-| **bridge-scope-service** | https://github.com/aisystant/bridge-scope-service | Scope enforcement + provisioning | `POST /check`, `POST /provision` |
-| **agent-status-service** | https://github.com/aisystant/agent-status-service | Agent status board | `POST /update`, `GET /list`, `GET /by-repo` |
-| **github-integration-service** | https://github.com/aisystant/github-integration-service | GitHub App webhooks + OAuth + repo creation | `POST /webhook`, `GET /github/*`, `POST /api/v1/repo/create` |
+| **bridge-scope-service** | https://github.com/aisystant/bridge-scope-service | Scope enforcement (provisioning остался в gateway → техдолг `INDICATORS_DATABASE_URL`) | `POST /check-scope`, `GET /health` |
+| **agent-status-service** | https://github.com/aisystant/agent-status-service | Agent status board | `POST /api/v1/status` (update), `GET /api/v1/status` (list, фильтр `?repo=`), `GET /health` |
+| **github-integration-service** | https://github.com/aisystant/github-integration-service | GitHub App webhooks + OAuth + repo creation | `POST /github/webhook`; `/api/v1/github/*` (`connect`/`status`/`disconnect`/`repo`); `/github/*` (`install`/`setup`/`create-repo`/`repo-callback`); `GET /health` |
 | **user-profile-service** | https://github.com/aisystant/user-profile-service | Identity, context, BYOK, bot notify, tier | `GET /user-context`, `GET /tier`, `POST /byok`, `POST /notify-bot`, `GET /github-connected`, `GET /onboarding-context` |
 | **learning-context-service** | https://github.com/aisystant/learning-context-service | Consent, cognitive brief, onboarding state | `GET /consent`, `POST /grant-consent`, `GET /cognitive-brief`, `GET /onboarding-state` |
 
@@ -224,7 +258,10 @@ Gateway = маршрутизатор + Ory JWT auth + fan-out к backends.
 
 - **BYOK-management вынос** (Р11, требует ArchGate) — см. 4.4.
 - **Тесты новых сервисов** (Р12): у 5 сервисов нет тестов; `health-check.test.ts` дублирует логику вместо вызова реального обработчика.
+- **Гигиена публичных репо** (Р13, **блокер передачи**): у всех 5 сервисов нет README; в коде и тестах есть ссылки на номера РП (`WP-402`/`WP-381`/`WP-373`/`WP-391`); русские комментарии в исходниках 4 из 5. Прямое требование Андрея (ИТ-встреча 07.06): репозитории самодостаточные, на английском, без отсылок к личной стратегии. README (EN) + чистка РП-ссылок = must-have; перевод комментариев (Р14) = опционально.
 - GitHub issue #13: [Migrate GET endpoints from ?userId= query param to X-User-Id header](https://github.com/aisystant/gateway-mcp/issues/13) — API-гигиена.
+
+> **Проверка на чувствительные данные (2026-06-09):** этот документ просканирован регулярками на значения ключей/токенов/строк подключения — **значений нет**, только имена переменных и команды их установки без значений. Безопасен для приватного репозитория `aisystant/*`. Не выкладывать в публичный доступ как есть: содержит полный инвентарь имён секретов и внутреннюю карту архитектуры.
 
 </details>
 
