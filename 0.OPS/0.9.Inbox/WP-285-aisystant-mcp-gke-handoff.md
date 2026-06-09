@@ -41,8 +41,8 @@
 
 | Сервис | Репозиторий | Что делает | Эндпоинты | Готов |
 |--------|-------------|------------|-----------|-------|
-| **bridge-scope-service** | https://github.com/aisystant/bridge-scope-service | Проверяет, можно ли агенту писать в репозиторий пользователя | `POST /check-scope`, `GET /health` | Dockerfile ✅, README ✅ |
-| **agent-status-service** | https://github.com/aisystant/agent-status-service | Доска статусов агентов (кто чем занят, какие файлы трогает) | `POST /api/v1/status`, `GET /api/v1/status` (фильтр `?repo=`), `GET /health` | Dockerfile ❌ (добавить), README ✅ |
+| **bridge-scope-service** | https://github.com/aisystant/bridge-scope-service | Проверяет, можно ли агенту писать в репозиторий пользователя; выдаёт стартовые права при подключении источника | `POST /check-scope`, `POST /api/v1/provision`, `GET /health` | Dockerfile ✅, README ✅ |
+| **agent-status-service** | https://github.com/aisystant/agent-status-service | Доска статусов агентов (кто чем занят, какие файлы трогает) | `POST /api/v1/status`, `GET /api/v1/status` (фильтр `?repo=`), `GET /health` | Dockerfile ✅, README ✅ |
 | **github-integration-service** | https://github.com/aisystant/github-integration-service | Вебхуки GitHub App, вход через GitHub, создание репозиториев пользователей | `POST /github/webhook`; `/api/v1/github/*` (`connect`/`status`/`disconnect`/`repo`); `/github/*` (`install`/`setup`/`create-repo`/`repo-callback`); `GET /health` | Dockerfile ✅, README ✅ |
 | **user-profile-service** | https://github.com/aisystant/user-profile-service | Профиль пользователя: контекст, тариф, ключи к моделям (BYOK + управление ключами), уведомления боту | `GET /user-context`, `GET /tier`, `POST /byok`, `GET\|POST /llm-keys`, `POST /llm-keys/revoke`, `POST /notify-bot`, `GET /github-connected`, `GET /onboarding-context` | Dockerfile ✅, README ✅ |
 | **learning-context-service** | https://github.com/aisystant/learning-context-service | Согласие на обработку данных, когнитивный бриф, состояние онбординга | `GET /consent`, `POST /grant-consent`, `GET /cognitive-brief`, `GET /onboarding-state` | Dockerfile ✅, README ✅ |
@@ -90,7 +90,7 @@ LEARNING_CONTEXT_SHARED_SECRET=<generate>
 | `SUBSCRIPTION_DATABASE_URL` | Хук выдачи токенов читает подписку, чтобы вшить признак в токен | **Убрана с пути маршрутизации** — остаётся только в хуке `/hydra-hook/token` (эндпоинт выдачи, не роутер). См. раздел 4 |
 | `INDICATORS_DATABASE_URL` | Запись стартовых прав агента при онбординге | **Убрана** — делегировано `bridge-scope-service` + `agent-status-service` |
 
-> **Тест Андрея (WP-402):** конфиг шлюза = только URL-адреса сервисов + ключи. Базы данных на пути маршрутизации отсутствуют. Хук `/hydra-hook/token` — исключение, зафиксированное в ADR DP.IWE.003 §10 как легитимный остаток.
+> **Принцип шлюза:** конфиг = только URL-адреса сервисов + ключи. Базы данных на пути маршрутизации отсутствуют. Хук `/hydra-hook/token` — исключение, зафиксированное в ADR DP.IWE.003 §10 как легитимный остаток.
 
 ### 2.3 Переменные окружения для GKE-сервисов (Secret Manager / Cloud SQL)
 
@@ -157,7 +157,7 @@ LEARNING_CONTEXT_SHARED_SECRET=<generate>
 
 ### До первого деплоя
 
-1. **Добавить Dockerfile (4 сервиса без контейнера):** `agent-status-service` + три сервера знаний (`knowledge-mcp`, `digital-twin-mcp`, `personal-knowledge-mcp`). У трёх серверов знаний сверх контейнера нужна адаптация со среды Cloudflare Workers на Node-контейнер.
+1. **Добавить Dockerfile (3 сервиса без контейнера):** три сервера знаний (`knowledge-mcp`, `digital-twin-mcp`, `personal-knowledge-mcp`). Для GKE нужны Dockerfile и адаптация (среда Cloudflare Workers ≠ Node-контейнер). Все 5 вспомогательных сервисов Dockerfile уже имеют.
 2. **Применить миграции БД:**
    - `262-scope-rls.sql` на базу indicators (`neon-migrations/mvp/262-scope-rls.sql`) — нужен для `bridge-scope-service`.
    - `consent_grant` (`229`, `261`) + `cognitive.brief` (`230`) на базу learning — нужны для `learning-context-service`.
@@ -194,7 +194,7 @@ LEARNING_CONTEXT_SHARED_SECRET=<generate>
 <details>
 <summary><b>4. Известные ограничения и соответствие тесту Андрея</b></summary>
 
-**Тест Андрея (WP-402):** «Посмотри какие конфиги у gateway. Если там три URL тех MCP-серверов, которые он объединяет — всё здорово. Если там начинаются базы данных — значит gateway берёт на себя дополнительную логику».
+**Принцип проверки шлюза:** «Посмотри какие конфиги у gateway. Если там три URL тех MCP-серверов, которые он объединяет — всё здорово. Если там начинаются базы данных — значит gateway берёт на себя дополнительную логику».
 
 **Соответствие:**
 - ✅ **Путь маршрутизации чист.** Конфиг Track B = 3 URL серверов знаний + 5 URL вспомогательных сервисов + парные ключи. Базы данных на пути маршрутизации отсутствуют.
@@ -234,29 +234,3 @@ curl -H "Authorization: Bearer <JWT>" https://mcp-world.aisystant.com/api/v1/use
 
 </details>
 
----
-
-## Handoff: WP-402 → Track B (Андрей)
-
-**WP-402 закрыт** (Р1–Р14 done, Р10-RU deployed 2026-06-09). Что передаётся Андрею для Track B:
-
-1. **5 вспомогательных сервисов** — самодостаточные репозитории с README (EN) и базовыми тестами:
-   - `bridge-scope-service` — Dockerfile ✅
-   - `agent-status-service` — Dockerfile ❌ (добавить перед деплоем)
-   - `github-integration-service` — Dockerfile ✅
-   - `user-profile-service` — Dockerfile ✅
-   - `learning-context-service` — Dockerfile ✅
-
-2. **Шлюз** — `gateway-mcp` (TypeScript/Cloudflare Worker). Для Track B: пересоздать в GKE как Node-контейнер. Конфиг чист — только URL + ключи.
-
-3. **3 сервера знаний** — `knowledge-mcp`, `digital-twin-mcp`, `personal-knowledge-mcp`. Все на CF Workers, для GKE нужна контейнеризация + адаптация среды.
-
-4. **Известный остаток** — `GITHUB_CLIENT_SECRET` используется в `github-integration-service` (нормально: сервису нужен для OAuth-интроспекции). В шлюзе Track B `GITHUB_CLIENT_SECRET` не нужен — GitHub OAuth делегирован `github-integration-service`.
-
-5. **Р10-World (Track B)** — ответственность Андрея. Пилот предоставляет:
-   - GKE-кластер (europe-west4) + Cloud SQL
-   - Ory Network проект (мировой) или Zitadel (см. WP-285 решения)
-   - GitHub App для мирового органа
-   - Домен для шлюза Track B (поддомен или отдельный)
-
-**Связь с WP-401:** разделение GitHub-организаций (Aisystant vs МИМ) — Track B использует мировой орган, Track A — российский. Шлюз Track B проксирует GitHub-вызовы в `github-integration-service`, который работает с мировым App.
