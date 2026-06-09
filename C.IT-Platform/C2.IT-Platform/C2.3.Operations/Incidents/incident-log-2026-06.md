@@ -6129,3 +6129,67 @@
   }
 }
 ```
+
+## 2026-06-09T21:41:21+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "В репо незавершённый мерж между ветками — восемь файлов с конфликтами (CLAUDE.md, bot.py, README.md и др.). Зафиксироват",
+      "**По конфликтам в репо** — там CLAUDE.md, bot.py, README.md, locales.py в конфликте между двумя ветками. Нужно разрешить"
+    ],
+    "session_id": "1bad3ee0-ec54-4a1f-bb75-eb96bfff3561"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
+
+## 2026-06-09T22:16:40+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Жду инструкции: разрешить через `[cherry-pick-ok]` как \"осознанная параллельная правка\" - или что-то другое? "
+    ],
+    "session_id": "1bad3ee0-ec54-4a1f-bb75-eb96bfff3561"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
+
+## 2026-06-09T22:17:49+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Жду инструкции: разрешить через `[cherry-pick-ok]` как \"осознанная параллельная правка\" - или что-то другое? "
+    ],
+    "session_id": "1bad3ee0-ec54-4a1f-bb75-eb96bfff3561"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-IT-systems"
+  }
+}
+```
