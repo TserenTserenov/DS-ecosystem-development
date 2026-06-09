@@ -16,17 +16,17 @@
 |--------|-------------|-----------|--------|
 | **gateway-mcp** | https://github.com/aisystant/gateway-mcp | Cloudflare Worker | **Задеплоен** (авто-деплой при push в main); `/health` = 503 пока 5 сервисов группы C не подключены |
 
-**B. Backend-MCP — серверы знаний за шлюзом (НЕ часть WP-402, без изменений)**
+**B. Backend-MCP — серверы знаний за шлюзом (мигрируют в GKE вместе со шлюзом)**
 
-Шлюз делает fan-out (раздачу запросов) к ним: поиск, цифровой двойник, личные знания. Они существовали до WP-402 и не менялись. Это и есть «3 URL» из теста Андрея.
+Шлюз делает fan-out (раздачу запросов) к ним: поиск, цифровой двойник, личные знания. Логика WP-402 их не меняла, но в Track B они тоже переезжают в GKE. Это «3 URL» из теста Андрея.
 
-| Сервис | Репозиторий | Платформа | Что делает | В scope WP-402? |
-|--------|-------------|-----------|------------|------------------|
-| **knowledge-mcp** | https://github.com/aisystant/knowledge-mcp | Cloudflare Worker | Поиск по базе знаний (Pack, гайды) | Нет |
-| **digital-twin-mcp** | https://github.com/aisystant/digital-twin-mcp | Cloudflare Worker | Цифровой двойник пилота | Нет |
-| **personal-knowledge-mcp** | https://github.com/aisystant/personal-knowledge-mcp | Cloudflare Worker | Личные знания пользователя | Нет |
+| Сервис | Репозиторий | Платформа (цель) | Что делает | Dockerfile |
+|--------|-------------|------------------|------------|------------|
+| **knowledge-mcp** | https://github.com/aisystant/knowledge-mcp | GKE Standard europe-west4 | Поиск по базе знаний (Pack, гайды) | ❌ Нет (сейчас CF Worker) |
+| **digital-twin-mcp** | https://github.com/aisystant/digital-twin-mcp | GKE Standard europe-west4 | Цифровой двойник пилота | ❌ Нет (сейчас CF Worker) |
+| **personal-knowledge-mcp** | https://github.com/aisystant/personal-knowledge-mcp | GKE Standard europe-west4 | Личные знания пользователя | ❌ Нет (сейчас CF Worker) |
 
-> **Открытый вопрос Андрею:** три backend-MCP сейчас на Cloudflare. Мигрируют ли они в GKE Track B вместе со шлюзом или остаются на Cloudflare — отдельное решение, в WP-402 не входило.
+> **Контейнеризация (важно):** все три сейчас Cloudflare Workers — для GKE нужны Dockerfile + адаптация (runtime Workers ≠ Node-контейнер). Добавить так же, как для agent-status-service (раздел 3). После переезда `KNOWLEDGE_MCP_URL` / `DIGITAL_TWIN_MCP_URL` / `PERSONAL_KNOWLEDGE_MCP_URL` в шлюзе указывают на ClusterIP кластера, а не на CF.
 
 **C. Вспомогательные сервисы — вынесенная из шлюза логика (WP-402, новые, в GKE)**
 
@@ -132,7 +132,7 @@ wrangler secret put LEARNING_CONTEXT_SHARED_SECRET
 
 ### Критично (до первого деплоя)
 
-1. **Добавить Dockerfile в `agent-status-service`** — единственный сервис без контейнера.
+1. **Добавить Dockerfile (4 сервиса без контейнера):** `agent-status-service` + три backend-MCP (`knowledge-mcp`, `digital-twin-mcp`, `personal-knowledge-mcp`) — все сейчас без Dockerfile. У трёх backend-MCP сверх контейнера нужна адаптация с runtime Cloudflare Workers на Node-контейнер.
 2. **Применить миграции БД:**
    - `262-scope-rls.sql` на prod **INDICATORS** (`neon-migrations/mvp/262-scope-rls.sql`) — блокер для `bridge-scope-service`.
    - `consent_grant` (`229`, `261`) + `cognitive.brief` (`230`) на prod **LEARNING** — блокер для `learning-context-service`.
@@ -140,29 +140,40 @@ wrangler secret put LEARNING_CONTEXT_SHARED_SECRET
 
 ### Порядок деплоя (рекомендуемый)
 
-1. **bridge-scope-service** → GKE + Secret Manager
+**Сначала — 3 backend-MCP (серверы знаний, группа B):**
+
+1. **knowledge-mcp** → контейнеризация + GKE → проверить поиск
+2. **digital-twin-mcp** → контейнеризация + GKE → проверить чтение двойника
+3. **personal-knowledge-mcp** → контейнеризация + GKE → проверить личные знания
+
+**Затем — 5 вынесенных сервисов (группа C):**
+
+4. **bridge-scope-service** → GKE + Secret Manager
    - Проверить `/health`
    - Проверить RLS работает (`SET LOCAL app.user_id`)
-2. **agent-status-service** → GKE + Secret Manager
+5. **agent-status-service** → GKE + Secret Manager
    - Проверить `/health`
-3. **github-integration-service** → GKE + Secret Manager
+6. **github-integration-service** → GKE + Secret Manager
    - Проверить `/health`
    - Проверить webhook delivery (GitHub App callback URL = gateway, gateway проксирует)
-4. **user-profile-service** → GKE + Secret Manager
+7. **user-profile-service** → GKE + Secret Manager
    - Проверить `/health`
    - Проверить `/tier?userId=<uuid>`
-5. **learning-context-service** → GKE + Secret Manager
+8. **learning-context-service** → GKE + Secret Manager
    - Проверить `/health`
    - Проверить `/consent?userId=<uuid>` и `/cognitive-brief?userId=<uuid>`
-6. **gateway-mcp** — обновить Wrangler secrets (все `*_SERVICE_URL` + `*_SHARED_SECRET` пары)
-   - Проверить `/health` возвращает `{"ok":true}` (сейчас 503 — это и есть сигнал «сервисы не подключены»)
-   - Проверить tool handlers проксируются (smoke: `get_user_context`, `grant_consent`, `get_cognitive_brief`, `get_journey_state`, `github_connect`)
 
-> **Важно по порядку:** поднять сервисы + миграции ПЕРВЫМИ, env-vars в gateway — последним шагом. Gateway авто-деплоится при push, но секреты `wrangler secret put` применяются к уже задеплоенному Worker сразу. До установки секретов `/health` остаётся 503.
+**Последним — gateway:**
+
+9. **gateway-mcp** — обновить Wrangler secrets: все backend-URL (`KNOWLEDGE_MCP_URL`/`DIGITAL_TWIN_MCP_URL`/`PERSONAL_KNOWLEDGE_MCP_URL` → ClusterIP) + все `*_SERVICE_URL` + `*_SHARED_SECRET` пары
+   - Проверить `/health` возвращает `{"ok":true}` (сейчас 503 — это и есть сигнал «сервисы не подключены»)
+   - Проверить tool handlers проксируются (smoke: `get_user_context`, `grant_consent`, `get_cognitive_brief`, `get_journey_state`, `github_connect`, поиск через backend-MCP)
+
+> **Важно по порядку:** поднять все 8 сервисов (3 backend-MCP + 5 вынесенных) + миграции ПЕРВЫМИ, env-vars в gateway — последним шагом. Gateway авто-деплоится при push, но секреты `wrangler secret put` применяются к уже задеплоенному Worker сразу. До установки секретов `/health` остаётся 503.
 
 ### Private networking
 
-Все новые сервисы деплоятся в **тот же GKE-кластер Track B** (europe-west4) → ClusterIP недоступны извне → вариант C auth (shared-secret + `X-User-Id`) безопасен без mTLS.
+Все 8 сервисов деплоятся в **тот же GKE-кластер Track B** (europe-west4) → ClusterIP недоступны извне → вариант C auth (shared-secret + `X-User-Id`) безопасен без mTLS. Для backend-MCP это также убирает их публичные CF-URL за периметр кластера.
 
 </details>
 
@@ -224,7 +235,12 @@ Gateway = маршрутизатор + Ory JWT auth + fan-out к backends.
 # Gateway health (сейчас 503; после подключения сервисов → {"ok":true})
 curl https://mcp.aisystant.com/health | jq .
 
-# Service health (через kubectl port-forward или внутри кластера)
+# Backend-MCP health (группа B — серверы знаний, после переезда в GKE)
+curl http://knowledge-mcp/health
+curl http://digital-twin-mcp/health
+curl http://personal-knowledge-mcp/health
+
+# Вынесенные сервисы health (группа C, через kubectl port-forward или внутри кластера)
 curl http://bridge-scope-service/health
 curl http://agent-status-service/health
 curl http://github-integration-service/health
