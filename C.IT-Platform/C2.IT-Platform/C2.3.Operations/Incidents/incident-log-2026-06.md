@@ -6193,3 +6193,67 @@
   }
 }
 ```
+
+## 2026-06-09T23:32:29+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Если нужно пройти тест на 100%** - это уже отдельная задача: нужно либо научить user-profile-service корректно возвращ"
+    ],
+    "session_id": "bc96245d-0bad-4bcb-b929-58844a3bc63d"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-09T23:58:11+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**В4. `GITHUB_CLIENT_SECRET` — единственный функциональный остаток?** "
+    ],
+    "session_id": "6ff2b182-0285-4faa-92a0-3f1d4b6fe7bb"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-09T23:58:24+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "**В4. `GITHUB_CLIENT_SECRET` — единственный функциональный остаток?** ",
+      "Принято. Заголовок «единственный?» скопирован из формулировки вопроса В4 из промпта — не запрос разрешения. Но hook инте"
+    ],
+    "session_id": "6ff2b182-0285-4faa-92a0-3f1d4b6fe7bb"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
