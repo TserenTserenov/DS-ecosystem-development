@@ -1,8 +1,12 @@
 # Aisystant MCP — перенос в мировую инфраструктуру (GKE)
 
-> Карта сервисов, конфигурация и план развёртывания для пересоздания Aisystant MCP в новой (мировой) инфраструктуре на Google Kubernetes Engine.
-> Текущие (российские) экземпляры остаются работать отдельно — этот документ описывает, как поднять те же сервисы заново для новых пользователей.
+> Карта сервисов, конфигурация и план развёртывания для пересоздания Aisystant MCP в новой (мировой) инфраструктуре на Google Kubernetes Engine (Track B).
+> Текущие (российские) экземпляры остаются работать отдельно на Railway + Cloudflare Workers (Track A) — этот документ описывает, как поднять те же сервисы заново для новых пользователей мира.
 > Все репозитории приватные (`aisystant/*`). Актуально на 2026-06-09.
+>
+> **Разделение треков:**
+> - **Track A (Россия):** шлюз `gateway-mcp` на Cloudflare Workers + 5 вспомогательных сервисов на Railway. Остаётся без изменений для текущих пользователей.
+> - **Track B (Мир):** полный стек в GKE Standard (europe-west4) + Cloud SQL. Этот документ — плейбук для Track B.
 
 > **Принцип шлюза.** Aisystant MCP = это **шлюз** (`gateway-mcp`, `mcp.aisystant.com`) — единственная точка, к которой подключаются внешние клиенты (claude.ai, Claude Code, VS Code). Задача шлюза одна: принять запрос и отмаршрутизировать его на нужный сервер. В его конфиге должны быть только адреса серверов, которые он объединяет (плюс парные ключи для них) — без баз данных. Прикладная логика живёт в отдельных сервисах за шлюзом, а не в самом шлюзе.
 
@@ -11,11 +15,13 @@
 
 За шлюзом стоят два класса сервисов: серверы знаний (backend-MCP) и вспомогательные сервисы (прикладная логика). Шлюз раздаёт запросы серверам знаний и проксирует часть вызовов во вспомогательные сервисы.
 
-**A. Шлюз**
+**A. Шлюз (Track B — мир)**
 
 | Сервис | Репозиторий | Платформа | Статус |
 |--------|-------------|-----------|--------|
-| **gateway-mcp** | https://github.com/aisystant/gateway-mcp | Cloudflare Worker | В проде. Авто-деплой при push в `main`. `/health` отдаёт 503, пока сервисы ниже не подключены |
+| **gateway-mcp** | https://github.com/aisystant/gateway-mcp | **GKE** (Kubernetes Deployment) | Пересоздаётся в GKE. Конфиг — только URL-адреса 8 сервисов + парные ключи, без баз данных на пути маршрутизации |
+
+> **Track A (Россия):** текущий шлюз остаётся на Cloudflare Workers (`mcp.aisystant.com`) и проксирует в Railway. Track B получает **отдельный** экземпляр шлюза в GKE (свой домен или поддомен). Два шлюза независимы — у каждого свои env-переменные и свои бэкенды.
 
 **B. Серверы знаний (backend-MCP)**
 
@@ -50,41 +56,41 @@
 
 ### 2.1 Шлюз — адреса и ключи вспомогательных сервисов
 
-Шлюз остаётся на Cloudflare Workers и проксирует часть вызовов в GKE-сервисы. Для каждого сервиса — пара «адрес + общий ключ»:
+Шлюз в Track B разворачивается в GKE и проксирует вызовы во внутренние сервисы кластера. Для каждого сервиса — пара «адрес + общий ключ»:
 
 ```bash
-# bridge-scope
-wrangler secret put SCOPE_SERVICE_URL            # внутренний адрес сервиса в кластере
-wrangler secret put SCOPE_SERVICE_SHARED_SECRET
+# GKE SecretManager / Helm values — шлюз Track B
+SCOPE_SERVICE_URL=http://bridge-scope-service:3000
+SCOPE_SERVICE_SHARED_SECRET=<generate>
 
-# agent-status
-wrangler secret put AGENT_STATUS_SERVICE_URL
-wrangler secret put AGENT_STATUS_SHARED_SECRET
+AGENT_STATUS_SERVICE_URL=http://agent-status-service:3000
+AGENT_STATUS_SHARED_SECRET=<generate>
 
-# github-integration
-wrangler secret put GITHUB_INTEGRATION_SERVICE_URL
-wrangler secret put GITHUB_INTEGRATION_SHARED_SECRET
+GITHUB_INTEGRATION_SERVICE_URL=http://github-integration-service:3000
+GITHUB_INTEGRATION_SHARED_SECRET=<generate>
 
-# user-profile
-wrangler secret put USER_PROFILE_SERVICE_URL
-wrangler secret put USER_PROFILE_SHARED_SECRET
+USER_PROFILE_SERVICE_URL=http://user-profile-service:3000
+USER_PROFILE_SHARED_SECRET=<generate>
 
-# learning-context
-wrangler secret put LEARNING_CONTEXT_SERVICE_URL
-wrangler secret put LEARNING_CONTEXT_SHARED_SECRET
+LEARNING_CONTEXT_SERVICE_URL=http://learning-context-service:3000
+LEARNING_CONTEXT_SHARED_SECRET=<generate>
 ```
+
+> **Track A (Россия):** шлюз на Cloudflare Workers использует `wrangler secret put` с публичными URL-адресами Railway (`*.up.railway.app`). Тот же формат пар «URL + SHARED_SECRET», другие значения.
 
 > **Стыковка авторизации:** шлюз шлёт сервису `Authorization: Bearer <SERVICE>_SHARED_SECRET` + заголовок `X-User-Id` (идентификатор пользователя, уже проверенный шлюзом). Сервис читает тот же ключ из своей переменной `GATEWAY_SHARED_SECRET`.
 >
 > **Проверка здоровья:** адреса `USER_PROFILE_*` и `LEARNING_CONTEXT_*` обязательны — без них `/health` шлюза отдаёт 503. Остальные три пары пока проверяются мягче.
 
-### 2.2 Оставшиеся базы в шлюзе (по разделу 4)
+### 2.2 Оставшиеся базы в шлюзе — только Track A (Россия)
 
-| Переменная | Зачем нужна | Когда уйдёт |
-|------------|-------------|-------------|
-| `DATABASE_URL` | База персон: подключение источников, вебхук GitHub, страница Scout, синхронизация форков | Часть осталась вне пути маршрутизации |
-| `SUBSCRIPTION_DATABASE_URL` | Хук выдачи токенов читает подписку, чтобы вшить признак в токен | После установки короткого времени жизни токена в Ory (5 мин) |
-| `INDICATORS_DATABASE_URL` | Запись стартовых прав агента при онбординге | После того как bridge-scope-service получит эндпоинт выдачи прав |
+| Переменная | Зачем нужна | Статус для Track B |
+|------------|-------------|-------------------|
+| `DATABASE_URL` | База персон: подключение источников, вебхук GitHub, страница Scout, синхронизация форков | **Убрана полностью** — всё делегировано `github-integration-service` и `user-profile-service` |
+| `SUBSCRIPTION_DATABASE_URL` | Хук выдачи токенов читает подписку, чтобы вшить признак в токен | **Убрана с пути маршрутизации** — остаётся только в хуке `/hydra-hook/token` (эндпоинт выдачи, не роутер). См. раздел 4 |
+| `INDICATORS_DATABASE_URL` | Запись стартовых прав агента при онбординге | **Убрана** — делегировано `bridge-scope-service` + `agent-status-service` |
+
+> **Тест Андрея (WP-402):** конфиг шлюза = только URL-адреса сервисов + ключи. Базы данных на пути маршрутизации отсутствуют. Хук `/hydra-hook/token` — исключение, зафиксированное в ADR DP.IWE.003 §10 как легитимный остаток.
 
 ### 2.3 Переменные окружения для GKE-сервисов (Secret Manager / Cloud SQL)
 
@@ -177,7 +183,7 @@ wrangler secret put LEARNING_CONTEXT_SHARED_SECRET
 
 9. **gateway-mcp** — прописать адреса: серверов знаний (на внутренние адреса кластера) + все пары «адрес + ключ» вспомогательных сервисов. Проверить `/health` → `{"ok":true}` (503 = сигнал «сервисы не подключены») и что вызовы проксируются (бриф, тариф, согласие, состояние пути, вход через GitHub, поиск).
 
-> **Порядок важен:** поднять все 8 сервисов + миграции **первыми**, адреса в шлюз — **последним шагом**. Секреты `wrangler secret put` применяются к уже задеплоенному шлюзу сразу; до их установки `/health` остаётся 503.
+> **Порядок важен:** поднять все 8 сервисов + миграции **первыми**, адреса в шлюз — **последним шагом**. Env-переменные применяются через GKE SecretManager / ConfigMap; до их установки `/health` остаётся 503.
 
 ### Приватная сеть
 
@@ -186,13 +192,16 @@ wrangler secret put LEARNING_CONTEXT_SHARED_SECRET
 </details>
 
 <details>
-<summary><b>4. Известные ограничения</b></summary>
+<summary><b>4. Известные ограничения и соответствие тесту Андрея</b></summary>
 
-Шлюз = маршрутизатор + авторизация (Ory JWT) + раздача запросов серверам знаний. Путь маршрутизации чист от баз, кроме одного места:
+**Тест Андрея (WP-402):** «Посмотри какие конфиги у gateway. Если там три URL тех MCP-серверов, которые он объединяет — всё здорово. Если там начинаются базы данных — значит gateway берёт на себя дополнительную логику».
 
-- **Хук выдачи токенов** (`/hydra-hook/token`) — читает базу подписок, чтобы вшить признак подписки в токен. Это эндпоинт выдачи токена, не путь маршрутизации — оставлен осознанно.
+**Соответствие:**
+- ✅ **Путь маршрутизации чист.** Конфиг Track B = 3 URL серверов знаний + 5 URL вспомогательных сервисов + парные ключи. Базы данных на пути маршрутизации отсутствуют.
+- ✅ **BYOK-управление** (`list/grant/revoke_llm_key`) вынесено в `user-profile-service` (эндпоинты `/llm-keys`). Шлюз только проксирует.
+- ⚠️ **Хук выдачи токенов** (`/hydra-hook/token`) — единственное место, где шлюз читает базу (`SUBSCRIPTION_DATABASE_URL`). Это **эндпоинт выдачи токена**, не путь маршрутизации. Зафиксировано в ADR DP.IWE.003 §10 как легитимный остаток: вынос хука усложнит архитектуру без выигрыша, потому что он не на пути обработки пользовательских запросов.
 
-Управление ключами к моделям (BYOK) раньше ходило в базу из шлюза напрямую — теперь вынесено в `user-profile-service` (эндпоинты `/llm-keys`), шлюз только проксирует. Прикладной логики с базой на пути маршрутизации не осталось.
+**Что это значит для Track B:** при пересоздании шлюза в GKE переменная `SUBSCRIPTION_DATABASE_URL` всё ещё нужна (для хука), но она не нарушает тест Андрея — хук ≠ роутер.
 
 </details>
 
@@ -200,8 +209,8 @@ wrangler secret put LEARNING_CONTEXT_SHARED_SECRET
 <summary><b>5. Проверка после деплоя (smoke)</b></summary>
 
 ```bash
-# Здоровье шлюза (503 → {"ok":true} после подключения сервисов)
-curl https://mcp.aisystant.com/health | jq .
+# Здоровье шлюза Track B (503 → {"ok":true} после подключения сервисов)
+curl https://mcp-world.aisystant.com/health | jq .
 
 # Здоровье серверов знаний (внутри кластера)
 curl http://knowledge-mcp/health
@@ -215,9 +224,11 @@ curl http://github-integration-service/health
 curl http://user-profile-service/health
 curl http://learning-context-service/health
 
-# Проксирование через шлюз (с токеном)
-curl -H "Authorization: Bearer <JWT>" https://mcp.aisystant.com/api/v1/user-context
+# Проксирование через шлюз Track B (с токеном)
+curl -H "Authorization: Bearer <JWT>" https://mcp-world.aisystant.com/api/v1/user-context
 ```
+
+> **Track A (Россия):** smoke-адрес шлюза — `https://mcp.aisystant.com/health` (Cloudflare Workers → Railway). Независимый от Track B.
 
 **Содержательная проверка (не только «не 5xx»):** бриф возвращает данные известного пользователя (а не «service not configured»); состояние пути развития возвращает корректную ступень (а не «согласие не дано для всех»).
 
@@ -225,4 +236,27 @@ curl -H "Authorization: Bearer <JWT>" https://mcp.aisystant.com/api/v1/user-cont
 
 ---
 
-> **Безопасность документа:** проверен на значения ключей/токенов/строк подключения — значений нет, только имена переменных. Безопасен для приватного репозитория. Не выкладывать в публичный доступ как есть: содержит инвентарь имён секретов и карту архитектуры.
+## Handoff: WP-402 → Track B (Андрей)
+
+**WP-402 закрыт** (Р1–Р14 done, Р10-RU deployed 2026-06-09). Что передаётся Андрею для Track B:
+
+1. **5 вспомогательных сервисов** — самодостаточные репозитории с README (EN) и базовыми тестами:
+   - `bridge-scope-service` — Dockerfile ✅
+   - `agent-status-service` — Dockerfile ❌ (добавить перед деплоем)
+   - `github-integration-service` — Dockerfile ✅
+   - `user-profile-service` — Dockerfile ✅
+   - `learning-context-service` — Dockerfile ✅
+
+2. **Шлюз** — `gateway-mcp` (TypeScript/Cloudflare Worker). Для Track B: пересоздать в GKE как Node-контейнер. Конфиг чист — только URL + ключи.
+
+3. **3 сервера знаний** — `knowledge-mcp`, `digital-twin-mcp`, `personal-knowledge-mcp`. Все на CF Workers, для GKE нужна контейнеризация + адаптация среды.
+
+4. **Известный остаток** — `GITHUB_CLIENT_SECRET` используется в `github-integration-service` (нормально: сервису нужен для OAuth-интроспекции). В шлюзе Track B `GITHUB_CLIENT_SECRET` не нужен — GitHub OAuth делегирован `github-integration-service`.
+
+5. **Р10-World (Track B)** — ответственность Андрея. Пилот предоставляет:
+   - GKE-кластер (europe-west4) + Cloud SQL
+   - Ory Network проект (мировой) или Zitadel (см. WP-285 решения)
+   - GitHub App для мирового органа
+   - Домен для шлюза Track B (поддомен или отдельный)
+
+**Связь с WP-401:** разделение GitHub-организаций (Aisystant vs МИМ) — Track B использует мировой орган, Track A — российский. Шлюз Track B проксирует GitHub-вызовы в `github-integration-service`, который работает с мировым App.
