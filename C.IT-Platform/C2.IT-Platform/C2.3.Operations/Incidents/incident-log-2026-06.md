@@ -7107,3 +7107,221 @@
   }
 }
 ```
+
+## 2026-06-10T21:18:30+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Два спора и как разрешили:** "
+    ],
+    "session_id": "6ada6992-c07d-417e-bd2e-1a131de64918"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-10T21:18:41+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "**Два спора и как разрешили:** ",
+      "Ложное срабатывание детектора: «Два спора и как разрешили:» — это заголовок секции в отчёте о сделанном, а не запрос раз"
+    ],
+    "session_id": "6ada6992-c07d-417e-bd2e-1a131de64918"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-10T21:18:48+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "**Два спора и как разрешили:** ",
+      "Ложное срабатывание детектора: «Два спора и как разрешили:» — это заголовок секции в отчёте о сделанном, а не запрос раз"
+    ],
+    "session_id": "6ada6992-c07d-417e-bd2e-1a131de64918"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-10T21:26:28+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Шаблон закоммичен. Обновляю карточку РП (упомянуть жизненный цикл в Ф2) и коммичу личный репозиторий. Статус фаз не меня"
+    ],
+    "session_id": "f268699f-1536-4383-9535-106676504162"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-10T21:31:55+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "1. **Как заведён главный аккаунт** — какой у него вообще способ входа записан. От этого зависит, можно ли прицепить Goog",
+      "2. **Разрешена ли тихая привязка по совпадению почты.** Входные системы нарочно её **запрещают** — это классическая дыра",
+      "**Что это значит для запроса:** второй вариант (Device Flow) я бы убрал как самостоятельный — он всё равно упрётся в то,"
+    ],
+    "session_id": "52631104-3196-4d33-ae56-d38563560c48"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-10T21:33:07+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 6 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 6,
+    "examples": [
+      "1. **Как заведён главный аккаунт** — какой у него вообще способ входа записан. От этого зависит, можно ли прицепить Goog",
+      "2. **Разрешена ли тихая привязка по совпадению почты.** Входные системы нарочно её **запрещают** — это классическая дыра",
+      "**Что это значит для запроса:** второй вариант (Device Flow) я бы убрал как самостоятельный — он всё равно упрётся в то,"
+    ],
+    "session_id": "52631104-3196-4d33-ae56-d38563560c48"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-10T21:39:17+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- **Пак:** расширяю DP.M.241 до сквозного ВДВ (генерация — ядро, доставка — хвост). Ок? "
+    ],
+    "session_id": "8e9f0889-34d7-4480-87bc-d19c253b8dd7"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-10T21:54:52+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- Пробелов готовности два, а не один: человек может не понять сообщество (этим никто не владеет) и не выбрать курс (меха"
+    ],
+    "session_id": "68946466-4071-42cb-9632-48beb6ec305c"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-10T21:55:08+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 3 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 3,
+    "examples": [
+      "- Пробелов готовности два, а не один: человек может не понять сообщество (этим никто не владеет) и не выбрать курс (меха",
+      "Это ложное срабатывание детектора — в отчёте я не задавал тебе вопросов на разрешение. Помеченная фраза («пробелов готов",
+      "По делу за сессию разрешения я не спрашивал: выбор варианта (дополнить vs дубль) был обязательным сообщением о расхожден"
+    ],
+    "session_id": "68946466-4071-42cb-9632-48beb6ec305c"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-10T22:28:18+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Что дальше?** "
+    ],
+    "session_id": "7a4501b2-4ff1-40dc-b6a1-f5d1f13f5675"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-MCP"
+  }
+}
+```
