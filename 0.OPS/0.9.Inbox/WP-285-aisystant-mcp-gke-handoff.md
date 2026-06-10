@@ -70,15 +70,20 @@ GITHUB_INTEGRATION_SERVICE_URL=http://github-integration-service:3000
 GITHUB_INTEGRATION_SHARED_SECRET=<generate>
 
 USER_PROFILE_SERVICE_URL=http://user-profile-service:3000
-USER_PROFILE_SHARED_SECRET=<generate>
+USER_PROFILE_SHARED_SECRET=<generate>   # Нужен для backward-compat REST-путей; /mcp использует JWT
 
 LEARNING_CONTEXT_SERVICE_URL=http://learning-context-service:3000
-LEARNING_CONTEXT_SHARED_SECRET=<generate>
+LEARNING_CONTEXT_SHARED_SECRET=<generate>   # Нужен для backward-compat REST-путей; /mcp использует JWT
+
+# Новые секреты (добавлены WP-410):
+GITHUB_WEBHOOK_SECRET=<generate>   # HMAC-валидация вебхуков GitHub в шлюзе (CF Web Crypto, constant-time)
 ```
 
 > **Track A (Россия):** шлюз на Cloudflare Workers использует `wrangler secret put` с публичными URL-адресами Railway (`*.up.railway.app`). Тот же формат пар «URL + SHARED_SECRET», другие значения.
 
 > **Стыковка авторизации:** шлюз шлёт сервису `Authorization: Bearer <SERVICE>_SHARED_SECRET` + заголовок `X-User-Id` (идентификатор пользователя, уже проверенный шлюзом). Сервис читает тот же ключ из своей переменной `GATEWAY_SHARED_SECRET`.
+>
+> **Mode A (JWT-прямая авторизация, WP-410 Ф4б, ADR-IWE-017):** `user-profile-service` и `learning-context-service` теперь имеют эндпоинт `POST /mcp`, который принимает Ory JWT напрямую (без shared-secret). Шлюз вызывает `buildJourneyState` и `getOnboardingContext` через этот эндпоинт, передавая JWT пользователя как `Authorization: Bearer`. Shared-secret пары остаются для backward-compat REST-путей (inline-обработчики шлюза + BYOK/LLM-ключи) до завершения полной миграции (Ф6 WP-410).
 >
 > **Проверка здоровья:** адреса `USER_PROFILE_*` и `LEARNING_CONTEXT_*` обязательны — без них `/health` шлюза отдаёт 503. Остальные три пары пока проверяются мягче.
 
@@ -133,7 +138,8 @@ LEARNING_CONTEXT_SHARED_SECRET=<generate>
 <summary><b>user-profile-service</b></summary>
 
 - `DATABASE_URL` — база персон (обязательно)
-- `GATEWAY_SHARED_SECRET` — авторизация от шлюза (обязательно)
+- `GATEWAY_SHARED_SECRET` — авторизация от шлюза для backward-compat REST-путей (обязательно)
+- `ORY_URL` — адрес Ory для JWKS-верификации в `/mcp` эндпоинте (обязательно для Mode A, WP-410 Ф4б)
 - `BYOK_KEK` — ключ для расшифровки пользовательских ключей к моделям
 - `BOT_NOTIFY_URL` + `BOT_NOTIFY_SECRET` — для уведомлений боту
 - `KNOWLEDGE_DB_SCHEMA` — по умолчанию `knowledge`
@@ -143,7 +149,8 @@ LEARNING_CONTEXT_SHARED_SECRET=<generate>
 <details>
 <summary><b>learning-context-service</b></summary>
 
-- `GATEWAY_SHARED_SECRET` — авторизация от шлюза (обязательно)
+- `GATEWAY_SHARED_SECRET` — авторизация от шлюза для backward-compat REST-путей (обязательно)
+- `ORY_URL` — адрес Ory для JWKS-верификации в `/mcp` эндпоинте (обязательно для Mode A, WP-410 Ф4б)
 - `LEARNING_DATABASE_URL` — база learning (или `DATABASE_URL`, сервис сам выводит адрес)
 - `PORT` — по умолчанию 3000
 - **Зависимости БД (применить миграции на learning):** `learning.consent_grant` (`neon-migrations/mvp/229`, `261`), `cognitive.brief` (схема `cognitive` в той же базе learning, `neon-migrations/mvp/230`). Без них `/grant-consent` и `/cognitive-brief` падают.
@@ -203,7 +210,13 @@ LEARNING_CONTEXT_SHARED_SECRET=<generate>
 - ✅ **Try1 (opaque-токены)** тоже не читает базу подписок. Вместо этого спрашивает тир у `user-profile-service` (`/tier`) и считает подписку оттуда: T2 = подписка есть, T1 = нет.
 - ✅ **Try2 (Kratos-сессии)** удалён полностью — подтверждено, что никакой клиент не использует Kratos session token при обращении к шлюзу.
 
-**Что это значит для Track B:** при пересоздании шлюза в GKE переменная `SUBSCRIPTION_DATABASE_URL` всё ещё нужна (для хука), но она не нарушает тест Андрея — хук ≠ роутер.
+**Прогресс WP-410 (обновлено 2026-06-10):**
+- ✅ **Гидра-хук инжектирует `ext.tier` для ВСЕХ тиров T0-T4** (commit `52863d3`). Ранее только T3/T4 — остальные вызывали DB-fallback в `validateOryToken` Try 0. Теперь tier из claim; DB-fallback убран из Try 0 полностью.
+- ✅ **`buildJourneyState` и `getOnboardingContext` переведены на Mode A** (commit `9eb2b45`, WP-410 Ф4б). Шлюз вызывает `POST /mcp` у `user-profile-service` и `learning-context-service` через `callMcpTool` с JWT пользователя — shared-secret на этом пути больше не нужен.
+- ✅ **GITHUB_WEBHOOK_SECRET добавлен** (commit `52863d3`). HMAC-валидация вебхуков GitHub в шлюзе через CF Workers Web Crypto API (constant-time `crypto.subtle.verify`).
+- ⚠️ **Оставшиеся inline-обработчики** (`get_user_context`, `grant_consent`, BYOK/LLM-ключи, Hermes-контекст, Try 1) по-прежнему используют shared-secret REST API для backward-compat. Полный переход на Mode A — Ф6 WP-410 (отложена, требует миграции каждого inline-обработчика).
+
+**Что это значит для Track B:** при пересоздании шлюза в GKE переменная `SUBSCRIPTION_DATABASE_URL` всё ещё нужна (для хука), но она не нарушает тест Андрея — хук ≠ роутер. Новые переменные `ORY_URL` нужны в `user-profile-service` и `learning-context-service` для Mode A `/mcp` эндпоинтов.
 
 </details>
 
