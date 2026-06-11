@@ -7,6 +7,7 @@ owner: Церен
 next_review: 2026-06-18
 related: [WP-73, WP-415, WP-412]
 source: peer-session 2026-06-11-18-wp415-phase-a-blueprint (Claude + Kimi)
+tiering_ref: WP-73-object-tiering-model.md
 ---
 
 # Соглашения конвейера синхронизации канон → проекции (iwe-sync conventions v1)
