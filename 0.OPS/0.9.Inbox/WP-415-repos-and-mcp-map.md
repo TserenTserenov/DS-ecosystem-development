@@ -4,6 +4,9 @@ title: "Карта репозиториев: доступ через MCP и ло
 status: active
 source_wp: WP-415 (Конвейер управления организациями GitHub)
 created: 2026-06-11
+updated: 2026-06-11
+owner: Церен
+next_review: 2026-06-25
 author: TserenTserenov
 ---
 
@@ -84,6 +87,7 @@ author: TserenTserenov
 | Запуск агентов | `aisystant/agent-runner` | Серверный запуск headless-агентов |
 | Статус агентов | `aisystant/agent-status-service` | Реестр активных агентов |
 | Контроль scope | `aisystant/bridge-scope-service` | Проверка прав на write-операции |
+| Интеграция с GitHub | `aisystant/github-integration-service` | Управление GitHub-организациями и доступами (WP-415) |
 | Локальный шлюз | `TserenTserenov/iwe-local-gateway` | MCP для VS Code (multi-agent coordination) |
 
 ### Сервисы приложения
@@ -125,6 +129,7 @@ author: TserenTserenov
 Репо `TserenTserenov/*` — личные репо пилота. Доступ выдаётся отдельно по запросу.
 
 > **⚠️ Read-only:** `aisystant/SystemsSchool_bot` — старый бот, архив. Не трогать.
+> **⚠️ Read-only:** `aisystant/aisystant` — основной репо Aisystant, доступ только на чтение.
 
 ---
 
