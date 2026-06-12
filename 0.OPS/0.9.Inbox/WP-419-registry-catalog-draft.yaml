@@ -1,15 +1,19 @@
 # registry-catalog.yaml — ЧЕРНОВОЙ СКЕЛЕТ (WP-419 Ф5-draft)
 #
 # Статус: ЧЕРНОВИК. Поля-гипотезы на период Ф1/Ф2/Ф3.
-# Финальная структура фиксируется в Ф4 (описание метода).
-# НЕ заполнять значения полей до принятия Ф4.
+# Финальная структура и допустимые значения фиксируются в Ф4 (описание метода).
+# WARNING: schema_version=0 — файл не обрабатывается автоматически до принятия Ф4.
 #
 # Ожидаемые изменения полей после Ф4:
 #   - возможно добавление: namespace / validation_rule / related_registries
 #   - возможно удаление: risk_priority (спорное, субъективное)
 #   - tier / target_home: могут быть enum по модели тиров WP-415/WP-73
+#   - status enum: может быть переименован (active/drifting → living/stale?)
 #
-schema_version: 0  # версия черновика; 1 = после принятия Ф4
+# Состояния реестров из инвентаризации — в WP-419-registry-catalog-inventory.md.
+# Здесь только структурные факты (name, code_scheme, status: missing) и TBD.
+#
+schema_version: 0  # 0 = черновик; 1 = после принятия Ф4
 generated_at: "2026-06-12 (draft skeleton)"
 
 # --- ФОРМАТ ЗАПИСИ (гипотезный) ---
@@ -28,144 +32,135 @@ generated_at: "2026-06-12 (draft skeleton)"
 #     risk_priority: "high | medium | low"  # гипотеза-поле, может исчезнуть
 #     notes: "свободные заметки"
 
-# --- ЗАГЛУШКИ ПО КАТЕГОРИЯМ (15-20 риск-приоритетных) ---
+# --- ЗАГЛУШКИ: 12 риск-приоритетных + 12 категорий-пробелов (status: missing) ---
 
 registries:
 
-  # ВЫСОКИЙ РИСК — часто используются, имеют дрейф или коллизию
+  # ВЫСОКИЙ РИСК
+  # (состояния — в WP-419-registry-catalog-inventory.md §3-§4)
   - name: "Реестр правил агентов"
     code_scheme: "AR.NNN"
-    status: "drifting"
-    notes: "29 правил в registry vs ~61 AR-файл в Pack; генератор не перезапускался с 8 мая"
+    status: TBD
+    # inventory: drifting — 29 правил в реестре vs ~61 AR-файл в Pack
 
   - name: "Реестр рабочих продуктов"
     code_scheme: "WP-NNN"
-    status: "active"
-    notes: "263 РП; SoT = WP-REGISTRY.md + drift-guard hook активен"
+    status: TBD
+    # inventory: active — drift-guard hook активен
 
   - name: "Реестр ролей цифровой платформы"
     code_scheme: "DP.ROLE.NNN"
-    status: "active"
-    notes: "137 ролей в PACK-digital-platform; без индекс-файла (каталог = ls)"
+    status: TBD
+    # inventory: active — 137 ролей; без индекс-файла
 
   - name: "Реестр обещаний сервисов"
     code_scheme: "DP.SC.NNN"
-    status: "active"
-    notes: "130 обещаний; без индекс-файла"
+    status: TBD
+    # inventory: active — 130 обещаний; без индекс-файла
 
   - name: "Каталог скиллов"
     code_scheme: "нет единого кода"
-    status: "drifting"
-    notes: "skills-catalog.yaml = 43 скилла vs executor-catalog = 37; рассинхрон"
+    status: TBD
+    # inventory: drifting — skills-catalog=43 vs executor-catalog=37; рассинхрон
 
   - name: "Реестр семейств документов 0.OPS"
     code_scheme: "F1-F9, FX1-FX9"
-    status: "active"
-    notes: "COL-01: матрицы транспонированы — источник путаницы; ~223 файла используют"
+    status: TBD
+    # inventory: active; COL-01 — матрицы транспонированы
 
   - name: "process-catalog.yaml"
     code_scheme: "нет кода"
-    status: "dead"
-    notes: "деградировал до 1 заглушки из ~17 процессов; требует восстановления"
+    status: TBD
+    # inventory: dead — деградировал до 1 заглушки из ~17
 
   - name: "repo_inventory.tsv"
     code_scheme: "нет кода"
-    status: "dead"
-    notes: "автоген каждые 6ч по расписанию — мёртв с 18 января; расписание живёт"
+    status: TBD
+    # inventory: dead — мёртв с 18 января; расписание живёт
 
   - name: "Реестр различений (distinctions)"
     code_scheme: "HD #NN, DP.D.NNN"
-    status: "active"
-    notes: "SoT в distinctions.md; DP.D.NNN = Pack-версия; дрейф между двумя"
+    status: TBD
+    # inventory: active — дрейф между distinctions.md и Pack DP.D.NNN
 
   - name: "Каталог ADR (решений архитектуры)"
     code_scheme: "ADR-IWE-NNN"
-    status: "active"
-    notes: "DS-ecosystem-development; живой"
+    status: TBD
+    # inventory: active
 
   - name: "Реестр стейджинг-правил"
     code_scheme: "S-NN"
-    status: "active"
-    notes: "STAGING.md; зеркало в экосистеме отстало на ~2 месяца"
+    status: TBD
+    # inventory: active — зеркало в экосистеме отстало на ~2 месяца
 
   - name: "Реестр коллизий кодирования"
     code_scheme: "COL-NN"
-    status: "active"
-    notes: "SoT = WP-73-registry-catalog-inventory.md §2; 8 коллизий"
+    status: TBD
+    # inventory: active — SoT = WP-73-registry-catalog-inventory.md §2; 8 коллизий
 
+  # ---
   # СРЕДНИЙ РИСК
   - name: "Реестр репозиториев"
     code_scheme: "числа 0-36 + 4D"
-    status: "drifting"
-    notes: "номера декоративные — никто не ссылается; 4D-классификация живее"
+    status: TBD
+    # inventory: drifting — номера декоративные
 
   - name: "Каталог агентских инструментов (MCP)"
     code_scheme: "нет единого"
-    status: "drifting"
-    notes: "agent-tool-registry.yaml перекрыт новыми каталогами; кандидат на списание"
+    status: TBD
+    # inventory: drifting — agent-tool-registry.yaml перекрыт новыми каталогами
 
   - name: "launchd-плисты"
     code_scheme: "нет кода"
-    status: "drifting"
-    notes: "15+ плистов vs 10 процессов в каталоге; планировщик шире каталога"
+    status: TBD
+    # inventory: drifting — 15+ плистов vs 10 процессов в каталоге
 
-  # КАТЕГОРИИ БЕЗ РЕЕСТРА (12 пробелов — записи со status: missing)
+  # ---
+  # КАТЕГОРИИ БЕЗ РЕЕСТРА (12 пробелов — status: missing = структурный факт)
   - name: "Субагенты Claude Code"
-    code_scheme: "TBD"
+    code_scheme: TBD
     status: "missing"
-    notes: ".claude/agents/ — нет сводного реестра"
 
   - name: "MCP-серверы (сводный)"
-    code_scheme: "TBD"
+    code_scheme: TBD
     status: "missing"
-    notes: ".mcp.json по репо; сводного нет"
 
   - name: "Протоколы ОРЗ"
-    code_scheme: "TBD"
+    code_scheme: TBD
     status: "missing"
-    notes: "protocol-*.md файлы; нет каталога протоколов"
 
   - name: "L3-расширения (extensions/)"
-    code_scheme: "TBD"
+    code_scheme: TBD
     status: "missing"
-    notes: "22 файла в extensions/; нет реестра"
 
   - name: "Bug-репорты"
-    code_scheme: "TBD"
+    code_scheme: TBD
     status: "missing"
-    notes: "два места, рассыпаны; нет консолидации"
 
   - name: "Расписания n8n"
-    code_scheme: "TBD"
+    code_scheme: TBD
     status: "missing"
-    notes: "без сводного реестра"
 
   - name: "Self-hosted серверы"
-    code_scheme: "TBD"
+    code_scheme: TBD
     status: "missing"
-    notes: "iwe-server-config, Nix; нет реестра"
 
   - name: "Шаблоны задач/документов"
-    code_scheme: "TBD"
+    code_scheme: TBD
     status: "missing"
-    notes: "три места; нет консолидации"
 
   - name: "Корневые inbox-напоминания"
-    code_scheme: "TBD"
+    code_scheme: TBD
     status: "missing"
-    notes: "inbox/reminder-*.md; нет сводного индекса"
 
   - name: "Курсы и учебные ячейки"
-    code_scheme: "TBD"
+    code_scheme: TBD
     status: "missing"
-    notes: "DS-principles-curriculum; нет индекса"
 
   - name: "Программы развития (вторая локация)"
-    code_scheme: "TBD"
+    code_scheme: TBD
     status: "missing"
-    notes: "curriculum/programs — дрейф с roadmap.yaml; нет сводного"
 
   - name: "Чеклисты"
-    code_scheme: "TBD"
+    code_scheme: TBD
     status: "missing"
-    notes: "memory/checklists.md есть, но не охвачен сводным каталогом"
