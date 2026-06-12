@@ -1,0 +1,171 @@
+# registry-catalog.yaml — ЧЕРНОВОЙ СКЕЛЕТ (WP-419 Ф5-draft)
+#
+# Статус: ЧЕРНОВИК. Поля-гипотезы на период Ф1/Ф2/Ф3.
+# Финальная структура фиксируется в Ф4 (описание метода).
+# НЕ заполнять значения полей до принятия Ф4.
+#
+# Ожидаемые изменения полей после Ф4:
+#   - возможно добавление: namespace / validation_rule / related_registries
+#   - возможно удаление: risk_priority (спорное, субъективное)
+#   - tier / target_home: могут быть enum по модели тиров WP-415/WP-73
+#
+schema_version: 0  # версия черновика; 1 = после принятия Ф4
+generated_at: "2026-06-12 (draft skeleton)"
+
+# --- ФОРМАТ ЗАПИСИ (гипотезный) ---
+# registries:
+#   - name: "Имя реестра"
+#     description: "Что перечисляет"
+#     code_scheme: "Формат кодов (напр. AR.NNN, WP-NNN, LS.FORM.NNN)"
+#     sot_or_derived: "sot | derived"
+#     derived_from: "ссылка на sot если derived"
+#     owner: "роль или имя"
+#     update_mechanism: "как обновляется: manual / script / auto-generated / hook"
+#     last_verified: "YYYY-MM-DD или null"
+#     status: "active | drifting | dead | missing"
+#     tier: "platform | team | personal"
+#     target_home: "canon | world | russia | personal"
+#     risk_priority: "high | medium | low"  # гипотеза-поле, может исчезнуть
+#     notes: "свободные заметки"
+
+# --- ЗАГЛУШКИ ПО КАТЕГОРИЯМ (15-20 риск-приоритетных) ---
+
+registries:
+
+  # ВЫСОКИЙ РИСК — часто используются, имеют дрейф или коллизию
+  - name: "Реестр правил агентов"
+    code_scheme: "AR.NNN"
+    status: "drifting"
+    notes: "29 правил в registry vs ~61 AR-файл в Pack; генератор не перезапускался с 8 мая"
+
+  - name: "Реестр рабочих продуктов"
+    code_scheme: "WP-NNN"
+    status: "active"
+    notes: "263 РП; SoT = WP-REGISTRY.md + drift-guard hook активен"
+
+  - name: "Реестр ролей цифровой платформы"
+    code_scheme: "DP.ROLE.NNN"
+    status: "active"
+    notes: "137 ролей в PACK-digital-platform; без индекс-файла (каталог = ls)"
+
+  - name: "Реестр обещаний сервисов"
+    code_scheme: "DP.SC.NNN"
+    status: "active"
+    notes: "130 обещаний; без индекс-файла"
+
+  - name: "Каталог скиллов"
+    code_scheme: "нет единого кода"
+    status: "drifting"
+    notes: "skills-catalog.yaml = 43 скилла vs executor-catalog = 37; рассинхрон"
+
+  - name: "Реестр семейств документов 0.OPS"
+    code_scheme: "F1-F9, FX1-FX9"
+    status: "active"
+    notes: "COL-01: матрицы транспонированы — источник путаницы; ~223 файла используют"
+
+  - name: "process-catalog.yaml"
+    code_scheme: "нет кода"
+    status: "dead"
+    notes: "деградировал до 1 заглушки из ~17 процессов; требует восстановления"
+
+  - name: "repo_inventory.tsv"
+    code_scheme: "нет кода"
+    status: "dead"
+    notes: "автоген каждые 6ч по расписанию — мёртв с 18 января; расписание живёт"
+
+  - name: "Реестр различений (distinctions)"
+    code_scheme: "HD #NN, DP.D.NNN"
+    status: "active"
+    notes: "SoT в distinctions.md; DP.D.NNN = Pack-версия; дрейф между двумя"
+
+  - name: "Каталог ADR (решений архитектуры)"
+    code_scheme: "ADR-IWE-NNN"
+    status: "active"
+    notes: "DS-ecosystem-development; живой"
+
+  - name: "Реестр стейджинг-правил"
+    code_scheme: "S-NN"
+    status: "active"
+    notes: "STAGING.md; зеркало в экосистеме отстало на ~2 месяца"
+
+  - name: "Реестр коллизий кодирования"
+    code_scheme: "COL-NN"
+    status: "active"
+    notes: "SoT = WP-73-registry-catalog-inventory.md §2; 8 коллизий"
+
+  # СРЕДНИЙ РИСК
+  - name: "Реестр репозиториев"
+    code_scheme: "числа 0-36 + 4D"
+    status: "drifting"
+    notes: "номера декоративные — никто не ссылается; 4D-классификация живее"
+
+  - name: "Каталог агентских инструментов (MCP)"
+    code_scheme: "нет единого"
+    status: "drifting"
+    notes: "agent-tool-registry.yaml перекрыт новыми каталогами; кандидат на списание"
+
+  - name: "launchd-плисты"
+    code_scheme: "нет кода"
+    status: "drifting"
+    notes: "15+ плистов vs 10 процессов в каталоге; планировщик шире каталога"
+
+  # КАТЕГОРИИ БЕЗ РЕЕСТРА (12 пробелов — записи со status: missing)
+  - name: "Субагенты Claude Code"
+    code_scheme: "TBD"
+    status: "missing"
+    notes: ".claude/agents/ — нет сводного реестра"
+
+  - name: "MCP-серверы (сводный)"
+    code_scheme: "TBD"
+    status: "missing"
+    notes: ".mcp.json по репо; сводного нет"
+
+  - name: "Протоколы ОРЗ"
+    code_scheme: "TBD"
+    status: "missing"
+    notes: "protocol-*.md файлы; нет каталога протоколов"
+
+  - name: "L3-расширения (extensions/)"
+    code_scheme: "TBD"
+    status: "missing"
+    notes: "22 файла в extensions/; нет реестра"
+
+  - name: "Bug-репорты"
+    code_scheme: "TBD"
+    status: "missing"
+    notes: "два места, рассыпаны; нет консолидации"
+
+  - name: "Расписания n8n"
+    code_scheme: "TBD"
+    status: "missing"
+    notes: "без сводного реестра"
+
+  - name: "Self-hosted серверы"
+    code_scheme: "TBD"
+    status: "missing"
+    notes: "iwe-server-config, Nix; нет реестра"
+
+  - name: "Шаблоны задач/документов"
+    code_scheme: "TBD"
+    status: "missing"
+    notes: "три места; нет консолидации"
+
+  - name: "Корневые inbox-напоминания"
+    code_scheme: "TBD"
+    status: "missing"
+    notes: "inbox/reminder-*.md; нет сводного индекса"
+
+  - name: "Курсы и учебные ячейки"
+    code_scheme: "TBD"
+    status: "missing"
+    notes: "DS-principles-curriculum; нет индекса"
+
+  - name: "Программы развития (вторая локация)"
+    code_scheme: "TBD"
+    status: "missing"
+    notes: "curriculum/programs — дрейф с roadmap.yaml; нет сводного"
+
+  - name: "Чеклисты"
+    code_scheme: "TBD"
+    status: "missing"
+    notes: "memory/checklists.md есть, но не охвачен сводным каталогом"
