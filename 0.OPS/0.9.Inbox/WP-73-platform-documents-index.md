@@ -3,7 +3,7 @@ type: index
 name: "Индекс документов платформы Aisystant и системы IWE"
 status: active
 created: 2026-05-19
-updated: 2026-05-29
+updated: 2026-06-12
 scope: post-MVP architecture, v2.0 platform concept, 5 natures of IWE
 related: [WP-73, WP-336, WP-74, WP-250, WP-292, WP-285, WP-281, WP-337]
 ---
@@ -117,6 +117,7 @@ related: [WP-73, WP-336, WP-74, WP-250, WP-292, WP-285, WP-281, WP-337]
 | 4.5 | **Observability** | WP-244 — status.aisystant.com, Better Stack, Grafana. | `DS-my-strategy/inbox/WP-244-platform-observability.md` |
 | 4.6 | **Реестр репозиториев** | 22 активных репо, типы, назначения. | `DS-ecosystem-development/0.OPS/REPOSITORY-REGISTRY.md` |
 | 4.7 | **Инвентарь сервисов** | 16 CF Workers + Python, 16 БД, матрица ответственности. | `DS-ecosystem-development/0.OPS/0.9.Inbox/WP-285-services-inventory.md` |
+| 4.8 | **Концепция разделения Россия/Мир** | Топология 4 орг GitHub, язык, финансы, что разделяется/что общее, конвейер канон→проекции, табло 26 репо. Поглотила РП215. | `DS-ecosystem-development/0.OPS/0.9.Inbox/WP-415-russia-world-split-concept.md` (+ спутники: WP-415-iwe-sync-conventions, WP-415-object-tiering-model) |
 
 ---
 
@@ -141,7 +142,7 @@ related: [WP-73, WP-336, WP-74, WP-250, WP-292, WP-285, WP-281, WP-337]
 | 6.2 | **MVP greenfield roadmap** | DP.ROADMAP.002 — MVP с чистого листа. | `PACK-digital-platform/pack/digital-platform/02-domain-entities/DP.ROADMAP.002-mvp-greenfield.md` |
 | 6.3 | **Roadmap архитектуры WP-73** | 4 фазы (март 2026 → 2027+), 22 ключевых изменения. | `DS-ecosystem-development/0.OPS/0.99.Archive/WP-73-aisystant-platform-architecture.md` §3.3 |
 | 6.4 | **Приложение 8. План работ** | Задачи по службам из Стратегии 2026. | `DS-ecosystem-development/.../A3.1.Meaning/3.1.2. Strategy-2026/Приложение 8. План работ.md` |
-| 6.5 | **Направления плана развития** | Инфраструктура, IWE, AI, экосистема, маркетинг. | `DS-ecosystem-development/0.OPS/0.9.Inbox/development-directions.md` *(создаётся в WP-336 Ф6)* |
+| 6.5 | **Направления плана развития** | Инфраструктура, IWE, AI, экосистема, маркетинг. | `DS-ecosystem-development/0.OPS/0.99.Archive/WP-336-development-directions.md` *(архив; РП336 закрыт, направления живут в Strategy.md)* |
 
 ---
 
@@ -150,8 +151,8 @@ related: [WP-73, WP-336, WP-74, WP-250, WP-292, WP-285, WP-281, WP-337]
 | РП | Статус | Что координирует | Путь |
 |----|--------|-----------------|------|
 | **WP-73** | closing | Архитектурный план ИТ-платформы (as-is, to-be, gap, ADR, roadmap) | `DS-my-strategy/inbox/WP-73-platform-architecture.md` |
-| **WP-336** | active | Упаковка ценности: 5 природ IWE + синхронизация всех артефактов | `DS-my-strategy/inbox/WP-336-koncepciya-platformy-post-mvp.md` |
-| **WP-74** | active | Концепция использования платформы (пользовательская) | `DS-ecosystem-development/0.OPS/0.9.Inbox/WP-74-platform-concept-of-use.md` |
+| **WP-336** | closed ✅ | Упаковка ценности: 5 природ IWE + синхронизация всех артефактов | знание в PACK-digital-platform (DP.IWE.007 и др.) |
+| **WP-74** | closed ✅ | Концепция использования платформы (пользовательская) | `DS-ecosystem-development/0.OPS/0.99.Archive/WP-74-platform-concept-of-use.md` |
 | **WP-250** | active | Пост-манифесто: уникальность IWE, позиционирование | `DS-my-strategy/inbox/WP-250-post-manifesto-iwe-uniqueness.md` |
 | **WP-292** | active | Brand IWE — брендинг и вербальная идентичность | `DS-my-strategy/inbox/WP-292-brand-iwe.md` |
 | **WP-285** | active | Track B — международная инфраструктура (GKE, Cloud SQL) | `DS-my-strategy/inbox/WP-285-track-b-international-infrastructure.md` |

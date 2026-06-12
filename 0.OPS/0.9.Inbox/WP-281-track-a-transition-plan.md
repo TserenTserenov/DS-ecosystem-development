@@ -62,8 +62,8 @@ deadline: "15 июля 2026"
 | **6 Python-сервисов** | aist_bot, multi-domain-projection-worker, activity-hub, payment-registry, google-drive-mcp, scheduler | Railway / частично cron |
 | **Ory** | Единая авторизация (VK Cloud) | Работает |
 | **MCP Gateway** | `mcp.aisystant.com` — unified access к L2 + L4 знаниям | Live |
-| **Chatwoot** | Поддержка пользователей (self-hosted на Railway + Neon). [Инфраструктура →](WP-341-helpdesk-infrastructure.md) | Работает |
-| **n8n** | Автоматизация, ДЗ-чекер, health probes. [Инфраструктура →](WP-341-helpdesk-infrastructure.md) | Работает |
+| **Chatwoot** | Поддержка пользователей (self-hosted на Railway + Neon). [Инфраструктура →](../0.99.Archive/WP-341-helpdesk-infrastructure.md) | Работает |
+| **n8n** | Автоматизация, ДЗ-чекер, health probes. [Инфраструктура →](../0.99.Archive/WP-341-helpdesk-infrastructure.md) | Работает |
 | **Metabase + Directus** | Аналитика и CRM | Развёрнуты на Railway |
 | **Grafana** | Мониторинг 12 активных Neon БД ([дашборд `neon-all-dbs`](https://tserenov1972.grafana.net/d/neon-all-dbs/neon3a-12-aktivnyh-bd)) — connections, latency, размеры | Работает |
 | **CI/CD руководств** | Pipeline v4, machine gates, staging → production | Stage 1 done |
@@ -80,7 +80,7 @@ deadline: "15 июля 2026"
 
 Цепочка: AI-клиент → MCP Gateway → GitHub App `Aisystant Knowledge` → GitHub репо пилота → webhook → переиндексация в эмбеддинги.
 
-Реализовано в WP-187 (Gateway v2.0.0, апр 2026). Подробно → [WP-74 §SC-17 «IWE как сервис»](WP-74-platform-concept-of-use.md).
+Реализовано в WP-187 (Gateway v2.0.0, апр 2026). Подробно → [WP-74 §SC-17 «IWE как сервис»](../0.99.Archive/WP-74-platform-concept-of-use.md).
 
 </details>
 
@@ -156,7 +156,7 @@ deadline: "15 июля 2026"
 | 0.1 | Доступы: Neon, Railway, Cloudflare Track A, VK Cloud Ory, **Grafana** ([дашборд `neon-all-dbs`](https://tserenov1972.grafana.net/d/neon-all-dbs/neon3a-12-aktivnyh-bd) — все активные Neon БД) | Церен | |
 | 0.2 | Аварийная книжка создана и заведено всё в 1Password | Ильшат | |
 | ~~0.3~~ | ~~Канал алертов: Better Stack + TG чат~~ | ~~Церен~~ | ✅ |
-| 0.3a | **MVP Helpdesk развёрнут (29 мая):** BetterStack настроен (keyword `verdict`, 3 мин → Ops Telegram), mcp-health-probe активирован (guides/knowledge/digital-twin/hw-checker каждые 30 мин), Chatwoot работает. Документ: [WP-341-helpdesk-infrastructure.md](WP-341-helpdesk-infrastructure.md) | Церен | ✅ |
+| 0.3a | **MVP Helpdesk развёрнут (29 мая):** BetterStack настроен (keyword `verdict`, 3 мин → Ops Telegram), mcp-health-probe активирован (guides/knowledge/digital-twin/hw-checker каждые 30 мин), Chatwoot работает. Документ: [WP-341-helpdesk-infrastructure.md](../0.99.Archive/WP-341-helpdesk-infrastructure.md) | Церен | ✅ |
 | 0.4 | Первый самостоятельный бэкап клуба | Ильшат | |
 | 0.5 | Карта БД и сервисов — Ильшат объясняет своими словами | Ильшат | |
 | 0.6 | **Культура:** Ильшат + Наталья + Дима — Claude Code + IWE Template установлены | Церен | |

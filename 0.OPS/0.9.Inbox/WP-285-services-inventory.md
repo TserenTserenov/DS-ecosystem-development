@@ -17,7 +17,7 @@ author: Церен
 >
 > **Scope этого документа** — MVP-сервисы для онбординга первого пользователя Track B (16 сервисов: 10 CF Workers + 6 Python) + 15 БД (16 Track A минус metabase). Полный operational scope production-runtime — **31 deployment unit**, см. [`C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-services.md`](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-services.md) (WP-307). Сервисы вне MVP-scope — раздел §7.
 >
-> **Граница Платформа / IWE:** все сервисы в §1–6 — это **Платформа Aisystant** (облачные, управляются командой). IWE (локальная среда пользователя: git-репо, VS Code, memory/) — не мигрируется, каждый пользователь разворачивает сам. Единственный IWE-компонент в этом документе: `L1 iwe-local-gateway` (§7, вне scope Track B). Подробнее: [WP-73-iwe-platform-distinction.md](WP-73-iwe-platform-distinction.md).
+> **Граница Платформа / IWE:** все сервисы в §1–6 — это **Платформа Aisystant** (облачные, управляются командой). IWE (локальная среда пользователя: git-репо, VS Code, memory/) — не мигрируется, каждый пользователь разворачивает сам. Единственный IWE-компонент в этом документе: `L1 iwe-local-gateway` (§7, вне scope Track B). Подробнее: [WP-73-iwe-platform-distinction.md](../0.99.Archive/WP-73-iwe-platform-distinction.md).
 
 ---
 

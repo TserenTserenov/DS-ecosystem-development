@@ -186,7 +186,7 @@ depends_on: WP-73, WP-183, WP-187, WP-212, WP-214, WP-215, WP-227, WP-228, WP-23
 ## 7. Ссылки
 
 - **Полный документ:** [WP-73-aisystant-platform-architecture.md](WP-73-aisystant-platform-architecture.md) (~200 KB)
-- **Концепция использования:** [WP-74-platform-concept-of-use.md](WP-74-platform-concept-of-use.md)
+- **Концепция использования:** [WP-74-platform-concept-of-use.md](../../../../0.OPS/0.99.Archive/WP-74-platform-concept-of-use.md)
 - **Повестка встреч архитектора:** [WP-73-architect-agenda-next.md](WP-73-architect-agenda-next.md)
 - **Данные (9 БД):** [PACK-digital-platform/02-domain-entities/DP.ARCH.004-neon-data-architecture.md](../../../../PACK-digital-platform/pack/digital-platform/02-domain-entities/DP.ARCH.004-neon-data-architecture.md)
 - **Принципы платформы:** [DP.ARCH.001-platform-architecture.md](../../../../PACK-digital-platform/pack/digital-platform/02-domain-entities/DP.ARCH.001-platform-architecture.md) §7
