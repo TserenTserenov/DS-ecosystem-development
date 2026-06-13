@@ -127,11 +127,12 @@ def markdown(data: dict) -> int:
         if not items:
             continue
         print(f"## {label} ({len(items)})\n")
-        print("| Риск | Реестр | Схема кодов | Владелец |")
-        print("|------|--------|-------------|----------|")
+        print("| Риск | Реестр | Схема кодов | Владелец | Тир |")
+        print("|------|--------|-------------|----------|-----|")
         for e in sorted(items, key=lambda x: x.get("risk_priority", "z")):
             print(f"| {e.get('risk_priority', '-')} | {e.get('name', '?')} | "
-                  f"{e.get('code_scheme', '-')} | {e.get('owner', '-')} |")
+                  f"{e.get('code_scheme', '-')} | {e.get('owner', '-')} | "
+                  f"{e.get('tier', '-')} |")
         print()
     return 0
 
