@@ -1,17 +1,15 @@
-# registry-catalog.yaml — ЧЕРНОВИК (WP-419 Ф5)
+# registry-catalog.yaml (WP-419 Ф5)
 #
-# Статус: ЧЕРНОВИК. schema_version=1 после приёмки метода DP.METHOD.054 на ИТ-встрече.
+# Статус: ДЕЙСТВУЮЩИЙ. Метод DP.METHOD.054 принят на ИТ-встрече 2026-06-13 → schema_version=1.
 # Источник данных: WP-419-registry-catalog-inventory.md (инвентаризация 4 агентов, 2026-06-12).
 # Сверка: 2026-06-13 (Церен). Следующая сверка: 2026-07-13.
 #
 # COL-06 закрыт 2026-06-13 (peer-session 2026-06-13-29):
 #   L0/L1/L2 (стиль) → S0/S1/S2 — переименовано в 7 файлах.
 #
-# WARNING: поля E1-hard и validation.enforce = false до принятия DP.METHOD.054 на ИТ-встрече.
-#
-schema_version: 0  # → 1 после ИТ-встречи + gate активации
-generated_at: "2026-06-13 (Ф5 draft)"
-method_ref: "DP.METHOD.054 (draft)"
+schema_version: 1  # приёмка DP.METHOD.054 пройдена (ИТ-встреча 2026-06-13)
+generated_at: "2026-06-13 (Ф5)"
+method_ref: "DP.METHOD.054 (active)"
 
 # --- ФОРМАТ ЗАПИСИ ---
 # registries:
