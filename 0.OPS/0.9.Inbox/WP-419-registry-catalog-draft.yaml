@@ -96,19 +96,19 @@ registries:
     notes: "130 обещаний. Индекс-файл отсутствует. Аналогично DP.ROLE — нужен index.yaml."
 
   - name: "Каталог скиллов IWE"
-    description: "Скиллы агентов — спецификации SKILL.md в .claude/skills/"
+    description: "Скиллы агентов — спецификации SKILL.md, опись skills-catalog.yaml (автогенерация)"
     code_scheme: "нет единого кода (имя папки)"
     sot_or_derived: "sot"
-    sot_path: "FMT-exocortex-template/.claude/skills/"
+    sot_path: ".claude/skills/"
     owner: "Церен"
-    update_mechanism: "manual"
+    update_mechanism: "auto-generated"
     verification_method: "git"
-    last_verified: "2026-06-12"
-    status: "drifting"
+    last_verified: "2026-06-13"
+    status: "active"
     tier: "platform"
     target_home: "canon"
-    risk_priority: "high"
-    notes: "skills-catalog.yaml=43 vs executor-catalog.yaml=37 — рассинхрон 6 позиций. Нет валидатора cross-check."
+    risk_priority: "medium"
+    notes: "Личная опись skills-catalog.yaml=43 совпадает с фактом (43 папки), генератор прогнан 11 июня. Шаблонная опись FMT=40 при 42 папках — чуть отстала (перегенерировать generate-skills-catalog.sh). Дрейф был приписан скиллам ошибочно — отстала опись исполнителей (см. executor-catalog.yaml). Нет cross-check между описью скиллов и описью исполнителей."
 
   - name: "Реестр семейств документов (F/FX)"
     description: "Схема семейств F0-F9 и проектных ролей FX — классификатор документов 0.OPS"
@@ -138,7 +138,7 @@ registries:
     tier: "personal"
     target_home: "personal"
     risk_priority: "high"
-    notes: "Деградировал до 1 заглушки из ~17 процессов. Утрачен, реконструкция не выполнена. Watchdog и launchd-плисты живы, но без каталога над ними."
+    notes: "Файл отсутствует физически (не 1 заглушка — нет совсем). Генератор date-ledger-gen.sh и calendar-pipeline-smoke.sh ждут его по пути exocortex/process-catalog.yaml, не находят, работают вслепую (мягкий WARNING). 12+ launchd-плистов живут без описи над ними. Решение пилота 2026-06-13: реконструировать."
 
   - name: "repo_inventory.tsv"
     description: "Автогенерируемый перечень всех репозиториев IWE с метаданными"
@@ -368,20 +368,21 @@ registries:
     risk_priority: "medium"
     notes: "Дублирует реестр репо с дрейфом — нарушение OwnerIntegrity. Кандидат на удаление."
 
-  - name: "executor-catalog.yaml"
-    description: "Каталог агентов-исполнителей для Local Gateway и Agent Inbox"
+  - name: "Опись исполнителей скиллов (executor-catalog.yaml)"
+    description: "Кто исполняет каждый скилл (скрипт / Sonnet / Opus / Haiku) — маршрутизация"
     code_scheme: "нет кода (skill_id)"
-    sot_or_derived: "sot"
-    sot_path: "DS-my-strategy/exocortex/executor-catalog.yaml"
+    sot_or_derived: "derived"
+    derived_from: ".claude/skills/*/SKILL.md"
+    sot_path: "DS-my-strategy/scripts/executor-catalog.yaml"
     owner: "Церен"
-    update_mechanism: "manual"
+    update_mechanism: "script"
     verification_method: "git"
-    last_verified: "2026-06-12"
+    last_verified: "2026-05-25"
     status: "drifting"
     tier: "personal"
     target_home: "personal"
-    risk_priority: "medium"
-    notes: "37 записей при 43 скиллах в skills-catalog.yaml. Рассинхрон ~6 позиций."
+    risk_priority: "high"
+    notes: "ЭТО и есть отставший каталог (не сами скиллы). 37 записей при 43 реальных скиллах — генератор generate-executor-catalog.py не прогоняли с 25 мая, не знает 6 новых. Фикс: перегенерировать."
 
   - name: "Реестр решений Track B (Р-коды)"
     description: "Архитектурные решения Track B (мир/GKE) с Р-кодами"
@@ -821,23 +822,9 @@ registries:
     risk_priority: "low"
     notes: "memory/checklists.md есть, но не охвачен сводом. Чеклисты по репо не агрегированы."
 
-# --- АГРЕГАТЫ (для валидатора) ---
-# Генерируется validate-registry-catalog.py; здесь — ручная сводка на 2026-06-13
-summary:
-  total: 47
-  by_status:
-    active: 22
-    drifting: 9
-    dead: 2
-    missing: 14
-  by_risk:
-    high: 12
-    medium: 20
-    low: 15
-  high_risk_drifting_or_dead:
-    - "Реестр правил агентов"
-    - "Каталог скиллов IWE"
-    - "process-catalog.yaml"
-    - "repo_inventory.tsv"
-    - "Реестр стейджинг-правил"
-  e1_violations: []  # заполняет validate-registry-catalog.py после активации DP.METHOD.054
+# --- АГРЕГАТЫ ---
+# Ручную сводку убрали: она разошлась с фактом (47 vs реальных 52) — ровно тот дрейф,
+# который каталог и лечит. Считается скриптом по факту:
+#   python3 0.OPS/scripts/registry-catalog.py --report     # статусы + флаги свежести
+#   python3 0.OPS/scripts/registry-catalog.py --markdown   # читаемый вид по статусам
+# e1_violations заполняет --validate (4 проверки E1a-E1d).

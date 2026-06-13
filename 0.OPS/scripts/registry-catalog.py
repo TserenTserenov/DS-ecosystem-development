@@ -5,6 +5,7 @@
 #             In Week Close call as: registry-catalog.py --validate || echo "⚠️ E1"
 #             In CI (after DP.METHOD.054 activation): exit 1 blocks pipeline.
 # --report:   freshness flags (90d) + status summary; stdout for Week Close log.
+# --markdown: human-readable catalog grouped by status; stdout for pilot view.
 
 import sys
 import yaml
@@ -103,16 +104,51 @@ def report(data: dict) -> int:
     return 0
 
 
+STATUS_LABEL = {
+    "active": "Живые",
+    "drifting": "Отставшие",
+    "dead": "Мёртвые",
+    "missing": "Пробелы (реестра нет)",
+}
+
+
+def markdown(data: dict) -> int:
+    registries = data.get("registries", [])
+    by_status = {st: [] for st in STATUS_LABEL}
+    for entry in registries:
+        by_status.setdefault(entry.get("status", "other"), []).append(entry)
+
+    print("# Каталог реестров IWE\n")
+    print(f"> Читаемый вид. Генерируется: `registry-catalog.py --markdown`. "
+          f"Источник — каталог-черновик (WP-419 Ф5). Всего записей: {len(registries)}.\n")
+
+    for st, label in STATUS_LABEL.items():
+        items = by_status.get(st, [])
+        if not items:
+            continue
+        print(f"## {label} ({len(items)})\n")
+        print("| Риск | Реестр | Схема кодов | Владелец |")
+        print("|------|--------|-------------|----------|")
+        for e in sorted(items, key=lambda x: x.get("risk_priority", "z")):
+            print(f"| {e.get('risk_priority', '-')} | {e.get('name', '?')} | "
+                  f"{e.get('code_scheme', '-')} | {e.get('owner', '-')} |")
+        print()
+    return 0
+
+
 def main():
-    if len(sys.argv) < 2 or sys.argv[1] not in ("--validate", "--report"):
-        print("Usage: registry-catalog.py --validate | --report", file=sys.stderr)
+    modes = ("--validate", "--report", "--markdown")
+    if len(sys.argv) < 2 or sys.argv[1] not in modes:
+        print("Usage: registry-catalog.py --validate | --report | --markdown", file=sys.stderr)
         sys.exit(2)
 
     data = load_catalog()
     if sys.argv[1] == "--validate":
         sys.exit(validate(data))
-    else:
+    elif sys.argv[1] == "--report":
         sys.exit(report(data))
+    else:
+        sys.exit(markdown(data))
 
 
 if __name__ == "__main__":
