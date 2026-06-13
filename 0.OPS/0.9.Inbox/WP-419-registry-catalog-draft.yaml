@@ -315,6 +315,7 @@ registries:
     owner: "Церен"
     update_mechanism: "script"
     verification_method: "git"
+    sot_path: "PACK-agent-rules/rules-registry.yaml"
     last_verified: "2026-05-08"
     status: "drifting"
     tier: "personal"
