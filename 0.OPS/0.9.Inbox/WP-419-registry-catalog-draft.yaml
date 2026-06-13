@@ -1,166 +1,842 @@
-# registry-catalog.yaml — ЧЕРНОВОЙ СКЕЛЕТ (WP-419 Ф5-draft)
+# registry-catalog.yaml — ЧЕРНОВИК (WP-419 Ф5)
 #
-# Статус: ЧЕРНОВИК. Поля-гипотезы на период Ф1/Ф2/Ф3.
-# Финальная структура и допустимые значения фиксируются в Ф4 (описание метода).
-# WARNING: schema_version=0 — файл не обрабатывается автоматически до принятия Ф4.
+# Статус: ЧЕРНОВИК. schema_version=1 после приёмки метода DP.METHOD.054 на ИТ-встрече.
+# Источник данных: WP-419-registry-catalog-inventory.md (инвентаризация 4 агентов, 2026-06-12).
+# Сверка: 2026-06-13 (Церен). Следующая сверка: 2026-07-13.
 #
-# Ожидаемые изменения полей после Ф4:
-#   - возможно добавление: namespace / validation_rule / related_registries
-#   - возможно удаление: risk_priority (спорное, субъективное)
-#   - tier / target_home: могут быть enum по модели тиров WP-415/WP-73
-#   - status enum: может быть переименован (active/drifting → living/stale?)
+# COL-06 закрыт 2026-06-13 (peer-session 2026-06-13-29):
+#   L0/L1/L2 (стиль) → S0/S1/S2 — переименовано в 7 файлах.
 #
-# Состояния реестров из инвентаризации — в WP-419-registry-catalog-inventory.md.
-# Здесь только структурные факты (name, code_scheme, status: missing) и TBD.
+# WARNING: поля E1-hard и validation.enforce = false до принятия DP.METHOD.054 на ИТ-встрече.
 #
-schema_version: 0  # 0 = черновик; 1 = после принятия Ф4
-generated_at: "2026-06-12 (draft skeleton)"
+schema_version: 0  # → 1 после ИТ-встречи + gate активации
+generated_at: "2026-06-13 (Ф5 draft)"
+method_ref: "DP.METHOD.054 (draft)"
 
-# --- ФОРМАТ ЗАПИСИ (гипотезный) ---
+# --- ФОРМАТ ЗАПИСИ ---
 # registries:
 #   - name: "Имя реестра"
 #     description: "Что перечисляет"
-#     code_scheme: "Формат кодов (напр. AR.NNN, WP-NNN, LS.FORM.NNN)"
+#     code_scheme: "Формат кодов (напр. AR.NNN, WP-NNN)"
 #     sot_or_derived: "sot | derived"
-#     derived_from: "ссылка на sot если derived"
-#     owner: "роль или имя"
-#     update_mechanism: "как обновляется: manual / script / auto-generated / hook"
+#     derived_from: "ссылка на sot, если derived"
+#     owner: "роль или имя владельца"
+#     update_mechanism: "manual | script | auto-generated | hook"
+#     verification_method: "git | manual"   # git = проверяется по коммитам/diff; manual = вручную
+#     sot_path: "путь к файлу или директории SoT (относительно ~/IWE/)"
 #     last_verified: "YYYY-MM-DD или null"
 #     status: "active | drifting | dead | missing"
 #     tier: "platform | team | personal"
 #     target_home: "canon | world | russia | personal"
-#     risk_priority: "high | medium | low"  # гипотеза-поле, может исчезнуть
+#     risk_priority: "high | medium | low"
 #     notes: "свободные заметки"
-
-# --- ЗАГЛУШКИ: 12 риск-приоритетных + 12 категорий-пробелов (status: missing) ---
 
 registries:
 
-  # ВЫСОКИЙ РИСК
-  # (состояния — в WP-419-registry-catalog-inventory.md §3-§4)
+  # ========== ВЫСОКИЙ РИСК ==========
+
   - name: "Реестр правил агентов"
+    description: "Правила поведения агентов AR.NNN — блокирующие и поведенческие"
     code_scheme: "AR.NNN"
-    status: TBD
-    # inventory: drifting — 29 правил в реестре vs ~61 AR-файл в Pack
+    sot_or_derived: "sot"
+    sot_path: "PACK-agent-rules/rules/"
+    owner: "Церен"
+    update_mechanism: "hook"
+    verification_method: "git"
+    last_verified: "2026-05-08"
+    status: "drifting"
+    tier: "platform"
+    target_home: "canon"
+    risk_priority: "high"
+    notes: "29 правил в rules-registry.yaml при ~66 AR-файлах; генератор generate-rules-registry.py не перезапускался с 8 мая. Дрейф ~37 правил."
 
   - name: "Реестр рабочих продуктов"
+    description: "Все РП WP-NNN — зафиксированные намерения работы"
     code_scheme: "WP-NNN"
-    status: TBD
-    # inventory: active — drift-guard hook активен
+    sot_or_derived: "sot"
+    sot_path: "DS-my-strategy/WP-REGISTRY.md"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: "2026-06-13"
+    status: "active"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "high"
+    notes: "263 РП. drift-guard hook активен. Живой реестр."
 
   - name: "Реестр ролей цифровой платформы"
+    description: "Роли агентов/систем DP.ROLE.NNN в PACK-digital-platform"
     code_scheme: "DP.ROLE.NNN"
-    status: TBD
-    # inventory: active — 137 ролей; без индекс-файла
+    sot_or_derived: "sot"
+    sot_path: "PACK-digital-platform/pack/digital-platform/02-domain-entities/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "platform"
+    target_home: "canon"
+    risk_priority: "high"
+    notes: "137 ролей по ls директории. Индекс-файл отсутствует — каталог = ls. Нужен index.yaml."
 
   - name: "Реестр обещаний сервисов"
+    description: "Обещания сервисов DP.SC.NNN — что гарантирует каждый инструмент/сервис"
     code_scheme: "DP.SC.NNN"
-    status: TBD
-    # inventory: active — 130 обещаний; без индекс-файла
+    sot_or_derived: "sot"
+    sot_path: "PACK-digital-platform/pack/digital-platform/08-service-clauses/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "platform"
+    target_home: "canon"
+    risk_priority: "high"
+    notes: "130 обещаний. Индекс-файл отсутствует. Аналогично DP.ROLE — нужен index.yaml."
 
-  - name: "Каталог скиллов"
-    code_scheme: "нет единого кода"
-    status: TBD
-    # inventory: drifting — skills-catalog=43 vs executor-catalog=37; рассинхрон
+  - name: "Каталог скиллов IWE"
+    description: "Скиллы агентов — спецификации SKILL.md в .claude/skills/"
+    code_scheme: "нет единого кода (имя папки)"
+    sot_or_derived: "sot"
+    sot_path: "FMT-exocortex-template/.claude/skills/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: "2026-06-12"
+    status: "drifting"
+    tier: "platform"
+    target_home: "canon"
+    risk_priority: "high"
+    notes: "skills-catalog.yaml=43 vs executor-catalog.yaml=37 — рассинхрон 6 позиций. Нет валидатора cross-check."
 
-  - name: "Реестр семейств документов 0.OPS"
+  - name: "Реестр семейств документов (F/FX)"
+    description: "Схема семейств F0-F9 и проектных ролей FX — классификатор документов 0.OPS"
     code_scheme: "F1-F9, FX1-FX9"
-    status: TBD
-    # inventory: active; COL-01 — матрицы транспонированы
+    sot_or_derived: "sot"
+    sot_path: "DS-ecosystem-development/0.OPS/0.1.Knowledge-Logic/02-document-families.md"
+    owner: "Ильшат"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "team"
+    target_home: "canon"
+    risk_priority: "high"
+    notes: "COL-01: F- и FX-матрицы транспонированы. COL-02: в одном файле две раскладки. Требует ИТ-встречи (4 владельца)."
 
   - name: "process-catalog.yaml"
-    code_scheme: "нет кода"
-    status: TBD
-    # inventory: dead — деградировал до 1 заглушки из ~17
+    description: "Каталог ОРЗ-процессов IWE с расписаниями (Day Open, Marathon, Week Close...)"
+    code_scheme: "нет кода (process_id)"
+    sot_or_derived: "sot"
+    sot_path: "DS-my-strategy/exocortex/process-catalog.yaml"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: "2026-06-12"
+    status: "dead"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "high"
+    notes: "Деградировал до 1 заглушки из ~17 процессов. Утрачен, реконструкция не выполнена. Watchdog и launchd-плисты живы, но без каталога над ними."
 
   - name: "repo_inventory.tsv"
+    description: "Автогенерируемый перечень всех репозиториев IWE с метаданными"
     code_scheme: "нет кода"
-    status: TBD
-    # inventory: dead — мёртв с 18 января; расписание живёт
+    sot_or_derived: "derived"
+    derived_from: "DS-ecosystem-development/0.OPS/REPOSITORY-REGISTRY.md"
+    owner: "Церен"
+    update_mechanism: "auto-generated"
+    verification_method: "git"
+    last_verified: "2026-01-18"
+    status: "dead"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "high"
+    notes: "Мёртв с 18 января 2026. Расписание перестало работать. Файл REPOSITORY-REGISTRY.md жив, TSV-форм — нет."
 
   - name: "Реестр различений (distinctions)"
+    description: "Ключевые термины IWE — HD #NN и DP.D.NNN"
     code_scheme: "HD #NN, DP.D.NNN"
-    status: TBD
-    # inventory: active — дрейф между distinctions.md и Pack DP.D.NNN
+    sot_or_derived: "sot"
+    sot_path: "PACK-digital-platform/pack/digital-platform/02-domain-entities/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-13"
+    status: "active"
+    tier: "platform"
+    target_home: "canon"
+    risk_priority: "high"
+    notes: "Два места: .claude/rules/distinctions.md (HOT projection, ~200 строк) и Pack DP.D.NNN (SoT). Дрейф: distinctions.md пишется вручную без сверки с Pack. OwnerIntegrity нарушена."
 
   - name: "Каталог ADR (решений архитектуры)"
+    description: "Архитектурные решения ADR-IWE-NNN"
     code_scheme: "ADR-IWE-NNN"
-    status: TBD
-    # inventory: active
+    sot_or_derived: "sot"
+    sot_path: "DS-ecosystem-development/C.IT-Platform/C2.IT-Platform/C2.2.Architecture/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "team"
+    target_home: "canon"
+    risk_priority: "high"
+    notes: "Живой. Нет сводного index.md — каталог = ls директории."
 
   - name: "Реестр стейджинг-правил"
+    description: "Правила на обкатке S-NN до промоции в шаблон"
     code_scheme: "S-NN"
-    status: TBD
-    # inventory: active — зеркало в экосистеме отстало на ~2 месяца
+    sot_or_derived: "sot"
+    sot_path: "DS-my-strategy/STAGING.md"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: "2026-06-13"
+    status: "drifting"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "high"
+    notes: "Зеркало в DS-ecosystem-development отстало ~на 2 месяца. SoT = DS-my-strategy/STAGING.md."
 
   - name: "Реестр коллизий кодирования"
+    description: "Конфликты между схемами кодирования IWE COL-NN"
     code_scheme: "COL-NN"
-    status: TBD
-    # inventory: active — SoT = WP-73-registry-catalog-inventory.md §2; 8 коллизий
+    sot_or_derived: "sot"
+    sot_path: "DS-ecosystem-development/0.OPS/0.9.Inbox/WP-419-registry-catalog-inventory.md"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: "2026-06-13"
+    status: "active"
+    tier: "team"
+    target_home: "canon"
+    risk_priority: "high"
+    notes: "8 коллизий (COL-01...COL-08). SoT = §2 inventory. COL-06 закрыт 2026-06-13. COL-01/02/05b — ИТ-встреча."
 
-  # ---
-  # СРЕДНИЙ РИСК
+  # ========== СРЕДНИЙ РИСК ==========
+
   - name: "Реестр репозиториев"
-    code_scheme: "числа 0-36 + 4D"
-    status: TBD
-    # inventory: drifting — номера декоративные
+    description: "Все репозитории IWE с 4D-классификацией (тип/тир/дом/поколение)"
+    code_scheme: "числа 0-36 + 4D-оси"
+    sot_or_derived: "sot"
+    sot_path: "DS-ecosystem-development/0.OPS/REPOSITORY-REGISTRY.md"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "drifting"
+    tier: "team"
+    target_home: "canon"
+    risk_priority: "medium"
+    notes: "Номера 0-36 декоративные (никто не ссылается). 4D-классификация (тир×дом×тип×поколение) неполная."
 
-  - name: "Каталог агентских инструментов (MCP)"
-    code_scheme: "нет единого"
-    status: TBD
-    # inventory: drifting — agent-tool-registry.yaml перекрыт новыми каталогами
+  - name: "Каталог MCP-инструментов платформы"
+    description: "Сводный каталог MCP-инструментов (tools) для агентов"
+    code_scheme: "нет единого кода"
+    sot_or_derived: "derived"
+    derived_from: "PACK-digital-platform/pack/digital-platform/08-service-clauses/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "drifting"
+    tier: "platform"
+    target_home: "canon"
+    risk_priority: "medium"
+    notes: "agent-tool-registry.yaml перекрыт новыми каталогами — кандидат на списание. 39 инструментов по последнему каталогу."
 
-  - name: "launchd-плисты"
+  - name: "launchd-плисты (macOS)"
+    description: "Расписания launchd для IWE-процессов (watchdog, day-open, ...)"
+    code_scheme: "нет кода (имя plist)"
+    sot_or_derived: "sot"
+    sot_path: "DS-my-strategy/exocortex/launchd/"
+    owner: "Церен"
+    update_mechanism: "script"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "drifting"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "medium"
+    notes: "15+ плистов при 10 процессах в каталоге — планировщик шире каталога. process-catalog.yaml мёртв."
+
+  - name: "Каталог скриптов IWE"
+    description: "Все bash/python скрипты ~/IWE/scripts/ и FMT-exocortex-template/scripts/"
     code_scheme: "нет кода"
-    status: TBD
-    # inventory: drifting — 15+ плистов vs 10 процессов в каталоге
+    sot_or_derived: "sot"
+    sot_path: "scripts/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "platform"
+    target_home: "canon"
+    risk_priority: "medium"
+    notes: "~70 скриптов. FMT/scripts = derived (через promote-скрипты). Нет сводного SCRIPTS.md."
 
-  # ---
-  # КАТЕГОРИИ БЕЗ РЕЕСТРА (12 пробелов — status: missing = структурный факт)
-  - name: "Субагенты Claude Code"
-    code_scheme: TBD
-    status: "missing"
+  - name: "WP-контексты (inbox/archive)"
+    description: "Context-файлы всех РП в DS-my-strategy/inbox/ и archive/"
+    code_scheme: "WP-NNN-<slug>.md"
+    sot_or_derived: "sot"
+    sot_path: "DS-my-strategy/inbox/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: "2026-06-13"
+    status: "active"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "medium"
+    notes: "Живые в inbox/, завершённые в archive/wp-contexts/. Файлы открытых РП есть не для всех."
 
-  - name: "MCP-серверы (сводный)"
-    code_scheme: TBD
-    status: "missing"
+  - name: "Реестр программ развития (roadmap.yaml)"
+    description: "Программы развития (ЛР, РР, ИР) с milestone'ами"
+    code_scheme: "нет единого кода"
+    sot_or_derived: "sot"
+    sot_path: "DS-ecosystem-development/A.Systems-Builder/A2.Systems-Builder/A2.1.Meaning/"
+    owner: "Ильшат"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "drifting"
+    tier: "team"
+    target_home: "canon"
+    risk_priority: "medium"
+    notes: "roadmap.yaml и curriculum/programs — два места с дрейфом. OwnerIntegrity нарушена."
 
-  - name: "Протоколы ОРЗ"
-    code_scheme: TBD
-    status: "missing"
+  - name: "Реестр правил агентов (derived)"
+    description: "Машиночитаемый реестр AR.NNN — сгенерирован из PACK-agent-rules/rules/"
+    code_scheme: "AR.NNN"
+    sot_or_derived: "derived"
+    derived_from: "PACK-agent-rules/rules/"
+    owner: "Церен"
+    update_mechanism: "script"
+    verification_method: "git"
+    last_verified: "2026-05-08"
+    status: "drifting"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "medium"
+    notes: "Файл rules-registry.yaml. Генератор generate-rules-registry.py. 29 записей при 66 AR-файлах. Последний прогон 8 мая."
 
-  - name: "L3-расширения (extensions/)"
-    code_scheme: TBD
-    status: "missing"
+  - name: "Каталог антипаттернов (АП-NN)"
+    description: "Антипаттерны проектирования DS-ecosystem-development"
+    code_scheme: "АП-NN"
+    sot_or_derived: "sot"
+    sot_path: "DS-ecosystem-development/0.OPS/0.1.Knowledge-Logic/08-anti-patterns.md"
+    owner: "Ильшат"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "team"
+    target_home: "canon"
+    risk_priority: "medium"
+    notes: "Живой. Нет машинного индекса."
 
-  - name: "Bug-репорты"
-    code_scheme: TBD
-    status: "missing"
+  - name: "Реестр сервисов (DP.MAP.002)"
+    description: "Сводная карта сервисов платформы DP.MAP.002"
+    code_scheme: "нет кода (сервис-каталог)"
+    sot_or_derived: "sot"
+    sot_path: "PACK-digital-platform/pack/digital-platform/03-use-cases/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "platform"
+    target_home: "canon"
+    risk_priority: "medium"
+    notes: "MAP.002 = DP.SC + DP.ROLE сводка. Живой, но без автоматической сверки."
 
-  - name: "Расписания n8n"
-    code_scheme: TBD
-    status: "missing"
+  - name: "Каталог Pack-репозиториев"
+    description: "Все Pack-репозитории IWE с доменами"
+    code_scheme: "нет кода"
+    sot_or_derived: "derived"
+    derived_from: "DS-ecosystem-development/0.OPS/REPOSITORY-REGISTRY.md"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "drifting"
+    tier: "team"
+    target_home: "canon"
+    risk_priority: "medium"
+    notes: "Дублирует реестр репо с дрейфом — нарушение OwnerIntegrity. Кандидат на удаление."
 
-  - name: "Self-hosted серверы"
-    code_scheme: TBD
-    status: "missing"
+  - name: "executor-catalog.yaml"
+    description: "Каталог агентов-исполнителей для Local Gateway и Agent Inbox"
+    code_scheme: "нет кода (skill_id)"
+    sot_or_derived: "sot"
+    sot_path: "DS-my-strategy/exocortex/executor-catalog.yaml"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: "2026-06-12"
+    status: "drifting"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "medium"
+    notes: "37 записей при 43 скиллах в skills-catalog.yaml. Рассинхрон ~6 позиций."
 
-  - name: "Шаблоны задач/документов"
-    code_scheme: TBD
-    status: "missing"
+  - name: "Реестр решений Track B (Р-коды)"
+    description: "Архитектурные решения Track B (мир/GKE) с Р-кодами"
+    code_scheme: "Р-NNN"
+    sot_or_derived: "sot"
+    sot_path: "DS-ecosystem-development/C.IT-Platform/"
+    owner: "Андрей"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "team"
+    target_home: "world"
+    risk_priority: "medium"
+    notes: "Живой. Владелец — Андрей."
 
-  - name: "Корневые inbox-напоминания"
-    code_scheme: TBD
-    status: "missing"
+  - name: "Реестр инцидентов"
+    description: "Инциденты платформы с разбором"
+    code_scheme: "INCIDENT-YYYY-MM-DD"
+    sot_or_derived: "sot"
+    sot_path: "DS-ecosystem-development/C.IT-Platform/C2.IT-Platform/C2.3.Operations/Incidents/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "team"
+    target_home: "canon"
+    risk_priority: "medium"
+    notes: "Живой. Нет сводного индекса."
 
-  - name: "Курсы и учебные ячейки"
-    code_scheme: TBD
-    status: "missing"
+  - name: "Реестр языковых стилей (LS.FORM.NNN)"
+    description: "Формализации языковых стилей в PACK-rhetoric"
+    code_scheme: "LS.FORM.NNN"
+    sot_or_derived: "sot"
+    sot_path: "PACK-rhetoric/pack/language-style/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "platform"
+    target_home: "canon"
+    risk_priority: "medium"
+    notes: "Новый Pack (WP-412). Реестр в registry/. S0/S1/S2 — уровни стиля после COL-06."
+
+  - name: "sync-manifest.yaml"
+    description: "Карта источник→производное для проверки drift между репозиториями"
+    code_scheme: "нет кода"
+    sot_or_derived: "sot"
+    sot_path: "DS-my-strategy/exocortex/sync-manifest.yaml"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "medium"
+    notes: "Используется drift-guard hook."
+
+  - name: "security-posture.md"
+    description: "Дашборд безопасности IWE платформы (B7.x)"
+    code_scheme: "B7.x (раздел чеклиста)"
+    sot_or_derived: "sot"
+    sot_path: "DS-ecosystem-development/C.IT-Platform/C2.IT-Platform/C2.2.Architecture/security-posture.md"
+    owner: "Церен"
+    update_mechanism: "script"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "team"
+    target_home: "canon"
+    risk_priority: "medium"
+    notes: "Ежемесячный прогон VR.R.002. open_critical_count отслеживается при Week Close."
+
+  - name: "Каталог шаблонов (pack-templates)"
+    description: "Шаблоны Pack и документов в FMT-exocortex-template/pack-templates/"
+    code_scheme: "нет кода"
+    sot_or_derived: "sot"
+    sot_path: "FMT-exocortex-template/pack-templates/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "platform"
+    target_home: "canon"
+    risk_priority: "medium"
+    notes: "Нет сводного index."
 
   - name: "Программы развития (вторая локация)"
+    description: "curriculum/programs — дрейф с roadmap.yaml"
     code_scheme: TBD
+    sot_or_derived: "derived"
+    derived_from: "DS-ecosystem-development roadmap.yaml"
+    sot_path: "DS-principles-curriculum/curriculum/programs/"
+    owner: "Ильшат"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: null
     status: "missing"
+    tier: "team"
+    target_home: "russia"
+    risk_priority: "medium"
+    notes: "OwnerIntegrity нарушена — два источника. Нужно решение о SoT."
+
+  - name: "Bug-репорты"
+    description: "Баг-репорты IWE в inbox/bugs/"
+    code_scheme: "bug-YYYY-MM-DD-тема"
+    sot_or_derived: TBD
+    sot_path: "DS-my-strategy/inbox/bugs/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: null
+    status: "missing"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "medium"
+    notes: "Два места (DS-my-strategy + DS-ecosystem). Нет сводного реестра, нет статусов."
+
+  - name: "Self-hosted серверы"
+    description: "Серверы IWE (Hetzner, NixOS config)"
+    code_scheme: TBD
+    sot_or_derived: TBD
+    sot_path: "iwe-server-config/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: null
+    status: "missing"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "medium"
+    notes: "Конфиги в отдельном репо. Нет реестра серверов как объектов."
+
+  - name: "Субагенты Claude Code"
+    description: "Специализированные агенты в .claude/agents/"
+    code_scheme: TBD
+    sot_or_derived: TBD
+    sot_path: ".claude/agents/"
+    owner: "Церен"
+    update_mechanism: TBD
+    verification_method: "git"
+    last_verified: null
+    status: "missing"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "medium"
+    notes: "Нет реестра. Возможно, папка пуста или отсутствует."
+
+  - name: "MCP-серверы (сводный каталог)"
+    description: "Все MCP-серверы платформы — сводный вид по .mcp.json файлам"
+    code_scheme: TBD
+    sot_or_derived: TBD
+    sot_path: ".mcp.json (по репо)"
+    owner: "Церен"
+    update_mechanism: TBD
+    verification_method: "git"
+    last_verified: null
+    status: "missing"
+    tier: "platform"
+    target_home: "canon"
+    risk_priority: "medium"
+    notes: "Распределены по .mcp.json в разных репо. Сводного нет."
+
+  # ========== НИЗКИЙ РИСК ==========
+
+  - name: "Каталог ролей (roles.md)"
+    description: "Роли IWE экзокортекса R1-R31"
+    code_scheme: "R1-R31 (MIM.R / VR.R / DP.ROLE)"
+    sot_or_derived: "derived"
+    derived_from: "PACK-digital-platform/pack/digital-platform/02-domain-entities/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "platform"
+    target_home: "canon"
+    risk_priority: "low"
+    notes: "memory/roles.md — hot projection. SoT в Pack. Периодический дрейф."
+
+  - name: "MEMORY.md (index)"
+    description: "Индекс файлов памяти экзокортекса — горячая загрузка"
+    code_scheme: "нет кода"
+    sot_or_derived: "sot"
+    sot_path: "memory/MEMORY.md"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: "2026-06-13"
+    status: "active"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "low"
+    notes: "Загружается каждую сессию. Лимит 200 строк."
+
+  - name: "Projects.md (P1-P6)"
+    description: "Стратегические проекты пилота P1-P6"
+    code_scheme: "P1-P6"
+    sot_or_derived: "sot"
+    sot_path: "DS-my-strategy/current/Projects.md"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "low"
+    notes: "Стратегический горизонт. 6 проектов."
+
+  - name: "Каталог контент-очистки (CC-NNN)"
+    description: "Задачи по очистке устаревшего контента экосистемы"
+    code_scheme: "CC-NNN"
+    sot_or_derived: "sot"
+    sot_path: "DS-my-strategy/inbox/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "low"
+    notes: "Живой. Нет автоматического обнаружения кандидатов."
+
+  - name: "Secrets inventory"
+    description: "Инвентарь секретов платформы (без значений)"
+    code_scheme: "нет кода"
+    sot_or_derived: "sot"
+    sot_path: "DS-ecosystem-development/C.IT-Platform/C2.IT-Platform/C2.2.Architecture/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "team"
+    target_home: "canon"
+    risk_priority: "low"
+    notes: "Обновляется при ArchGate. Ротация по WP-212."
+
+  - name: "PII map"
+    description: "Карта персональных данных платформы (B7.3)"
+    code_scheme: "нет кода"
+    sot_or_derived: "sot"
+    sot_path: "DS-ecosystem-development/C.IT-Platform/C2.IT-Platform/C2.2.Architecture/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "team"
+    target_home: "canon"
+    risk_priority: "low"
+    notes: "Обязателен перед Security Gate."
+
+  - name: "Индекс сессий peer"
+    description: "Хронология peer-сессий (DP.SC.154) — 00-index.md"
+    code_scheme: "YYYY-MM-DD-NN-slug"
+    sot_or_derived: "sot"
+    sot_path: "DS-my-strategy/sessions/00-index.md"
+    owner: "Церен"
+    update_mechanism: "hook"
+    verification_method: "git"
+    last_verified: "2026-06-13"
+    status: "active"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "low"
+    notes: "Автозапись скиллом peer-conversation при открытии сессии."
+
+  - name: "Матрица ролей 3×3"
+    description: "Матрица A/B/C × X1/X2/X3 × M/A/O — навигация по DS-ecosystem-development"
+    code_scheme: "F1-F9 (семейства)"
+    sot_or_derived: "sot"
+    sot_path: "DS-ecosystem-development/0.OPS/0.3.Roles-Matrix-3x3/roles-matrix.md"
+    owner: "Ильшат"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "team"
+    target_home: "canon"
+    risk_priority: "low"
+    notes: "COL-01 затрагивает этот файл. До ИТ-встречи не менять."
+
+  - name: "Глоссарий (05-glossary.md)"
+    description: "Термины DS-ecosystem-development"
+    code_scheme: "нет кода"
+    sot_or_derived: "sot"
+    sot_path: "DS-ecosystem-development/0.OPS/0.1.Knowledge-Logic/05-glossary.md"
+    owner: "Ильшат"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "team"
+    target_home: "canon"
+    risk_priority: "low"
+    notes: "Терминологический документ. Не кодирующий."
+
+  - name: "12factor-сервисы (B/W/M/T коды)"
+    description: "Каталог 31 сервиса платформы по 12factor с кодами B/W/M/T"
+    code_scheme: "B/W/M/T + номер"
+    sot_or_derived: "sot"
+    sot_path: "DS-ecosystem-development/C.IT-Platform/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "team"
+    target_home: "canon"
+    risk_priority: "low"
+    notes: "31 юнит. COL-05b — B = сервис или ядро? Аналогично COL-01/02: ИТ-встреча."
+
+  - name: "Stage-rules (SR.NNN)"
+    description: "Правила ступеней программы развития SR.NNN"
+    code_scheme: "SR.NNN"
+    sot_or_derived: "sot"
+    sot_path: "PACK-agent-rules/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: "2026-06-12"
+    status: "active"
+    tier: "platform"
+    target_home: "canon"
+    risk_priority: "low"
+    notes: "Часть PACK-agent-rules. Нет отдельного индекса."
+
+  - name: "Протоколы ОРЗ"
+    description: "Протоколы Открытия/Работы/Закрытия (memory/protocol-*.md)"
+    code_scheme: TBD
+    sot_or_derived: TBD
+    sot_path: "memory/protocol-*.md"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: null
+    status: "missing"
+    tier: "platform"
+    target_home: "canon"
+    risk_priority: "low"
+    notes: "4 протокола есть, реестра над ними нет."
+
+  - name: "L3-расширения (extensions/)"
+    description: "Пользовательские расширения протоколов в extensions/"
+    code_scheme: TBD
+    sot_or_derived: TBD
+    sot_path: "extensions/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: null
+    status: "missing"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "low"
+    notes: "22 файла. Нет индекса."
+
+  - name: "Расписания n8n"
+    description: "Воркфлоу и расписания в n8n"
+    code_scheme: TBD
+    sot_or_derived: TBD
+    sot_path: "n8n (внешний)"
+    owner: "Церен"
+    update_mechanism: "auto-generated"
+    verification_method: "manual"
+    last_verified: null
+    status: "missing"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "low"
+    notes: "Живут вне git. Нет офлайн-каталога."
+
+  - name: "Шаблоны задач/документов"
+    description: "Шаблоны task, WP-context, report, peer-сессий"
+    code_scheme: TBD
+    sot_or_derived: TBD
+    sot_path: "DS-my-strategy/inbox/agent/templates/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: null
+    status: "missing"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "low"
+    notes: "Три места (DS-my-strategy, FMT, pack-templates). Нет сводного."
+
+  - name: "Корневые inbox-напоминания"
+    description: "Разовые напоминания в inbox/reminder-*.md"
+    code_scheme: "reminder-YYYY-MM-DD-тема"
+    sot_or_derived: TBD
+    sot_path: "DS-my-strategy/inbox/"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "git"
+    last_verified: null
+    status: "missing"
+    tier: "personal"
+    target_home: "personal"
+    risk_priority: "low"
+    notes: "Нет автоматического обзора. Накапливаются."
+
+  - name: "Курсы и учебные ячейки"
+    description: "Контент DS-principles-curriculum (уроки, задания)"
+    code_scheme: TBD
+    sot_or_derived: TBD
+    sot_path: "DS-principles-curriculum/"
+    owner: "Ильшат"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: null
+    status: "missing"
+    tier: "team"
+    target_home: "russia"
+    risk_priority: "low"
+    notes: "Целый репо, нет машинного каталога."
 
   - name: "Чеклисты"
+    description: "Все чеклисты IWE (memory/checklists.md и по репо)"
     code_scheme: TBD
+    sot_or_derived: TBD
+    sot_path: "memory/checklists.md"
+    owner: "Церен"
+    update_mechanism: "manual"
+    verification_method: "manual"
+    last_verified: null
     status: "missing"
+    tier: "platform"
+    target_home: "canon"
+    risk_priority: "low"
+    notes: "memory/checklists.md есть, но не охвачен сводом. Чеклисты по репо не агрегированы."
+
+# --- АГРЕГАТЫ (для валидатора) ---
+# Генерируется validate-registry-catalog.py; здесь — ручная сводка на 2026-06-13
+summary:
+  total: 47
+  by_status:
+    active: 22
+    drifting: 9
+    dead: 2
+    missing: 14
+  by_risk:
+    high: 12
+    medium: 20
+    low: 15
+  high_risk_drifting_or_dead:
+    - "Реестр правил агентов"
+    - "Каталог скиллов IWE"
+    - "process-catalog.yaml"
+    - "repo_inventory.tsv"
+    - "Реестр стейджинг-правил"
+  e1_violations: []  # заполняет validate-registry-catalog.py после активации DP.METHOD.054
