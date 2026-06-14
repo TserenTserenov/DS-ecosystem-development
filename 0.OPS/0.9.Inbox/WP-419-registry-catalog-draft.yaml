@@ -820,6 +820,21 @@ registries:
     risk_priority: "low"
     notes: "memory/checklists.md есть, но не охвачен сводом. Чеклисты по репо не агрегированы."
 
+  - name: "Реестр нумераций IWE (ID-префикс-семейства)"
+    description: "Пространства имён ID-префиксов кодов сущностей (AR.NNN, DP.SC.NNN, WP-NNN, ...) + коллизии. Граница: registry-catalog = реестры/списки; numbering-registry = ID-префикс-семейства."
+    code_scheme: "namespace pattern (AR.NNN, DP.SC.NNN, ...)"
+    sot_or_derived: "sot"
+    sot_path: "0.OPS/0.9.Inbox/numbering-registry.yaml"
+    owner: "Церен"
+    update_mechanism: "hook"
+    verification_method: "git"
+    last_verified: "2026-06-14"
+    status: "active"
+    tier: "platform"
+    target_home: "canon"
+    risk_priority: "high"
+    notes: "WP-419 Ф6 Г-полный (peer-session 2026-06-14-21). 22 namespace + 4 коллизии (COL-06/07/08 resolved, COL-DPM open). Валидатор numbering-registry.py --validate (E1-hard). Gate Case B/C = AR.234, не отдельный скрипт."
+
 # --- АГРЕГАТЫ ---
 # Ручную сводку убрали: она разошлась с фактом (47 vs реальных 52) — ровно тот дрейф,
 # который каталог и лечит. Считается скриптом по факту:
