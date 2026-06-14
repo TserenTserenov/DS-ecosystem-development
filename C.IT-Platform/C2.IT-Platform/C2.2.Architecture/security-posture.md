@@ -72,6 +72,14 @@ related:
 | ⚪ низкая | 4 | B5.5 container scan; FSM concurrency lock; GitHub App scope re-consent; timing side-channel | backlog |
 | **Итого** | **16** | — | — |
 
+### 3.1 Feature-flag security gates (pre-mitigations)
+
+> Флаги, удерживающие потенциальный вектор закрытым до выполнения условия снятия. Снимает пилот **вручную** после закрытия условия (не автодеплоем). Источник: WP-417 ArchGate 2026-06-13 (инвариант И3), запись 2026-06-14.
+
+| Флаг | Где | Что гейтит | Условие снятия | Статус |
+|------|-----|-----------|----------------|--------|
+| `FEATURE_F5_PLATFORM_RENDER` | `DS-my-strategy/scripts/lib/panel_render.py` | Рендер тайлов баллы/бонусы/ступень/время (WP-417 Ф5) на публично-смежной guide-web — вектор утечки PII | Security Gate B7.3 (проекции personal vs public, паттерн WP-302) **и** account_id-маппинг (WP-411) | 🔴 `false` (закрыт) |
+
 ---
 
 ## 4. CI/CD Security Coverage
