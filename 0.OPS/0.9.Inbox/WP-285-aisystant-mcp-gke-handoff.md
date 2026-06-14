@@ -206,3 +206,49 @@ curl http://agent-status-service/health   ; curl http://bridge-scope-service/hea
 **Поинструментная проверка с токеном (обязательно — `/health`=200 не доказывает, что инструмент работает):** прогнать живой вызов по каждому семейству (поиск, двойник, личные знания, тариф, бриф, статус агента, вход через GitHub). Бриф возвращает данные известного пользователя, состояние пути — корректную ступень.
 
 </details>
+
+<details>
+<summary><b>6. Сборка раздачи прав (provisioning) — обязательно для Track B</b></summary>
+
+> Чтобы Track B был чистым by design (без `bridge-scope-service` и без `SCOPE_SERVICE_SHARED_SECRET`), проверку прав агента переносят внутрь `personal-knowledge-mcp`. Решение уже принято (Вариант 2, peer-сессия 2026-06-11-26): встроить guard в personal-knowledge, `bridge-scope-service` не разворачивать. Но раздачу прав (provisioning) нужно собрать в один дом — иначе подключение источника и установка GitHub App не пропишут права, и enforce будет молча всё запрещать.
+
+**Три точки раздачи прав сегодня (разбросаны):**
+
+| Точка | Что делает | Где сейчас | Куда должна |
+|-------|-----------|-----------|-------------|
+| user-path | `personal_connect_source` прописывает права на репозиторий пользователя | вызов из шлюза → `bridge-scope /api/v1/provision` | in-process в `personal-knowledge-mcp` (владелец инструмента), личность из user-JWT (`sub`) |
+| install-webhook | установка GitHub App прописывает права | `github-integration → agent-runner /v1/admin/scope-provision` | в `github-integration-service` с server-to-server подписью (пользователя нет) |
+| функция-порт | `provisionBridgeScopes` уже перенесена в personal-knowledge | в коде, помечена S2-only (не подключена) | подключить в обработчик `personal_connect_source` |
+
+**Шаги (actionable, owner — РП-410):**
+
+1. **Подключить guard-provisioning в personal-knowledge.** Функция `provisionBridgeScopes` уже в коде personal-knowledge (`src/scope.ts`), помечена S2-only — определена, но не подключена в обработчик `connect_source` (комментарий `scope.ts`: «wired into connect_source once the gateway stops provisioning via bridge-scope»). Подключить её вызов в обработчик `connect_source` — права прописываются в той же `agent_scopes_mvp` через `neon()` с явным `WHERE user_id` (RLS на таблице не форсится, проверено интроспекцией: `relforcerowsecurity=f`). Prerequisite: `INDICATORS_DATABASE_URL` на сервисе.
+2. **Перенести install-webhook provisioning в s2s-дом.** Путь `/v1/admin/scope-provision` (установка GitHub App, пользователя нет) перенести из связки `github-integration → agent-runner` в `github-integration-service` с подписью шлюза (`GATEWAY_JWKS_URL`), не на общий пароль. **Provisioning на пароле = та же дыра P1** (можно прописать права любому `userId`).
+3. **Вывести bridge-scope.** После шагов 1-2 и (для Track A) выдержки теневой проверки → шлюз убирает гейт `BRIDGE_WRITE_TOOLS` + вызовы `callScopeService`/`callScopeProvision` → снять `SCOPE_SERVICE_SHARED_SECRET`+URL → `bridge-scope-service` не разворачивать.
+
+**Track A vs Track B:**
+- **Track A (живой Cloudflare/Railway):** шаг 3 (enforce + снятие секрета) делается ТОЛЬКО после выдержки теневой проверки ≥7 дней (старт 13 июня → ориентир ~20 июня), чтобы не заблокировать запись текущим пользователям. Шаги 1-2 можно готовить заранее.
+- **Track B (свежий GKE):** живого трафика нет → guard включается в enforce сразу, `bridge-scope` не разворачивается вовсе. Но шаги 1-2 (provisioning) выполнить **обязательно** до приёма трафика, иначе первое подключение источника / установка App не пропишут права.
+
+</details>
+
+<details>
+<summary><b>7. Доказательная база (proof для приёмки)</b></summary>
+
+> Чтобы заявления «USER_PROFILE-код очищен» и «дефект learning-context не из РП-410» не пришлось перепроверять вручную.
+
+**USER_PROFILE-чистка инертна (1 файл, мёртвый код):**
+```
+$ git show dca2986 --stat   # repo: aisystant/gateway-mcp
+refactor(WP-410): drop dead USER_PROFILE secret path from gateway
+ src/index.ts | 23 +++++++++--------------
+ 1 file changed, 9 insertions(+), 14 deletions(-)
+```
+Коммит в `main` как `1980f88` (cherry-pick: тот же набор изменений и та же статистика `+9/-14`; номера строк в hunk сдвинуты, т.к. лёг на более свежую базу). Убирает только чтение `USER_PROFILE_SHARED_SECRET` (мёртвая ветка `mode:"secret"` — ни один из 4 вызовов её не передаёт), поле в `Env`, ложное health-требование. Прикладной логики не трогает. typecheck чисто, 162 теста, cold-review 0 critical/high, после деплоя per-tool smoke живым токеном зелёный.
+
+**Дефект learning-context (`ORY_URL not configured`) — не из РП-410:**
+- `git show dca2986` не содержит learning-context (трогает только USER_PROFILE-код шлюза).
+- Корень: фиксы авторизации `54366b3`/`a2a0062`/`2e3d334` в `main` сервиса, но не задеплоены (у `learning-context-service` ручной `railway up`, авто-деплоя нет). «Push ≠ deploy».
+- **Для Track B риска нет** — разворачивается свежий `main` сервиса, где фиксы уже есть. Track A требует одного `railway up`.
+
+</details>
