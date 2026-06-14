@@ -9956,3 +9956,390 @@
   }
 }
 ```
+
+## 2026-06-13T21:55:40+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Прежде чем советовать дальше, мне нужно знать, что именно «не получилось» - потому что дальше пути расходятся, а я не хо"
+    ],
+    "session_id": "ed861381-ed6a-4afa-8c13-1af397a91ebf"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-13T22:54:56+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Паша прав наполовину. Механически авто-создание - это настройка Ory (Kratos), а не код MCP. Но недостающая защита (связы"
+    ],
+    "session_id": "ed861381-ed6a-4afa-8c13-1af397a91ebf"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-13T22:55:06+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "Паша прав наполовину. Механически авто-создание - это настройка Ory (Kratos), а не код MCP. Но недостающая защита (связы",
+      "Сработал детектор P5, но снова ложно — процитированная фраза («Паша прав наполовину…») это разбор, а не запрос разрешени"
+    ],
+    "session_id": "ed861381-ed6a-4afa-8c13-1af397a91ebf"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-13T23:00:09+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Сработал детектор P5, но снова ложно — процитированная фраза («Паша прав наполовину…») это разбор, а не запрос разрешени"
+    ],
+    "session_id": "ed861381-ed6a-4afa-8c13-1af397a91ebf"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-MCP"
+  }
+}
+```
+
+## 2026-06-14T09:09:09+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 4 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 4,
+    "examples": [
+      "Консенсус достигнут (ход 3, `consensus: reached`). Перехожу к Decision Gate. Сначала проверю состояние репо шлюза — от н",
+      "- **Причина 2 — «у тебя уже подключено, и переподключение молчит».** Тут одна строчка не поможет: claude.ai при переподк",
+      "- Тебе — прогнать 5-минутный эксперимент (отключить/подключить коннектор, убедиться что окна нет) и отправить Паше запро"
+    ],
+    "session_id": "90f9e391-918f-4ccf-b893-fa7e8660e0de"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-MCP"
+  }
+}
+```
+
+## 2026-06-14T09:15:38+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "major",
+    "description": "Агент запросил разрешение у пользователя 4 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 4,
+    "examples": [
+      "Push отклонён — remote впереди. Я закоммитил свои файлы локально. Чтобы залить, нужен rebase на remote, но в дереве чужа",
+      "**Твоя догадка не подтвердилась: claude.ai не передаёт твою почту в Ory.** Почта, которую ты ввёл в claude.ai, это твой ",
+      "- **Поломка 2 — «у тебя уже подключено, переподключение молчит».** Здесь одна строчка не спасёт. При переподключении cla"
+    ],
+    "session_id": "90f9e391-918f-4ccf-b893-fa7e8660e0de"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-14T09:25:17+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "- **Второй пароль** (права записи) — ждёт выдержки подстраховки, запущенной 13 июня (несколько дней). Условие будущего с"
+    ],
+    "session_id": "9e3670cc-b454-4d1f-99c4-fdf3326e0973"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-MCP"
+  }
+}
+```
+
+## 2026-06-14T09:25:28+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "- **Второй пароль** (права записи) — ждёт выдержки подстраховки, запущенной 13 июня (несколько дней). Условие будущего с",
+      "Подтверждаю без вопросов: эта сессия закрыта, контекст для новой передан, оба репозитория чисты, всё залито. Замечание д"
+    ],
+    "session_id": "9e3670cc-b454-4d1f-99c4-fdf3326e0973"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-MCP"
+  }
+}
+```
+
+## 2026-06-14T09:33:07+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Раз **совсем новая почта тоже молча подключилась** - значит личность берётся не из почты в claude.ai вообще, а из уже су"
+    ],
+    "session_id": "90f9e391-918f-4ccf-b893-fa7e8660e0de"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-MCP"
+  }
+}
+```
+
+## 2026-06-14T09:33:32+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Раз **совсем новая почта тоже молча подключилась** - значит личность берётся не из почты в claude.ai вообще, а из уже су"
+    ],
+    "session_id": "90f9e391-918f-4ccf-b893-fa7e8660e0de"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-MCP"
+  }
+}
+```
+
+## 2026-06-14T09:49:31+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Одна честная оговорка: если вдруг при повторном добавлении claude.ai всё равно войдёт молча (переиспользует старое сохра"
+    ],
+    "session_id": "90f9e391-918f-4ccf-b893-fa7e8660e0de"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-14T09:49:52+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "Одна честная оговорка: если вдруг при повторном добавлении claude.ai всё равно войдёт молча (переиспользует старое сохра"
+    ],
+    "session_id": "90f9e391-918f-4ccf-b893-fa7e8660e0de"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-14T10:38:04+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "**Что дальше?** "
+    ],
+    "session_id": "2ec8bc13-d23e-40e1-a9e9-8d7922a783f2"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-14T10:38:11+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "**Что обсуждалось:** можно ли закрыть Ф8 сейчас или нужна реальная выборка внешних участников. ",
+      "**Что дальше?** "
+    ],
+    "session_id": "ea4caa91-78ab-4b57-b015-1d2be7f0ab63"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-14T10:48:00+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "## Decision Gate — что дальше? ",
+      "**Что дальше?** "
+    ],
+    "session_id": "311b3f67-8bd8-49ad-a944-fc988eb6ab08"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-14T10:50:55+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "## Можно ли отдавать Андрею "
+    ],
+    "session_id": "001a8e69-d282-4e11-afc9-3151c7643efd"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-MCP"
+  }
+}
+```
+
+## 2026-06-14T11:01:56+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 2 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 2,
+    "examples": [
+      "- Пограничные случаи (\"методология IWE\", \"структурирование БЗ\") — пометить `pending_pilot_decision`, не разрешать самост",
+      "**Что дальше?** "
+    ],
+    "session_id": "cc3988e0-be9c-4cb2-b044-4820931fa152"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-my-strategy"
+  }
+}
+```
+
+## 2026-06-14T11:12:05+03:00 — agent_incident
+
+```json
+{
+  "event_type": "agent_incident",
+  "payload": {
+    "pattern": "P5",
+    "severity": "minor",
+    "description": "Агент запросил разрешение у пользователя 1 раз(а) за сессию. Правило 1 feedback_behaviour.md: действовать автономно, не спрашивать.",
+    "count": 1,
+    "examples": [
+      "3. Код Г-минимума (pre-commit хук реестра нумераций) — после явного разрешения S-33 "
+    ],
+    "session_id": "cc3988e0-be9c-4cb2-b044-4820931fa152"
+  },
+  "repo_ctx": {
+    "target_repo_hint": "/Users/tserentserenov/IWE/DS-ecosystem-development"
+  }
+}
+```
