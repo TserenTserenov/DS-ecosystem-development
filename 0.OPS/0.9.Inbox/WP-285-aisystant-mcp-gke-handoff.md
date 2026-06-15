@@ -2,7 +2,7 @@
 type: handoff
 status: active
 created: 2026-06-10
-updated: 2026-06-14
+updated: 2026-06-15
 owner: Андрей
 next_review: 2026-06-27
 related: [WP-415-russia-world-split-concept.md]
@@ -23,7 +23,7 @@ related: [WP-415-russia-world-split-concept.md]
 > **USER_PROFILE** — код шлюза очищен и задеплоен 14 июня (шаг A: шлюз больше НЕ читает `USER_PROFILE_SHARED_SECRET`, health-gate снят). Прогон каждого инструмента живым токеном после деплоя — зелёный. Осталось одно: пилот удаляет само значение пароля с Cloudflare (`wrangler secret delete`, шаг B) после проверки assertion-пути через `wrangler tail`. **Для Track B:** свежая выкатка по разделу 2.2 (без этого пароля) теперь корректна — 503-риска нет.
 >
 > **SCOPE (bridge-scope)** — ещё жив, закрывается через WP-410 в три шага (это же делает Track B по-настоящему чистым):
-> 1. подключить `provisionBridgeScopes` в `personal-knowledge-mcp` connect_source (сейчас функция портирована, но помечена S2-only — не подключена);
+> 1. ✅ **СДЕЛАНО (SHA 70f2df4, 15 июня):** `provisionBridgeScopes` подключён безусловно в `connectSource` — каждый connect прописывает права; self-healing при утере прав.
 > 2. перенести install-webhook provisioning (`/v1/admin/scope-provision`, сейчас `github-integration → agent-runner`) в дом с явной server-to-server авторизацией;
 > 3. вывести `bridge-scope-service` и снять `SCOPE_SERVICE_SHARED_SECRET`+URL из шлюза.
 >
@@ -218,11 +218,11 @@ curl http://agent-status-service/health   ; curl http://bridge-scope-service/hea
 |-------|-----------|-----------|-------------|
 | user-path | `personal_connect_source` прописывает права на репозиторий пользователя | вызов из шлюза → `bridge-scope /api/v1/provision` | in-process в `personal-knowledge-mcp` (владелец инструмента), личность из user-JWT (`sub`) |
 | install-webhook | установка GitHub App прописывает права | `github-integration → agent-runner /v1/admin/scope-provision` | в `github-integration-service` с server-to-server подписью (пользователя нет) |
-| функция-порт | `provisionBridgeScopes` уже перенесена в personal-knowledge | в коде, помечена S2-only (не подключена) | подключить в обработчик `personal_connect_source` |
+| функция-порт | `provisionBridgeScopes` уже перенесена в personal-knowledge | ✅ DONE (SHA 70f2df4, 15 июня) — подключена безусловно в `connectSource`, self-healing | — |
 
 **Шаги (actionable, owner — РП-410):**
 
-1. **Подключить guard-provisioning в personal-knowledge.** Функция `provisionBridgeScopes` уже в коде personal-knowledge (`src/scope.ts`), помечена S2-only — определена, но не подключена в обработчик `connect_source` (комментарий `scope.ts`: «wired into connect_source once the gateway stops provisioning via bridge-scope»). Подключить её вызов в обработчик `connect_source` — права прописываются в той же `agent_scopes_mvp` через `neon()` с явным `WHERE user_id` (RLS на таблице не форсится, проверено интроспекцией: `relforcerowsecurity=f`). Prerequisite: `INDICATORS_DATABASE_URL` на сервисе.
+1. ✅ **СДЕЛАНО (SHA 70f2df4, 15 июня).** `provisionBridgeScopes` подключена безусловно в `connectSource` personal-knowledge-mcp: каждый `connect_source` (новый, повторный, self-healing) вызывает `provisionBridgeScopes`. При недоступности indicators-БД — connect не падает, возвращает `scope_provisioning: "failed"` с явным сообщением. `INDICATORS_DATABASE_URL` уже на сервисе (установлен 13 июня, shadow активен).
 2. **Перенести install-webhook provisioning в s2s-дом.** Путь `/v1/admin/scope-provision` (установка GitHub App, пользователя нет) перенести из связки `github-integration → agent-runner` в `github-integration-service` с подписью шлюза (`GATEWAY_JWKS_URL`), не на общий пароль. **Provisioning на пароле = та же дыра P1** (можно прописать права любому `userId`).
 3. **Вывести bridge-scope.** После шагов 1-2 и (для Track A) выдержки теневой проверки → шлюз убирает гейт `BRIDGE_WRITE_TOOLS` + вызовы `callScopeService`/`callScopeProvision` → снять `SCOPE_SERVICE_SHARED_SECRET`+URL → `bridge-scope-service` не разворачивать.
 
