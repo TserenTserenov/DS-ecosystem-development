@@ -18,18 +18,24 @@ related: [WP-415-russia-world-split-concept.md]
 
 **Принцип шлюза.** Aisystant MCP = это **шлюз** (`gateway-mcp`) — единственная точка подключения внешних клиентов (claude.ai, Claude Code, VS Code). Задача одна: принять запрос и отмаршрутизировать на нужный сервис. В конфиге шлюза — только адреса сервисов + собственный ключ подписи. Без баз данных на пути маршрутизации, без общих паролей к сервисам. Прикладная логика живёт в сервисах за шлюзом.
 
-> **Состояние перехода (на 2026-06-14).** Чистый шлюз без общих паролей — это **целевое** состояние, к которому ведёт WP-410. P1 (нет ни одного `*_SHARED_SECRET`) **достижимо после конкретных шагов ниже, ещё не достигнуто.** Не читать как «уже чисто».
+> **Состояние перехода (на конец 2026-06-15). P1 ВЫПОЛНЕН.**
 >
-> **USER_PROFILE** — код шлюза очищен и задеплоен 14 июня (шаг A: шлюз больше НЕ читает `USER_PROFILE_SHARED_SECRET`, health-gate снят). Прогон каждого инструмента живым токеном после деплоя — зелёный. Осталось одно: пилот удаляет само значение пароля с Cloudflare (`wrangler secret delete`, шаг B) после проверки assertion-пути через `wrangler tail`. **Для Track B:** свежая выкатка по разделу 2.2 (без этого пароля) теперь корректна — 503-риска нет.
+> **P1 закрыт (15 июня):** на gateway-mcp-v2 больше нет ни одного пользовательского `*_SERVICE_SHARED_SECRET`. Порядок выполнения:
+> - 14 июня (A1): `USER_PROFILE_SHARED_SECRET` удалён, код шлюза очищен (SHA 1980f88).
+> - 15 июня (S3+S4, сессия 04): `SCOPE_ENFORCEMENT_MIGRATED=true` + `SCOPE_SERVICE_SHARED_SECRET` + `SCOPE_SERVICE_URL` удалены. Воркер: `gateway-mcp-v2` (не `gateway-mcp`!). Smoke обоих путей зелёный.
+> - `PROXY_SHARED_SECRET` остался — это server-to-server канал gateway↔agent-runner (install-path, явное исключение P1).
 >
-> **SCOPE (bridge-scope)** — ещё жив, закрывается через WP-410 в три шага (это же делает Track B по-настоящему чистым):
-> 1. ✅ **СДЕЛАНО (SHA 70f2df4, 15 июня):** `provisionBridgeScopes` подключён безусловно в `connectSource` — каждый connect прописывает права; self-healing при утере прав.
-> 2. перенести install-webhook provisioning (`/v1/admin/scope-provision`, сейчас `github-integration → agent-runner`) в дом с явной server-to-server авторизацией;
-> 3. вывести `bridge-scope-service` и снять `SCOPE_SERVICE_SHARED_SECRET`+URL из шлюза.
+> **USER_PROFILE** — удалён 14 июня. **Для Track B:** свежая выкатка по разделу 2.2 корректна.
 >
-> На **живом Track A** шаг enforce делается после выдержки теневой проверки (≥7 дней, ориентир ~20 июня) — чтобы не заблокировать запись текущим пользователям. На **свежем Track B** живого трафика нет, поэтому guard включается в enforce сразу, bridge-scope не разворачивается вовсе — но шаги 1-2 (provisioning) выполнить всё равно нужно, иначе подключение источника и установка GitHub App не пропишут права.
+> **SCOPE (bridge-scope)** — gateway обходит через `SCOPE_ENFORCEMENT_MIGRATED=true` (feature-flag SHA 94330a1). `personal_write` работает через personal-knowledge-mcp напрямую.
+> - ✅ S0 (SHA 70f2df4): `provisionBridgeScopes` в `connectSource`.
+> - ✅ S3: `SCOPE_ENFORCEMENT_MIGRATED=true` на gateway-mcp-v2.
+> - ✅ S4: `SCOPE_SERVICE_SHARED_SECRET` + `SCOPE_SERVICE_URL` удалены.
+> - ⏳ S5: decommission `bridge-scope-service` на Railway — Андрей.
+> - ⚠️ `SCOPE_GUARD_MODE=off` (indicators DB недоступна — нет логирования scope-решений; функционально безопасно).
+> - **Для Track B:** `bridge-scope-service` не разворачивать. `SCOPE_GUARD_MODE=shadow` или `enforce` при наличии indicators DB.
 >
-> **learning-context (на заметку при деплое):** в текущем Track A `get_cognitive_brief` падает с `ORY_URL not configured` — фиксы авторизации (ORY_URL optional + приём подписи шлюза) в `main`, но не задеплоены (у сервиса ручной `railway up`). На Track B разворачивается свежий код из `main` → бага не будет; на Track A нужен redeploy сервиса.
+> **learning-context (на заметку при деплое):** `get_cognitive_brief` на Track A требует накатить миграцию `230-wp316-cognitive-schema.sql` (схема `cognitive` не создана). На Track B — код из `main`, миграцию накатить при деплое.
 
 <details open>
 <summary><b>1. Карта сервисов</b></summary>
