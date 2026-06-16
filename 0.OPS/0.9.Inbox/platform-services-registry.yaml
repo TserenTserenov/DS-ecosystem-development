@@ -1,44 +1,3 @@
-# platform-services-registry.yaml — Реестр сервисов платформы (WP-419 Ф7)
-#
-# Сервисы, которые ПЛАТФОРМА отдаёт по запросу любому клиенту-помощнику (не только IWE).
-# Линза WP-415 §1a (инверсия платформа/клиент): дом + тенантность — оси этого реестра.
-#
-# ГРАНИЦЫ (различения):
-#   - Сервис = работающий инстанс, исполняющий обещание (к нему ПОДКЛЮЧАЮТСЯ). ← здесь.
-#   - Обещание (DP.SC.NNN) = контракт «что гарантируется» (см. 08-service-clauses). Ссылка, не дубль.
-#   - Доставляемый артефакт (Pack/skill/база стиля) = копируется к пользователю, имеет тир. НЕ здесь.
-#   («Доставляемый артефакт ≠ Сервис», «Платформа ≠ IWE-помощник», WP-415.)
-#   - DP.MAP.002 = навигационная карта описаний методов (MethodDescription). Этот реестр —
-#     специализированный вид сервисов облачного шлюза с осями дом/тенантность, не дубль MAP.002.
-#
-# ПРИМЕЧАНИЯ (ревью Kimi 2026-06-14-21):
-#   - Пересечения с DP.MAP.002 (напр. run_strategist ↔ MAP.002 S66) = cross-ref, НЕ дубли:
-#     MAP.002 = процессная карта (роль→вход→выход→триггер), Ф7 = платформенная линза дом/тенантность.
-#   - dom = юрисдикция ИНСТАНСА/публикации сервиса, НЕ юрисдикция обрабатываемых данных.
-#     Для run_strategist/run_extractor: dom=world (инстанс платформы), tenancy=per-user (данные).
-
-schema_version: 1
-generated_at: "2026-06-14 (WP-419 Ф7)"
-method_ref: "DP.METHOD.054 (active)"
-sot_intent: "PACK-digital-platform (08-service-clauses = SoT контрактов); staging в 0.OPS рядом с registry-catalog"
-audience: team
-tier: platform
-target_home: canon
-next_verification: "2026-07-14"
-
-# --- §5 SELF-REGISTRATION (догфуд DP.METHOD.054) ---
-schema_registration:
-  name: "Реестр сервисов платформы IWE"
-  owner: "Церен"
-  bounded_context: "Сервисы облачного шлюза (работающие инстансы), отдаваемые клиентам. НЕ обещания (DP.SC) и не артефакты."
-  axis_facet: "сервис × {дом, тенантность}; ортогонально registry-catalog (реестры) и numbering-registry (ID-префиксы)."
-  enforcement_mechanism: E1-hard      # валидатор падает на записи без contract/dom/tenancy
-  structural_check: E1-hard           # «у сервиса есть контракт-ссылка + дом + тенантность»
-  semantic_check: E3                  # «контракт действительно покрывает сервис» — экспертная (владелец)
-
-# Поля: serves (что отдаёт) · consumers · contract (DP.SC.* или TBD) · dom · tenancy · sot
-# dom: world (aisystant/GKE) | russia (mim/VK) | by-jurisdiction (данные по стране пользователя) | canon
-# tenancy: multi-tenant (общий канон) | per-user (данные пользователя) | per-team
 services:
   - {service: "knowledge_search",          serves: "Поиск по базе знаний Pack (канон)",            consumers: "любой клиент-помощник (IWE, claude.ai, ChatGPT)", contract: "DP.SC.129",          dom: world,           tenancy: multi-tenant}
   - {service: "knowledge_get_document",    serves: "Документ Pack по id",                          consumers: "клиенты-помощники",                              contract: "DP.SC.129",          dom: world,           tenancy: multi-tenant}
@@ -55,8 +14,6 @@ services:
   - {service: "hermes_chat",               serves: "Чат через Hermes runtime",                     consumers: "пилот (внешний рантайм Андрея)",                 contract: "DP.IWE.001 §5.2",    dom: world,           tenancy: per-user}
   - {service: "github_connect / github_status", serves: "Связка с GitHub (App установка)",         consumers: "пилот (personal-guide репо)",                    contract: "TBD",                dom: world,           tenancy: per-user}
   - {service: "grant_consent",             serves: "Согласие на трекинг (GDPR opt-in)",            consumers: "пилот, stage_evaluator",                         contract: "TBD",                dom: by-jurisdiction, tenancy: per-user}
-
-# --- Открытые контракты (semantic E3): сервисы без явного DP.SC ---
 contract_gaps:
   note: "TBD-контракты = сервис работает, но обещание (DP.SC) не формализовано. Не блокер реестра; кандидаты на DP.SC при следующем IntegrationGate."
   services_without_contract: ["get_instructions", "run_strategist", "run_extractor", "agent_status_update", "send_telegram_message", "github_connect", "grant_consent"]

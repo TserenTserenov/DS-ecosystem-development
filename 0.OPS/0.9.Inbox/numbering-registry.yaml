@@ -1,43 +1,3 @@
-# numbering-registry.yaml — Реестр нумераций IWE (ID-префикс-семейства)
-#
-# WP-419 Ф6 Г-полный: пересборка реестра нумераций ПО МЕТОДУ DP.METHOD.054 (active).
-# Ревизия дизайна v1 (peer-session 2026-06-11-47): коллизии L0-L3/P5/R1 теперь РЕШЕНЫ
-# батч-сессией 2026-06-13 (COL-06/07/08) → статус pending→resolved. Эмпирические счётчики
-# (live_count) сверены grep'ом 2026-06-14.
-#
-# ГРАНИЦА (не дубль):
-#   - registry-catalog.yaml = реестры/списки/каталоги (что перечисляет, SoT, владелец).
-#   - numbering-registry.yaml = ID-ПРЕФИКС-семейства (пространства имён кодов сущностей).
-#   Конкретный AR.001 = entry в rules-registry; namespace AR.* как целое = строка ЗДЕСЬ.
-#
-# Лёгкий семантический индекс (design v1): pattern + meaning + sot_pointer + owner + managed_by.
-# Определения кодов НЕ копируются (живут в Pack) — иначе дрейф. Здесь только поверхность namespace.
-
-schema_version: 1
-generated_at: "2026-06-14 (WP-419 Ф6 Г-полный)"
-method_ref: "DP.METHOD.054 (active)"
-sot_intent: "PACK-digital-platform (design v1); сейчас staging в 0.OPS рядом с registry-catalog"
-audience: team
-tier: platform
-target_home: canon
-next_verification: "2026-07-14"
-
-# --- §5 SELF-REGISTRATION (догфуд DP.METHOD.054: этот реестр сам = новая схема) ---
-schema_registration:
-  name: "Реестр нумераций IWE (ID-префикс-семейства)"
-  owner: "Церен"
-  bounded_context: "Пространства имён ID-префиксов кодов сущностей (Паки + governance). НЕ сами коды (это Pack), а namespace'ы как целое."
-  axis_facet: "namespace ID-префикса; ось ортогональна registry-catalog (тот = реестры/списки). Взаимоисключающа: один префикс = одна строка."
-  enforcement_mechanism: E1-hard      # валидатор numbering-registry.py падает на битой записи (путь чтения)
-  enforcement_surface:
-    covered_paths: ["validator-read (numbering-registry.py --validate)"]
-    uncovered_paths: ["agent-write нового префикса (Case B/C gate — target, см. §gate_design)"]
-    uncovered_is_nonstandard: false   # write-time prevention остаётся open (как у всей экосистемы, Ф2 SOTA)
-  structural_check: E1-hard           # «префикс присутствует в реестре» — валидатор
-  semantic_check: E3                  # «маппинг коллизии корректен» — экспертная оценка владельца
-
-# --- ВСЕ namespace'ы одной строкой (design v1: полное перечисление ≠ полное описание) ---
-# risk: high = есть коллизия/высокий риск форка → имеет deep-блок ниже; norm = штатный рост.
 namespaces:
   - {pattern: "AR.NNN",        meaning: "Правила агентов (блокир./поведенч.)",      sot_pointer: "PACK-agent-rules/rules/",                managed_by: "rules-registry (.claude/rules-registry.yaml)", live_count: 64,  risk: high, collision: "none — deep ниже (граница с numbering)"}
   - {pattern: "DP.SC.NNN",     meaning: "Обещания сервисов (service clauses)",       sot_pointer: "PACK-digital-platform/.../08-service-clauses/", managed_by: "Pack-структура (E0)",                live_count: 132, risk: high, collision: "none"}
@@ -64,14 +24,11 @@ namespaces:
   - {pattern: "SR.NNN",        meaning: "Stage-rules (правила ступеней развития)",   sot_pointer: "PACK-agent-rules/",                     managed_by: "Pack-структура (E0)",                live_count: null, risk: norm, collision: "none — добавлен по ревью Kimi (active в каталоге)"}
   - {pattern: "АП-NN",         meaning: "Антипаттерны (0.OPS S2R)",                  sot_pointer: "0.OPS/0.1.Knowledge-Logic/08-anti-patterns.md", managed_by: "ручной",                     live_count: null, risk: norm, collision: "none"}
   - {pattern: "F1-F9 / FX1-FX9", meaning: "Семейства документов S2R (ось классификации, не ID-код сущности)", sot_pointer: "0.OPS/0.1.Knowledge-Logic/02-document-families.md", managed_by: "ручной (0.OPS канон)", live_count: null, risk: high, collision: "COL-01 (F vs FX namespace) — ИТ-встреча, см. col-argument-map; внесён чтобы детектор Case B не ложно-срабатывал на F/FX"}
-
-# --- DEEP: риск-приоритетные namespace'ы с коллизиями (статус из COL батч-сессии 2026-06-13) ---
 collisions:
   - id: COL-06
     tokens: "L0-L3 (стиль) vs L1-L3 (слои адаптации CLAUDE.md §7)"
     type: collision
     status: resolved
-    verdict: "Стиль переименован L0/L1/L2 → S0/S1/S2 (7 файлов, hook 2c2b197). Слои инструкций агента L1-L3 остаются. Namespace разведён."
     resolution_owner: "Церен"
   - id: COL-07
     tokens: "P5 (DP.SC.172, инженерный стиль «разбей функцию») vs P5-block (DP.FM, режим-отказа агента)"
@@ -89,18 +46,13 @@ collisions:
     tokens: "DP.M.NNN (291, старая) vs DP.METHOD.NNN (13, новая) — параллельная нумерация методов платформы; то же на личной стороне PD.M (1) vs PD.METHOD (51)"
     type: collision_family
     status: open
-    interim_rule: "ЗАМОРОЗКА (ревью Kimi 2026-06-14-21): новые методы заводятся ТОЛЬКО в DP.METHOD.* / PD.METHOD.*; DP.M.* / PD.M.* = read-only legacy (deprecated_for_new). Превращает open-долг в управляемый переход без массового переименования."
-    verdict: "Найдено эмпирически 2026-06-14 (grep). Параллельные семейства методов. Полная унификация (переименование 291 файла) = backlog-item Г.1 (PD.METHOD↔PD.M) — отдельный РП. До него действует interim_rule. resolution_owner: Церен."
     resolution_owner: "Церен"
-
-# --- Дизайн gate (ревизия v1): не дублировать AR.234 ---
 gate_design:
   note: >
     Design v1 предлагал отдельный numbering-gate.sh (трёхветочный детектор A/B/C). Ревизия по методу:
     Case B (новый префикс не в реестре) = триггер `new_id_prefix_family` правила AR.234 (live, structural E2 через CI).
     Case A (штатный рост) — молчит by design. Реестр = ДАННЫЕ, которые консультирует AR.234; не дубль-gate.
   honest_coverage: >
-    ЧЕСТНО (ревью Kimi 2026-06-14-21): Case C (новый токен пересёкся с чужим namespace на write) НЕ покрыт живым
     механизмом. AR.234 НЕ имеет триггера token_collision и lookup'а по этому реестру; его semantic-nudge (дизайн осей)
     ОТЛОЖЕН (E3, см. AR.234 §Активация). Валидатор numbering-registry.py ловит только ОБЪЯВЛЕННЫЕ коллизии (раздел
     collisions), а не новые write-time токены. Итог: Case A — live (молчит), Case B — live (AR.234 E2),
@@ -109,8 +61,6 @@ gate_design:
   case_b: "новый префикс не в реестре → AR.234 new_id_prefix_family review [live, E2]"
   case_c: "токен занят другим namespace → НЕ покрыт live; AR.234 semantic-nudge отложен [open, E3]"
   coverage_gap_backlog: "token-collision детектор (Case C live) — отдельная задача, идёт вместе с semantic agent-write nudge AR.234 (backlog WP-419 spin-off)."
-
-# --- Решение о месте файла (ревью Kimi 2026-06-14-21) ---
 location_decision:
   current: "0.OPS/0.9.Inbox (ко-локация с registry-catalog + его CI/drift-check; team canon)"
   rationale: "CI registry-catalog-validate.yml и drift-check живут в DS-ecosystem-development; большинство реестров управляются отсюда; 0.OPS = canonical для team-level реестров."

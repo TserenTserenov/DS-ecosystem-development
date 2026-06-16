@@ -1,22 +1,4 @@
----
-type: index
-name: "Индекс документов платформы Aisystant и системы IWE"
-status: active
-created: 2026-05-19
-updated: 2026-06-15
-scope: post-MVP architecture, v2.0 platform concept, 5 natures of IWE
-related: [WP-73, WP-336, WP-74, WP-250, WP-292, WP-285, WP-281, WP-337]
----
-
 # Индекс документов платформы Aisystant и системы IWE (post-MVP)
-
-> **Назначение:** единая точка входа для всех документов, описывающих новую архитектуру, концепцию, позиционирование и план развития платформы Aisystant и системы IWE после пивота продукта (2026).
->
-> **Статус места:** навигационный аид на стадии командного обсуждения (`0.9.Inbox` = транзит). Сами документы, на которые он указывает, живут в постоянных домах (Паки + ядра DS A/B/C). Постоянная форма навигации — распределённые `_index.md` по ядрам (§4.6), не единый файл в `0.*`.
->
-> **Принцип:** каждый документ имеет одну каноническую копию. Этот индекс — навигация, не дублирование.
->
-> ⚠️ **Канон vs черновик.** Строки в `PACK-*/`, `C2.2.Architecture/`, `A3.2.Architecture/`, `0.99.Archive/` — каноничны. Строки на файлы в **`0.9.Inbox/`** — **черновики/предложения в работе** (не канон); их знание мигрирует в Pack/DS при закрытии соответствующих РП. Не якориться на них как на утверждённой онтологии (особенно треки/орги/тиринг — до ратификации с Андреем/Решатом, РП-73 Ф5-Ф6).
 
 ---
 
@@ -116,7 +98,7 @@ related: [WP-73, WP-336, WP-74, WP-250, WP-292, WP-285, WP-281, WP-337]
 |---|----------|-----------|-------|
 | 4.1 | **Track B — международная инфраструктура** | GKE Standard, Cloud SQL, приватная сеть, Werf, Terraform. Ф1–Ф6. | `DS-my-strategy/inbox/WP-285-track-b-international-infrastructure.md` |
 | 4.2 | **Deployment-диаграмма** | C4 L3, топология, провайдеры. | `DS-ecosystem-development/C.IT-Platform/C2.IT-Platform/C2.2.Architecture/Stack-and-Infrastructure/deployment.md` |
-| 4.3 | **12-factor compliance** | WP-307 — аудит 228✅/336 (68%), 80 N/A (24%) = 92% closed. | `DS-my-strategy/inbox/WP-307-12factor-compliance.md` |
+| 4.3 | **12-factor compliance** | WP-307 — аудит 228/336 (68%), 80 N/A (24%) = 92% closed. | `DS-my-strategy/inbox/WP-307-12factor-compliance.md` |
 | 4.4 | **Security posture** | B7.3 спецификации, STRIDE, key rotation, PII map. | `DS-ecosystem-development/C.IT-Platform/C2.IT-Platform/C2.2.Architecture/Identity-and-Access/` |
 | 4.5 | **Observability** | WP-244 — status.aisystant.com, Better Stack, Grafana. | `DS-my-strategy/inbox/WP-244-platform-observability.md` |
 | 4.6 | **Реестр репозиториев** | 22 активных репо, типы, назначения. | `DS-ecosystem-development/0.OPS/REPOSITORY-REGISTRY.md` |
@@ -155,8 +137,8 @@ related: [WP-73, WP-336, WP-74, WP-250, WP-292, WP-285, WP-281, WP-337]
 | РП | Статус | Что координирует | Путь |
 |----|--------|-----------------|------|
 | **WP-73** | active (Ф3-Ф6 закрытие) | Архитектурный план ИТ-платформы + закрытие: каталог→канон (Ф3), замок closure_capture (Ф4), регламент передачи (Ф5), канонизация (Ф6) | `DS-my-strategy/inbox/WP-73-platform-architecture.md` |
-| **WP-336** | closed ✅ | Упаковка ценности: 5 природ IWE + синхронизация всех артефактов | знание в PACK-digital-platform (DP.IWE.007 и др.) |
-| **WP-74** | closed ✅ | Концепция использования платформы (пользовательская) | `DS-ecosystem-development/0.OPS/0.99.Archive/WP-74-platform-concept-of-use.md` |
+| **WP-336** | closed  | Упаковка ценности: 5 природ IWE + синхронизация всех артефактов | знание в PACK-digital-platform (DP.IWE.007 и др.) |
+| **WP-74** | closed  | Концепция использования платформы (пользовательская) | `DS-ecosystem-development/0.OPS/0.99.Archive/WP-74-platform-concept-of-use.md` |
 | **WP-250** | active | Пост-манифесто: уникальность IWE, позиционирование | `DS-my-strategy/inbox/WP-250-post-manifesto-iwe-uniqueness.md` |
 | **WP-292** | active | Brand IWE — брендинг и вербальная идентичность | `DS-my-strategy/inbox/WP-292-brand-iwe.md` |
 | **WP-285** | active | Track B — международная инфраструктура (GKE, Cloud SQL) | `DS-my-strategy/inbox/WP-285-track-b-international-infrastructure.md` |
@@ -167,7 +149,7 @@ related: [WP-73, WP-336, WP-74, WP-250, WP-292, WP-285, WP-281, WP-337]
 
 ## 8. Чеклист: что должно быть описано для полноты картины
 
-### 8.1. Архитектура ✅
+### 8.1. Архитектура 
 - [x] Общая архитектура (3 слоя, принципы) — §3.1.1
 - [x] Карта систем (14+ детерминированных + ИИ) — §3.1.2
 - [x] Data architecture (Neon, 12 БД) — §3.2.4
@@ -176,38 +158,38 @@ related: [WP-73, WP-336, WP-74, WP-250, WP-292, WP-285, WP-281, WP-337]
 - [x] Identity (ORY) — §3.4. S9
 - [x] ADR (7+ принятых) — §3.3
 
-### 8.2. Пользовательская концепция ✅
+### 8.2. Пользовательская концепция 
 - [x] 10 ролей пользователей — §2.1
 - [x] 6 измерений мастерства — §2.1
 - [x] 5 гарантий платформы — §1.3
 - [x] Сценарии использования по ролям — §2.1
 - [x] Принципы взаимодействия — §2.2
 
-### 8.3. Позиционирование ✅
+### 8.3. Позиционирование 
 - [x] 5 природ IWE — §1.1
 - [x] Onliness statement — §1.2
 - [x] JTBD — §1.2
 - [x] Слоган T6 — §1.1
 - [x] Запрещённые слова — §1.1
 
-### 8.4. Инфраструктура ✅
+### 8.4. Инфраструктура 
 - [x] Track A (текущая: CF Workers + Neon + Railway) — §4.6
 - [x] Track B (GKE Standard + Cloud SQL + приватная сеть) — §4.1
 - [x] 12-factor compliance — §4.3
 - [x] Security (B7.3, STRIDE) — §4.4
 - [x] Observability — §4.5
 
-### 8.5. Бизнес-модель ✅
+### 8.5. Бизнес-модель 
 - [x] Стратегия экосистемы 2026 — §1.4
 - [x] Тарифы и пакеты — `A2.1.Meaning/2.1.1. Продуктовые предложения/`
 - [x] Экономика экосистемы — `B3.1.Meaning/Экономика экосистемы 3.1.md`
 - [x] Unit-экономика — `Приложение 5. Unit-экономика.md`
 
-### 8.6. Питч ⚠️ (needs update)
+### 8.6. Питч  (needs update)
 - [x] Pitch v0.6 — §5.1 (устарел: 4 природы, старый нарратив)
 - [ ] **Pitch v0.7** — §5.6 (в работе: 5 природ, специальность, «Железный человек»)
 
-### 8.7. План развития ⚠️ (needs formalization)
+### 8.7. План развития  (needs formalization)
 - [x] Roadmap миграции Neon — §6.1
 - [x] Roadmap MVP greenfield — §6.2
 - [ ] **Направления плана развития** — §6.5 (в работе)
@@ -223,5 +205,3 @@ related: [WP-73, WP-336, WP-74, WP-250, WP-292, WP-285, WP-281, WP-337]
 5. **При закрытии WP-73** → §8 (чеклист полноты) → §7 (зонтичные РП)
 
 ---
-
-*Создан: 2026-05-19. Обновлять при появлении новых документов или изменении канонических путей.*

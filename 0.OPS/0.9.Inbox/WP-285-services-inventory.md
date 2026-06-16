@@ -1,28 +1,8 @@
----
-type: inventory
-title: "Список сервисов: Track A → Track B"
-status: draft
-created: 2026-05-07
-updated: 2026-06-09
-author: Церен
----
-
 # Список сервисов: что есть и что нужно на мировой платформе
 
-> ⚠️ **Актуально на 9 июня 2026.** Домены и статусы Track B (TBD) — уточнить у Андрея: часть могла поменяться после запуска GKE.
->
-> **Track A (Россия)** — работает как есть, ничего не трогаем.
-> **Track B (Мир)** — новый независимый деплой. Каждый сервис получает свою копию.
-> «Дублировать» = развернуть новый инстанс с тем же кодом, но указывающий на Track B инфраструктуру (Cloud SQL, Ory EU, Stripe).
->
-> **Scope этого документа** — MVP-сервисы для онбординга первого пользователя Track B (16 сервисов: 10 CF Workers + 6 Python) + 15 БД (16 Track A минус metabase). Полный operational scope production-runtime — **31 deployment unit**, см. [`C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-services.md`](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-services.md) (WP-307). Сервисы вне MVP-scope — раздел §7.
->
-> **Граница Платформа / IWE:** все сервисы в §1–6 — это **Платформа Aisystant** (облачные, управляются командой). IWE (локальная среда пользователя: git-репо, VS Code, memory/) — не мигрируется, каждый пользователь разворачивает сам. Единственный IWE-компонент в этом документе: `L1 iwe-local-gateway` (§7, вне scope Track B). Подробнее: [WP-73-iwe-platform-distinction.md](../0.99.Archive/WP-73-iwe-platform-distinction.md).
-
 ---
 
-<details>
-<summary><b>1. CF Workers (Cloudflare) — 10 сервисов</b></summary>
+### 1. CF Workers (Cloudflare) — 10 сервисов
 
 Все работают на Cloudflare Workers (TypeScript). Код тот же, меняются только переменные окружения (DATABASE_URL, ORY_URL, STRIPE_KEY и т.д.).
 
@@ -39,31 +19,19 @@ author: Церен
 | **observability-webhook** | Better Stack → TG-алерты об инцидентах | **да** (webhook от Better Stack) | TBD | нет (CF Worker) | stateless | stateless | Новый TG-бот / чат для Track B |
 | **status-proxy** | Редирект на страницу статуса платформы | **да** (HTTP redirect) | `status.TBD.com` | нет (CF Worker) | `status.aisystant.com` | новый домен | Обновить CNAME |
 
-> **CF Workers: Dockerfile не нужен** — деплой через `wrangler deploy` или GitHub Action → Cloudflare. Домены нужны для всех 10 воркеров (обсудить с Андреем единую схему именования Track B на встрече 18 мая).
->
-> **Уточнение 17 мая:** `google-drive-mcp` ранее считался CF Worker — на самом деле это Python MCP server (нет `wrangler.toml`, есть `mcp_server.py`). Перенесён в §2 Python-сервисы.
-
 **Что нужно сделать общее:** создать новый `wrangler.toml` или `.env` под Track B для каждого воркера. Деплоить в тот же Cloudflare-аккаунт, но с другими именами и привязками.
 
-</details>
-
-<details>
-<summary><b>2. Python-сервисы (контейнеры) — 6 сервисов</b></summary>
+### 2. Python-сервисы (контейнеры) — 6 сервисов
 
 Сейчас живут на Railway (5 сервисов) + один локальный Python MCP (`google-drive-mcp`). Для Track B: GKE Standard (K8s Deployment или CronJob).
 
 | Сервис | Что делает | Внешний endpoint | Домен Track B | Dockerfile | Track A deploy | Track B | Тип |
 |--------|-----------|-----------------|--------------|------------|---------------|---------|-----|
-| **aist_bot_newarchitecture** | Telegram-бот (@aist_me_bot, @aist_pilot_me) | **нет** (Telegram pull) | не нужен | ✓ | Railway, `railway up` manual ⚠️ | GKE Deployment | Deployment |
-| **multi-domain-projection-worker** | Проекции событий → persona / subscription / indicators | **нет** (читает БД) | не нужен | ✓ | Railway, **не задеплоен** (ждёт WP-270) 🟡 | GKE CronJob | CronJob |
-| ~~**rewards-projection-worker**~~ ⛔ **decommission'd 2026-05-17** (WP-311 Ф-Close) | — | — | — | — | — | — | Функционал поглощён `multi-domain-projection-worker` (см. строку выше) |
-| **activity-hub** | Сборщик событий (medallion: bronze/silver/gold) | **нет** (читает journal из БД) | не нужен | ✓ | Railway, `railway up` manual ⚠️ | GKE Deployment | Deployment |
-| **payment-registry** | Единый журнал транзакций | **нет** (внутренний API) | cluster-internal | **⚠️ TBD** — нет Dockerfile в корне (WP-307 Ф1) | TBD | GKE Deployment | Deployment |
+| **aist_bot_newarchitecture** | Telegram-бот (@aist_me_bot, @aist_pilot_me) | **нет** (Telegram pull) | не нужен |  | Railway, `railway up` manual  | GKE Deployment | Deployment |
+| **multi-domain-projection-worker** | Проекции событий → persona / subscription / indicators | **нет** (читает БД) | не нужен |  | Railway, **не задеплоен** (ждёт WP-270)  | GKE CronJob | CronJob |
+| **activity-hub** | Сборщик событий (medallion: bronze/silver/gold) | **нет** (читает journal из БД) | не нужен |  | Railway, `railway up` manual  | GKE Deployment | Deployment |
+| **payment-registry** | Единый журнал транзакций | **нет** (внутренний API) | cluster-internal | ** TBD** — нет Dockerfile в корне (WP-307 Ф1) | TBD | GKE Deployment | Deployment |
 | **google-drive-mcp** | Интеграция с Google Drive (Python MCP server) | **да** (HTTPS MCP + OAuth callback) | TBD | TBD (сейчас `python mcp_server.py` без build) | локально/stateless | GKE Deployment | Deployment |
-
-> **Python-сервисы: Dockerfile ✓ у 4 из 6** — подтверждено Андреем 14 мая. **Открытые:** payment-registry (нет Dockerfile, WP-307 Ф1) + google-drive-mcp (новый — нужен Dockerfile под GKE). Решить до Фазы 3.3.
->
-> **⚠️ Deploy method gap (WP-307 Ф5b):** Все Railway-сервисы peaceful-vision деплоятся через `railway up` (manual upload), без git→deploy linkage и без immutable release artifact. Это нарушение F1/F5 12-factor. Перед миграцией в GKE — пересоздать deploy через GitHub Actions → Artifact Registry → Werf (см. track-b-plan §1.11).
 
 **Не переносить на Track B:**
 - **bridge-2-events-poller** — polling legacy LMS Aisystant. Legacy LMS только российская, для Track B не нужен.
@@ -73,40 +41,32 @@ author: Церен
 
 **Что нужно сделать общее:** Werf-манифест + K8s manifest (env vars из Secret, указывающие на Cloud SQL, Ory EU). Dockerfile у 4 из 6 уже есть.
 
-</details>
-
-<details>
-<summary><b>3. Базы данных — 16 Neon (Track A) → 15 Cloud SQL (Track B)</b></summary>
-
-Track A: 16 БД в Neon (project `purple-bread-37001042/production`, источник — DP.SC.131 от 15 мая). Track B: 15 БД в Cloud SQL (europe-west4) — metabase отложен (см. §7).
+### 3. Базы данных — 16 Neon (Track A) → 15 Cloud SQL (Track B)
 
 | # | БД | Класс backup | Что хранит | Track B — что сделать |
 |---|----|--------------|-----------|----------------------|
-| 1 | **persona** | 🔴 крит. | Аккаунты, настройки, личные заметки, эмбеддинги | Создать схему, пустая |
-| 2 | **payment** | 🔴 крит. | Платежи, возвраты, методы оплаты (legacy `finance_payments`) | Создать схему + **добавить Stripe-поля** |
-| 3 | **subscription** | 🔴 крит. | Подписки, автопродления, аудит | Создать схему, пустая |
-| 4 | **indicators** | 🔴 крит. | Показатели, baseline, снапшоты прогресса | Создать схему, пустая |
-| 5 | **learning** | 🔴 крит. | Курсы, прогресс, задания, менторинг | Создать схему + загрузить EN-контент |
-| 6 | **reference** | 🔴 крит. | Тарифы, программы, справочники | Создать схему + **загрузить мировые тарифы** |
-| 7 | **rewards** | 🔴 крит. | Баллы, достижения, квалификации | Создать схему + **новая эмиссия для Track B** |
-| 8 | **health** | 🟡 высок. | audit.log (RLS audit_reader) — security/compliance journal | Создать схему — **prerequisite для compliance Track B** |
-| 9 | **community** | 🟡 высок. | Наставничество, встречи, группы | Создать схему, пустая |
-| 10 | **journal** | 🟡 высок. | Все события платформы (event sourcing) | Создать схему, пустая |
-| 11 | **knowledge** | 🟡 высок. | Граф концептов, индексы, эмбеддинги | Создать схему + переиндексировать |
-| 12 | **lead** | 🟡 высок. | Лиды, UTM-визиты, воронка | Создать схему, пустая |
-| 13 | **payment_registry** | 🟡 высок. | Encrypted payment_credentials (`saved_payment_tool`, `autopay_credential`, `audit_trail`, `tokenization_log`) — Fernet column-level | Создать схему + **Fernet pgcrypto setup до первого insert** (DP.ARCH.004 §1 v2.3) |
-| 14 | **publication** | 🟡 высок. | Статьи, посты, каналы публикаций | Создать схему, пустая |
-| 15 | **secrets** | 🟡 высок. | Fernet-encrypted OAuth tokens (`ory_tokens`, `dt_tokens`, `github_connections`, `google_calendar`, `oauth_pending_state`) — ADR-004 от 14 мая | Создать схему + **Fernet keys в K8s Secret** до первого OAuth-flow |
-| ~~16~~ | ~~**metabase**~~ | ~~🟡 высок.~~ | ~~Backend Metabase Аттестатора~~ | **Не переносим в Track B** (см. §7 — отложено до набора аналитических данных) |
+| 1 | **persona** |  крит. | Аккаунты, настройки, личные заметки, эмбеддинги | Создать схему, пустая |
+| 2 | **payment** |  крит. | Платежи, возвраты, методы оплаты (legacy `finance_payments`) | Создать схему + **добавить Stripe-поля** |
+| 3 | **subscription** |  крит. | Подписки, автопродления, аудит | Создать схему, пустая |
+| 4 | **indicators** |  крит. | Показатели, baseline, снапшоты прогресса | Создать схему, пустая |
+| 5 | **learning** |  крит. | Курсы, прогресс, задания, менторинг | Создать схему + загрузить EN-контент |
+| 6 | **reference** |  крит. | Тарифы, программы, справочники | Создать схему + **загрузить мировые тарифы** |
+| 7 | **rewards** |  крит. | Баллы, достижения, квалификации | Создать схему + **новая эмиссия для Track B** |
+| 8 | **health** |  высок. | audit.log (RLS audit_reader) — security/compliance journal | Создать схему — **prerequisite для compliance Track B** |
+| 9 | **community** |  высок. | Наставничество, встречи, группы | Создать схему, пустая |
+| 10 | **journal** |  высок. | Все события платформы (event sourcing) | Создать схему, пустая |
+| 11 | **knowledge** |  высок. | Граф концептов, индексы, эмбеддинги | Создать схему + переиндексировать |
+| 12 | **lead** |  высок. | Лиды, UTM-визиты, воронка | Создать схему, пустая |
+| 13 | **payment_registry** |  высок. | Encrypted payment_credentials (`saved_payment_tool`, `autopay_credential`, `audit_trail`, `tokenization_log`) — Fernet column-level | Создать схему + **Fernet pgcrypto setup до первого insert** (DP.ARCH.004 §1 v2.3) |
+| 14 | **publication** |  высок. | Статьи, посты, каналы публикаций | Создать схему, пустая |
+| 15 | **secrets** |  высок. | Fernet-encrypted OAuth tokens (`ory_tokens`, `dt_tokens`, `github_connections`, `google_calendar`, `oauth_pending_state`) — ADR-004 от 14 мая | Создать схему + **Fernet keys в K8s Secret** до первого OAuth-flow |
+| ~~16~~ | ~~**metabase**~~ | ~~ высок.~~ | ~~Backend Metabase Аттестатора~~ | **Не переносим в Track B** (см. §7 — отложено до набора аналитических данных) |
 
 **Итог:** Схемы берутся из Neon (`pg_dump --schema-only`). Данные **НЕ мигрируются** — Track B стартует пустым. Пользователи Track A могут перейти через экспорт/импорт (WP-285 Ф6).
 
 **Расхождение с DP.ARCH.004:** Pack-канон говорит «12 БД» (target architecture, 14 апр) — это plan-of-record. Фактически за месяц проросло до 16 за счёт utility-БД (health, payment_registry, secrets, metabase). Источник истины по физическому состоянию — `DP.SC.131-backup-process.md` (живой backup-инвентарь).
 
-</details>
-
-<details>
-<summary><b>4. Внешние сервисы</b></summary>
+### 4. Внешние сервисы
 
 | Сервис | Track A | Track B | Что делать |
 |--------|---------|---------|-----------|
@@ -122,10 +82,7 @@ Track A: 16 БД в Neon (project `purple-bread-37001042/production`, источ
 | **Metabase** (Аттестатор) | Self-hosted, читает `learning` и `indicators` (Аттестатор RCS) | Решение — нужен ли отдельный инстанс для Track B | Сейчас Track A only; для Track B решить после онбординга первых пользователей (когда наберётся достаточно событий для аналитики). До тех пор — N/A |
 | **Secret Drift Detector** (WP-315) | Sentinel сравнения секретов между Layer 1 (Neon/Cloudflare/Railway) и Layer 2 (1Password/GitHub Secrets) | Аналогичный pipeline для Track B | До Фазы 5 — настроить detector на Track B секреты, иначе drift не виден |
 
-</details>
-
-<details open>
-<summary><b>5. Итог: приоритет для старта 18 мая</b></summary>
+### 5. Итог: приоритет для старта 18 мая
 
 Минимальный набор, чтобы хотя бы один пользователь смог зарегистрироваться и начать работу:
 
@@ -139,20 +96,14 @@ Track A: 16 БД в Neon (project `purple-bread-37001042/production`, источ
 Остальные можно поднимать итеративно после первого пользователя.
 
 **Prerequisites закрытия до старта Фазы 1 (17 мая):**
-- ✅ Инвентарь актуален (этот документ, 17 мая)
-- ✅ 12-factor compliance аудит (WP-307 закрыт 13 мая, см. [`12factor-services.md`](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-services.md))
-- 🔄 GCP-аккаунт + $300 кредит (Тсерен, 17 мая)
-- 🔄 Документ разграничения (§6 этого файла; Андрей детализирует к 17 мая)
-- 🔄 Согласование схемы доменов Track B на встрече 18 мая
-- ⚠️ Диагностика projection-worker для `subscription.contract_event` (до миграции, WP-228 Ф32)
+-  Инвентарь актуален (этот документ, 17 мая)
+-  12-factor compliance аудит (WP-307 закрыт 13 мая, см. [`12factor-services.md`](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-services.md))
+-  GCP-аккаунт + $300 кредит (Тсерен, 17 мая)
+-  Документ разграничения (§6 этого файла; Андрей детализирует к 17 мая)
+-  Согласование схемы доменов Track B на встрече 18 мая
+-  Диагностика projection-worker для `subscription.contract_event` (до миграции, WP-228 Ф32)
 
-</details>
-
-<details>
-<summary><b>6. Разграничение ответственности: Разработчик (Андрей) vs DevOps (Паша)</b></summary>
-
-> Документ подготовлен к встрече 18 мая (Пашин выход). **Андрей оформит детально** до 17 мая.
-> Принцип: разработчик пишет код + Dockerfile, DevOps разворачивает инфру и принимает артефакты.
+### 6. Разграничение ответственности: Разработчик (Андрей) vs DevOps (Паша)
 
 | Зона | Разработчик (Андрей) | DevOps (Паша) |
 |------|---------------------|--------------|
@@ -178,14 +129,7 @@ Track A: 16 БД в Neon (project `purple-bread-37001042/production`, источ
 - [ ] **Новый:** google-drive-mcp Python MCP — портировать в TypeScript CF Worker или оставить Python в GKE?
 - [ ] **Новый:** Metabase для Track B — поднимать сразу или отложить до набора аналитических данных?
 
-</details>
-
-<details>
-<summary><b>7. Сервисы вне scope Track B (operational only)</b></summary>
-
-> Эти сервисы — часть полного production-runtime (31 deployment unit per WP-307), но в Track B **не мигрируются**. Они остаются на инфраструктуре пилота / Track A.
->
-> **Три группы:** (1) Личные агенты пилота (A1-A6, P1, T1) — инфра Тсерена, не пользовательский слой. (2) IWE-компонент (L1 Local Gateway) — локальный, каждый пользователь разворачивает сам; это часть IWE-архитектуры, не Платформы. (3) Backstage / legacy (X2, X3, AD1, bridge) — операционная инфра.
+### 7. Сервисы вне scope Track B (operational only)
 
 | Категория | Сервисы | Где живут | Почему не в Track B |
 |-----------|---------|-----------|---------------------|
@@ -199,10 +143,7 @@ Track A: 16 БД в Neon (project `purple-bread-37001042/production`, источ
 
 **Полный реестр и деталиrationale:** [`C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-services.md`](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-services.md) §«Принципы включения / исключения».
 
-</details>
-
-<details>
-<summary><b>8. Связанные документы</b></summary>
+### 8. Связанные документы
 
 | Документ | Назначение |
 |----------|-----------|
@@ -217,10 +158,7 @@ Track A: 16 БД в Neon (project `purple-bread-37001042/production`, источ
 | [`B2.1-secrets-inventory.md`](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/Identity-and-Access/B2.1-secrets-inventory.md) | Реестр секретов + ротация (релевант для Track B prerequisites) |
 | [`DP.D.030-deployment-topology.md`](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/Stack-and-Infrastructure/DP.D.030-deployment-topology.md) | Архитектурная топология деплоя |
 
-</details>
-
-<details>
-<summary><b>9. Обновления 14-17 мая (changelog)</b></summary>
+### 9. Обновления 14-17 мая (changelog)
 
 | Дата | Что изменилось | Источник |
 |------|----------------|----------|
@@ -233,5 +171,3 @@ Track A: 16 БД в Neon (project `purple-bread-37001042/production`, источ
 | 17 мая | **WP-228 Ф32 алерт:** `subscription.contract_event` пустая 6 недель при 541 active subscriptions — диагностика projection-worker до миграции в Track B | lessons_dual_run_event_catalog_gaps |
 | 17 мая | Добавлен §7 «Сервисы вне scope Track B» — autonomous agents (A1-A6), profiler (P1), launchd (T1), hetzner-backstage (X2), ssm2025 (X3) — остаются в инфре пилота/Track A | WP-307 Ф0 |
 | 17 мая | **§3 БД: 12 → 16** (фактическое физическое состояние Neon per DP.SC.131 backup-инвентарь). Добавлены health (audit), payment_registry (encrypted credentials, Fernet), secrets (OAuth tokens, ADR-004 от 14 мая), metabase (отложен в §7). Pack DP.ARCH.004 = 12 — устарел | DP.SC.131 от 15 мая |
-
-</details>

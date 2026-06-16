@@ -1,38 +1,4 @@
----
-type: doc
-status: active
-created: 2026-05-22
-updated: 2026-06-09
-family: F8
-kernel: C
-system: C2
-role: Architecture
-author: Церен
-target_audience:
-  - Андрей
-  - Паша
-  - Тсерен
-  - Ильшат
-related:
-  - WP-285-services-inventory.md
-  - WP-285-track-b-plan.md
-  - WP-285-ory-vs-zitadel-emogssb.md
-tags:
-  - track-b
-  - decisions-registry
-  - wp-285
----
-
 # WP-285: Реестр принятых решений по Track B
-
-> **Назначение:** единая точка истины по всем архитектурным и операционным решениям Track B (мировая платформа Aisystant). Источник для встречи 24 мая и последующих итераций.
->
-> **Связанные документы:**
-> - [WP-285-services-inventory.md](WP-285-services-inventory.md) — реестр сервисов Track A → Track B (16 сервисов + 15 БД)
-> - [WP-285-track-b-plan.md](WP-285-track-b-plan.md) — детальный план реализации (Фаза 0-6, дедлайн MVP — конец июня)
-> - [WP-285-ory-vs-zitadel-emogssb.md](WP-285-ory-vs-zitadel-emogssb.md) — ArchGate IdP (Ory vs Zitadel, профиль ЭМОГССБ)
->
-> **Конвенция ID:** `Р-<дата>-<N>`, где дата — день решения. `Р-инв-N` — решения, зафиксированные в инвентаре (вне явных встреч). Источник всегда указан явно.
 
 ---
 
@@ -62,7 +28,7 @@ tags:
 
 | ID | Решение | Источник |
 |---|---|---|
-| Р-15-5 | **Dockerfile ✓ для 4 из 6 Python-сервисов.** Открытые: payment-registry (TBD deployment model), google-drive-mcp (нужен Dockerfile под GKE) — решить до Фазы 3.3 | Оперативка 14 мая |
+| Р-15-5 | **Dockerfile  для 4 из 6 Python-сервисов.** Открытые: payment-registry (TBD deployment model), google-drive-mcp (нужен Dockerfile под GKE) — решить до Фазы 3.3 | Оперативка 14 мая |
 | Р-15-6 | **12-factor compliance = prerequisite.** WP-307 закрыт 13 мая; риски миграции снижены | Оперативка 14 мая |
 | Р-22-1 | **CF Workers остаются на Cloudflare.** Кандидаты на перенос в GKE — только `event-gateway` (транзакционность к Cloud SQL journal) и `payment-receiver` (cluster-internal к payment-registry); финальное решение по этим двум — на встрече 24 мая | Переписка с Андреем, 22 мая |
 | Р-инв-4 | `bridge-2-events-poller` **не переносим** — polling legacy LMS только Track A | Inventory §2 |
@@ -81,7 +47,7 @@ tags:
 | ID | Решение | Источник |
 |---|---|---|
 | Р-инв-8 | **Ory EU** разворачивается на GKE EU — отдельный инстанс от Track A (Kratos + Hydra на GKE, своя БД) | Track B plan §2.2-2.3 |
-| Р-22-5 | **Ory остаётся** (Kratos + Hydra) для Track B. **Zitadel отклонён** — нет RFC 7591 (DCR) и RFC 8707 (Resource Indicators), ломает интеграцию gateway-mcp с claude.ai/ChatGPT. Conjunctive screening: Ory 0×❌, Zitadel 1×❌ | ArchGate ЭМОГССБ, 22 мая ([WP-285-ory-vs-zitadel-emogssb.md](WP-285-ory-vs-zitadel-emogssb.md)) |
+| Р-22-5 | **Ory остаётся** (Kratos + Hydra) для Track B. **Zitadel отклонён** — нет RFC 7591 (DCR) и RFC 8707 (Resource Indicators), ломает интеграцию gateway-mcp с claude.ai/ChatGPT. Conjunctive screening: Ory 0×, Zitadel 1× | ArchGate ЭМОГССБ, 22 мая ([WP-285-ory-vs-zitadel-emogssb.md](WP-285-ory-vs-zitadel-emogssb.md)) |
 | Р-22-5а | **Keto / Oathkeeper не разворачиваем** на Track B (как и на Track A) — permissions через свои таблицы в БД, reverse-proxy не нужен | ArchGate, 22 мая |
 | Р-22-6 | **Google-аккаунт = OIDC federation поверх IdP** (не вместо). IdP (Ory Kratos) остаётся обязательным — управляет локальными identity, выдаёт JWT, держит сессии, делает audit | Переписка с Андреем, 22 мая |
 | Р-22-8 | **Login-методы Track B (мир):** Email + Magic Link, Sign in with Google, Sign in with Apple (если будет iOS-приложение — обязательно по App Store policy), Sign in with GitHub (опционально под developer-аудиторию), Passkey/WebAuthn (на будущее) | Переписка с Андреем + ArchGate, 22 мая |
@@ -112,12 +78,6 @@ tags:
 
 ## Открытые вопросы
 
-> **Статус на 9 июня 2026:** встречи 21–23 прошли (май 2026), часть вопросов ниже могла быть закрыта. Требуется проверка по итогам transcript'ов встреч 21–23 и встречи 24 (4 июня).
->
-> *(Исходная формулировка ниже — выносилось на встречу 24 мая)*
-
-> Не решения — кандидаты на решение. После встречи мигрируют наверх с новым ID `Р-24-N`.
-
 | Тема | Контекст |
 |---|---|
 | **CF Workers — детализация Р-22-1** | Переносить ли `event-gateway` и `payment-receiver` в GKE? Кто пишет, сколько часов? |
@@ -142,4 +102,3 @@ tags:
 
 | Дата | Что изменилось | Источник |
 |---|---|---|
-| 2026-05-22 | Создан реестр. Консолидированы решения Р-14-* (встреча 14), Р-15-* (оперативка 14 мая), Р-инв-* (inventory + DP.SC.131), Р-22-* (переписка с Андреем + ArchGate Ory vs Zitadel) | Сессия 22 мая |

@@ -1,17 +1,4 @@
----
-type: proposal
-status: draft
-created: 2026-06-15
-updated: 2026-06-15
-owner: Церен
-next_review: 2026-06-22
-related: [WP-7, WP-73]
----
-
 # ADR-draft: серверный гейт размещения — запрет новых файлов в корне `0.OPS/`
-
-> **Материал к обсуждению с командой** (стадия `0.9.Inbox`). После решения → ADR в `C2.2.Architecture/System-Implementations/` + реализация в CI/pre-receive.
-> **Источник:** пир-сессия `DS-my-strategy/sessions/2026-06/2026-06-15-13-artf-gate-closure-lock`, условие консенсуса 4. Эпизод: агент разместил кросс-ядерный индекс в `0.OPS/PLATFORM-DOCUMENTS-INDEX.md`, приняв соседство с `REPOSITORY-REGISTRY.md` за «постоянный дом». Откатил; правило «постоянный дом» внесено в SoT `DP.KR.001 §5.5`.
 
 ## Проблема
 

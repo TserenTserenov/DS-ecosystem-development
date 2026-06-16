@@ -1,44 +1,10 @@
----
-type: handoff
-status: active
-created: 2026-06-10
-updated: 2026-06-15
-owner: Андрей
-next_review: 2026-06-27
-related: [WP-415-russia-world-split-concept.md]
----
-
 # Aisystant MCP — развёртывание в мировой инфраструктуре (GKE)
-
-> Плейбук пересоздания Aisystant MCP на Google Kubernetes Engine для мировых пользователей (Track B). Текущие российские экземпляры (Track A) работают отдельно на Cloudflare Workers + Railway и не затрагиваются.
-> Все репозитории приватные (`aisystant/*`).
-> Кто разрабатывает, принимает, разворачивает — см. [WP-415 §6](WP-415-russia-world-split-concept.md).
 
 **Что разворачиваем (Track B):** отдельный экземпляр шлюза в GKE + 8 сервисов за ним + Cloud SQL. Свой домен (например, `mcp-world.aisystant.com`), свои переменные окружения, свои бэкенды. От Track A независим.
 
 **Принцип шлюза.** Aisystant MCP = это **шлюз** (`gateway-mcp`) — единственная точка подключения внешних клиентов (claude.ai, Claude Code, VS Code). Задача одна: принять запрос и отмаршрутизировать на нужный сервис. В конфиге шлюза — только адреса сервисов + собственный ключ подписи. Без баз данных на пути маршрутизации, без общих паролей к сервисам. Прикладная логика живёт в сервисах за шлюзом.
 
-> **Состояние перехода (на конец 2026-06-15). P1 ВЫПОЛНЕН.**
->
-> **P1 закрыт (15 июня):** на gateway-mcp-v2 больше нет ни одного пользовательского `*_SERVICE_SHARED_SECRET`. Порядок выполнения:
-> - 14 июня (A1): `USER_PROFILE_SHARED_SECRET` удалён, код шлюза очищен (SHA 1980f88).
-> - 15 июня (S3+S4, сессия 04): `SCOPE_ENFORCEMENT_MIGRATED=true` + `SCOPE_SERVICE_SHARED_SECRET` + `SCOPE_SERVICE_URL` удалены. Воркер: `gateway-mcp-v2` (не `gateway-mcp`!). Smoke обоих путей зелёный.
-> - `PROXY_SHARED_SECRET` остался — это server-to-server канал gateway↔agent-runner (install-path, явное исключение P1).
->
-> **USER_PROFILE** — удалён 14 июня. **Для Track B:** свежая выкатка по разделу 2.2 корректна.
->
-> **SCOPE (bridge-scope)** — gateway обходит через `SCOPE_ENFORCEMENT_MIGRATED=true` (feature-flag SHA 94330a1). `personal_write` работает через personal-knowledge-mcp напрямую.
-> - ✅ S0 (SHA 70f2df4): `provisionBridgeScopes` в `connectSource`.
-> - ✅ S3: `SCOPE_ENFORCEMENT_MIGRATED=true` на gateway-mcp-v2.
-> - ✅ S4: `SCOPE_SERVICE_SHARED_SECRET` + `SCOPE_SERVICE_URL` удалены.
-> - ⏳ S5: decommission `bridge-scope-service` на Railway — Андрей.
-> - ⚠️ `SCOPE_GUARD_MODE=off` (indicators DB недоступна — нет логирования scope-решений; функционально безопасно).
-> - **Для Track B:** `bridge-scope-service` не разворачивать. `SCOPE_GUARD_MODE=shadow` или `enforce` при наличии indicators DB.
->
-> **learning-context (на заметку при деплое):** `get_cognitive_brief` на Track A требует накатить миграцию `230-wp316-cognitive-schema.sql` (схема `cognitive` не создана). На Track B — код из `main`, миграцию накатить при деплое.
-
-<details open>
-<summary><b>1. Карта сервисов</b></summary>
+### 1. Карта сервисов
 
 За шлюзом — два класса сервисов: серверы знаний и вспомогательные сервисы.
 
@@ -52,9 +18,9 @@ related: [WP-415-russia-world-split-concept.md]
 
 | Сервис | Что делает | Контейнер |
 |--------|------------|-----------|
-| **knowledge-mcp** | Поиск по базе знаний | ❌ нужен Dockerfile (сейчас Cloudflare Worker) |
-| **digital-twin-mcp** | Цифровой двойник пользователя | ❌ нужен Dockerfile |
-| **personal-knowledge-mcp** | Личные знания пользователя | ❌ нужен Dockerfile |
+| **knowledge-mcp** | Поиск по базе знаний |  нужен Dockerfile (сейчас Cloudflare Worker) |
+| **digital-twin-mcp** | Цифровой двойник пользователя |  нужен Dockerfile |
+| **personal-knowledge-mcp** | Личные знания пользователя |  нужен Dockerfile |
 
 **Вспомогательные сервисы** (прикладная логика за шлюзом, все на TypeScript/Node, с Dockerfile и README)
 
@@ -66,12 +32,7 @@ related: [WP-415-russia-world-split-concept.md]
 | **agent-status-service** | Доска статусов агентов |
 | **bridge-scope-service** | Проверка прав агента на запись в репозиторий пользователя |
 
-> После переезда адреса серверов знаний в шлюзе указывают на внутренние адреса кластера (ClusterIP), не на Cloudflare.
-
-</details>
-
-<details>
-<summary><b>2. Конфигурация и авторизация</b></summary>
+### 2. Конфигурация и авторизация
 
 ### 2.1 Авторизация: сервисы проверяют личность сами, общих паролей нет
 
@@ -79,8 +40,6 @@ related: [WP-415-russia-world-split-concept.md]
 
 1. **Личный токен пользователя (Ory JWT).** Шлюз пробрасывает токен как `Authorization: Bearer`; сервис проверяет его по JWKS Ory (`ORY_URL`). Так работают серверы знаний, `user-profile`, `learning-context`, `agent-status`.
 2. **Подпись шлюза (короткоживущая RS256-подпись).** Для путей без пользовательского JWT (непрозрачные OAuth-токены коннектора) и для `github-integration` шлюз выписывает подпись своим приватным ключом; сервис проверяет её по публичному ключу шлюза (`GATEWAY_JWKS_URL`). Подпись живёт 60 секунд, привязана к адресату (`audience`) и назначению (`purpose`).
-
-> Шлюз публикует публичный ключ на `/<gateway>/.well-known/jwks.json`. Утёкший публичный ключ подделать подпись не позволяет — это не общий пароль.
 
 ### 2.2 Переменные окружения — шлюз (Track B)
 
@@ -104,8 +63,7 @@ SUBSCRIPTION_DATABASE_URL     # ТОЛЬКО для хука выдачи ток
 
 Каждый сервис проверяет личность сам (`ORY_URL` и/или `GATEWAY_JWKS_URL`) и держит свою базу.
 
-<details>
-<summary><b>user-profile-service</b></summary>
+### user-profile-service
 
 - `DATABASE_URL` — база персон
 - `ORY_URL` — проверка личного токена пользователя
@@ -114,10 +72,7 @@ SUBSCRIPTION_DATABASE_URL     # ТОЛЬКО для хука выдачи ток
 - `BOT_NOTIFY_URL` + `BOT_NOTIFY_SECRET` — уведомления боту
 - `KNOWLEDGE_DB_SCHEMA` — по умолчанию `knowledge`
 
-</details>
-
-<details>
-<summary><b>learning-context-service</b></summary>
+### learning-context-service
 
 - `LEARNING_DATABASE_URL` — база learning (или `DATABASE_URL`)
 - `ORY_URL` — проверка личного токена пользователя
@@ -125,10 +80,7 @@ SUBSCRIPTION_DATABASE_URL     # ТОЛЬКО для хука выдачи ток
 - `PORT` — по умолчанию 3000
 - Миграции на базу learning: `learning.consent_grant` (`neon-migrations/mvp/229`, `261`), `cognitive.brief` (`230`). Без них `/grant-consent` и `/cognitive-brief` падают.
 
-</details>
-
-<details>
-<summary><b>github-integration-service</b></summary>
+### github-integration-service
 
 - `DATABASE_URL` — база персон
 - `ORY_CLIENT_SECRET` — интроспекция токенов Ory
@@ -140,31 +92,20 @@ SUBSCRIPTION_DATABASE_URL     # ТОЛЬКО для хука выдачи ток
 - Уведомления боту: `BOT_NOTIFY_URL`, `BOT_NOTIFY_SECRET`, `BOT_WORKBOOK_WEBHOOK_URL`, `BOT_WORKBOOK_WEBHOOK_SECRET`
 - Прочее: `AGENT_RUNNER_URL`, `PERSONAL_KNOWLEDGE_MCP_URL`, `KNOWLEDGE_MCP_URL`, `LEARNING_DATABASE_URL`, `KNOWLEDGE_DB_SCHEMA`
 
-</details>
-
-<details>
-<summary><b>agent-status-service</b></summary>
+### agent-status-service
 
 - `DATABASE_URL` — база indicators
 - `ORY_URL` — проверка личного токена пользователя
 - `PORT` — по умолчанию 3000
 - `GHOST_TTL_HOURS` — опционально
 
-</details>
-
-<details>
-<summary><b>bridge-scope-service</b></summary>
+### bridge-scope-service
 
 - `DATABASE_URL` — база indicators
 - `PORT` — по умолчанию 3000
 - Авторизация: сейчас единственный сервис на общем ключе от шлюза; проверку прав переносят внутрь `personal-knowledge-mcp`. Для Track B уточнить у владельца РП-410, разворачивать ли как отдельный сервис.
 
-</details>
-
-</details>
-
-<details>
-<summary><b>3. Порядок развёртывания</b></summary>
+### 3. Порядок развёртывания
 
 **До первого деплоя**
 
@@ -180,22 +121,15 @@ SUBSCRIPTION_DATABASE_URL     # ТОЛЬКО для хука выдачи ток
 
 **Приватная сеть.** Все 8 сервисов — в одном GKE-кластере (europe-west4), внутренние адреса недоступны извне, у серверов знаний пропадают публичные адреса за периметр кластера.
 
-</details>
-
-<details>
-<summary><b>4. Чистота шлюза (тест Андрея)</b></summary>
+### 4. Чистота шлюза (тест Андрея)
 
 **Принцип:** посмотри конфиг шлюза. Только адреса сервисов + ключ подписи → правильный шлюз. Появились базы или прикладная логика → шлюз взял лишнее.
 
-- ✅ Путь маршрутизации чист: 3 адреса серверов знаний + 5 адресов вспомогательных сервисов + ключ подписи. Баз данных на пути нет.
-- ✅ Управление ключами к моделям (BYOK) — в `user-profile-service`, шлюз только проксирует.
-- ⏳ Авторизация без общих паролей — **P1 достижимо после конкретных шагов, не достигнуто на 2026-06-14.** Сервисы проверяют личность сами (раздел 2.1). USER_PROFILE-пароль снят на стороне кода шлюза (14 июня) — осталось удалить значение с Cloudflare (шаг B). SCOPE-пароль уходит после 3 шагов provisioning-консолидации + enforce guard'а (см. «Состояние перехода» в шапке). Свежий Track B: разворачивается без обоих паролей by design, но шаги provisioning (1-2) выполнить обязательно.
-- ⚠️ **Легитимный остаток** — хук выдачи токена (`/hydra-hook/token`) читает базу подписок (`SUBSCRIPTION_DATABASE_URL`), чтобы вшить тариф в токен. Это эндпоинт выдачи, не путь маршрутизации. Зафиксировано в ADR DP.IWE.003 §10.
+-  Путь маршрутизации чист: 3 адреса серверов знаний + 5 адресов вспомогательных сервисов + ключ подписи. Баз данных на пути нет.
+-  Управление ключами к моделям (BYOK) — в `user-profile-service`, шлюз только проксирует.
+-  **Легитимный остаток** — хук выдачи токена (`/hydra-hook/token`) читает базу подписок (`SUBSCRIPTION_DATABASE_URL`), чтобы вшить тариф в токен. Это эндпоинт выдачи, не путь маршрутизации. Зафиксировано в ADR DP.IWE.003 §10.
 
-</details>
-
-<details>
-<summary><b>5. Проверка после деплоя</b></summary>
+### 5. Проверка после деплоя
 
 ```bash
 # Шлюз (503 → {"ok":true} после подключения сервисов)
@@ -211,12 +145,7 @@ curl http://agent-status-service/health   ; curl http://bridge-scope-service/hea
 
 **Поинструментная проверка с токеном (обязательно — `/health`=200 не доказывает, что инструмент работает):** прогнать живой вызов по каждому семейству (поиск, двойник, личные знания, тариф, бриф, статус агента, вход через GitHub). Бриф возвращает данные известного пользователя, состояние пути — корректную ступень.
 
-</details>
-
-<details>
-<summary><b>6. Сборка раздачи прав (provisioning) — обязательно для Track B</b></summary>
-
-> Чтобы Track B был чистым by design (без `bridge-scope-service` и без `SCOPE_SERVICE_SHARED_SECRET`), проверку прав агента переносят внутрь `personal-knowledge-mcp`. Решение уже принято (Вариант 2, peer-сессия 2026-06-11-26): встроить guard в personal-knowledge, `bridge-scope-service` не разворачивать. Но раздачу прав (provisioning) нужно собрать в один дом — иначе подключение источника и установка GitHub App не пропишут права, и enforce будет молча всё запрещать.
+### 6. Сборка раздачи прав (provisioning) — обязательно для Track B
 
 **Три точки раздачи прав сегодня (разбросаны):**
 
@@ -224,11 +153,9 @@ curl http://agent-status-service/health   ; curl http://bridge-scope-service/hea
 |-------|-----------|-----------|-------------|
 | user-path | `personal_connect_source` прописывает права на репозиторий пользователя | вызов из шлюза → `bridge-scope /api/v1/provision` | in-process в `personal-knowledge-mcp` (владелец инструмента), личность из user-JWT (`sub`) |
 | install-webhook | установка GitHub App прописывает права | `github-integration → agent-runner /v1/admin/scope-provision` | в `github-integration-service` с server-to-server подписью (пользователя нет) |
-| функция-порт | `provisionBridgeScopes` уже перенесена в personal-knowledge | ✅ DONE (SHA 70f2df4, 15 июня) — подключена безусловно в `connectSource`, self-healing | — |
 
 **Шаги (actionable, owner — РП-410):**
 
-1. ✅ **СДЕЛАНО (SHA 70f2df4, 15 июня).** `provisionBridgeScopes` подключена безусловно в `connectSource` personal-knowledge-mcp: каждый `connect_source` (новый, повторный, self-healing) вызывает `provisionBridgeScopes`. При недоступности indicators-БД — connect не падает, возвращает `scope_provisioning: "failed"` с явным сообщением. `INDICATORS_DATABASE_URL` уже на сервисе (установлен 13 июня, shadow активен).
 2. **Перенести install-webhook provisioning в s2s-дом.** Путь `/v1/admin/scope-provision` (установка GitHub App, пользователя нет) перенести из связки `github-integration → agent-runner` в `github-integration-service` с подписью шлюза (`GATEWAY_JWKS_URL`), не на общий пароль. **Provisioning на пароле = та же дыра P1** (можно прописать права любому `userId`).
 3. **Вывести bridge-scope.** После шагов 1-2 и (для Track A) выдержки теневой проверки → шлюз убирает гейт `BRIDGE_WRITE_TOOLS` + вызовы `callScopeService`/`callScopeProvision` → снять `SCOPE_SERVICE_SHARED_SECRET`+URL → `bridge-scope-service` не разворачивать.
 
@@ -236,25 +163,14 @@ curl http://agent-status-service/health   ; curl http://bridge-scope-service/hea
 - **Track A (живой Cloudflare/Railway):** шаг 3 (enforce + снятие секрета) делается ТОЛЬКО после выдержки теневой проверки ≥7 дней (старт 13 июня → ориентир ~20 июня), чтобы не заблокировать запись текущим пользователям. Шаги 1-2 можно готовить заранее.
 - **Track B (свежий GKE):** живого трафика нет → guard включается в enforce сразу, `bridge-scope` не разворачивается вовсе. Но шаги 1-2 (provisioning) выполнить **обязательно** до приёма трафика, иначе первое подключение источника / установка App не пропишут права.
 
-</details>
-
-<details>
-<summary><b>7. Доказательная база (proof для приёмки)</b></summary>
-
-> Чтобы заявления «USER_PROFILE-код очищен» и «дефект learning-context не из РП-410» не пришлось перепроверять вручную.
+### 7. Доказательная база (proof для приёмки)
 
 **USER_PROFILE-чистка инертна (1 файл, мёртвый код):**
 ```
-$ git show dca2986 --stat   # repo: aisystant/gateway-mcp
 refactor(WP-410): drop dead USER_PROFILE secret path from gateway
  src/index.ts | 23 +++++++++--------------
  1 file changed, 9 insertions(+), 14 deletions(-)
 ```
-Коммит в `main` как `1980f88` (cherry-pick: тот же набор изменений и та же статистика `+9/-14`; номера строк в hunk сдвинуты, т.к. лёг на более свежую базу). Убирает только чтение `USER_PROFILE_SHARED_SECRET` (мёртвая ветка `mode:"secret"` — ни один из 4 вызовов её не передаёт), поле в `Env`, ложное health-требование. Прикладной логики не трогает. typecheck чисто, 162 теста, cold-review 0 critical/high, после деплоя per-tool smoke живым токеном зелёный.
 
 **Дефект learning-context (`ORY_URL not configured`) — не из РП-410:**
-- `git show dca2986` не содержит learning-context (трогает только USER_PROFILE-код шлюза).
-- Корень: фиксы авторизации `54366b3`/`a2a0062`/`2e3d334` в `main` сервиса, но не задеплоены (у `learning-context-service` ручной `railway up`, авто-деплоя нет). «Push ≠ deploy».
 - **Для Track B риска нет** — разворачивается свежий `main` сервиса, где фиксы уже есть. Track A требует одного `railway up`.
-
-</details>
