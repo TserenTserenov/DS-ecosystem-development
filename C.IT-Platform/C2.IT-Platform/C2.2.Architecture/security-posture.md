@@ -78,7 +78,7 @@ related:
 
 | Флаг | Где | Что гейтит | Условие снятия | Статус |
 |------|-----|-----------|----------------|--------|
-| `FEATURE_F5_PLATFORM_RENDER` | `DS-my-strategy/scripts/lib/panel_render.py` | Рендер тайлов баллы/бонусы/ступень/время (WP-417 Ф5) на публично-смежной guide-web — вектор утечки PII | Security Gate B7.3 (проекции personal vs public, паттерн WP-302) **и** account_id-маппинг (WP-411) | 🔴 `false` (закрыт) |
+| `FEATURE_F5_PLATFORM_RENDER` | `DS-my-strategy/scripts/lib/panel_render.py` | Рендер тайлов баллы/бонусы/ступень/время (WP-417 Ф5) на публично-смежной guide-web — вектор утечки PII | **L1 local:** B7.3 пройден (2026-06-16, peer 2026-06-16-19); задать `NEON_DATABASE_URL` → снять флаг. **L3 guide-web:** Security Gate B7.3 (проекции personal vs public, паттерн WP-302) **и** account_id-маппинг (WP-411) | 🔴 `false` (закрыт) |
 
 ---
 
