@@ -78,7 +78,7 @@ related:
 
 | Флаг | Где | Что гейтит | Условие снятия | Статус |
 |------|-----|-----------|----------------|--------|
-| `FEATURE_F5_PLATFORM_RENDER` | `DS-my-strategy/scripts/lib/panel_render.py` | Рендер тайлов баллы/бонусы/ступень/время (WP-417 Ф5) на публично-смежной guide-web — вектор утечки PII | **L1 local:** B7.3 пройден (2026-06-16, peer 2026-06-16-19); задать `NEON_DATABASE_URL` → снять флаг. **L3 guide-web:** Security Gate B7.3 (проекции personal vs public, паттерн WP-302) **и** account_id-маппинг (WP-411) | 🔴 `false` (закрыт) |
+| `FEATURE_F5_PLATFORM_RENDER` | `DS-my-strategy/scripts/lib/panel_render.py` | Рендер тайлов баллы/бонусы/ступень/время (WP-417 Ф5) на публично-смежной guide-web — вектор утечки PII | **L1 local:** B7.3 пройден (2026-06-16); флаг `True`. **L3 guide-web:** B7.3 §Б пройден (2026-06-16): класс=PII-смежное (поведенческие метрики пилота), логирование exception-only ✅, Neon at-rest ✅, RLS debt в source-таблицах (РП121/РП318), SQL параметрирован ✅, TLS+HTTPS ✅. 0 ❌, 2 ⚠️ (RLS source, B2.1 inventory). Код в DS-my-strategy (bdf46ea1a) импортируется tsekh-1 автоматически через относительный путь. **Остаток**: добавить `NEON_LEARNING_URL`/`NEON_REWARDS_URL` в systemd-сервис `iwe-render-pilot-guides-daily` на tsekh-1 | 🟡 `True` (L1 активен; L3 — добавить env vars на tsekh-1) |
 
 ---
 
