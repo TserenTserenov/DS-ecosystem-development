@@ -103,7 +103,7 @@ SUBSCRIPTION_DATABASE_URL     # ТОЛЬКО для хука выдачи ток
 
 - `DATABASE_URL` — база indicators
 - `PORT` — по умолчанию 3000
-- Авторизация: сейчас единственный сервис на общем ключе от шлюза; проверку прав переносят внутрь `personal-knowledge-mcp`. Для Track B уточнить у владельца РП-410, разворачивать ли как отдельный сервис.
+- Авторизация: сейчас единственный сервис на общем ключе от шлюза; проверку прав перенесена внутрь `personal-knowledge-mcp` (РП-410 Ф-scope, 15 июня). **Для Track B НЕ разворачивать** — guard уже в enforce в `personal-knowledge-mcp`, bridge-scope устарел.
 
 ### 3. Порядок развёртывания
 
@@ -140,7 +140,8 @@ curl http://knowledge-mcp/health      ; curl http://digital-twin-mcp/health
 curl http://personal-knowledge-mcp/health
 curl http://user-profile-service/health   ; curl http://learning-context-service/health
 curl http://github-integration-service/health
-curl http://agent-status-service/health   ; curl http://bridge-scope-service/health
+curl http://agent-status-service/health
+# bridge-scope-service: для Track B НЕ разворачивается (guard в personal-knowledge-mcp)
 ```
 
 **Поинструментная проверка с токеном (обязательно — `/health`=200 не доказывает, что инструмент работает):** прогнать живой вызов по каждому семейству (поиск, двойник, личные знания, тариф, бриф, статус агента, вход через GitHub). Бриф возвращает данные известного пользователя, состояние пути — корректную ступень.
@@ -160,7 +161,7 @@ curl http://agent-status-service/health   ; curl http://bridge-scope-service/hea
 3. **Вывести bridge-scope.** После шагов 1-2 и (для Track A) выдержки теневой проверки → шлюз убирает гейт `BRIDGE_WRITE_TOOLS` + вызовы `callScopeService`/`callScopeProvision` → снять `SCOPE_SERVICE_SHARED_SECRET`+URL → `bridge-scope-service` не разворачивать.
 
 **Track A vs Track B:**
-- **Track A (живой Cloudflare/Railway):** шаг 3 (enforce + снятие секрета) делается ТОЛЬКО после выдержки теневой проверки ≥7 дней (старт 13 июня → ориентир ~20 июня), чтобы не заблокировать запись текущим пользователям. Шаги 1-2 можно готовить заранее.
+- **Track A (живой Cloudflare/Railway):** шаг 3 (enforce) — ✅ ВЫПОЛНЕНО 17 июня. Shadow-окно прошло без `indicators_db_unavailable` (старт 15 июня 08:41 UTC, 48ч+). SCOPE_GUARD_MODE=enforce выставлен на `personal-knowledge-mcp`. Следующий шаг: вывести bridge-scope с Railway (проект peaceful-vision).
 - **Track B (свежий GKE):** живого трафика нет → guard включается в enforce сразу, `bridge-scope` не разворачивается вовсе. Но шаги 1-2 (provisioning) выполнить **обязательно** до приёма трафика, иначе первое подключение источника / установка App не пропишут права.
 
 ### 7. Доказательная база (proof для приёмки)
