@@ -13,27 +13,27 @@
 
 **Шлюз**
 
-| Сервис | Репозиторий | Что в конфиге |
-|--------|-------------|---------------|
-| **gateway-mcp** | [aisystant/gateway-mcp](https://github.com/aisystant/gateway-mcp) | Только адреса 8 сервисов + ключ подписи. Без баз на пути маршрутизации |
+| Сервис | Репозиторий | Track A URL | Что в конфиге |
+|--------|-------------|-------------|---------------|
+| **gateway-mcp** | [aisystant/gateway-mcp](https://github.com/aisystant/gateway-mcp) | https://mcp.aisystant.com | Только адреса 8 сервисов + ключ подписи. Без баз на пути маршрутизации |
 
 **Серверы знаний** (CF Workers → нужен Dockerfile для GKE)
 
-| Сервис | Репозиторий | Что делает |
-|--------|-------------|------------|
-| **knowledge-mcp** | [aisystant/knowledge-mcp](https://github.com/aisystant/knowledge-mcp) | Поиск по базе знаний (Pack, guides, граф концептов) |
-| **digital-twin-mcp** | [aisystant/digital-twin-mcp](https://github.com/aisystant/digital-twin-mcp) | Цифровой двойник пользователя, показатели прогресса |
-| **personal-knowledge-mcp** | [aisystant/personal-knowledge-mcp](https://github.com/aisystant/personal-knowledge-mcp) | Личная база знаний пользователя |
+| Сервис | Репозиторий | Track A URL | Что делает |
+|--------|-------------|-------------|------------|
+| **knowledge-mcp** | [aisystant/knowledge-mcp](https://github.com/aisystant/knowledge-mcp) | https://knowledge-mcp.aisystant.workers.dev | Поиск по базе знаний (Pack, guides, граф концептов) |
+| **digital-twin-mcp** | [aisystant/digital-twin-mcp](https://github.com/aisystant/digital-twin-mcp) | https://digital-twin-mcp.aisystant.workers.dev | Цифровой двойник пользователя, показатели прогресса |
+| **personal-knowledge-mcp** | [aisystant/personal-knowledge-mcp](https://github.com/aisystant/personal-knowledge-mcp) | https://personal-knowledge-mcp.aisystant.workers.dev | Личная база знаний пользователя |
 
 **Вспомогательные сервисы** (Node.js, Dockerfile есть)
 
-| Сервис | Репозиторий | Что делает |
-|--------|-------------|------------|
-| **user-profile-service** | [aisystant/user-profile-service](https://github.com/aisystant/user-profile-service) | Профиль: контекст, тариф, BYOK-ключи, уведомления боту |
-| **learning-context-service** | [aisystant/learning-context-service](https://github.com/aisystant/learning-context-service) | Согласие на данные, когнитивный бриф, состояние онбординга |
-| **github-integration-service** | [aisystant/github-integration-service](https://github.com/aisystant/github-integration-service) | Вебхуки GitHub App, вход через GitHub, создание репозиториев |
-| **agent-status-service** | [aisystant/agent-status-service](https://github.com/aisystant/agent-status-service) | Доска статусов агентов |
-| ~~bridge-scope-service~~ | — | **Не разворачивать** — guard перенесён в `personal-knowledge-mcp` (`scope.ts`, WP-410 ✅ 17 июня) |
+| Сервис | Репозиторий | Track A URL | Что делает |
+|--------|-------------|-------------|------------|
+| **user-profile-service** | [aisystant/user-profile-service](https://github.com/aisystant/user-profile-service) | https://user-profile-service-production.up.railway.app | Профиль: контекст, тариф, BYOK-ключи, уведомления боту |
+| **learning-context-service** | [aisystant/learning-context-service](https://github.com/aisystant/learning-context-service) | https://learning-context-service-production.up.railway.app | Согласие на данные, когнитивный бриф, состояние онбординга |
+| **github-integration-service** | [aisystant/github-integration-service](https://github.com/aisystant/github-integration-service) | https://github-integration-service-production.up.railway.app | Вебхуки GitHub App, вход через GitHub, создание репозиториев |
+| **agent-status-service** | [aisystant/agent-status-service](https://github.com/aisystant/agent-status-service) | TBD (не задеплоен) | Доска статусов агентов |
+| ~~bridge-scope-service~~ | — | — | **Не разворачивать** — guard перенесён в `personal-knowledge-mcp` (`scope.ts`, WP-410 ✅ 17 июня) |
 
 **Итого:** 8 сервисов за шлюзом (3 знания + 4 вспомогательных). bridge-scope устарел.
 
