@@ -32,7 +32,7 @@
 | **user-profile-service** | [aisystant/user-profile-service](https://github.com/aisystant/user-profile-service) | https://user-profile-service-production.up.railway.app | Профиль: контекст, тариф, BYOK-ключи, уведомления боту |
 | **learning-context-service** | [aisystant/learning-context-service](https://github.com/aisystant/learning-context-service) | https://learning-context-service-production.up.railway.app | Согласие на данные, когнитивный бриф, состояние онбординга |
 | **github-integration-service** | [aisystant/github-integration-service](https://github.com/aisystant/github-integration-service) | https://github-integration-service-production.up.railway.app | Вебхуки GitHub App, вход через GitHub, создание репозиториев |
-| **agent-status-service** | [aisystant/agent-status-service](https://github.com/aisystant/agent-status-service) | TBD (не задеплоен) | Доска статусов агентов |
+| **agent-status-service** | [aisystant/agent-status-service](https://github.com/aisystant/agent-status-service) | https://agent-status-service-production.up.railway.app | Доска статусов агентов |
 | ~~bridge-scope-service~~ | — | — | **Не разворачивать** — guard перенесён в `personal-knowledge-mcp` (`scope.ts`, WP-410 ✅ 17 июня) |
 
 **Итого:** 8 сервисов за шлюзом (3 знания + 4 вспомогательных). bridge-scope устарел.
