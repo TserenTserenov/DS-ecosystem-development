@@ -30,8 +30,11 @@ stages:
     typical_bottleneck: "масштабирование исследования"
     rhythm: "12-20h/wk"
 
-  # Stub levels 4-7 (WP-149 Ф-rung-fidelity B1-proper, 2026-06-21).
-  # seed_lookup reuses stage-5-proactive until WP-364 Ф12 fills IR content.
+  # Levels 4-7: for levels 5-7 seed_lookup is INACTIVE when DS-eco seed exists.
+  # Renderer calls _try_eco_seed(research-development, level, domain) first (B2 source wire,
+  # WP-149 Ф-rung-fidelity, peer-session 2026-06-23-02). If eco seed found → use it.
+  # If NOT found AND level>=5 → missing_source (no stage-5-proactive fallback — that
+  # would silently serve ЛР/ученик content). seed_lookup kept as documentation only.
   - level: 4
     name: "Лидер исследования"
     seed_lookup: "stage-5-proactive"
