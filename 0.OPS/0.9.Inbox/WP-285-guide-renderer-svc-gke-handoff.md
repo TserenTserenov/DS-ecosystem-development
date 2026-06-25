@@ -18,7 +18,7 @@ related: [WP-285, WP-149, WP-415]
 
 ## 1. MCP-сервисы
 
-Полный хэндофф: [WP-285-aisystant-mcp-gke-handoff.md](WP-285-aisystant-mcp-gke-handoff.md).
+Полный хэндофф (8 сервисов): [WP-285-aisystant-mcp-gke-handoff.md](WP-285-aisystant-mcp-gke-handoff.md).
 
 | Название | Назначение | Сервис | Тип деплоя |
 |----------|-----------|--------|-----------|
@@ -26,15 +26,18 @@ related: [WP-285, WP-149, WP-415]
 | Поиск по базе знаний | Поиск по Pack, гайдам, SOTA, графу концептов | knowledge-mcp | CF Worker |
 | Личная база знаний | Личные заметки и эмбеддинги пользователя | personal-knowledge-mcp | CF Worker |
 | Цифровой двойник | Показатели прогресса, CP-профиль, снапшоты ученика | digital-twin-mcp | CF Worker |
-| Каталог руководств | Каталог программ обучения и руководств | guides-mcp | CF Worker |
-| Конечный автомат | FSM-состояния ассистента ученика в диалоге | fsm-mcp | CF Worker |
-| Google Drive | Python MCP-сервер: доступ к Google Drive пользователя | google-drive-mcp | GKE Deployment |
 | Профиль пользователя | Контекст, тариф, BYOK-ключи, уведомления боту | user-profile-service | GKE Deployment |
 | Контекст обучения | Согласие на данные, когнитивный бриф, онбординг | learning-context-service | GKE Deployment |
 | Интеграция с GitHub | Вебхуки GitHub App, вход через GitHub, создание репо | github-integration-service | GKE Deployment |
 | Статус агентов | Доска статусов агентов | agent-status-service | GKE Deployment |
 
-> **Примечание:** guides-mcp, fsm-mcp и google-drive-mcp пока не включены в детальный handoff-файл.
+**Ещё 3 MCP-сервиса не включены в существующий handoff** — нужно добавить или сделать отдельный файл:
+
+| Сервис | Тип | Что делает |
+|--------|-----|-----------|
+| guides-mcp | CF Worker | Каталог программ обучения и руководств |
+| fsm-mcp | CF Worker | FSM-состояния ассистента ученика в диалоге |
+| google-drive-mcp | GKE Deployment | Python MCP-сервер: доступ к Google Drive пользователя |
 
 ---
 
@@ -62,6 +65,8 @@ related: [WP-285, WP-149, WP-415]
 **Сервис:** guide-renderer-svc (новый) - GKE CronJob. **Расписание:** ежедневно 06:00 UTC.
 
 **Фильтр:** только пилоты с `has_iwe_git=False`. Понедельник - полный прогон, вт-вс - только дневное руководство.
+
+**Рунг** — позиция в каталоге заданий. Для ЛР-программы: `uchenik_1`...`uchenik_5` (по ступени 1-5). Для РР/ИР-программ: `rabotnik`, `strateg`, `specialist`, `praktik`, `master`, `reformator`, `revolyutsioner` (по квалификации МШС). `derive_rung(ступень, МШС)` — единственный SoT маппинга (WP-149 Ф3).
 
 ### Функции для переноса из `DS-autonomous-agents/scripts/`
 
@@ -118,11 +123,27 @@ GITHUB_APP_PRIVATE_KEY=...
 
 ## 6. Пробелы: что нужно создать
 
+### Dockerfile отсутствует
+
 | Сервис | Что нужно | Приоритет |
 |--------|-----------|-----------|
 | **guide-renderer-svc** | Dockerfile + выделить функции из `DS-autonomous-agents/scripts/` | высокий |
 | **payment-registry** | Dockerfile (сервис есть, контейнеризация не сделана) | средний |
 | **google-drive-mcp** | Dockerfile (или порт в TypeScript CF Worker) | низкий |
+
+### Сервисы без handoff-документации
+
+| Сервис | Что нужно | Приоритет |
+|--------|-----------|-----------|
+| **guides-mcp, fsm-mcp** | Добавить в существующий MCP handoff или создать отдельный файл | средний |
+
+### Инфраструктурные сервисы (из текущих РП)
+
+| Сервис / компонент | Что нужно | Связанный РП |
+|--------------------|-----------|-------------|
+| **Хранилище секретов** | Стратегия управления API-ключами на GKE: K8s Secrets или Google Secret Manager. Нужна ротация ключей Anthropic, Stripe, Telegram, GitHub App, OpenRouter. Сейчас в Railway Variables — для GKE не перенесено | WP-399 |
+| **Langfuse** | Трейсинг LLM-вызовов для guide-renderer-svc и других сервисов. Вариант: Langfuse Cloud (быстрее) или self-hosted на GKE. Решение и owner - Андрей | — |
+| **LiteLLM Proxy** | Прокси для унификации вызовов Claude/OpenRouter. WP-400 закрыт (Redis не нужен). Нужно ли разворачивать на GKE — решение Андрея | WP-400 |
 
 ---
 
