@@ -45,7 +45,7 @@ related: [WP-285, WP-149, WP-415]
 
 | Название | Назначение | Сервис | Тип деплоя | Dockerfile |
 |----------|-----------|--------|-----------|------------|
-| Telegram-бот | Основной интерфейс пользователя через Telegram | aist_bot_newarchitecture | GKE Deployment | есть |
+| Telegram-бот | Основной интерфейс пользователя через Telegram. Внутри: нудж-планировщик (scheduler.py), показ баллов/бонусов пользователю (handlers/points.py), Доставщик уведомлений (notification_service.py, WP-418) | aist_bot_newarchitecture | GKE Deployment | есть |
 
 ---
 
@@ -115,7 +115,7 @@ GITHUB_APP_PRIVATE_KEY=...
 |----------|-----------|--------|-----------|------------|
 | Журнал событий | Единственный writer всех событий платформы | event-gateway | CF Worker | нет (wrangler) |
 | Сборщик активности | Medallion ETL событий (bronze / silver / gold) | activity-hub | GKE Deployment | есть |
-| Воркер проекций | Считывает события, строит проекции в persona / subscription / indicators | multi-domain-projection-worker | GKE CronJob | есть |
+| Воркер проекций | Считывает события из журнала, строит проекции в: persona, subscription, indicators, **rewards** (начисление баллов + бонусов) | multi-domain-projection-worker | GKE CronJob | есть |
 | Алерты наблюдаемости | Better Stack → Telegram-оповещения об инцидентах | observability-webhook | CF Worker | нет (wrangler) |
 | Страница статуса | HTTP-редирект на status page платформы | status-proxy | CF Worker | нет (wrangler) |
 
@@ -144,6 +144,7 @@ GITHUB_APP_PRIVATE_KEY=...
 | **Хранилище секретов** | Стратегия управления API-ключами на GKE: K8s Secrets или Google Secret Manager. Нужна ротация ключей Anthropic, Stripe, Telegram, GitHub App, OpenRouter. Сейчас в Railway Variables — для GKE не перенесено | WP-399 |
 | **Langfuse** | Трейсинг LLM-вызовов для guide-renderer-svc и других сервисов. Вариант: Langfuse Cloud (быстрее) или self-hosted на GKE. Решение и owner - Андрей | — |
 | **LiteLLM Proxy** | Прокси для унификации вызовов Claude/OpenRouter. WP-400 закрыт (Redis не нужен). Нужно ли разворачивать на GKE — решение Андрея | WP-400 |
+| **Доставщик (Delivery service)** | Сейчас внутри бота (notification_service.py). По WP-418 планируется вынести в отдельный сервис с единой очередью, дедупом и потолком уведомлений. Для Track B — решение: запускать внутри бота или отдельным Deployment | WP-418 |
 
 ---
 
