@@ -12,51 +12,41 @@ related: [WP-285, WP-149, WP-415]
 
 **Источник:** оперативка ИТ 23 июня 2026 (WP-285 Ф7 Часть Б).
 
-Все 16 сервисов платформы сгруппированы по пользовательской функции. Для каждого указан тип деплоя и статус Dockerfile.
+20 сервисов платформы (не считая 15 Cloud SQL). Разделены на MCP-экосистему (отдельный файл) и остальные сервисы (ниже).
 
 ---
 
-## 1. Авторизация и вход
+## 1. MCP-сервисы
 
-| Название | Назначение | Сервис | Тип деплоя | Dockerfile |
-|----------|-----------|--------|-----------|------------|
-| Шлюз API | Единственная точка входа: OAuth, маршрутизация MCP, авторизация запросов | gateway-mcp | CF Worker | нет (wrangler) |
+Полный хэндофф: [WP-285-aisystant-mcp-gke-handoff.md](WP-285-aisystant-mcp-gke-handoff.md).
 
-> Ory Kratos + Hydra — отдельный инстанс в GKE EU. Ответственность Паши.
+| Название | Назначение | Сервис | Тип деплоя |
+|----------|-----------|--------|-----------|
+| Шлюз API | Единственная точка входа: OAuth, маршрутизация, авторизация | gateway-mcp | CF Worker |
+| Поиск по базе знаний | Поиск по Pack, гайдам, SOTA, графу концептов | knowledge-mcp | CF Worker |
+| Личная база знаний | Личные заметки и эмбеддинги пользователя | personal-knowledge-mcp | CF Worker |
+| Цифровой двойник | Показатели прогресса, CP-профиль, снапшоты ученика | digital-twin-mcp | CF Worker |
+| Каталог руководств | Каталог программ обучения и руководств | guides-mcp | CF Worker |
+| Конечный автомат | FSM-состояния ассистента ученика в диалоге | fsm-mcp | CF Worker |
+| Google Drive | Python MCP-сервер: доступ к Google Drive пользователя | google-drive-mcp | GKE Deployment |
+| Профиль пользователя | Контекст, тариф, BYOK-ключи, уведомления боту | user-profile-service | GKE Deployment |
+| Контекст обучения | Согласие на данные, когнитивный бриф, онбординг | learning-context-service | GKE Deployment |
+| Интеграция с GitHub | Вебхуки GitHub App, вход через GitHub, создание репо | github-integration-service | GKE Deployment |
+| Статус агентов | Доска статусов агентов | agent-status-service | GKE Deployment |
 
----
-
-## 2. Знания и поиск
-
-| Название | Назначение | Сервис | Тип деплоя | Dockerfile |
-|----------|-----------|--------|-----------|------------|
-| Поиск по базе знаний | Полнотекстовый поиск по Pack, гайдам, SOTA, графу концептов | knowledge-mcp | CF Worker | нет (wrangler) |
-| Личная база знаний | Личные заметки и эмбеддинги пользователя | personal-knowledge-mcp | CF Worker | нет (wrangler) |
-
----
-
-## 3. Прогресс и руководства
-
-| Название | Назначение | Сервис | Тип деплоя | Dockerfile |
-|----------|-----------|--------|-----------|------------|
-| Цифровой двойник | Показатели прогресса, CP-профиль, снапшоты ученика | digital-twin-mcp | CF Worker | нет (wrangler) |
-| Каталог руководств | Каталог программ обучения и персональных руководств | guides-mcp | CF Worker | нет (wrangler) |
-| **Генератор руководств** | Генерирует персональное руководство для пользователей без IWE/Git и записывает в приватный GitHub-репо | **guide-renderer-svc (новый)** | GKE CronJob | **создаётся** |
-
-> guide-renderer-svc — новый сервис. Детали функций в §9 ниже.
+> **Примечание:** guides-mcp, fsm-mcp и google-drive-mcp пока не включены в детальный handoff-файл.
 
 ---
 
-## 4. Коммуникация
+## 2. Коммуникация
 
 | Название | Назначение | Сервис | Тип деплоя | Dockerfile |
 |----------|-----------|--------|-----------|------------|
 | Telegram-бот | Основной интерфейс пользователя через Telegram | aist_bot_newarchitecture | GKE Deployment | есть |
-| Конечный автомат | FSM-состояния ассистента ученика в диалоге | fsm-mcp | CF Worker | нет (wrangler) |
 
 ---
 
-## 5. Платежи
+## 3. Платежи
 
 | Название | Назначение | Сервис | Тип деплоя | Dockerfile |
 |----------|-----------|--------|-----------|------------|
@@ -65,45 +55,13 @@ related: [WP-285, WP-149, WP-415]
 
 ---
 
-## 6. Интеграции
-
-| Название | Назначение | Сервис | Тип деплоя | Dockerfile |
-|----------|-----------|--------|-----------|------------|
-| Google Drive | Python MCP-сервер: доступ к Google Drive пользователя | google-drive-mcp | GKE Deployment | **нужен** |
-
----
-
-## 7. Backend / Инфра
-
-Пользователи напрямую не взаимодействуют. Нужны для работы остальных сервисов.
-
-| Название | Назначение | Сервис | Тип деплоя | Dockerfile |
-|----------|-----------|--------|-----------|------------|
-| Журнал событий | Единственный writer всех событий платформы | event-gateway | CF Worker | нет (wrangler) |
-| Сборщик активности | Medallion ETL событий (bronze / silver / gold) | activity-hub | GKE Deployment | есть |
-| Воркер проекций | Считывает события, строит проекции в persona / subscription / indicators | multi-domain-projection-worker | GKE CronJob | есть |
-| Алерты наблюдаемости | Better Stack → Telegram-оповещения об инцидентах | observability-webhook | CF Worker | нет (wrangler) |
-| Страница статуса | HTTP-редирект на status page платформы | status-proxy | CF Worker | нет (wrangler) |
-
----
-
-## 8. Пробелы: что нужно создать
-
-| Сервис | Что нужно | Приоритет |
-|--------|-----------|-----------|
-| **guide-renderer-svc** | Dockerfile + выделить функции из `DS-autonomous-agents/scripts/` | высокий |
-| **payment-registry** | Dockerfile (сервис есть, контейнеризация не сделана) | средний |
-| **google-drive-mcp** | Dockerfile или порт в TypeScript CF Worker | низкий |
-
----
-
-## 9. Детали нового сервиса: Генератор персональных руководств
+## 4. Генератор персональных руководств
 
 Пользователи с IWE генерируют руководство локально. Пользователи без IWE/Git получают его с платформы через этот сервис.
 
-**Расписание:** ежедневно 06:00 UTC. Понедельник - полный прогон (еженедельное + дневное). Вт-вс - только дневное.
+**Сервис:** guide-renderer-svc (новый) - GKE CronJob. **Расписание:** ежедневно 06:00 UTC.
 
-**Фильтр:** только пилоты с `has_iwe_git=False`.
+**Фильтр:** только пилоты с `has_iwe_git=False`. Понедельник - полный прогон, вт-вс - только дневное руководство.
 
 ### Функции для переноса из `DS-autonomous-agents/scripts/`
 
@@ -142,15 +100,33 @@ GITHUB_APP_PRIVATE_KEY=...
 
 ### GitHub App
 
-Права `contents: write` на:
-- `aisystant/*-guide` - мировой контур
-- `mim-school/*-guide` - российский контур
-
-Создаётся в рамках WP-415. Если WP-415 ещё не готов - отдельный App с минимальными правами.
+Права `contents: write` на `aisystant/*-guide` и `mim-school/*-guide`. Создаётся в рамках WP-415.
 
 ---
 
-## 10. Разграничение: Андрей vs Паша
+## 5. Backend / Инфра
+
+| Название | Назначение | Сервис | Тип деплоя | Dockerfile |
+|----------|-----------|--------|-----------|------------|
+| Журнал событий | Единственный writer всех событий платформы | event-gateway | CF Worker | нет (wrangler) |
+| Сборщик активности | Medallion ETL событий (bronze / silver / gold) | activity-hub | GKE Deployment | есть |
+| Воркер проекций | Считывает события, строит проекции в persona / subscription / indicators | multi-domain-projection-worker | GKE CronJob | есть |
+| Алерты наблюдаемости | Better Stack → Telegram-оповещения об инцидентах | observability-webhook | CF Worker | нет (wrangler) |
+| Страница статуса | HTTP-редирект на status page платформы | status-proxy | CF Worker | нет (wrangler) |
+
+---
+
+## 6. Пробелы: что нужно создать
+
+| Сервис | Что нужно | Приоритет |
+|--------|-----------|-----------|
+| **guide-renderer-svc** | Dockerfile + выделить функции из `DS-autonomous-agents/scripts/` | высокий |
+| **payment-registry** | Dockerfile (сервис есть, контейнеризация не сделана) | средний |
+| **google-drive-mcp** | Dockerfile (или порт в TypeScript CF Worker) | низкий |
+
+---
+
+## 7. Разграничение: Андрей vs Паша
 
 | Зона | Андрей (разработчик) | Паша (DevOps) |
 |------|---------------------|---------------|
@@ -164,7 +140,7 @@ GITHUB_APP_PRIVATE_KEY=...
 
 ---
 
-## 11. Зависимости
+## 8. Зависимости
 
 | Зависимость | Статус | Что нужно |
 |-------------|--------|-----------|
@@ -174,33 +150,26 @@ GITHUB_APP_PRIVATE_KEY=...
 
 ---
 
-## Приложение А: по типу деплоя (для планирования спринта)
+## Приложение А: по типу деплоя
 
-### CF Workers (10) - только env vars, wrangler.toml
+### CF Workers (без MCP) - только env vars, wrangler.toml
 
 | Название | Сервис | Что изменить для Track B |
 |----------|--------|--------------------------|
-| Шлюз API | gateway-mcp | Адреса 8 сервисов + ключ подписи, новый домен |
-| Поиск по базе знаний | knowledge-mcp | Cloud SQL knowledge, переиндексировать под EN |
-| Личная база знаний | personal-knowledge-mcp | Cloud SQL persona |
-| Цифровой двойник | digital-twin-mcp | Cloud SQL indicators |
-| Каталог руководств | guides-mcp | Cloud SQL reference, загрузить EN-программы |
 | Журнал событий | event-gateway | Cloud SQL journal |
-| Конечный автомат | fsm-mcp | Переменные среды под Track B |
 | Приём платежей | payment-receiver | Новый обработчик для Stripe webhooks |
 | Алерты наблюдаемости | observability-webhook | Новый Telegram-бот для Track B |
 | Страница статуса | status-proxy | Обновить CNAME на новый домен |
 
-### GKE Deployments (4) - Dockerfile + Werf, long-running
+### GKE Deployments - Dockerfile + Werf
 
 | Название | Сервис | Dockerfile |
 |----------|--------|------------|
 | Telegram-бот | aist_bot_newarchitecture | есть |
 | Сборщик активности | activity-hub | есть |
 | Журнал транзакций | payment-registry | **нужен** |
-| Google Drive | google-drive-mcp | **нужен** |
 
-### GKE CronJobs (2) - Dockerfile + Werf, по расписанию
+### GKE CronJobs - по расписанию
 
 | Название | Сервис | Расписание | Dockerfile |
 |----------|--------|-----------|------------|
