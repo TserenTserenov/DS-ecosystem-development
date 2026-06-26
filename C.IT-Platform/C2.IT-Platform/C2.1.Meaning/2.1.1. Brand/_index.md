@@ -32,6 +32,7 @@ wp: 292
 | Brand in Application (шаблоны) | [06-application.md](06-application.md) | Ф6 | ⏳ stub |
 | Brand Architecture (IWE-тип vs имя-продукт) | [07-architecture.md](07-architecture.md) | Ф7 | 📝 draft |
 | Legal & IP (trademark, домены, NDA) | [08-legal-ip.md](08-legal-ip.md) | Ф8 | ⏳ stub |
+| Маскот бренда (характер + правила эволюции) | [09-mascot.md](09-mascot.md) | Ф9a | 📝 draft |
 
 ## Assets (принятые работы дизайнера)
 
