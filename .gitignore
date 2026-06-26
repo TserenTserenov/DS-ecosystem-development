@@ -84,3 +84,7 @@ temp_*.md
 # backup-checker output — derived state ежедневного проверщика бэкапов на tsekh-1.
 # Не SoT, не должен попадать в коммиты.
 C.IT-Platform/C2.IT-Platform/C2.3.Operations/backup-reports/
+
+# Машинный P5-телеметрический лог детектора (capture_writer.sh, INCIDENT_TARGET_REPO).
+# Не SoT — читается агрегатором behaviour-report.sh с диска, в коммитах = churn.
+C.IT-Platform/C2.IT-Platform/C2.3.Operations/Incidents/incident-log-*.md
