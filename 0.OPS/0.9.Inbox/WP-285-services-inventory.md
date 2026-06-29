@@ -41,6 +41,18 @@
 
 **Что нужно сделать общее:** Werf-манифест + K8s manifest (env vars из Secret, указывающие на Cloud SQL, Ory EU). Dockerfile у 4 из 6 уже есть.
 
+### 2b. TypeScript-контейнеры (Node.js, Railway → GKE) — 3 сервиса
+
+Сервисы с Dockerfile, написанные на TypeScript/Node.js. Сейчас на Railway (проект peaceful-vision), план - переезд на GKE (документ W286-aisystant-mcp-gke-handoff.md в gateway-mcp).
+
+| Сервис | Что делает | Deploy сейчас | GitHub Actions | Target Track B | Примечания |
+|--------|-----------|--------------|---------------|----------------|------------|
+| **user-profile-service** | Профиль пользователя, тир подписки, BYOK-ключи, GitHub-привязка, онбординг-контекст | Railway `peaceful-vision`, **вручную** (последний деплой 17 июня, `5b814ee8`) | **нет** - единственный сервис без deploy.yml | GKE europe-west4 (W286, не сделано) | Нет GitHub Actions - если упадёт, восстановление только руками. Минимум: добавить deploy.yml по образцу personal-knowledge-mcp |
+| **learning-context-service** | Когнитивные брифы, контекст обучения | Railway `peaceful-vision` | TBD | GKE europe-west4 (W286) | Дефект: схема `cognitive` не накатана → `get_cognitive_brief` падает |
+| **agent-status-service** | Реестр статусов агентов (WP-398) | Railway `peaceful-vision` | TBD | GKE europe-west4 (W286) | - |
+
+**Обновлено 2026-06-29** (источник: ИТ-встреча 28 июня + анализ кодовой базы DS-MCP).
+
 ### 3. Базы данных — 16 Neon (Track A) → 15 Cloud SQL (Track B)
 
 | # | БД | Класс backup | Что хранит | Track B — что сделать |
