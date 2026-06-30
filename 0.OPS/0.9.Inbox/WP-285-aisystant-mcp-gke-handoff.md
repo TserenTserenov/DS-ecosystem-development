@@ -127,6 +127,17 @@ SUBSCRIPTION_DATABASE_URL     # только для хука выдачи ток
   - `SCOPE_GUARD_MODE=enforce` (для Track B сразу enforce — живого трафика нет, shadow-период не нужен)
   - `INDICATORS_DATABASE_URL` — для scope-проверок
 
+### Python-сервисы: Telegram-бот + воркеры (aist_bot, activity-hub, simulator-lab)
+
+LangFuse — трассировка всех LLM-вызовов, расходы по сервисам/моделям. Без этих переменных трассировка молча не включается (нет ошибки — просто нет данных в дашборде).
+
+Три переменные для каждого Python-сервиса при деплое на GKE:
+- `LANGFUSE_SECRET_KEY` — секретный ключ проекта (получить в cloud.langfuse.com → Settings → API Keys)
+- `LANGFUSE_PUBLIC_KEY` — публичный ключ проекта
+- `LANGFUSE_HOST=https://cloud.langfuse.com`
+
+Передавать как K8s Secret (аналогично другим ключам). Для Track B создать **отдельный проект** в LangFuse — чтобы трассы Track A и Track B не смешивались в одном дашборде. Текущие ключи Track A — у Церена (`~/.secrets/langfuse.env`).
+
 </details>
 
 <details>
