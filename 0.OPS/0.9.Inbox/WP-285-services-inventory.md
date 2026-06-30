@@ -93,6 +93,7 @@
 | **Google Cloud** | — | GKE Standard + Cloud SQL + Artifact Registry (europe-west4) | Церен регистрирует аккаунт, $300 кредит |
 | **Metabase** (Аттестатор) | Self-hosted, читает `learning` и `indicators` (Аттестатор RCS) | Решение — нужен ли отдельный инстанс для Track B | Сейчас Track A only; для Track B решить после онбординга первых пользователей (когда наберётся достаточно событий для аналитики). До тех пор — N/A |
 | **Secret Drift Detector** (WP-315) | Sentinel сравнения секретов между Layer 1 (Neon/Cloudflare/Railway) и Layer 2 (1Password/GitHub Secrets) | Аналогичный pipeline для Track B | До Фазы 5 — настроить detector на Track B секреты, иначе drift не виден |
+| **LangFuse** (WP-444) | Трассировка LLM-вызовов, расходы по сервисам/моделям, эвалюатор качества чата. cloud.langfuse.com | Track B: тот же аккаунт, новые API-ключи для Track B проекта. Передать ключи как K8s Secret (`LANGFUSE_SECRET_KEY`, `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_HOST`) | Подключать одновременно с деплоем бота и Python-воркеров на GKE; без этого расходы Track B будут невидимы |
 
 ### 5. Итог: приоритет для старта 18 мая
 
