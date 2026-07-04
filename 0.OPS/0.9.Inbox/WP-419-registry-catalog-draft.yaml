@@ -172,7 +172,7 @@ registries:
     description: "Конфликты между схемами кодирования IWE COL-NN"
     code_scheme: "COL-NN"
     sot_or_derived: "sot"
-    sot_path: "DS-ecosystem-development/0.OPS/0.9.Inbox/WP-419-registry-catalog-inventory.md"
+    sot_path: "DS-ecosystem-development/0.OPS/0.99.Archive/WP-419-registry-catalog-inventory.md"
     update_mechanism: "manual"
     verification_method: "git"
     status: "active"

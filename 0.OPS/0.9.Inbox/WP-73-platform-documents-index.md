@@ -104,7 +104,7 @@
 | 4.4 | **Security posture** | B7.3 спецификации, STRIDE, key rotation, PII map. | `DS-ecosystem-development/C.IT-Platform/C2.IT-Platform/C2.2.Architecture/Identity-and-Access/` |
 | 4.5 | **Observability** | WP-244 — status.aisystant.com, Better Stack, Grafana. | `DS-my-strategy/inbox/WP-244-platform-observability.md` |
 | 4.6 | **Реестр репозиториев** | 22 активных репо, типы, назначения. | `DS-ecosystem-development/0.OPS/REPOSITORY-REGISTRY.md` |
-| 4.7 | **Инвентарь сервисов** | 16 CF Workers + Python, 16 БД, матрица ответственности. | `DS-ecosystem-development/0.OPS/0.9.Inbox/WP-285-services-inventory.md` |
+| 4.7 | **Инвентарь сервисов** | 16 CF Workers + Python, 16 БД, матрица ответственности. | `DS-ecosystem-development/C.IT-Platform/C2.IT-Platform/C2.2.Architecture/WP-285-services-inventory.md` |
 | 4.8 | **Концепция разделения Россия/Мир** | Топология 4 орг GitHub, язык, финансы, что разделяется/что общее, конвейер канон→проекции, табло 26 репо. Поглотила РП215. | `DS-ecosystem-development/0.OPS/0.9.Inbox/WP-415-russia-world-split-concept.md` (+ спутники: WP-415-iwe-sync-conventions, WP-415-object-tiering-model) |
 
 ---

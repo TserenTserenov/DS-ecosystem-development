@@ -2,7 +2,7 @@
 type: handoff
 status: draft
 created: 2026-06-25
-updated: 2026-06-25
+updated: 2026-07-04
 owner: Андрей
 next_review: 2026-07-09
 related: [WP-285, WP-149, WP-415]
@@ -18,7 +18,7 @@ related: [WP-285, WP-149, WP-415]
 
 ## 1. MCP-сервисы
 
-Полный хэндофф (8 сервисов): [WP-285-aisystant-mcp-gke-handoff.md](WP-285-aisystant-mcp-gke-handoff.md).
+Полный хэндофф (8 сервисов): [WP-285-aisystant-mcp-gke-handoff.md](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/Stack-and-Infrastructure/WP-285-aisystant-mcp-gke-handoff.md).
 
 | Название | Назначение | Сервис | Тип деплоя |
 |----------|-----------|--------|-----------|

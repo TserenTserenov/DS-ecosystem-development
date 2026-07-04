@@ -259,7 +259,7 @@ Aisystant Corp (мировое юрлицо)
 | Домены и шлюзы (раздел 9) | База знаний, контент, курсы (доступ определяется подпиской, не географией) |
 | Боты (один код, два экземпляра с разными конфигами) | Команды: участники из разных стран в одной команде |
 
-Проработка общего слоя (экономика сообщества, культура): [Regional-Split/03-community-and-culture.md](../../B.Aisystant-Ecosystem/B3.Ecosystem-Builder/B3.1.Meaning/Regional-Split/03-community-and-culture.md). Реализация контуров: мир — РП285 ([план Track B](WP-285-track-b-plan.md), [перенос MCP на GKE](WP-285-aisystant-mcp-gke-handoff.md)), Россия — РП281 ([план перехода Track A](WP-281-track-a-transition-plan.md)).
+Проработка общего слоя (экономика сообщества, культура): [Regional-Split/03-community-and-culture.md](../../B.Aisystant-Ecosystem/B3.Ecosystem-Builder/B3.1.Meaning/Regional-Split/03-community-and-culture.md). Реализация контуров: мир — РП285 ([план Track B](../0.99.Archive/WP-285-track-b-plan.md), [перенос MCP на GKE](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/Stack-and-Infrastructure/WP-285-aisystant-mcp-gke-handoff.md)), Россия — РП281 ([план перехода Track A](WP-281-track-a-transition-plan.md)).
 
 ### 5a. Принцип независимости мирового контура (директива пилота, 13 июня 2026)
 
