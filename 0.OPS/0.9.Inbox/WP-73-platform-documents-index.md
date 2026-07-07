@@ -8,7 +8,7 @@
 
 | # | Документ | Что внутри | Канон |
 |---|----------|-----------|-------|
-| 1.1 | **Уникальность IWE** | 5 природ IWE (Мастерская, Железный человек, Аватар, Тамагочи, Наставник). Вариант 4 «про специальность». Фундаментальная формулировка. Слоган T6. Запрещённые слова. | `DS-my-strategy/Lifework/Уникальность IWE.md` |
+| 1.1 | **Уникальность IWE** | 5 природ IWE (Мастерская, Железный человек, Аватар, Тамагочи, Наставник). Фундаментальная формулировка. Запрещённые слова. Черновик у Тсерена, требует запроса доступа. | — |
 | 1.2 | **Brand Foundations** | Onliness v0.2, 5 природ в таблице, JTBD, архетип Sage+Creator, ценности, антипозиционирование. | `DS-ecosystem-development/C.IT-Platform/C2.IT-Platform/C2.1.Meaning/2.1.1. Brand/01-foundations.md` |
 | 1.3 | **Обещание и сценарии** | 5 гарантий платформы. 10 ролей + сценарии использования (Новичок → Организатор групп). | `DS-ecosystem-development/0.OPS/0.9.Inbox/WP-336-обещание-и-сценарии.md` |
 | 1.4 | **Стратегия экосистемы 2026** | Операционная цель: пивот от курсов к платформе+IWE. Формула. Стратегические инварианты. Окно момента. | `DS-ecosystem-development/A.Systems-Builder/A3.Aisystant-Ecosystem-Builder/A3.1.Meaning/3.1.2. Strategy-2026/Стратегия экосистемы 2026.md` |
@@ -98,14 +98,14 @@
 
 | # | Документ | Что внутри | Канон |
 |---|----------|-----------|-------|
-| 4.1 | **Track B — международная инфраструктура** | GKE Standard, Cloud SQL, приватная сеть, Werf, Terraform. Ф1–Ф6. | `DS-my-strategy/inbox/WP-285-track-b-international-infrastructure.md` |
+| 4.1 | **Track B — международная инфраструктура** | GKE Standard, Cloud SQL, приватная сеть, Werf, Terraform. Отдельный документ, требует запроса доступа у Тсерена. | — |
 | 4.2 | **Deployment-диаграмма** | C4 L3, топология, провайдеры. | `DS-ecosystem-development/C.IT-Platform/C2.IT-Platform/C2.2.Architecture/Stack-and-Infrastructure/deployment.md` |
-| 4.3 | **12-factor compliance** | WP-307 — аудит 228/336 (68%), 80 N/A (24%) = 92% closed. | `DS-my-strategy/inbox/WP-307-12factor-compliance.md` |
-| 4.4 | **Security posture** | B7.3 спецификации, STRIDE, key rotation, PII map. | `DS-ecosystem-development/C.IT-Platform/C2.IT-Platform/C2.2.Architecture/Identity-and-Access/` |
-| 4.5 | **Observability** | WP-244 — status.aisystant.com, Better Stack, Grafana. | `DS-my-strategy/inbox/WP-244-platform-observability.md` |
+| 4.3 | **Соответствие облачным требованиям (12-factor)** | Аудит: 92% закрыто. Отдельный документ, требует запроса доступа у Тсерена. | — |
+| 4.4 | **Security posture** | STRIDE-анализ, ротация ключей, карта персональных данных. | `DS-ecosystem-development/C.IT-Platform/C2.IT-Platform/C2.2.Architecture/Identity-and-Access/` |
+| 4.5 | **Observability** | status.aisystant.com, Better Stack, Grafana. Отдельный документ, требует запроса доступа у Тсерена. | — |
 | 4.6 | **Реестр репозиториев** | 22 активных репо, типы, назначения. | `DS-ecosystem-development/0.OPS/REPOSITORY-REGISTRY.md` |
 | 4.7 | **Инвентарь сервисов** | 16 CF Workers + Python, 16 БД, матрица ответственности. | `DS-ecosystem-development/C.IT-Platform/C2.IT-Platform/C2.2.Architecture/WP-285-services-inventory.md` |
-| 4.8 | **Концепция разделения Россия/Мир** | Топология 4 орг GitHub, язык, финансы, что разделяется/что общее, конвейер канон→проекции, табло 26 репо. Поглотила РП215. | `DS-ecosystem-development/0.OPS/0.9.Inbox/WP-415-russia-world-split-concept.md` (+ спутники: WP-415-iwe-sync-conventions, WP-415-object-tiering-model) |
+| 4.8 | **Концепция разделения Россия/Мир** | Топология организаций GitHub, язык, финансы, что разделяется/что общее, конвейер канон→проекции, табло репозиториев на приватизацию. | `DS-ecosystem-development/0.OPS/0.9.Inbox/WP-415-russia-world-split-concept.md` (+ `WP-415-migration-plan.md`, `WP-415-pipeline-architecture.md`, `WP-415-iwe-sync-conventions.md`, `WP-415-object-tiering-model.md`) |
 
 ---
 
@@ -118,7 +118,7 @@
 | 5.3 | **Варианты питчей** | Альтернативные формулировки под разные аудитории. | `DS-ecosystem-development/.../A3.1.Meaning/Варианты питчей 3.1.md` |
 | 5.4 | **Позиционирование продукта** | Для инвесторов: что, для кого, почему мы. | `DS-ecosystem-development/.../A3.1.Meaning/Позиционирование продукта 3.1.md` |
 | 5.5 | **Executive Summary** | Краткое описание экосистемы для инвесторов. | `DS-ecosystem-development/.../A3.1.Meaning/Executive Summary 3.1.md` |
-| 5.6 | **Pitch Deck v0.7** | Обновлённый: 5 природ, специальность, «Железный человек». | `DS-ecosystem-development/.../pitch/v0.7/` *(создаётся в WP-336 Ф4)* |
+| 5.6 | **Pitch Deck v0.7** | Обновлённый: 5 природ, специальность, «Железный человек». | `DS-ecosystem-development/.../pitch/v0.7/` *(в работе)* |
 
 ---
 
@@ -128,24 +128,26 @@
 |---|----------|-----------|-------|
 | 6.1 | **Neon migration roadmap** | DP.ROADMAP.001 — фазы миграции Neon. | `PACK-digital-platform/pack/digital-platform/02-domain-entities/DP.ROADMAP.001-neon-migration.md` |
 | 6.2 | **MVP greenfield roadmap** | DP.ROADMAP.002 — MVP с чистого листа. | `PACK-digital-platform/pack/digital-platform/02-domain-entities/DP.ROADMAP.002-mvp-greenfield.md` |
-| 6.3 | **Roadmap архитектуры WP-73** | 4 фазы (март 2026 → 2027+), 22 ключевых изменения. | `DS-ecosystem-development/0.OPS/0.99.Archive/WP-73-aisystant-platform-architecture.md` §3.3 |
+| 6.3 | **Roadmap архитектуры платформы** | 4 фазы (март 2026 → 2027+), 22 ключевых изменения. | `DS-ecosystem-development/0.OPS/0.99.Archive/WP-73-aisystant-platform-architecture.md` §3.3 |
 | 6.4 | **Приложение 8. План работ** | Задачи по службам из Стратегии 2026. | `DS-ecosystem-development/.../A3.1.Meaning/3.1.2. Strategy-2026/Приложение 8. План работ.md` |
-| 6.5 | **Направления плана развития** | Инфраструктура, IWE, AI, экосистема, маркетинг. | `DS-ecosystem-development/0.OPS/0.99.Archive/WP-336-development-directions.md` *(архив; РП336 закрыт, направления живут в Strategy.md)* |
+| 6.5 | **Направления плана развития** | Инфраструктура, IWE, AI, экосистема, маркетинг (архив, направления теперь живут в стратегии Тсерена). | `DS-ecosystem-development/0.OPS/0.99.Archive/WP-336-development-directions.md` |
 
 ---
 
-## 7. Зонтичные РП (координация)
+## 7. Активные направления работы (координация)
 
-| РП | Статус | Что координирует | Путь |
-|----|--------|-----------------|------|
-| **WP-73** | active (Ф3-Ф6 закрытие) | Архитектурный план ИТ-платформы + закрытие: каталог→канон (Ф3), замок closure_capture (Ф4), регламент передачи (Ф5), канонизация (Ф6) | `DS-my-strategy/inbox/WP-73-platform-architecture.md` |
-| **WP-336** | closed  | Упаковка ценности: 5 природ IWE + синхронизация всех артефактов | знание в PACK-digital-platform (DP.IWE.007 и др.) |
-| **WP-74** | closed  | Концепция использования платформы (пользовательская) | `DS-ecosystem-development/0.OPS/0.99.Archive/WP-74-platform-concept-of-use.md` |
-| **WP-250** | active | Пост-манифесто: уникальность IWE, позиционирование | `DS-my-strategy/inbox/WP-250-post-manifesto-iwe-uniqueness.md` |
-| **WP-292** | active | Brand IWE — брендинг и вербальная идентичность | `DS-my-strategy/inbox/WP-292-brand-iwe.md` |
-| **WP-285** | active | Track B — международная инфраструктура (GKE, Cloud SQL) | `DS-my-strategy/inbox/WP-285-track-b-international-infrastructure.md` |
-| **WP-150** | active | Multi-Agent IWE — peer-агенты, local-gateway, оркестрация | `DS-my-strategy/inbox/WP-150-multiagent-iwe.md` |
-| **WP-253** | active | Архитектура Neon — имплементация, event-gateway, projection-worker | `DS-my-strategy/inbox/WP-253-neon-architecture-implementation.md` |
+> Рабочие материалы и текущий статус по каждому направлению ведёт Тсерен в личной рабочей area - здесь только список для общей картины, за деталями обращаться напрямую.
+
+| Направление | Статус | Что координирует |
+|----|--------|-----------------|
+| Архитектурный план ИТ-платформы | в работе | каталог документов → канон, регламент передачи знания, финальная сверка |
+| Упаковка ценности IWE | закрыто | 5 природ IWE - знание перенесено в канон платформы (`PACK-digital-platform`) |
+| Концепция использования платформы | закрыто | пользовательская концепция (архив: `DS-ecosystem-development/0.OPS/0.99.Archive/WP-74-platform-concept-of-use.md`) |
+| Пост-манифесто | в работе | уникальность IWE, позиционирование |
+| Бренд IWE | в работе | брендинг и вербальная идентичность |
+| Track B — международная инфраструктура | в работе | GKE, Cloud SQL (детали - см. §4.1) |
+| Multi-Agent IWE | в работе | взаимодействие нескольких ИИ-помощников, локальный шлюз, оркестрация |
+| Архитектура Neon | в работе | база данных платформы: реализация, приём событий, обработка проекций |
 
 ---
 
@@ -204,6 +206,6 @@
 2. **Архитектор / разработчик** → §3 (вся архитектура) → §4 (инфраструктура) → Pack §3.2
 3. **Инвестор** → §5 (питчи) → §1.4 (стратегия) → §8.5 (бизнес-модель)
 4. **Продукт / UX** → §2 (концепция) → §3.5 (ИИ-системы) → §1 (позиционирование)
-5. **При закрытии WP-73** → §8 (чеклист полноты) → §7 (зонтичные РП)
+5. **При проверке полноты картины архитектуры** → §8 (чеклист полноты) → §7 (активные направления работы)
 
 ---
