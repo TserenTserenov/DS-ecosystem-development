@@ -241,15 +241,20 @@ VS Code (heartbeats) → WakaTime Extension → wakatime.com API
 
 **Связи:** SC.114, WP-183.
 
-**Статус:** proposal создан, Phase 0 не начата.
+**Статус:** Directus переведён на `bot_data` (10 июля 2026, ArchGate-решение), коллекция
+`finance_payments` читается через API, Metabase переключён на актуальный датасорс.
+Ручной ввод B2B/Moneta (канал 8) не работает — Directus возвращает 403 на коллекции,
+требует отдельной архитектурной доработки. Подробности → WP-183.
 
 ## 10. Payment Registry (SYS.011)
 
 **Назначение:** Журнал всех транзакций из всех каналов. Единый источник правды: кто, когда, сколько, через какой канал заплатил. 8 каналов (YooKassa, Paybox, Stripe, Монета, Tilda, YooKassa бот, TG Stars, Manual). Три получателя: ИП (РФ), Aisystant Corp (USA), Телеграм (физ.лицо).
 
-**As-is:** де-факто существует внутри монолита Aisystant (таблицы оплат в Aisystant PG, каналы 1-5) + Neon (каналы 6-7, семинары бота). Не выделена как отдельная подсистема.
+**As-is:** отдельный репозиторий `DS-IT-systems/payment-registry` (миграции 001-014),
+роль `aist_me_bot_writer`, инкрементальный cron-синк из Aisystant каждые 10 мин
+(`payment-sync.yml`). Данные лежат в `bot_data` (Railway), не в монолите Aisystant.
 
-**To-be:** Directus (Фаза A) даёт единое окно в оба источника. На Фазе B Payment Registry мигрирует в Billing Service как модуль.
+**To-be:** без изменений — остаётся модулем Billing Service на Фазе B.
 
 **Связи:** SYS.010 (Billing Service), SYS.003 (CRM), SC.112, WP-183.
 
@@ -268,7 +273,10 @@ VS Code (heartbeats) → WakaTime Extension → wakatime.com API
 
 **Связи:** SYS.011 (Payment Registry), SYS.003 (CRM), SYS.009 (Ory), SC.112, WP-183, WP-121 (баллы).
 
-**Статус:** Витрина семинаров реализована (бот). Единый учёт — [proposal](../../../../0.OPS/0.9.Inbox/WP-183-unified-payments-proposal.md).
+**Статус (10 июля 2026):** Витрина семинаров реализована (бот). Единый учёт оплат не
+реализован — [proposal](../../../../0.OPS/0.9.Inbox/WP-183-unified-payments-proposal.md)
+актуализирован 29 мая, владелец — Ильшат. Payment Registry (SYS.011) при этом уже
+выделен отдельно и работает независимо от Billing Service.
 
 ## 11. Связанные документы
 
