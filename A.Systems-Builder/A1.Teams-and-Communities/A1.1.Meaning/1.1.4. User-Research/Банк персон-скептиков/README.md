@@ -62,4 +62,5 @@ depends_on:
 - Метод (Pack, type-level): `PACK-ecosystem/pack/ecosystem/03-methods/ECO.M.024-lead-persona-verification.md`
 - Service Clause: `PACK-ecosystem/pack/ecosystem/02-domain-entities/ECO.SC.003-promotion-service.md`
 - Сосед: `../Сомнения и затруднения пользователей/` — VOC-реестр (таксономия типов возражений). Не сливать: там типы возражений, здесь целые персонажи для панели проверки.
+- Карта целевых аудиторий (РП471): `../../1.1.2. Marketing/Целевые аудитории 1.1.md` — для кого пишем (сегмент, тон, боли), в паре с этим банком — кто будет придираться. Не сливать: разные оси, разные владельцы.
 - РП-контекст: `DS-my-strategy/inbox/WP-251/WP-251.md` (Ф4.5)
