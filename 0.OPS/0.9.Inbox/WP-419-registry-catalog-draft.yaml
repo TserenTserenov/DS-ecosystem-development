@@ -298,6 +298,7 @@ registries:
     verification_method: "manual"
     status: "active"
     risk_priority: "medium"
+    owner: "Андрей"
     notes: "Живой. Владелец — Андрей."
   - name: "Реестр инцидентов"
     description: "Инциденты платформы с разбором"
