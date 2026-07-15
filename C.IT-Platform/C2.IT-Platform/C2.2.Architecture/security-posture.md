@@ -4,7 +4,7 @@ type: security-dashboard
 wp: WP-212
 status: active
 created: 2026-05-08
-updated: 2026-07-02
+updated: 2026-07-15 (автономный прогон WP-212: +§6.3 FDW dependency map)
 next_audit: 2026-08-04 (Month Close август; требует починки авто-аудитора — см. WP-458 ВЫ-7)
 last_full_audit: 2026-07-02 (WP-458 сквозной аудит, 6 доменов)
 owner: WP-212
@@ -258,6 +258,29 @@ related:
 2. Указать все 4 слоя (если слой не применим — "—")
 3. Обновить WP-315 context если секрет добавлен в рамках РП
 ```
+
+### 6.3 FDW dependency map (WP-212 Ф11)
+
+> **Источник:** `DS-IT-systems/neon-migrations/mvp/` (202, 215, 226, 227). Создано 2026-07-15 (автономный прогон WP-212).
+> **Зачем:** FDW-credentials живут в `pg_user_mapping.umoptions` (Layer 3) — grep по файлам их не видит (инцидент 14 мая: `multi-domain-projection-worker` копил backlog 63K events из-за старого пароля в FDW-маппинге).
+
+| Локальная БД | Foreign server | Целевая БД | Подключается как | Используется | Риск |
+|--------------|----------------|-----------|------------------|--------------|------|
+| rewards | learning_srv | learning | **neondb_owner** ⚠️ | `compute_effective_amount()` (streak из domain_event) | owner-роль = макс. blast radius |
+| rewards | reference_srv | reference | **neondb_owner** ⚠️ | `compute_effective_amount()` (multipliers, repo_map, reward_rules) | то же |
+| rewards | indicators_srv | indicators | **neondb_owner** ⚠️ | `compute_effective_amount()` (calculated_profile.qualification_level, rcs_current.stage) | то же |
+| rewards | persona_srv | persona | **neondb_owner** ⚠️ | `compute_effective_amount()` (traits.tier fallback) | то же |
+| reference | learning_server | learning | `reference_fdw_reader` ✅ (read-only, SELECT только на club_action_limits) | view `rewards_action_catalog` (WP-325) | least-privilege — эталонный паттерн |
+
+**Ротация FDW-credentials:** `DS-IT-systems/neon-migrations/apply-fdw-rotation.sh` + `mvp/215-sync-fdw-credentials.sql` (атомарный ALTER USER MAPPING по всем серверам БД, audit trail через RAISE NOTICE).
+
+**Открытый долг (Ф11 DoD 2–4, owner: пилот — нужен доступ к Neon):** rewards-серверы (4 шт.) всё ещё на `neondb_owner`. Требуется: создать `fdw_reader_{learning,reference,indicators,persona}` с GRANT SELECT только на нужные таблицы → ALTER USER MAPPING → smoke `compute_effective_amount()`. Паттерн-эталон уже есть: миграции 226/227 (WP-325).
+
+**Чеклист добавления новой FDW-зависимости:**
+1. Создать `fdw_reader_<target>` с минимальными правами (НЕ owner-роль).
+2. GRANT SELECT только на конкретные таблицы (не PUBLIC, не ALL).
+3. Зарегистрировать строку в этой карте (§6.3).
+4. Добавить в inventory ротации (§6 таблица + WP-315 сканер).
 
 ## 7. История аудитов
 
