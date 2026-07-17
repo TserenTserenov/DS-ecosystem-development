@@ -59,6 +59,8 @@
 | 34 | [payment-registry](https://github.com/aisystant/payment-registry) | DS/instrument | ИТ-платформа | code | team | no | Active |
 | 35 | [payment-receiver](https://github.com/aisystant/payment-receiver) | DS/instrument | ИТ-платформа | code | team | no | Active |
 | 36 | [iwe-server-config](https://github.com/TserenTserenov/iwe-server-config) | DS/instrument | ИТ-платформа | code | personal | no | Active |
+| 37 | [DS-iwe-wp-panel](https://github.com/TserenTserenov/DS-iwe-wp-panel) | DS/instrument | Экзокортекс IWE | code (VS Code extension) | personal | no | Active |
+| 38 | [FMT-brand-template](https://github.com/TserenTserenov/FMT-brand-template) | Base/Формат | Личный бренд | template | public | yes (для формата) | Active |
 | — | ~~DS-aist-bot~~ | — | — | — | — | — | Archived → aist_bot_newarchitecture |
 | — | ~~DS-synchronizer~~ | — | — | — | — | — | Archived → DS-ai-systems |
 | — | ~~DS-fixer-agent~~ | — | — | — | — | — | Archived → DS-ai-systems |
@@ -215,4 +217,4 @@ FMT-exocortex-template (Base/Форматы, setup.sh встроен)
 
 ---
 
-*Последнее обновление: 2026-04-28* (добавлены: iwe-server-config #36)
+*Последнее обновление: 2026-07-17* (добавлены: DS-iwe-wp-panel #37, FMT-brand-template #38)
