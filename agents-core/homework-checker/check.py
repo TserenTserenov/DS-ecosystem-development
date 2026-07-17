@@ -127,7 +127,7 @@ def build_llm_request(
 
 def call_llm(llm_request: dict, config: dict) -> dict:
     """
-    Вызов LLM API (Anthropic Claude).
+    Вызов LLM через OpenRouter (WP-7: раньше бил напрямую в api.anthropic.com).
 
     Возвращает структурированный результат проверки.
     При отсутствии API-ключа возвращает демо-результат.
@@ -135,45 +135,50 @@ def call_llm(llm_request: dict, config: dict) -> dict:
     import re
 
     provider = config["llm"]["provider"]
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    api_key = os.environ.get("OPENROUTER_API_KEY")
 
-    print(f"[INFO] Вызов {provider} API с моделью {llm_request['model']}", file=sys.stderr)
+    model = llm_request["model"]
+    if provider == "anthropic" and not model.startswith("anthropic/"):
+        model = f"anthropic/{model}"
+
+    print(f"[INFO] Вызов OpenRouter ({provider}) с моделью {model}", file=sys.stderr)
     print(f"[INFO] Промпт: {len(llm_request['messages'][1]['content'])} символов", file=sys.stderr)
 
     # Если API-ключ не установлен, возвращаем демо-результат
     if not api_key:
-        print("[WARN] ANTHROPIC_API_KEY не установлен, возвращаем демо-результат", file=sys.stderr)
+        print("[WARN] OPENROUTER_API_KEY не установлен, возвращаем демо-результат", file=sys.stderr)
         return _get_demo_result()
 
-    # Реальный вызов Claude API
+    # Реальный вызов через OpenRouter (OpenAI-совместимый /chat/completions)
     try:
         import httpx
 
         response = httpx.post(
-            "https://api.anthropic.com/v1/messages",
+            "https://openrouter.ai/api/v1/chat/completions",
             headers={
-                "x-api-key": api_key,
-                "anthropic-version": "2023-06-01",
-                "content-type": "application/json"
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+                "HTTP-Referer": "https://github.com/aisystant/DS-ecosystem-development",
+                "X-Title": "IWE Homework Checker",
             },
             json={
-                "model": llm_request["model"],
+                "model": model,
                 "max_tokens": llm_request["max_tokens"],
                 "temperature": llm_request["temperature"],
-                "system": llm_request["messages"][0]["content"],
                 "messages": [
-                    {"role": "user", "content": llm_request["messages"][1]["content"]}
+                    {"role": "system", "content": llm_request["messages"][0]["content"]},
+                    {"role": "user", "content": llm_request["messages"][1]["content"]},
                 ]
             },
             timeout=60.0
         )
 
         if response.status_code != 200:
-            print(f"[ERROR] Claude API вернул {response.status_code}: {response.text}", file=sys.stderr)
+            print(f"[ERROR] OpenRouter вернул {response.status_code}: {response.text}", file=sys.stderr)
             return _get_demo_result()
 
         data = response.json()
-        content = data.get("content", [{}])[0].get("text", "{}")
+        content = data.get("choices", [{}])[0].get("message", {}).get("content", "{}")
 
         # Извлекаем JSON из ответа
         json_match = re.search(r'\{[\s\S]*\}', content)
