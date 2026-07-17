@@ -2,7 +2,9 @@
 
 ---
 
-## Статус на 9 июня 2026 (реальность vs план)
+## Статус на 9 июня 2026 (реальность vs план) — архивная версия
+
+> **Архив.** Этот файл перемещён в `0.OPS/0.99.Archive/` 4 июля 2026. Детальный план фаз 0-6 больше не отслеживается здесь; актуальное состояние Track B — в `DS-my-strategy/inbox/WP-285/WP-285.md`. Файл сохранён как историческая справка. Фаза 0-3 не выполнена в срок из-за отсутствия GKE/Cloud SQL; позже появились `guide-renderer-svc` (Ф7) и рефакторинг MCP (WP-410/452).
 
 ---
 
@@ -254,8 +256,10 @@
 | Артефакт | Где | Статус |
 |----------|-----|--------|
 | Инвентарь сервисов | `WP-285-services-inventory.md` |  Актуален (14 мая) |
-| Командный план (этот документ) | `WP-285-track-b-plan.md` |  Актуален (14 мая) |
-| Фазы РП | `WP-285-track-b-international-infrastructure.md` |  Актуален (14 мая) |
+| Командный план (этот документ) | `WP-285-track-b-plan.md` |  **Архивирован** (4 июля 2026) |
+| Фазы РП | `DS-my-strategy/inbox/WP-285/WP-285.md` |  Актуален |
+| Handoff Aisystant MCP на GKE | `C.IT-Platform/C2.IT-Platform/C2.2.Architecture/Stack-and-Infrastructure/WP-285-aisystant-mcp-gke-handoff.md` | Актуален (обновлён под ADR-IWE-017/018/019) |
+| Handoff guide-renderer-svc | `0.OPS/0.9.Inbox/WP-285-guide-renderer-svc-gke-handoff.md` | Создан 25 июня 2026 |
 | Документ разграничения | `WP-285-services-inventory.md §6` |  До 17 мая (Андрей) |
 | ADR Ory EU | `ADR-IWE-015/016` |  До 31 мая |
 | Terraform конфиг | Отдельный репо (GitHub-орг Track B) | ⏳ Создать 18 мая |

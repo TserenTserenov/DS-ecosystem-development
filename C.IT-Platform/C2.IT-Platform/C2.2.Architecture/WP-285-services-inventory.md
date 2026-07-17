@@ -32,9 +32,11 @@
 | **activity-hub** | Сборщик событий (medallion: bronze/silver/gold) | **нет** (читает journal из БД) | не нужен |  | Railway, `railway up` manual  | GKE Deployment | Deployment |
 | **payment-registry** | Единый журнал транзакций | **нет** (внутренний API) | cluster-internal | ** TBD** — нет Dockerfile в корне (WP-307 Ф1) | TBD | GKE Deployment | Deployment |
 | **google-drive-mcp** | Интеграция с Google Drive (Python MCP server) | **да** (HTTPS MCP + OAuth callback) | TBD | TBD (сейчас `python mcp_server.py` без build) | локально/stateless | GKE Deployment | Deployment |
+| **guide-renderer-svc** | Генерация персональных руководств для пользователей без IWE/Git («тайный гид») | **нет** (CronJob) | не нужен | TBD (извлечь из `DS-autonomous-agents/scripts/`) | — (новый) | GKE CronJob | CronJob |
 
 **Не переносить на Track B:**
 - **bridge-2-events-poller** — polling legacy LMS Aisystant. Legacy LMS только российская, для Track B не нужен.
+- **rewards-projection-worker** — **выведен из эксплуатации** 17 мая, функционал поглощён `multi-domain-projection-worker` (Р-инв-5).
 
 **Прерывистый риск миграции (WP-228 Ф32, 14 мая):**
 - `subscription.contract_event` в Track A пуста 6 недель при 541 active subscriptions — projection-worker для subscription, скорее всего, не пишет. До миграции в Track B — диагностика W3/W4 (cursor advance vs schema mismatch). Иначе Track B унаследует gap. См. lessons_dual_run_event_catalog_gaps.
@@ -47,9 +49,9 @@
 
 | Сервис | Что делает | Deploy сейчас | GitHub Actions | Target Track B | Примечания |
 |--------|-----------|--------------|---------------|----------------|------------|
-| **user-profile-service** | Профиль пользователя, тир подписки, BYOK-ключи, GitHub-привязка, онбординг-контекст | Railway `peaceful-vision`, **вручную** (последний деплой 17 июня, `5b814ee8`) | **нет** - единственный сервис без deploy.yml | GKE europe-west4 (W286, не сделано) | Нет GitHub Actions - если упадёт, восстановление только руками. Минимум: добавить deploy.yml по образцу personal-knowledge-mcp |
-| **learning-context-service** | Когнитивные брифы, контекст обучения | Railway `peaceful-vision` | TBD | GKE europe-west4 (W286) | Дефект: схема `cognitive` не накатана → `get_cognitive_brief` падает |
-| **agent-status-service** | Реестр статусов агентов (WP-398) | Railway `peaceful-vision` | TBD | GKE europe-west4 (W286) | - |
+| **user-profile-service** | Профиль пользователя, тир подписки, BYOK-ключи, GitHub-привязка, онбординг-контекст | Railway `peaceful-vision`, **вручную** (последний деплой 17 июня, `5b814ee8`) | **нет** — единственный сервис без deploy.yml | GKE europe-west4 (цель — после создания кластера Ф2/Ф3) | Нет GitHub Actions — если упадёт, восстановление только руками. Минимум: добавить deploy.yml по образцу personal-knowledge-mcp. GKE-миграция заблокирована отсутствием инфраструктуры Track B. |
+| **learning-context-service** | Когнитивные брифы, контекст обучения | Railway `peaceful-vision` | TBD | GKE europe-west4 (цель — после создания кластера Ф2/Ф3) | Дефект: схема `cognitive` не накатана → `get_cognitive_brief` падает. GKE-миграция заблокирована отсутствием инфраструктуры Track B. |
+| **agent-status-service** | Реестр статусов агентов (WP-398) | Railway `peaceful-vision` | TBD | GKE europe-west4 (цель — после создания кластера Ф2/Ф3) | GKE-миграция заблокирована отсутствием инфраструктуры Track B. |
 
 **Обновлено 2026-06-29** (источник: ИТ-встреча 28 июня + анализ кодовой базы DS-MCP).
 
@@ -154,15 +156,17 @@
 | **Admin processes** | AD1 neon-migrations | Manual `psql` | Admin (Factor 12), не runtime; для Track B аналог — migrations через Werf hook |
 | **Bridge (legacy)** | bridge-2-events-poller | Railway | Polling legacy LMS Aisystant (Track A only) |
 
-**Полный реестр и деталиrationale:** [`C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-services.md`](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-services.md) §«Принципы включения / исключения».
+**Полный реестр и детали / rationale:** [`C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-services.md`](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-services.md) §«Принципы включения / исключения».
 
 ### 8. Связанные документы
 
 | Документ | Назначение |
 |----------|-----------|
-| [`WP-285-decisions-registry.md`](WP-285-decisions-registry.md) | **Реестр принятых решений по Track B** (Р-14-*, Р-15-*, Р-инв-*, Р-22-*) + открытые вопросы на встречу 24 мая |
-| [`WP-285-track-b-plan.md`](WP-285-track-b-plan.md) | Детальный план реализации Track B (фазы 0-6, дедлайн MVP — конец июня) |
-| [`WP-285-ory-vs-zitadel-emogssb.md`](WP-285-ory-vs-zitadel-emogssb.md) | ArchGate IdP — профиль ЭМОГССБ Ory vs Zitadel (22 мая) |
+| [`WP-285-decisions-registry.md`](../../0.OPS/0.9.Inbox/WP-285-decisions-registry.md) | **Реестр принятых решений по Track B** (Р-14-*, Р-15-*, Р-инв-*, Р-22-*, Р-июн/июл-*) + открытые вопросы |
+| [`WP-285-track-b-plan.md`](../../0.OPS/0.99.Archive/WP-285-track-b-plan.md) | **Архивный** детальный план реализации Track B (фазы 0-6; актуальное состояние — в WP-285.md) |
+| [`WP-285-aisystant-mcp-gke-handoff.md`](../../Stack-and-Infrastructure/WP-285-aisystant-mcp-gke-handoff.md) | Handoff деплоя Aisystant MCP на GKE (обновлён под ADR-IWE-017/018/019) |
+| [`WP-285-guide-renderer-svc-gke-handoff.md`](../../0.OPS/0.9.Inbox/WP-285-guide-renderer-svc-gke-handoff.md) | Handoff сервиса генерации персональных руководств (Ф7 Часть Б) |
+| [`WP-285-ory-vs-zitadel-emogssb.md`](../../0.OPS/0.99.Archive/WP-285-ory-vs-zitadel-emogssb.md) | ArchGate IdP — профиль ЭМОГССБ Ory vs Zitadel (22 мая) |
 | [`12factor-services.md`](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-services.md) | Полный реестр production-runtime (31 deployment unit) + deploy-method matrix |
 | [`12factor-matrix.md`](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-matrix.md) | Compliance-матрица по 12 факторам для каждого сервиса (WP-307) |
 | [`12factor-report-wp307.md`](../../C.IT-Platform/C2.IT-Platform/C2.2.Architecture/12factor-report-wp307.md) | Итоговый отчёт аудита 12-factor (закрыт 13 мая) |
@@ -184,3 +188,4 @@
 | 17 мая | **WP-228 Ф32 алерт:** `subscription.contract_event` пустая 6 недель при 541 active subscriptions — диагностика projection-worker до миграции в Track B | lessons_dual_run_event_catalog_gaps |
 | 17 мая | Добавлен §7 «Сервисы вне scope Track B» — autonomous agents (A1-A6), profiler (P1), launchd (T1), hetzner-backstage (X2), ssm2025 (X3) — остаются в инфре пилота/Track A | WP-307 Ф0 |
 | 17 мая | **§3 БД: 12 → 16** (фактическое физическое состояние Neon per DP.SC.131 backup-инвентарь). Добавлены health (audit), payment_registry (encrypted credentials, Fernet), secrets (OAuth tokens, ADR-004 от 14 мая), metabase (отложен в §7). Pack DP.ARCH.004 = 12 — устарел | DP.SC.131 от 15 мая |
+| 18 июля | Добавлен `guide-renderer-svc`; уточнён статус TypeScript-контейнеров (Railway, GKE не начат); обновлены ссылки на связанные документы после уборки 0.9.Inbox | Автономный прогон WP-285 |

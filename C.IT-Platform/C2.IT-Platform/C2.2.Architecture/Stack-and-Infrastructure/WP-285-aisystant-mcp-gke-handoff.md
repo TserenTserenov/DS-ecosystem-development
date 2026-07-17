@@ -35,14 +35,24 @@
 | **agent-status-service** | [aisystant/agent-status-service](https://github.com/aisystant/agent-status-service) | https://agent-status-service-production.up.railway.app | Доска статусов агентов |
 | ~~bridge-scope-service~~ | — | — | **Не разворачивать** — guard перенесён в `personal-knowledge-mcp` (`scope.ts`, WP-410 ✅ 17 июня) |
 
-**Итого:** 8 сервисов за шлюзом (3 знания + 4 вспомогательных). bridge-scope устарел.
+**Дополнительные MCP-серверы** (также за шлюзом)
+
+| Сервис | Репозиторий | Track A URL | Что делает |
+|--------|-------------|-------------|------------|
+| **guides-mcp** | [aisystant/guides-mcp](https://github.com/aisystant/guides-mcp) | https://guides-mcp.aisystant.workers.dev | Каталог программ и руководств |
+| **fsm-mcp** | [aisystant/fsm-mcp](https://github.com/aisystant/fsm-mcp) | https://fsm-mcp.aisystant.workers.dev | Конечный автомат ассистента ученика |
+| **google-drive-mcp** | [aisystant/google-drive-mcp](https://github.com/aisystant/google-drive-mcp) | https://google-drive-mcp.aisystant.workers.dev | Интеграция с Google Drive (Python MCP server) |
+
+**Итого:** 10+ сервисов за шлюзом (3 основных сервера знаний + 4 вспомогательных + 3 дополнительных MCP-сервера). `bridge-scope-service` не разворачивается на Track B.
 
 </details>
 
 <details>
 <summary><b>§2. Авторизация и IdP (Ory Kratos + Hydra)</b></summary>
 
-**Решение (Р-22-5):** Ory остаётся для Track B. Zitadel отклонён — нет RFC 7591 (DCR) и RFC 8707 (Resource Indicators), что ломает интеграцию с claude.ai/ChatGPT. Conjunctive screening: Ory 0×, Zitadel 1× ([WP-285-ory-vs-zitadel-emogssb.md](WP-285-ory-vs-zitadel-emogssb.md)).
+**Решение (Р-22-5):** Ory остаётся для Track B. Zitadel отклонён — нет RFC 7591 (DCR) и RFC 8707 (Resource Indicators), что ломает интеграцию с claude.ai/ChatGPT. Conjunctive screening: Ory 0×, Zitadel 1× ([WP-285-ory-vs-zitadel-emogssb.md](../0.OPS/0.99.Archive/WP-285-ory-vs-zitadel-emogssb.md)).
+
+**Архитектурный контекст:** шлюз приводится к чистому маршрутизатору по ADR-IWE-017/018/019: общие shared-secret уходят, user-path сервисы верифицируют JWT/подпись шлюза самостоятельно, scope-guard живёт в `personal-knowledge-mcp`.
 
 **Что разворачивать (Р-22-5а):** Только Kratos + Hydra на GKE EU — отдельный инстанс от Track A VK Cloud, своя БД. Keto и Oathkeeper не нужны — права через таблицы в БД.
 
@@ -68,10 +78,12 @@
 ### Шлюз (gateway-mcp, Track B)
 
 ```bash
-# Адреса 8 сервисов (внутренние адреса GKE-кластера)
+# Адреса сервисов (внутренние адреса GKE-кластера)
 KNOWLEDGE_MCP_URL / DIGITAL_TWIN_MCP_URL / PERSONAL_KNOWLEDGE_MCP_URL
 USER_PROFILE_SERVICE_URL / LEARNING_CONTEXT_SERVICE_URL
-GITHUB_INTEGRATION_SERVICE_URL / AGENT_STATUS_SERVICE_URL / SCOPE_SERVICE_URL
+GITHUB_INTEGRATION_SERVICE_URL / AGENT_STATUS_SERVICE_URL
+GUIDES_MCP_URL / FSM_MCP_URL / GOOGLE_DRIVE_MCP_URL
+# SCOPE_SERVICE_URL больше не нужен — scope-guard in-process (ADR-IWE-019)
 
 # Ключ подписи шлюза (RS256)
 GATEWAY_SIGNING_PRIVATE_JWK   # приватный RS256-ключ
@@ -174,7 +186,7 @@ Track B использует Cloud SQL (PostgreSQL, europe-west4). Схемы б
 
 **Предварительные требования**
 
-1. Добавить Dockerfile трём серверам знаний: knowledge-mcp, digital-twin-mcp, personal-knowledge-mcp (среда CF Workers ≠ Node-контейнер).
+1. Добавить Dockerfile серверам знаний: knowledge-mcp, digital-twin-mcp, personal-knowledge-mcp, guides-mcp, fsm-mcp (среда CF Workers ≠ Node-контейнер); для google-drive-mcp — Dockerfile под GKE (Python).
 2. Применить миграции БД: `262-scope-rls.sql` на indicators; `consent_grant` (229, 261) + `cognitive.brief` (230) на learning.
 3. Создать 15 баз Cloud SQL, схемы из Neon.
 
@@ -189,6 +201,8 @@ Track B использует Cloud SQL (PostgreSQL, europe-west4). Схемы б
 
 **CI/CD (Р-14-4):** GitHub Actions → Artifact Registry → Werf → GKE. PR merge = auto-deploy. Werf-манифест пишет разработчик, DevOps добавляет инфра-специфику (Р-14-5).
 
+> **Фактический статус (июль 2026):** GKE-кластер и Cloud SQL для Track B ещё не созданы; все сервисы по-прежнему деплоятся в Track A (Cloudflare Workers / Railway). Этот handoff остаётся целевой архитектурой, но не имеет работающего GKE-контура.
+
 </details>
 
 <details>
@@ -199,7 +213,7 @@ Track B использует Cloud SQL (PostgreSQL, europe-west4). Схемы б
 | Точка | Что делает | Где сейчас | Целевое место |
 |-------|-----------|-----------|---------------|
 | user-path | `personal_connect_source` прописывает права на репозиторий пользователя | вызов шлюза → `bridge-scope /api/v1/provision` | in-process в `personal-knowledge-mcp` (владелец инструмента), личность из user-JWT (`sub`) |
-| install-webhook | установка GitHub App прописывает права | `github-integration → agent-runner /v1/admin/scope-provision` | в `github-integration-service` с подписью шлюза (server-to-server, пользователя нет) |
+| install-webhook | установка GitHub App прописывает права | `github-integration → agent-runner /v1/admin/scope-provision` | в `github-integration-service` с подписью шлюза (`GATEWAY_JWKS_URL`, server-to-server) |
 
 **Статус Track A / Track B:**
 
@@ -208,8 +222,11 @@ Track B использует Cloud SQL (PostgreSQL, europe-west4). Схемы б
 
 **Открытые шаги (owner — РП-410):**
 
+1. ✅ S0→S1: `SCOPE_GUARD_MODE=enforce` выставлен на `personal-knowledge-mcp` 17 июня (Track A). Track B — enforce с первого деплоя.
 2. Перенести install-webhook provisioning в s2s-дом: путь `/v1/admin/scope-provision` из `github-integration → agent-runner` в `github-integration-service` с подписью шлюза (`GATEWAY_JWKS_URL`), не на общий пароль — Provisioning на пароле = дыра P1.
-3. Вывести bridge-scope после шагов 1-2: шлюз убирает гейт `BRIDGE_WRITE_TOOLS` + вызовы `callScopeService`/`callScopeProvision` → снять `SCOPE_SERVICE_SHARED_SECRET` и URL → `bridge-scope-service` не разворачивать.
+3. Вывести bridge-scope после шагов 1-2: шлюз убирает гейт `BRIDGE_WRITE_TOOLS` + вызовы `callScopeService`/`callScopeProvision` → снять `SCOPE_SERVICE_SHARED_SECRET` и URL → `bridge-scope-service` не разворачивать на Track B.
+
+**Связанные ADR:** ADR-IWE-017 (чистый шлюз), ADR-IWE-018 (gateway-signed assertion), ADR-IWE-019 (scope-guard in-process).
 
 </details>
 
