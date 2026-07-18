@@ -4,25 +4,41 @@ name: routing-gate-0ops-root
 # НЕ дом доменного знания и НЕ дом кросс-ядерной навигации (постоянные дома — Паки + ядра A/B/C).
 # Блокирует новый .md-файл прямо в корне 0.OPS/ (не в подпапке 0.1-0.99).
 # Канон: PACK-digital-platform/.../DP.KR.001-knowledge-routing.md §5.5.
+#
+# Без path-фильтра на триггере НАМЕРЕННО (2026-07-18): required status check с
+# path-фильтром на триггере может остаться "expected"/не запуститься для PR,
+# не трогающих 0.OPS — required-check тогда либо держит merge заблокированным
+# навсегда, либо вообще не защищает. Джоба запускается всегда и сама решает
+# внутри, есть ли нарушение — так context всегда сообщает pass/fail.
 on:
   pull_request:
-    paths:
-      - '0.OPS/*.md'
   push:
     branches: [main]
-    paths:
-      - '0.OPS/*.md'
 
 permissions:
   contents: read
 
 jobs:
   check:
+    name: routing-gate-0ops-root
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Determine base ref
+        id: base
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE="${{ github.event.pull_request.base.sha }}"
+          else
+            BASE="${{ github.event.before }}"
+          fi
+          if [ -z "$BASE" ] || ! git rev-parse --verify --quiet "$BASE^{commit}" >/dev/null 2>&1; then
+            BASE=$(git rev-parse --verify --quiet "HEAD~1" || git rev-parse HEAD)
+          fi
+          echo "sha=$BASE" >> "$GITHUB_OUTPUT"
 
       - name: Check bypass tag
         id: bypass
@@ -36,14 +52,8 @@ jobs:
 
       - name: Detect new files directly in 0.OPS root
         if: steps.bypass.outputs.bypass != 'true'
-        env:
-          BASE_REF: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
         run: |
-          BASE="$BASE_REF"
-          if [ -z "$BASE" ] || ! git rev-parse --verify --quiet "$BASE^{commit}" >/dev/null 2>&1; then
-            BASE=$(git rev-parse --verify --quiet "HEAD~1" || git rev-parse HEAD)
-          fi
-          NEW_ROOT_FILES=$(git diff --diff-filter=AR --name-only "$BASE...HEAD" -- '0.OPS' | grep -E '^0\.OPS/[^/]+\.md$' || true)
+          NEW_ROOT_FILES=$(git diff --diff-filter=AR --name-only "${{ steps.base.outputs.sha }}...HEAD" -- '0.OPS' | grep -E '^0\.OPS/[^/]+\.md$' || true)
           if [ -n "$NEW_ROOT_FILES" ]; then
             echo "🚫 Новый файл прямо в корне 0.OPS/ — не дом ни доменного знания, ни кросс-ядерной навигации:"
             printf '%s\n' "$NEW_ROOT_FILES" | sed 's/^/   /'
