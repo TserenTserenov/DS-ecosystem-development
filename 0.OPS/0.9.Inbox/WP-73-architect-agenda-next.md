@@ -2,9 +2,9 @@
 type: agenda
 status: active
 created: 2026-04-01
-updated: 2026-07-16
+updated: 2026-07-18
 owner: Церен
-next_review: 2026-07-30
+next_review: 2026-07-25
 related: [WP-73]
 ---
 
@@ -21,6 +21,7 @@ related: [WP-73]
 | 1 | **Б5** — каналы для команд (SC-8): Zulip vs Discourse private topics vs отложить | 29 мар | Олег/команда |
 | 2 | **Q9/Q11** — юрконсультация: 152-ФЗ, санкционные риски | апрель | внешний юрист (dep: WP-186) |
 | 3 | **Q12** — РФ-хостинг для self-hosted Ory | апрель | Паша |
+| 4 | **Регламент передачи новой архитектуры** — async-ок на `C.IT-Platform/C2.IT-Platform/C2.2.Architecture/System-Implementations/ADR-handoff-new-architecture.md` (proposed): поток 3 ролей, Track A/B как география, 2 орг по юрисдикции, тест разрываемости, тиринг объектов. Дедлайн ответа **25.07.2026** | 18.07 | Андрей + Ильшат (оба, независимо) |
 
 ---
 
