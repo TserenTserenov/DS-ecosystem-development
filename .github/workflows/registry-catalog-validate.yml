@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
     paths:
-      - '0.OPS/0.9.Inbox/WP-419-registry-catalog-draft.yaml'
+      - '0.OPS/WP-419-registry-catalog-draft.yaml'
       - '0.OPS/scripts/registry-catalog.py'
       - '0.OPS/scripts/registry-catalog-drift-check.sh'
       - '**/*-catalog.yaml'        # новый реестр ГДЕ УГОДНО в этом репо (не только 0.OPS)

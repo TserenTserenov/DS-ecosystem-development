@@ -10,7 +10,7 @@
 #   тест:   bash registry-catalog-drift-check.sh <added-list-file> <changed-list-file>
 set -euo pipefail
 
-CATALOG="0.OPS/0.9.Inbox/WP-419-registry-catalog-draft.yaml"
+CATALOG="0.OPS/WP-419-registry-catalog-draft.yaml"
 REGISTRY_RE='(-catalog\.yaml|registry.*\.yaml)$'
 
 if [ "${1:-}" != "" ] && [ "${2:-}" != "" ]; then

@@ -1,3 +1,20 @@
+---
+status: accepted
+resolved: 2026-07-18
+---
+
+# ADR: серверный гейт размещения — запрет новых файлов в корне `0.OPS/` (ратифицировано)
+
+> **Решение пилота (2026-07-18, после пир-сессии `sessions/2026-07/2026-07-18-09-wp73-needs-decision-prep`):** принят единым пакетом — CI (не pre-receive, доступнее сейчас), узкий периметр (только корень `0.OPS/*.md`, не расширять на другие транзит-локации), обязательная branch protection на `main`. Grandfathering трёх существующих реестров закрыт синхронно: `numbering-registry.yaml`, `platform-services-registry.yaml`, `WP-419-registry-catalog-draft.yaml` перенесены из `0.9.Inbox` в корень `0.OPS/` (реестры — ожидаемое место в корне, гейт блокирует только `.md`). Владелец реализации — Claude (эта сессия), срок — тот же день. Реализация: `.github/workflows/routing-gate-0ops-root.yml` + правки путей в `registry-catalog.py`, `numbering-registry.py`, `platform-services-registry.py`, `registry-catalog-drift-check.sh`, `registry-catalog-validate.yml`. Канон правила — `PACK-digital-platform/.../DP.KR.001-knowledge-routing.md §5.5`.
+
+## Открытые вопросы команде (сняты решением выше)
+
+1. CI (GitHub Actions) или pre-receive? → **CI**.
+2. Расширять на другие транзит/мета-локации? → **нет, узкий периметр**.
+3. Владелец + срок? → **Claude, 2026-07-18**.
+
+---
+
 # ADR-draft: серверный гейт размещения — запрет новых файлов в корне `0.OPS/`
 
 ## Проблема

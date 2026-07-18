@@ -11,7 +11,7 @@ import sys
 import yaml
 from pathlib import Path
 
-REGISTRY_PATH = Path(__file__).parent.parent / "0.9.Inbox" / "platform-services-registry.yaml"
+REGISTRY_PATH = Path(__file__).parent.parent / "platform-services-registry.yaml"
 
 SVC_REQUIRED = {"service", "serves", "consumers", "contract", "dom", "tenancy"}
 VALID_DOM = {"world", "russia", "by-jurisdiction", "canon"}

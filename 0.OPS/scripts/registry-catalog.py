@@ -14,7 +14,7 @@ import yaml
 from pathlib import Path
 from datetime import date, datetime
 
-CATALOG_PATH = Path(__file__).parent.parent / "0.9.Inbox" / "WP-419-registry-catalog-draft.yaml"
+CATALOG_PATH = Path(__file__).parent.parent / "WP-419-registry-catalog-draft.yaml"
 FRESHNESS_DAYS = 90
 OWNER_TBD = {"N/A", "TBD", "команда"}
 REQUIRED_FIELDS_HARD = {"name", "status"}  # E1d: hard-blocks --validate

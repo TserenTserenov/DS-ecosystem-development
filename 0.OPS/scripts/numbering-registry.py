@@ -11,7 +11,7 @@ import sys
 import yaml
 from pathlib import Path
 
-REGISTRY_PATH = Path(__file__).parent.parent / "0.9.Inbox" / "numbering-registry.yaml"
+REGISTRY_PATH = Path(__file__).parent.parent / "numbering-registry.yaml"
 
 NS_REQUIRED = {"pattern", "meaning", "sot_pointer", "managed_by"}
 COLLISION_REQUIRED = {"id", "type", "status", "verdict"}
