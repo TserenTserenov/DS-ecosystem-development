@@ -180,6 +180,9 @@ related:
 | **Neon main** `neondb_owner` | `~/.secrets/neon`, tsekh-1 `/etc/iwe/env`, `~/IWE/**/.env` | Railway variables (7 сервисов) | `pg_user_mapping` (rewards, learning, analytics, platform), `pg_subscription` | `SELECT 1` через каждую роль | 2026-05-12 | WP-212 |
 | **GitHub App Private Key** `aisystant-knowledge` | `~/.secrets/github`, CF secret (`gateway-mcp`, `personal-knowledge-mcp`) | — | — | GitHub App JWT → installation token (ADR-IWE-004) | 2026-04-15 | WP-212 |
 | **Telegram pilot** `aist_pilot_bot` | `~/.secrets/telegram` | Railway variables (aist_bot) | — | Bot webhook test | 2026-03-20 | WP-198 |
+| **trace-accountant DB writer** `trace_accountant_writer` (Neon `learning`) | только Railway (не хранится локально) | Railway variables (1 сервис: trace-accountant, `DATABASE_URL`) | — (обычная роль, не FDW) | `/health` (`SELECT 1`) + `INSERT ... ON CONFLICT ... RETURNING id` smoke по точному прод-паттерну (WP-427, 2026-07-27) | 2026-07-27 (создана взамен ссылки на переменную бота `aist_me_bot.LEARNING_URL`) | WP-427 |
+
+> **Дизайн-примечание к `trace_accountant_writer` (2026-07-27):** роль без `BYPASSRLS` (см. `lessons_bypassrls_gotcha.md` — на `domain_event` включён RLS с политикой `domain_event_self_only`, ограничивающей SELECT по `account_id`). Вместо bypass — 2 узкие политики, `TO trace_accountant_writer` явно: `trace_accountant_writer_insert` (INSERT, `WITH CHECK (true)`) и `trace_accountant_writer_select` (SELECT, `USING (true)`). SELECT-политика нужна не для чтения чужих данных, а потому что прод-код (`mcp-handler.ts`) делает `INSERT ... RETURNING id` для детекции ON CONFLICT-дедупа — без неё RETURNING падает с той же ошибкой RLS, даже когда сам INSERT разрешён.
 
 ### Инструменты (WP-315)
 
