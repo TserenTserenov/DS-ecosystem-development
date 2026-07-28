@@ -1,6 +1,6 @@
 ---
 program: work-development
-level: 4
+level: 8
 stage_name: "Практик"
 domain: knowledge-worker
 seed_type: content

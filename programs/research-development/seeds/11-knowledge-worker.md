@@ -1,6 +1,6 @@
 ---
 program: research-development
-level: 7
+level: 11
 stage_name: "Революционер"
 domain: knowledge-worker
 seed_type: content

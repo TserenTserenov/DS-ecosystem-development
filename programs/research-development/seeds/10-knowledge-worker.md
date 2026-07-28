@@ -1,6 +1,6 @@
 ---
 program: research-development
-level: 6
+level: 10
 stage_name: "Реформатор"
 domain: knowledge-worker
 seed_type: content
