@@ -1939,8 +1939,8 @@ Sync-agent (R8 Синхронизатор) при Close или по cron:
 <summary><b>7. Связанные документы</b></summary>
 
 - **[WP-73 §3.8](WP-73-aisystant-platform-architecture.md)** — MCP Hub (ADR-018 v2, обновлён 17 мар)
-- **[DP.D.036](../../../PACK-digital-platform/pack/digital-platform/01-domain-contract/DP.D.036-byob-knowledge-architecture.md)** — Различение BYOB vs Managed
-- **[DP.D.031](../../../PACK-digital-platform/pack/digital-platform/01-domain-contract/DP.D.031-mcp-access-model.md)** — MCP Access Model
+- **[DP.D.036](../../../PACK-digital-platform/pack/digital-platform/02-domain-entities/DP.D.036-byob-knowledge-architecture.md)** — Различение BYOB vs Managed
+- **[DP.D.031](../../../PACK-digital-platform/pack/digital-platform/02-domain-entities/DP.D.031-mcp-access-model.md)** — MCP Access Model
 - **[DP.D.035](../../../PACK-digital-platform/pack/digital-platform/01-domain-contract/DP.D.035-data-policy.md)** — Единая политика данных IWE
 - **[PACK-verification](../../../PACK-verification/)** — Домен верификации и приёмки (WP-122)
 
