@@ -1,0 +1,57 @@
+# pack-catalog.yaml — каталог паков, выдаваемых по подписке (WP-532, обкатка S-58)
+# SoT: этот файл. Потребителю доставляется копией при подключении (открытая витрина — фаза сервиса).
+# Правило выдачи: наружу идут только Pack (доменное знание, тип 2.3). DS-* и платформенные паки не выдаются.
+schema_version: 1
+updated: 2026-08-15
+default_owner: TserenTserenov
+
+packs:
+  - name: PACK-rhetoric
+    owner: TserenTserenov
+    domain: "Риторические приёмы"
+    description: "Библиотека из 70+ карточек приёмов (аналогии, кейсы, метафоры, примеры) для постов, руководств и презентаций"
+    url: https://github.com/TserenTserenov/PACK-rhetoric
+    access: open
+    offered: default
+    audience: "контент, продвижение"
+
+  - name: PACK-ecosystem
+    owner: TserenTserenov
+    domain: "Экосистема развития интеллекта"
+    description: "Паспорт экосистемы: позиционирование, воронка, сообщество, путь пользователя — что именно мы продвигаем"
+    url: https://github.com/TserenTserenov/PACK-ecosystem
+    access: open
+    offered: default
+    audience: "продвижение, партнёры"
+
+  - name: PACK-MIM
+    owner: TserenTserenov
+    domain: "Мастерская инженеров-менеджеров"
+    description: "Форматы мероприятий, типы программ развития, роли организации — предмет продвижения"
+    url: https://github.com/TserenTserenov/PACK-MIM
+    access: open
+    offered: default
+    audience: "продвижение, программы"
+
+  - name: PACK-personal
+    owner: aisystant
+    domain: "Характеристики и состояния созидателя"
+    description: "Формализованное знание о развитии созидателя; зависимость карточек PACK-rhetoric (ссылки на концепты)"
+    url: https://github.com/aisystant/PACK-personal
+    access: open
+    offered: default
+    audience: "зависимость риторики, контент о развитии"
+
+  - name: PACK-systems-art
+    owner: TserenTserenov
+    domain: "Системное искусство"
+    description: "Художественные практики на основе системного мышления: доставка мировоззрения через переживание"
+    url: https://github.com/TserenTserenov/PACK-systems-art
+    access: by-subscription   # приватный репо: нужно право чтения от владельца
+    offered: on-request
+    audience: "креатив, культурный код"
+
+# Не в каталоге (осознанно):
+#   PACK-education — репозитория нет на GitHub (локальный черновик, не опубликован)
+#   PACK-digital-platform, PACK-verification, PACK-autonomous-agents, PACK-agent-rules — внутренняя платформа
+#   DS-* — личное/производное, границей выдачи служит само различение Base/Pack/DS
