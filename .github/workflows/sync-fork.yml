@@ -1,0 +1,22 @@
+name: Sync fork with upstream
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    if: github.repository != 'aisystant/DS-ecosystem-development'
+    steps:
+      - name: Fast-forward main from aisystant/DS-ecosystem-development
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh repo sync "${{ github.repository }}" \
+            --source aisystant/DS-ecosystem-development \
+            --branch main
