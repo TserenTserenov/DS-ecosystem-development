@@ -278,7 +278,7 @@ VS Code (heartbeats) → WakaTime Extension → wakatime.com API
 актуализирован 29 мая, владелец — Ильшат. Payment Registry (SYS.011) при этом уже
 выделен отдельно и работает независимо от Billing Service.
 
-## 11. Связанные документы
+## 12. Связанные документы
 
 - [DP.ARCH.001 Архитектура](DP.ARCH.001-platform-architecture.md)
 - [DP.ROLE.001 ИИ-агенты](DP.ROLE.001-platform-roles.md)
