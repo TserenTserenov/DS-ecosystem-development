@@ -199,3 +199,5 @@ note: "Деск по стилевому гайду Презентатора (DP.
 <div class="sub">Действие на неделю: выберите один тип личного следа и фиксируйте регулярно.</div>
 
 <div class="sub" style="margin-top: 2em;">30 августа — как сделать костюм своим.</div>
+
+<div class="sub" style="margin-top: 2em;">Подробнее в посте: [«Всезнающий ИИ есть у всех, а полезный — только у тех, кто его самостоятельно развивает»](https://systemsworld.club/t/vseznayushhij-ii-est-u-vseh-a-poleznyj-tolko-u-teh-kto-ego-samostoyatelno-razvivaet/40020)</div>
