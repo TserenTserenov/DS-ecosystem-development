@@ -206,7 +206,7 @@ li { margin-bottom: 0.12em; }
 
 # Два контура освоения ИИ-среды
 
-![h:500](ai-mastery-v2.png)
+![w:1100](ai-mastery-v2.png)
 
 ---
 
