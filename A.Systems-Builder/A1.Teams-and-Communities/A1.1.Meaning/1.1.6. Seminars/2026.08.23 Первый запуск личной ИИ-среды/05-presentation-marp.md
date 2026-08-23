@@ -144,11 +144,12 @@ li { margin-bottom: 0.35em; }
 <!-- _footer: "Подробнее в посте: [«Всезнающий ИИ есть у всех, а полезный — только у тех, кто его самостоятельно развивает»](https://systemsworld.club/t/vseznayushhij-ii-est-u-vseh-a-poleznyj-tolko-u-teh-kto-ego-samostoyatelno-razvivaet/40020)" -->
 
 <style scoped>
-ul { font-size: 0.65em; line-height: 1.25; list-style: none; padding-left: 0; }
-li { margin-bottom: 0.15em; }
+h1 { font-size: 1.3em; }
+ul { font-size: 0.58em; line-height: 1.2; list-style: none; padding-left: 0; }
+li { margin-bottom: 0.12em; }
 </style>
 
-![bg right:45%](types-personal-info.png)
+![bg right:65% fit](types-personal-info.png)
 
 # Универсальная и персональная информация
 
