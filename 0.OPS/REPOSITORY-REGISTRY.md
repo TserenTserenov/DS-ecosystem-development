@@ -3,7 +3,7 @@
 > **Source-of-truth** для списка репозиториев экосистемы развития интеллекта.
 > Обновляется при создании/удалении репозиториев.
 
-## Типы репозиториев (3 типа)
+## Типы репозиториев (5 семей верхнего уровня)
 
 | Тип | Подтип | Что содержит | Source-of-truth | Кто создаёт |
 |-----|--------|-------------|-----------------|-------------|
@@ -13,9 +13,12 @@
 | **DS** | instrument | Код, боты, агенты, MCP | Нет | Пользователь |
 | **DS** | governance | Планы, реестры, координация | Нет | Пользователь |
 | **DS** | surface | Курсы, гайды, публикации | Нет | Пользователь |
+| **PD** | — | Личные данные пользователя (типы 2.1-2.4), без кода | Нет (данные, не знание) | Пользователь |
+| **MC** | — | Машинные данные агент-для-агента (диалоги, служебные логи) | Нет | Агенты (по поручению пользователя) |
 
 > Base = платформа выдаёт. Pack и DS = пользователь создаёт.
 > Pack = вторые принципы. DS = третьи принципы. Подробно: `ZP/README.md`
+> **PD и MC** (решение 18.08.2026, WP-526 Ф5) — не подтипы DS, параллельные семьи; хранят данные, а не знание. Правила именования → `PACK-digital-platform/.../DP.KR.001-knowledge-routing.md §3.4`.
 
 ---
 
@@ -61,6 +64,8 @@
 | 36 | [iwe-server-config](https://github.com/TserenTserenov/iwe-server-config) | DS/instrument | ИТ-платформа | code | personal | no | Active |
 | 37 | [DS-iwe-wp-panel](https://github.com/TserenTserenov/DS-iwe-wp-panel) | DS/instrument | Экзокортекс IWE | code (VS Code extension) | personal | no | Active |
 | 38 | [FMT-brand-template](https://github.com/TserenTserenov/FMT-brand-template) | Base/Формат | Личный бренд | template | public | yes (для формата) | Active |
+| 39 | [PD-metrics](https://github.com/TserenTserenov/PD-metrics) | PD | Созидатель | personal-data (питание/измерения/здоровье) | personal | no | Active (переименован из DS-metrics — WP-526 Этап 1, подтверждено `gh repo view` 28.08) |
+| 40 | [MC-sessions](https://github.com/TserenTserenov/MC-sessions) | MC | cross-cutting (агенты) | agent-dialogs | personal | no | Pending migration (репозиторий создан на GitHub, пуст — подтверждено `gh repo view` 28.08, `isEmpty: true` — физический перенос `sessions/` не выполнен, ждёт WP-526 Этап 3) |
 | — | ~~DS-aist-bot~~ | — | — | — | — | — | Archived → aist_bot_newarchitecture |
 | — | ~~DS-synchronizer~~ | — | — | — | — | — | Archived → DS-ai-systems |
 | — | ~~DS-fixer-agent~~ | — | — | — | — | — | Archived → DS-ai-systems |
@@ -134,6 +139,18 @@
 | [DS-marathon-v2-tseren](https://github.com/TserenTserenov/DS-marathon-v2-tseren) | Программа марафона v2 | PACK-personal, PACK-ecosystem | TserenTserenov |
 | [DS-principles-curriculum](https://github.com/aisystant/DS-principles-curriculum) | Программа обучения принципам (FPF ячейки) | PACK-personal, PACK-ecosystem | aisystant |
 
+### PD (личные данные)
+
+| Репозиторий | Назначение | Статус | Владелец |
+|-------------|------------|--------|----------|
+| [PD-metrics](https://github.com/TserenTserenov/PD-metrics) | Питание, измерения, здоровье (тип 2.2) | Active | TserenTserenov |
+
+### MC (машинное — агент-для-агента)
+
+| Репозиторий | Назначение | Статус | Владелец |
+|-------------|------------|--------|----------|
+| [MC-sessions](https://github.com/TserenTserenov/MC-sessions) | Диалоги с агентами (сейчас живут в `DS-my-strategy/sessions/`) | Pending migration — репозиторий создан и пуст, данные не перенесены (WP-526 Этап 3) | TserenTserenov |
+
 ---
 
 ## Граф зависимостей
@@ -196,7 +213,7 @@ FMT-exocortex-template (Base/Форматы, setup.sh встроен)
 ### 1. Признак типа в README.md (первая строка после заголовка)
 
 ```markdown
-> **Тип репозитория:** `Base/Принципы` | `Base/Форматы` | `Pack` | `DS/instrument` | `DS/governance` | `DS/surface`
+> **Тип репозитория:** `Base/Принципы` | `Base/Форматы` | `Pack` | `DS/instrument` | `DS/governance` | `DS/surface` | `PD` | `MC`
 ```
 
 ### 2. Файл `REPO-TYPE.md` (только свои репо)
@@ -217,4 +234,4 @@ FMT-exocortex-template (Base/Форматы, setup.sh встроен)
 
 ---
 
-*Последнее обновление: 2026-07-17* (добавлены: DS-iwe-wp-panel #37, FMT-brand-template #38)
+*Последнее обновление: 2026-08-28* (добавлены: PD-metrics #39, MC-sessions #40; добавлены типы PD/MC — WP-526 Ф5, пир-сессия с Кими+Кодексом)
