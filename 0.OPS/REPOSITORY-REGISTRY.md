@@ -65,7 +65,8 @@
 | 37 | [DS-iwe-wp-panel](https://github.com/TserenTserenov/DS-iwe-wp-panel) | DS/instrument | Экзокортекс IWE | code (VS Code extension) | personal | no | Active |
 | 38 | [FMT-brand-template](https://github.com/TserenTserenov/FMT-brand-template) | Base/Формат | Личный бренд | template | public | yes (для формата) | Active |
 | 39 | [PD-metrics](https://github.com/TserenTserenov/PD-metrics) | PD | Созидатель | personal-data (питание/измерения/здоровье) | personal | no | Active (переименован из DS-metrics — WP-526 Этап 1, подтверждено `gh repo view` 28.08) |
-| 40 | [MC-sessions](https://github.com/TserenTserenov/MC-sessions) | MC | cross-cutting (агенты) | agent-dialogs | personal | no | Pending migration (репозиторий создан на GitHub, пуст — подтверждено `gh repo view` 28.08, `isEmpty: true` — физический перенос `sessions/` не выполнен, ждёт WP-526 Этап 3) |
+| 40 | [MC-sessions](https://github.com/TserenTserenov/MC-sessions) | MC | cross-cutting (агенты) | agent-dialogs | personal | no | Active (перенос `sessions/` из DS-my-strategy выполнен 29.08 — WP-526 Ф2: резолвер путей, pre-commit блок на старое место) |
+| 41 | [PD-persona](https://github.com/TserenTserenov/PD-persona) | PD | Созидатель | personal-data (personal/, Lifework/, мастерства) | personal | no | Active (создан 29.08 — WP-526 Ф5: personal/ + Lifework/ переехали из DS-my-strategy с историей, 52 коммита) |
 | — | ~~DS-aist-bot~~ | — | — | — | — | — | Archived → aist_bot_newarchitecture |
 | — | ~~DS-synchronizer~~ | — | — | — | — | — | Archived → DS-ai-systems |
 | — | ~~DS-fixer-agent~~ | — | — | — | — | — | Archived → DS-ai-systems |
@@ -144,12 +145,13 @@
 | Репозиторий | Назначение | Статус | Владелец |
 |-------------|------------|--------|----------|
 | [PD-metrics](https://github.com/TserenTserenov/PD-metrics) | Питание, измерения, здоровье (тип 2.2) | Active | TserenTserenov |
+| [PD-persona](https://github.com/TserenTserenov/PD-persona) | Личное: personal/, Lifework/, мастерства (masteries.yaml) | Active (создан 29.08, WP-526 Ф5) | TserenTserenov |
 
 ### MC (машинное — агент-для-агента)
 
 | Репозиторий | Назначение | Статус | Владелец |
 |-------------|------------|--------|----------|
-| [MC-sessions](https://github.com/TserenTserenov/MC-sessions) | Диалоги с агентами (сейчас живут в `DS-my-strategy/sessions/`) | Pending migration — репозиторий создан и пуст, данные не перенесены (WP-526 Этап 3) | TserenTserenov |
+| [MC-sessions](https://github.com/TserenTserenov/MC-sessions) | Диалоги с агентами (переехали из `DS-my-strategy/sessions/` 29.08) | Active — перенос выполнен (WP-526 Ф2) | TserenTserenov |
 
 ---
 
@@ -234,4 +236,4 @@ FMT-exocortex-template (Base/Форматы, setup.sh встроен)
 
 ---
 
-*Последнее обновление: 2026-08-28* (добавлены: PD-metrics #39, MC-sessions #40; добавлены типы PD/MC — WP-526 Ф5, пир-сессия с Кими+Кодексом)
+*Последнее обновление: 2026-08-29* (Day Close: MC-sessions #40 → Active — перенос sessions/ выполнен; добавлен PD-persona #41 — WP-526 Ф2/Ф5)
