@@ -67,7 +67,7 @@
 | 39 | [PD-metrics](https://github.com/TserenTserenov/PD-metrics) | PD | Созидатель | personal-data (питание/измерения/здоровье) | personal | no | Active (переименован из DS-metrics — WP-526 Этап 1, подтверждено `gh repo view` 28.08) |
 | 40 | [MC-sessions](https://github.com/TserenTserenov/MC-sessions) | MC | cross-cutting (агенты) | agent-dialogs | personal | no | Active (перенос `sessions/` из DS-my-strategy выполнен 29.08 — WP-526 Ф2: резолвер путей, pre-commit блок на старое место) |
 | 41 | [PD-persona](https://github.com/TserenTserenov/PD-persona) | PD | Созидатель | personal-data (personal/, Lifework/, мастерства) | personal | no | Active (создан 29.08 — WP-526 Ф5: personal/ + Lifework/ переехали из DS-my-strategy с историей, 52 коммита) |
-| 42 | [repo-new-smoke-test](https://github.com/TserenTserenov/repo-new-smoke-test) | project (вне 5-семейной схемы) | cross-cutting (тест) | пусто (скелет) | personal | no | Test — одноразовый смок-тест скилла `/repo-new` (WP-527 Ф3, 01.09), удалить после разбора находок |
+| 43 | [DS-piano](https://github.com/TserenTserenov/DS-piano) | DS/instrument | Созидатель | code + personal-data (трекер практики фортепиано) | personal | no | Active (создан 01.09 через `/repo-new` — WP-527 Ф3 живая обкатка, связано с WP-558) |
 | — | ~~DS-aist-bot~~ | — | — | — | — | — | Archived → aist_bot_newarchitecture |
 | — | ~~DS-synchronizer~~ | — | — | — | — | — | Archived → DS-ai-systems |
 | — | ~~DS-fixer-agent~~ | — | — | — | — | — | Archived → DS-ai-systems |
@@ -124,6 +124,7 @@
 | [rewards-projection-worker](https://github.com/aisystant/rewards-projection-worker) ⛔ **decommissioned 2026-05-17** | Python asyncpg LISTEN/NOTIFY: rewards Derived projection (WP-253 Ф9.3, decommission'd WP-311 Ф-Close — функционал в `multi-domain-projection-worker` в `attractive-optimism`) | PACK-digital-platform | TserenTserenov |
 | [personal-guide](https://github.com/TserenTserenov/personal-guide) | Персональное руководство ЛР (плоское имя, один на пилота; WP-245 Ф28.5, 24 апр 2026) | PACK-personal | TserenTserenov |
 | [iwe-server-config](https://github.com/TserenTserenov/iwe-server-config) | NixOS-конфигурация сервера «Цех» tsekh-1 (WP-138, реактивирован 28 апр 2026) | PACK-digital-platform | TserenTserenov |
+| [DS-piano](https://github.com/TserenTserenov/DS-piano) | Код трекера практики фортепиано + данные о практике (WP-558, создан 01.09) | — | TserenTserenov |
 
 ### DS/governance
 
