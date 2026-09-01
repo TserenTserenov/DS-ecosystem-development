@@ -133,7 +133,6 @@
 | [DS-ecosystem-development](https://github.com/aisystant/DS-ecosystem-development) | Координация экосистемы | PACK-ecosystem, PACK-personal, PACK-digital-platform | aisystant |
 | [DS-my-strategy](https://github.com/TserenTserenov/DS-my-strategy) | Личное стратегирование (HUB агента Стратег) | PACK-personal, PACK-digital-platform | TserenTserenov |
 | [DS-agent-workspace](https://github.com/TserenTserenov/DS-agent-workspace) | Шина данных автономных агентов (результаты, черновики, отчёты) | PACK-autonomous-agents, PACK-digital-platform | TserenTserenov |
-| [repo-new-smoke-test](https://github.com/TserenTserenov/repo-new-smoke-test) | Одноразовый смок-тест скилла `/repo-new` (WP-527) | — | TserenTserenov |
 
 ### DS/surface
 
