@@ -67,6 +67,7 @@
 | 39 | [PD-metrics](https://github.com/TserenTserenov/PD-metrics) | PD | Созидатель | personal-data (питание/измерения/здоровье) | personal | no | Active (переименован из DS-metrics — WP-526 Этап 1, подтверждено `gh repo view` 28.08) |
 | 40 | [MC-sessions](https://github.com/TserenTserenov/MC-sessions) | MC | cross-cutting (агенты) | agent-dialogs | personal | no | Active (перенос `sessions/` из DS-my-strategy выполнен 29.08 — WP-526 Ф2: резолвер путей, pre-commit блок на старое место) |
 | 41 | [PD-persona](https://github.com/TserenTserenov/PD-persona) | PD | Созидатель | personal-data (personal/, Lifework/, мастерства) | personal | no | Active (создан 29.08 — WP-526 Ф5: personal/ + Lifework/ переехали из DS-my-strategy с историей, 52 коммита) |
+| 42 | [repo-new-smoke-test](https://github.com/TserenTserenov/repo-new-smoke-test) | project (вне 5-семейной схемы) | cross-cutting (тест) | пусто (скелет) | personal | no | Test — одноразовый смок-тест скилла `/repo-new` (WP-527 Ф3, 01.09), удалить после разбора находок |
 | — | ~~DS-aist-bot~~ | — | — | — | — | — | Archived → aist_bot_newarchitecture |
 | — | ~~DS-synchronizer~~ | — | — | — | — | — | Archived → DS-ai-systems |
 | — | ~~DS-fixer-agent~~ | — | — | — | — | — | Archived → DS-ai-systems |
@@ -131,6 +132,7 @@
 | [DS-ecosystem-development](https://github.com/aisystant/DS-ecosystem-development) | Координация экосистемы | PACK-ecosystem, PACK-personal, PACK-digital-platform | aisystant |
 | [DS-my-strategy](https://github.com/TserenTserenov/DS-my-strategy) | Личное стратегирование (HUB агента Стратег) | PACK-personal, PACK-digital-platform | TserenTserenov |
 | [DS-agent-workspace](https://github.com/TserenTserenov/DS-agent-workspace) | Шина данных автономных агентов (результаты, черновики, отчёты) | PACK-autonomous-agents, PACK-digital-platform | TserenTserenov |
+| [repo-new-smoke-test](https://github.com/TserenTserenov/repo-new-smoke-test) | Одноразовый смок-тест скилла `/repo-new` (WP-527) | — | TserenTserenov |
 
 ### DS/surface
 
