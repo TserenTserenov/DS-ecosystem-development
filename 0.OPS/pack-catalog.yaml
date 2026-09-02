@@ -56,3 +56,9 @@ packs:
 #   PACK-education — репозитория нет на GitHub (локальный черновик, не опубликован)
 #   PACK-digital-platform, PACK-verification, PACK-autonomous-agents, PACK-agent-rules — внутренняя платформа
 #   DS-* — личное/производное, границей выдачи служит само различение Base/Pack/DS
+#
+# Кандидаты, НЕ добавлять как запись, пока не подтверждено право индексирования (WP-532, пир-сессия 02.09.2026):
+#   DPF-SYSE / DPF-MEPF / DPF-MDPEF (Анатолий Левенчук, Engineering DPF Suite, опубликованы 02.09.2026) —
+#   формально Pack (DPF≡Pack, memory/fpf-reference.md WP-448 Ф8), владелец ailev — публикация в ЖЖ
+#   даёт право прочитать, не право клонировать/индексировать/генерировать производные.
+#   Анализ: DS-ecosystem-development/0.OPS/0.9.Inbox/WP-532-dpf-pack-comparison.md
