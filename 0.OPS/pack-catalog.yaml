@@ -94,10 +94,52 @@ packs:
       basis: "Пилот подтвердил устное согласие автора на использование DPF наравне с FPF (тот же режим, что уже применяется к FPF-Spec.md)"
       scope: "только опубликованные открытые DPF; НЕ распространяется на закрытые репо/будущие тома Suite — для них нужно отдельное соглашение"
 
+  - name: PACK-digital-platform
+    owner: TserenTserenov
+    domain: "ИТ-платформа IWE"
+    description: "Архитектура платформы, цифровой двойник, MCP, агенты — внутренняя кухня"
+    url: https://github.com/TserenTserenov/PACK-digital-platform
+    access: by-subscription   # ⚠️ репо сейчас PUBLIC на GitHub (сознательно, ждёт проверки ссылок инсталляций когорты, WP-532 15.08) — access здесь описывает НАМЕРЕНИЕ, реальная защита появится только когда репо станет PRIVATE
+    offered: internal-only    # НЕ предлагать внешним подписчикам как готовую capability
+    audience: "внутренняя платформа — не для внешних подписчиков"
+
+  - name: PACK-verification
+    owner: TserenTserenov
+    domain: "Верификация и приёмка"
+    description: "Роли и методы верификации артефактов — внутренняя кухня"
+    url: https://github.com/TserenTserenov/PACK-verification
+    access: by-subscription   # репо PRIVATE — git ls-remote реально отказывает без права
+    offered: internal-only
+    audience: "внутренняя платформа — не для внешних подписчиков"
+
+  - name: PACK-autonomous-agents
+    owner: TserenTserenov
+    domain: "Автономные агенты"
+    description: "Архитектура и практики работы автономных ИИ-агентов — внутренняя кухня"
+    url: https://github.com/TserenTserenov/PACK-autonomous-agents
+    access: by-subscription   # репо PRIVATE — git ls-remote реально отказывает без права
+    offered: internal-only
+    audience: "внутренняя платформа — не для внешних подписчиков"
+
+  - name: PACK-agent-rules
+    owner: TserenTserenov
+    domain: "Правила поведения агентов"
+    description: "Блокирующие правила, реестр AR.NNN — внутренняя кухня"
+    url: https://github.com/TserenTserenov/PACK-agent-rules
+    access: by-subscription   # репо PRIVATE — git ls-remote реально отказывает без права
+    offered: internal-only
+    audience: "внутренняя платформа — не для внешних подписчиков"
+
 # Не в каталоге (осознанно):
 #   PACK-education — репозитория нет на GitHub (локальный черновик, не опубликован)
-#   PACK-digital-platform, PACK-verification, PACK-autonomous-agents, PACK-agent-rules — внутренняя платформа
 #   DS-* — личное/производное, границей выдачи служит само различение Base/Pack/DS
+#
+# offered: internal-only — новое значение (02.09.2026, по просьбе пилота «внести все мои паки»).
+# /pack-subscribe сегодня не читает это поле как запрет — реальная защита у internal-only паков
+# идёт ТОЛЬКО через access: by-subscription + фактическую приватность репо на GitHub (проверено
+# 02.09: verification/autonomous-agents/agent-rules — PRIVATE, digital-platform — всё ещё PUBLIC,
+# см. предупреждение в его записи выше). offered: internal-only — декларация назначения для
+# человека и будущего Ф4-фильтра, не техническая защита сама по себе.
 #
 # DPF-SYSE/MEPF/MDPEF: connect отсутствуют capability — постоянная синхронизация, начисление баллов
 # автору и доступ к закрытым томам Suite. Требуют ArchGate до дизайна (WP-532, зафиксировано 02.09.2026,
