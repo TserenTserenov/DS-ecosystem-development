@@ -3,7 +3,7 @@
 # SoT: этот файл. Потребителю доставляется копией при подключении (открытая витрина — фаза сервиса).
 # Правило выдачи: наружу идут только Pack (доменное знание, тип 2.3). DS-* и платформенные паки не выдаются.
 schema_version: 1
-updated: 2026-08-15
+updated: 2026-09-02
 default_owner: TserenTserenov
 
 packs:
@@ -52,13 +52,54 @@ packs:
     offered: default          # выдача разрешена пилотом 15.08.2026
     audience: "креатив, культурный код"
 
+  - name: DPF-SYSE
+    owner: ailev
+    framework: "Engineering DPF Suite"
+    domain: "Системная инженерия (первые принципы)"
+    description: "Systems Engineering Principles Framework — 24 паттерна"
+    url: "TBD — источник пока текстовая публикация (announcement: https://ailev.livejournal.com/1809421.html), не git-репозиторий; /pack-subscribe НЕ склонирует этот пак, пока url не заполнен git-адресом"
+    access: open
+    offered: on-demand
+    audience: "АрхГейт, архитектурные решения, верификация систем"
+    consent:
+      date: "2026-09-02"
+      basis: "Пилот подтвердил устное согласие автора на использование DPF наравне с FPF (тот же режим, что уже применяется к FPF-Spec.md)"
+      scope: "только опубликованные открытые DPF; НЕ распространяется на закрытые репо/будущие тома Suite — для них нужно отдельное соглашение"
+
+  - name: DPF-MEPF
+    owner: ailev
+    framework: "Engineering DPF Suite"
+    domain: "Инженерия метода"
+    description: "Method Engineering Principles Framework — 19 паттернов + сквозной пример APP-ME-01"
+    url: "TBD — источник пока текстовая публикация (announcement: https://ailev.livejournal.com/1809421.html), не git-репозиторий; /pack-subscribe НЕ склонирует этот пак, пока url не заполнен git-адресом"
+    access: open
+    offered: on-demand
+    audience: "конструирование методов, программы развития"
+    consent:
+      date: "2026-09-02"
+      basis: "Пилот подтвердил устное согласие автора на использование DPF наравне с FPF (тот же режим, что уже применяется к FPF-Spec.md)"
+      scope: "только опубликованные открытые DPF; НЕ распространяется на закрытые репо/будущие тома Suite — для них нужно отдельное соглашение"
+
+  - name: DPF-MDPEF
+    owner: ailev
+    framework: "Engineering DPF Suite"
+    domain: "Практика музыки и танца"
+    description: "Music and Dance Practice Engineering Principles Framework — 22 паттерна"
+    url: "TBD — источник пока текстовая публикация (announcement: https://ailev.livejournal.com/1809421.html), не git-репозиторий; /pack-subscribe НЕ склонирует этот пак, пока url не заполнен git-адресом"
+    access: open
+    offered: on-demand
+    audience: "практика мастерства, системное искусство"
+    consent:
+      date: "2026-09-02"
+      basis: "Пилот подтвердил устное согласие автора на использование DPF наравне с FPF (тот же режим, что уже применяется к FPF-Spec.md)"
+      scope: "только опубликованные открытые DPF; НЕ распространяется на закрытые репо/будущие тома Suite — для них нужно отдельное соглашение"
+
 # Не в каталоге (осознанно):
 #   PACK-education — репозитория нет на GitHub (локальный черновик, не опубликован)
 #   PACK-digital-platform, PACK-verification, PACK-autonomous-agents, PACK-agent-rules — внутренняя платформа
 #   DS-* — личное/производное, границей выдачи служит само различение Base/Pack/DS
 #
-# Кандидаты, НЕ добавлять как запись, пока не подтверждено право индексирования (WP-532, пир-сессия 02.09.2026):
-#   DPF-SYSE / DPF-MEPF / DPF-MDPEF (Анатолий Левенчук, Engineering DPF Suite, опубликованы 02.09.2026) —
-#   формально Pack (DPF≡Pack, memory/fpf-reference.md WP-448 Ф8), владелец ailev — публикация в ЖЖ
-#   даёт право прочитать, не право клонировать/индексировать/генерировать производные.
-#   Анализ: DS-ecosystem-development/0.OPS/0.9.Inbox/WP-532-dpf-pack-comparison.md
+# DPF-SYSE/MEPF/MDPEF: connect отсутствуют capability — постоянная синхронизация, начисление баллов
+# автору и доступ к закрытым томам Suite. Требуют ArchGate до дизайна (WP-532, зафиксировано 02.09.2026,
+# см. inbox/WP-532/WP-532.md «Вход из пир-сессии с Codex 02.09.2026»). offered: on-demand — не default,
+# чтобы не подразумевать готовую продуктовую функцию.
