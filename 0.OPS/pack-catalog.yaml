@@ -57,7 +57,7 @@ packs:
     framework: "Engineering DPF Suite"
     domain: "Системная инженерия (первые принципы)"
     description: "Systems Engineering Principles Framework — 24 паттерна"
-    url: "TBD — источник пока текстовая публикация (announcement: https://ailev.livejournal.com/1809421.html), не git-репозиторий; /pack-subscribe НЕ склонирует этот пак, пока url не заполнен git-адресом"
+    url: "https://github.com/ailev/FPF/tree/main/Engineering%20DPF%20Suite — та же папка внутри репо FPF, а не отдельный репозиторий; /pack-subscribe клонировать не нужно (репо FPF уже клонирован платформой) — подключение идёт через переиндексацию источника FPF (mcp knowledge_reindex_source), см. WP-532 «Живой прогон» 02.09"
     access: open
     offered: on-demand
     audience: "АрхГейт, архитектурные решения, верификация систем"
@@ -71,7 +71,7 @@ packs:
     framework: "Engineering DPF Suite"
     domain: "Инженерия метода"
     description: "Method Engineering Principles Framework — 19 паттернов + сквозной пример APP-ME-01"
-    url: "TBD — источник пока текстовая публикация (announcement: https://ailev.livejournal.com/1809421.html), не git-репозиторий; /pack-subscribe НЕ склонирует этот пак, пока url не заполнен git-адресом"
+    url: "https://github.com/ailev/FPF/tree/main/Engineering%20DPF%20Suite — та же папка внутри репо FPF, а не отдельный репозиторий; /pack-subscribe клонировать не нужно (репо FPF уже клонирован платформой) — подключение идёт через переиндексацию источника FPF (mcp knowledge_reindex_source), см. WP-532 «Живой прогон» 02.09"
     access: open
     offered: on-demand
     audience: "конструирование методов, программы развития"
@@ -85,7 +85,7 @@ packs:
     framework: "Engineering DPF Suite"
     domain: "Практика музыки и танца"
     description: "Music and Dance Practice Engineering Principles Framework — 22 паттерна"
-    url: "TBD — источник пока текстовая публикация (announcement: https://ailev.livejournal.com/1809421.html), не git-репозиторий; /pack-subscribe НЕ склонирует этот пак, пока url не заполнен git-адресом"
+    url: "https://github.com/ailev/FPF/tree/main/Engineering%20DPF%20Suite — та же папка внутри репо FPF, а не отдельный репозиторий; /pack-subscribe клонировать не нужно (репо FPF уже клонирован платформой) — подключение идёт через переиндексацию источника FPF (mcp knowledge_reindex_source), см. WP-532 «Живой прогон» 02.09"
     access: open
     offered: on-demand
     audience: "практика мастерства, системное искусство"
@@ -145,3 +145,9 @@ packs:
 # автору и доступ к закрытым томам Suite. Требуют ArchGate до дизайна (WP-532, зафиксировано 02.09.2026,
 # см. inbox/WP-532/WP-532.md «Вход из пир-сессии с Codex 02.09.2026»). offered: on-demand — не default,
 # чтобы не подразумевать готовую продуктовую функцию.
+#
+# Статус реального поиска через aisystant MCP (проверено живым запросом 02.09.2026):
+#   DPF-MDPEF (Reference-документ Suite, 39К знаков) — ПРОИНДЕКСИРОВАН, ищется через knowledge_search
+#   DPF-SYSE / DPF-MEPF / DPF-MDPEF (сами тексты паттернов, 600-800К знаков каждый) — НЕ проиндексированы,
+#   knowledge_reindex_source молча пропускает файл такого размера (нет текста ошибки). Технический
+#   предел не выяснен, требует отдельного расследования — см. WP-532 «Живой прогон» 02.09.2026.
