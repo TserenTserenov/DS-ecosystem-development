@@ -57,7 +57,9 @@ packs:
     framework: "Engineering DPF Suite"
     domain: "Системная инженерия (первые принципы)"
     description: "Systems Engineering Principles Framework — 24 паттерна"
-    url: "https://github.com/ailev/FPF/tree/main/Engineering%20DPF%20Suite — та же папка внутри репо FPF, а не отдельный репозиторий; /pack-subscribe клонировать не нужно (репо FPF уже клонирован платформой) — подключение идёт через переиндексацию источника FPF (mcp knowledge_reindex_source), см. WP-532 «Живой прогон» 02.09"
+    url: "https://github.com/ailev/FPF/tree/main/Engineering%20DPF%20Suite"
+    source_file: "Engineering DPF Suite/SYSTEMS-ENGINEERING-PRINCIPLES-FRAMEWORK.md"
+    note: "Та же папка внутри репо FPF, не отдельный репозиторий; /pack-subscribe клонировать не нужно (FPF уже клонирован платформой) — подключение через переиндексацию источника FPF (knowledge_reindex_source). Этот файл (~800К знаков) индексатор пропускает — см. WP-532 «Живой прогон» 02.09"
     access: open
     offered: on-demand
     audience: "АрхГейт, архитектурные решения, верификация систем"
@@ -71,7 +73,9 @@ packs:
     framework: "Engineering DPF Suite"
     domain: "Инженерия метода"
     description: "Method Engineering Principles Framework — 19 паттернов + сквозной пример APP-ME-01"
-    url: "https://github.com/ailev/FPF/tree/main/Engineering%20DPF%20Suite — та же папка внутри репо FPF, а не отдельный репозиторий; /pack-subscribe клонировать не нужно (репо FPF уже клонирован платформой) — подключение идёт через переиндексацию источника FPF (mcp knowledge_reindex_source), см. WP-532 «Живой прогон» 02.09"
+    url: "https://github.com/ailev/FPF/tree/main/Engineering%20DPF%20Suite"
+    source_file: "Engineering DPF Suite/METHOD-ENGINEERING-PRINCIPLES-FRAMEWORK.md"
+    note: "Та же папка внутри репо FPF, не отдельный репозиторий; /pack-subscribe клонировать не нужно (FPF уже клонирован платформой) — подключение через переиндексацию источника FPF (knowledge_reindex_source). Этот файл (~600К знаков) индексатор пропускает — см. WP-532 «Живой прогон» 02.09"
     access: open
     offered: on-demand
     audience: "конструирование методов, программы развития"
@@ -85,7 +89,9 @@ packs:
     framework: "Engineering DPF Suite"
     domain: "Практика музыки и танца"
     description: "Music and Dance Practice Engineering Principles Framework — 22 паттерна"
-    url: "https://github.com/ailev/FPF/tree/main/Engineering%20DPF%20Suite — та же папка внутри репо FPF, а не отдельный репозиторий; /pack-subscribe клонировать не нужно (репо FPF уже клонирован платформой) — подключение идёт через переиндексацию источника FPF (mcp knowledge_reindex_source), см. WP-532 «Живой прогон» 02.09"
+    url: "https://github.com/ailev/FPF/tree/main/Engineering%20DPF%20Suite"
+    source_file: "Engineering DPF Suite/MUSIC-AND-DANCE-PRACTICE-ENGINEERING-PRINCIPLES-FRAMEWORK.md"
+    note: "Та же папка внутри репо FPF, не отдельный репозиторий; /pack-subscribe клонировать не нужно (FPF уже клонирован платформой) — подключение через переиндексацию источника FPF (knowledge_reindex_source). Этот файл (~657К знаков) индексатор пропускает — см. WP-532 «Живой прогон» 02.09"
     access: open
     offered: on-demand
     audience: "практика мастерства, системное искусство"
@@ -147,7 +153,9 @@ packs:
 # чтобы не подразумевать готовую продуктовую функцию.
 #
 # Статус реального поиска через aisystant MCP (проверено живым запросом 02.09.2026):
-#   DPF-MDPEF (Reference-документ Suite, 39К знаков) — ПРОИНДЕКСИРОВАН, ищется через knowledge_search
-#   DPF-SYSE / DPF-MEPF / DPF-MDPEF (сами тексты паттернов, 600-800К знаков каждый) — НЕ проиндексированы,
-#   knowledge_reindex_source молча пропускает файл такого размера (нет текста ошибки). Технический
-#   предел не выяснен, требует отдельного расследования — см. WP-532 «Живой прогон» 02.09.2026.
+#   Suite Reference (ENGINEERING-DPF-SUITE-REFERENCE.md, 39К знаков, отдельный файл той же папки,
+#   НЕ одна из трёх записей DPF-SYSE/MEPF/MDPEF выше) — ПРОИНДЕКСИРОВАН, ищется через knowledge_search
+#   DPF-SYSE / DPF-MEPF / DPF-MDPEF (source_file каждой записи — сами тексты паттернов, 600-800К
+#   знаков каждый) — НЕ проиндексированы, knowledge_reindex_source молча пропускает файл такого
+#   размера (нет текста ошибки). Технический предел не выяснен, требует отдельного расследования —
+#   см. WP-532 «Живой прогон» 02.09.2026.
