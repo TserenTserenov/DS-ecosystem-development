@@ -67,7 +67,26 @@
 | 39 | [PD-metrics](https://github.com/TserenTserenov/PD-metrics) | PD | Созидатель | personal-data (питание/измерения/здоровье) | personal | no | Active (переименован из DS-metrics — WP-526 Этап 1, подтверждено `gh repo view` 28.08) |
 | 40 | [MC-sessions](https://github.com/TserenTserenov/MC-sessions) | MC | cross-cutting (агенты) | agent-dialogs | personal | no | Active (перенос `sessions/` из DS-my-strategy выполнен 29.08 — WP-526 Ф2: резолвер путей, pre-commit блок на старое место) |
 | 41 | [PD-persona](https://github.com/TserenTserenov/PD-persona) | PD | Созидатель | personal-data (personal/, Lifework/, мастерства) | personal | no | Active (создан 29.08 — WP-526 Ф5: personal/ + Lifework/ переехали из DS-my-strategy с историей, 52 коммита) |
+| 42 | [PD-dashboard](https://github.com/TserenTserenov/PD-dashboard) | PD | Созидатель | code + personal-data (дашборд рабочих продуктов, снимки WP-417) | personal | no | Active (создан 01.09 — WP-417, ночной writer пишет ежедневный снимок) |
 | 43 | [DS-piano](https://github.com/TserenTserenov/DS-piano) | DS/instrument | Созидатель | code + personal-data (трекер практики фортепиано) | personal | no | Active (создан 01.09 через `/repo-new` — WP-527 Ф3 живая обкатка, связано с WP-558) |
+| 44 | [DS-Tseren-Brand](https://github.com/TserenTserenov/DS-Tseren-Brand) | DS/surface | Личный бренд | text-description (факты/позиционирование/голос для публикаций) | personal | no | Active |
+| 45 | [DS-creator-development](https://github.com/TserenTserenov/DS-creator-development) | DS/surface | Созидатель | text-publication (программа личного развития, SC.020) | personal | no | Active |
+| 46 | [DS-iwe-session-trigger](https://github.com/TserenTserenov/DS-iwe-session-trigger) | DS/instrument | Экзокортекс IWE | code (VS Code extension, WP-359) | personal | no | Active |
+| 47 | [DS-platform-infra](https://github.com/TserenTserenov/DS-platform-infra) | DS/instrument | ИТ-платформа | code (Railway: LiteLLM прокси + шлюз авторизации ботов) | team | no | Active |
+| 48 | [DS-strategist-agent](https://github.com/TserenTserenov/DS-strategist-agent) | DS/instrument | Автономные агенты | code (запуск агента Стратег — скрипты/промпты/расписание) | personal | no | Active |
+| 49 | [DS-wp-sandbox](https://github.com/TserenTserenov/DS-wp-sandbox) | DS/instrument | ИТ-платформа | code (изолированная песочница проверки создания РП через MCP) | personal | no | Active |
+| 50 | [PACK-rhetoric](https://github.com/TserenTserenov/PACK-rhetoric) | Pack | Риторика (кросс-доменная) | text-description | team | yes | Active |
+| 51 | [PACK-systems-art](https://github.com/TserenTserenov/PACK-systems-art) | Pack | Системное искусство | text-description | team | yes | Active |
+| 52 | [iwe-local-config](https://github.com/TserenTserenov/iwe-local-config) | DS/instrument | ИТ-платформа | code (личный конфиг IWE-агента на Mac — хуки/скрипты/расширения) | personal | no | Active |
+| 53 | [iwe-guide-web](https://github.com/TserenTserenov/iwe-guide-web) | DS/instrument | Экзокортекс IWE | code (читалка персональных/универсальных руководств, Railway) | personal | no | Active |
+| 54 | [aisystant-com](https://github.com/aisystant/aisystant-com) | DS/surface | Экосистема | text-publication (публичный сайт Aisystant, VitePress) | team | no | Active |
+| 55 | [checklist-mcp](https://github.com/aisystant/checklist-mcp) | DS/instrument | ИТ-платформа | code (MCP2.0 read-model чек-листа участника, WP-522 §3в) | team | no | Active |
+| 56 | [guide-kit](https://github.com/iwesys/guide-kit) | DS/instrument | Экзокортекс IWE | code (открытый проект, MIT, «свои заметки + свой ИИ-ассистент») | public | no | Active |
+| 57 | [iwe-dev](https://github.com/iwesys/iwe-dev) | DS/governance | Экзокортекс IWE | text-governance (координация команды развития IWE) | team | no | Active |
+| 58 | [iwe-local-gateway](https://github.com/iwesys/iwe-local-gateway) | DS/instrument | ИТ-платформа | code (локальный шлюз координации многоагентных сессий) | team | no | Active |
+| 59 | [iwe-translation-engine](https://github.com/iwesys/iwe-translation-engine) | DS/instrument | ИТ-платформа | code (RU→EN проекция с глоссарием) | team | no | Active |
+| 60 | [bridge-2-events-poller](https://github.com/TserenTserenov/bridge-2-events-poller) | DS/instrument | ИТ-платформа | code (WP-268 T4: чтение событий LMS aisystant → event-gateway) | personal | no | Active |
+| 61 | [audit-timestamps](https://github.com/TserenTserenov/audit-timestamps) | DS/instrument | ИТ-платформа | code (WP-455: off-DB бэкап Bitcoin-anchor доказательств хэш-цепочки) | personal | no | Active |
 | — | ~~DS-aist-bot~~ | — | — | — | — | — | Archived → aist_bot_newarchitecture |
 | — | ~~DS-synchronizer~~ | — | — | — | — | — | Archived → DS-ai-systems |
 | — | ~~DS-fixer-agent~~ | — | — | — | — | — | Archived → DS-ai-systems |
@@ -103,6 +122,8 @@
 | ~~[PACK-education](https://github.com/TserenTserenov/PACK-education)~~ | ~~Archived → PACK-MIM (WP-154). Методика обучения расформирована в MIM.~~ | ~~—~~ | ~~—~~ |
 | [PACK-verification](https://github.com/TserenTserenov/PACK-verification) | Верификация и приёмка: методы проверки, эталоны, критерии приёмки (трансдоменный) | SPF, FPF | TserenTserenov |
 | [PACK-agent-rules](https://github.com/TserenTserenov/PACK-agent-rules) | Правила работы агента Claude в IWE: реестр AR.NNN с frontmatter, conflicts, revision-flow (трансдоменный, runtime-managed) | SPF, FPF | TserenTserenov |
+| [PACK-rhetoric](https://github.com/TserenTserenov/PACK-rhetoric) | Библиотека риторических приёмов IWE: кейсы, аналогии, метафоры для руководств и постов (трансдоменный) | SPF, FPF | TserenTserenov |
+| [PACK-systems-art](https://github.com/TserenTserenov/PACK-systems-art) | Системное искусство (SA.*) | SPF, FPF | TserenTserenov |
 
 ### DS/instrument
 
@@ -122,9 +143,21 @@
 | [neon-migrations](https://github.com/TserenTserenov/neon-migrations) | DDL + seeds для 9 БД MVP-greenfield (WP-253 Ф9.1, создан 24 апр 2026) | PACK-digital-platform | TserenTserenov |
 | event-gateway *(pending push)* | CF Worker: приём событий Observed → Neon (WP-253 Ф9.2 skeleton, 24 апр 2026) | PACK-digital-platform | TserenTserenov |
 | [rewards-projection-worker](https://github.com/aisystant/rewards-projection-worker) ⛔ **decommissioned 2026-05-17** | Python asyncpg LISTEN/NOTIFY: rewards Derived projection (WP-253 Ф9.3, decommission'd WP-311 Ф-Close — функционал в `multi-domain-projection-worker` в `attractive-optimism`) | PACK-digital-platform | TserenTserenov |
-| [personal-guide](https://github.com/TserenTserenov/personal-guide) | Персональное руководство ЛР (плоское имя, один на пилота; WP-245 Ф28.5, 24 апр 2026) | PACK-personal | TserenTserenov |
+| [DS-personal-guide](https://github.com/TserenTserenov/DS-personal-guide) | Персональное руководство ЛР (переименован из `personal-guide` — плоское имя больше не используется; один на пилота, WP-245 Ф28.5) | PACK-personal | TserenTserenov |
 | [iwe-server-config](https://github.com/TserenTserenov/iwe-server-config) | NixOS-конфигурация сервера «Цех» tsekh-1 (WP-138, реактивирован 28 апр 2026) | PACK-digital-platform | TserenTserenov |
+| [iwe-local-config](https://github.com/TserenTserenov/iwe-local-config) | Личная конфигурация IWE-агента на Mac (хуки, скрипты, расширения) — локальная пара к `iwe-server-config` | PACK-digital-platform | TserenTserenov |
 | [DS-piano](https://github.com/TserenTserenov/DS-piano) | Код трекера практики фортепиано + данные о практике (WP-558, создан 01.09) | — | TserenTserenov |
+| [DS-iwe-session-trigger](https://github.com/TserenTserenov/DS-iwe-session-trigger) | VS Code extension: следит за SESSION-*.md и запускает Claude Code (WP-359) | — | TserenTserenov |
+| [DS-strategist-agent](https://github.com/TserenTserenov/DS-strategist-agent) | Запуск агента Стратег (DP.AGENT.012) — скрипты, промпты, расписание | PACK-digital-platform | TserenTserenov |
+| [DS-wp-sandbox](https://github.com/TserenTserenov/DS-wp-sandbox) | Изолированная песочница для проверки создания РП через MCP | — | TserenTserenov |
+| [DS-platform-infra](https://github.com/TserenTserenov/DS-platform-infra) | Railway-инфраструктура: LiteLLM прокси + шлюз авторизации ботов | PACK-digital-platform | TserenTserenov |
+| [bridge-2-events-poller](https://github.com/TserenTserenov/bridge-2-events-poller) | Чтение событий LMS aisystant → event-gateway (WP-268 T4, read-only legacy reader) | PACK-digital-platform | TserenTserenov |
+| [audit-timestamps](https://github.com/TserenTserenov/audit-timestamps) | Off-DB бэкап Bitcoin-anchor доказательств хэш-цепочки событий (WP-455) | PACK-digital-platform | TserenTserenov |
+| [iwe-guide-web](https://github.com/TserenTserenov/iwe-guide-web) | Читалка персональных/универсальных руководств (Railway iwe-guide/web) | PACK-personal | TserenTserenov |
+| [checklist-mcp](https://github.com/aisystant/checklist-mcp) | MCP2.0 read-model чек-листа участника экосистемы (WP-522 §3в) | PACK-digital-platform | aisystant |
+| [guide-kit](https://github.com/iwesys/guide-kit) | Открытый проект (MIT): свои заметки + свой ИИ-ассистент → персональное руководство | PACK-personal | iwesys |
+| [iwe-local-gateway](https://github.com/iwesys/iwe-local-gateway) | Локальный шлюз координации многоагентных сессий (файловые локи, статусы напарников) | PACK-digital-platform | iwesys |
+| [iwe-translation-engine](https://github.com/iwesys/iwe-translation-engine) | Проекция RU→EN с глоссарием понятий | PACK-digital-platform | iwesys |
 
 ### DS/governance
 
@@ -133,6 +166,7 @@
 | [DS-ecosystem-development](https://github.com/aisystant/DS-ecosystem-development) | Координация экосистемы | PACK-ecosystem, PACK-personal, PACK-digital-platform | aisystant |
 | [DS-my-strategy](https://github.com/TserenTserenov/DS-my-strategy) | Личное стратегирование (HUB агента Стратег) | PACK-personal, PACK-digital-platform | TserenTserenov |
 | [DS-agent-workspace](https://github.com/TserenTserenov/DS-agent-workspace) | Шина данных автономных агентов (результаты, черновики, отчёты) | PACK-autonomous-agents, PACK-digital-platform | TserenTserenov |
+| [iwe-dev](https://github.com/iwesys/iwe-dev) | Координация команды развития IWE: табло, бэклог, встречи, решения, гайд | PACK-digital-platform | iwesys |
 
 ### DS/surface
 
@@ -141,6 +175,9 @@
 | [docs](https://github.com/aisystant/docs) | VitePress документация | PACK-personal, PACK-ecosystem | aisystant |
 | [DS-marathon-v2-tseren](https://github.com/TserenTserenov/DS-marathon-v2-tseren) | Программа марафона v2 | PACK-personal, PACK-ecosystem | TserenTserenov |
 | [DS-principles-curriculum](https://github.com/aisystant/DS-principles-curriculum) | Программа обучения принципам (FPF ячейки) | PACK-personal, PACK-ecosystem | aisystant |
+| [aisystant-com](https://github.com/aisystant/aisystant-com) | Публичный сайт Aisystant (VitePress) | PACK-ecosystem | aisystant |
+| [DS-Tseren-Brand](https://github.com/TserenTserenov/DS-Tseren-Brand) | База знаний о Церене Церенове: факты, позиционирование, голос для публикаций | PACK-personal | TserenTserenov |
+| [DS-creator-development](https://github.com/TserenTserenov/DS-creator-development) | Программа личного развития — руководство по IWE (SC.020) | PACK-personal | TserenTserenov |
 
 ### PD (личные данные)
 
@@ -154,6 +191,25 @@
 | Репозиторий | Назначение | Статус | Владелец |
 |-------------|------------|--------|----------|
 | [MC-sessions](https://github.com/TserenTserenov/MC-sessions) | Диалоги с агентами (переехали из `DS-my-strategy/sessions/` 29.08) | Active — перенос выполнен (WP-526 Ф2) | TserenTserenov |
+
+---
+
+## Находки полной проверки 03.09.2026 (РП-526) — не добавлены в реестр, решение за пилотом
+
+Полная сверка всех репозиториев аккаунта `TserenTserenov` (51 шт.) + локальных клонов `~/IWE` против этого реестра. Ниже — то, что реестр не покрывал и что не вписано выше как «Active», потому что назначение или судьба не установлены агентом однозначно.
+
+| Репозиторий | Находка | Рекомендация |
+|-------------|---------|--------------|
+| [DS-my-strategy-dashboard](https://github.com/TserenTserenov/DS-my-strategy-dashboard) | Создан 30.08, один push, полное дерево-копия `DS-my-strategy` (не дашборд, вопреки описанию «Панель рабочих продуктов IWE») — похоже на брошенную первую попытку до появления `PD-dashboard` (#42) | Удалить (решение и удаление — только из терминала пилота) |
+| [DS-test-wp514-20260819-151751](https://github.com/TserenTserenov/DS-test-wp514-20260819-151751) | Собственное описание: «удалить после проверки» (WP-514, 19.08) | Удалить |
+| [DS-test-wp514-e2e](https://github.com/TserenTserenov/DS-test-wp514-e2e) | Собственное описание: «удалить сразу после проверки», последний push 30.08 | Удалить |
+| [DS-test-wp514-final-verify](https://github.com/TserenTserenov/DS-test-wp514-final-verify) | Собственное описание: «удалить сразу после проверки» (WP-514, 19.08) | Удалить |
+| [desktop-tutorial](https://github.com/TserenTserenov/desktop-tutorial) | Стандартный обучающий репозиторий GitHub Desktop (создан 02.02.2025) — не относится к структуре IWE | Удалить или игнорировать |
+| [hetzner-backstage](https://github.com/TserenTserenov/hetzner-backstage) | Пустое описание, один push (17.05), не клонирован локально | Уточнить у пилота назначение |
+| [iwe-server](https://github.com/TserenTserenov/iwe-server) | Пустое описание, но живой (push 22.08), не клонирован локально | Уточнить у пилота назначение |
+| [srt-template1](https://github.com/TserenTserenov/srt-template1) | README: проект «Planora», организован по методу SRT (19 семейств) — не структура IWE (S2R/FPF), отдельный проект под личным аккаунтом | Вне периметра этого реестра — не структурировать под 5 семей |
+
+Архивные (подтверждено `gh repo view`, без действий): `DS-evaluator-agent`, `DS-exocortex-setup-agent`, `DS-extractor-agent`, `tailor-mcp`.
 
 ---
 
@@ -238,4 +294,4 @@ FMT-exocortex-template (Base/Форматы, setup.sh встроен)
 
 ---
 
-*Последнее обновление: 2026-08-29* (Day Close: MC-sessions #40 → Active — перенос sessions/ выполнен; добавлен PD-persona #41 — WP-526 Ф2/Ф5)
+*Последнее обновление: 2026-09-03* (РП-526, пир-сессия с Кодексом `2026-09-03-16-wp526-dashboard-clone-closure`: полная сверка всех 51 репозитория аккаунта TserenTserenov — добавлены 18 отсутствовавших записей #44-61, исправлено устаревшее имя `personal-guide`→`DS-personal-guide`, найдены и вынесены отдельно 8 неклассифицированных/сомнительных репозиториев)
