@@ -539,9 +539,9 @@ footer: "v3.6.0 · Aisystant · @aist_me_bot"
 
 <div class="card muted">
 <h3 style="color:#94a3b8;margin-bottom:0.4em">Сейчас</h3>
-<p style="margin:0.3em 0">ChatGPT не знает, кто вы.</p>
-<p style="margin:0.3em 0">Каждый разговор с нуля.</p>
-<p style="color:#94a3b8;margin-top:0.6em;font-weight:700">ИИ — незнакомец.</p>
+<p style="margin:0.3em 0">Если ChatGPT и помнит вас — это его личный чёрный ящик.</p>
+<p style="margin:0.3em 0">Вы это не видите и не унесёте в другой инструмент.</p>
+<p style="color:#94a3b8;margin-top:0.6em;font-weight:700">ИИ — незнакомец с чужой памятью.</p>
 </div>
 
 <div class="card accent">

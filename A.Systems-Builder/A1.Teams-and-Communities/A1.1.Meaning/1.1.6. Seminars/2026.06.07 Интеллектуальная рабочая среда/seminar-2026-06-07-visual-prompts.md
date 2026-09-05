@@ -44,7 +44,7 @@ Minimalist, elegant. Upper-left area emptier for title text. 16:9.
 Three flat cards in a row, each showing a frustrated knowledge worker mini-scene,
 muted grey-blue tone (problem state):
 Card 1 — many scattered chat windows, one fading away, label "всё теряется".
-Card 2 — a robot saying hello again from zero, label "каждый раз с нуля".
+Card 2 — a robot behind a locked vendor safe holding a notepad it won't hand over, label "память чужая".
 Card 3 — a pile of documents that doesn't grow into anything, label "опыт не копится".
 Clean flat vector, navy/grey palette, white background, Russian labels, calm not chaotic.
 ```
