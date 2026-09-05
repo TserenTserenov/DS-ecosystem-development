@@ -85,6 +85,7 @@
 | 57 | [iwe-dev](https://github.com/iwesys/iwe-dev) | DS/governance | Экзокортекс IWE | text-governance (координация команды развития IWE) | team | no | Active |
 | 58 | [iwe-local-gateway](https://github.com/iwesys/iwe-local-gateway) | DS/instrument | ИТ-платформа | code (локальный шлюз координации многоагентных сессий) | team | no | Active |
 | 59 | [iwe-translation-engine](https://github.com/iwesys/iwe-translation-engine) | DS/instrument | ИТ-платформа | code (RU→EN проекция с глоссарием) | team | no | Active |
+| 62 | [MC-data](https://github.com/TserenTserenov/MC-data) | MC | cross-cutting (агенты) | agent-logs (журнал входов: сырой ввод пользователя со следом маршрута, `.jsonl`, только дозапись) | personal | no | Staging (создан 05.09 через `/repo-new` — WP-526 Ф10, обоснование ADR-006; `Active` после приёмки «день пилота») |
 | 60 | [bridge-2-events-poller](https://github.com/TserenTserenov/bridge-2-events-poller) | DS/instrument | ИТ-платформа | code (WP-268 T4: чтение событий LMS aisystant → event-gateway) | personal | no | Active |
 | 61 | [audit-timestamps](https://github.com/TserenTserenov/audit-timestamps) | DS/instrument | ИТ-платформа | code (WP-455: off-DB бэкап Bitcoin-anchor доказательств хэш-цепочки) | personal | no | Active |
 | — | ~~DS-aist-bot~~ | — | — | — | — | — | Archived → aist_bot_newarchitecture |
@@ -191,6 +192,7 @@
 | Репозиторий | Назначение | Статус | Владелец |
 |-------------|------------|--------|----------|
 | [MC-sessions](https://github.com/TserenTserenov/MC-sessions) | Диалоги с агентами (переехали из `DS-my-strategy/sessions/` 29.08) | Active — перенос выполнен (WP-526 Ф2) | TserenTserenov |
+| [MC-data](https://github.com/TserenTserenov/MC-data) | Журнал входов: сырой ввод пользователя со следом маршрута (проект «Мой день»), `.jsonl`, только дозапись. Раскладка и схема строки — README репозитория | Staging (создан 05.09, WP-526 Ф10, ADR-006; `Active` после приёмки «день пилота») | TserenTserenov |
 
 ---
 
