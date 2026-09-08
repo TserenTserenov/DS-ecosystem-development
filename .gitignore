@@ -88,3 +88,8 @@ C.IT-Platform/C2.IT-Platform/C2.3.Operations/backup-reports/
 # Машинный P5-телеметрический лог детектора (capture_writer.sh, INCIDENT_TARGET_REPO).
 # Не SoT — читается агрегатором behaviour-report.sh с диска, в коммитах = churn.
 C.IT-Platform/C2.IT-Platform/C2.3.Operations/Incidents/incident-log-*.md
+
+# Видео/аудио семинаров — GitHub режет файлы >100МБ без Git LFS (не настроен).
+# Хранить только локально рядом с транскрипцией.
+A.Systems-Builder/A1.Teams-and-Communities/A1.1.Meaning/1.1.6. Seminars/**/*.mp4
+A.Systems-Builder/A1.Teams-and-Communities/A1.1.Meaning/1.1.6. Seminars/**/*.mov
