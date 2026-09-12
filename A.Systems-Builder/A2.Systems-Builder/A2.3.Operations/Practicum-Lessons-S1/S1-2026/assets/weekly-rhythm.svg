@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 260" font-family="Arial, sans-serif">
+  <rect width="1100" height="260" fill="#ffffff"/>
+
+  <line x1="80" y1="70" x2="1020" y2="70" stroke="#c9dcf7" stroke-width="4"/>
+
+  <!-- Days Mon-Fri: daily slot -->
+  <g font-size="14" text-anchor="middle">
+    <circle cx="130" cy="70" r="26" fill="#3d6cd0"/>
+    <text x="130" y="75" fill="#ffffff" font-weight="bold">Пн</text>
+    <text x="130" y="115" fill="#334155">слот</text>
+
+    <circle cx="270" cy="70" r="26" fill="#3d6cd0"/>
+    <text x="270" y="75" fill="#ffffff" font-weight="bold">Вт</text>
+    <text x="270" y="115" fill="#334155">слот</text>
+
+    <circle cx="410" cy="70" r="26" fill="#3d6cd0"/>
+    <text x="410" y="75" fill="#ffffff" font-weight="bold">Ср</text>
+    <text x="410" y="115" fill="#334155">слот</text>
+
+    <circle cx="550" cy="70" r="26" fill="#3d6cd0"/>
+    <text x="550" y="75" fill="#ffffff" font-weight="bold">Чт</text>
+    <text x="550" y="115" fill="#334155">слот</text>
+
+    <circle cx="690" cy="70" r="26" fill="#3d6cd0"/>
+    <text x="690" y="75" fill="#ffffff" font-weight="bold">Пт</text>
+    <text x="690" y="115" fill="#334155">слот</text>
+
+    <!-- Сб: разбор с наставником -->
+    <circle cx="850" cy="70" r="32" fill="#e67e22"/>
+    <text x="850" y="76" fill="#ffffff" font-weight="bold" font-size="15">Сб</text>
+    <text x="850" y="120" fill="#c8560f" font-weight="bold">разбор с наставником</text>
+
+    <!-- Вс: итог -->
+    <circle cx="970" cy="70" r="26" fill="#c9dcf7"/>
+    <text x="970" y="75" fill="#1a3a5c" font-weight="bold">Вс</text>
+    <text x="970" y="115" fill="#334155">итог недели</text>
+  </g>
+
+  <rect x="40" y="160" width="1020" height="70" rx="8" fill="#f2f6fc"/>
+  <text x="60" y="188" font-size="16" fill="#334155">Ежедневный слот 3-5 часов в неделю — самостоятельная работа над своим проектом.</text>
+  <text x="60" y="212" font-size="16" fill="#334155">Раз в неделю — живой разбор с наставником. Подробное расписание — на занятии 1.</text>
+</svg>
