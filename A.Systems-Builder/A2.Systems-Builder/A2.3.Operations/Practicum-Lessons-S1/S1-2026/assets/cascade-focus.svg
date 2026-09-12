@@ -14,7 +14,7 @@
   <!-- row 0: Марафон -->
   <text x="40" y="135" font-size="16" font-weight="bold" fill="#1a3a5c">Марафон</text>
   <rect x="220" y="100" width="190" height="60" fill="#12308f"/>
-  <text x="315" y="135" text-anchor="middle" fill="#ffffff" font-size="13">растит</text>
+  <text x="315" y="135" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold">растит</text>
   <rect x="410" y="100" width="190" height="60" fill="#eef2f7"/>
   <rect x="600" y="100" width="190" height="60" fill="#eef2f7"/>
   <rect x="790" y="100" width="190" height="60" fill="#eef2f7"/>
@@ -22,9 +22,9 @@
   <!-- row 1: Собранность -->
   <text x="40" y="205" font-size="16" font-weight="bold" fill="#1a3a5c">Собранность</text>
   <rect x="220" y="170" width="190" height="60" fill="#12308f"/>
-  <text x="315" y="205" text-anchor="middle" fill="#ffffff" font-size="13">крепче</text>
+  <text x="315" y="205" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold">крепче</text>
   <rect x="410" y="170" width="190" height="60" fill="#6d9ee8"/>
-  <text x="505" y="205" text-anchor="middle" fill="#ffffff" font-size="13">первый заход</text>
+  <text x="505" y="205" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold">первый заход</text>
   <rect x="600" y="170" width="190" height="60" fill="#eef2f7"/>
   <rect x="790" y="170" width="190" height="60" fill="#eef2f7"/>
 
@@ -32,9 +32,9 @@
   <text x="40" y="275" font-size="16" font-weight="bold" fill="#1a3a5c">Агентность</text>
   <rect x="220" y="240" width="190" height="60" fill="#c9dcf7"/>
   <rect x="410" y="240" width="190" height="60" fill="#12308f"/>
-  <text x="505" y="275" text-anchor="middle" fill="#ffffff" font-size="13">крепче</text>
+  <text x="505" y="275" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold">крепче</text>
   <rect x="600" y="240" width="190" height="60" fill="#6d9ee8"/>
-  <text x="695" y="275" text-anchor="middle" fill="#ffffff" font-size="13">первый заход</text>
+  <text x="695" y="275" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold">первый заход</text>
   <rect x="790" y="240" width="190" height="60" fill="#eef2f7"/>
 
   <!-- row 3: Системность -->
@@ -42,9 +42,9 @@
   <rect x="220" y="310" width="190" height="60" fill="#c9dcf7"/>
   <rect x="410" y="310" width="190" height="60" fill="#c9dcf7"/>
   <rect x="600" y="310" width="190" height="60" fill="#12308f"/>
-  <text x="695" y="345" text-anchor="middle" fill="#ffffff" font-size="13">крепче</text>
+  <text x="695" y="345" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold">крепче</text>
   <rect x="790" y="310" width="190" height="60" fill="#6d9ee8"/>
-  <text x="885" y="345" text-anchor="middle" fill="#ffffff" font-size="13">первый заход</text>
+  <text x="885" y="345" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold">первый заход</text>
 
   <!-- caption -->
   <rect x="40" y="395" width="960" height="50" rx="8" fill="#f2f6fc"/>
