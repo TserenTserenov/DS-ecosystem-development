@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 620" font-family="Arial, sans-serif">
+  <rect width="1040" height="620" fill="#ffffff"/>
+  <text x="40" y="50" font-size="30" font-weight="bold" fill="#1a3a5c">Пять ступеней ученика</text>
+
+  <!-- baseline y = 520 -->
+  <g text-anchor="middle">
+    <!-- Step 1: x=40 w=150 h=80 -->
+    <rect x="40" y="440" width="150" height="80" fill="#c9dcf7"/>
+    <text x="115" y="410" font-size="34" font-weight="bold" fill="#c9dcf7">1</text>
+    <text x="115" y="475" font-size="16" fill="#1a3a5c" font-weight="bold">Случайный</text>
+    <text x="115" y="500" font-size="13" fill="#1a3a5c">≈2 ч/нед</text>
+
+    <!-- Step 2: x=200 w=160 h=140 -->
+    <rect x="200" y="380" width="160" height="140" fill="#9dc0f0"/>
+    <text x="280" y="350" font-size="34" font-weight="bold" fill="#9dc0f0">2</text>
+    <text x="280" y="415" font-size="16" fill="#0d2d52" font-weight="bold">Практикующий</text>
+    <text x="280" y="440" font-size="13" fill="#0d2d52">≈4 ч/нед</text>
+
+    <!-- Step 3: x=370 w=180 h=220 -->
+    <rect x="370" y="300" width="180" height="220" fill="#6d9ee8"/>
+    <text x="460" y="270" font-size="34" font-weight="bold" fill="#e8f0fc">3</text>
+    <text x="460" y="335" font-size="15" fill="#ffffff" font-weight="bold">Систематический</text>
+    <text x="460" y="360" font-size="13" fill="#ffffff">≈6 ч/нед</text>
+
+    <!-- Step 4: x=560 w=210 h=320 -->
+    <rect x="560" y="200" width="210" height="320" fill="#3d6cd0"/>
+    <text x="665" y="170" font-size="34" font-weight="bold" fill="#3d6cd0">4</text>
+    <text x="665" y="235" font-size="14" fill="#ffffff" font-weight="bold">Дисциплинированный</text>
+    <text x="665" y="260" font-size="13" fill="#ffffff">≥10 ч/нед</text>
+
+    <!-- Step 5: x=780 w=220 h=420 -->
+    <rect x="780" y="100" width="220" height="420" fill="#12308f"/>
+    <text x="890" y="70" font-size="34" font-weight="bold" fill="#12308f">5</text>
+    <text x="890" y="135" font-size="16" fill="#ffffff" font-weight="bold">Проактивный</text>
+    <text x="890" y="160" font-size="13" fill="#ffffff">≥10 ч/нед</text>
+  </g>
+
+  <!-- baseline -->
+  <line x1="40" y1="520" x2="1000" y2="520" stroke="#9aa5b1" stroke-width="2"/>
+
+  <!-- caption -->
+  <rect x="40" y="550" width="960" height="55" rx="8" fill="#f2f6fc"/>
+  <text x="60" y="573" font-size="15" fill="#334155">Ступень - не оценка навсегда: пересчитывается по практике за 4-8 недель,</text>
+  <text x="60" y="594" font-size="15" fill="#334155">подтверждается диагностикой не реже раза в полгода.</text>
+</svg>
