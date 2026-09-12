@@ -95,6 +95,10 @@ p, blockquote { font-size: 18px; }
 
 ---
 
+![h:640](assets/mandatory-to-project-focus.png)
+
+---
+
 ![h:610](assets/ai-environment-before-after.png)
 
 ---
@@ -133,21 +137,15 @@ p, blockquote { font-size: 18px; }
 
 ---
 
-## Что растим на каждом шаге
+## Что растим на каждом практикуме
 
 ![w:1000](assets/cascade-focus.svg)
 
 ---
 
-![h:640](assets/mandatory-to-project-focus.png)
-
----
-
 ## Развитие Мастерства
 
-![w:620](assets/pilot-mashina-sverhchelovek.png)
-
-Пилот тренируется, машина строится — вместе сильнее.
+![h:600](assets/pilot-mashina-sverhchelovek.png)
 
 ---
 
