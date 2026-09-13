@@ -111,7 +111,7 @@ p, blockquote { font-size: 18px; }
 
 ---
 
-![h:610](assets/ai-environment-before-after.png)
+![h:540](assets/ai-environment-before-after.png)
 
 **S1** — браузерная версия IWE + личный проект, **S2** — терминальная версия IWE (VS Code или аналоги) + рабочий проект
 
