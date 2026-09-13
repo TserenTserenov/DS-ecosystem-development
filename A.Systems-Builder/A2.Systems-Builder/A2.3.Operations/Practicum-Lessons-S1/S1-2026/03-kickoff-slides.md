@@ -72,7 +72,7 @@ style: |
 
 ## Сегодня
 
-- Что изменилось в устройстве программы «Личное развитие»
+- Что изменилось в программе «Личное развитие»
 - Практикум S1 «Собранность»
 - Как выбрать свой проект
 - Разбор ваших кейсов
@@ -99,17 +99,17 @@ p, blockquote { font-size: 18px; }
 
 ---
 
-![h:610](assets/ai-environment-before-after.png)
-
-**S1** — браузерная версия IWE, **S2** — терминальная версия IWE (VS Code или аналоги)
-
----
-
 ![h:600](assets/guides-practicums-infographic.png)
 
 ---
 
 ![w:1100](assets/ladder-stages-overview.png)
+
+---
+
+![h:610](assets/ai-environment-before-after.png)
+
+**S1** — браузерная версия IWE, **S2** — терминальная версия IWE (VS Code или аналоги)
 
 ---
 
@@ -241,7 +241,7 @@ p, li { font-size: 21px; }
 ol li { margin-bottom: 4px; }
 </style>
 
-![w:820](assets/weekly-rhythm.svg)
+![w:1230](assets/weekly-rhythm.svg)
 
 Что делать на первой неделе:
 
