@@ -58,10 +58,6 @@ style: |
   section.tip h1 { color: white; border-bottom: 3px solid rgba(255,255,255,0.4); font-size: 40px; }
   section.tip p, section.tip li { color: rgba(255,255,255,0.95); }
   section.tip ul { text-align: left; display: inline-block; }
-  section.placeholder {
-    background: repeating-linear-gradient(135deg, #f1f5f9 0px, #f1f5f9 20px, #e2e8f0 20px, #e2e8f0 40px);
-  }
-  section.placeholder h2 { color: #92400e; }
 ---
 
 <!-- _class: title -->
@@ -165,11 +161,7 @@ table { font-size: 19px; }
 
 ---
 
-<!-- _class: placeholder -->
-
-## [нужна картинка] Где S2 на лестнице практикумов
-
-**Требуется:** версия `ladder-stages-overview.png` с указателем **«S2 ← вы здесь»** вместо S1. До готовности — устный пересказ: S0 → S1 → **S2 (здесь)** → S3.
+![w:1100](assets/ladder-stages-overview.png)
 
 ---
 
@@ -280,14 +272,6 @@ ol li { margin-bottom: 4px; }
 - зачем именно вам терминальная версия (в отличие от браузерной)
 - чем терминальная версия отличается от браузерной
 - как начать разворачивать её на своей машине
-
----
-
-<!-- _class: placeholder -->
-
-## [решить до встречи] Формат: открытая или закрытая
-
-WP-385: «остаётся ли S2 закрытой для записавшихся — Алёна сказала «открытая» только про S1». Если закрытая — слайды про запись/цену не нужны. Если открытая — по аналогии с S1 нужен слайд «Как попасть» (в этом черновике не создан, не изобретаю цену).
 
 ---
 
