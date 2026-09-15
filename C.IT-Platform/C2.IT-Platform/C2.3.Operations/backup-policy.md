@@ -11,8 +11,8 @@ depends_on: []
 tags:
   - backup
   - disaster-recovery
-author: Claude Code (WP-7 BAK1-F2)
-updated: 2026-07-06
+author: Claude Code (WP-7 BAK1-F2, обновлено пир-сессией BAK1/BAK6 15.09.2026)
+updated: 2026-09-15
 ---
 
 # Политика резервного копирования IWE
@@ -48,6 +48,8 @@ updated: 2026-07-06
 6. **Для данных, которых нет в git** (memory/, `.env`, локальные конфиги) — только из архива уровня 1/2 или offsite (уровень 4, когда будет настроен).
 
 **Не восстановлено этой политикой:** реальный тест полного restore (распаковать архив, убедиться что каждый git-репозиторий внутри валиден) — известный открытый пункт из BAK1 (см. `report.md §5`), не входил в BAK1-F2.
+
+**Обновление 15.09.2026 (пир-сессия Claude+Kimi, WP-7 BAK1):** последние 2 из 4 orphan-репо, найденных на аудите 18.06, получили приватный remote на GitHub — `TserenTserenov/iwe-browser-extension` и `TserenTserenov/google-drive-mcp` (два других — `iwe-server`, `PACK-systems-art` — получили remote ранее летом, без записи в эту политику). Перед публикацией оба репозитория проверены на секреты по всей git-истории (грепом на credential-паттерны + явные `.env`/`token.json`/`credentials.json`) — чисто. **BAK1 закрыт полностью.**
 
 ## 4. Offsite-канал
 
