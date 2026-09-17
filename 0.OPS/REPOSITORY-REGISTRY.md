@@ -88,6 +88,7 @@
 | 62 | [MC-data](https://github.com/TserenTserenov/MC-data) | MC | cross-cutting (агенты) | agent-logs (журнал входов: сырой ввод пользователя со следом маршрута, `.jsonl`, только дозапись) | personal | no | Staging (создан 05.09 через `/repo-new` — WP-526 Ф10, обоснование ADR-006; `Active` после приёмки «день пилота») |
 | 60 | [bridge-2-events-poller](https://github.com/TserenTserenov/bridge-2-events-poller) | DS/instrument | ИТ-платформа | code (WP-268 T4: чтение событий LMS aisystant → event-gateway) | personal | no | Active |
 | 61 | [audit-timestamps](https://github.com/TserenTserenov/audit-timestamps) | DS/instrument | ИТ-платформа | code (WP-455: off-DB бэкап Bitcoin-anchor доказательств хэш-цепочки) | personal | no | Active |
+| 63 | [mentorship-service](https://github.com/aisystant/mentorship-service) | DS/instrument | ИТ-платформа | code (карточка участника + заметки наставника, WP-578 Ф3; читает/пишет базу наставничества, тонкий клиент — бот и `gateway-mcp`) | team | no | Active |
 | — | ~~DS-aist-bot~~ | — | — | — | — | — | Archived → aist_bot_newarchitecture |
 | — | ~~DS-synchronizer~~ | — | — | — | — | — | Archived → DS-ai-systems |
 | — | ~~DS-fixer-agent~~ | — | — | — | — | — | Archived → DS-ai-systems |
@@ -156,6 +157,7 @@
 | [audit-timestamps](https://github.com/TserenTserenov/audit-timestamps) | Off-DB бэкап Bitcoin-anchor доказательств хэш-цепочки событий (WP-455) | PACK-digital-platform | TserenTserenov |
 | [iwe-guide-web](https://github.com/TserenTserenov/iwe-guide-web) | Читалка персональных/универсальных руководств (Railway iwe-guide/web) | PACK-personal | TserenTserenov |
 | [checklist-mcp](https://github.com/aisystant/checklist-mcp) | MCP2.0 read-model чек-листа участника экосистемы (WP-522 §3в) | PACK-digital-platform | aisystant |
+| [mentorship-service](https://github.com/aisystant/mentorship-service) | Карточка участника + заметки наставника для рабочего места наставника (WP-578 Ф3), обычный сервер (Railway), не облачный «край» | PACK-digital-platform | aisystant |
 | [guide-kit](https://github.com/iwesys/guide-kit) | Открытый проект (MIT): свои заметки + свой ИИ-ассистент → персональное руководство | PACK-personal | iwesys |
 | [iwe-local-gateway](https://github.com/iwesys/iwe-local-gateway) | Локальный шлюз координации многоагентных сессий (файловые локи, статусы напарников) | PACK-digital-platform | iwesys |
 | [iwe-translation-engine](https://github.com/iwesys/iwe-translation-engine) | Проекция RU→EN с глоссарием понятий | PACK-digital-platform | iwesys |
