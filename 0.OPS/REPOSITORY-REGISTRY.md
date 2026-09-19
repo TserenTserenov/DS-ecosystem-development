@@ -89,6 +89,7 @@
 | 60 | [bridge-2-events-poller](https://github.com/TserenTserenov/bridge-2-events-poller) | DS/instrument | ИТ-платформа | code (WP-268 T4: чтение событий LMS aisystant → event-gateway) | personal | no | Active |
 | 61 | [audit-timestamps](https://github.com/TserenTserenov/audit-timestamps) | DS/instrument | ИТ-платформа | code (WP-455: off-DB бэкап Bitcoin-anchor доказательств хэш-цепочки) | personal | no | Active |
 | 63 | [mentorship-service](https://github.com/aisystant/mentorship-service) | DS/instrument | ИТ-платформа | code (карточка участника + заметки наставника, WP-578 Ф3; читает/пишет базу наставничества, тонкий клиент — бот и `gateway-mcp`) | team | no | Active |
+| 64 | [DS-piano-trainer](https://github.com/aisystant/DS-piano-trainer) | DS/instrument | Фортепиано | code (MIDI-тренажёр, запись и разбор; WP-583; личные данные отдельно в DS-piano) | team | no | Active (private; approved_by=pilot, approved_at=2026-09-19, approval_scope=instance, wp_ref=WP-583) |
 | — | ~~DS-aist-bot~~ | — | — | — | — | — | Archived → aist_bot_newarchitecture |
 | — | ~~DS-synchronizer~~ | — | — | — | — | — | Archived → DS-ai-systems |
 | — | ~~DS-fixer-agent~~ | — | — | — | — | — | Archived → DS-ai-systems |
