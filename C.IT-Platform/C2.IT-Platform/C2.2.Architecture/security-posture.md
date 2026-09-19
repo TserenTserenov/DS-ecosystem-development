@@ -4,9 +4,9 @@ type: security-dashboard
 wp: WP-212
 status: active
 created: 2026-05-08
-updated: 2026-09-10 (VR.R.002 monthly-deep: §3 open vulns 16→17, §7 новая запись)
+updated: 2026-09-19 (VR.R.002 monthly-deep: historical OpenAI credential exposure + 6 high Dependabot alerts)
 next_audit: 2026-10-05 (Month Close октябрь)
-last_full_audit: 2026-07-02 (WP-458 сквозной аудит, 6 доменов)
+last_full_audit: 2026-09-19 (VR.R.002 monthly-deep A-F; live RLS DB checks deferred)
 owner: WP-212
 audit_cadence:
   daily: tsekh-1 systemd-timer 04:45 МСК — VR.R.002 daily-headless по B7.4 A-D (~10-15 мин, $1.5)
@@ -54,7 +54,7 @@ related:
 |-----------|---------|-------------|------------|
 | **Governance** (политики, роли, ответственность) | 1.5 | Политики есть (B2.3 ротация, B3.5 retention, B3.8 privacy draft). Формального security owner нет, DPA с провайдерами отсутствует | 2 |
 | **Design** (threat modeling, secure design) | 2 | STRIDE B7.2 (draft, 8 сервисов). ArchGate §Б встроен в каждый РП. Data classification map B7.3.1 готова | 2.5 |
-| **Implementation** (secure coding, CI/CD) | 2 | SAST (bandit/semgrep), TruffleHog, Dependabot, branch protection. RLS на knowledge-mcp ✅, JWT-верификация в 3 MCP ✅. OAuth tokens шифрование (B2.5) — pending | 2.5 |
+| **Implementation** (secure coding, CI/CD) | 1.5 | SAST и branch protection работают, но аудит 2026-09-19 нашёл 6 открытых high Dependabot alerts и один похожий на реальный OpenAI credential в git-истории. RLS на knowledge-mcp ✅; OAuth tokens шифрование (B2.5) — pending | 2.5 |
 | **Verification** (security testing) | 1 | E2E изоляция 5/5 PASS (B4.15). Нет формального pentest. Нет автоматизированных security regression tests | 2 |
 | **Operations** (мониторинг, incident response) | 1.5 | Alerter (WP-244) работает. DR runbook есть (B6.3). Audit trail частичный (WP-237 pending). GDPR erasure нет | 2 |
 
@@ -84,15 +84,15 @@ related:
 
 > Обновляется VR.R.002 Аудитором при каждом аудите. Источник: STRIDE B7.2 + ArchGate §Б + incident log.
 
-> **Аудит 2026-09-10:** живые проверки (не переписано вслепую) — см. §7. B2.5/B4.23 пр.2/B8.0/B4.1/B9.x подтверждены как открытые независимо от прошлой записи не были — доступа к Neon (RLS-политики) в этой сессии не было, статус этих строк перенесён без проверки БД, помечено ниже. Новая находка: слабый branch protection (admin bypass + нет обязательного review) на `knowledge-mcp`/`digital-twin-mcp`.
+> **Аудит 2026-09-19:** живые проверки — см. §7. Новая критическая находка: один уникальный OpenAI credential-паттерн длиной 164 символа присутствует в двух старых коммитах `.env.example`; в текущем дереве удалён, документированного подтверждения ротации нет. Новая высокая находка: 6 открытых Dependabot alerts уровня high (1 `activity-hub`, 5 `gateway-mcp`). На `knowledge-mcp`/`digital-twin-mcp` обязательное ревью теперь включено (1 approval), но `enforce_admins=false` оставляет admin bypass. B2.5/B4.23 пр.2/B9.x перенесены без live DB-проверки: прямой доступ к Neon в этом проходе не использовался.
 
 | Критичность | Кол-во | Примеры | Дедлайн |
 |-------------|--------|---------|---------|
-| 🔴 критическая | 2 | B2.5 OAuth tokens plaintext в БД (не переверено — нет DB-доступа); B4.23 пр.2 RLS на digital_twins/users (не переверено — нет DB-доступа) | dep WP-234/WP-227 |
-| 🟡 высокая | 4 | B4.9 Auth events log нет; B7.2 draft (не review); B8.0 ToS/Privacy нет (подтверждено живой проверкой 2026-09-10 — нет публичного URL, бот на него не ссылается); Variant E (JWT claim) pending Паша | W19-W20 |
-| 🟢 средняя | 7 | B3.6 GDPR erasure; B3.7 activity hub bulk sync; B3.9 consent UI; B4.1 API RBAC; B7.4 external audit prep; B9.x RLS roll-out; **новое:** branch protection без required review + `enforce_admins=false` на `knowledge-mcp`, `digital-twin-mcp` (gh api подтверждено 2026-09-10 — CI-чеки обязательны, но админ может слить мимо review) | W20-W21 |
+| 🔴 критическая | 3 | B2.5 OAuth tokens plaintext в БД (не переверено — нет DB-доступа); B4.23 пр.2 RLS на digital_twins/users (не переверено — нет DB-доступа); OpenAI credential в git-истории `.env.example` (коммиты `0d36bfca`/`05455f8e`, одно значение, ротация не подтверждена) | dep WP-234/WP-227; ключ — немедленно revoke/rotate |
+| 🟡 высокая | 5 | B4.9 Auth events log нет; B7.2 draft (не review); B8.0 ToS/Privacy нет; Variant E (JWT claim) pending Паша; **6 открытых high Dependabot alerts** (`aiohttp` ×1 в `activity-hub`; `sharp` ×1 и `fast-uri` ×4 в `gateway-mcp`) | W19-W20; зависимости — ближайший patch window |
+| 🟢 средняя | 7 | B3.6 GDPR erasure; B3.7 activity hub bulk sync; B3.9 consent UI; B4.1 API RBAC; B7.4 external audit prep; B9.x RLS roll-out; branch protection с required review=1, но `enforce_admins=false` на `knowledge-mcp`, `digital-twin-mcp` (gh api 2026-09-19) | W20-W21 |
 | ⚪ низкая | 4 | B5.5 container scan; FSM concurrency lock; GitHub App scope re-consent; timing side-channel | backlog |
-| **Итого** | **17** | — | — |
+| **Итого** | **19** | — | — |
 
 ### 3.1 Feature-flag security gates (pre-mitigations)
 
@@ -108,7 +108,7 @@ related:
 
 > **Источник (WP-458 ВЫ-7):** таблица генерируется детерминированно скриптом `DS-my-strategy/scripts/security-coverage-sync.sh` (живой опрос через `gh api`, без LLM). Не редактировать между маркерами вручную.
 
-<!-- COVERAGE-SYNC:START (generated by security-coverage-sync.sh, 2026-09-09T22:31Z) -->
+<!-- COVERAGE-SYNC:START (generated by security-coverage-sync.sh, 2026-09-19T02:15Z) -->
 
 | Репо | Secret scanning | Scan workflow | SAST | Branch protection (default) | Dependabot |
 |------|-----------------|---------------|------|-----------------------------|------------|
@@ -127,10 +127,12 @@ related:
 | TserenTserenov/neon-migrations ⚠️личный | нет | нет | нет | нет | нет |
 | iwesys/iwe-local-gateway-render-prototype | нет | нет | нет | нет | нет |
 
-> Сгенерировано детерминированно (gh api, без LLM) 2026-09-09T22:31Z. Не редактировать вручную между маркерами.
+> Сгенерировано детерминированно (gh api, без LLM) 2026-09-19T02:15Z. Не редактировать вручную между маркерами.
 <!-- COVERAGE-SYNC:END -->
 
-**Реальное покрытие (2026-07-02):** Secret scanning 3/14 · Scan workflow 5/14 · SAST 5/14 · Branch protection 2/14 · **Dependabot 0/14**.
+**Реальное покрытие (2026-09-19):** Secret scanning 3/14 · Scan workflow 5/14 · SAST 5/14 · Branch protection 2/14 · Dependabot alerts API доступен для 4/14 проверенных репо. В доступных репо: 0 critical, **6 high**. Для остальных 10 API недоступен или alerts не включены — это отсутствие покрытия, не подтверждение нуля.
+
+**Branch protection live-check (2026-09-19):** `knowledge-mcp` и `digital-twin-mcp` требуют 1 approval и обязательные SAST/npm checks; `enforce_admins=false` на обоих.
 
 **Красные зоны:** `payment-registry` (личный аккаунт, платежи) и `event-gateway`/`payment-receiver` (эксплуатируемые критические эндпоинты) — по нулям во всех колонках. Dependabot не настроен нигде (прежнее «8/8» было ложным).
 
@@ -185,6 +187,8 @@ related:
 | **trace-accountant DB writer** `trace_accountant_writer` (Neon `learning`) | только Railway (не хранится локально) | Railway variables (1 сервис: trace-accountant, `DATABASE_URL`) | — (обычная роль, не FDW) | `/health` (`SELECT 1`) + `INSERT ... ON CONFLICT ... RETURNING id` smoke по точному прод-паттерну (WP-427, 2026-07-27) | 2026-07-27 (создана взамен ссылки на переменную бота `aist_me_bot.LEARNING_URL`) | WP-427 |
 
 > **Дизайн-примечание к `trace_accountant_writer` (2026-07-27):** роль без `BYPASSRLS` (см. `lessons_bypassrls_gotcha.md` — на `domain_event` включён RLS с политикой `domain_event_self_only`, ограничивающей SELECT по `account_id`). Вместо bypass — 2 узкие политики, `TO trace_accountant_writer` явно: `trace_accountant_writer_insert` (INSERT, `WITH CHECK (true)`) и `trace_accountant_writer_select` (SELECT, `USING (true)`). SELECT-политика нужна не для чтения чужих данных, а потому что прод-код (`mcp-handler.ts`) делает `INSERT ... RETURNING id` для детекции ON CONFLICT-дедупа — без неё RETURNING падает с той же ошибкой RLS, даже когда сам INSERT разрешён.
+
+> **Аудит ротации 2026-09-19:** inventory обновлялся 2026-09-01 и укладывается в 90 дней, но журнал ротации по-прежнему отмечает 6 критичных секретов просроченными с 2026-07-14 (owner: WP-399/пилот). Отдельного подтверждения ротации исторического OpenAI credential не найдено.
 
 ### Инструменты (WP-315)
 
@@ -300,6 +304,7 @@ related:
 | **2026-06-01** | Month Close аудит | **VR.R.002 monthly-deep** | ⚠️ не выполнен (авто-аудитор в reflex-skip с ~13 июня) | — |
 | **2026-07-02** | Сквозной аудит платформы + IWE | Claude (Fable 5) + 6 параллельных доменных аудиторов | ~50 находок → 8 критических кластеров; 6 доменов; Волна 0 устранена | WP-458 (f1-findings.md, f2-triage.md) |
 | **2026-09-10** | Month Close, monthly-deep (Б7.4 A-F) | VR.R.002 Аудитор (Claude Sonnet 5) | Живые проверки: A1-A3 (auth) подтверждены curl против gateway-mcp/digital-twin-mcp — invalid JWT и X-User-Id spoofing без токена отклоняются (401). §4 CI/CD-таблица перегенерирована live (gh api, 2026-09-09T22:31Z) — Dependabot 0/14 подтверждено (vulnerability-alerts disabled на личных репо). Две находки WP-458 подтверждены закрытыми: email-в-логах (google_calendar_oauth.py, oauth_server.py — PII в логах больше нет) и Grafana-ключ литералом в `.mcp.json` (заменён на indirection-скрипт). Новая находка: `enforce_admins=false` + нет required PR review на `knowledge-mcp`/`digital-twin-mcp` (admin-bypass возможен несмотря на required CI checks). Секция B (RLS) **не проверена** — нет доступа к Neon-credentials в этой сессии (permission denied), строки B2.5/B4.23 пр.2 в §3 перенесены без независимой проверки. Open vulns 16→17. C1 (secrets в git-истории): локальный grep по этому репо чист, но полный TruffleHog-скан по всем репо в этой сессии не выполнялся (бинарь недоступен) — покрытие частичное. | этот файл |
+| **2026-09-19** | Month Close, monthly-deep (Б7.4 A-F) | VR.R.002 Аудитор (Codex) | **A:** gateway invalid JWT → 401; `digital-twin-mcp` защищённый tool-call с ложным `X-User-Id` → 401; `personal-knowledge-mcp` не вернул данные при invalid JWT + spoof. Публичные discovery/read-инструменты `knowledge-mcp` доступны анонимно по действующему access model. **B:** live RLS DB-тест не выполнялся; открытые B4/B5 перенесены с явной пометкой. **C:** gitleaks прошёл 14 локальных репо с историей; 25 срабатываний разобраны по метаданным. 22 в сервисных репо — тестовые значения, PEM-парсер или audit UUID; одно checklist-placeholder. Один уникальный OpenAI credential-паттерн повторён в двух старых коммитах `.env.example`, в HEAD отсутствует, ротация не подтверждена — новая critical. Inventory свежий (2026-09-01), 6 ротаций просрочены. **D:** 0 critical + 6 high Dependabot alerts; required review на двух защищённых ветках исправлен до 1, admin bypass остаётся. **E:** статический поиск не нашёл email в log-вызовах; ToS/Privacy/GDPR erasure остаются открыты, live Railway logs не читались. **F:** gateway/digital-twin/knowledge health → 200; ответы содержат только статус/auth/version, без внутренних деталей. DR runbook существует, но не актуализировался с 2026-04-14. Open vulns 17→19. | этот файл |
 
 ---
 
@@ -307,8 +312,8 @@ related:
 
 | # | Риск | Вероятность | Impact | Митигация |
 |---|------|-------------|--------|-----------|
-| 1 | **OAuth tokens в plaintext** — утечка БД aist_bot → все GitHub/Google токены пользователей компрометированы | средняя | критический | B2.5 pending Дима. Interim: Neon AES-256 at-rest + сетевая изоляция |
-| 2 | **Нет ToS/Privacy** — YooKassa может заблокировать платежи, GDPR жалоба при первом EU-пользователе | низкая | высокий | **B8.0 unblocked, ~2h, сделать до пилота 11 мая** |
+| 1 | **OpenAI credential в публично-доступной git-истории** — похожее на реальный ключ значение удалено из HEAD, но остаётся в двух коммитах; ротация не подтверждена | неизвестна | критический | Немедленно revoke/rotate у провайдера; затем проверить usage/billing и решить, нужен ли history rewrite |
+| 2 | **OAuth tokens в plaintext** — утечка БД aist_bot → все GitHub/Google токены пользователей компрометированы | средняя | критический | B2.5 pending Дима. Interim: Neon AES-256 at-rest + сетевая изоляция |
 | 3 | **RLS нет на digital_twins/users** — пользователь A теоретически может получить данные пользователя B через прямой DB-доступ (не через Gateway) | низкая | высокий | Interim: Gateway = единственная точка входа + no direct DB access. Полное решение: B4.23 пр.2 dep WP-227 |
 
 ---
