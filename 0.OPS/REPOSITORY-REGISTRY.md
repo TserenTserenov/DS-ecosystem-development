@@ -90,6 +90,7 @@
 | 61 | [audit-timestamps](https://github.com/TserenTserenov/audit-timestamps) | DS/instrument | ИТ-платформа | code (WP-455: off-DB бэкап Bitcoin-anchor доказательств хэш-цепочки) | personal | no | Active |
 | 63 | [mentorship-service](https://github.com/aisystant/mentorship-service) | DS/instrument | ИТ-платформа | code (карточка участника + заметки наставника, WP-578 Ф3; читает/пишет базу наставничества, тонкий клиент — бот и `gateway-mcp`) | team | no | Active |
 | 64 | [DS-piano-trainer](https://github.com/TserenTserenov/DS-piano-trainer) | DS/instrument | Фортепиано | code (MIDI-тренажёр, запись и разбор; WP-583; личные данные отдельно в DS-piano) | personal | no | Active (private; создан 19.09 в организации aisystant, 21.09 перенесён в личный аккаунт по решению пилота; approved_by=pilot, approved_at=2026-09-19, approval_scope=instance, wp_ref=WP-583) |
+| 65 | [DS-practicum-library](https://github.com/TserenTserenov/DS-practicum-library) | DS/instrument | Созидатель | code (v0-инструмент публикации материалов практикумов на Google Диск, ручной запуск; WP-584) | personal | no | Active (private; approved_by=pilot, approved_at=2026-09-23, approval_scope=instance, wp_ref=WP-584) |
 | — | ~~DS-aist-bot~~ | — | — | — | — | — | Archived → aist_bot_newarchitecture |
 | — | ~~DS-synchronizer~~ | — | — | — | — | — | Archived → DS-ai-systems |
 | — | ~~DS-fixer-agent~~ | — | — | — | — | — | Archived → DS-ai-systems |
